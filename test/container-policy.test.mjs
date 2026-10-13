@@ -32,12 +32,15 @@ test('container retains one-origin build and fail-closed public runtime configur
 test('container context defaults to exclusion and omits host secrets and generated releases', () => {
   const rules = ignore.split('\n').filter((line) => line && !line.startsWith('#'))
   assert.equal(rules[0], '**')
-  for (const required of ['!src/**', '!api/lib/**', '!api/mix.lock', '!package-lock.json']) assert.ok(rules.includes(required))
+  for (const required of ['!src/**', '!api/lib/**', '!api/mix.lock', '!package-lock.json', '!scripts/offlinePlugin.ts', '!public/**']) assert.ok(rules.includes(required))
   for (const excluded of ['**/.env*', '**/*.key', '**/*.pem', '**/erl_crash.dump', '**/_build/**', '**/node_modules/**', 'api/priv/static/app/**']) assert.ok(rules.includes(excluded))
   // Re-including a parent also includes its descendants in Docker's matcher.
   // Re-exclude each broad API level before admitting specific children.
-  for (const directory of ['api', 'api/priv', 'api/priv/static']) {
+  for (const directory of ['api', 'api/priv', 'api/priv/static', 'scripts']) {
     assert.ok(rules.indexOf(`${directory}/*`) > rules.indexOf(`!${directory}/`))
   }
-  for (const line of rules.filter((line) => line.startsWith('!'))) assert.doesNotMatch(line, /^!(?:\.git|artifacts|test|packaging|scripts|docs|\.env|api\/_build|api\/deps)(?:\/|$)/)
+  // The offline Vite plugin is build input. Admit only that file after
+  // excluding other scripts, including launchers and package builders.
+  const buildScriptRules = new Set(['!scripts/', '!scripts/offlinePlugin.ts'])
+  for (const line of rules.filter((line) => line.startsWith('!') && !buildScriptRules.has(line))) assert.doesNotMatch(line, /^!(?:\.git|artifacts|test|packaging|scripts|docs|\.env|api\/_build|api\/deps)(?:\/|$)/)
 })

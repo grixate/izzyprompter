@@ -25,3 +25,26 @@ izzyprompter.com {
 www.izzyprompter.com {
 	redir https://izzyprompter.com{uri} permanent
 }
+
+staging.izzyprompter.com {
+	header {
+		Strict-Transport-Security "max-age=31536000"
+		X-Robots-Tag "noindex, nofollow, noarchive"
+		Cache-Control "private, no-store"
+	}
+	# Caddy 2.6 uses the older basicauth directive name. Keep hashes out of Git.
+	basicauth bcrypt "IZZY staging" {
+		import /etc/caddy/staging-users
+	}
+	request_body {
+		max_size 3MB
+	}
+	reverse_proxy 127.0.0.1:4001 {
+		header_up X-Forwarded-For {remote_host}
+		header_up -Authorization
+		transport http {
+			dial_timeout 5s
+			response_header_timeout 30s
+		}
+	}
+}

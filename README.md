@@ -1,5 +1,7 @@
 # IZZY — Browser Teleprompter
 
+Development and corrections follow [the release workflow](docs/RELEASE_WORKFLOW.md): local work → automated checks → private staging → owner review → manual production release. The saved live baseline is tagged `v0.1.0-live`.
+
 **Local preview (2026-10-12):** `/local` now supports standalone prompting, prepared scripts and cached offline startup. An experimental manual WebRTC remote is included; native two-device connectivity and physical phone/tablet acceptance remain open. Phoenix remains available. See [usage and verification limits](docs/LOCAL_PREVIEW.md) and the [active architecture plan](docs/LOCAL_COMMUNICATION_PLAN.md).
 
 **Current payment direction (2026-10-12): Lifetime Pro for US$29 once, exclusively through lava.top, USD only.** The integration is implemented; live checkout remains disabled until merchant credentials and verification are complete. Follow [Lava.top setup](docs/LAVA_TOP.md). Guest prompting and three-script accounts remain free. [Free deployment preparation](docs/FREE_LAUNCH.md) remains the server baseline; offline field acceptance is pending.

@@ -3,6 +3,8 @@
 The guest application is live at **https://izzyprompter.com**, activated with
 owner approval on 2026-10-13. Phoenix runs behind Caddy on a private listener.
 Accounts and payments are disabled; this is not the account-enabled free launch.
+Private staging and the ongoing development process are documented in
+[the release workflow](RELEASE_WORKFLOW.md).
 
 ## Host and access
 
@@ -47,7 +49,9 @@ secret. No server secrets were copied into the repository or chat.
 ## Source and verification
 
 The image was built from an allowlisted snapshot of the current working tree,
-including uncommitted work. No commit or push was made.
+including uncommitted work at deployment time. That source is now preserved in
+commit `1f95ab272e5187c52ec769cc0c2bf21e7ca804e4` and tag `v0.1.0-live`, backed up
+to GitHub. All 136 archived source files matched the saved baseline byte-for-byte.
 
 - Image: `izzy:20261013-9c32196c`
 - Image ID: `sha256:4480c30344efcc9e26282c6cb539cdc1d1dd61038e9a42ba7ef1a9245478515e`
@@ -74,6 +78,25 @@ verified through the system trust store; issuer is Let's Encrypt, with initial
 expiry on 2027-01-11. Caddy handles renewal automatically.
 
 These browser checks do not replace physical iPad/iPhone acceptance.
+
+## Private staging
+
+`https://staging.izzyprompter.com` now runs the same image in a separate,
+resource-limited container on `127.0.0.1:4001`. Its network is `172.31.0.0/24`
+with gateway `172.31.0.1`; its secrets are in `/etc/izzy-staging/app.env` and
+Compose configuration in `/opt/izzy-staging/compose.yaml`. Accounts and payments
+are disabled there too. The REG.ru staging A record points to the same VPS.
+
+All staging routes require HTTP Basic authentication over verified HTTPS.
+Credentials are stored on this Mac at `~/.ssh/izzy_staging_access.json`, mode
+0600; the server keeps the password hash in `/etc/caddy/staging-users` only.
+The authenticated three-context hosted smoke passed, including pairing,
+playback, live edits, and reload. Anonymous pages, API, assets, and WebSocket
+handshakes returned 401. The production container was not restarted.
+
+The original image is saved on the server and this Mac; backup paths and
+SHA-256 are recorded in the release workflow. These are code/image backups,
+not a complete backup of server secrets or a future account database.
 
 To repeat the container smoke test, use two local terminals. Port 4400 must be
 free on both machines. The test starts and removes its own disposable container;
@@ -109,7 +132,7 @@ Additional public traffic protection, operational alerts, representative load,
 independent port isolation, and physical iPad/iPhone acceptance remain open
 operational checks.
 
-For an immediate public rollback, stop Caddy with
+For an emergency stop of both public hostnames, stop Caddy with
 `sudo systemctl disable --now caddy`. Retain the source archive and immutable
 image. Future application changes should retain the previous tested image and
 be deployed between takes: application restarts always end live sessions.

@@ -7,15 +7,58 @@ defmodule Teleprompter.Application do
 
   @impl true
   def start(_type, _args) do
-    children = [
-      TeleprompterWeb.Telemetry,
-      {DNSCluster, query: Application.get_env(:teleprompter, :dns_cluster_query) || :ignore},
-      {Phoenix.PubSub, name: Teleprompter.PubSub},
-      {Registry, keys: :unique, name: Teleprompter.Sessions.Registry},
-      {DynamicSupervisor, strategy: :one_for_one, name: Teleprompter.Sessions.Supervisor},
-      # Start to serve requests, typically the last entry
-      TeleprompterWeb.Endpoint
-    ]
+    database =
+      if Application.get_env(:teleprompter, :accounts_enabled), do: [Teleprompter.Repo], else: []
+
+    children =
+      database ++
+        [
+          TeleprompterWeb.Telemetry,
+          {Teleprompter.Diagnostics, name: Teleprompter.Diagnostics},
+          {DNSCluster, query: Application.get_env(:teleprompter, :dns_cluster_query) || :ignore},
+          {Phoenix.PubSub, name: Teleprompter.PubSub},
+          {Registry, keys: :unique, name: Teleprompter.Sessions.Registry},
+          {Registry, keys: :unique, name: Teleprompter.SavedSessions.Registry},
+          {Task.Supervisor, name: Teleprompter.PersistenceTasks},
+          Teleprompter.AccountWrites,
+          {DynamicSupervisor,
+           strategy: :one_for_one,
+           name: Teleprompter.Sessions.Supervisor,
+           max_children: Application.get_env(:teleprompter, :max_sessions, 32)},
+          {Teleprompter.CreationGate, name: Teleprompter.CreationGate},
+          Supervisor.child_spec(
+            {Teleprompter.CreationGate,
+             name: Teleprompter.AccountGate,
+             limits:
+               Application.get_env(:teleprompter, :account_auth_limits,
+                 per_peer: 8,
+                 total: 100,
+                 max_peers: 1024,
+                 window_ms: 60_000
+               )},
+            id: Teleprompter.AccountGate
+          ),
+          Supervisor.child_spec(
+            {Teleprompter.CreationGate,
+             name: Teleprompter.AccountTicketGate,
+             limits: [per_peer: 60, total: 600, max_peers: 1024, window_ms: 60_000]},
+            id: Teleprompter.AccountTicketGate
+          ),
+          Supervisor.child_spec(
+            {Teleprompter.CreationGate,
+             name: Teleprompter.CheckoutGate,
+             limits: [per_peer: 6, total: 100, max_peers: 1024, window_ms: 60_000]},
+            id: Teleprompter.CheckoutGate
+          ),
+          # Start to serve requests, typically the last entry
+          TeleprompterWeb.Endpoint
+        ] ++
+        if(
+          Application.get_env(:teleprompter, :accounts_enabled) and
+            Application.get_env(:teleprompter, :commerce_worker, true),
+          do: [Teleprompter.Commerce.Worker],
+          else: []
+        )
 
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options

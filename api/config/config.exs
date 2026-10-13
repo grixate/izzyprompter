@@ -8,7 +8,12 @@
 import Config
 
 config :teleprompter,
+  ecto_repos: [Teleprompter.Repo],
+  accounts_enabled: false,
   generators: [timestamp_type: :utc_datetime]
+
+config :teleprompter, Teleprompter.Mailer, adapter: Swoosh.Adapters.Local
+config :swoosh, :api_client, false
 
 # Configures the endpoint
 config :teleprompter, TeleprompterWeb.Endpoint,
@@ -28,6 +33,10 @@ config :logger, :console,
 
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
+
+# Provider payloads and search queries can contain private fields we do not
+# control. Deny by default instead of guessing every sensitive field name.
+config :phoenix, :filter_parameters, {:keep, []}
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

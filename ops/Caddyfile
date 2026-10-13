@@ -1,0 +1,27 @@
+{
+	admin localhost:2019
+	servers {
+		timeouts {
+			read_header 10s
+			read_body 30s
+			idle 2m
+		}
+		max_header_size 32KB
+	}
+}
+izzyprompter.com {
+	header Strict-Transport-Security "max-age=31536000"
+	request_body {
+		max_size 3MB
+	}
+	reverse_proxy 127.0.0.1:4000 {
+		header_up X-Forwarded-For {remote_host}
+		transport http {
+			dial_timeout 5s
+			response_header_timeout 30s
+		}
+	}
+}
+www.izzyprompter.com {
+	redir https://izzyprompter.com{uri} permanent
+}

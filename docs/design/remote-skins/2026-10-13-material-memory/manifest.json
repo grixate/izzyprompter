@@ -1,0 +1,93 @@
+{
+  "schemaVersion": 1,
+  "kind": "izzy-remote-design-baseline",
+  "baselineId": "2026-10-13-collection-04-material-memory",
+  "parentBaseline": "2026-10-12-founding-collection-v1",
+  "archivedAt": "2026-10-13T17:33:33.959Z",
+  "sourceGitHead": "5633264535e295620267bdec716ac82973a47bc7",
+  "sourceWorkingTreeWasDirty": true,
+  "sourceStateNote": "Selected lab sources are frozen here, not a standalone app. The first twelve studies and founding archive remain unchanged; source Git HEAD alone is not a release identifier for this uncommitted work.",
+  "newStudyIds": [
+    "correspondent",
+    "foundry",
+    "inox",
+    "airframe"
+  ],
+  "totalStudyCount": 16,
+  "defaultCandidate": "ivory",
+  "capture": {
+    "browser": "Codex in-app browser on macOS; exact build and zoom not recorded",
+    "viewportCssPixels": {
+      "width": 1280,
+      "height": 720
+    },
+    "devicePixelRatio": 2,
+    "reducedMotion": false,
+    "decorativeSpinEnabled": true,
+    "position": 310,
+    "maximum": 2400,
+    "speed": 0.86,
+    "playing": false
+  },
+  "checks": {
+    "clientUnitTestsPassed": 88,
+    "productionBuildPassed": true,
+    "labAbsentFromProductionAssets": true,
+    "foundingArchiveVerified": true,
+    "physicalDevicesTested": false,
+    "fullAccessibilityCertification": false
+  },
+  "files": [
+    {
+      "path": "COLLECTION.md",
+      "bytes": 9244,
+      "sha256": "a829979065a8786e4a2aa1bc989c7e4483f0193adca74de51cb54e103c452a08"
+    },
+    {
+      "path": "comparison.png",
+      "bytes": 87861,
+      "sha256": "b22f6cc6c6b72d91e71af2f5f6ab42a8b9e5999b9386e3784f9a0f6406b6dfc4"
+    },
+    {
+      "path": "correspondent-focus.png",
+      "bytes": 49225,
+      "sha256": "743e29a90c281e21b1e0626994a6669693cb6a913ef51c3da0a617c606cf019a"
+    },
+    {
+      "path": "source/src/assets/lab-airframe.svg",
+      "bytes": 1547,
+      "sha256": "e940e60d2a5abeaa73a17a050419252c88ec381e38e8becb38671a36b178f843",
+      "originPath": "src/assets/lab-airframe.svg"
+    },
+    {
+      "path": "source/src/assets/lab-cast-grain.svg",
+      "bytes": 445,
+      "sha256": "f39303da6d7a1fc8529c4e9c8b1860dc6285180213facd10ca1ea434b8975a49",
+      "originPath": "src/assets/lab-cast-grain.svg"
+    },
+    {
+      "path": "source/src/assets/lab-foundry.svg",
+      "bytes": 1867,
+      "sha256": "728774cc7c8f7b8472294bed668f2573024a56fa7df0e87da28d12f79d357cba",
+      "originPath": "src/assets/lab-foundry.svg"
+    },
+    {
+      "path": "source/src/assets/lab-leather.svg",
+      "bytes": 1292,
+      "sha256": "3a2320ba1d5df83e40ff694a75a75e704820a2fe662c086a56f7ffd810354ef5",
+      "originPath": "src/assets/lab-leather.svg"
+    },
+    {
+      "path": "source/src/pages/JogLabPage.tsx",
+      "bytes": 14902,
+      "sha256": "9252626039bd98800cbbeb9e10b9975a47b7faa171f651b3d610d889a9ee9d1e",
+      "originPath": "src/pages/JogLabPage.tsx"
+    },
+    {
+      "path": "source/src/pages/jog-lab.css",
+      "bytes": 37323,
+      "sha256": "23789ca563a22778677bff6db0e459f569c9b56e2d9a094e9625fe92da7296ec",
+      "originPath": "src/pages/jog-lab.css"
+    }
+  ]
+}

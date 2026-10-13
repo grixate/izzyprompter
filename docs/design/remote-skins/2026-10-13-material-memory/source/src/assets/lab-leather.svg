@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 96 96">
+  <defs>
+    <filter id="grain" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency=".24" numOctaves="2" seed="17" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+    </filter>
+  </defs>
+  <rect width="96" height="96" fill="#26231f"/>
+  <g fill="#302b25" stroke="#171714" stroke-width="1.1" stroke-linejoin="round" opacity=".65">
+    <path d="M2 5Q11 0 18 4L23 14 18 23 6 25 1 17Z M26 3L39 1 45 10 40 22 25 21 22 13Z M47 3L60 1 66 11 59 23 46 21 43 13Z M69 1L82 4 88 16 78 25 64 20 65 10Z M90 2L96 1 99 22 89 27 83 18Z"/>
+    <path d="M0 31L9 26 22 28 26 39 20 48 5 47-5 40Z M27 27L40 26 46 36 40 48 28 46 23 36Z M48 27L61 26 68 38 60 49 47 46 43 37Z M71 28L84 26 91 36 85 50 70 49 66 39Z M94 30L101 27 103 47 92 50 89 41Z"/>
+    <path d="M2 53L15 51 24 60 20 73 7 75 0 66Z M28 52L42 52 49 63 42 77 26 72 23 62Z M53 53L65 52 72 62 66 75 52 76 46 65Z M76 53L89 53 98 63 92 75 78 76 70 66Z"/>
+    <path d="M-3 81L10 78 20 84 18 98 3 99-3 92Z M24 80L39 80 46 90 40 99 22 98 20 89Z M50 81L64 78 71 91 64 99 48 99 44 89Z M75 82L88 80 99 89 95 101 78 99 69 91Z"/>
+  </g>
+  <rect width="96" height="96" filter="url(#grain)" opacity=".075"/>
+</svg>

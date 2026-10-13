@@ -5,7 +5,7 @@ defmodule Teleprompter.MixProject do
     [
       app: :teleprompter,
       version: "0.1.0",
-      elixir: "~> 1.14",
+      elixir: "~> 1.16",
       elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
@@ -38,7 +38,15 @@ defmodule Teleprompter.MixProject do
       {:gettext, "~> 0.20"},
       {:jason, "~> 1.2"},
       {:dns_cluster, "~> 0.1.1"},
-      {:plug_cowboy, "~> 2.5"}
+      {:plug_cowboy, "~> 2.5"},
+      {:ecto_sql, "~> 3.14.0"},
+      # Patched Decimal.round/3 allocation bound (CVE-2026-97853).
+      {:decimal, "3.1.2"},
+      {:postgrex, "~> 0.22.0"},
+      {:swoosh, "~> 1.29.0"},
+      {:gen_smtp, "~> 1.3"},
+      {:assent, "~> 0.3.1"},
+      {:req, "~> 0.6.3"}
     ]
   end
 

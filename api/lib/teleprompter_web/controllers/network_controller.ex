@@ -2,7 +2,16 @@ defmodule TeleprompterWeb.NetworkController do
   use TeleprompterWeb, :controller
 
   def show(conn, _params) do
-    json(conn, %{hosts: lan_hosts()})
+    hosts =
+      if Application.get_env(:teleprompter, :lan_discovery, false), do: lan_hosts(), else: []
+
+    response =
+      case Application.get_env(:teleprompter, :pairing_origin) do
+        origin when is_binary(origin) -> %{hosts: hosts, pairing_origin: origin}
+        _ -> %{hosts: hosts}
+      end
+
+    conn |> put_resp_header("cache-control", "no-store") |> json(response)
   end
 
   defp lan_hosts do

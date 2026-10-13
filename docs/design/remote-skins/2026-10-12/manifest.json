@@ -1,0 +1,127 @@
+{
+  "schemaVersion": 1,
+  "kind": "izzy-remote-design-baseline",
+  "baselineId": "2026-10-12-founding-collection-v1",
+  "archivedAt": "2026-10-12T20:12:48.669Z",
+  "sourceGitHead": "5633264535e295620267bdec716ac82973a47bc7",
+  "sourceWorkingTreeWasDirty": true,
+  "sourceStateNote": "Source files were uncommitted. Frozen source copies are authoritative for this capsule; Git HEAD alone cannot reproduce them. This is not a complete runnable checkout.",
+  "studyCount": 12,
+  "defaultCandidate": "ivory",
+  "ownerHighlighted": "vector",
+  "freshCollection03Capture": {
+    "viewportCssPixels": {
+      "width": 1280,
+      "height": 720
+    },
+    "devicePixelRatio": 2,
+    "reducedMotion": false,
+    "position": 310,
+    "maximum": 2400,
+    "speed": 0.86,
+    "playing": false,
+    "browser": "Codex in-app browser on macOS; exact build and zoom not recorded",
+    "modelFontStack": "Avenir Next Condensed, sans-serif",
+    "readoutFontStack": "SFMono-Regular, Consolas, monospace"
+  },
+  "olderCaptureMetadata": "Original detailed environment metadata was not recorded; images are preserved as supplied by earlier handoffs.",
+  "files": [
+    {
+      "path": "BASELINE.md",
+      "bytes": 3598,
+      "sha256": "0c3b0df9d893adddc4f251c2a06ec5a9c3949e888cef46f8a74769a021c29733"
+    },
+    {
+      "path": "aperture-corrected.png",
+      "bytes": 40622,
+      "sha256": "daf405cc1523c4c904b633444499e79654ce71c5291a609346be747b38e42425"
+    },
+    {
+      "path": "collection-01.png",
+      "bytes": 76718,
+      "sha256": "eae265f484d1dc59fed98df55634285613fa036521f589442effef71da9bf28b"
+    },
+    {
+      "path": "collection-02.png",
+      "bytes": 81961,
+      "sha256": "eaaccfdbf099165beaf6707d5646ecf09d26690ad4e78095ea5b678332b056f7"
+    },
+    {
+      "path": "collection-03.png",
+      "bytes": 78784,
+      "sha256": "9a90eed0589cd7f21d10ebeb112aae56bdf0ee0fbe4ca82c1092d9ba832bc0fb"
+    },
+    {
+      "path": "source/package-lock.json",
+      "bytes": 51579,
+      "sha256": "e1189202dea3ef6f481ce363dbd97539573388ec0d1952e0644d8f62e4f1c133",
+      "originPath": "package-lock.json"
+    },
+    {
+      "path": "source/package.json",
+      "bytes": 1804,
+      "sha256": "fdf75cf28d1ddd7f29f30f1b76578eee826bf843f6180b18649a368050ebaacd",
+      "originPath": "package.json"
+    },
+    {
+      "path": "source/src/App.tsx",
+      "bytes": 1195,
+      "sha256": "5afd98f4c894e66c184c9af3fb3029bd0c1c1548a15e559fd767264188fc1274",
+      "originPath": "src/App.tsx"
+    },
+    {
+      "path": "source/src/assets/lab-aperture.svg",
+      "bytes": 1413,
+      "sha256": "955fb5a46b5108c31ef196e39d702c5978b7b50f1b9581b9e903aee4adddba86",
+      "originPath": "src/assets/lab-aperture.svg"
+    },
+    {
+      "path": "source/src/components/JogControls.tsx",
+      "bytes": 6161,
+      "sha256": "186558774f454b6080c77e0a7ddc6439b77d0c16c0fb8be52351e80f0340bf81",
+      "originPath": "src/components/JogControls.tsx"
+    },
+    {
+      "path": "source/src/pages/JogLabPage.tsx",
+      "bytes": 13005,
+      "sha256": "c3ac3ef561ea5ba7631ff41982d5c2b76c7c6e10d65058abeb84860a4d00b46e",
+      "originPath": "src/pages/JogLabPage.tsx"
+    },
+    {
+      "path": "source/src/pages/jog-lab.css",
+      "bytes": 28584,
+      "sha256": "88260b033ccd616d77e992eaa5166136f19178d9081a00de156e8b3725713949",
+      "originPath": "src/pages/jog-lab.css"
+    },
+    {
+      "path": "source/src/prompt/motion.ts",
+      "bytes": 2147,
+      "sha256": "1438a313fc04f187ca294b5e30a808ae4d817089efade9e6edbd9fe58b6f7850",
+      "originPath": "src/prompt/motion.ts"
+    },
+    {
+      "path": "source/src/prompt/position.ts",
+      "bytes": 1519,
+      "sha256": "3f7314ebfa28bbe32608143d7efd90e1518acf0bd30243180dfdb9212bd11df4",
+      "originPath": "src/prompt/position.ts"
+    },
+    {
+      "path": "source/src/realtime/keyboard.ts",
+      "bytes": 398,
+      "sha256": "fbd47124cd1a2c5f63fffe6244ac15995b260ef0f91060b97f2cfc111cb7f105",
+      "originPath": "src/realtime/keyboard.ts"
+    },
+    {
+      "path": "source/src/realtime/protocol.ts",
+      "bytes": 2183,
+      "sha256": "ee5b4e8ca04626b01705f82995da012a1c26b6b6e4714788848a0420f1f1b218",
+      "originPath": "src/realtime/protocol.ts"
+    },
+    {
+      "path": "source/src/styles.css",
+      "bytes": 51906,
+      "sha256": "78fc7fd1a1ec8a0d9e5314b84105b2c2d1454eae71099abcc037c572e0326c74",
+      "originPath": "src/styles.css"
+    }
+  ]
+}

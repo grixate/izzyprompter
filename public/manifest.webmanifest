@@ -1,0 +1,11 @@
+{
+  "id": "/local",
+  "name": "IZZY Local",
+  "short_name": "IZZY",
+  "start_url": "/local",
+  "scope": "/local",
+  "display": "standalone",
+  "background_color": "#171816",
+  "theme_color": "#171816",
+  "icons": [{ "src": "/offline-icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }]
+}

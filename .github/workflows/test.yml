@@ -1,0 +1,113 @@
+name: Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - uses: erlef/setup-beam@v1
+        with:
+          otp-version: '28'
+          elixir-version: '1.19'
+      - uses: actions/cache@v4
+        with:
+          path: |
+            api/deps
+            api/_build
+          key: ${{ runner.os }}-beam-28-1.19-${{ hashFiles('api/mix.lock') }}
+      - run: npm ci
+      - run: mix local.hex --force && mix local.rebar --force && mix deps.get
+        working-directory: api
+      - run: npx playwright install --with-deps chromium firefox webkit
+      - run: npm test
+      - run: npm run test:security-deps
+      - run: npm run test:browsers
+      - run: npm run test:release
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: playwright-diagnostics
+          path: |
+            playwright-report/
+            test-results/
+          retention-days: 7
+
+  container:
+    needs: test
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: docker build --tag izzy:ci .
+      - run: npm run test:container
+        env:
+          IZZY_CONTAINER_IMAGE: izzy:ci
+
+  accounts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: izzy
+          POSTGRES_PASSWORD: disposable-ci-password
+          POSTGRES_DB: izzy_test
+        ports: ['5432:5432']
+        options: >-
+          --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+    env:
+      DATABASE_URL: postgresql://izzy:disposable-ci-password@127.0.0.1:5432/izzy_test
+      IZZY_E2E_DATABASE_URL: postgresql://izzy:disposable-ci-password@127.0.0.1:5432/izzy_test
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - uses: erlef/setup-beam@v1
+        with:
+          otp-version: '28'
+          elixir-version: '1.19'
+      - run: npm ci
+      - run: mix local.hex --force && mix local.rebar --force && mix deps.get
+        working-directory: api
+      - run: MIX_ENV=test mix ecto.migrate
+        working-directory: api
+      - run: mix test
+        working-directory: api
+      - run: npx playwright install --with-deps chromium firefox webkit
+      - run: npm run test:browsers
+      - run: sudo apt-get update && sudo apt-get install -y postgresql-client-16
+      - run: npm run test:restore
+        env:
+          IZZY_RESTORE_PG_URL: postgresql://izzy:disposable-ci-password@127.0.0.1:5432/postgres
+          IZZY_PG_BIN: /usr/lib/postgresql/16/bin
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: account-browser-diagnostics
+          path: |
+            playwright-report/
+            test-results/
+          retention-days: 7

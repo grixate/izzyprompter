@@ -1,0 +1,11 @@
+[
+  {
+    "id": "EEF-CVE-2026-43966",
+    "package": "cowlib",
+    "version": "2.21.0",
+    "requires": { "cowboy": "2.19.0" },
+    "expires": "2026-11-10",
+    "reason": "No patched cowlib release is available. Cowboy >=2.16 rejects CR/LF response headers by default; IZZY uses 2.19.0 and never calls structured header encoders with user input. A direct Cowboy wire regression verifies rejection, bypassing Plug validation.",
+    "test": "api/test/teleprompter/cowboy_header_safety_test.exs"
+  }
+]

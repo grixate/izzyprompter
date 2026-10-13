@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  <defs>
+    <linearGradient id="blade" gradientUnits="userSpaceOnUse" x1="100" y1="8" x2="134" y2="108">
+      <stop stop-color="#69777d"/>
+      <stop offset=".55" stop-color="#343d43"/>
+      <stop offset="1" stop-color="#171d23"/>
+    </linearGradient>
+    <radialGradient id="opening">
+      <stop stop-color="#050b12"/>
+      <stop offset="1" stop-color="#0e1822"/>
+    </radialGradient>
+    <!-- A sixth of an annulus with a twisted hexagonal opening. Adjacent
+         segments share exact endpoints: no painter-order overlap or last-leaf
+         notch. Rotating this segment closes the ring consistently. -->
+    <path id="leaf" d="M100 8A92 92 0 0 1 179.674337 54L140 100 120 65.358984Z"/>
+  </defs>
+  <circle cx="100" cy="100" r="99" fill="#101922"/>
+  <circle cx="100" cy="100" r="92" fill="url(#opening)"/>
+  <g fill="url(#blade)" stroke="#9ba9a4" stroke-opacity=".28" stroke-width=".5" stroke-linejoin="round">
+    <use href="#leaf"/>
+    <use href="#leaf" transform="rotate(60 100 100)"/>
+    <use href="#leaf" transform="rotate(120 100 100)"/>
+    <use href="#leaf" transform="rotate(180 100 100)"/>
+    <use href="#leaf" transform="rotate(240 100 100)"/>
+    <use href="#leaf" transform="rotate(300 100 100)"/>
+  </g>
+  <circle cx="100" cy="100" r="92.3" stroke="#87918b" stroke-opacity=".45" stroke-width=".6"/>
+</svg>

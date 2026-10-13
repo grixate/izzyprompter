@@ -1,0 +1,31 @@
+services:
+  app:
+    image: izzy:20261013-9c32196c
+    restart: unless-stopped
+    env_file: /etc/izzy/app.env
+    ports:
+      - "127.0.0.1:4000:4000"
+    mem_limit: 1g
+    cpus: 1.5
+    pids_limit: 256
+    read_only: true
+    tmpfs:
+      - /app/tmp:uid=10001,gid=10001,mode=0700,size=64m
+      - /tmp:mode=1777,size=64m
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+    networks:
+      - app
+networks:
+  app:
+    ipam:
+      config:
+        - subnet: 172.30.0.0/24
+          gateway: 172.30.0.1

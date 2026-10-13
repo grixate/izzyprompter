@@ -1,5 +1,13 @@
 import Config
 
+config :teleprompter,
+  preview_entitlements: true,
+  max_sessions: 64,
+  creation_limits: [per_peer: 60, total: 120, max_peers: 2048, window_ms: 60_000]
+
+# The split-port development app supports trusted-LAN pairing.
+config :teleprompter, http_allowed_origins: :any, lan_discovery: true
+
 # For development, we disable any cache and enable
 # debugging and code reloading.
 #
@@ -8,7 +16,10 @@ import Config
 # to bundle .js and .css sources.
 config :teleprompter, TeleprompterWeb.Endpoint,
   # Listen on the LAN so a phone can connect without internet access.
-  http: [ip: {0, 0, 0, 0}, port: 4000],
+  http: [
+    ip: {0, 0, 0, 0},
+    port: String.to_integer(System.get_env("TELEPROMPTER_DEV_PORT", "4000"))
+  ],
   check_origin: false,
   code_reloader: true,
   debug_errors: true,

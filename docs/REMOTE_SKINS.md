@@ -1,0 +1,25 @@
+# Remote skins — product direction
+
+Creative development follows the [remote instrument design playbook](REMOTE_DESIGN_PLAYBOOK.md). It records the reference collection, reusable workflow and collaboration/quality gates; this file records product scope and entitlement decisions.
+
+Owner direction, 2026-10-12: preserve the wheel studies, explore more variants, and offer remote skins as a future Pro feature. Preferred default: **R–03 / Orbit**. Current implementation is the twelve-study development playground only, not a shipped theme selector or paid entitlement. Collection 03 closes this exploration for now at the owner's request; retain all three collections and their previews.
+
+Owner update, 2026-10-13: explicitly resumed exploration for four raw-material studies. Collection 04 adds Correspondent, Foundry, Inox and Airframe; the lab now contains sixteen studies. Retain the founding archive unchanged. Orbit remains the preferred default candidate; the production remote and Pro scope remain unchanged. See [Material memory](design/remote-skins/2026-10-13-material-memory/COLLECTION.md).
+
+## Preserve the current launch scope
+
+- Online free V1 remains the delivery priority. Do not activate checkout, add a paid-launch dependency or change existing script limits for this experiment.
+- Keep all sixteen studies on `/lab/jog`; they are reusable visual directions, not approved production skins.
+- The actual remote, entry preview, session protocol and saved settings have not changed. Applying Orbit to the real remote is a separate implementation step.
+
+## Future implementation constraints
+
+- Free gets a polished default, not a deliberately degraded remote. Orbit is the current preference, subject to final phone/tablet review.
+- Pro adds optional appearance, not different playback correctness. All skins use the same accessible jog/transport implementation, bounds, connection safeguards and editing behavior.
+- Use an explicit, allowlisted skin identifier and scoped style tokens; never accept custom CSS, arbitrary asset URLs or HTML from accounts.
+- Decide whether appearance follows the account/device or session before adding persistence. A remote's skin should not unexpectedly restyle connected reading screens.
+- Resolve server-side Pro entitlement when exposing paid choices. Revocation falls back to the free skin without deleting scripts, presets or the stored preference; existing no-payment launch behavior remains intact.
+- Verify contrast, focus, minimum touch targets, reduced motion, text zoom, portrait/landscape and real iPhone Safari on each approved skin. Material imitation must not obscure controls.
+- Preserve the owner's existing designs and the lab when a production skin is selected. Do not silently replace the collection with its winner.
+
+No payment activation, database migration, entitlement change, production default change or Git push is authorized by this note.

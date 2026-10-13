@@ -1,89 +1,77 @@
-# Design QA
+# IZZY entry workbench — design QA
 
-## Source visual truth
+Date: 2026-10-09
 
-- `/Users/grixate/Downloads/teenage-engineering-tp-7_1_SYN0008702-000.webp` — 1600 × 1600 px. Used for the cool machined finish, restrained labeling, recessed display, large wheel hierarchy, tight seams, bottom key bank, and limited orange accents.
-- `/Users/grixate/Downloads/U-D100_02.webp` — 675 × 676 px. Used for the dark monolithic body, matte texture, subtle edge highlights, and dominant jog wheel.
-- `/Users/grixate/Desktop/Screenshot 2026-10-08 at 16.50.45.png` — 120 × 276 px focused issue capture. Used as the exact visual target for correcting the wheel index marker overlap.
-- `/var/folders/6_/_w9p3ldd2y35d4fd05wrzny00000gn/T/TemporaryItems/NSIRD_screencaptureui_CQix7a/Screenshot 2026-10-08 at 17.09.42.png` — focused follow-up capture showing that the corrected marker still implied an unnecessary absolute index.
-- `/var/folders/6_/_w9p3ldd2y35d4fd05wrzny00000gn/T/TemporaryItems/NSIRD_screencaptureui_KgHymy/Screenshot 2026-10-08 at 17.10.52.png` — focused speed-control capture used to evaluate spacing and unnecessary scale ticks.
+final result: passed
 
-The references are photographs of physical products, not UI layouts. The implementation intentionally borrows their material and control principles without reproducing either product's exact geometry, branding, or trade dress.
+## Scope and visual truth
 
-## Implementation evidence
+Implement the approved text-first entry concept, extended by the user's request for a long, running preview with a working scrub control. Preserve the established reading screen and industrial remote. No authentication backend, deployment, or pairing redesign is included.
 
-- Full-view implementation capture: `browser-capture://iab/tab-8`, route `http://192.168.1.13:5173/remote/9LFX3J`, 511 × 806 px/CSS viewport at device scale 1.
-- Pairing implementation capture: `browser-capture://iab/tab-12`, route `http://192.168.1.13:5173/`, 1280 × 720 px/CSS viewport at device scale 1.
-- Responsive evidence: the remote capture is a narrow phone-like viewport; the pairing view was also checked against its existing portrait breakpoint rules.
-- Focused regions checked: recessed OLED/status display, centered wheel and center transport button, horizontal speed control, bottom phrase key bank, inset phrase monitor, QR surround, session identifier, and flat action row.
-- State during final comparison: remote connected and paused (`HOLD`), speed 0.86×, phrase 02/18; pairing page connected with display and remote waiting.
+Source visual truth: `/Users/grixate/.codex/generated_images/01a11812-0eeb-7c20-b9ab-517175613d25/exec-b764bb93-a0f2-4762-98fd-7143d90b3d6a.png`.
 
-## Density normalization
+Implementation: `http://192.168.1.13:5173/`.
 
-The 1600 × 1600 and 675 × 676 reference images were fit inside 1280 × 720 browser captures. The implementation was judged by normalized proportions and hierarchy rather than raw pixel dimensions: wheel dominance, control spacing, material contrast, label density, edge treatment, and accent restraint. Browser chrome and the physical-product backgrounds were excluded from fidelity judgments.
+Evidence directory: `/tmp/izzy-live-preview-GjfWwC/`.
 
-## Comparison history
+- Source pixels: 1672 × 941. The raster mock has no declared CSS viewport or device density. Its near-16:9 frame was normalized to 1280 × 720 for comparison: `00-source-normalized.png`.
+- Implementation CSS viewport: 1280 × 720. Final browser devicePixelRatio: 2; the browser screenshot API exports at 1280 × 720 pixels, already normalized to CSS size. Final implementation screenshot: `12-desktop-final.jpg`.
+- Comparison state: empty editor, sample at position zero, 0.86×, paused, no account. Pausing makes the comparison repeatable; the actual initial sample auto-plays unless reduced motion is requested.
+- Full-view source and implementation were opened together in the same comparison input. The final pair is `00-source-normalized.png` and `12-desktop-final.jpg`.
+- Focused controls pair: `13-source-controls.png` / `14-implementation-controls.jpg`, both 400 × 640, cropped from corresponding reading-preview/remote regions.
+- Focused editor pair: `15-source-editor.png` / `16-implementation-editor.jpg`, both 800 × 480. The implementation crop cuts the last part of Import text because its writing region is wider; the full-view capture confirms the complete utility is visible. This is a crop limitation, not UI clipping.
 
-### Pass 1
+## Findings and comparison history
 
-- P2: the remote wheel felt under-dominant compared with both references, weakening the physical-controller hierarchy.
-- Fix: enlarged the wheel across desktop, portrait, and short-portrait breakpoints while preserving clearance for the OLED, speed rail, and phrase controls.
+No actionable P0/P1/P2 findings remain in the reviewed scope.
 
-### Post-fix pass
+1. **P2 — initial desktop composition overflowed.** `01-desktop-initial.jpg` showed the setup action and remote controls extending below the 720px frame, and a narrow preview region. The preview column grew from 350px to 400px; inherited setup-button minimum width/height were explicitly reset; remote padding and vertical rhythm were tightened. Post-fix evidence: `02-desktop-refined.jpg` and `11-desktop-final.jpg`.
+2. **P2 — oversized editor on a tall tablet.** `06-tablet.jpg` showed the blank editor consuming most of the screen and pushing setup far below the remote. Its maximum height is now 420px. Post-fix evidence: `10-tablet-final.jpg` at 834 × 1112.
+3. **P2 — supporting typography was too quiet relative to the selected mock.** The source/implementation comparison showed undersized explanatory text. The main supporting sentence increased from 14px to 17px; editor helper and preview caption increased to 13px and 12px. Post-fix evidence: `11-desktop-final.jpg` and the final full/focused pairs.
+4. **P2 — dial scale and above-the-fold fit needed a final balance pass.** `11-desktop-final.jpg` still had a smaller dial than the target and a 4px vertical overflow. The dial increased from 192px to 208px while surrounding spacing decreased. `12-desktop-final.jpg` confirms a 1280 × 720 main frame with scrollHeight 720, all controls visible, and the caption ending at approximately y705.
 
-- The wheel now occupies the primary visual and interaction zone, with a clearer center button and more credible surrounding hardware proportions.
-- The graphite body, precision seams, orange speed rail, silver control center, recessed OLED, and bottom key bank read as one coherent instrument.
-- No P0, P1, or P2 visual defects remain.
+The final full-view and focused comparison was performed after these changes. No further visual fixes followed that comparison.
 
-### Refinement pass 2
+## Required fidelity surfaces
 
-- P2: the vertical speed rail pulled the wheel off-axis and made the principal interaction feel smaller than the physical references.
-- P2: the pairing screen stacked inset borders, raised button gradients, and drop shadows, creating an over-beveled appearance inconsistent with the otherwise restrained system.
-- P3: the orange line preceding `JOG / SCRUB` looked decorative rather than functional.
-- Fix: changed the control deck to a centered vertical composition, increased the wheel within balanced viewport limits, and rebuilt speed as a horizontal control directly beneath it.
-- Fix: removed the decorative line and retained only the wheel's functional orange position marker and speed fill.
-- Fix: flattened the pairing screen into a solid aluminum plane with a single hairline QR frame, rule-based session label, and low-relief action tiles.
+- **Fonts and typography:** Uses the existing product families: Avenir Next Condensed for the two-line statement, Avenir Next for writing/reading text, and SFMono/Consolas for instrument labels. The headline retains the mock's condensed, heavy hierarchy and desktop wrapping. Reading text deliberately uses the real prompter's stronger weight, rather than the raster mock's lighter sample. Labels, numeric alignment, wrapping, and ellipsis were inspected in full and focused captures. Mobile headline wrapping changes naturally at 320px; no clipping occurs.
+- **Spacing and layout rhythm:** Header navigation, hairline split, bordered writing field, right-aligned setup action, OLED, centered dial, and speed control below the dial preserve the chosen composition. The desktop split is approximately 69/31, a modest adjustment from the mock for usable writing space. The taller reading preview is intentional. Phone screens stack writing/setup before the preview; the entire preview remains reachable by vertical scrolling. The 208px desktop dial and 218px phone dial are visually balanced against their panels.
+- **Colors and tokens:** Retains paper `#d9dad6`, ink `#171816`, graphite `#252623`, orange `#ff5b22`, and the established signal-green focus treatment. The entry uses flat silver and restrained borders rather than reproducing raster lighting or heavy bevels. Disabled setup is visibly inactive; enabled setup is dark with strong text contrast. Dark preview surfaces and orange reading guide match the real display.
+- **Image quality and asset fidelity:** No product photograph, decorative illustration, or logo image from the selected mock was substituted. The mock depicts application UI: its instrument is implemented using the actual shared remote controls and the actual shared reading surface, as requested, not a static screenshot or invented illustration. Existing Lucide icons and the established product wordmark are reused. Borders, dial edges, focus guide, icons, and OLED were inspected in focused captures; any JPEG softness belongs to the captured evidence, not a raster UI implementation.
+- **Copy and content:** Keeps the approved screen/phone explanation, a single primary setup action, import as a quiet utility, and login in navigation. Sample text is a separate 12-paragraph, 400+ word script. Entering a draft switches the preview to the user's words and pauses motion. File constraints, save feedback, reset confirmation, connection failures, and pairing guidance remain available. Login explicitly says saved profiles are not implemented; no fake account form is present. The live-corrections caption refers to the real paired remote, not an editing feature inside the miniature preview.
 
-### Refinement pass 2 — post-fix evidence
+## Interaction and responsive verification
 
-- The final same-input comparison included both physical references, the 511 × 806 remote capture, and the 1280 × 720 pairing capture.
-- The wheel is visibly centered and dominant without crowding the OLED or bottom key bank; speed now reads as a subordinate adjustment.
-- The pairing screen now uses one consistent depth level. QR, copy, and actions remain distinct through spacing and hairlines rather than bevel stacking.
-- No actionable P0, P1, or P2 findings remain.
+Verified through the in-app browser:
 
-### Refinement pass 3 — wheel marker
+- Initial sample playback; Pause and Play; a pointer drag moving the preview about 146px; keyboard Home and ArrowRight moving it to 0 and 48px; speed changing from 0.86× to 0.91×.
+- Preview controls leave the editor empty. Editing switches to the user's script and pauses playback. Immediate refresh restores a synthetic 14-paragraph draft.
+- Native profile dialog, explanatory copy, Escape dismissal, and focus restoration to Log in.
+- Desktop 1280 × 720; tablet 834 × 1112; phone 390 × 844; narrow phone 320 × 720. Document scrollWidth equals viewport width at tested phone sizes. Primary setup is before the preview in reading and visual order. Speed controls and dial remain within the panel.
+- Final phone evidence: `19-phone-entry-final.jpg` and `20-phone-preview-final.jpg`. Narrow-phone evidence: `17-narrow-phone.jpg` and `18-narrow-phone-controls.jpg`.
+- A separate test origin (`127.0.0.1:5175`) protected the user's existing draft and session. A synthetic paired session was created; real remote Play/Pause, speed adjustment, keyboard seek, and a live paragraph correction reached the real display. Evidence: `07-own-script.jpg`, `08-real-display.jpg`, `09-real-remote.jpg`.
+- Browser warning/error logs were empty for entry, isolated editor, display, and remote during these checks.
+- Temporary test tabs and the test-only server were closed; viewport override was reset. The existing user remote tab was not operated on.
 
-- P2: the orange wheel index began halfway through the surrounding tick ring and extended across the inner-disc boundary, making it look like a floating bar rather than a seated index mark.
-- Fix: moved the marker outward from 7.8% to 5.2%, reduced its width from 5px to 4px, changed its height to 6.2% of the wheel, and replaced the broad glow with a restrained inset highlight.
-- Post-fix evidence: the focused source capture and revised browser-rendered remote were placed in the same comparison input. The orange marker now aligns with the gray tick band and terminates before the inner disc with a visible dark separation.
-- No actionable P0, P1, or P2 findings remain.
+## Verification and remaining gaps
 
-### Refinement pass 4 — remove false index
+- `npm test`: 77 frontend unit tests passed, production build passed, 77 Elixir tests passed.
+- `git diff --check`: passed.
+- Added four preview unit cases and five browser regression scenarios. Existing setup selectors were updated to the new user-facing label.
+- Browser regression specifications were **not run through the Playwright CLI**. Interaction verification above used the in-app browser. Full Chromium/Firefox/WebKit automation remains a separate verification step requiring approval under the Product Design browser policy.
+- Reduced-motion startup, visibility suspension, and offscreen suspension are implemented; reduced-motion has a browser regression specification, but media emulation and full background lifecycle testing were not executed in this run. No claim of cross-browser/device certification is made.
+- Login/profile functionality remains intentionally unavailable. This handoff implements its navigation placement and honest unavailable state only.
 
-- P2: the geometrically corrected orange marker still communicated an absolute home position, but the control is an infinite relative jog wheel with no meaningful zero point.
-- Fix: removed the marker entirely. The uninterrupted radial ticks now provide motion texture, the OLED reports absolute position, and the wheel's existing drag-brightness response supplies interaction feedback.
-- Post-fix evidence: browser-rendered capture of session `MFQFGW` shows a clean, continuous tick ring with no false index or inner-disc collision; no console errors were present.
-- No actionable P0, P1, or P2 findings remain.
+## Implementation checklist
 
-### Refinement pass 5 — simplify secondary controls
+- [x] Text-first workbench and single setup action.
+- [x] Long, independent sample with actual scrub/play/speed controls.
+- [x] Shared real remote and reading-surface components.
+- [x] Own-script preview and pause-on-edit behavior.
+- [x] Draft preservation and existing pairing/live-edit flow.
+- [x] Responsive visual comparison and browser checks.
+- [x] Frontend/backend tests and production build.
+- [ ] Real login and saved profiles — outside this task.
+- [ ] Full multi-engine browser regression run — not claimed as completed.
 
-- P2: the speed control sat too close to the wheel and its dense tick scale implied precision not needed for a control already backed by a numeric value.
-- P2: the `NOW READING` paragraph duplicated the prompter display, consumed vertical space, and could become misleading because the remote only approximated the active paragraph rather than the exact visible sentence.
-- Fix: increased the wheel-to-speed gap from 12px to 26px at phone width, removed speed scale ticks while preserving the accessible slider, fill line, +/- controls, and numeric readout, and removed the paragraph preview.
-- Post-fix evidence: browser-rendered session `MFQFGW` shows a distinct secondary speed zone, a clean continuous rail, and a simplified lower section containing only phrase navigation. Speed +/- interaction was retested from 0.86× to 0.91× and back; no console errors were present.
-- No actionable P0, P1, or P2 findings remain.
-
-## Required surfaces
-
-- Typography: compact technical labels and tabular numerals are consistent; primary reading text remains highly legible.
-- Spacing and layout: the wheel is centered on the device axis, the speed control is subordinate beneath it, and the pairing composition uses clear flat planes and generous negative space.
-- Colors and tokens: cool aluminum, graphite, orange, signal green, and restrained neutrals are consistently tokenized.
-- Image quality and assets: source photos are used only as references and are not embedded in the product. Existing code-native icons remain crisp at all tested sizes.
-- Copy and content: transport and status labels are terse, consistent, and appropriate to a dedicated device.
-- Interaction: QR pairing, phone-to-display Play/Pause, phrase navigation, live position updates, and the revised speed +/- controls were exercised successfully; the speed display moved from 0.86× to 0.91× and back.
-- Console: no browser errors observed during the final interaction pass; only Vite hot-update debug entries were present.
-- Build verification: Vite/TypeScript production build passed; Phoenix test suite passed with 3 tests and 0 failures.
-
-## Final result
-
-passed
+Follow-up polish: a larger-viewport instrument could use slightly more breathing room; the existing 1440px breakpoint already increases the dial to 222px. This is not a blocking issue at reviewed sizes.

@@ -32,7 +32,7 @@ defmodule TeleprompterWeb do
   def channel do
     quote do
       # Channel payloads can contain private, unpublished scripts.
-      use Phoenix.Channel, log_handle_in: false
+      use Phoenix.Channel, log_join: false, log_handle_in: false
     end
   end
 

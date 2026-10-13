@@ -5,26 +5,41 @@
   "type": "module",
   "scripts": {
     "dev": "concurrently -k -n WEB,API -c cyan,green \"npm:dev:web\" \"npm:dev:api\"",
-    "dev:web": "vite --host 0.0.0.0",
+    "dev:web": "vite --config vite.config.ts --host 0.0.0.0",
     "dev:api": "cd api && mix phx.server",
-    "build": "tsc -b && vite build",
-    "test": "npm run build && cd api && mix test",
-    "preview": "vite preview --host 0.0.0.0"
+    "build": "tsc -b && vite build --config vite.config.ts",
+    "build:server": "tsc -b && vite build --config vite.config.ts --mode bundled --outDir api/priv/static/app --emptyOutDir",
+    "build:local": "npm run build:server && cd api && MIX_ENV=prod mix release --overwrite",
+    "local": "node scripts/local.mjs",
+    "package:local": "node scripts/package-local.mjs",
+    "test:release": "npm run build:server && node --test test/release/*.test.mjs",
+    "test:package": "node --test test/portable/*.test.mjs",
+    "test:container": "node --test test/container/*.test.mjs",
+    "test:unit": "node --test test/*.test.mjs",
+    "test:security-deps": "npm audit --audit-level=low && node scripts/audit-hex.mjs",
+    "test:restore": "node --test test/restore/*.test.mjs",
+    "test:e2e": "playwright test --project=chromium",
+    "test:browsers": "playwright test",
+    "test:offline": "npm run build && playwright test --config playwright.local.config.ts",
+    "test:all": "npm test && npm run test:e2e",
+    "test": "npm run test:unit && npm run build && cd api && mix test",
+    "preview": "vite preview --config vite.config.ts --host 0.0.0.0"
   },
   "dependencies": {
-    "@vitejs/plugin-react": "latest",
-    "lucide-react": "latest",
-    "phoenix": "^1.8.15",
-    "qrcode.react": "^4.2.0",
-    "react": "latest",
-    "react-dom": "latest",
-    "typescript": "latest",
-    "vite": "latest"
+    "@vitejs/plugin-react": "6.1.2",
+    "lucide-react": "1.52.0",
+    "phoenix": "1.8.15",
+    "qrcode.react": "4.2.0",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "typescript": "7.0.2",
+    "vite": "8.3.3"
   },
   "devDependencies": {
-    "@types/phoenix": "^1.6.7",
-    "@types/react": "latest",
-    "@types/react-dom": "latest",
-    "concurrently": "^10.0.5"
+    "@playwright/test": "1.64.0",
+    "@types/phoenix": "1.6.7",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "concurrently": "10.0.6"
   }
 }

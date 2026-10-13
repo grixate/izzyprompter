@@ -1,0 +1,96 @@
+import { test, expect } from '@playwright/test'
+import { accountFixture } from './helpers/account'
+
+test.describe('account security and save failure edges', () => {
+  test.skip(!process.env.IZZY_E2E_DATABASE_URL, 'Requires an isolated migrated PostgreSQL database')
+  test.beforeEach(async ({ page }) => { page.on('dialog', dialog => void dialog.accept()) })
+
+  test('script markup stays literal in the library, preview and paired display', async ({ page, context }) => {
+    await page.goto(`/account/login#token=${accountFixture().token}`)
+    await page.getByRole('button', { name: 'Sign in to IZZY', exact: true }).click()
+    await page.waitForURL(/\/account$/)
+    await page.getByRole('button', { name: 'New script', exact: true }).click()
+    await page.waitForURL(/\/account\/scripts\/[a-f0-9-]+$/)
+    const payload = '<img src=x onerror="window.__izzyXss=true"><script>window.__izzyXss=true</script>'
+    await page.getByRole('textbox', { name: 'Saved script text', exact: true }).fill(payload)
+    await expect(page.getByRole('status')).toHaveText('Saved to account')
+    expect(await page.evaluate(() => (window as unknown as { __izzyXss?: boolean }).__izzyXss)).toBeUndefined()
+    await expect(page.locator('.preview-reading-surface img')).toHaveCount(0)
+    await page.getByRole('button', { name: 'SET UP PROMPTER', exact: true }).click()
+    const display = await context.newPage()
+    await display.goto((await page.getByRole('link', { name: 'Open reading screen' }).getAttribute('href'))!)
+    await expect(display.locator('.script-track')).toContainText(payload)
+    await expect(display.locator('.script-track img, .script-track script')).toHaveCount(0)
+    expect(await display.evaluate(() => (window as unknown as { __izzyXss?: boolean }).__izzyXss)).toBeUndefined()
+    await display.close()
+  })
+
+  test('a committed save with a lost response retries its mutation without a second revision', async ({ page }) => {
+    await page.goto(`/account/login#token=${accountFixture().token}`)
+    await page.getByRole('button', { name: 'Sign in to IZZY', exact: true }).click()
+    await page.waitForURL(/\/account$/)
+    await page.getByRole('button', { name: 'New script', exact: true }).click()
+    await page.waitForURL(/\/account\/scripts\/[a-f0-9-]+$/)
+    let intercepted = false
+    await page.route('**/api/account/scripts/*', async route => {
+      if (route.request().method() === 'PATCH' && !intercepted) {
+        intercepted = true
+        await route.fetch()
+        return route.abort()
+      }
+      return route.continue()
+    })
+    await page.getByRole('textbox', { name: 'Saved script text', exact: true }).fill('A save whose acknowledgement was lost.')
+    await expect.poll(() => intercepted).toBe(true)
+    await page.evaluate(() => window.dispatchEvent(new Event('online')))
+    await expect(page.getByRole('status')).toHaveText('Saved to account', { timeout: 12_000 })
+    const saved = await page.evaluate(async () => (await fetch(`/api/account/scripts/${location.pathname.split('/')[3]}`)).json())
+    expect(saved.revision).toBe(2)
+    expect(saved.document.blocks[0].text).toBe('A save whose acknowledgement was lost.')
+  })
+
+  test('blocked device storage cannot prevent account saving or falsely promise offline recovery', async ({ page }) => {
+    await page.addInitScript(() => { Object.defineProperty(window, 'indexedDB', { get: () => { throw new Error('Device storage unavailable') } }) })
+    await page.goto(`/account/login#token=${accountFixture().token}`)
+    await page.getByRole('button', { name: 'Sign in to IZZY', exact: true }).click()
+    await page.waitForURL(/\/account$/)
+    await page.getByRole('button', { name: 'New script', exact: true }).click()
+    await page.waitForURL(/\/account\/scripts\/[a-f0-9-]+$/)
+    const text = page.getByRole('textbox', { name: 'Saved script text', exact: true })
+    await text.fill('The server still saves without IndexedDB.')
+    await expect(page.getByRole('status')).toHaveText('Saved to account')
+    await page.route('**/api/account/scripts/*', route => route.request().method() === 'PATCH' ? route.abort() : route.continue())
+    await text.fill('Keep this unsaved text in memory.')
+    await expect(page.getByRole('status')).toContainText('Not saved · device storage unavailable')
+    await expect(text).toHaveValue('Keep this unsaved text in memory.')
+    await expect(page.getByRole('button', { name: 'Export', exact: true })).toBeEnabled()
+  })
+
+  test('switching accounts never silently adopts the previous account’s offline journal', async ({ page }) => {
+    const original = accountFixture()
+    await page.goto(`/account/login#token=${original.token}`)
+    await page.getByRole('button', { name: 'Sign in to IZZY', exact: true }).click()
+    await page.waitForURL(/\/account$/)
+    await page.getByRole('button', { name: 'New script', exact: true }).click()
+    await page.waitForURL(/\/account\/scripts\/[a-f0-9-]+$/)
+    const scriptUrl = page.url()
+    await page.route('**/api/account/scripts/*', route => route.request().method() === 'PATCH' ? route.abort() : route.continue())
+    await page.getByRole('textbox', { name: 'Saved script text', exact: true }).fill('Only the original account may recover this draft.')
+    await expect(page.getByRole('status')).toContainText('Saved on this device')
+    const other = accountFixture()
+    await page.goto(`/account/login#token=${other.token}`)
+    await page.getByRole('button', { name: 'Sign in to IZZY', exact: true }).click()
+    await page.waitForURL(/\/account$/)
+    await expect(page.getByRole('heading', { name: 'Your scripts.', exact: true })).toBeVisible()
+    await expect(page.getByText('Unsent device draft', { exact: false })).toHaveCount(0)
+    await expect(page.locator('.script-card')).toHaveCount(0)
+    await page.goto(scriptUrl)
+    await expect(page.getByRole('textbox', { name: 'Saved script text', exact: true })).toHaveValue('')
+    await page.goto(`/account/login#token=${accountFixture(original.id).token}`)
+    await page.getByRole('button', { name: 'Sign in to IZZY', exact: true }).click()
+    await page.waitForURL(/\/account$/)
+    await expect(page.getByText('Unsent device draft', { exact: false })).toBeVisible()
+    await page.getByRole('link', { name: 'Recover draft', exact: true }).click()
+    await expect(page.getByRole('textbox', { name: 'Saved script text', exact: true })).toHaveValue('Only the original account may recover this draft.')
+  })
+})

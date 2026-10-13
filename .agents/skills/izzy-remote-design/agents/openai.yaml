@@ -1,0 +1,4 @@
+interface:
+  display_name: "IZZY Remote Design"
+  short_description: "Create and refine IZZY instrument-like remote skins"
+  default_prompt: "Use $izzy-remote-design to develop the next IZZY remote collection using the preserved design playbook."

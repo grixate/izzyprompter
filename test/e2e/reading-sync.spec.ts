@@ -1,4 +1,5 @@
 import { test, expect, devices, type Page } from '@playwright/test'
+import { openPromptSettings } from './helpers/display'
 
 const paragraphs = [
   'Короткое вступление. Camera ready.',
@@ -51,7 +52,7 @@ test('phone navigation uses measured paragraphs through typography changes, rapi
     await remote.getByRole('button', { name: 'Next phrase' }).click()
     await expect.poll(() => distance(display, { blockId: ids[1], characterOffset: 0 })).toBeLessThan(8)
     await expect(remote.locator('.phrase-count')).toContainText('02 / 04')
-    await display.getByRole('button', { name: 'Prompt settings', exact: true }).click()
+    await openPromptSettings(display)
     await display.getByRole('slider', { name: 'Text size', exact: true }).fill('90')
     await display.getByRole('slider', { name: 'Text width', exact: true }).fill('40')
     await display.getByRole('slider', { name: 'Line spacing', exact: true }).fill('1.8')
@@ -90,7 +91,7 @@ test('only the primary display publishes position and its differently sized back
     const displayHref = await pair(editor, primary, remote)
     await backup.goto(displayHref)
     await expect(backup.locator('.network-state')).toHaveText('CONNECTED')
-    await backup.getByRole('button', { name: 'Prompt settings', exact: true }).click()
+    await openPromptSettings(backup)
     await backup.getByRole('slider', { name: 'Text size', exact: true }).fill('90')
     await backup.getByRole('slider', { name: 'Text width', exact: true }).fill('45')
     await backup.getByRole('button', { name: 'Close prompt settings' }).click()

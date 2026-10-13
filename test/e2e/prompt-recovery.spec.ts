@@ -1,4 +1,5 @@
 import { test, expect, type Page } from '@playwright/test'
+import { openPromptSettings } from './helpers/display'
 
 type Anchor = { blockId: string; characterOffset: number }
 const content = Array.from({ length: 12 }, (_, index) =>
@@ -55,7 +56,7 @@ test('refresh, font size, text width, and orientation preserve the reading ancho
     await display.reload()
     await expect(display.locator('.network-state')).toHaveText('CONNECTED')
     await expect.poll(() => anchorDistance(display, before)).toBeLessThan(8)
-    await display.getByRole('button', { name: 'Prompt settings', exact: true }).click()
+    await openPromptSettings(display)
     const beforeFont = await storedAnchor(display)
     await display.getByRole('slider', { name: 'Text size', exact: true }).fill('90')
     await expect.poll(() => anchorDistance(display, beforeFont)).toBeLessThan(8)
@@ -75,7 +76,7 @@ test('refresh, font size, text width, and orientation preserve the reading ancho
     await display.reload()
     await expect(display.locator('.network-state')).toHaveText('CONNECTED')
     await expect.poll(() => anchorDistance(display, beforeRefresh)).toBeLessThan(8)
-    await display.getByRole('button', { name: 'Prompt settings', exact: true }).click()
+    await openPromptSettings(display)
     await expect(display.getByRole('slider', { name: 'Text size' })).toHaveValue('90')
     await expect(display.getByRole('slider', { name: 'Text width' })).toHaveValue('45')
     await expect(display.getByRole('checkbox', { name: 'Mirror text' })).toBeChecked()
@@ -104,7 +105,10 @@ test('a 600-paragraph script can play, reflow, and pause without measuring every
         return original.call(this)
       }
     })
-    await display.getByRole('button', { name: 'Prompt settings', exact: true }).click()
+    // Exercise the hidden-toolbar path rather than depending on the runner
+    // completing setup inside the three-second visibility window.
+    await expect(display.locator('.display-header')).toHaveClass(/is-hidden/)
+    await openPromptSettings(display)
     const anchor = await storedAnchor(display)
     await display.getByRole('slider', { name: 'Text width', exact: true }).fill('55')
     await expect.poll(() => anchorDistance(display, anchor)).toBeLessThan(8)

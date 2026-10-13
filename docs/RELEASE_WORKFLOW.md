@@ -39,8 +39,9 @@ were compared byte-for-byte with that baseline. The image and individual source
 hashes are recorded in `ops/releases/v0.1.0-live.json`.
 
 The source and tag are backed up to the existing GitHub repository. The initial
-GitHub run exposed an outdated container policy assertion; the follow-up workflow
-change fixes the assertion without changing application source or the live image.
+GitHub run exposed an outdated container policy assertion and browser tests that
+tried to click an auto-hidden toolbar. Follow-up test changes fix the assertion
+and activate settings through focus, without changing application source or the live image.
 Do not move the baseline tag to hide that history.
 
 The original Docker image is also saved on the server and this Mac:

@@ -1,0 +1,10 @@
+[Unit]
+Description=IZZY weekly encrypted full backup
+
+[Timer]
+OnCalendar=Sun *-*-* 00:15:00 UTC
+Persistent=true
+Unit=izzy-db-backup@full.service
+
+[Install]
+WantedBy=timers.target

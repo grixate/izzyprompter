@@ -1,0 +1,10 @@
+[Unit]
+Description=Check IZZY encrypted backups and WAL archive every fifteen minutes
+
+[Timer]
+OnBootSec=10min
+OnUnitActiveSec=15min
+Unit=izzy-db-backup-health.service
+
+[Install]
+WantedBy=timers.target

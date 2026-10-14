@@ -10,7 +10,7 @@ production release. Git pushes and merges do not deploy production.
 | --- | --- | --- |
 | Local | Vite/Phoenix on this Mac | Implementation and fast iteration |
 | Staging | https://staging.izzyprompter.com | Authenticated review on real devices |
-| Production | https://izzyprompter.com | Approved guest release |
+| Production | https://izzyprompter.com | Approved public release |
 
 Staging starts with the same immutable image as production. It is a different
 container, Docker network, loopback port, origin, and secret. Sessions and browser
@@ -53,8 +53,10 @@ The original Docker image is also saved on the server and this Mac:
 `gzip -dc IMAGE.tar.gz | docker image load` restores the image. Loading an image
 does not start or deploy it. Runtime secrets are separate from this image backup;
 preserve `/etc/izzy/app.env` through an approved secure backup process as well.
-There is no account database yet. Before enabling accounts, configure database
-backups, a real restore drill, SMTP, and migration/rollback procedures.
+The initial guest release had no account database. The owner-approved VPS
+account rollout, protected database settings, encrypted backups and verified
+restore drill are described in ACCOUNT_OPERATIONS.md. Future releases must
+preserve those recovery and migration/rollback controls.
 
 ## Each correction or feature
 

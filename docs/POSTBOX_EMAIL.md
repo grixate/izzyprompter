@@ -87,9 +87,9 @@ frontend key is needed. Sender display name remains `IZZY`. Existing login
 tokens remain hashed at rest, expire after 15 minutes, are single-use, and are
 consumed by explicit POST rather than email-scanner GET requests.
 
-Production and staging currently run the guest-only release. Setting SMTP
-alone does not enable accounts. Follow RELEASE_WORKFLOW.md: create the account
-database, migrations, backups and actual restore drill before enabling accounts;
+Setting SMTP alone does not enable accounts. Follow RELEASE_WORKFLOW.md and
+ACCOUNT_OPERATIONS.md for the account database, migrations, backups and actual
+restore drill before enabling accounts;
 use separate staging state/secrets and verify staging first. Do not add a
 production DATABASE_URL casually or restart the live app during a take.
 
@@ -98,9 +98,11 @@ and production settings in `/etc/izzy/app.env` through the approved deployment
 process. Retain protected backups of previous settings. Do not print these files
 or full Compose configuration, which can expand secrets.
 
-Use a separate SMTP key for staging before its account-enabled rollout. This
-setup installed credentials only into the production environment; it did not
-enable a database, accounts, payments, or deploy a new application image.
+The initial account rollout uses the existing limited SMTP key in both protected
+environment files. Database and application session credentials are separate.
+The owner selected local backups and no additional cloud keys. A separate staging
+SMTP key can be added for independent revocation later. Payments remain disabled.
+See ACCOUNT_OPERATIONS.md for the hosted release and recovery procedure.
 
 ### Host SMTP connectivity
 
@@ -180,10 +182,11 @@ policy used DROP; the final explicit TCP/UDP rules account for that difference.
 - Outlook/Hotmail, Yahoo, Proton and Yandex receipt/placement remain untested:
   no owner-controlled addresses for those providers were supplied.
 
-These are local account-flow checks with real Postbox delivery, not a hosted
-account-enabled staging or production release. No production database or account
-was created. The temporary local services and SMTP tunnel were stopped after
-testing; the isolated acceptance database is retained locally for review.
+The initial checks above used local account state and real Postbox delivery.
+The temporary local services and SMTP tunnel were stopped after testing; that
+isolated acceptance database is retained locally. The subsequent hosted account
+rollout, database isolation, encrypted backups and actual restore drill are
+recorded in ACCOUNT_OPERATIONS.md and the release record.
 
 ## Changes in this branch
 

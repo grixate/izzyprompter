@@ -77,7 +77,7 @@ jobs:
           git archive --format=tar "$commit" | gzip -n > release-candidate/source.tar.gz
           docker save "$image" | gzip -n > release-candidate/image.tar.gz
           python3 - <<'PY'
-          import hashlib, json, pathlib, subprocess
+          import hashlib, json, pathlib, subprocess, tarfile
           root = pathlib.Path('release-candidate')
           commit = subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip()
           image = 'izzy:git-' + commit
@@ -86,7 +86,14 @@ jobs:
           for name in ('source.tar.gz', 'image.tar.gz'):
               with (root / name).open('rb') as stream:
                   checksums[name] = hashlib.file_digest(stream, 'sha256').hexdigest()
-          record = {'commit': commit, 'image': image, 'image_id': image_id, 'sha256': checksums}
+          with tarfile.open(root / 'image.tar.gz', 'r:gz') as archive:
+              saved = json.load(archive.extractfile('manifest.json'))[0]
+              config_name = saved['Config'].removeprefix('blobs/sha256/').removesuffix('.json')
+              oci = json.load(archive.extractfile('index.json')) if 'index.json' in archive.getnames() else None
+          record = {'commit': commit, 'image': image, 'image_id': image_id,
+                    'config_digest': 'sha256:' + config_name,
+                    'oci_manifest_digest': oci['manifests'][0]['digest'] if oci else None,
+                    'sha256': checksums}
           (root / 'release.json').write_text(json.dumps(record, indent=2) + '\n')
           (root / 'SHA256SUMS').write_text(''.join(digest + '  ' + name + '\n' for name, digest in checksums.items()))
           PY

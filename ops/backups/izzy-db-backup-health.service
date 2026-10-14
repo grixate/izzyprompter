@@ -1,0 +1,11 @@
+[Unit]
+Description=IZZY private PostgreSQL backup health check
+After=postgresql@17-main.service
+
+[Service]
+Type=oneshot
+UMask=0077
+Nice=10
+CPUQuota=25%
+MemoryMax=128M
+ExecStart=/usr/local/sbin/izzy-db-backup-health

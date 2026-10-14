@@ -6,7 +6,13 @@ Owner direction, 2026-10-12: preserve the wheel studies, explore more variants, 
 
 Owner update, 2026-10-13: explicitly resumed exploration for four raw-material studies. Collection 04 adds Correspondent, Foundry, Inox and Airframe; the lab now contains sixteen studies. Retain the founding archive unchanged. Orbit remains the preferred default candidate; the production remote and Pro scope remain unchanged. See [Material memory](design/remote-skins/2026-10-13-material-memory/COLLECTION.md).
 
-## Preserve the current launch scope
+## 14 October implementation candidate
+
+The owner authorized the UX/PRO implementation. The review branch now extracts all sixteen studies into a public `/skins` showroom and a shared live remote finish selector, backed by verified online PRO grants. Original remains the free default; fifteen finishes are optional PRO choices. The device stores the preference separately from effective permission. Revocation returns to Original without deleting the choice or user scripts. Local/DIRECT takes currently use the free default. All lab collections remain preserved.
+
+This is a review candidate, not a production release or payment activation. Per-skin physical Safari/Android review, merchant acceptance and owner visual review remain open. See [implementation evidence](design/2026-10-14-ux-pro/IMPLEMENTATION.md).
+
+## Historical launch scope
 
 - Online free V1 remains the delivery priority. Do not activate checkout, add a paid-launch dependency or change existing script limits for this experiment.
 - Keep all sixteen studies on `/lab/jog`; they are reusable visual directions, not approved production skins.

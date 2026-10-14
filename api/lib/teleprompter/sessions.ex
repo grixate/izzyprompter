@@ -17,6 +17,15 @@ defmodule Teleprompter.Sessions do
 
   def create(_, _, _), do: {:error, :invalid_session}
 
+  def create_owned(content, speed, user) do
+    if is_binary(content) and is_number(speed) and Teleprompter.Document.valid_content?(content) and
+         speed >= 0.5 and speed <= 1.5 do
+      create_session(content, speed, Teleprompter.Sessions.Supervisor, %{appearance_owner: user})
+    else
+      {:error, :invalid_session}
+    end
+  end
+
   def create_saved(user, script_id, preset_id \\ nil) do
     Teleprompter.SavedSessions.lock(script_id, fn ->
       with :none <- Teleprompter.SavedSessions.lookup(script_id),
@@ -93,6 +102,7 @@ defmodule Teleprompter.Sessions do
   def lookup(_), do: {:error, :session_unavailable}
 
   def snapshot(id), do: call(id, :snapshot)
+  def appearance_owner(id, token), do: call(id, {:appearance_owner, token})
   def saved_update(id, user, params), do: call(id, {:saved_update, user, params})
   def apply_preset(id, user, settings), do: call(id, {:apply_preset, user, settings})
   def end_saved(id, user), do: call(id, {:end_saved, user})

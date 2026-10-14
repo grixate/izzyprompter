@@ -3,7 +3,8 @@ defmodule Teleprompter.Commerce do
   alias Teleprompter.{Repo, Accounts}
   alias Teleprompter.Accounts.User
   alias Teleprompter.Commerce.{Intent, Attempt, Event, Grant, Audit, Provider}
-  @prices %{"USD" => 2_900}
+  defp prices, do: %{"USD" => Teleprompter.Product.price()}
+
   def pro?(user) do
     preview = Application.get_env(:teleprompter, :preview_entitlements, false)
 
@@ -22,7 +23,7 @@ defmodule Teleprompter.Commerce do
 
   def options do
     %{
-      prices: @prices,
+      prices: prices(),
       enabled: Application.get_env(:teleprompter, :payments_enabled, false),
       providers:
         Enum.map(["lava"], fn name ->
@@ -50,7 +51,7 @@ defmodule Teleprompter.Commerce do
 
   def checkout(user, provider, currency, confirm_switch \\ false) do
     if (Provider.enabled?(provider, currency) and Provider.module(provider)) &&
-         Map.has_key?(@prices, currency) do
+         Map.has_key?(prices(), currency) do
       result =
         Repo.transaction(fn ->
           Repo.one!(from(u in User, where: u.id == ^user.id, lock: "FOR UPDATE"))
@@ -93,7 +94,7 @@ defmodule Teleprompter.Commerce do
                   intent_id: intent.id,
                   provider: provider,
                   currency: currency,
-                  amount_minor: @prices[currency],
+                  amount_minor: prices()[currency],
                   environment: Provider.environment(provider)
                 })
 

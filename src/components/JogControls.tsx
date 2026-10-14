@@ -2,6 +2,7 @@ import { useEffect, useId, useRef, useState } from 'react'
 import { Pause, Play } from 'lucide-react'
 import { boundedSpeed, jogKeyDelta } from '../realtime/keyboard'
 import { BASE_PIXELS_PER_SECOND } from '../prompt/motion'
+import { useWheelMotion } from './useWheelMotion'
 
 const normalizeAngle = (angle: number) => angle > Math.PI ? angle - Math.PI * 2 : angle < -Math.PI ? angle + Math.PI * 2 : angle
 
@@ -17,11 +18,11 @@ type Props = {
 export function JogControls(props: Props) {
   const helpId = useId()
   const wheel = useRef<HTMLDivElement>(null)
-  const angle = useRef(0)
   const dragAngle = useRef(0)
   const latest = useRef(props)
   latest.current = props
   const [dragging, setDragging] = useState(false)
+  const motor = useWheelMotion(wheel, { enabled: props.enabled, playing: props.playing, speed: props.speed, dragging })
   const setDrag = (value: boolean) => { setDragging(value); latest.current.onDraggingChange?.(value) }
 
   useEffect(() => {
@@ -45,6 +46,7 @@ export function JogControls(props: Props) {
         onPointerDown={(event) => {
           if (!props.enabled || event.button !== 0 || (event.target as HTMLElement).closest('.transport-button')) return
           event.preventDefault()
+          motor.freeze()
           wheel.current?.setPointerCapture(event.pointerId)
           wheel.current?.querySelector<HTMLElement>('.wheel-input')?.focus({ preventScroll: true })
           dragAngle.current = pointerAngle(event)
@@ -55,8 +57,7 @@ export function JogControls(props: Props) {
           const next = pointerAngle(event)
           const delta = normalizeAngle(next - dragAngle.current)
           dragAngle.current = next
-          angle.current += delta
-          wheel.current.style.setProperty('--wheel-angle', `${angle.current}rad`)
+          motor.rotate(delta)
           props.onSeek(delta * 92)
         }}
         onPointerUp={release} onPointerCancel={release}
@@ -69,7 +70,7 @@ export function JogControls(props: Props) {
           onKeyDown={(event) => {
             if (!props.enabled || event.altKey || event.ctrlKey || event.metaKey) return
             const delta = jogKeyDelta(event.key, props.pageSize ?? 480)
-            if (delta !== null) { event.preventDefault(); props.onSeek(delta) }
+            if (delta !== null) { event.preventDefault(); motor.nudge(delta / 92); props.onSeek(delta) }
             else if (event.key === 'Home' || event.key === 'End') { event.preventDefault(); props.onEdge(event.key === 'Home' ? 'start' : 'end') }
           }} />
         <button className="transport-button" disabled={!props.enabled} onClick={props.onToggle} aria-label={props.playing ? 'Pause' : 'Play'}>

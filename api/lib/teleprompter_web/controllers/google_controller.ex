@@ -2,7 +2,7 @@ defmodule TeleprompterWeb.GoogleController do
   use TeleprompterWeb, :controller
   alias Teleprompter.Accounts
 
-  def start(conn, _) do
+  def start(conn, params) do
     config = config()
 
     if Accounts.enabled?() and is_binary(config[:client_id]) and is_binary(config[:client_secret]) do
@@ -12,7 +12,8 @@ defmodule TeleprompterWeb.GoogleController do
           |> put_session(:google_oauth, %{
             params: session_params,
             at: System.system_time(:second),
-            user_id: conn.assigns.current_user && conn.assigns.current_user.id
+            user_id: conn.assigns.current_user && conn.assigns.current_user.id,
+            return_to: Teleprompter.Product.return_to(params["returnTo"])
           })
           |> redirect(external: url)
 
@@ -38,7 +39,8 @@ defmodule TeleprompterWeb.GoogleController do
            ),
          {:ok, user} <- Accounts.google_identity(identity, conn.assigns.current_user) do
       raw = Accounts.issue_token(user.id, "session", 30 * 24 * 60 * 60)
-      conn |> TeleprompterWeb.AccountController.signed_in(raw) |> redirect(to: "/account")
+      target = Teleprompter.Product.return_to(Map.get(pending, :return_to)) || "/account"
+      conn |> TeleprompterWeb.AccountController.signed_in(raw) |> redirect(to: target)
     else
       {:error, :sign_in_to_link} -> redirect(conn, to: "/account?error=sign_in_to_link")
       _ -> redirect(conn, to: "/account?error=google_login_failed")

@@ -8,7 +8,11 @@ defmodule TeleprompterWeb.SessionController do
       |> put_resp_header("cache-control", "no-store")
       |> put_resp_header("referrer-policy", "no-referrer")
 
-    case Teleprompter.Diagnostics.result(:creation, Sessions.create(content, speed)) do
+    # Optional signed-in ownership only adds appearance privileges. Guest
+    # prompting stays available when accounts or their database are unavailable.
+    user = optional_user(conn)
+
+    case Teleprompter.Diagnostics.result(:creation, Sessions.create_owned(content, speed, user)) do
       {:ok, session} ->
         conn |> put_status(:created) |> json(session)
 
@@ -32,4 +36,11 @@ defmodule TeleprompterWeb.SessionController do
       |> put_resp_header("cache-control", "no-store")
       |> put_status(:bad_request)
       |> json(%{reason: :unsupported_protocol})
+
+  defp optional_user(conn) do
+    conn = fetch_session(conn)
+    Teleprompter.Accounts.user_for_session(get_session(conn, :account_token))
+  rescue
+    _ -> nil
+  end
 end

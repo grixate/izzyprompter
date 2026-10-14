@@ -8,8 +8,8 @@ test('tablet starts a script and opens its display while a separate phone contro
   try {
     await tablet.goto('/')
     await expect(tablet).toHaveTitle('IZZY — Browser Teleprompter')
-    await expect(tablet.locator('.wordmark')).toContainText('/ TELEPROMPTER')
-    await expect(tablet.locator('.wordmark').getByRole('img', { name: 'IZZY', exact: true })).toBeVisible()
+    await expect(tablet.locator('.public-brand .wordmark')).toContainText('/ TELEPROMPTER')
+    await expect(tablet.locator('.public-brand').getByRole('img', { name: 'IZZY', exact: true })).toBeVisible()
     const paragraphs = ['A tablet can be the reading screen.', 'The phone controls the shared session. '.repeat(40).trim()]
     await tablet.getByRole('textbox', { name: 'Teleprompter script' }).fill(paragraphs.join('\n\n'))
     await tablet.getByRole('button', { name: 'SET UP PROMPTER', exact: true }).click()

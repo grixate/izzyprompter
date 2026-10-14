@@ -2,7 +2,7 @@ import { createContext, useContext, useEffect, useState, useCallback, type React
 import { Socket } from 'phoenix'
 import { accountApi, type AccountStatus } from './api'
 
-const AccountContext = createContext<{ status: AccountStatus | null; loading: boolean; refresh: () => Promise<void> }>({ status: null, loading: true, refresh: async () => {} })
+const AccountContext = createContext<{ status: AccountStatus | null; loading: boolean; verified: boolean; refresh: () => Promise<void> }>({ status: null, loading: true, verified: false, refresh: async () => {} })
 export function AccountProvider({ children }: { children: ReactNode }) {
   const [status, setStatus] = useState<AccountStatus | null>(() => {
     try {
@@ -11,12 +11,14 @@ export function AccountProvider({ children }: { children: ReactNode }) {
     } catch { return null }
   })
   const [loading, setLoading] = useState(true)
+  const [verified, setVerified] = useState(false)
   const refresh = useCallback(async () => {
     try {
       const next = await accountApi<AccountStatus>()
       setStatus(next)
+      setVerified(true)
       try { if (next.user) sessionStorage.setItem('izzy:account-context', JSON.stringify({ ...next, csrf_token: '' })); else sessionStorage.removeItem('izzy:account-context') } catch { /* Offline identity hint is optional, never authority. */ }
-    } catch { /* Preserve this tab's account scope for offline pending edits. */ }
+    } catch { setVerified(false) /* Preserve identity hints for pending drafts, never paid authority. */ }
     finally { setLoading(false) }
   }, [])
   useEffect(() => {
@@ -61,6 +63,6 @@ export function AccountProvider({ children }: { children: ReactNode }) {
     window.addEventListener('focus', online)
     return () => { active = false; window.clearTimeout(retry); socket?.disconnect(); window.removeEventListener('online', online); window.removeEventListener('focus', online) }
   }, [userId, refresh])
-  return <AccountContext value={{ status, loading, refresh }}>{children}</AccountContext>
+  return <AccountContext value={{ status, loading, verified, refresh }}>{children}</AccountContext>
 }
 export const useAccount = () => useContext(AccountContext)

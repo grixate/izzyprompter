@@ -8,7 +8,9 @@ defmodule Teleprompter.Accounts do
   def hash(token), do: :crypto.hash(:sha256, token)
   def random_token, do: Base.url_encode64(:crypto.strong_rand_bytes(32), padding: false)
 
-  def request_login(email) when is_binary(email) do
+  def request_login(email, return_to \\ nil)
+
+  def request_login(email, return_to) when is_binary(email) do
     email = email |> String.trim() |> String.downcase()
 
     if byte_size(email) <= 254 and String.valid?(email) and not String.contains?(email, <<0>>) and
@@ -40,7 +42,9 @@ defmodule Teleprompter.Accounts do
 
       case result do
         {:ok, {user, token}} ->
-          url = origin() <> "/account/login#token=" <> token
+          target = Teleprompter.Product.return_to(return_to)
+          query = if target, do: "?" <> URI.encode_query(%{"returnTo" => target}), else: ""
+          url = origin() <> "/account/login" <> query <> "#token=" <> token
 
           email =
             Swoosh.Email.new()
@@ -68,7 +72,7 @@ defmodule Teleprompter.Accounts do
     end
   end
 
-  def request_login(_), do: {:error, :invalid_email}
+  def request_login(_, _), do: {:error, :invalid_email}
 
   # GET never consumes a login link: email scanners cannot sign a customer in.
   def consume_login(raw) when is_binary(raw) and byte_size(raw) == 43 do

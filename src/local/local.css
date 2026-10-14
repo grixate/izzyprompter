@@ -44,3 +44,33 @@
 .local-pairing textarea { min-height: 100px; resize: vertical; font-family: monospace; font-size: 12px; }
 .local-pairing small, .local-note { color: #55594f; font-size: 12px; line-height: 1.6; }
 @media (max-width: 700px) { .local-workspace-grid { grid-template-columns: 1fr; gap: 24px; } .local-pairing-overlay { padding: 8px; } .local-take-tools { padding: 6px; gap: 4px; } .local-take-tools button { padding: 7px; } }
+/* Offline preparation uses the public studio chassis; no account discovery. */
+.offline-studio { padding:0 56px 65px; background:#eeede6; }
+.offline-studio .public-nav { margin-inline:-56px; }
+.offline-studio .local-intro { margin:55px 0 40px; }
+.offline-studio .local-intro h1 { font:500 clamp(48px,5.5vw,78px)/1.02 'Avenir Next Condensed',sans-serif; letter-spacing:-.05em; margin:20px 0; }
+.offline-studio .local-intro em { color:#737d65; font-style:normal; }
+.offline-studio .local-intro p { font-size:14px; color:#6c775e; }
+.offline-studio .local-preparation { padding:27px 30px; border:1px solid #c9d0bc; border-radius:4px; background:#e3e7da; }
+.offline-preparation-heading { display:flex; justify-content:space-between; align-items:center; gap:20px; margin-bottom:20px; }
+.offline-preparation-heading h2 { font:500 29px/1.2 'Avenir Next Condensed',sans-serif; letter-spacing:-.03em; margin:10px 0 0; }
+.offline-readiness { font:9px/1.5 monospace; color:#596d46; border:1px solid #b7c2a5; border-radius:3px; padding:8px 10px; white-space:nowrap; }
+.offline-readiness.is-ready { color:#304225; background:#d8e1cd; }
+.offline-studio .local-preparation button { border:1px solid #333f28; background:#333f28; color:#f1f3e8; border-radius:3px; font-size:12px; }
+.offline-studio .local-preparation p { font-size:12px; margin-bottom:0; color:#657458; }
+.offline-studio .local-preparation .offline-preparation-note { font-size:11px; color:#5e704d; max-width:700px; margin-top:12px; }
+.offline-studio .local-workspace-grid { gap:50px; padding-top:42px; }
+.offline-studio .local-editor label { font-size:11px; color:#5f6f52; }
+.offline-studio .local-editor input,.offline-studio .local-editor textarea { border-color:#c4cdb7; border-radius:3px; background:#f5f5ec; }
+.offline-studio .local-editor textarea { min-height:220px; font-size:17px; }
+.offline-studio .local-actions button,.offline-studio aside button { border-color:#b4bfa6; border-radius:3px; font-size:11px; min-height:40px; }
+.offline-studio aside button[aria-pressed=true] { background:#323e27; color:#f0f3e4; }
+.offline-studio :focus-visible,.local-pairing :focus-visible,.local-take-tools :focus-visible,.local-remote-tools :focus-visible { outline:2px solid #c87545; outline-offset:4px; }
+.manual-connection-options { margin-top:20px; border-top:1px solid #bdc7b0; padding-top:18px; }
+.manual-connection-options summary { cursor:pointer; color:#5c6a4c; font-size:12px; }
+.pairing-progress { padding:16px 18px; background:#dfe4d6; border-left:3px solid #8b9c76; }
+.pairing-progress.is-connected { border-color:#648148; background:#dbe7d2; }
+@media(max-width:650px){.offline-studio{padding:0 20px 40px}.offline-studio .public-nav{margin-inline:-20px}.offline-studio .local-intro{margin:32px 0 28px}.offline-studio .local-intro h1{font-size:48px}.offline-studio .local-preparation{padding:22px 20px}.offline-preparation-heading{display:block}.offline-readiness{display:inline-flex;margin-top:16px}.offline-preparation-heading h2{font-size:26px}.offline-studio .local-workspace-grid{padding-top:30px;gap:28px}.offline-studio .local-editor textarea{font-size:16px}}
+.offline-studio .mode-choice button { padding:8px 9px; min-height:30px; font:9px/1 monospace; border:0; border-radius:2px; background:transparent; color:inherit; }
+.offline-studio .mode-choice button[aria-pressed=true] { color:#f3f3ec; background:#393d30; }
+.offline-studio .menu-toggle { padding:0; min-height:36px; border:0; background:transparent; }

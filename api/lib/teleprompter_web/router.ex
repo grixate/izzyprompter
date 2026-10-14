@@ -72,6 +72,8 @@ defmodule TeleprompterWeb.Router do
     pipe_through :api
 
     get "/network", NetworkController, :show
+    get "/product", ProductController, :show
+    get "/sessions/:id/appearance", ProductController, :appearance
     post "/sessions", SessionController, :create
   end
 
@@ -80,6 +82,8 @@ defmodule TeleprompterWeb.Router do
   scope "/", TeleprompterWeb do
     pipe_through :browser
     get "/", AppController, :show
+    get "/pro", AppController, :show
+    get "/skins", AppController, :show
     get "/local", AppController, :show
     get "/local/remote", AppController, :show
     get "/display/:session_id", AppController, :show

@@ -1,5 +1,8 @@
 import Config
 
+config :teleprompter,
+  launch_offer_active: System.get_env("IZZY_LAUNCH_OFFER_ACTIVE", "true") != "false"
+
 # Accounts are opt-in: portable/LAN guest builds still run without PostgreSQL.
 if database_url = System.get_env("DATABASE_URL") do
   config :teleprompter, accounts_enabled: true

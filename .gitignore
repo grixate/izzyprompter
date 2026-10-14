@@ -12,3 +12,6 @@ vite.config.d.ts
 playwright-report/
 test-results/
 artifacts/
+
+# Working design-search output; selected evidence lives in docs/design.
+.lazyweb/

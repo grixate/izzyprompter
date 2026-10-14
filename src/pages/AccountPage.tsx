@@ -14,6 +14,9 @@ import { LivePreview } from '../components/LivePreview'
 import { sessionLink, isSessionCredentials, type SessionCredentials } from '../realtime/credentials'
 import { useSession } from '../realtime/useSession'
 import { apiUrl } from '../realtime/endpoints'
+import { safeReturnTo, purchaseReturn } from '../product/navigation'
+import { useProduct } from '../product/ProductProvider'
+import { track } from '../product/events'
 
 export function AccountPage() {
   const { status, loading, refresh } = useAccount()
@@ -21,6 +24,7 @@ export function AccountPage() {
   const [working, setWorking] = useState(false)
   const [email, setEmail] = useState('')
   const [token] = useState(() => new URLSearchParams(window.location.hash.slice(1)).get('token'))
+  const [returnTo] = useState(() => safeReturnTo(new URLSearchParams(window.location.search).get('returnTo')))
   useEffect(() => {
     // Capture first, then scrub the credential. State initializers must stay
     // pure: React can invoke them twice before committing the login screen.
@@ -34,9 +38,9 @@ export function AccountPage() {
       if (token) {
         await accountApi('/login', 'POST', { token })
         await refresh()
-        window.location.replace('/account')
+        window.location.replace(returnTo ?? '/account')
       } else {
-        await accountApi('/login-link', 'POST', { email })
+        await accountApi('/login-link', 'POST', { email, ...(returnTo ? { return_to: returnTo } : {}) })
         setNotice('Check your email. Your sign-in link is valid for 15 minutes.')
       }
     } catch (error) { setNotice(accountMessage(error)) }
@@ -59,7 +63,7 @@ export function AccountPage() {
       {!status?.enabled ? <p className="account-notice">Accounts aren’t configured on this server yet. You can still use the prompter without signing in.</p> : <form onSubmit={event => void submit(event)}>
         {token ? <p>Continue to use your one-time sign-in link.</p> : <label>Email address<input type="email" autoComplete="email" required value={email} onChange={event => setEmail(event.target.value)} placeholder="you@example.com" /></label>}
         <button className="account-primary" disabled={working}>{working ? 'Please wait…' : token ? 'Sign in to IZZY' : 'Email me a sign-in link'}<ArrowUpRight size={17} /></button>
-        {status.google_enabled && !token && <a className="account-google" href="/auth/google">Continue with Google</a>}
+        {status.google_enabled && !token && <a className="account-google" href={returnTo ? `/auth/google?returnTo=${encodeURIComponent(returnTo)}` : '/auth/google'}>Continue with Google</a>}
       </form>}
       <a className="account-guest" href="/">Or continue without an account <ArrowUpRight size={14} /></a>
       {new URLSearchParams(window.location.search).get('error') && <p role="alert">{new URLSearchParams(window.location.search).get('error') === 'sign_in_to_link' ? 'This email already has an IZZY account. Sign in by email, then link Google from your workspace.' : 'Google sign-in could not be completed. Please try an email link.'}</p>}
@@ -69,6 +73,7 @@ export function AccountPage() {
 
 function LibraryWorkspace({ user }: { user: Account }) {
   const { status } = useAccount()
+  const product = useProduct()
   const [pending, setPending] = useState<PendingEdit[]>([])
   const [scripts, setScripts] = useState<ScriptSummary[]>([])
   const [search, setSearch] = useState('')
@@ -133,7 +138,7 @@ function LibraryWorkspace({ user }: { user: Account }) {
         <button disabled={busy} onClick={() => file.current?.click()}><Upload size={14} />Import</button>
         <input ref={file} hidden type="file" accept=".txt,.md" onChange={event => { void importFile(event.target.files); event.target.value = '' }} />
       </div>
-      {notice && <p className="account-notice" role="status">{notice}</p>}
+      {notice && <p className="account-notice" role="status">{notice}{!user.pro && product?.checkout_available && notice === accountMessage(new AccountError('script_limit', 422)) && <> <a href="/pro" onClick={() => track('script_limit_upgrade_clicked', { source: 'library' })}>Explore unlimited scripts with Pro</a></>}</p>}
       {pending.map(draft => <div className="guest-adoption" key={`${draft.scriptId}:${draft.draftId}`}><div><strong>Unsent device draft · {draft.title}</strong><p>Review this tab’s saved changes before synchronizing.</p></div><a href={`/account/scripts/${draft.scriptId}#draft=${draft.draftId}`}>Recover draft</a></div>)}
       {guestDraft && !trash && !search && page === 0 && <div className="guest-adoption"><div><strong>A draft on this device</strong><p>Keep a separate copy in this account. Nothing is moved automatically.</p></div><button disabled={busy} onClick={() => void create('Imported device draft', guestDraft)}>Save a copy</button></div>}
       <div className="script-list">{scripts.map((script, index) => <article key={script.id} className="script-card">
@@ -312,8 +317,15 @@ function ProPanel({ user }: { user: Account }) {
     } catch (error) { setNotice(accountMessage(error)); if (error instanceof AccountError && error.reason === 'payment_pending') { setSwitchWarning(true); await update.current() } }
     finally { setBusy(false) }
   }
-  const canPurchase = commerce?.enabled === true && commerce.providers.some(p => p.id === 'lava' && p.currencies.includes('USD'))
+  const canPurchase = commerce?.enabled === true && Number.isSafeInteger(commerce.prices?.USD) && commerce.prices.USD > 0 && commerce.providers.some(p => p.id === 'lava' && p.currencies.includes('USD'))
   const returned = commerce?.purchases.find(p => p.id === returnedPurchase)
+  const finishReturn = user.pro ? purchaseReturn(user.id) : null
+  useEffect(() => {
+    if (returned?.status !== 'paid' || !user.pro) return
+    const key = `izzy:purchase-observed:${returned.id}`
+    try { if (sessionStorage.getItem(key)) return; sessionStorage.setItem(key, '1') } catch { /* Local observer only; server remains authoritative. */ }
+    track('pro_purchase_completed', { source: 'verified_account' })
+  }, [returned?.id, returned?.status, user.pro])
   useEffect(() => {
     if (returned && pendingPurchase(returned) && !returnChecked.current) {
       returnChecked.current = true
@@ -323,8 +335,9 @@ function ProPanel({ user }: { user: Account }) {
   if (!user.pro && !canPurchase && !commerce?.purchases.length && !returnedPurchase) return null
   return <section className="pro-panel"><span className="section-index">IZZY / {user.pro || canPurchase ? 'LIFETIME PRO' : 'PURCHASE HISTORY'}</span>{(user.pro || canPurchase) && <><h2>{user.pro ? 'Ready for every take.' : 'Make room for more.'}</h2><p>{user.pro ? 'Pro is active on your account. Your scripts and presets travel with you.' : 'Unlimited saved scripts. Named display presets. One payment, no subscription.'}</p></>}
     {returned && <p className="account-notice" role="status">{purchaseMessage(returned)}</p>}
+    {finishReturn && <a className="account-primary" href={finishReturn}>Choose your finish <ArrowUpRight size={16} /></a>}
     {returnedPurchase && commerce && !returned && <p className="account-notice" role="status">This purchase was not found in your account. Sign in with the account you used at checkout to see its status.</p>}
-    {!user.pro && canPurchase && <><p className="price-switch">{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format((commerce?.prices.USD ?? 2900) / 100)} · paid once</p>
+    {!user.pro && canPurchase && <><p className="price-switch">{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format((commerce!.prices.USD) / 100)} · paid once</p>
       <button className="account-primary" disabled={busy} onClick={() => void checkout()}>{busy ? 'Please wait…' : 'Unlock Lifetime Pro'}<ArrowUpRight size={16} /></button>
       <p className="checkout-note">Secure checkout with lava.top. One payment in USD, no recurring charges.</p>
       {switchWarning && <div className="account-conflict"><p>An older payment link may remain active. Check your bank and the purchase status below. Paying both links can create a duplicate charge.</p><button disabled={busy} onClick={() => void checkout(true)}>I checked · continue with lava.top</button></div>}

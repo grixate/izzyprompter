@@ -77,7 +77,7 @@ export function LivePreview({ content, pauseVersion }: { content: string; pauseV
   }, [running, speed])
 
   return <aside className="preview-stage" ref={section} aria-label="Interactive teleprompter preview">
-    <div className="preview-heading"><h2>PHONE REMOTE</h2><span>{ownScript ? 'YOUR SCRIPT' : 'LIVE PREVIEW'}</span></div>
+    <div className="preview-heading"><h2>ONE SCRIPT. TWO SCREENS.</h2><span>{ownScript ? 'YOUR SCRIPT' : 'LIVE PREVIEW'}</span></div>
     <div ref={viewport} className="display-panel live-preview" aria-label={ownScript ? 'Your script preview' : 'Sample script preview'}>
       <PromptSurface blocks={blocks} trackRef={track} />
     </div>

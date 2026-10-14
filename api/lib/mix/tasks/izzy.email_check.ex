@@ -15,6 +15,8 @@ defmodule Mix.Tasks.Izzy.EmailCheck do
     if is_nil(Teleprompter.SmtpConfig.from_env()), do: Mix.raise("Configure SMTP first")
 
     Mix.Task.run("app.start")
+    # app.start can reset Logger; gen_smtp debug logging includes recipient headers.
+    Logger.configure(level: :warning)
 
     unless Application.fetch_env!(:teleprompter, Teleprompter.Mailer)[:adapter] ==
              Swoosh.Adapters.SMTP,

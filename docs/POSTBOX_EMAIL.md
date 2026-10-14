@@ -1,6 +1,6 @@
 # IZZY transactional email — Yandex Cloud Postbox
 
-Setup started 2026-10-14. Registration and returning-user sign-in use the same
+Setup completed and Gmail acceptance checked 2026-10-14. Registration and returning-user sign-in use the same
 passwordless flow: `Accounts.request_login/1` sends a 15-minute, single-use link;
 `consume_login/1` verifies the email identity on first sign-in. There is no
 password-reset email because IZZY does not use passwords.
@@ -12,9 +12,10 @@ Created in existing cloud `cloud-grix08`, folder `default`
 `izzyprompter.com`. Easy DKIM manages key rotation. The allowed-sender list is
 restricted to `account@izzyprompter.com`; sending logs are disabled.
 
-At REG.ru, open izzyprompter.com → DNS servers and zone management. Preserve the
-existing A records for `@`, `www`, and `staging`. Add the following records;
-names below are relative to the domain. Use the existing/default TTL.
+Added at REG.ru under izzyprompter.com → DNS servers and zone management.
+Preserved existing A records for `@`, `www`, and `staging`. All four mail records
+resolve from authoritative DNS; Postbox reports **Success**, with both DKIM
+records **OK**. Names below are relative to the domain; TTL uses the zone default.
 
 | Type | Name | Value |
 | --- | --- | --- |
@@ -23,8 +24,8 @@ names below are relative to the domain. Use the existing/default TTL.
 | TXT | `@` | `v=spf1 include:spf.postbox.yandexcloud.net ~all` |
 | TXT | `_dmarc` | `v=DMARC1; p=none` |
 
-No SPF, DMARC or MX records were returned in the initial public DNS lookup.
-Recheck the authoritative zone before editing. If SPF already exists, merge the
+No SPF, DMARC or MX records existed before this setup. For future changes,
+recheck the authoritative zone before editing. If SPF already exists, merge the
 Postbox include before its `all` mechanism; never create a second SPF record.
 Preserve an existing DMARC policy unless an intentional policy change is approved.
 Start with monitoring; move to quarantine/reject only after legitimate senders
@@ -73,7 +74,9 @@ store. Phoenix does not load `.env` automatically. Never prefix secrets with
 `https://izzyprompter.com`; use it only when promoting the reviewed release.
 
 The adapter requires authenticated STARTTLS, TLS 1.2/1.3, system-trusted CA and
-hostname verification. This integration uses port **587**, not implicit TLS 465.
+hostname verification. Certificate-chain depth is explicitly 99: the real
+Postbox chain exceeded the Erlang default depth; peer, CA and hostname verification
+remain enabled and actual STARTTLS delivery passed. This integration uses port **587**, not implicit TLS 465.
 Missing/empty credentials fail startup without printing their values. Test mode
 always keeps Swoosh.Test even when SMTP variables exist in the caller's shell.
 
@@ -101,14 +104,35 @@ enable a database, accounts, payments, or deploy a new application image.
 
 ### Host SMTP connectivity
 
-The initial VPS check reached Postbox on HTTPS port 443, but timed out on SMTP
-ports 587 and 465; Gmail SMTP port 587 also timed out. Inspect the netcup SCP
-Firewall page for the default `netcup Mail block` policy. Changing this policy
-requires owner approval. Prefer a narrow outbound exception for Postbox on 587
-if the provider supports it. Preserve the host firewall and inbound rules.
-Repeat authenticated STARTTLS and actual delivery checks after the block is
-resolved; do not substitute disabled TLS verification or expose a local relay.
+The owner-approved policy `izzy-smtp-submission` (netcup policy 325444) is now
+applied to server 159.195.86.205, replacing the default `netcup Mail block`:
+
+| Order | Direction | Protocol | Destination port | Action |
+| --- | --- | --- | --- | --- |
+| 1 | Outgoing | TCP | 25 | DROP |
+| 2 | Outgoing | TCP | 465 | DROP |
+| 3 | Outgoing | TCP | Any | ACCEPT |
+| 4 | Outgoing | UDP | Any | ACCEPT |
+
+Existing default IPv4/IPv6 ping policies remain. Netcup's applied custom policy
+has implicit outgoing DROP and incoming ACCEPT. Explicit TCP/UDP accepts preserve
+ordinary outbound traffic, including SMTP submission on 587; other IP protocols
+follow the provider's implicit rules. The host UFW remains active, with inbound
+22/80/443 allowed and other unsolicited inbound traffic denied. No host firewall
+rule was changed.
+
+Verified from the VPS: Postbox 587 and 443 connected; Postbox 465 and Gmail 25
+timed out. An authenticated, certificate-verified STARTTLS session succeeded.
 See [netcup's firewall documentation](https://www.netcup.com/en/helpcenter/documentation/server/firewall).
+
+**Panel behavior and setup history:** deleting/restoring a default policy applies
+immediately even while an unrelated custom assignment shows an unsaved banner.
+An initial deletion briefly removed the mail block. It was restored immediately
+when connection checks revealed the effect, and SMTP blocking was reconfirmed;
+no email was sent in that interval. After explicit owner approval, the final
+replacement above was applied and its allowed/blocked ports checked. Also, the
+custom-policy draft preview showed implicit outgoing ACCEPT, but the applied
+policy used DROP; the final explicit TCP/UDP rules account for that difference.
 
 ## Delivery acceptance
 
@@ -133,6 +157,34 @@ See [netcup's firewall documentation](https://www.netcup.com/en/helpcenter/docum
 6. Request a quota increase before launch if projected traffic exceeds the
    starter quota. Keep this identity for transactional mail only.
 
+### Results on 14 October 2026
+
+- Harmless probe and both real passwordless emails reached the authorized Gmail
+  inbox, rather than Spam. Gmail's received-message view reports SPF **PASS**,
+  DKIM **PASS** for `izzyprompter.com`, and DMARC **PASS**.
+- Registration and returning-user sign-in were exercised through the actual UI
+  and Swoosh SMTP adapter using isolated local PostgreSQL state. The Mac's direct
+  SMTP path was unavailable, so a loopback SSH forward through the VPS carried
+  SMTP while retaining Postbox's TLS hostname/SNI and certificate validation.
+- First sign-in created one user and one verified identity. Opening the link
+  alone did not consume it; explicit confirmation did. Logout removed the
+  session; a second delivered link signed into the same user. Reuse was refused.
+- Real tokens had a 900-second lifetime. A separately issued, already-expired
+  token in that isolated database was refused by the UI; no 15-minute wall-clock
+  expiry wait is claimed.
+- A send from `blocked-sender@izzyprompter.com` was rejected with SMTP 550,
+  confirming the allowed-sender restriction. No email was delivered by that test.
+- PostgreSQL-backed API checks: **147 tests, zero failures**, including a run
+  with synthetic SMTP variables exported. Compilation with warnings as errors
+  and formatting checks passed. GitHub checks are recorded in the setup report.
+- Outlook/Hotmail, Yahoo, Proton and Yandex receipt/placement remain untested:
+  no owner-controlled addresses for those providers were supplied.
+
+These are local account-flow checks with real Postbox delivery, not a hosted
+account-enabled staging or production release. No production database or account
+was created. The temporary local services and SMTP tunnel were stopped after
+testing; the isolated acceptance database is retained locally for review.
+
 ## Changes in this branch
 
 - `.env.example`: concrete Postbox host, sender and credential guidance.
@@ -151,5 +203,5 @@ See [netcup's firewall documentation](https://www.netcup.com/en/helpcenter/docum
 - [DNS and DKIM/SPF/DMARC](https://yandex.cloud/en/docs/postbox/concepts/dns-records)
 - [SMTP authentication](https://yandex.cloud/en/docs/postbox/operations/send-email)
 
-Live status and outstanding access/verification are recorded separately in the
-setup report. A created identity is not evidence that SMTP or inbox tests passed.
+The setup report records the final code review, GitHub checks, and remaining
+account-release and cross-provider acceptance work.

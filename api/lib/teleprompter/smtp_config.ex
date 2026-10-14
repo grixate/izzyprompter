@@ -28,6 +28,7 @@ defmodule Teleprompter.SmtpConfig do
           tls_options: [
             versions: [:"tlsv1.2", :"tlsv1.3"],
             verify: :verify_peer,
+            depth: 99,
             cacerts: :public_key.cacerts_get(),
             server_name_indication: String.to_charlist(relay),
             customize_hostname_check: [

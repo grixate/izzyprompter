@@ -7,6 +7,7 @@ import { chromium, expect } from '@playwright/test'
 // Explicit opt-in is required to create a synthetic session on production.
 const origin = process.env.IZZY_SMOKE_ORIGIN || 'https://staging.izzyprompter.com'
 const staging = origin === 'https://staging.izzyprompter.com'
+const accountsEnabled = process.env.IZZY_EXPECT_ACCOUNTS === '1'
 assert.ok(staging || (origin === 'https://izzyprompter.com' && process.env.IZZY_VERIFY_PRODUCTION === '1'),
   'Use the staging origin, or explicitly set IZZY_VERIFY_PRODUCTION=1 for production')
 const credentials = staging
@@ -46,7 +47,7 @@ try {
     const value = await (await fetch('/api/account/')).json()
     return { enabled: value.enabled, google: value.google_enabled, user: value.user }
   })
-  assert.deepEqual(account, { enabled: false, google: false, user: null })
+  assert.deepEqual(account, { enabled: accountsEnabled, google: false, user: null })
   const paragraph = 'Hosted release verification with synthetic text. '.repeat(45).trim()
   await editor.getByRole('textbox', { name: 'Teleprompter script' }).fill(paragraph + '\n\nSecond verification paragraph.')
   await editor.getByRole('button', { name: 'SET UP PROMPTER', exact: true }).click()
@@ -81,7 +82,7 @@ try {
   assert.deepEqual([...new Set(sockets)], [origin.replace('https:', 'wss:')])
   assert.deepEqual(errors, [])
   console.log(JSON.stringify({ origin, result: 'passed', authenticatedStaging: staging,
-    checks: ['health', 'guest-only mode', 'pairing', 'secure sockets', 'playback', 'live edits', 'reload', 'foreign-origin refusal'], browserErrors: 0 }, null, 2))
+    checks: ['health', accountsEnabled ? 'accounts available' : 'guest-only mode', 'pairing', 'secure sockets', 'playback', 'live edits', 'reload', 'foreign-origin refusal'], browserErrors: 0 }, null, 2))
 } catch (error) {
   let message = String(error.stack || error).replace(/#key=[A-Za-z0-9_-]+/g, '#key=[redacted]')
   if (credentials) message = message.replaceAll(credentials.password, '[redacted]')

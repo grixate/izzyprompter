@@ -10,7 +10,7 @@ production release. Git pushes and merges do not deploy production.
 | --- | --- | --- |
 | Local | Vite/Phoenix on this Mac | Implementation and fast iteration |
 | Staging | https://staging.izzyprompter.com | Authenticated review on real devices |
-| Production | https://izzyprompter.com | Approved guest release |
+| Production | https://izzyprompter.com | Approved public release |
 
 Staging starts with the same immutable image as production. It is a different
 container, Docker network, loopback port, origin, and secret. Sessions and browser
@@ -53,8 +53,10 @@ The original Docker image is also saved on the server and this Mac:
 `gzip -dc IMAGE.tar.gz | docker image load` restores the image. Loading an image
 does not start or deploy it. Runtime secrets are separate from this image backup;
 preserve `/etc/izzy/app.env` through an approved secure backup process as well.
-There is no account database yet. Before enabling accounts, configure database
-backups, a real restore drill, SMTP, and migration/rollback procedures.
+The initial guest release had no account database. The owner-approved VPS
+account rollout, protected database settings, encrypted backups and verified
+restore drill are described in ACCOUNT_OPERATIONS.md. Future releases must
+preserve those recovery and migration/rollback controls.
 
 ## Each correction or feature
 
@@ -83,8 +85,15 @@ backups, a real restore drill, SMTP, and migration/rollback procedures.
 
 Build candidates in a suitable CI/build environment where possible. Large builds
 on the shared VPS can contend with production; do not run test suites or load
-tests there against the live application. The current GitHub workflow tests
-images without publishing them and has no server credentials or deploy steps.
+tests there against the live application. The GitHub container job retains its
+successfully tested image as a seven-day `izzy-candidate-RUN_ID` artifact. It
+includes `image.tar.gz`, a tracked-source archive, SHA-256 checksums and
+`release.json` recording the source commit and Docker image ID. Pull-request
+builds record the actual checked-out merge commit. Download the artifact,
+validate its checksums, load the image and confirm its ID before choosing it
+for staging. Keep a protected host copy for rollback; artifact retention is not
+a release backup. The workflow has no server credentials, registry publication
+or deployment steps.
 
 ## Hosted verification
 
@@ -93,6 +102,10 @@ From this repository on the Mac, with Playwright installed:
 ```sh
 node scripts/verify-hosted.mjs
 ```
+
+For a reviewed account-enabled release, set `IZZY_EXPECT_ACCOUNTS=1`. This changes
+only the expected account-availability check; it does not create users, enable
+accounts, or replace real delivered-email acceptance.
 
 The default is authenticated staging. It creates one synthetic guest session,
 checks anonymous refusal, readiness, secure pairing, actual playback, phone live

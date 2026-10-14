@@ -51,27 +51,23 @@ config :teleprompter, :payment_providers, %{
 }
 
 if config_env() == :prod and System.get_env("DATABASE_URL") do
-  if not System.get_env("SMTP_HOST"), do: raise("Account-enabled production requires SMTP_HOST")
+  if System.get_env("SMTP_HOST", "") == "",
+    do: raise("Account-enabled production requires SMTP_HOST")
+
+  sender = System.get_env("MAIL_FROM", "")
+
+  unless Regex.match?(~r/^[^\s@<>]+@[^\s@<>]+\.[^\s@<>]+$/, sender),
+    do: raise("Account-enabled production requires MAIL_FROM with a verified sending domain")
 
   if URI.parse(System.get_env("PUBLIC_ORIGIN", "")).scheme != "https",
     do: raise("Account-enabled production requires an HTTPS PUBLIC_ORIGIN")
 end
 
-if relay = System.get_env("SMTP_HOST") do
-  config :teleprompter, Teleprompter.Mailer,
-    adapter: Swoosh.Adapters.SMTP,
-    relay: relay,
-    username: System.get_env("SMTP_USERNAME"),
-    password: System.get_env("SMTP_PASSWORD"),
-    port: String.to_integer(System.get_env("SMTP_PORT", "587")),
-    tls: :always,
-    auth: :always,
-    tls_options: [
-      verify: :verify_peer,
-      cacerts: :public_key.cacerts_get(),
-      server_name_indication: String.to_charlist(relay),
-      customize_hostname_check: [match_fun: :public_key.pkix_verify_hostname_match_fun(:https)]
-    ]
+# Tests must never send real mail, even if the caller has SMTP credentials exported.
+if config_env() != :test do
+  if smtp = Teleprompter.SmtpConfig.from_env() do
+    config :teleprompter, Teleprompter.Mailer, smtp
+  end
 end
 
 # config/runtime.exs is executed for all environments, including

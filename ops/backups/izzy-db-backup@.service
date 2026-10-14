@@ -1,0 +1,13 @@
+[Unit]
+Description=IZZY encrypted PostgreSQL %i backup
+After=postgresql@17-main.service
+Requires=postgresql@17-main.service
+
+[Service]
+Type=oneshot
+UMask=0077
+Nice=10
+IOSchedulingClass=idle
+CPUQuota=50%
+MemoryMax=256M
+ExecStart=/usr/local/sbin/izzy-db-backup %i

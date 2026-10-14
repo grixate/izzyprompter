@@ -67,6 +67,36 @@ jobs:
       - run: npm run test:container
         env:
           IZZY_CONTAINER_IMAGE: izzy:ci
+      - name: Package the tested image for manual promotion
+        run: |
+          set -euo pipefail
+          mkdir -p release-candidate
+          commit="$(git rev-parse HEAD)"
+          image="izzy:git-$commit"
+          docker tag izzy:ci "$image"
+          git archive --format=tar "$commit" | gzip -n > release-candidate/source.tar.gz
+          docker save "$image" | gzip -n > release-candidate/image.tar.gz
+          python3 - <<'PY'
+          import hashlib, json, pathlib, subprocess
+          root = pathlib.Path('release-candidate')
+          commit = subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip()
+          image = 'izzy:git-' + commit
+          image_id = subprocess.check_output(['docker', 'image', 'inspect', image, '--format', '{{.Id}}'], text=True).strip()
+          checksums = {}
+          for name in ('source.tar.gz', 'image.tar.gz'):
+              with (root / name).open('rb') as stream:
+                  checksums[name] = hashlib.file_digest(stream, 'sha256').hexdigest()
+          record = {'commit': commit, 'image': image, 'image_id': image_id, 'sha256': checksums}
+          (root / 'release.json').write_text(json.dumps(record, indent=2) + '\n')
+          (root / 'SHA256SUMS').write_text(''.join(digest + '  ' + name + '\n' for name, digest in checksums.items()))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: izzy-candidate-${{ github.run_id }}
+          path: release-candidate/
+          compression-level: 0
+          retention-days: 7
+          if-no-files-found: error
 
   accounts:
     runs-on: ubuntu-latest

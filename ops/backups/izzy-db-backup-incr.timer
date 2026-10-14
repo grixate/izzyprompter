@@ -1,0 +1,10 @@
+[Unit]
+Description=IZZY nightly encrypted incremental backup
+
+[Timer]
+OnCalendar=Mon..Sat *-*-* 00:15:00 UTC
+Persistent=true
+Unit=izzy-db-backup@incr.service
+
+[Install]
+WantedBy=timers.target

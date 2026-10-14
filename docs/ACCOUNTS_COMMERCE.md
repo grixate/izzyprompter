@@ -68,6 +68,13 @@ These functions record confirmed outcomes; **they do not send money or issue a p
 
 ## Deployment, backup and restore gate
 
+For the initial email-sign-in release, the owner selected the existing netcup
+VPS and encrypted local backups on 14 October 2026 as a budget exception to the
+managed-database recommendation below. See [account operations](ACCOUNT_OPERATIONS.md)
+for the actual isolated databases, daily Mac recovery copy, verified hosted
+restore and limits of local backups. Payments remain disabled.
+
+
 Use one always-on Phoenix instance behind HTTPS with managed PostgreSQL; do not enable autoscaling/sleep/horizontal replicas while live sessions are in memory. Add `/account/socket` WebSocket forwarding and `/auth`, `/account` routes alongside the existing API/session routes. Set production SMTP, `DATABASE_URL`, exact HTTPS `PUBLIC_ORIGIN`, secret key, approved provider credentials and connection limits in the host's secret manager. Set `DATABASE_SSL_VERIFY=true` for managed PostgreSQL with a system-trusted certificate; it verifies CA and hostname. A host using a private CA needs an explicitly configured trusted CA before deployment, not disabled certificate verification.
 
 Build the existing container or bundled release. Run migrations **once as a release step**, before routing traffic; they are not run on ordinary application startup:

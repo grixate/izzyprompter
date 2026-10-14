@@ -64,6 +64,9 @@ test('visible wheels move and offscreen showroom rotors suspend', async ({ page 
 })
 
 test('every finish can be applied on an entitled remote without changing its controls', async ({ page, browser }) => {
+  // Sixteen real modal/apply cycles plus revocation/reload. Linux WebKit's
+  // rendering makes this longer than a single flow; retain normal assertion budgets.
+  test.setTimeout(90_000)
   await page.goto('/')
   await page.getByRole('textbox', { name: 'Teleprompter script' }).fill('First synthetic paragraph.\n\nSecond synthetic paragraph.')
   await page.getByRole('button', { name: 'SET UP PROMPTER', exact: true }).click()
@@ -76,6 +79,7 @@ test('every finish can be applied on an entitled remote without changing its con
     await remote.goto(href!)
     await expect(remote.locator('.network-state')).toHaveText('CONNECTED')
     for (const skin of skins) {
+      await test.step(`Apply and inspect ${skin.name}`, async () => {
       await remote.getByRole('button', { name: 'Remote finish', exact: true }).click()
       // The preview follows the current selection; move through the shared catalog.
       while (await remote.locator('#skin-dialog-title').innerText() !== skin.name) await remote.getByRole('button', { name: 'Next skin', exact: true }).click()
@@ -88,6 +92,7 @@ test('every finish can be applied on an entitled remote without changing its con
       const bounds = await key.boundingBox()
       expect(bounds!.width).toBeGreaterThanOrEqual(40)
       expect(bounds!.height).toBeGreaterThanOrEqual(35)
+      })
     }
     const jog = remote.getByRole('slider', { name: 'Jog script position' })
     await jog.press('ArrowRight')

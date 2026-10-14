@@ -67,7 +67,12 @@ No live payment or real customer content was used.
 | Dependency advisories | npm zero vulnerabilities; Hex zero unresolved, one existing explicitly reviewed cowlib mitigation |
 
 The full browser matrix preceded the final focus and handoff refinements; the
-follow-up covers their affected surfaces. CI must run the complete final candidate.
+follow-up covers their affected surfaces. CI must run the complete final candidate. The first Linux CI guest matrix passed
+150 checks and skipped its 41 inapplicable cases, but its combined sixteen-finish
+WebKit test exhausted the 30-second total budget while still advancing. Trace
+inspection showed successful individual actions. That integration test now has
+a 90-second total budget and named per-finish steps; normal assertion/action
+budgets remain unchanged. The focused local WebKit rerun passed.
 Automation is not physical Safari/iPhone/iPad/Android acceptance. No converter,
 revenue uplift, real merchant charge or production release is asserted.
 

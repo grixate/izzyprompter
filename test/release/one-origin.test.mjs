@@ -93,11 +93,14 @@ test('real production release serves SPA, API, and live editing on one origin wi
       assert.match(csp, /manifest-src 'self'/)
       assert.match(await response.text(), /id="root"/)
     }
-    for (const path of ['/local-sw.js', '/manifest.webmanifest', '/offline-icon.svg']) {
+    for (const path of ['/local-sw.js', '/manifest.webmanifest', '/offline-icon.svg',
+      '/favicon.svg', '/favicon-16.png', '/favicon-32.png', '/apple-touch-icon.png', '/icon-192.png', '/icon-512.png']) {
       const response = await fetch(baseURL + path)
       assert.equal(response.status, 200)
       assert.equal(response.headers.get('cache-control'), 'no-cache')
       assert.ok(!response.headers.get('content-type')?.includes('text/html'))
+      if (path.endsWith('.png')) assert.match(response.headers.get('content-type'), /image\/png/)
+      if (path.endsWith('.svg')) assert.match(response.headers.get('content-type'), /image\/svg\+xml/)
     }
     const html = await (await fetch(baseURL)).text()
     const jsPath = html.match(/src="([^"]+\.js)"/)[1]

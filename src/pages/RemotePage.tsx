@@ -1,3 +1,4 @@
+import { RemoteBrand } from '../components/BrandLogo'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { JogControls, TransportReadout } from '../components/JogControls'
 import { legacySessionScriptToDocument } from '../domain/document'
@@ -167,7 +168,7 @@ export function RemoteSurface({ sessionId, session }: { sessionId: string; sessi
       <header className="remote-header">
         <div className="remote-identity">
           <strong>R–01</strong>
-          <span className="eyebrow">IZZY REMOTE · {sessionId}</span>
+          <RemoteBrand sessionId={sessionId} />
         </div>
         <div className="remote-link-state">
           <span className={`network-state ${connection}`}><i /> {connection === 'connected' ? session.path?.toUpperCase() ?? 'CONNECTED' : connection.toUpperCase()}</span>

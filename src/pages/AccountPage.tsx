@@ -1,3 +1,4 @@
+import { BrandLogo } from '../components/BrandLogo'
 import { useEffect, useRef, useState, type FormEvent } from 'react'
 import { ArrowLeft, ArrowUpRight, Copy, Download, Plus, Trash2, Upload } from 'lucide-react'
 import { QRCodeSVG } from 'qrcode.react'
@@ -47,7 +48,7 @@ export function AccountPage() {
   }
   return <main className="start-page workbench-page account-page">
     <header className="start-header">
-      <a href="/" className="wordmark dark"><span className="wordmark-mark">I</span><span>IZZY / TELEPROMPTER</span></a>
+      <a href="/" aria-label="IZZY home"><BrandLogo context="TELEPROMPTER" /></a>
       <nav aria-label="Account navigation">{status?.user ? <><a href="/account">My scripts</a><button onClick={() => void logout()}>Log out</button></> : <a href="/">Back to prompter</a>}</nav>
     </header>
     {notice && <p className="account-notice" role="status">{notice}</p>}

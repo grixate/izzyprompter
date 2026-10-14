@@ -13,7 +13,9 @@ export function offlinePlugin(): Plugin {
       for (const character of String(index.source) + assets.join('|')) hash = Math.imul(hash ^ character.charCodeAt(0), 16777619)
       const build = (hash >>> 0).toString(16)
       index.source = String(index.source).replace('</head>', `<meta name="izzy-offline-build" content="${build}" /></head>`)
-      const paths = ['/local', '/manifest.webmanifest', '/offline-icon.svg', ...assets]
+      const paths = ['/local', '/manifest.webmanifest', '/offline-icon.svg',
+        '/favicon.svg', '/favicon-16.png', '/favicon-32.png', '/apple-touch-icon.png',
+        '/icon-192.png', '/icon-512.png', ...assets]
       this.emitFile({ type: 'asset', fileName: 'local-sw.js', source: `
 const BUILD = ${JSON.stringify(build)};
 const CACHE = 'izzy-local-' + BUILD;

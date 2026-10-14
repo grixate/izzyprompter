@@ -1,3 +1,4 @@
+import { BrandLogo } from '../components/BrandLogo'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { ArrowUpRight, Copy, Monitor, Smartphone, Upload } from 'lucide-react'
 import { QRCodeSVG } from 'qrcode.react'
@@ -328,7 +329,7 @@ export function StartPage() {
       <main className="pairing-page">
         <SessionNotice connection={connection} surface="editor" onBackToScript={() => setSession(null)} onRetry={reconnect} />
         <header className="start-header">
-          <div className="wordmark dark"><span className="wordmark-mark">I</span><span>IZZY / SESSION</span></div>
+          <BrandLogo context="SESSION" />
           <span className={`network-state ${connection}`}><i /> {connection.toUpperCase()}</span>
         </header>
 
@@ -375,7 +376,7 @@ export function StartPage() {
   return (
     <main className="start-page workbench-page">
       <header className="start-header">
-        <div className="wordmark dark"><span className="wordmark-mark">I</span><span>IZZY / TELEPROMPTER</span></div>
+        <BrandLogo context="TELEPROMPTER" />
         <a className="login-button" href="/account">{accountStatus?.user ? 'My scripts' : 'Log in'}</a>
       </header>
 

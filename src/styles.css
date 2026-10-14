@@ -76,15 +76,11 @@ button { -webkit-tap-highlight-color: transparent; }
 .display-footer { bottom: 0; padding: 18px 28px; color: #6d6f69; }
 
 .wordmark, .display-actions { display: flex; align-items: center; gap: 11px; }
-.wordmark-mark {
-  display: grid;
-  place-items: center;
-  width: 24px; height: 24px;
-  border: 1px solid #5a5c56;
-  border-radius: 50%;
-  font-family: Georgia, serif;
-  font-size: 12px;
-}
+.wordmark { flex-shrink: 0; padding: 4px; font: 10px "SFMono-Regular", Consolas, monospace; letter-spacing: .13em; }
+.brand-logo { display: block; width: 140px; height: auto; flex-shrink: 0; }
+.brand-context { white-space: nowrap; }
+.remote-brand { display: flex; align-items: center; gap: 8px; }
+.remote-brand img { display: block; width: 72px; height: auto; }
 
 .local-indicator { color: #85877f; }
 .local-indicator i, .state-label i {
@@ -468,7 +464,6 @@ button { -webkit-tap-highlight-color: transparent; }
   box-shadow: 0 1px rgba(255,255,255,.58);
 }
 .wordmark.dark { color: var(--ink); font-family: "SFMono-Regular", Consolas, monospace; font-size: 10px; letter-spacing: .13em; }
-.wordmark.dark .wordmark-mark { border-color: #9b9991; }
 .prototype-label, .section-index, .editor-label, .start-footer, .pairing-footer {
   font-family: "SFMono-Regular", Consolas, monospace;
   font-size: 9px;
@@ -875,6 +870,12 @@ button:focus-visible, input:focus-visible, a:focus-visible, textarea:focus-visib
   *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
 }
 
+@media (max-width: 600px) {
+  .wordmark { flex-direction: column; align-items: flex-start; gap: 4px; }
+  .brand-logo { width: 120px; }
+  .brand-context { font-size: 8px; }
+}
+
 /* Entry workbench: a quiet writing surface beside the actual instrument. */
 .workbench-page { height: 100dvh; overflow-y: auto; background: #d9dad6; }
 .workbench-page .start-header { min-height: 68px; padding: 12px 32px; box-shadow: none; flex-shrink: 0; }
@@ -918,6 +919,7 @@ button:focus-visible, input:focus-visible, a:focus-visible, textarea:focus-visib
 .preview-remote .remote-header strong { font-size: 19px; }
 .preview-remote .remote-identity { gap: 4px !important; }
 .preview-remote .eyebrow { display: block; font-size: 6px; }
+.preview-remote .remote-brand { display: flex; }
 .preview-only { font: 7px "SFMono-Regular", Consolas, monospace; letter-spacing: .14em; color: #999d91; }
 .preview-remote .transport-readout { position: relative; top: auto; left: auto; transform: none; width: 196px; min-height: 54px; margin: 10px 0 0; padding: 7px 10px; }
 .preview-remote .display-kicker { font-size: 6px; }

@@ -1,3 +1,4 @@
+import { BrandLogo } from '../components/BrandLogo'
 import { useEffect, useMemo, useRef, useState, type CSSProperties } from 'react'
 import { Expand, Pause, Play, Settings2, X } from 'lucide-react'
 import { legacySessionScriptToDocument } from '../domain/document'
@@ -143,7 +144,7 @@ export function DisplaySurface({ sessionId, session, onSettingsChange }: {
       aria-label="Teleprompter display" style={textStyle}>
       <SessionNotice connection={connection} surface="display" onRetry={reconnect} />
       <header className={`display-header display-chrome ${chromeVisible ? '' : 'is-hidden'}`}>
-        <div className="wordmark"><span className="wordmark-mark">I</span><span>IZZY / {sessionId}</span></div>
+        <BrandLogo context={sessionId} light />
         <div className="display-actions">
           <span className={`network-state ${connection}`}><i /> {session.path?.toUpperCase() ?? connection.toUpperCase()}</span>
           <span className="remote-presence">REMOTE {presence.remote > 0 ? 'READY' : 'WAITING'}</span>

@@ -1,3 +1,4 @@
+import { BrandLogo } from '../components/BrandLogo'
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { createIzzyDocumentFromLegacyText, izzyDocumentToLegacyText } from '../domain/document'
 import { createDebouncedStorageWriter, DEFAULT_PROMPT_SETTINGS, loadWorkspaceStorage } from '../domain/storage'
@@ -143,7 +144,7 @@ export function LocalPage() {
   }
   if (take) return <LocalTake initial={take} onExit={item => { setTake(null); select(item); void refresh() }} />
   return <main className="local-workspace">
-    <header className="start-header"><div className="wordmark dark"><span className="wordmark-mark">I</span><span>IZZY / LOCAL PREVIEW</span></div><a href="/">Hosted workspace</a></header>
+    <header className="start-header"><BrandLogo context="LOCAL PREVIEW" /><a href="/">Hosted workspace</a></header>
     <div className="local-intro"><span className="eyebrow">ON THIS DEVICE</span><h1>Your script.<br />Ready for the field.</h1>
       <p>Prompt locally without a live server connection. Direct phone control is an experimental manual-pairing preview.</p></div>
     <OfflinePreparation />

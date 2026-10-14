@@ -1,3 +1,4 @@
+import { RemoteBrand } from './BrandLogo'
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import { JogControls, TransportReadout } from './JogControls'
 import { PromptSurface } from './PromptSurface'
@@ -81,7 +82,7 @@ export function LivePreview({ content, pauseVersion }: { content: string; pauseV
       <PromptSurface blocks={blocks} trackRef={track} />
     </div>
     <div className="remote-panel preview-remote" aria-label="Preview remote">
-      <header className="remote-header"><div className="remote-identity"><strong>R–01</strong><span className="eyebrow">IZZY REMOTE</span></div><span className="preview-only">PREVIEW</span></header>
+      <header className="remote-header"><div className="remote-identity"><strong>R–01</strong><RemoteBrand /></div><span className="preview-only">PREVIEW</span></header>
       <TransportReadout position={position} speed={speed} playing={running} label={ownScript ? 'YOUR SCRIPT' : 'SAMPLE SCRIPT'} />
       <JogControls enabled playing={running} speed={speed} position={position} maximum={Math.max(1, maximum)}
         positionText={`Preview position ${Math.round(position)} of ${Math.round(maximum)} pixels`}

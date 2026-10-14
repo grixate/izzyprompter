@@ -39,6 +39,15 @@ test('prepared app cold-opens offline, restores text/settings/anchor and never n
   await page.close()
   const reopened = await context.newPage()
   await reopened.goto('/local')
+  await expect.poll(() => reopened.getByRole('img', { name: 'IZZY', exact: true }).evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth > 0)).toBe(true)
+  for (const path of ['/favicon.svg', '/apple-touch-icon.png', '/icon-192.png', '/icon-512.png']) {
+    const response = await reopened.evaluate(async path => {
+      const response = await fetch(path)
+      return { ok: response.ok, type: response.headers.get('content-type') }
+    }, path)
+    expect(response.ok).toBe(true)
+    expect(response.type).toMatch(/^image\//)
+  }
   await reopened.getByRole('button', { name: 'Field script', exact: true }).click()
   await expect(reopened.getByRole('textbox', { name: 'Local script text' })).toHaveValue(script)
   await reopened.getByRole('textbox', { name: 'Local script text' }).fill(script + '\n\nUnsent local correction.')

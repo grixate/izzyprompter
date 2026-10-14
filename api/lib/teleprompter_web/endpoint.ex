@@ -38,7 +38,7 @@ defmodule TeleprompterWeb.Endpoint do
     at: "/",
     from: {:teleprompter, "priv/static/app"},
     gzip: false,
-    only: ~w(local-sw.js manifest.webmanifest offline-icon.svg),
+    only: ~w(local-sw.js manifest.webmanifest offline-icon.svg favicon.svg favicon-16.png favicon-32.png apple-touch-icon.png icon-192.png icon-512.png),
     cache_control_for_etags: "no-cache"
 
   plug Plug.Static,

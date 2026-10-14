@@ -8,7 +8,8 @@ test('tablet starts a script and opens its display while a separate phone contro
   try {
     await tablet.goto('/')
     await expect(tablet).toHaveTitle('IZZY — Browser Teleprompter')
-    await expect(tablet.locator('.wordmark')).toContainText('IZZY / TELEPROMPTER')
+    await expect(tablet.locator('.wordmark')).toContainText('/ TELEPROMPTER')
+    await expect(tablet.locator('.wordmark').getByRole('img', { name: 'IZZY', exact: true })).toBeVisible()
     const paragraphs = ['A tablet can be the reading screen.', 'The phone controls the shared session. '.repeat(40).trim()]
     await tablet.getByRole('textbox', { name: 'Teleprompter script' }).fill(paragraphs.join('\n\n'))
     await tablet.getByRole('button', { name: 'SET UP PROMPTER', exact: true }).click()
@@ -27,7 +28,8 @@ test('tablet starts a script and opens its display while a separate phone contro
     await expect(display.locator('.network-state')).toHaveText('CONNECTED')
     await expect(phone.locator('.network-state')).toHaveText('CONNECTED')
     await expect(display.locator('.script-track p')).toHaveText(paragraphs)
-    await expect(phone.locator('.eyebrow')).toContainText('IZZY REMOTE')
+    await expect(phone.locator('.remote-brand')).toContainText('REMOTE')
+    await expect(phone.locator('.remote-brand').getByRole('img', { name: 'IZZY', exact: true })).toBeVisible()
     await expect(phone.getByText('DSP 01 READY')).toBeVisible()
     await phone.getByRole('button', { name: 'Play', exact: true }).click()
     await expect(display.locator('.display-footer')).toContainText('ROLLING')

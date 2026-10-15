@@ -30,8 +30,8 @@ defmodule TeleprompterWeb.AppearanceEntitlementTest do
 
     request = fn ->
       build_conn()
-      |> put_req_header("authorization", "Bearer " <> session.tokens["remote"])
-      |> get(path)
+      |> put_req_header("authorization", "Basic c3ludGhldGljOnByZXZpZXc=")
+      |> post(path, %{"token" => session.tokens["remote"]})
       |> json_response(200)
     end
 

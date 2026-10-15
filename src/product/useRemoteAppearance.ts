@@ -7,7 +7,7 @@ async function verifiedGrant(sessionId: string, signal: AbortSignal) {
   const key = capabilityFromHash(location.hash)
   if (key) {
     try {
-      const response = await fetch(`/api/sessions/${sessionId}/appearance`, { headers: { Authorization: `Bearer ${key}` }, signal })
+      const response = await fetch(`/api/sessions/${sessionId}/appearance`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ token: key }), signal })
       if (response.ok && (await response.json()).pro === true) return true
     } catch { /* The remote may also have its own signed-in account. */ }
   }

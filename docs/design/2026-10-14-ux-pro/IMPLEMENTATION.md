@@ -37,7 +37,9 @@ visual acceptance are **not** claimed. Screenshots below are review evidence.
   Existing three-script Free quota, PRO unlimited count, presets, purchase
   verification, journals, conflict recovery and session protocol are reused.
 - A signed-in host can authorize its guest remote's appearance through a
-  capability-bound endpoint returning only `pro`. Database grant queries run
+  capability-bound POST endpoint returning only `pro`. The capability travels in
+  a JSON body under the existing deny-by-default parameter log filter, leaving
+  `Authorization` available to staging’s Basic-auth proxy. Database grant queries run
   outside the playback GenServer. The endpoint grants no account-library access.
 - Paid application rechecks permission. Focus/minute refresh and failure/revocation
   return to Original, preserving the remembered device choice. Reading surfaces

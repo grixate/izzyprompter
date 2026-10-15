@@ -74,7 +74,13 @@ test('every finish can be applied on an entitled remote without changing its con
   const context = await browser.newContext({ viewport: { width: 390, height: 844 } })
   const remote = await context.newPage()
   let entitled = true
-  await remote.route('**/api/sessions/*/appearance', route => route.fulfill({ json: { pro: entitled } }))
+  await remote.route('**/api/sessions/*/appearance', route => {
+    expect(route.request().method()).toBe('POST')
+    expect(route.request().headers()['authorization']?.startsWith('Bearer ') === true).toBe(false)
+    const body = route.request().postDataJSON()
+    expect(typeof body.token === 'string' && body.token.length === 43).toBe(true)
+    return route.fulfill({ json: { pro: entitled } })
+  })
   try {
     await remote.goto(href!)
     await expect(remote.locator('.network-state')).toHaveText('CONNECTED')

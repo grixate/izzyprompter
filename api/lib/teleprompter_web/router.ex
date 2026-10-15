@@ -73,7 +73,7 @@ defmodule TeleprompterWeb.Router do
 
     get "/network", NetworkController, :show
     get "/product", ProductController, :show
-    get "/sessions/:id/appearance", ProductController, :appearance
+    post "/sessions/:id/appearance", ProductController, :appearance
     post "/sessions", SessionController, :create
   end
 

@@ -35,19 +35,21 @@ defmodule TeleprompterWeb.ProductControllerTest do
   } do
     {:ok, session} = Teleprompter.Sessions.create("Synthetic script", 1)
     path = "/api/sessions/#{session.session_id}/appearance"
-    assert conn |> get(path) |> json_response(401) == %{"reason" => "appearance_unavailable"}
+
+    assert conn |> post(path, %{}) |> json_response(401) == %{
+             "reason" => "appearance_unavailable"
+           }
 
     rejected =
       build_conn()
-      |> put_req_header("authorization", "Bearer " <> session.tokens["editor"])
-      |> get(path)
+      |> post(path, %{"token" => session.tokens["editor"]})
 
     assert rejected.status == 401
 
     data =
       build_conn()
-      |> put_req_header("authorization", "Bearer " <> session.tokens["remote"])
-      |> get(path)
+      |> put_req_header("authorization", "Basic c3ludGhldGljOnByZXZpZXc=")
+      |> post(path, %{"token" => session.tokens["remote"]})
       |> json_response(200)
 
     assert data == %{"pro" => false}

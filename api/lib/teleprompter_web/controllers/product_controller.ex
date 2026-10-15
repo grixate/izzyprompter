@@ -7,12 +7,10 @@ defmodule TeleprompterWeb.ProductController do
 
   # A remote capability permits appearance for this take, never account access.
   # Grant lookup runs outside the playback GenServer.
-  def appearance(conn, %{"id" => id}) do
-    token =
-      case get_req_header(conn, "authorization") do
-        ["Bearer " <> value] -> value
-        _ -> nil
-      end
+  # Authorization belongs to staging's Basic-auth proxy. Keep the capability
+  # in the body, covered by Phoenix's deny-by-default parameter log filter.
+  def appearance(conn, %{"id" => id} = params) do
+    token = params["token"]
 
     case Teleprompter.Sessions.appearance_owner(id, token) do
       {:ok, user} ->

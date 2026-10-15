@@ -122,6 +122,8 @@ for (const width of [360, 390, 430, 768, 1280, 1440]) {
     for (const path of ['/', '/pro', '/skins', '/local']) {
       await page.goto(path)
       await expect.poll(() => page.evaluate(() => document.documentElement.scrollWidth)).toBe(width)
+      // CI has different platform fonts; numeric labels must size to their text.
+      await page.addStyleTag({ content: '.remote-instrument .instrument-speed strong { font-family: Arial, sans-serif !important; }' })
       const speedRails = await page.locator('.remote-instrument .instrument-speed').evaluateAll(els => els.map(el => ({
         rail: el.querySelector<HTMLElement>('.speed-track')?.clientWidth ?? 0,
         overflow: el.scrollWidth - el.clientWidth,

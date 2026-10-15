@@ -379,10 +379,7 @@ export function StartPage() {
 
   return (
       <main className="start-page workbench-page marketing-home">
-      <PublicNav beforeNavigate={() => draftWriter.flush()} onStart={() => {
-        track('homepage_start_prompting_clicked', { source: 'nav' })
-        textareaRef.current?.focus(); textareaRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' })
-      }} />
+      <PublicNav beforeNavigate={() => draftWriter.flush()} />
 
       <section className="workbench-stage" aria-label="Prepare your teleprompter">
       <div className="script-workspace">

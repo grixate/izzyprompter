@@ -70,6 +70,29 @@ These supersede the earlier copy-refinement captures for the affected surfaces.
 Wide and narrow compositions were also inspected live in the browser. Physical
 review remains deferred and production is unchanged.
 
+## 15 October navigation and speed preview repair
+
+The owner deferred direct pairing work and asked to hide the separate Skin
+Library navigation entry. Header, mobile menu and footer now omit it; the route,
+deep links, existing studies and contextual PRO finish previews are preserved.
+How it works and Start prompting no longer repeat the main-page destination in
+the menu. The logo returns home; PRO, account access and Online/Offline remain.
+
+The decorative instrument speed rail had zero available flex width, and its
+simplified markup bypassed skin material styles. It now uses a full-width
+speed-module grid with a 0.86× example and matching 36% range fill. Inert step
+keys adopt each skin’s material. Component container sizing accommodates small
+teasers and cards; old viewport width rules that made the keys oval are removed.
+Live controls and the original lab retain their behavior.
+
+Evidence: [PRO speed](pro-speed-corrected.png), [showroom speed](skins-speed-corrected.png),
+[simplified mobile menu](navigation-simplified.png). Unit checks: 88 passed;
+production build passed. Product tests cover navigation, preserved deep links,
+all sixteen live finishes and six widths in three engines. Additional geometry
+assertions caught narrow teaser overflow before final adaptive sizing. The final
+layout matrix passed all 18 checks across three engines; navigation and sixteen-
+finish live-control checks also passed in each engine.
+
 ## Implemented scope
 
 | Package | Actual candidate behavior | Remaining gate |

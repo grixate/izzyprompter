@@ -122,6 +122,16 @@ for (const width of [360, 390, 430, 768, 1280, 1440]) {
     for (const path of ['/', '/pro', '/skins', '/local']) {
       await page.goto(path)
       await expect.poll(() => page.evaluate(() => document.documentElement.scrollWidth)).toBe(width)
+      const speedRails = await page.locator('.remote-instrument .instrument-speed').evaluateAll(els => els.map(el => ({
+        rail: el.querySelector<HTMLElement>('.speed-track')?.clientWidth ?? 0,
+        overflow: el.scrollWidth - el.clientWidth,
+        stepShape: Math.max(...Array.from(el.querySelectorAll<HTMLElement>('.speed-step')).map(step => Math.abs(step.clientWidth - step.clientHeight))),
+      })))
+      for (const speed of speedRails) {
+        expect(speed.rail, `${path} visible speed rail`).toBeGreaterThanOrEqual(20)
+        expect(speed.overflow, `${path} speed controls fit`).toBeLessThanOrEqual(1)
+        expect(speed.stepShape, `${path} speed keys keep equal dimensions`).toBeLessThanOrEqual(1)
+      }
       const overflow = await page.locator('main').first().evaluate(el => el.scrollWidth - el.clientWidth)
       const outside = overflow > 1 ? await page.locator('main').first().evaluate(el => Array.from(el.querySelectorAll('*')).filter(node => node.getBoundingClientRect().right > el.clientWidth + 1).slice(0, 12).map(node => ({ class: node.className, right: Math.round(node.getBoundingClientRect().right) }))) : []
       expect(overflow, `${path} ${JSON.stringify(outside)}`).toBeLessThanOrEqual(1)
@@ -155,3 +165,24 @@ for (const width of [360, 390, 430, 768, 1280, 1440]) {
     }
   })
 }
+
+
+test('public navigation keeps distinct destinations and hides the library entry', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 })
+  await page.goto('/')
+  const header = page.locator('.public-nav')
+  await expect(header.getByRole('link', { name: /^Pro/ })).toBeVisible()
+  await expect(header.getByRole('link', { name: 'Log in', exact: true })).toBeVisible()
+  await expect(header.getByText('How it works', { exact: true })).toHaveCount(0)
+  await expect(header.getByText('Start prompting', { exact: true })).toHaveCount(0)
+  await expect(page.locator('nav a[href="/skins"]')).toHaveCount(0)
+  await page.setViewportSize({ width: 390, height: 844 })
+  await page.getByRole('button', { name: 'Open navigation', exact: true }).click()
+  const menu = page.getByRole('navigation', { name: 'Mobile navigation' })
+  await expect(menu.getByRole('link')).toHaveCount(2)
+  await menu.getByRole('link', { name: /^Izzy Pro/ }).click()
+  await expect(page).toHaveURL(/\/pro$/)
+  // Hiding discovery must not remove the preserved showroom or deep links.
+  await page.goto('/skins?skin=ivory')
+  await expect(page.getByRole('dialog')).toBeVisible()
+})

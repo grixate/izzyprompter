@@ -12,6 +12,20 @@ The owner authorized the UX/PRO implementation. The review branch now extracts a
 
 This is a review candidate, not a production release or payment activation. Per-skin physical Safari/Android review, merchant acceptance and owner visual review remain open. See [implementation evidence](design/2026-10-14-ux-pro/IMPLEMENTATION.md).
 
+## 15 October navigation and speed repair
+
+The owner asked to hide the separate library entry without deleting it. Header,
+mobile menu and footer omit the showroom link; `/skins` and its deep links remain
+available. PRO keeps its contextual finish previews. Redundant How it works and
+Start prompting navigation entries are removed; the logo returns to the editor.
+
+Decorative instruments now use the established speed-module structure and skin
+material selectors, with inert step keys, a full-width rail and a defined 0.86×
+example (36% of the shared 0.5–1.5 range). The earlier flex rail had collapsed to
+zero width. Container-based sizing handles small teaser objects as well as
+showroom cards; obsolete viewport overrides no longer distort the step keys.
+Live speed controls and the preserved lab studies keep their input semantics.
+
 ## Historical launch scope
 
 - Online free V1 remains the delivery priority. Do not activate checkout, add a paid-launch dependency or change existing script limits for this experiment.

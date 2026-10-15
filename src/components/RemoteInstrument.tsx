@@ -15,7 +15,11 @@ export function RemoteInstrument({ skin = 'ivory', phase = 0, motion = true }: {
       <div className="wheel-rotor"><div className="wheel-disc" /></div><div className="wheel-input" />
       <div className="transport-button"><Play size={28} fill="currentColor" /></div>
     </div><span className="wheel-caption">JOG / SCRUB</span></div>
-    <div className="instrument-speed"><span>−</span><i /><span>+</span><small>SPEED</small></div></div>
+    <div className="instrument-speed speed-module">
+      <span className="speed-step">−</span>
+      <div className="speed-track"><span style={{ width: '36%' }} /></div>
+      <span className="speed-step">+</span><strong>0.86×</strong>
+    </div></div>
     <div className="instrument-bottom"><span>TURN TO FIND YOUR PACE</span><i /></div>
   </div>
 }

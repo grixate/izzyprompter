@@ -11,7 +11,7 @@ export function ProAction({ source, label = 'Get Izzy Pro', returnTo = '/pro' }:
   const product = useProduct()
   const [busy, setBusy] = useState(false), [notice, setNotice] = useState('')
   if (verified && status?.user?.pro) return <a className="action-primary" href="/">Pro active · Open Izzy <ArrowUpRight size={17} /></a>
-  if (!product?.checkout_available) return <div className="purchase-unavailable"><span>{product ? 'Purchases opening soon' : 'Checking availability…'}</span><small>The free prompter is ready to use.</small></div>
+  if (!product?.checkout_available) return <div className="purchase-unavailable"><span>{product ? 'Purchases opening soon' : 'Checking availability…'}</span></div>
   const purchase = async () => {
     track('pro_checkout_clicked', { source })
     if (!status?.user) { window.location.assign(`/account?returnTo=${encodeURIComponent(returnTo)}`); return }

@@ -4,6 +4,7 @@ import { RemoteInstrument } from '../components/RemoteInstrument'
 import { skins, saveSkin, skinById, type SkinId } from './catalog'
 import { ProAction } from './ProAction'
 import { track } from './events'
+import { Offer } from './ProductProvider'
 
 export function SkinDialog({ initial, selected, pro, onClose, onApply }: {
   initial: SkinId; selected: SkinId; pro: boolean; onClose: () => void; onApply?: (id: SkinId) => Promise<boolean>
@@ -30,9 +31,8 @@ export function SkinDialog({ initial, selected, pro, onClose, onApply }: {
   return <dialog ref={dialog} className="skin-dialog" aria-labelledby="skin-dialog-title" onCancel={event => { event.preventDefault(); onClose() }} onClick={event => { if (event.target === event.currentTarget) onClose() }}>
     <button className="skin-dialog-close" onClick={onClose} aria-label="Close skin preview"><X size={22} /></button>
     <div className="skin-dialog-object"><RemoteInstrument skin={id} /><div className="skin-preview-arrows"><button onClick={() => step(-1)} aria-label="Previous skin"><ArrowLeft /></button><span>{String(skins.findIndex(skin => skin.id === id) + 1).padStart(2, '0')} / {skins.length}</span><button onClick={() => step(1)} aria-label="Next skin"><ArrowRight /></button></div></div>
-    <div className="skin-dialog-copy"><span className="product-kicker">{skin.pro ? 'IZZY PRO / REMOTE FINISH' : 'INCLUDED WITH IZZY'}</span><h2 id="skin-dialog-title">{skin.name}</h2><p className="skin-material">{skin.material}</p><p>{skin.note}</p>
-      {!skin.pro || pro ? <button className="action-primary" disabled={busy} onClick={() => void apply()}>{busy ? 'Applying…' : selected === id ? 'Apply this finish' : 'Apply to my remote'}<Check size={17} /></button> : <div onClick={() => track('locked_skin_upgrade_clicked', { skin: id, source: 'skin_preview' })}><ProAction source="skin_library" label="Unlock with Pro" returnTo={`/skins?skin=${id}`} /></div>}
-      <p className="skin-application-note">{skin.pro && !pro ? 'Preview every finish. Unlock the collection with Lifetime Pro.' : 'Appearance is saved on this device. Playback stays exactly the same.'}</p>
+    <div className="skin-dialog-copy"><h2 id="skin-dialog-title">{skin.name}</h2><p className="skin-material">{skin.material}</p><p>{skin.note}</p>
+      {!skin.pro || pro ? <button className="action-primary" disabled={busy} onClick={() => void apply()}>{busy ? 'Applying…' : selected === id ? 'Apply this finish' : 'Apply to my remote'}<Check size={17} /></button> : <div onClick={() => track('locked_skin_upgrade_clicked', { skin: id, source: 'skin_preview' })}><Offer compact /><ProAction source="skin_library" label="Unlock with Pro" returnTo={`/skins?skin=${id}`} /></div>}
       {notice && <p role="status">{notice}</p>}
     </div>
   </dialog>

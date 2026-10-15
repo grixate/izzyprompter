@@ -28,7 +28,7 @@ function OfflinePreparation() {
   }, [])
   useEffect(() => { track('offline_mode_opened', { surface: 'local_workspace' }) }, [])
   return <section className="local-preparation" aria-label="Offline app preparation">
-    <div className="offline-preparation-heading"><div><span className="product-kicker">01 / PREPARE THIS BROWSER</span><h2>{ready ? 'Ready to go offline.' : 'A little preparation. Then, anywhere.'}</h2></div><span className={`offline-readiness ${ready ? 'is-ready' : ''}`} role="status">{ready ? 'App prepared' : 'Preparation required'}</span></div>
+    <div className="offline-preparation-heading"><div><h2>{ready ? 'Ready to go offline.' : 'A little preparation. Then, anywhere.'}</h2></div><span className={`offline-readiness ${ready ? 'is-ready' : ''}`} role="status">{ready ? 'App prepared' : 'Preparation required'}</span></div>
     <button disabled={busy} onClick={() => {
       setBusy(true)
       void prepareOfflineApp().then(() => { setReady(true); setMessage('App available offline in this browser. Saved scripts are listed below.'); track('offline_pairing_ready', { surface: 'standalone' }) })
@@ -156,7 +156,7 @@ export function LocalPage() {
   if (take) return <LocalTake initial={take} onExit={item => { setTake(null); select(item); void refresh() }} />
   return <main className="local-workspace offline-studio">
     <PublicNav mode="offline" beforeNavigate={() => draftWriter.flush()} />
-    <div className="local-intro"><span className="product-kicker">FREE WITH IZZY / ON THIS DEVICE</span><h1>Offline mode.<br /><em>Ready for the field.</em></h1>
+    <div className="local-intro"><h1>Offline mode.<br /><em>Ready for the field.</em></h1>
       <p>Prepare your browser. Save your words. Prompt without a live internet connection.</p></div>
     <OfflinePreparation />
     <div className="local-workspace-grid">
@@ -165,7 +165,7 @@ export function LocalPage() {
         <a href="/local/remote">Open direct remote preview</a>
       </aside>
       <section className="local-editor" aria-label="Local script editor">
-        <span className="product-kicker">02 / SAVE YOUR SCRIPT, THEN START</span>
+        <h2>Your script</h2>
         <label>Script title<input aria-label="Local script title" value={title} maxLength={200} onChange={event => setTitle(event.target.value)} /></label>
         <label>Script text<textarea aria-label="Local script text" value={content} onChange={event => { setContent(event.target.value); setMessage('Unsaved text. Save locally or export before closing.') }} spellCheck /></label>
         <div className="local-actions"><button disabled={busy || !content.trim()} onClick={() => void prepare(false)}>Save script offline</button>

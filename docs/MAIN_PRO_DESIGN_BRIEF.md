@@ -2,6 +2,14 @@
 
 14 October 2026. The owner explicitly requires extraordinary design quality for both pages. This brief makes that requirement actionable within the [execution plan](UX_PRO_EXECUTION_PLAN.md). It does not approve a final layout or authorize publication.
 
+## Owner refinement, 15 October
+
+Remove editorial labels above headlines and repeated small copy. Let headlines,
+actual instruments and useful controls carry the pages. Keep one supporting line
+where it adds meaning; show limits and detailed explanations on demand. Adjust
+spacing with each deletion. Physical iPad/iPhone review is deferred by the owner,
+not recorded as passed.
+
 ## The intended impression
 
 **A finely made instrument that happens to live in a browser.** The wheel is the recognizable object; the page gives it scale, credible material, breathing room and useful movement. Every visual decision should increase understanding or desire. Technical implementation details belong outside the main product story.

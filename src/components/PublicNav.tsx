@@ -36,5 +36,5 @@ export function PublicNav({ mode = 'online', beforeNavigate, onStart, light = fa
   </header>
 }
 export function PublicFooter({ light = false }: { light?: boolean }) {
-  return <footer className="public-footer"><a href="/" aria-label="IZZY home"><BrandLogo context="" light={light} /></a><span>A little more control.<br />A little more you.</span><nav aria-label="Footer"><a href="/skins">Skins</a><a href="/pro">Lifetime Pro</a><a href="/local">Offline</a><a href="/account">My scripts</a></nav><small>Made for your next take.</small></footer>
+  return <footer className="public-footer"><a href="/" aria-label="IZZY home"><BrandLogo context="" light={light} /></a><nav aria-label="Footer"><a href="/skins">Skins</a><a href="/pro">Lifetime Pro</a><a href="/local">Offline</a><a href="/account">My scripts</a></nav></footer>
 }

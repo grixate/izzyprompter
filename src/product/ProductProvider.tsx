@@ -37,7 +37,7 @@ export function Offer({ compact = false }: { compact?: boolean }) {
   return <span className={`product-offer ${compact ? 'offer-compact' : ''}`}>
     {product.launch_offer && product.reference_price_minor > product.price_minor && <del>{money(product.reference_price_minor)}</del>}
     <strong>{money(product.price_minor)}</strong>
-    {!compact && <span>One payment.<br />Yours for good.</span>}
+    {!compact && <span>Lifetime Pro<br />One payment</span>}
   </span>
 }
 export function Discount() {

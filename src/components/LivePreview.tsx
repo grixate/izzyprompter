@@ -77,7 +77,7 @@ export function LivePreview({ content, pauseVersion }: { content: string; pauseV
   }, [running, speed])
 
   return <aside className="preview-stage" ref={section} aria-label="Interactive teleprompter preview">
-    <div className="preview-heading"><h2>ONE SCRIPT. TWO SCREENS.</h2><span>{ownScript ? 'YOUR SCRIPT' : 'LIVE PREVIEW'}</span></div>
+    <div className="preview-heading"><h2>ONE SCRIPT. TWO SCREENS.</h2></div>
     <div ref={viewport} className="display-panel live-preview" aria-label={ownScript ? 'Your script preview' : 'Sample script preview'}>
       <PromptSurface blocks={blocks} trackRef={track} />
     </div>
@@ -91,6 +91,6 @@ export function LivePreview({ content, pauseVersion }: { content: string; pauseV
         onEdge={(edge) => paint(edge === 'start' ? 0 : maximumRef.current)}
         onSpeedChange={setSpeed} pageSize={viewport.current?.clientHeight ?? 240} />
     </div>
-    <p className="preview-caption">{content.length > 20_000 ? 'Showing the first 20,000 characters. Your full script is kept.' : 'Playback control and live corrections, from your phone.'}</p>
+    {content.length > 20_000 && <p className="preview-caption">Showing the first 20,000 characters. Your full script is kept.</p>}
   </aside>
 }

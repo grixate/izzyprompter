@@ -103,3 +103,48 @@
 /* Keep small public copy readable on the light studio paper. */
 .skins-page .purchase-unavailable>small,.skin-dialog .purchase-unavailable>small,.skins-page .product-offer>span,.skins-page .offer-loading { color:#5d6b50; }
 .standalone-remote.skin-face .quick-edit-trigger,.standalone-remote.skin-face .remote-link-state small { color:inherit; }
+
+/* Editorial refinement: headlines and objects carry the page. */
+.marketing-home .entry-intro h1 { margin-top:0; }
+.marketing-home .entry-intro p { margin-bottom:32px; }
+.marketing-home .script-feedback:not(.sr-only) { font-size:11px; }
+.how-section { padding-block:45px; }
+.how-steps { margin-top:0; }
+.how-steps article { border:0; padding-top:0; }
+.how-steps h3 { margin-top:20px; }
+.home-offline h2,.home-pro h2 { margin-top:0; }
+.public-footer { grid-template-columns:1fr auto; align-items:center; }
+.pro-hero h1 { margin-top:0; }
+.pro-hero-copy>p { margin-block:28px; }
+.material-heading h2 { margin-top:0; }
+.material-parade { margin-top:50px; }
+.workflow-proof>div { font-family:inherit; font-size:13px; line-height:1.5; margin-bottom:20px; }
+.workflow-proof article { justify-content:space-between; }
+.pro-limits { color:#5e6c50; font-size:12px; }
+.pro-limits summary { cursor:pointer; text-underline-offset:4px; }
+.pro-limits p { margin-bottom:0; }
+.skin-dialog-copy h2 { margin-top:0; }
+.skin-dialog-copy .product-offer { margin-top:22px; }
+.skin-dialog-copy .product-offer strong { font-size:36px; }
+.skin-dialog-copy .product-offer del { font-size:20px; }
+@media(max-width:650px){
+  .marketing-home .workbench-stage { padding-top:30px; }
+  .marketing-home .entry-intro h1 { margin-top:0; }
+  .marketing-home .entry-intro p { margin-bottom:28px; }
+  .how-section { padding-block:32px; }
+  .how-steps { gap:26px; }
+  .how-steps article { display:grid; grid-template-columns:28px 1fr; gap:5px 14px; align-items:center; }
+  .how-steps h3 { margin:0; }
+  .how-steps p { grid-column:2; margin:0; }
+  .home-offline h2,.home-pro h2 { margin-top:0; }
+  .pro-hero { padding-top:30px; gap:12px; }
+  .pro-hero h1 { margin-top:0; }
+  .pro-hero-copy>p { margin-block:24px; }
+  .pro-hero-object { padding-top:8px; }
+  .material-heading h2 { margin-top:0; }
+  .material-parade { margin-top:25px; }
+  .workflow-proof article { padding-block:22px; }
+}
+
+.skin-dialog-copy .product-offer del { color:#626e53; }
+.offline-studio .local-editor>h2 { margin:0; font-size:16px; }

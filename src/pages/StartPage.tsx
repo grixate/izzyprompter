@@ -387,10 +387,8 @@ export function StartPage() {
       <section className="workbench-stage" aria-label="Prepare your teleprompter">
       <div className="script-workspace">
         <div className="entry-intro">
-          <span className="product-kicker">YOUR NEXT TAKE, A LITTLE MORE IN CONTROL.</span>
           <h1>Your teleprompter.<br /><span>Your phone is<br />the remote.</span></h1>
-          <p>No app. No extra hardware. Open Izzy, scan a QR code, and find your pace with a tactile jog wheel.</p>
-          <div className="home-proof"><span>No download</span><span>Phone remote</span><span>Online + Offline</span><span>Free core</span></div>
+          <p>Paste a script. Pair your phone. Prompt for free.</p>
         </div>
         <div className="editor-label">
           <label htmlFor="script-input">YOUR SCRIPT</label>
@@ -424,9 +422,6 @@ export function StartPage() {
             aria-describedby="editor-input-help editor-feedback"
             spellCheck="true"
           />
-          {!content && (
-            <p className="script-empty-note">Or drop a .txt or .md file. Just the words, no formatting.</p>
-          )}
           <input
             ref={fileInputRef}
             disabled={isCreating}
@@ -440,9 +435,9 @@ export function StartPage() {
           />
         </div>
         <p id="editor-input-help" className="sr-only">Enter plain text, paste, or import a TXT or Markdown file. Maximum 2 MB and 5,000 paragraphs.</p>
-        <div className="script-feedback">
+        <div className={words || inputFeedback ? "script-feedback" : "script-feedback sr-only"}>
           <span id="editor-feedback" className={inputFeedback?.kind === 'error' ? 'is-error' : inputFeedback ? 'is-success' : ''} role="status" aria-live={inputFeedback ? 'polite' : 'off'}>
-            {inputFeedback?.message ?? (words ? `${words} WORDS · ${draftSaved === true ? 'DRAFT SAVED ON THIS DEVICE' : 'YOUR SCRIPT'}` : 'TXT / MD · UP TO 2 MB')}
+            {inputFeedback?.message ?? (words ? `${words} words${draftSaved === true ? ' · Saved on this device' : ''}` : '')}
           </span>
         </div>
         <div className="workspace-actions">
@@ -452,7 +447,6 @@ export function StartPage() {
         </button>
         <a className="entry-pro-link" href="/pro" onClick={() => { draftWriter.flush(); track('homepage_pro_clicked', { source: 'hero' }) }}>Explore Izzy Pro <ArrowUpRight size={15} /></a>
         </div>
-        <p className="setup-hint">{words ? 'Next: open your reading screen and pair your phone.' : 'Add your script to set up your reading screen and phone.'}</p>
       </div>
       <LivePreview content={content} pauseVersion={previewPauseVersion} />
       </section>

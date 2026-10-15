@@ -10,6 +10,25 @@ proposal for two separately approved page pairs was replaced by direct refinemen
 of this direction under that delegation; two completed alternatives and owner
 visual acceptance are **not** claimed. Screenshots below are review evidence.
 
+## 15 October copy and composition refinement
+
+The owner asked to condense small text, particularly labels above headlines, and
+to defer physical iPad/iPhone review. Main, PRO, skins and Offline now omit those
+editorial labels. Repeated captions, proof badges, section numbers and payment
+explanations are removed. Main has one introductory sentence; PRO leads with the
+finishes, scripts and price. Script limits move into an optional disclosure.
+Useful input feedback, access checks, unavailable purchase states and the
+experimental direct-pairing limitation remain visible when relevant.
+
+Spacing was adjusted with the copy so the editor and product appear sooner.
+The refined candidate builds successfully. Its affected product/entry/input suites
+passed 22 Chromium checks and 42 Firefox/WebKit checks; the latter explicitly
+skipped two native clipboard cases. An initial overlapping test launch collided
+with the shared output directory; the sequential rerun above completed cleanly.
+
+Physical review is deferred by the owner; it has not passed and does not block
+this local visual refinement. Production publication is still unauthorized.
+
 ## Implemented scope
 
 | Package | Actual candidate behavior | Remaining gate |
@@ -79,7 +98,9 @@ budgets remain unchanged. The focused local WebKit rerun passed. The next CI acc
 drill. Its guest job passed 150 browser checks but the five-screen Quick Edit
 flow reached the total timeout during cleanup; both traces showed all live-edit
 and reload assertions succeeding. That flow now has a 60-second total budget,
-with its assertion limits unchanged. The complete final candidate is rerun.
+with its assertion limits unchanged. The complete candidate at `38c32b0` passed all three required GitHub jobs:
+[test, accounts and container](https://github.com/grixate/izzyprompter/actions/runs/38686099641).
+This run precedes the 15 October copy refinement; its final CI run is tracked in the PR.
 Automation is not physical Safari/iPhone/iPad/Android acceptance. No converter,
 revenue uplift, real merchant charge or production release is asserted.
 
@@ -91,7 +112,11 @@ findings are historical evidence, not a new routing diagnosis.
 ## Visual evidence
 
 Screenshots are public pages, synthetic/empty content and no capability links.
+The baseline captures below precede the 15 October copy refinement.
 Desktop: 1440 × 1000. Phone viewport: 390 × 844.
+
+Latest copy refinement, captured in the normal 533 × 805 in-app pane:
+[Main](main-refined.png) · [PRO](pro-refined.png).
 
 | Surface | Desktop | Phone |
 | --- | --- | --- |
@@ -121,7 +146,8 @@ Use the required `test`, `accounts`, `container` GitHub jobs and their exact tes
 candidate image. The PR records the current CI link. Staging uses synthetic data
 and separate state. Follow `docs/RELEASE_WORKFLOW.md`; no merge deploys production.
 
-Before production approval: inspect main/PRO on actual devices; exercise every
+Physical iPad/iPhone review is explicitly deferred by the owner. No physical pass
+is claimed. Remaining release evidence includes exercising every
 marketed finish in portrait/landscape, keyboard/text zoom/reduced motion; verify
 email/Google returns and a merchant-approved transaction if sales will be enabled.
 Paired Offline remains experimental until native and physical gates pass; the UI

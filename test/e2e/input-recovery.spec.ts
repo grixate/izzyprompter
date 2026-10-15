@@ -4,7 +4,7 @@ test('paste outside the textarea normalizes rich text and survives immediate ref
   test.skip(browserName !== 'chromium', 'Native clipboard permission automation is Chromium-only; portable paste-event coverage runs on all engines.')
   await context.grantPermissions(['clipboard-read', 'clipboard-write'])
   await page.goto('/')
-  await expect(page.getByRole('heading', { name: /Your screen is the prompter/ })).toBeVisible()
+  await expect(page.getByRole('heading', { name: /Your teleprompter/ })).toBeVisible()
   await page.evaluate(async () => {
     await navigator.clipboard.write([new ClipboardItem({
       'text/plain': new Blob(['Первый\u00a0абзац.\r\n\r\n\r\nSecond paragraph.'], { type: 'text/plain' }),
@@ -25,7 +25,7 @@ test('paste outside the textarea normalizes rich text and survives immediate ref
   await expect(editor).toHaveValue('')
   await page.reload()
   await expect(editor).toHaveValue('')
-  await expect(page.getByRole('heading', { name: /Your screen is the prompter/ })).toBeVisible()
+  await expect(page.getByRole('heading', { name: /Your teleprompter/ })).toBeVisible()
 })
 
 test('plain-text paste event ignores rich markup and survives immediate refresh', async ({ page, baseURL }) => {
@@ -74,7 +74,7 @@ test('corrupt storage recovers to a usable editor', async ({ page }) => {
     localStorage.setItem('izzy.prompt-position', '{broken')
   })
   await page.goto('/')
-  await expect(page.getByRole('heading', { name: /Your screen is the prompter/ })).toBeVisible()
+  await expect(page.getByRole('heading', { name: /Your teleprompter/ })).toBeVisible()
   await page.getByRole('textbox', { name: 'Teleprompter script' }).fill('Recovery works.')
   await expect(page.getByRole('button', { name: 'SET UP PROMPTER' })).toBeEnabled()
 })

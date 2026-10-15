@@ -310,7 +310,7 @@ defmodule Teleprompter.Library do
          Repo.aggregate(
            from(s in Script, where: s.user_id == ^user.id and is_nil(s.deleted_at)),
            :count
-         ) >= 3,
+         ) >= Teleprompter.Product.free_script_limit(),
        do: Repo.rollback(:script_limit)
   end
 

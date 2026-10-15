@@ -21,7 +21,9 @@ defmodule Teleprompter.Commerce.Lava do
 
       body = %{
         email: user.email,
-        offerId: config[:offer_id],
+        offerId: Map.get(attempt, :offer_id) || config[:offer_id],
+        periodicity: "ONE_TIME",
+        buyerLanguage: "EN",
         amount: attempt.amount_minor / 100,
         currency: attempt.currency
       }
@@ -52,9 +54,9 @@ defmodule Teleprompter.Commerce.Lava do
                config[:http_options] || []
              )
            ) do
-        {:ok, %{status: status, body: %{"id" => id, "paymentUrl" => url}}}
+        {:ok, %{status: status, body: %{"id" => id, "paymentUrl" => url} = response}}
         when status in 200..299 and is_binary(id) and byte_size(id) in 1..256 ->
-          if checkout_url?(url),
+          if checkout_url?(url) and valid_total?(response["amountTotal"], attempt),
             do: {:ok, %{external_id: id, checkout_url: url}},
             else: {:error, :invalid_provider_response}
 
@@ -77,6 +79,15 @@ defmodule Teleprompter.Commerce.Lava do
       false
     end
   end
+
+  # Some API responses omit the total. A supplied total must match the stored
+  # purchase before a buyer is sent to the checkout page.
+  defp valid_total?(nil, _), do: true
+
+  defp valid_total?(%{"amount" => amount, "currency" => currency}, attempt),
+    do: Provider.minor(amount) == attempt.amount_minor and currency == attempt.currency
+
+  defp valid_total?(_, _), do: false
 
   def authenticate(_, headers) do
     config = Provider.config("lava")
@@ -183,6 +194,21 @@ defmodule Teleprompter.Commerce.Lava do
            currency: receipt["currency"],
            test: false
          }}
+
+      {:ok, %{status: 429} = response} ->
+        seconds =
+          case Req.Response.get_header(response, "retry-after") do
+            [value | _] ->
+              case Integer.parse(value) do
+                {n, ""} -> n
+                _ -> 60
+              end
+
+            _ ->
+              60
+          end
+
+        {:error, {:retry_after, min(86_400, max(60, seconds))}}
 
       _ ->
         {:error, :status_unconfirmed}

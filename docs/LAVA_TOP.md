@@ -2,9 +2,18 @@
 
 Owner decision, 2026-10-12: use **lava.top exclusively**, with **US$29 paid once**. New checkout uses USD only. No recurring billing. Existing RUB/Prodamus history and entitlements remain supported, but neither is offered for new purchases.
 
+## Current readiness, 15 October 2026
+
+See [the payment readiness audit](PAYMENT_READINESS_2026-10-15.md) for observed
+host configuration, local corrections and remaining merchant/real-payment gates.
+The review candidate adds optional remote finishes, durable bounded invoice
+recovery, a safe purchase return after reauthentication, offer snapshots and
+release-eval support. The approved production release and sales flags are unchanged.
+An additive migration is required before deploying this candidate.
+
 ## What is implemented
 
-- The signed-in account workspace offers US$29 Lifetime Pro: unlimited saved scripts and named display presets. The remote skins are still design studies; this offer does not claim they are shipped.
+- The signed-in account workspace offers the server-owned US$29 launch price for Lifetime Pro: unlimited saved scripts and named display presets. The review candidate includes fifteen optional PRO finishes; merchant copy must match the image approved for paid release.
 - The server creates a stored purchase attempt before requesting `POST https://gate.lava.top/api/v3/invoice`. It sends the account email, offer ID, server-owned amount 29 and currency USD. Lava selects its available payment methods; IZZY does not force a card processor or collect card details.
 - On HTTPS deployments, success, failure and cancellation all return to `/account?purchase=OUR_ATTEMPT_ID`. Lava appends `invoiceId` and `status`; neither is used to select the invoice or grant access.
 - Returning to the account automatically checks the owned pending purchase once. `POST /api/account/purchases/:id/check` uses the stored provider invoice ID, requires login/ownership/CSRF, and shares the six-per-account/minute checkout budget. Buyers can also check again or resume an existing hosted checkout.

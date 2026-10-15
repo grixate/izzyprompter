@@ -77,7 +77,7 @@ test('real production release serves SPA, API, and live editing on one origin wi
       assert.equal(ready.status, 200)
       assert.deepEqual(await ready.json(), { status: 'ready' })
     })
-    for (const path of ['/', '/display/ABC234', '/remote/ABC234', '/local', '/local/remote']) {
+    for (const path of ['/', '/pro', '/skins', '/display/ABC234', '/remote/ABC234', '/local', '/local/remote']) {
       const response = await fetch(baseURL + path)
       assert.equal(response.status, 200)
       assert.equal(response.headers.get('cache-control'), 'no-store')
@@ -124,6 +124,8 @@ test('real production release serves SPA, API, and live editing on one origin wi
     const localContext = await browser.newContext()
     let local = await localContext.newPage()
     await local.goto(`${baseURL}/local`)
+    await local.getByRole('heading', { name: 'Your words. Anywhere.' }).waitFor()
+    if (await local.getByRole('button', { name: 'Set up Offline', exact: true }).isVisible()) await local.getByRole('button', { name: 'Set up Offline', exact: true }).click()
     await local.getByRole('textbox', { name: 'Local script title' }).fill('Production offline check')
     await local.getByRole('textbox', { name: 'Local script text' }).fill('A prepared script from the real bundled release.')
     await local.getByRole('button', { name: 'Save script offline' }).click()
@@ -133,6 +135,8 @@ test('real production release serves SPA, API, and live editing on one origin wi
     await local.close()
     local = await localContext.newPage()
     await local.goto(`${baseURL}/local`)
+    await local.getByRole('heading', { name: 'Your words. Anywhere.' }).waitFor()
+    if (await local.getByRole('button', { name: 'Set up Offline', exact: true }).isVisible()) await local.getByRole('button', { name: 'Set up Offline', exact: true }).click()
     await local.getByRole('button', { name: 'Production offline check', exact: true }).click()
     await local.getByRole('button', { name: 'Start local prompting' }).click()
     assert.equal(await local.locator('.script-track p').first().textContent(), 'A prepared script from the real bundled release.')

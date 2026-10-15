@@ -66,3 +66,23 @@ test('phone entry has no horizontal overflow and keeps setup before the preview'
   expect(setup!.x + setup!.width).toBeLessThanOrEqual(390)
   expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBe(390)
 })
+
+
+test('pause stops the wheel and words together; play resumes both', async ({ page }) => {
+  await page.goto('/')
+  const rotor = page.locator('.preview-remote .wheel-rotor')
+  const track = page.locator('.live-preview .script-track')
+  await page.getByRole('button', { name: 'Pause', exact: true }).click()
+  await expect.poll(() => rotor.evaluate(el => el.getAnimations().length)).toBe(0)
+  const stopped = await rotor.evaluate(el => getComputedStyle(el).transform)
+  const words = await track.evaluate(el => getComputedStyle(el).transform)
+  await page.waitForTimeout(350)
+  expect(await rotor.evaluate(el => getComputedStyle(el).transform)).toBe(stopped)
+  expect(await track.evaluate(el => getComputedStyle(el).transform)).toBe(words)
+  await page.getByRole('button', { name: 'Play', exact: true }).click()
+  await expect.poll(() => rotor.evaluate(el => getComputedStyle(el).transform)).not.toBe(stopped)
+  await expect.poll(() => track.evaluate(el => getComputedStyle(el).transform)).not.toBe(words)
+  await page.getByRole('textbox', { name: 'Teleprompter script' }).fill('A short line.')
+  await page.getByRole('button', { name: 'Play', exact: true }).click()
+  await expect.poll(() => rotor.evaluate(el => el.getAnimations().length)).toBe(0)
+})

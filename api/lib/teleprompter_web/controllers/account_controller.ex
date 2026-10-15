@@ -16,9 +16,9 @@ defmodule TeleprompterWeb.AccountController do
     })
   end
 
-  def request_link(conn, %{"email" => email}) do
+  def request_link(conn, %{"email" => email} = params) do
     if Accounts.enabled?() do
-      case Accounts.request_login(email) do
+      case Accounts.request_login(email, params["return_to"]) do
         :ok -> json(conn, %{sent: true})
         {:error, reason} -> error(conn, reason)
       end

@@ -18,6 +18,9 @@ async function pair(editor: Page, display: Page, remote: Page) {
 }
 
 test('typing is live on two displays, the editor, and another phone before Done', async ({ page: editor, browser, browserName }, testInfo) => {
+  // Five independent screens, live edits and reload recovery, including native
+  // context teardown on Linux WebKit. Individual assertions retain their limits.
+  test.setTimeout(60_000)
   const displays = await browser.newContext({ viewport: { width: 1280, height: 800 } })
   const backupContext = await browser.newContext({ viewport: { width: 700, height: 900 } })
   const phones = await browser.newContext(phoneOptions(browserName))

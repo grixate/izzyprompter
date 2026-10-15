@@ -72,7 +72,12 @@ follow-up covers their affected surfaces. CI must run the complete final candida
 WebKit test exhausted the 30-second total budget while still advancing. Trace
 inspection showed successful individual actions. That integration test now has
 a 90-second total budget and named per-finish steps; normal assertion/action
-budgets remain unchanged. The focused local WebKit rerun passed.
+budgets remain unchanged. The focused local WebKit rerun passed. The next CI account job passed all
+154 Phoenix tests, 190 browser checks (2 native-clipboard skips), and the restore
+drill. Its guest job passed 150 browser checks but the five-screen Quick Edit
+flow reached the total timeout during cleanup; both traces showed all live-edit
+and reload assertions succeeding. That flow now has a 60-second total budget,
+with its assertion limits unchanged. The complete final candidate is rerun.
 Automation is not physical Safari/iPhone/iPad/Android acceptance. No converter,
 revenue uplift, real merchant charge or production release is asserted.
 

@@ -59,6 +59,10 @@ defmodule TeleprompterWeb.ProductControllerTest do
 
   test "login return targets are allowlisted and contain no capabilities" do
     assert Teleprompter.Product.return_to("/pro") == "/pro"
+    purchase = "/account?purchase=6fef5a2e-3403-489c-bbbc-64a63b270621"
+    assert Teleprompter.Product.return_to(purchase) == purchase
+    assert is_nil(Teleprompter.Product.return_to(purchase <> "&status=success"))
+    assert is_nil(Teleprompter.Product.return_to("/account?purchase=anything"))
     assert Teleprompter.Product.return_to("/skins?skin=ivory") == "/skins?skin=ivory"
 
     for target <- [
@@ -70,5 +74,18 @@ defmodule TeleprompterWeb.ProductControllerTest do
         ] do
       assert is_nil(Teleprompter.Product.return_to(target))
     end
+  end
+
+  test "an expired Google return preserves the safe purchase destination for email fallback" do
+    target = "/account?purchase=6fef5a2e-3403-489c-bbbc-64a63b270621"
+
+    conn =
+      build_conn()
+      |> init_test_session(google_oauth: %{params: %{}, at: 0, user_id: nil, return_to: target})
+      |> get("/auth/google/callback", %{})
+
+    query = conn |> redirected_to() |> URI.parse() |> Map.fetch!(:query) |> URI.decode_query()
+    assert query["returnTo"] == target
+    assert query["error"] == "google_login_failed"
   end
 end

@@ -18,10 +18,10 @@ defmodule TeleprompterWeb.GoogleController do
           |> redirect(external: url)
 
         _ ->
-          redirect(conn, to: "/account?error=google_unavailable")
+          login_error(conn, "google_unavailable", params["returnTo"])
       end
     else
-      redirect(conn, to: "/account?error=google_unavailable")
+      login_error(conn, "google_unavailable", params["returnTo"])
     end
   end
 
@@ -42,9 +42,22 @@ defmodule TeleprompterWeb.GoogleController do
       target = Teleprompter.Product.return_to(Map.get(pending, :return_to)) || "/account"
       conn |> TeleprompterWeb.AccountController.signed_in(raw) |> redirect(to: target)
     else
-      {:error, :sign_in_to_link} -> redirect(conn, to: "/account?error=sign_in_to_link")
-      _ -> redirect(conn, to: "/account?error=google_login_failed")
+      {:error, :sign_in_to_link} -> login_error(conn, "sign_in_to_link", pending_target(pending))
+      _ -> login_error(conn, "google_login_failed", pending_target(pending))
     end
+  end
+
+  defp pending_target(pending) when is_map(pending), do: Map.get(pending, :return_to)
+  defp pending_target(_), do: nil
+
+  defp login_error(conn, error, target) do
+    query =
+      case Teleprompter.Product.return_to(target) do
+        nil -> %{"error" => error}
+        safe -> %{"error" => error, "returnTo" => safe}
+      end
+
+    redirect(conn, to: "/account?" <> URI.encode_query(query))
   end
 
   defp config do

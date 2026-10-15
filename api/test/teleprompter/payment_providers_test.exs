@@ -113,6 +113,8 @@ defmodule Teleprompter.PaymentProvidersTest do
     assert body["amount"] == 29
     assert body["offerId"] == "offer-id"
     assert body["currency"] == "USD"
+    assert body["periodicity"] == "ONE_TIME"
+    assert body["buyerLanguage"] == "EN"
     assert body["successful_return_url"] == "https://izzy.example/account?purchase=attempt"
     assert body["failure_return_url"] == body["successful_return_url"]
     assert body["cancel_return_url"] == body["successful_return_url"]
@@ -279,5 +281,44 @@ defmodule Teleprompter.PaymentProvidersTest do
         ] do
       assert is_nil(Provider.minor(invalid))
     end
+  end
+
+  test "lava pins the attempt offer and refuses a mismatched checkout total" do
+    parent = self()
+
+    Application.put_env(:teleprompter, :payment_providers, %{
+      "lava" => [
+        api_key: "outbound",
+        webhook_secret: "inbound",
+        offer_id: "changed-offer",
+        environment: "production",
+        http_options: [plug: {Req.Test, __MODULE__}]
+      ]
+    })
+
+    Req.Test.stub(__MODULE__, fn conn ->
+      {:ok, body, conn} = Plug.Conn.read_body(conn)
+      send(parent, {:offer, Jason.decode!(body)["offerId"]})
+
+      Req.Test.json(conn, %{
+        id: "invoice",
+        paymentUrl: "https://app.lava.top/pay/fixture",
+        amountTotal: %{amount: 49, currency: "USD"}
+      })
+    end)
+
+    assert {:error, :invalid_provider_response} =
+             Lava.checkout(
+               %{
+                 id: "attempt",
+                 amount_minor: 2900,
+                 currency: "USD",
+                 environment: "production",
+                 offer_id: "original-offer"
+               },
+               %{email: "fixture@example.com"}
+             )
+
+    assert_receive {:offer, "original-offer"}
   end
 end

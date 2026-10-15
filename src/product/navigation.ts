@@ -1,5 +1,6 @@
 import { skinById } from './catalog'
 export function safeReturnTo(value: string | null): string | null {
+  if (/^\/account\?purchase=[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}$/.test(value ?? '')) return value
   if (value === '/pro') return value
   if (value === '/skins') return value
   if (value?.startsWith('/skins?skin=')) {

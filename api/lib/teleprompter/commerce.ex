@@ -95,7 +95,8 @@ defmodule Teleprompter.Commerce do
                   provider: provider,
                   currency: currency,
                   amount_minor: prices()[currency],
-                  environment: Provider.environment(provider)
+                  environment: Provider.environment(provider),
+                  offer_id: Provider.config(provider)[:offer_id]
                 })
 
               if attempts != [],
@@ -130,6 +131,16 @@ defmodule Teleprompter.Commerce do
                       :status,
                       if(current.status == "creating", do: "pending", else: current.status)
                     )
+
+                  changes =
+                    if current.status == "creating",
+                      do:
+                        Map.put(
+                          changes,
+                          :next_check_at,
+                          DateTime.add(DateTime.utc_now(), 60, :second)
+                        ),
+                      else: changes
 
                   current |> Ecto.Changeset.change(changes) |> Repo.update!()
                 end)
@@ -277,6 +288,13 @@ defmodule Teleprompter.Commerce do
             if data["currency"] != attempt.currency or
                  (data["type"] in ["paid", "refunded"] and
                     data["amount_minor"] != attempt.amount_minor) do
+              attempt
+              |> Ecto.Changeset.change(
+                review_reason: "amount_or_currency_mismatch",
+                next_check_at: nil
+              )
+              |> Repo.update!()
+
               finish_event(event, "review", "amount_or_currency_mismatch")
             else
               apply_event(attempt, intent, data["type"])
@@ -502,7 +520,10 @@ defmodule Teleprompter.Commerce do
         )
 
       process_event(event.id)
-      :ok
+
+      if Repo.get!(Event, event.id).status == "review",
+        do: {:error, :payment_needs_review},
+        else: :ok
     end
   end
 end

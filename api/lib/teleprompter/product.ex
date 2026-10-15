@@ -5,6 +5,10 @@ defmodule Teleprompter.Product do
   def free_script_limit, do: 3
   def return_to(value) when value in ["/pro", "/skins"], do: value
   def return_to("/skins?skin=" <> id = value), do: if(id in @skins, do: value, else: nil)
+
+  def return_to("/account?purchase=" <> id = value),
+    do: if(Regex.match?(~r/^[0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}$/, id), do: value)
+
   def return_to(_), do: nil
   def launch?, do: Application.get_env(:teleprompter, :launch_offer_active, true)
   def price, do: if(launch?(), do: 2_900, else: 4_900)

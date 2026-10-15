@@ -116,7 +116,7 @@ finish live-control checks also passed in each engine.
   4,900-cent reference; `false` changes new purchases to 4,900 and removes the badge.
   Existing purchase attempts retain their stored amounts. Checkout activation is
   separate and unchanged; disabled sales show **Purchases opening soon**.
-- No schema migration, new tier, subscription, framework or payment provider.
+- The initial UX slice added no schema migration, new tier, subscription, framework or payment provider.
   Existing three-script Free quota, PRO unlimited count, presets, purchase
   verification, journals, conflict recovery and session protocol are reused.
 - A signed-in host can authorize its guest remote's appearance through a
@@ -218,3 +218,23 @@ Paired Offline remains experimental until native and physical gates pass; the UI
 must keep that limitation. No default change to Orbit or offline paid-skin parity
 is included. Publication needs explicit authorization and exact-image promotion
 with previous-image retention, between takes.
+
+## Payment readiness follow-up — 15 October
+
+The [payment audit](../../PAYMENT_READINESS_2026-10-15.md) records the current
+launch blockers and local corrections: bounded durable invoice checks, interrupted
+checkout review, receipt mismatch review, strict reauthentication return, guarded
+repeat checkout, immutable offer snapshots and trusted release support commands.
+This follow-up adds migration `20261015000000_schedule_payment_checks`; back up
+and migrate the acceptance database before starting the matching candidate.
+Both hosted environments still have sales off and no Lava credentials. Staging's
+all-route Basic policy rejects provider callbacks and needs a reviewed delivery
+arrangement. No live transaction, refund, payout or hosted update occurred.
+
+Local verification: 88 unit checks, builds, 165 PostgreSQL-backed Phoenix tests,
+54 payment/product checks across three browsers, a backup/restore drill and two
+bundled-release/LAN checks passed. The production release's support bootstrap
+also passed in a fresh process without starting an endpoint or payment worker.
+The final Linux run is tracked in the draft PR. A previous Linux run exposed
+fallback-font speed-label overflow; the value columns now use their intrinsic
+width and the layout matrix explicitly exercises a fallback font.

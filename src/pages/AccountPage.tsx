@@ -24,7 +24,10 @@ export function AccountPage() {
   const [working, setWorking] = useState(false)
   const [email, setEmail] = useState('')
   const [token] = useState(() => new URLSearchParams(window.location.hash.slice(1)).get('token'))
-  const [returnTo] = useState(() => safeReturnTo(new URLSearchParams(window.location.search).get('returnTo')))
+  const [returnTo] = useState(() => {
+    const query = new URLSearchParams(window.location.search)
+    return safeReturnTo(query.get('returnTo')) ?? safeReturnTo(`/account?purchase=${query.get('purchase')}`)
+  })
   useEffect(() => {
     // Capture first, then scrub the credential. State initializers must stay
     // pure: React can invoke them twice before committing the login screen.
@@ -252,7 +255,8 @@ function SavedEditor({ user, id }: { user: Account; id: string }) {
 type Purchase = { id: string; provider: string; currency: string; amount_minor: number; status: string; checkout_url: string | null; environment: string; review_required: boolean }
 type CommerceStatus = { enabled: boolean; prices: Record<string, number>; providers: { id: string; recommended: boolean; currencies: string[] }[]; purchases: Purchase[] }
 const pendingPurchase = (purchase: Purchase) => ['creating', 'pending', 'ambiguous'].includes(purchase.status)
-const purchaseMessage = (purchase: Purchase) => ({
+const purchaseMessage = (purchase: Purchase) => purchase.review_required && pendingPurchase(purchase)
+  ? 'This payment needs support review. Please do not pay again; keep your order reference below.' : ({
   creating: 'Preparing your checkout. Please wait before trying again.',
   pending: 'Waiting for payment confirmation. You can check again or resume checkout below.',
   ambiguous: 'We could not confirm whether checkout was created. Please check your bank before paying again. Contact support if this persists.',
@@ -285,7 +289,7 @@ function ProPanel({ user }: { user: Account }) {
         setCommerce(result)
         const state = JSON.stringify(result.purchases.map(p => [p.id, p.status]))
         if (previousState !== state) { previousState = state; void refreshAccount() }
-        const needsPolling = result.purchases.some(pendingPurchase)
+        const needsPolling = result.purchases.some(p => pendingPurchase(p) && !p.review_required)
         if (needsPolling && timer === undefined) timer = window.setInterval(() => { if (document.visibilityState === 'visible') void load() }, 5_000)
         if (!needsPolling && timer !== undefined) { window.clearInterval(timer); timer = undefined }
       } catch { if (returnedPurchase && active) setNotice('Purchase status is unavailable. Check again when your connection returns; please do not pay again yet.') }
@@ -314,10 +318,11 @@ function ProPanel({ user }: { user: Account }) {
       const result = await accountApi<Purchase>('/checkout', 'POST', { provider: 'lava', currency: 'USD', confirm_switch: confirmSwitch })
       if (pendingPurchase(result) && result.checkout_url) window.location.assign(result.checkout_url)
       else { setNotice(purchaseMessage(result)); await update.current(); await refreshAccount() }
-    } catch (error) { setNotice(accountMessage(error)); if (error instanceof AccountError && error.reason === 'payment_pending') { setSwitchWarning(true); await update.current() } }
+    } catch (error) { setNotice(accountMessage(error)); if (error instanceof AccountError && error.reason === 'payment_pending') { setSwitchWarning(commerce?.purchases.some(p => pendingPurchase(p) && (p.provider !== 'lava' || p.currency !== 'USD' || p.environment !== 'production')) ?? false); await update.current() } }
     finally { setBusy(false) }
   }
   const canPurchase = commerce?.enabled === true && Number.isSafeInteger(commerce.prices?.USD) && commerce.prices.USD > 0 && commerce.providers.some(p => p.id === 'lava' && p.currencies.includes('USD'))
+  const samePending = commerce?.purchases.some(p => pendingPurchase(p) && p.provider === 'lava' && p.currency === 'USD' && p.environment === 'production') === true
   const returned = commerce?.purchases.find(p => p.id === returnedPurchase)
   const finishReturn = user.pro ? purchaseReturn(user.id) : null
   useEffect(() => {
@@ -327,23 +332,23 @@ function ProPanel({ user }: { user: Account }) {
     track('pro_purchase_completed', { source: 'verified_account' })
   }, [returned?.id, returned?.status, user.pro])
   useEffect(() => {
-    if (returned && pendingPurchase(returned) && !returnChecked.current) {
+    if (returned && pendingPurchase(returned) && !returned.review_required && !returnChecked.current) {
       returnChecked.current = true
       void check(returned.id)
     }
   }, [returned?.id])
   if (!user.pro && !canPurchase && !commerce?.purchases.length && !returnedPurchase) return null
   return <section className="pro-panel"><span className="section-index">IZZY / {user.pro || canPurchase ? 'LIFETIME PRO' : 'PURCHASE HISTORY'}</span>{(user.pro || canPurchase) && <><h2>{user.pro ? 'Ready for every take.' : 'Make room for more.'}</h2><p>{user.pro ? 'Pro is active on your account. Your scripts and presets travel with you.' : 'Unlimited saved scripts. Named display presets. One payment, no subscription.'}</p></>}
-    {returned && <p className="account-notice" role="status">{purchaseMessage(returned)}</p>}
+    {returned && <p className="account-notice" role="status">{purchaseMessage(returned)}<br /><small>Order reference: {returned.id}</small></p>}
     {finishReturn && <a className="account-primary" href={finishReturn}>Choose your finish <ArrowUpRight size={16} /></a>}
     {returnedPurchase && commerce && !returned && <p className="account-notice" role="status">This purchase was not found in your account. Sign in with the account you used at checkout to see its status.</p>}
-    {!user.pro && canPurchase && <><p className="price-switch">{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format((commerce!.prices.USD) / 100)} · paid once</p>
+    {!user.pro && canPurchase && !samePending && <><p className="price-switch">{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format((commerce!.prices.USD) / 100)} · paid once</p>
       <button className="account-primary" disabled={busy} onClick={() => void checkout()}>{busy ? 'Please wait…' : 'Unlock Lifetime Pro'}<ArrowUpRight size={16} /></button>
       <p className="checkout-note">Secure checkout with lava.top. One payment in USD, no recurring charges.</p>
       {switchWarning && <div className="account-conflict"><p>An older payment link may remain active. Check your bank and the purchase status below. Paying both links can create a duplicate charge.</p><button disabled={busy} onClick={() => void checkout(true)}>I checked · continue with lava.top</button></div>}
     </>}
     {notice && <p className="account-notice" role="status">{notice}</p>}
-    {!!commerce?.purchases.length && <div className="purchase-status"><h3>PURCHASE STATUS</h3>{commerce.purchases.slice(0, 4).map(p => <div key={p.id}><p>{p.provider === 'lava' ? 'lava.top' : 'Prodamus'} · {p.status}{p.environment !== 'production' ? ' · TEST' : ''}{p.review_required ? ' · support review' : ''}</p>{pendingPurchase(p) && <><button disabled={busy} onClick={() => void check(p.id)}>Check payment status</button>{p.checkout_url && <a href={p.checkout_url} rel="noreferrer">Resume checkout</a>}</>}</div>)}</div>}
+    {!!commerce?.purchases.length && <div className="purchase-status"><h3>PURCHASE STATUS</h3>{commerce.purchases.slice(0, 4).map(p => <div key={p.id}><p>{p.provider === 'lava' ? 'lava.top' : 'Prodamus'} · {p.status}{p.environment !== 'production' ? ' · TEST' : ''}{p.review_required ? ' · support review' : ''}</p><small>Order reference: {p.id}</small>{pendingPurchase(p) && <><button disabled={busy} onClick={() => void check(p.id)}>Check payment status</button>{p.checkout_url && <a href={p.checkout_url} rel="noreferrer">Resume checkout</a>}</>}</div>)}</div>}
   </section>
 }
 

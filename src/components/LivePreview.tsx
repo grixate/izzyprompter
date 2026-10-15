@@ -22,7 +22,7 @@ export function LivePreview({ content, pauseVersion }: { content: string; pauseV
   // Large imports remain intact in the editor; the miniature only needs an excerpt.
   const blocks = useMemo(() => normalizePlainText(content.trim() ? content.slice(0, 20_000) : PREVIEW_SCRIPT)
     .split('\n\n').map((text, index) => ({ id: `preview-${index}`, text })), [content])
-  const running = playing && visible && foreground
+  const running = playing && visible && foreground && maximum > 0
 
   const paint = (next: number, publish = true) => {
     positionRef.current = clamp(next, 0, maximumRef.current)

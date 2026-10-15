@@ -96,8 +96,8 @@
 .marketing-home .workspace-actions { justify-content:flex-start; }
 @media(min-width:1550px){.marketing-home .workbench-stage{padding-block:40px 50px}.marketing-home .entry-intro h1{font-size:82px}}
 
-/* The angled product stills are intentionally cropped, never horizontally scrollable. */
-.home-pro-objects,.pro-hero { overflow:clip; }
+/* Product shadows need real space inside their composition. */
+.pro-hero { overflow:clip; }
 .home-pro>div { min-width:0; }
 
 /* Keep small public copy readable on the light studio paper. */
@@ -148,3 +148,51 @@
 
 .skin-dialog-copy .product-offer del { color:#626e53; }
 .offline-studio .local-editor>h2 { margin:0; font-size:16px; }
+
+/* The long landing page must not inherit the old viewport-sized flex shell. */
+.marketing-home { display:block; }
+
+/* The reading screen and phone occupy separate, deliberately staggered slots. */
+.marketing-home .preview-stage { border:0; display:flex; flex-direction:column; align-items:flex-start; max-width:540px; }
+.marketing-home .live-preview { flex:none; width:100%; height:230px; --preview-height:230px; }
+.marketing-home .preview-remote { flex:none; width:270px; max-width:100%; margin:28px 10px 0 auto; z-index:auto; padding:20px; }
+.marketing-home .preview-remote .jog-wheel { width:218px; max-width:100%; }
+.marketing-home .preview-caption { margin:20px 0 0; max-width:none; padding:0; }
+.home-pro-objects { overflow:visible; padding:70px 30px 100px; }
+.home-pro-objects .remote-instrument:first-child { width:52%; margin-right:-14%; transform:rotate(-8deg) translateY(-25px); }
+.home-pro-objects .remote-instrument:last-child { width:57%; transform:rotate(7deg) translateY(20px); }
+.pro-finale>.page-width { padding-bottom:110px; }
+.pro-finale>.page-width>.remote-instrument { transform:rotate(9deg); }
+.marketing-home .jog-wheel .wheel-input:focus-visible,
+.marketing-home .jog-wheel .transport-button:focus-visible { outline:none; }
+@media(max-width:900px){
+  .marketing-home .workbench-stage { grid-template-columns:1fr; gap:50px; }
+  .marketing-home .script-workspace { width:100%; max-width:620px; justify-self:center; }
+  .marketing-home .preview-stage { justify-self:center; max-width:620px; }
+  .marketing-home .preview-remote { margin-right:25px; }
+}
+@media(max-width:650px){
+  .marketing-home .workbench-stage { gap:40px; }
+  .marketing-home .live-preview { height:215px; --preview-height:215px; }
+  .marketing-home .preview-remote { margin:24px 0 0 auto; width:265px; }
+  .home-pro-objects { padding:60px 18px 95px; }
+  .pro-finale>.page-width { padding-bottom:90px; }
+}
+
+/* A reading screen beside a lower phone, with a clear gap between them. */
+@media(min-width:651px){
+  .marketing-home .preview-stage { display:grid; grid-template-columns:minmax(0,1fr) 238px; gap:20px; align-items:start; }
+  .marketing-home .preview-heading,.marketing-home .preview-caption { grid-column:1/-1; margin:0; }
+  .marketing-home .live-preview { grid-column:1; margin:0; height:320px; --preview-height:320px; }
+  .marketing-home .live-preview .script-track { width:78%; }
+  .marketing-home .live-preview .script-track p { font-size:21px; }
+  .marketing-home .preview-remote { grid-column:2; width:238px; margin:75px 0 0; }
+  .marketing-home .preview-remote .transport-readout { max-width:100%; }
+  .marketing-home .preview-remote .wheel-column { width:100%; }
+  .marketing-home .preview-remote .jog-wheel { width:100%; }
+}
+@media(min-width:651px) and (max-width:1180px){
+  .marketing-home .workbench-stage { grid-template-columns:1fr; gap:50px; }
+  .marketing-home .script-workspace { max-width:620px; width:100%; justify-self:center; }
+  .marketing-home .preview-stage { max-width:620px; justify-self:center; }
+}

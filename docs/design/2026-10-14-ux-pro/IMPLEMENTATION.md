@@ -29,6 +29,47 @@ with the shared output directory; the sequential rerun above completed cleanly.
 Physical review is deferred by the owner; it has not passed and does not block
 this local visual refinement. Production publication is still unauthorized.
 
+## 15 October visual and interaction correction
+
+The owner rejected the first copy-only pass and identified overlapping preview
+surfaces, clipped product shadows, an orange wheel marker/focus ring, independent
+wheel motion in pause, and an Offline page still dominated by forms.
+
+The main page no longer inherits a viewport-sized flex column that compressed
+its sections. The demo uses separate screen/phone grid slots on wide screens and
+a spaced stack on phones. Product compositions reserve space for rotated bounds
+and shadows before the footer; both main and PRO footer clearance are tested.
+The added orange index marks on Original/Orbit are removed. Keyboard focus is a
+stationary underline on the caption below the wheel, with no ring on the slider
+or transport key. Functional wheels rotate only during playback or direct jog;
+ambient motion is explicitly limited to decorative showroom instruments. The
+preview stops both words and wheel during pause, editing, and a script with no
+scrollable distance.
+
+Offline is now a public landing page with one setup action and three concise
+steps. The workspace appears on request; existing scripts/drafts resume there.
+Empty libraries are omitted. Start/save actions share dimensions; import/export
+and phone pairing details are progressively disclosed. Cached app readiness,
+script persistence, storage failure recovery and manual pairing remain real
+existing behavior. No QR or successful direct pairing is fabricated.
+
+Validation: 54 affected entry/product browser checks passed across Chromium,
+Firefox and WebKit, including six widths, separated demo bounds, a usable wheel
+size, footer clearance, no wheel ring, and pause/play behavior. Standalone Offline
+passed six checks across the three engines; three native opt-ins remain skipped.
+Two bundled-release/LAN smoke checks passed. Layout tests first exposed the
+inherited flex compression; offline test helpers were updated for the deliberate
+setup entry and the added footer logo. Their corrected reruns passed. The prior
+copy commit `9bfa96a` passed all required GitHub jobs in
+[run 38687716523](https://github.com/grixate/izzyprompter/actions/runs/38687716523);
+this correction requires a fresh CI run.
+
+Latest normal-pane screenshots: [main demo](main-demo-corrected.png),
+[main footer](main-footer-corrected.png), [Offline landing](offline-landing-corrected.png).
+These supersede the earlier copy-refinement captures for the affected surfaces.
+Wide and narrow compositions were also inspected live in the browser. Physical
+review remains deferred and production is unchanged.
+
 ## Implemented scope
 
 | Package | Actual candidate behavior | Remaining gate |

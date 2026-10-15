@@ -42,13 +42,15 @@ test('a guest upgrade preserves the skin through the safe sign-in destination', 
   await expect(page).toHaveURL(/\/account\?returnTo=%2Fskins%3Fskin%3Divory$/)
 })
 
-test('wheel focus is non-green; reduced motion stops previews and keyboard input still works', async ({ page }) => {
+test('wheel focus stays outside the wheel; reduced motion stops previews and keyboard input still works', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' })
   await page.goto('/')
   const jog = page.getByRole('slider', { name: 'Jog script position' })
   await jog.focus(); await jog.press('ArrowRight')
   await expect(jog).toHaveAttribute('aria-valuenow', '48')
-  expect(await jog.evaluate(el => getComputedStyle(el).outlineColor)).not.toBe('rgb(120, 167, 0)')
+  expect(await jog.evaluate(el => getComputedStyle(el).outlineStyle)).toBe('none')
+  await expect(page.locator('.preview-remote .wheel-caption')).toHaveCSS('text-decoration-line', 'underline')
+  expect(await page.locator('.preview-remote .wheel-rotor').evaluate(el => getComputedStyle(el, '::after').content)).toBe('none')
   expect(await page.locator('.preview-remote .wheel-rotor').evaluate(el => el.getAnimations().length)).toBe(0)
   await page.goto('/skins')
   expect(await page.locator('.skin-card .wheel-rotor').evaluateAll(els => els.reduce((n, el) => n + el.getAnimations().length, 0))).toBe(0)
@@ -123,6 +125,33 @@ for (const width of [360, 390, 430, 768, 1280, 1440]) {
       const overflow = await page.locator('main').first().evaluate(el => el.scrollWidth - el.clientWidth)
       const outside = overflow > 1 ? await page.locator('main').first().evaluate(el => Array.from(el.querySelectorAll('*')).filter(node => node.getBoundingClientRect().right > el.clientWidth + 1).slice(0, 12).map(node => ({ class: node.className, right: Math.round(node.getBoundingClientRect().right) }))) : []
       expect(overflow, `${path} ${JSON.stringify(outside)}`).toBeLessThanOrEqual(1)
+      if (path === '/') {
+        const screen = await page.locator('.live-preview').boundingBox()
+        const remote = await page.locator('.preview-remote').boundingBox()
+        const wheel = await page.locator('.preview-remote .jog-wheel').boundingBox()
+        expect(wheel!.width).toBeGreaterThanOrEqual(190)
+        const horizontalGap = remote!.x - (screen!.x + screen!.width)
+        const verticalGap = remote!.y - (screen!.y + screen!.height)
+        expect(Math.max(horizontalGap, verticalGap)).toBeGreaterThanOrEqual(19)
+        const instruments = await page.locator('.home-pro-objects .remote-instrument').all()
+        const footer = await page.locator('.public-footer').boundingBox()
+        for (const instrument of instruments) {
+          const box = await instrument.boundingBox()
+          expect(footer!.y - (box!.y + box!.height)).toBeGreaterThan(40)
+        }
+      }
+      if (path === '/pro') {
+        const remote = await page.locator('.pro-finale .remote-instrument').boundingBox()
+        const footer = await page.locator('.public-footer').boundingBox()
+        expect(footer!.y - (remote!.y + remote!.height)).toBeGreaterThan(40)
+      }
+      if (path === '/local') {
+        await expect(page.getByRole('button', { name: 'Set up Offline', exact: true })).toBeVisible()
+        await expect(page.getByRole('textbox', { name: 'Local script text' })).toBeHidden()
+        await page.getByRole('button', { name: 'Set up Offline', exact: true }).click()
+        await expect(page.getByRole('textbox', { name: 'Local script text' })).toBeVisible()
+        expect(await page.locator('main').evaluate(el => el.scrollWidth - el.clientWidth)).toBeLessThanOrEqual(1)
+      }
     }
   })
 }

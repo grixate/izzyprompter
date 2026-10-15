@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useRef, useState, type RefObject } from 'react'
 
 /** Compositor motion for one visible rotor. No React or JS animation loop. */
-export function useWheelMotion(root: RefObject<HTMLDivElement | null>, { enabled, playing, speed, dragging = false, phase = 0 }: {
-  enabled: boolean; playing: boolean; speed: number; dragging?: boolean; phase?: number
+export function useWheelMotion(root: RefObject<HTMLDivElement | null>, { enabled, playing, speed, dragging = false, phase = 0, ambient = false }: {
+  enabled: boolean; playing: boolean; speed: number; dragging?: boolean; phase?: number; ambient?: boolean
 }) {
   const angle = useRef(phase)
   const animation = useRef<Animation | null>(null)
@@ -36,12 +36,12 @@ export function useWheelMotion(root: RefObject<HTMLDivElement | null>, { enabled
   useEffect(() => {
     freeze()
     const rotor = root.current?.querySelector<HTMLElement>('.wheel-rotor')
-    if (rotor && enabled && visible && foreground && !reduced && !dragging) {
+    if (rotor && enabled && (playing || ambient) && visible && foreground && !reduced && !dragging) {
       animation.current = rotor.animate([
         { transform: `rotate(${angle.current}rad)` }, { transform: `rotate(${angle.current + Math.PI * 2}rad)` },
       ], { duration: playing ? 24_000 / Math.max(.5, speed) : 160_000, iterations: Infinity, easing: 'linear' })
     }
     return freeze
-  }, [root, enabled, playing, speed, visible, foreground, reduced, dragging, version, freeze])
+  }, [root, enabled, playing, speed, ambient, visible, foreground, reduced, dragging, version, freeze])
   return { freeze, rotate, nudge: (delta: number) => { rotate(delta); setVersion(value => value + 1) } }
 }

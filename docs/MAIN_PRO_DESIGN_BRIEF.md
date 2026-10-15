@@ -10,6 +10,13 @@ where it adds meaning; show limits and detailed explanations on demand. Adjust
 spacing with each deletion. Physical iPad/iPhone review is deferred by the owner,
 not recorded as passed.
 
+The subsequent owner correction requires separate, legible screen/phone slots,
+uncut product shadows, no orange index mark on Original/Orbit, and no wheel focus
+ring. Keyboard position uses the fixed caption outside the wheel. Functional
+preview/live wheels stop on pause; continuous ambient motion belongs only to
+decorative showroom objects. Offline starts as a landing page and reveals its
+workspace after one deliberate setup action, while returning drafts resume it.
+
 ## The intended impression
 
 **A finely made instrument that happens to live in a browser.** The wheel is the recognizable object; the page gives it scale, credible material, breathing room and useful movement. Every visual decision should increase understanding or desire. Technical implementation details belong outside the main product story.

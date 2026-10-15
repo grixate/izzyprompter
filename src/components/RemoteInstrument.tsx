@@ -7,7 +7,7 @@ import '../product/skins.css'
 export function RemoteInstrument({ skin = 'ivory', phase = 0, motion = true }: { skin?: SkinId; phase?: number; motion?: boolean }) {
   const face = skinById(skin)
   const root = useRef<HTMLDivElement>(null)
-  useWheelMotion(root, { enabled: motion, playing: false, speed: 1, phase })
+  useWheelMotion(root, { enabled: motion, playing: false, speed: 1, phase, ambient: true })
   return <div className={`remote-instrument skin-face skin--${face.id}`} ref={root} aria-hidden="true">
     <div className="instrument-top"><span className="instrument-model">R–{face.number}</span><span className="instrument-wordmark">IZZY<span>PHONE REMOTE</span></span></div>
     <div className="instrument-plate"><span>{face.name}</span><small>{face.material}</small></div>

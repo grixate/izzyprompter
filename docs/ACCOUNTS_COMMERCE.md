@@ -36,6 +36,14 @@ For the already running account preview on port 5174, use the restricted develop
 
 Register Google's exact callback URL `https://YOUR_DOMAIN/auth/google/callback`, then set `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET`. Verified Google identities are accepted, but an existing email account is not merged automatically: sign in by email first and explicitly link Google. Email login links last 15 minutes, are single-use and require a confirmation POST (email scanners do not consume them). Browser sessions last 30 days and are revocable by logout; account channel connections check expiry/revocation. Account operations use HttpOnly cookies, same-origin requests and CSRF protection. Production cookies are Secure.
 
+## Payment readiness, 15 October 2026
+
+The candidate includes persistent bounded checks for known Lava invoices,
+reauthenticated purchase returns, support-review references and trusted minimal
+release-eval tooling. See [payment readiness](PAYMENT_READINESS_2026-10-15.md).
+Migration `20261015000000_schedule_payment_checks` is additive and must run before
+the candidate serves account traffic. Sales and hosted configuration are unchanged.
+
 ## Payment setup — disabled by default
 
 The owner selected lava.top exclusively on 2026-10-12 and confirmed a US$29 lifetime purchase, without rubles at launch. New checkout accepts only `provider=lava` and `currency=USD`; prices are server-owned. No subscriptions or paid skin selection are shipped by this integration. The twelve skins remain in the development lab.
@@ -52,7 +60,8 @@ A pending same-provider/currency checkout is reused. An ambiguous invoice-creati
 
 Checkout HTTP admission is independently capped at six requests/account/minute and 100 total/minute; it does not consume script autosave budgets. Provider HTTP calls disable automatic retries and redirects, so credentials/signed orders are not forwarded to an unexpected redirect target. A timeout never overwrites a concurrently verified terminal payment state.
 
-Operator support uses trusted release IEx/eval access, **not public HTTP endpoints**. Inspect `Teleprompter.Commerce.purchases(user)` and `Teleprompter.Repo.all(Teleprompter.Commerce.Event)` with scoped queries; do not dump all customer data into logs. Each action requires an operator identity and verified provider reference:
+Operator support uses trusted release IEx/eval access (wrap eval operations in
+`Teleprompter.Release.commerce(fn -> ... end)` on the new candidate), **not public HTTP endpoints**. Inspect `Teleprompter.Commerce.purchases(user)` and `Teleprompter.Repo.all(Teleprompter.Commerce.Event)` with scoped queries; do not dump all customer data into logs. Each action requires an operator identity and verified provider reference:
 
 ```elixir
 Teleprompter.Commerce.reconcile(attempt_id, "operator:YOUR_ID")

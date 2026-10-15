@@ -4,12 +4,16 @@ const script = Array.from({ length: 12 }, (_, i) => (`Paragraph ${i + 1}. ` + 'K
 const position = (page: Page) => page.locator('.script-track').evaluate(el => -new DOMMatrixReadOnly(getComputedStyle(el).transform).m42)
 async function save(page: Page) {
   await page.goto('/local')
+  await page.getByRole('heading', { name: 'Your words. Anywhere.' }).waitFor()
+  if (await page.getByRole('button', { name: 'Set up Offline', exact: true }).isVisible()) await page.getByRole('button', { name: 'Set up Offline', exact: true }).click()
   await page.getByRole('textbox', { name: 'Local script title' }).fill('Field script')
   await page.getByRole('textbox', { name: 'Local script text' }).fill(script)
   await page.getByRole('button', { name: 'Save script offline', exact: true }).click()
   await expect(page.getByRole('button', { name: 'Field script', exact: true })).toBeVisible()
 }
 async function prepare(page: Page) {
+  await page.getByRole('heading', { name: 'Your words. Anywhere.' }).waitFor()
+  if (await page.getByRole('button', { name: 'Set up Offline', exact: true }).isVisible()) await page.getByRole('button', { name: 'Set up Offline', exact: true }).click()
   await page.getByRole('button', { name: 'Prepare app offline', exact: true }).click()
   await expect(page.getByText(/App available offline in this browser/)).toBeVisible()
 }
@@ -39,7 +43,7 @@ test('prepared app cold-opens offline, restores text/settings/anchor and never n
   await page.close()
   const reopened = await context.newPage()
   await reopened.goto('/local')
-  await expect.poll(() => reopened.getByRole('img', { name: 'IZZY', exact: true }).evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth > 0)).toBe(true)
+  await expect.poll(() => reopened.getByRole('img', { name: 'IZZY', exact: true }).evaluateAll((imgs: HTMLImageElement[]) => imgs.length > 0 && imgs.every(img => img.complete && img.naturalWidth > 0))).toBe(true)
   for (const path of ['/favicon.svg', '/apple-touch-icon.png', '/icon-192.png', '/icon-512.png']) {
     const response = await reopened.evaluate(async path => {
       const response = await fetch(path)
@@ -143,6 +147,8 @@ test('storage failure preserves the in-memory script through local prompting', a
     Object.defineProperty(window, 'indexedDB', { configurable: true, value: { open: () => { throw new DOMException('Denied', 'SecurityError') } } })
   })
   await page.goto('/local')
+  await page.getByRole('heading', { name: 'Your words. Anywhere.' }).waitFor()
+  if (await page.getByRole('button', { name: 'Set up Offline', exact: true }).isVisible()) await page.getByRole('button', { name: 'Set up Offline', exact: true }).click()
   await page.getByRole('textbox', { name: 'Local script text' }).fill(script)
   await page.getByRole('button', { name: 'Start local prompting' }).click()
   await expect(page.locator('.script-track p')).toHaveCount(12)

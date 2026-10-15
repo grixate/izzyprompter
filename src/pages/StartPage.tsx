@@ -28,6 +28,9 @@ import { StorageNotice } from '../realtime/StorageNotice'
 import { pairingEnvironment } from '../realtime/pairing'
 import { LivePreview } from '../components/LivePreview'
 import { useAccount } from '../account/AccountProvider'
+import { PublicNav, PublicFooter, ModeSwitch } from '../components/PublicNav'
+import { HomeStory } from '../components/HomeStory'
+import { track } from '../product/events'
 
 export function StartPage() {
   const { status: accountStatus } = useAccount()
@@ -205,7 +208,7 @@ export function StartPage() {
     const controller = new AbortController()
     const timeout = window.setTimeout(() => controller.abort(), 10_000)
     try {
-      const response = await fetch(apiUrl('sessions'), {
+      const response = await fetch('/api/sessions', {
         method: 'POST', headers: { 'Content-Type': 'application/json' }, signal: controller.signal,
         body: JSON.stringify({ protocol_version: 2, content: normalizedContent, speed: settingsRef.current.speed }),
       })
@@ -330,6 +333,7 @@ export function StartPage() {
         <SessionNotice connection={connection} surface="editor" onBackToScript={() => setSession(null)} onRetry={reconnect} />
         <header className="start-header">
           <BrandLogo context="SESSION" />
+          <ModeSwitch mode="online" disabled />
           <span className={`network-state ${connection}`}><i /> {connection.toUpperCase()}</span>
         </header>
 
@@ -374,17 +378,14 @@ export function StartPage() {
   }
 
   return (
-    <main className="start-page workbench-page">
-      <header className="start-header">
-        <BrandLogo context="TELEPROMPTER" />
-        <a className="login-button" href="/account">{accountStatus?.user ? 'My scripts' : 'Log in'}</a>
-      </header>
+      <main className="start-page workbench-page marketing-home">
+      <PublicNav beforeNavigate={() => draftWriter.flush()} />
 
       <section className="workbench-stage" aria-label="Prepare your teleprompter">
       <div className="script-workspace">
         <div className="entry-intro">
-          <h1>Your screen is the prompter.<br />Your phone is the remote.</h1>
-          <p>Control the pace without touching the reading screen.</p>
+          <h1>Your teleprompter.<br /><span>Your phone is<br />the remote.</span></h1>
+          <p>Paste a script. Pair your phone. Prompt for free.</p>
         </div>
         <div className="editor-label">
           <label htmlFor="script-input">YOUR SCRIPT</label>
@@ -418,9 +419,6 @@ export function StartPage() {
             aria-describedby="editor-input-help editor-feedback"
             spellCheck="true"
           />
-          {!content && (
-            <p className="script-empty-note">Or drop a .txt or .md file. Just the words, no formatting.</p>
-          )}
           <input
             ref={fileInputRef}
             disabled={isCreating}
@@ -434,23 +432,23 @@ export function StartPage() {
           />
         </div>
         <p id="editor-input-help" className="sr-only">Enter plain text, paste, or import a TXT or Markdown file. Maximum 2 MB and 5,000 paragraphs.</p>
-        <div className="script-feedback">
+        <div className={words || inputFeedback ? "script-feedback" : "script-feedback sr-only"}>
           <span id="editor-feedback" className={inputFeedback?.kind === 'error' ? 'is-error' : inputFeedback ? 'is-success' : ''} role="status" aria-live={inputFeedback ? 'polite' : 'off'}>
-            {inputFeedback?.message ?? (words ? `${words} WORDS · ${draftSaved === true ? 'DRAFT SAVED ON THIS DEVICE' : 'YOUR SCRIPT'}` : 'TXT / MD · UP TO 2 MB')}
+            {inputFeedback?.message ?? (words ? `${words} words${draftSaved === true ? ' · Saved on this device' : ''}` : '')}
           </span>
         </div>
         <div className="workspace-actions">
         {content && <button className="reset-draft" type="button" disabled={isCreating} onClick={startOver}>{resetArmed ? 'CONFIRM START OVER' : 'START OVER'}</button>}
-        <button className="start-button" onClick={() => void createSession()} disabled={!content.trim() || isCreating || retrySeconds > 0}>
+        <button className="start-button" onClick={() => { track('homepage_start_prompting_clicked', { source: 'script_editor' }); void createSession() }} disabled={!content.trim() || isCreating || retrySeconds > 0}>
           <span>{isCreating ? 'STARTING SESSION…' : retrySeconds > 0 ? `TRY AGAIN IN ${retrySeconds}S` : 'SET UP PROMPTER'}</span><ArrowUpRight />
         </button>
+        <a className="entry-pro-link" href="/pro" onClick={() => { draftWriter.flush(); track('homepage_pro_clicked', { source: 'hero' }) }}>Explore Izzy Pro <ArrowUpRight size={15} /></a>
         </div>
-        <p className="setup-hint">{words ? 'Next: open your reading screen and pair your phone.' : 'Add your script to set up your reading screen and phone.'}</p>
-        <p className="setup-hint"><a href="/local" onClick={() => draftWriter.flush()}>Open local / offline preview</a></p>
       </div>
       <LivePreview content={content} pauseVersion={previewPauseVersion} />
       </section>
       {storageWarning}
+      <HomeStory /><PublicFooter />
     </main>
   )
 }

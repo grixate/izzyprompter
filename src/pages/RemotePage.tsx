@@ -15,6 +15,9 @@ import { serverPosition } from '../prompt/motion'
 import { QuickEdit } from './QuickEdit'
 import { boundedSpeed } from '../realtime/keyboard'
 import type { SessionControllerView } from '../realtime/controller'
+import { useRemoteAppearance } from '../product/useRemoteAppearance'
+import { SkinDialog } from '../product/SkinDialog'
+import '../product/skins.css'
 
 export function RemotePage({ sessionId }: { sessionId: string }) {
   const session = useSession(sessionId, 'remote')
@@ -24,6 +27,8 @@ export function RemotePage({ sessionId }: { sessionId: string }) {
 export function RemoteSurface({ sessionId, session }: { sessionId: string; session: SessionControllerView }) {
   const { connection, transport, script, presence, clockOffset, reading, send, request, editing, connectionId, sessionEpoch, reconnect, now } = session
   const controlsReady = connection === 'connected' && !editing.active
+  const appearance = useRemoteAppearance(sessionId, connection === 'connected')
+  const [finishOpen, setFinishOpen] = useState(false)
   const [restoredStorage] = useState(() => loadWorkspaceStorage())
   const pendingSeekRef = useRef(0)
   const seekTimerRef = useRef<number | null>(null)
@@ -163,7 +168,7 @@ export function RemoteSurface({ sessionId, session }: { sessionId: string; sessi
   }
 
   return (
-    <main className="remote-panel standalone-remote" aria-label="Remote controller">
+    <main className={`remote-panel standalone-remote skin-face skin--${appearance.skin}`} aria-label="Remote controller">
       <SessionNotice connection={connection} surface="remote" onRetry={reconnect} />
       <header className="remote-header">
         <div className="remote-identity">
@@ -188,10 +193,14 @@ export function RemoteSurface({ sessionId, session }: { sessionId: string; sessi
         <span className="phrase-count"><small>PHRASE</small>{currentPhraseIndex < 0 ? '—' : String(currentPhraseIndex + 1).padStart(2, '0')} / {String(Math.max(1, izzyDocument.blocks.length)).padStart(2, '0')}</span>
         <button disabled={!controlsReady || currentPhraseIndex < 0} onClick={() => jumpPhrase(1)} aria-label="Next phrase"><small>NEXT</small><span>→</span></button>
       </div>
+      <div className="remote-tools">
       <QuickEdit sessionId={sessionId} epoch={sessionEpoch} connectionId={connectionId} connection={connection}
         document={izzyDocument} revision={script.revision} editing={editing} request={request}
         canEdit={hasDisplayPosition} beforeOpen={flushSeek} />
+      {!appearance.local && <button className="remote-finish-button" onClick={event => { event.currentTarget.focus(); setFinishOpen(true) }}>Remote finish</button>}
+      </div>
       <footer className="remote-footer"><span>TURN TO SEEK</span><span>PRESS CENTER TO {localPlaying ? 'PAUSE' : 'PLAY'}</span></footer>
+      {finishOpen && <SkinDialog initial={appearance.skin} selected={appearance.skin} pro={appearance.pro} onApply={appearance.apply} onClose={() => setFinishOpen(false)} />}
     </main>
   )
 }

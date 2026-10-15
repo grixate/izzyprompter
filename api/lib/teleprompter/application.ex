@@ -56,7 +56,7 @@ defmodule Teleprompter.Application do
         if(
           Application.get_env(:teleprompter, :accounts_enabled) and
             Application.get_env(:teleprompter, :commerce_worker, true),
-          do: [Teleprompter.Commerce.Worker],
+          do: [{Task.Supervisor, name: Teleprompter.CommerceTasks}, Teleprompter.Commerce.Worker],
           else: []
         )
 

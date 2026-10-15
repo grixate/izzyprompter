@@ -2,6 +2,12 @@
 
 Status date: 2026-10-10
 
+Current follow-up (2026-10-15): [UX/PRO implementation](design/2026-10-14-ux-pro/IMPLEMENTATION.md)
+and [payment readiness](PAYMENT_READINESS_2026-10-15.md) supersede the historical
+commercial baseline below. New purchases use Lava only, USD 29 at launch. The
+candidate adds durable invoice recovery and an additive migration; hosted sales
+remain disabled pending merchant setup, callback delivery and real acceptance.
+
 Implementation update (2026-10-12): [LOCAL_COMMUNICATION_PLAN.md](LOCAL_COMMUNICATION_PLAN.md) is active, superseding offline deferrals below. The opt-in [local preview](LOCAL_PREVIEW.md) now includes standalone authority, prepared scripts, cached cold startup and an experimental manual peer adapter. Phoenix still owns hosted sessions. Native paired connectivity, physical acceptance and automatic fallback remain open; see Milestone 10.
 
 Target product principle: **Paste → Scan → Roll**.

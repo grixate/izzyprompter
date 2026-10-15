@@ -6,7 +6,27 @@ Owner direction, 2026-10-12: preserve the wheel studies, explore more variants, 
 
 Owner update, 2026-10-13: explicitly resumed exploration for four raw-material studies. Collection 04 adds Correspondent, Foundry, Inox and Airframe; the lab now contains sixteen studies. Retain the founding archive unchanged. Orbit remains the preferred default candidate; the production remote and Pro scope remain unchanged. See [Material memory](design/remote-skins/2026-10-13-material-memory/COLLECTION.md).
 
-## Preserve the current launch scope
+## 14 October implementation candidate
+
+The owner authorized the UX/PRO implementation. The review branch now extracts all sixteen studies into a public `/skins` showroom and a shared live remote finish selector, backed by verified online PRO grants. Original remains the free default; fifteen finishes are optional PRO choices. The device stores the preference separately from effective permission. Revocation returns to Original without deleting the choice or user scripts. Local/DIRECT takes currently use the free default. All lab collections remain preserved.
+
+This is a review candidate, not a production release or payment activation. Per-skin physical Safari/Android review, merchant acceptance and owner visual review remain open. See [implementation evidence](design/2026-10-14-ux-pro/IMPLEMENTATION.md).
+
+## 15 October navigation and speed repair
+
+The owner asked to hide the separate library entry without deleting it. Header,
+mobile menu and footer omit the showroom link; `/skins` and its deep links remain
+available. PRO keeps its contextual finish previews. Redundant How it works and
+Start prompting navigation entries are removed; the logo returns to the editor.
+
+Decorative instruments now use the established speed-module structure and skin
+material selectors, with inert step keys, a full-width rail and a defined 0.86×
+example (36% of the shared 0.5–1.5 range). The earlier flex rail had collapsed to
+zero width. Container-based sizing handles small teaser objects as well as
+showroom cards; obsolete viewport overrides no longer distort the step keys.
+Live speed controls and the preserved lab studies keep their input semantics.
+
+## Historical launch scope
 
 - Online free V1 remains the delivery priority. Do not activate checkout, add a paid-launch dependency or change existing script limits for this experiment.
 - Keep all sixteen studies on `/lab/jog`; they are reusable visual directions, not approved production skins.

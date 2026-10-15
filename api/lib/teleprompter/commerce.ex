@@ -3,7 +3,8 @@ defmodule Teleprompter.Commerce do
   alias Teleprompter.{Repo, Accounts}
   alias Teleprompter.Accounts.User
   alias Teleprompter.Commerce.{Intent, Attempt, Event, Grant, Audit, Provider}
-  @prices %{"USD" => 2_900}
+  defp prices, do: %{"USD" => Teleprompter.Product.price()}
+
   def pro?(user) do
     preview = Application.get_env(:teleprompter, :preview_entitlements, false)
 
@@ -22,7 +23,7 @@ defmodule Teleprompter.Commerce do
 
   def options do
     %{
-      prices: @prices,
+      prices: prices(),
       enabled: Application.get_env(:teleprompter, :payments_enabled, false),
       providers:
         Enum.map(["lava"], fn name ->
@@ -50,7 +51,7 @@ defmodule Teleprompter.Commerce do
 
   def checkout(user, provider, currency, confirm_switch \\ false) do
     if (Provider.enabled?(provider, currency) and Provider.module(provider)) &&
-         Map.has_key?(@prices, currency) do
+         Map.has_key?(prices(), currency) do
       result =
         Repo.transaction(fn ->
           Repo.one!(from(u in User, where: u.id == ^user.id, lock: "FOR UPDATE"))
@@ -93,8 +94,9 @@ defmodule Teleprompter.Commerce do
                   intent_id: intent.id,
                   provider: provider,
                   currency: currency,
-                  amount_minor: @prices[currency],
-                  environment: Provider.environment(provider)
+                  amount_minor: prices()[currency],
+                  environment: Provider.environment(provider),
+                  offer_id: Provider.config(provider)[:offer_id]
                 })
 
               if attempts != [],
@@ -129,6 +131,16 @@ defmodule Teleprompter.Commerce do
                       :status,
                       if(current.status == "creating", do: "pending", else: current.status)
                     )
+
+                  changes =
+                    if current.status == "creating",
+                      do:
+                        Map.put(
+                          changes,
+                          :next_check_at,
+                          DateTime.add(DateTime.utc_now(), 60, :second)
+                        ),
+                      else: changes
 
                   current |> Ecto.Changeset.change(changes) |> Repo.update!()
                 end)
@@ -276,6 +288,13 @@ defmodule Teleprompter.Commerce do
             if data["currency"] != attempt.currency or
                  (data["type"] in ["paid", "refunded"] and
                     data["amount_minor"] != attempt.amount_minor) do
+              attempt
+              |> Ecto.Changeset.change(
+                review_reason: "amount_or_currency_mismatch",
+                next_check_at: nil
+              )
+              |> Repo.update!()
+
               finish_event(event, "review", "amount_or_currency_mismatch")
             else
               apply_event(attempt, intent, data["type"])
@@ -501,7 +520,10 @@ defmodule Teleprompter.Commerce do
         )
 
       process_event(event.id)
-      :ok
+
+      if Repo.get!(Event, event.id).status == "review",
+        do: {:error, :payment_needs_review},
+        else: :ok
     end
   end
 end

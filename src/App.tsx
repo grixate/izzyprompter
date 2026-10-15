@@ -4,6 +4,9 @@ import { RemotePage } from './pages/RemotePage'
 import { StartPage } from './pages/StartPage'
 import { AccountProvider } from './account/AccountProvider'
 import { AccountPage } from './pages/AccountPage'
+import { ProductProvider } from './product/ProductProvider'
+const ProPage = lazy(() => import('./pages/ProPage').then(module => ({ default: module.ProPage })))
+const SkinsPage = lazy(() => import('./pages/SkinsPage').then(module => ({ default: module.SkinsPage })))
 
 // An isolated design workbench, excluded from the hosted production build.
 const JogLabPage = import.meta.env.DEV ? lazy(() => import('./pages/JogLabPage')) : null
@@ -24,8 +27,10 @@ function App() {
   }
 
   if (surface === 'display' && sessionId) return <DisplayPage sessionId={sessionId} />
-  if (surface === 'remote' && sessionId) return <RemotePage sessionId={sessionId} />
-  return <AccountProvider>{surface === 'account' ? <AccountPage /> : <StartPage />}</AccountProvider>
+  if (surface === 'remote' && sessionId) return <AccountProvider><ProductProvider><RemotePage sessionId={sessionId} /></ProductProvider></AccountProvider>
+  return <AccountProvider><ProductProvider><Suspense fallback={<main>Opening Izzy…</main>}>
+    {surface === 'pro' ? <ProPage /> : surface === 'skins' ? <SkinsPage /> : surface === 'account' ? <AccountPage /> : <StartPage />}
+  </Suspense></ProductProvider></AccountProvider>
 }
 
 export default App

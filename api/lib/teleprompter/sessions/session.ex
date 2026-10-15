@@ -40,6 +40,7 @@ defmodule Teleprompter.Sessions.Session do
      %{
        id: id,
        saved: saved,
+       appearance_owner: if(saved, do: saved.user, else: options[:appearance_owner]),
        settings: options[:settings],
        settings_revision: 0,
        pending_save: nil,
@@ -68,6 +69,15 @@ defmodule Teleprompter.Sessions.Session do
   @impl true
   def handle_call(:snapshot, _from, state) do
     {:reply, {:ok, snapshot(state)}, state, @idle_timeout}
+  end
+
+  def handle_call({:appearance_owner, token}, _from, state) do
+    valid =
+      is_binary(token) and byte_size(token) == 43 and
+        Plug.Crypto.secure_compare(state.token_hashes["remote"], :crypto.hash(:sha256, token))
+
+    {:reply, if(valid, do: {:ok, state.appearance_owner}, else: {:error, :unauthorized}), state,
+     @idle_timeout}
   end
 
   def handle_call({:end_saved, user}, _from, state) do

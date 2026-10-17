@@ -33,7 +33,9 @@ are inert. The rotating index is wheel orientation, not script completion.
   labels and readout labels. Signal's live ink is darker against its orange
   material. Essential live labels are larger than the archived lab microtype.
 - Jog focus remains visible on all finishes, including those hiding the idle
-  caption. Play and speed each have their own visible keyboard focus.
+  caption. On separate-key layouts the cue sits below the wheel, clearing both
+  the readout and Play on short screens. Play and speed each have their own
+  visible keyboard focus.
 - Short screens scroll inside the remote, keeping the tools reachable rather
   than relying on a body that deliberately disables scrolling.
 - Restored Orbit's missing orange index and each material's speed-fill color
@@ -119,6 +121,7 @@ Local results on 18 October 2026:
 - Production TypeScript/Vite build: passed. Lab page and lab-scoped CSS remain absent from release assets.
 - Backend suite: 99 passed; 66 database-tagged cases excluded by the local configuration.
 - New catalog suite: 99 passed (33 per engine), no skips, failures or flaky results.
+- Follow-up responsive/focus-spacing run after the short-screen correction: all 48 catalog cases passed across the three engines.
 - Existing library, entry preview, reading sync, Quick Edit and accessibility/recovery suites: 72 passed across the three engines.
 - Offline regression: 6 passed across the three engines; 3 native-peer cases remain opt-in/skipped under the documented VPN/LAN limitation.
 - Preserved archive hashes: all 17 founding and 9 Material memory files verified.
@@ -131,6 +134,7 @@ These sample minima do not replace physical legibility or screen-reader review.
 
 [Reviewed comparison and all full-size paired screenshots](design/2026-10-18-remote-skin-readiness/README.md)
 · [Per-test browser/contrast evidence](design/2026-10-18-remote-skin-readiness/browser-results.json)
+· [Follow-up focus-spacing evidence](design/2026-10-18-remote-skin-readiness/focus-results.json)
 · [Surrounding regression evidence](design/2026-10-18-remote-skin-readiness/regression-results.json).
 
 GitHub checks and any later staging/device results belong to the review PR and

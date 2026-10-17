@@ -20,3 +20,9 @@ Artwork and source: the live paths in the playbook and the source revision of
 this review PR. The founding and Material memory capsules remain unchanged and
 pass their recorded hash checks. Functional, keyboard and reduced-motion results
 are recorded separately from these still images.
+
+Additional 320 × 568 keyboard-focus evidence: the jog cue clears the readout and
+the separate Play key. This geometry check has no paired reading display, so its
+position is correctly unavailable.
+
+![Field reel at narrow keyboard focus](field-narrow-focus.png)

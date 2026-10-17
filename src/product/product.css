@@ -172,8 +172,12 @@
 }
 @media(max-width:650px){
   .marketing-home .workbench-stage { gap:40px; }
+  .marketing-home .preview-stage { width:min(100%,300px); align-items:stretch; gap:20px; }
+  .marketing-home .preview-heading { width:100%; margin:0; }
   .marketing-home .live-preview { height:215px; --preview-height:215px; }
-  .marketing-home .preview-remote { margin:24px 0 0 auto; width:265px; }
+  .marketing-home .preview-remote { margin:0; width:100%; }
+  .marketing-home .preview-remote .transport-readout { width:100%; }
+  .marketing-home .preview-caption { width:100%; margin:0; }
   .home-pro-objects { padding:60px 18px 95px; }
   .pro-finale>.page-width { padding-bottom:90px; }
 }

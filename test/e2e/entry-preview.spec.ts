@@ -67,6 +67,47 @@ test('phone entry has no horizontal overflow and keeps setup before the preview'
   expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBe(390)
 })
 
+test('preview keeps the reading line and paired device proportions through responsive reflow', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' })
+  await page.goto('/')
+  for (const width of [320, 390, 650, 651, 768, 1280, 1600]) {
+    await test.step(`${width}px`, async () => {
+      await page.setViewportSize({ width, height: 900 })
+      const geometry = await page.locator('.preview-stage').evaluate(stage => {
+        const display = stage.querySelector<HTMLElement>('.live-preview')!
+        const remote = stage.querySelector<HTMLElement>('.preview-remote')!
+        const track = display.querySelector<HTMLElement>('.script-track')!
+        const line = display.querySelector<HTMLElement>('.focus-band')!
+        const d = display.getBoundingClientRect()
+        const r = remote.getBoundingClientRect()
+        const lineY = line.getBoundingClientRect().top - d.top - display.clientTop
+        return {
+          lineY, expectedY: display.clientHeight * .42,
+          padding: parseFloat(getComputedStyle(track).paddingTop),
+          display: { x: d.x, y: d.y, width: d.width, bottom: d.bottom },
+          remote: { x: r.x, y: r.y, width: r.width },
+          overflow: document.documentElement.scrollWidth - innerWidth,
+          controlsFit: Array.from(remote.querySelectorAll('.jog-wheel, .transport-readout, .speed-module')).every(control => {
+            const bounds = control.getBoundingClientRect()
+            return bounds.left >= r.left && bounds.right <= r.right
+          }),
+        }
+      })
+      expect(Math.abs(geometry.lineY - geometry.expectedY)).toBeLessThan(1)
+      expect(Math.abs(geometry.padding - geometry.lineY)).toBeLessThan(2)
+      expect(geometry.overflow).toBe(0)
+      expect(geometry.controlsFit).toBe(true)
+      if (width <= 650) {
+        expect(geometry.display.width).toBe(geometry.remote.width)
+        expect(geometry.display.x).toBe(geometry.remote.x)
+        expect(geometry.remote.y - geometry.display.bottom).toBeGreaterThanOrEqual(20)
+      } else {
+        expect(geometry.remote.x).toBeGreaterThan(geometry.display.x + geometry.display.width)
+      }
+    })
+  }
+})
+
 
 test('pause stops the wheel and words together; play resumes both', async ({ page }) => {
   await page.goto('/')

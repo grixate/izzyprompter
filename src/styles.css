@@ -909,10 +909,10 @@ button:focus-visible, input:focus-visible, a:focus-visible, textarea:focus-visib
 .preview-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 13px; font: 9px "SFMono-Regular", Consolas, monospace; letter-spacing: .09em; color: #656a5f; }
 .preview-heading h2 { margin: 0; font: inherit; }
 .preview-heading > span { font-size: 8px; }
-.live-preview { --preview-height: 150px; --preview-read-line: 42px; height: var(--preview-height); border: 1px solid #0c0d0b; border-radius: 5px; }
+.live-preview { --preview-height: 150px; --preview-read-line: calc(var(--preview-height) * .42); height: var(--preview-height); border: 1px solid #0c0d0b; border-radius: 5px; }
 .live-preview .script-track { width: 76%; padding-top: var(--preview-read-line); padding-bottom: calc(var(--preview-height) - var(--preview-read-line)); }
 .live-preview .script-track p { font-size: 23px; line-height: 1.3; letter-spacing: -.028em; }
-.live-preview .focus-band { top: var(--preview-read-line); left: 14px; right: 14px; }
+.live-preview .focus-band { top: 42%; left: 14px; right: 14px; }
 .live-preview .focus-band span { width: 5px; height: 5px; top: -2px; }
 .preview-remote.remote-panel { height: auto; margin-top: 12px; padding: 14px; border: 1px solid #0c0d0b; border-radius: 5px; box-shadow: inset 0 1px #ffffff0d; }
 .preview-remote .remote-header { position: static; padding: 0; }

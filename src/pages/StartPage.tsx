@@ -384,8 +384,8 @@ export function StartPage() {
       <section className="workbench-stage" aria-label="Prepare your teleprompter">
       <div className="script-workspace">
         <div className="entry-intro">
-          <h1>Your teleprompter.<br /><span>Your phone is<br />the remote.</span></h1>
-          <p>Paste a script. Pair your phone. Prompt for free.</p>
+          <h1>Add your script once.<br /><span>Read from any screen.</span></h1>
+          <p>A browser teleprompter for your tablet or computer, controlled from your phone. Your script stays in sync. No file transfers or app installs.</p>
         </div>
         <div className="editor-label">
           <label htmlFor="script-input">YOUR SCRIPT</label>

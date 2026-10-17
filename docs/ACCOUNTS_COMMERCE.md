@@ -48,7 +48,7 @@ the candidate serves account traffic. Sales and hosted configuration are unchang
 
 The owner selected lava.top exclusively on 2026-10-12 and confirmed a US$29 lifetime purchase, without rubles at launch. New checkout accepts only `provider=lava` and `currency=USD`; prices are server-owned. No subscriptions are offered. The current public showroom has sixteen finishes: Original is free and fifteen require Pro. Previewing a finish does not grant access.
 
-Legal pages and checkout disclosures are draft implementation; complete [legal publication readiness](LEGAL_PAGES.md) before public release. Follow [Lava.top setup and acceptance](LAVA_TOP.md) for the one-time offer, server credentials, webhook selection, return flow and payment checks. Checkout stays disabled by default until the merchant is configured and verified. Missing or identical outbound/inbound credentials keep the offer unavailable, even if the global payment flag is on.
+Legal pages and checkout disclosures have owner approval; complete [legal publication readiness](LEGAL_PAGES.md) before public release. Follow [Lava.top setup and acceptance](LAVA_TOP.md) for the one-time offer, server credentials, webhook selection, return flow and payment checks. Checkout stays disabled by default until the merchant is configured and verified. Missing or identical outbound/inbound credentials keep the offer unavailable, even if the global payment flag is on.
 
 The Prodamus adapter and callback authentication remain for historical transaction support, but cannot start new checkout even if old Prodamus approval variables are set. Existing purchases, refunds and grants are not migrated or deleted.
 

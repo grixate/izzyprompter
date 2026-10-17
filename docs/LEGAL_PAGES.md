@@ -1,8 +1,8 @@
 # Legal pages and moderation review
 
-Implementation prepared 17 October 2026. **Draft for review; not approved for
-public publication.** No merchant setup, real charge or hosted change is part
-of this implementation. Follow [the implementation plan](LEGAL_LAVA_READINESS_PLAN.md).
+The owner approved the policy wording and production publication on 17 October
+2026. `policiesApproved` is true; the reviewed release removes draft notices.
+Merchant setup, real charges and payment activation remain separate. Follow [the implementation plan](LEGAL_LAVA_READINESS_PLAN.md).
 
 ## Public details
 
@@ -17,12 +17,10 @@ generally requires provider name, address and electronic contact. A name and
 country alone do not complete that disclosure. Confirm any additional seller
 details and applicable consumer/privacy obligations before publication.
 
-`policiesApproved` remains false. The legal pages show a draft notice until the
-public details are complete and the final wording is approved. The text is an
-implementation draft, not a finding of legal compliance. In particular, confirm
-the applicable withdrawal/refund obligations, privacy legal bases and rights,
-processing locations/transfers, retention and operator disclosure for the actual
-seller before approval. Do not publish fictional details or invent dates,
+The owner's publication instruction approves the supplied wording and public
+operator details. This records content approval, not a certification of legal
+compliance. Future changes to the seller, data practices or paid offer require
+corresponding policy review. Do not publish fictional details or invent dates,
 mailboxes, tax registration numbers, certifications or response-time promises.
 
 ## Implementation
@@ -40,9 +38,9 @@ mailboxes, tax registration numbers, certifications or response-time promises.
   $29 in launch mode and $49 otherwise. Payments retain their existing gates.
 - The offline workspace indicates that policy pages require a connection when
   disconnected. Legal documents are not added to the offline navigation cache.
-- Draft wording describes actual guest/server/browser/account data, paid
+- The documents describe actual guest/server/browser/account data, paid
   features, conditional Lava processing, refunds and multiple-grant behavior.
-  Final wording approval remains the content gate.
+  Final wording approval was supplied with the publication instruction.
 
 ## Publication gate
 

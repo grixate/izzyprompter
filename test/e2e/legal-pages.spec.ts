@@ -14,7 +14,8 @@ test('legal documents open directly without account/product services or session 
     await expect(page).toHaveTitle(`${title} — IZZY Prompter`)
     await page.reload()
     await expect(page.getByRole('heading', { level: 1, name: title })).toBeVisible()
-    await expect(page.getByLabel('Draft status')).toBeVisible()
+    await expect(page.getByLabel('Draft status')).toHaveCount(0)
+    await expect(page.locator('.legal-date')).toContainText('Last updated')
   }
   await page.goto('/privacy/')
   await expect(page.getByRole('heading', { name: 'Privacy Policy', exact: true })).toBeVisible()

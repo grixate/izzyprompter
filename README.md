@@ -18,7 +18,7 @@ The sixteen-study remote design collection and its future creative process are p
 
 ## Run
 
-Accounts, three-script libraries, offline pending edits, lifetime-Pro presets and lava.top checkout are now implemented. They are opt-in; guest mode still runs without PostgreSQL. See [account/payment setup and launch gates](docs/ACCOUNTS_COMMERCE.md) and `.env.example`. Checkout is disabled until merchant approval and verification; no real payments have been tested. Legal pages and purchase disclosures are prepared as drafts; follow [legal publication readiness](docs/LEGAL_PAGES.md) before publishing them.
+Accounts, three-script libraries, offline pending edits, lifetime-Pro presets and lava.top checkout are now implemented. They are opt-in; guest mode still runs without PostgreSQL. See [account/payment setup and launch gates](docs/ACCOUNTS_COMMERCE.md) and `.env.example`. Checkout is disabled until merchant approval and verification; no real payments have been tested. Legal pages and purchase disclosures have owner approval; follow [legal publication readiness](docs/LEGAL_PAGES.md) before publishing them.
 
 For the current local preview, Free/Pro demo sign-in and hands-on phone/tablet checklist, see [local testing](docs/LOCAL_TESTING.md). The [security and edge-case review](security_best_practices_report.md) records repairs, verified mitigations and remaining launch gates.
 

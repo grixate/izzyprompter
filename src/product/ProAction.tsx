@@ -5,6 +5,7 @@ import { accountApi, accountMessage } from '../account/api'
 import { useProduct } from './ProductProvider'
 import { track } from './events'
 import { rememberPurchaseReturn } from './navigation'
+import { PurchaseTerms } from '../legal/LegalLinks'
 
 export function ProAction({ source, label = 'Get Izzy Pro', returnTo = '/pro' }: { source: string; label?: string; returnTo?: string }) {
   const { status, verified } = useAccount()
@@ -24,5 +25,6 @@ export function ProAction({ source, label = 'Get Izzy Pro', returnTo = '/pro' }:
     } catch (error) { setNotice(accountMessage(error)); setBusy(false) }
   }
   return <div className="purchase-action"><button className="action-primary" disabled={busy} onClick={() => void purchase()}>{busy ? 'Preparing checkout…' : label}<ArrowUpRight size={17} /></button>
+    <PurchaseTerms />
     {notice && <p className="purchase-notice" role="status">{notice} <a href="/account">Review purchases</a></p>}</div>
 }

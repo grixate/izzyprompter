@@ -1,6 +1,6 @@
 # Lava.top — Lifetime Pro
 
-Owner decision, 2026-10-12: use **lava.top exclusively**, with **US$29 paid once**. New checkout uses USD only. No recurring billing. Existing RUB/Prodamus history and entitlements remain supported, but neither is offered for new purchases.
+Updated 2026-10-17: use **lava.top exclusively**, with **US$29 paid once during launch**, or **US$49 when launch mode ends**. The server-owned product controls both displayed and invoiced prices. New checkout uses USD only. No recurring billing. Existing RUB/Prodamus history and entitlements remain supported, but neither is offered for new purchases.
 
 ## Current readiness, 15 October 2026
 
@@ -14,7 +14,7 @@ An additive migration is required before deploying this candidate.
 ## What is implemented
 
 - The signed-in account workspace offers the server-owned US$29 launch price for Lifetime Pro: unlimited saved scripts and named display presets. The review candidate includes fifteen optional PRO finishes; merchant copy must match the image approved for paid release.
-- The server creates a stored purchase attempt before requesting `POST https://gate.lava.top/api/v3/invoice`. It sends the account email, offer ID, server-owned amount 29 and currency USD. Lava selects its available payment methods; IZZY does not force a card processor or collect card details.
+- The server creates a stored purchase attempt before requesting `POST https://gate.lava.top/api/v3/invoice`. It sends the account email, offer ID, stored server-owned purchase amount and currency USD. Lava selects its available payment methods; IZZY does not force a card processor or collect card details.
 - On HTTPS deployments, success, failure and cancellation all return to `/account?purchase=OUR_ATTEMPT_ID`. Lava appends `invoiceId` and `status`; neither is used to select the invoice or grant access.
 - Returning to the account automatically checks the owned pending purchase once. `POST /api/account/purchases/:id/check` uses the stored provider invoice ID, requires login/ownership/CSRF, and shares the six-per-account/minute checkout budget. Buyers can also check again or resume an existing hosted checkout.
 - Authenticated webhooks enter a unique, durable inbox; the worker applies them every five seconds. The browser polls local purchase status while pending and refreshes account entitlement even if its WebSocket misses an update.
@@ -24,7 +24,7 @@ An additive migration is required before deploying this candidate.
 
 ## Merchant setup
 
-1. In Lava.top, create a **one-time Digital Product** for IZZY Lifetime Pro. Enable **Price on request via API**, which lets the integration supply US$29 without editing the product for every invoice. Use a product description that matches the features currently shipped. Confirm your merchant supports the intended countries and USD sales.
+1. In Lava.top, create a **one-time Digital Product** for IZZY Lifetime Pro. Enable **Price on request via API**, which lets the integration supply the current server-owned offer price without editing the product for every invoice. Use a product description that matches the features currently shipped. Confirm your merchant supports the intended countries and USD sales.
 2. In **Integrations → API**, create an API key and obtain the product's **offer/tier ID** (not its product ID). Put these in the server's secret store as `LAVA_API_KEY` and `LAVA_OFFER_ID`.
 3. Generate a separate random inbound secret, for example with `openssl rand -hex 32`. Store it as `LAVA_WEBHOOK_SECRET`. Do not reuse the outbound API key, and keep the webhook secret within Lava's 80-character limit.
 4. Add a webhook at `https://YOUR_DOMAIN/api/payments/lava`, authenticate it with **Your service's API key / X-Api-Key**, and enter that inbound secret. Select **payment.success**, **payment.failed**, **refund.success** and **chargeback.initiated**. Subscription events are unnecessary for this offer; unknown events are acknowledged safely.
@@ -47,7 +47,7 @@ Restart the service after changing runtime configuration. Leave `IZZY_PAYMENTS_E
 
 No universal Lava sandbox is assumed. Automated tests use synthetic HTTP responses and do not charge money. Once the merchant is ready, perform an explicitly authorized real purchase through a normal signed-in account and verify:
 
-1. The hosted checkout shows US$29, one-time billing and the correct product.
+1. The hosted checkout matches the advertised server-owned price (US$29 launch; US$49 regular), one-time billing and the correct product.
 2. A successful payment returns to IZZY; the webhook is delivered, the stored attempt becomes paid, and the account gains Pro exactly once. Refresh/re-login preserves access.
 3. Cancelling or failing payment leaves the account Free. A pending purchase resumes the same link. An unverified timeout does not create another invoice automatically.
 4. Re-send a payment webhook from Lava's history; it must not create another grant. With new sales temporarily off, **Check payment status** can still recover a confirmed owned invoice whose notification was missed.
@@ -61,6 +61,6 @@ For ambiguous creation with no stored invoice ID, support must establish the out
 
 Local verification on 2026-10-12: the frontend production build, JavaScript unit tests, full PostgreSQL-backed Elixir suite, and checkout/return browser tests pass. The payment browser tests cover the USD-only offer, hosted redirect, forged return status, explicit checking, entitlement refresh, failed payment retry and disabled-sales recovery. Provider/controller tests cover authenticated duplicate callbacks, ownership/CSRF, receipt mismatch, unrelated invoice IDs, unknown event acknowledgements, rejected requests and ambiguous failures. All provider requests in these tests are fixtures.
 
-**Still external:** production domain/server configuration, merchant credentials/offer, webhook setup, real purchase/refund and settlement verification. No real payment or deployment was performed.
+**Current boundaries:** accounts/SMTP are documented in ACCOUNT_OPERATIONS.md and POSTBOX_EMAIL.md. Merchant credentials/offer, provider-accessible staging callbacks, real purchase/refund/receipt and settlement acceptance remain separate; the dated verification above used fixtures. See PAYMENT_READINESS_2026-10-15.md for reconciliation and migration details. Legal pages/disclosures are draft implementation; follow LEGAL_PAGES.md and keep sales off until the release gates pass.
 
 References checked 2026-10-12: [Lava.top developer guide](https://developers.lava.top/en), [official OpenAPI specification](https://gate.lava.top/docs/documentation.yaml).

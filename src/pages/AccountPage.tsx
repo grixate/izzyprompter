@@ -15,6 +15,7 @@ import { sessionLink, isSessionCredentials, type SessionCredentials } from '../r
 import { useSession } from '../realtime/useSession'
 import { apiUrl } from '../realtime/endpoints'
 import { safeReturnTo, purchaseReturn } from '../product/navigation'
+import { LegalLinks, PurchaseTerms } from '../legal/LegalLinks'
 import { useProduct } from '../product/ProductProvider'
 import { track } from '../product/events'
 
@@ -68,9 +69,11 @@ export function AccountPage() {
         <button className="account-primary" disabled={working}>{working ? 'Please wait…' : token ? 'Sign in to IZZY' : 'Email me a sign-in link'}<ArrowUpRight size={17} /></button>
         {status.google_enabled && !token && <a className="account-google" href={returnTo ? `/auth/google?returnTo=${encodeURIComponent(returnTo)}` : '/auth/google'}>Continue with Google</a>}
       </form>}
+      <p className="sign-in-legal">Read our <a href="/terms" target="_blank" rel="noreferrer">Terms</a> and <a href="/privacy" target="_blank" rel="noreferrer">Privacy Policy</a>.</p>
       <a className="account-guest" href="/">Or continue without an account <ArrowUpRight size={14} /></a>
       {new URLSearchParams(window.location.search).get('error') && <p role="alert">{new URLSearchParams(window.location.search).get('error') === 'sign_in_to_link' ? 'This email already has an IZZY account. Sign in by email, then link Google from your workspace.' : 'Google sign-in could not be completed. Please try an email link.'}</p>}
     </section> : scriptId ? <SavedEditor key={`${status.user.id}:${scriptId}`} user={status.user} id={scriptId} /> : <LibraryWorkspace user={status.user} />}
+    {(!status?.user || !scriptId || token) && <footer className="account-legal-footer"><LegalLinks /></footer>}
   </main>
 }
 
@@ -345,6 +348,7 @@ function ProPanel({ user }: { user: Account }) {
     {!user.pro && canPurchase && !samePending && <><p className="price-switch">{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format((commerce!.prices.USD) / 100)} · paid once</p>
       <button className="account-primary" disabled={busy} onClick={() => void checkout()}>{busy ? 'Please wait…' : 'Unlock Lifetime Pro'}<ArrowUpRight size={16} /></button>
       <p className="checkout-note">Secure checkout with lava.top. One payment in USD, no recurring charges.</p>
+      <PurchaseTerms />
       {switchWarning && <div className="account-conflict"><p>An older payment link may remain active. Check your bank and the purchase status below. Paying both links can create a duplicate charge.</p><button disabled={busy} onClick={() => void checkout(true)}>I checked · continue with lava.top</button></div>}
     </>}
     {notice && <p className="account-notice" role="status">{notice}</p>}

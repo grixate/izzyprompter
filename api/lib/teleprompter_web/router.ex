@@ -84,6 +84,10 @@ defmodule TeleprompterWeb.Router do
     get "/", AppController, :show
     get "/pro", AppController, :show
     get "/skins", AppController, :show
+    get "/terms", AppController, :show
+    get "/privacy", AppController, :show
+    get "/refunds", AppController, :show
+    get "/contact", AppController, :show
     get "/local", AppController, :show
     get "/local/remote", AppController, :show
     get "/display/:session_id", AppController, :show

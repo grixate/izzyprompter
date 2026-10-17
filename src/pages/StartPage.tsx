@@ -448,7 +448,7 @@ export function StartPage() {
       <LivePreview content={content} pauseVersion={previewPauseVersion} />
       </section>
       {storageWarning}
-      <HomeStory /><PublicFooter />
+      <HomeStory /><PublicFooter beforeNavigate={() => draftWriter.flush()} />
     </main>
   )
 }

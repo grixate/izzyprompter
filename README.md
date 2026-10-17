@@ -4,7 +4,7 @@ Development and corrections follow [the release workflow](docs/RELEASE_WORKFLOW.
 
 **Local preview (2026-10-12):** `/local` now supports standalone prompting, prepared scripts and cached offline startup. An experimental manual WebRTC remote is included; native two-device connectivity and physical phone/tablet acceptance remain open. Phoenix remains available. See [usage and verification limits](docs/LOCAL_PREVIEW.md) and the [active architecture plan](docs/LOCAL_COMMUNICATION_PLAN.md).
 
-**Current payment direction (2026-10-12): Lifetime Pro for US$29 once, exclusively through lava.top, USD only.** The integration is implemented; live checkout remains disabled until merchant credentials and verification are complete. Follow [Lava.top setup](docs/LAVA_TOP.md). Guest prompting and three-script accounts remain free. [Free deployment preparation](docs/FREE_LAUNCH.md) remains the server baseline; offline field acceptance is pending.
+**Current product offer (2026-10-17): Lifetime Pro through lava.top, USD only: US$29 launch offer, US$49 when launch mode ends.** The server owns the price. The public product page and fifteen Pro remote finishes are implemented; live checkout remains disabled pending merchant setup and verification. Follow [Lava.top setup](docs/LAVA_TOP.md). Guest prompting and three-script accounts remain free. See [account operations](docs/ACCOUNT_OPERATIONS.md) for the hosted baseline; offline field acceptance is pending.
 
 An interaction-first teleprompter with three separate browser surfaces connected in real time by Phoenix Channels:
 
@@ -12,13 +12,13 @@ An interaction-first teleprompter with three separate browser surfaces connected
 - teleprompter display;
 - phone remote with a tactile jog wheel.
 
-The core hosted workflow is **Paste → Scan → Roll**. A tablet can open the script page and display while a phone controls it. The guest website is live at [izzyprompter.com](https://izzyprompter.com) and needs no user computer; accounts and payments remain disabled. See [server setup](docs/SERVER_SETUP.md). The development/LAN hosted workflow needs its server computer running. The new `/local` preview uses a reading-device controller instead.
+The core hosted workflow is **Paste → Scan → Roll**. A tablet can open the script page and display while a phone controls it. The guest website is live at [izzyprompter.com](https://izzyprompter.com) and needs no user computer; email-link accounts are available; payments remain disabled. See [server setup](docs/SERVER_SETUP.md). The development/LAN hosted workflow needs its server computer running. The new `/local` preview uses a reading-device controller instead.
 
-The sixteen-study remote design collection and its future creative process are preserved in the [remote instrument design playbook](docs/REMOTE_DESIGN_PLAYBOOK.md), with a repository skill at `.agents/skills/izzy-remote-design`. The `/lab/jog` gallery is development-only; its skins are not shipped Pro features.
+The sixteen-study remote design collection and its future creative process are preserved in the [remote instrument design playbook](docs/REMOTE_DESIGN_PLAYBOOK.md), with a repository skill at `.agents/skills/izzy-remote-design`. The `/lab/jog` workbench remains development-only; the public `/skins` showroom uses the released finish catalog and server entitlement checks.
 
 ## Run
 
-Accounts, three-script libraries, offline pending edits, lifetime-Pro presets and lava.top checkout are now implemented. They are opt-in; guest mode still runs without PostgreSQL. See [account/payment setup and launch gates](docs/ACCOUNTS_COMMERCE.md) and `.env.example`. Checkout is disabled until merchant approval and verification; no real payments have been tested.
+Accounts, three-script libraries, offline pending edits, lifetime-Pro presets and lava.top checkout are now implemented. They are opt-in; guest mode still runs without PostgreSQL. See [account/payment setup and launch gates](docs/ACCOUNTS_COMMERCE.md) and `.env.example`. Checkout is disabled until merchant approval and verification; no real payments have been tested. Legal pages and purchase disclosures are prepared as drafts; follow [legal publication readiness](docs/LEGAL_PAGES.md) before publishing them.
 
 For the current local preview, Free/Pro demo sign-in and hands-on phone/tablet checklist, see [local testing](docs/LOCAL_TESTING.md). The [security and edge-case review](security_best_practices_report.md) records repairs, verified mitigations and remaining launch gates.
 

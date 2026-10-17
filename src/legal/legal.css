@@ -1,0 +1,27 @@
+/* Reuse the studio shell; keep long documents independent of take overflow. */
+.legal-page { --legal-rule: #cccdc2; }
+.legal-header { display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 100px; padding: 25px 56px; border-bottom: 1px solid var(--legal-rule); }
+.legal-header .brand-logo { width: 113px; }
+.legal-header .brand-context { display: none; }
+.legal-header > a:last-child { display: inline-flex; align-items: center; gap: 12px; min-height: 44px; font-size: 13px; }
+.legal-article { width: min(720px, calc(100% - 48px)); margin: 0 auto; padding: 52px 0 84px; overflow-wrap: anywhere; }
+.legal-back { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; font-size: 13px; color: #606657 !important; }
+.legal-article h1 { margin: 30px 0 18px; font-size: clamp(48px, 7vw, 76px); line-height: 1; }
+.legal-date { margin: 0 0 36px; color: #606657; font: 11px/1.7 'SFMono-Regular', Consolas, monospace; }
+.legal-draft { margin-bottom: 40px; padding: 18px 20px; border: 1px solid #b0a17c; background: #e8e1cf; color: #534b34; font-size: 14px; line-height: 1.7; }
+.legal-section { margin-top: 34px; }
+.legal-section + .legal-section { padding-top: 28px; border-top: 1px solid var(--legal-rule); }
+.legal-section h2 { margin: 0 0 16px; font: 500 25px/1.25 'Avenir Next', Avenir, sans-serif; letter-spacing: -.025em; }
+.legal-section p, .legal-section li { font-size: 16px; line-height: 1.85; }
+.legal-section p { margin: 12px 0; }
+.legal-section ul { padding-left: 23px; }
+.legal-section li { margin-block: 10px; padding-left: 4px; }
+.legal-section a { text-decoration: underline; text-underline-offset: 4px; }
+.legal-section .legal-contact-email { margin-block: 24px; font-size: clamp(20px, 4vw, 29px); }
+.legal-contact-email a { display: inline-flex; align-items: center; gap: 12px; }
+@media (max-width: 720px) {
+  .legal-header { min-height: 80px; padding: 18px 20px; }
+  .legal-article { width: calc(100% - 40px); padding-block: 28px 48px; }
+  .legal-article h1 { margin-top: 24px; }
+  .legal-section h2 { font-size: 23px; }
+}

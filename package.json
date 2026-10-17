@@ -18,6 +18,7 @@
     "test:unit": "node --test test/*.test.mjs",
     "test:security-deps": "npm audit --audit-level=low && node scripts/audit-hex.mjs",
     "test:restore": "node --test test/restore/*.test.mjs",
+    "check:legal": "node scripts/check-legal-readiness.mjs",
     "test:e2e": "playwright test --project=chromium",
     "test:browsers": "playwright test",
     "test:offline": "npm run build && playwright test --config playwright.local.config.ts",

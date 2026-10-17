@@ -262,7 +262,8 @@
   display: block; color: inherit; font-size: 10px; text-decoration: underline; text-underline-offset: 5px;
 }
 .standalone-remote:is(.skin--field,.skin--graphite,.skin--glacier,.skin--correspondent,.skin--airframe) .wheel-column:has(.wheel-input:focus-visible) .wheel-caption {
-  position: absolute; top: -20px; margin: 0; white-space: nowrap;
+  /* The reserved key bay has a 19px gap between wheel and transport. */
+  position: absolute; top: calc(100% - 52px); margin: 0; line-height: 12px; white-space: nowrap;
 }
 @media (prefers-reduced-motion: reduce) {
   .standalone-remote.skin-face .transport-button { transition: none; }

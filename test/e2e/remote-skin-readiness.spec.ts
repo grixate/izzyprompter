@@ -194,6 +194,14 @@ for (const skin of skins) {
         return own.outlineStyle !== 'none' || (caption.display !== 'none' && caption.textDecorationLine.includes('underline'))
       })
       expect.soft(wheelFocus, `${viewport.width}: visible jog focus`).toBe(true)
+      const captionBox = (await page.locator('.wheel-caption').boundingBox())!
+      const readoutBox = (await page.locator('.transport-readout').boundingBox())!
+      const focusedPlayBox = (await page.getByRole('button', { name: 'Play', exact: true }).boundingBox())!
+      expect.soft(captionBox.y, `${viewport.width}: focus cue clears readout`).toBeGreaterThanOrEqual(readoutBox.y + readoutBox.height)
+      if (separate) expect.soft(captionBox.y + captionBox.height, `${viewport.width}: focus cue clears Play`).toBeLessThanOrEqual(focusedPlayBox.y)
+      if (viewport.width === 320 && browserName === 'chromium' && skin.id === 'field') {
+        await page.locator('main').screenshot({ path: testInfo.outputPath('field-narrow-focus.png') })
+      }
       await page.keyboard.press(tabKey(browserName))
       await expect(page.getByRole('button', { name: 'Play', exact: true })).toBeFocused()
       expect.soft(await page.getByRole('button', { name: 'Play', exact: true }).evaluate(el => getComputedStyle(el).outlineStyle)).not.toBe('none')

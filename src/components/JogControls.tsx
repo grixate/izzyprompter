@@ -1,7 +1,7 @@
 import { useEffect, useId, useRef, useState } from 'react'
 import { Pause, Play } from 'lucide-react'
 import { boundedSpeed, jogKeyDelta } from '../realtime/keyboard'
-import { BASE_PIXELS_PER_SECOND } from '../prompt/motion'
+import { positionTimecode } from '../prompt/timecode'
 import { useWheelMotion } from './useWheelMotion'
 
 const normalizeAngle = (angle: number) => angle > Math.PI ? angle - Math.PI * 2 : angle < -Math.PI ? angle + Math.PI * 2 : angle
@@ -19,6 +19,7 @@ export function JogControls(props: Props) {
   const helpId = useId()
   const wheel = useRef<HTMLDivElement>(null)
   const dragAngle = useRef(0)
+  const activePointer = useRef<number | null>(null)
   const latest = useRef(props)
   latest.current = props
   const [dragging, setDragging] = useState(false)
@@ -26,7 +27,13 @@ export function JogControls(props: Props) {
   const setDrag = (value: boolean) => { setDragging(value); latest.current.onDraggingChange?.(value) }
 
   useEffect(() => {
-    if (!props.enabled) { setDragging(false); props.onDraggingChange?.(false) }
+    if (!props.enabled) {
+      const pointer = activePointer.current
+      activePointer.current = null
+      if (pointer !== null && wheel.current?.hasPointerCapture(pointer)) wheel.current.releasePointerCapture(pointer)
+      setDragging(false)
+      props.onDraggingChange?.(false)
+    }
   }, [props.enabled, props.onDraggingChange])
 
   const pointerAngle = (event: React.PointerEvent) => {
@@ -34,8 +41,9 @@ export function JogControls(props: Props) {
     return Math.atan2(event.clientY - rect.top - rect.height / 2, event.clientX - rect.left - rect.width / 2)
   }
   const release = (event: React.PointerEvent<HTMLDivElement>) => {
-    if (!wheel.current?.hasPointerCapture(event.pointerId)) return
-    wheel.current.releasePointerCapture(event.pointerId)
+    if (activePointer.current !== event.pointerId) return
+    activePointer.current = null
+    if (wheel.current?.hasPointerCapture(event.pointerId)) wheel.current.releasePointerCapture(event.pointerId)
     setDrag(false)
     props.onSeekEnd?.()
   }
@@ -44,16 +52,17 @@ export function JogControls(props: Props) {
     <div className="wheel-column">
       <div ref={wheel} className={`jog-wheel ${dragging ? 'is-dragging' : ''}`}
         onPointerDown={(event) => {
-          if (!props.enabled || event.button !== 0 || (event.target as HTMLElement).closest('.transport-button')) return
+          if (!props.enabled || activePointer.current !== null || event.button !== 0 || (event.target as HTMLElement).closest('.transport-button')) return
           event.preventDefault()
           motor.freeze()
           wheel.current?.setPointerCapture(event.pointerId)
+          activePointer.current = event.pointerId
           wheel.current?.querySelector<HTMLElement>('.wheel-input')?.focus({ preventScroll: true })
           dragAngle.current = pointerAngle(event)
           setDrag(true)
         }}
         onPointerMove={(event) => {
-          if (!props.enabled || !wheel.current?.hasPointerCapture(event.pointerId)) return
+          if (!props.enabled || activePointer.current !== event.pointerId || !wheel.current?.hasPointerCapture(event.pointerId)) return
           const next = pointerAngle(event)
           const delta = normalizeAngle(next - dragAngle.current)
           dragAngle.current = next
@@ -61,7 +70,7 @@ export function JogControls(props: Props) {
           props.onSeek(delta * 92)
         }}
         onPointerUp={release} onPointerCancel={release}
-        onLostPointerCapture={() => { setDrag(false); props.onSeekEnd?.() }}>
+        onLostPointerCapture={release}>
         <div className="wheel-rotor" aria-hidden="true"><div className="wheel-disc" /></div>
         <div className="wheel-input" role="slider" tabIndex={0}
           aria-label="Jog script position" aria-describedby={helpId} aria-orientation="horizontal"
@@ -97,11 +106,10 @@ export function JogControls(props: Props) {
 export function TransportReadout({ position, speed, playing, available = true, label = 'TRANSPORT' }: {
   position: number; speed: number; playing: boolean; available?: boolean; label?: string
 }) {
-  const seconds = Math.max(0, Math.round(position / (BASE_PIXELS_PER_SECOND * speed)))
-  const time = `${String(Math.floor(seconds / 60)).padStart(2, '0')}:${String(seconds % 60).padStart(2, '0')}`
+  const [time, fraction] = positionTimecode(position, speed).split('.')
   return <div className="transport-readout">
     <div className="display-kicker"><span>{label}</span><span>POS {available ? String(Math.round(position)).padStart(5, '0') : '—'}</span></div>
-    <div className="timecode">{available ? time : '—'}<span>{available ? `.${Math.floor(position % 10)}` : ''}</span></div>
+    <div className="timecode">{available ? time : '—'}<span>{available ? `.${fraction}` : ''}</span></div>
     <div className={`state-label ${playing ? 'is-playing' : ''}`}><i />{playing ? 'RUN' : 'HOLD'}</div>
   </div>
 }

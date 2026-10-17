@@ -1,6 +1,6 @@
 # IZZY — Remote instrument design playbook
 
-Version 1.1 · 13 October 2026 · Owner: IZZY
+Version 1.2 · 18 October 2026 · Owner: IZZY
 
 **Make a different instrument. Keep the same understanding.**
 
@@ -162,6 +162,26 @@ Keep decorative motion optional and respect reduced motion. Do not simulate resi
 | `src/assets/lab-aperture.svg` | Corrected, scalable optical artwork |
 | `src/App.tsx` | Development-only lab route and lazy import |
 
+The online product now also has a sixteen-finish implementation candidate. Its
+operating surface is separate from the lab's disposable demo state:
+
+| File | Production-candidate responsibility |
+| --- | --- |
+| `src/product/catalog.ts` | Allowlisted IDs, model numbers, names and browser preference |
+| `src/product/skins.css` | Shared material artwork plus explicitly scoped live sizing, legibility and focus rules |
+| `src/prompt/timecode.ts` | One position-derived nominal time calculation for seconds and tenths |
+| `src/pages/RemotePage.tsx` | Real connection/readout, shared controls, phrase navigation and Quick Edit |
+| `src/product/useRemoteAppearance.ts` | Verified grant, preference and effective-skin fallback |
+| `src/product/RemoteSkinLibrary.tsx` | In-session selection and keyboard focus return |
+| `src/components/RemoteInstrument.tsx` | Inert showroom/library miniature; never proof of live operation |
+| `test/e2e/remote-skin-readiness.spec.ts` | Catalog-driven paired-display and responsive gates for every finish |
+
+When transferring a study, carry over its orientation cue and material-specific
+speed ink as well as its disc/background. Lab microtype and small demo buttons
+must not become production touch targets. Verify the live remote, not just a
+miniature or lab card. Read [the current acceptance record](REMOTE_SKIN_QA.md)
+and [product decisions](REMOTE_SKINS.md) before treating a candidate as released.
+
 Preserve the existing shared controls. New geometry belongs in `.lab-device--<stable-id>` styles or inert, local artwork. Do not copy the interaction component per skin or add skin-specific protocol behaviour. A genuine shared-control bug can be repaired separately, with verification on the production remote and earlier studies.
 
 Use CSS and SVG for rings, holes, blades, seams and geometric grip. A bitmap may be justified for a specific material or authorised brand asset; it must not turn the functional control into a screenshot. Decorative layers must not intercept pointer events, obscure focus or become extra accessibility stops.
@@ -230,6 +250,14 @@ For every new or repaired skin, record actual outcomes:
 | Isolation | No account/session writes and no unexpected production-bundle inclusion |
 
 Run the current client unit suite, production build and diff checks for code changes. Use wider integration suites in proportion to actual shared-code changes. Read current package scripts instead of freezing a test count into the process. Never infer browser correctness from a passing build.
+
+For a live finish, run the catalog-driven readiness suite against a real paired
+local display. Record per-finish browser results and the still-open physical and
+screen-reader gates in [REMOTE_SKIN_QA.md](REMOTE_SKIN_QA.md). Disconnect during
+an active captured drag: disabling controls must release the pointer so that
+reconnection cannot resume an old gesture. A centered and a below-wheel Play key
+need equally visible, separate keyboard focus. Essential ink must remain readable
+when changing finishes; do not animate it through low-contrast intermediate colors.
 
 ### Judgment gate
 

@@ -136,6 +136,10 @@ These sample minima do not replace physical legibility or screen-reader review.
 GitHub checks and any later staging/device results belong to the review PR and
 release record; none is inferred from these local results.
 
+The first GitHub run reached the existing main-job time limit during the expanded
+browser suite. CI now budgets 25 minutes for the main job and 30 for the
+database-backed account job; assertions, engines and coverage are unchanged.
+
 ## Remaining release acceptance
 
 Browser automation does not close the physical-device gate. For **each** finish,

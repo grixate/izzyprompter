@@ -5,6 +5,8 @@ import { StartPage } from './pages/StartPage'
 import { AccountProvider } from './account/AccountProvider'
 import { AccountPage } from './pages/AccountPage'
 import { ProductProvider } from './product/ProductProvider'
+import { legalDocument } from './legal/siteDetails'
+const LegalPage = lazy(() => import('./pages/LegalPage').then(module => ({ default: module.LegalPage })))
 const ProPage = lazy(() => import('./pages/ProPage').then(module => ({ default: module.ProPage })))
 const SkinsPage = lazy(() => import('./pages/SkinsPage').then(module => ({ default: module.SkinsPage })))
 
@@ -17,6 +19,8 @@ function App() {
   const parts = window.location.pathname.split('/').filter(Boolean)
   const [surface, rawSessionId] = parts
   const sessionId = rawSessionId?.toUpperCase() ?? null
+
+  if (legalDocument(window.location.pathname)) return <Suspense fallback={<main>Opening document…</main>}><LegalPage /></Suspense>
 
   if (surface === 'local') return <Suspense fallback={<main>Opening local workspace…</main>}>
     {rawSessionId === 'remote' ? <LocalRemotePage /> : <LocalPage />}

@@ -24,6 +24,8 @@ test.describe('lava.top checkout', () => {
     await page.reload()
     await expect(page.locator('.pro-panel')).toContainText('$29 · paid once')
     await expect(page.locator('.pro-panel')).toContainText('lava.top')
+    await expect(page.locator('.pro-panel .purchase-terms a[href="/terms"]')).toBeVisible()
+    await expect(page.locator('.pro-panel .purchase-terms a[href="/refunds"]')).toBeVisible()
     await expect(page.locator('.pro-panel')).not.toContainText('Prodamus')
     await expect(page.locator('.pro-panel')).not.toContainText('₽')
     await page.setViewportSize({ width: 390, height: 844 })

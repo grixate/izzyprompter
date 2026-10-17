@@ -1,0 +1,20 @@
+.public-footer > nav { flex-wrap: wrap; align-items: center; }
+.public-footer-legal { grid-column: 1 / -1; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px 32px; padding-top: 16px; border-top: 1px solid var(--studio-line, #b1b4ab); font-size: 12px; color: var(--legal-footer-ink, #606657); }
+.pro-page .public-footer-legal { --legal-footer-ink: #9a9f8e; }
+.legal-links-group { min-width: 0; }
+.legal-links, .public-footer .legal-links { display: flex; align-items: center; flex-wrap: wrap; justify-content: flex-start; gap: 0 22px; font-size: 12px; }
+.legal-links a { display: inline-flex; align-items: center; min-height: 44px; color: inherit; text-decoration: none; }
+.legal-links a:hover { text-decoration: underline; text-underline-offset: 4px; }
+.legal-links a:focus-visible, .purchase-terms a:focus-visible, .sign-in-legal a:focus-visible { outline: 2px solid #b64e25; outline-offset: 4px; }
+.legal-online-note { display: block; margin-block: 4px; font-size: 12px; line-height: 1.6; }
+.purchase-terms, .pro-page .purchase-terms, .lifetime-note, .pro-page .lifetime-note, .sign-in-legal { max-width: 360px; margin: 14px 0 0; font-size: 12px; line-height: 1.75; color: inherit; }
+.purchase-terms a, .lifetime-note a, .sign-in-legal a { color: inherit; text-decoration: underline !important; text-underline-offset: 3px; }
+.account-legal-footer { margin-top: auto; padding: 16px 40px; border-top: 1px solid #b1b4ab; color: #555e4a; }
+.account-page .sign-in-legal { margin-block: 18px; }
+.legal-address { white-space: pre-line; font: inherit; line-height: 1.8; }
+@media (max-width: 720px) {
+  .public-footer-legal { align-items: flex-start; gap: 12px; }
+  .public-footer-legal > span { flex-basis: 100%; }
+  .legal-links, .public-footer .legal-links { column-gap: 20px; }
+  .account-legal-footer { padding-inline: 20px; }
+}

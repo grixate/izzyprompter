@@ -209,6 +209,6 @@ export function LocalPage() {
     <p className="offline-backup-note">Saved in this browser. Keep a text backup before clearing browser data.</p>
     </section>
     <details className="offline-remote-info"><summary>Using a phone remote?</summary><p>Standalone reading works on this device. Direct phone pairing is experimental and requires a reachable local network. Prepare the app on both devices first.</p><a href="/local/remote">Open direct remote preview <ArrowUpRight size={15} /></a></details>
-    <PublicFooter />
+    <PublicFooter beforeNavigate={() => draftWriter.flush()} offlineHint />
   </main>
 }

@@ -4,6 +4,7 @@ import { BrandLogo } from './BrandLogo'
 import { useAccount } from '../account/AccountProvider'
 import { Discount } from '../product/ProductProvider'
 import { track } from '../product/events'
+import { LegalLinks } from '../legal/LegalLinks'
 
 export function ModeSwitch({ mode, disabled = false, beforeNavigate }: { mode: 'online' | 'offline'; disabled?: boolean; beforeNavigate?: () => void }) {
   const change = (next: 'online' | 'offline') => {
@@ -33,6 +34,8 @@ export function PublicNav({ mode = 'online', beforeNavigate, light = false }: { 
     {open && <nav className="mobile-nav" id="mobile-nav" aria-label="Mobile navigation"><a href="/pro" onClick={beforeNavigate}>Izzy Pro <Discount /></a><a href="/account">{status?.user ? 'My scripts' : 'Log in'}</a></nav>}
   </header>
 }
-export function PublicFooter({ light = false }: { light?: boolean }) {
-  return <footer className="public-footer"><a href="/" aria-label="IZZY home"><BrandLogo context="" light={light} /></a><nav aria-label="Footer"><a href="/pro">Lifetime Pro</a><a href="/local">Offline</a><a href="/account">My scripts</a></nav></footer>
+export function PublicFooter({ light = false, beforeNavigate, offlineHint = false }: { light?: boolean; beforeNavigate?: () => void; offlineHint?: boolean }) {
+  return <footer className="public-footer"><a href="/" aria-label="IZZY home" onClick={beforeNavigate}><BrandLogo context="" light={light} /></a><nav aria-label="Footer"><a href="/pro" onClick={beforeNavigate}>Lifetime Pro</a><a href="/local" onClick={beforeNavigate}>Offline</a><a href="/account" onClick={beforeNavigate}>My scripts</a></nav>
+    <div className="public-footer-legal"><span>© {new Date().getFullYear()} IZZY Prompter</span><LegalLinks beforeNavigate={beforeNavigate} offlineHint={offlineHint} /></div>
+  </footer>
 }

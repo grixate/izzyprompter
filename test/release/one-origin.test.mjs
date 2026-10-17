@@ -77,7 +77,7 @@ test('real production release serves SPA, API, and live editing on one origin wi
       assert.equal(ready.status, 200)
       assert.deepEqual(await ready.json(), { status: 'ready' })
     })
-    for (const path of ['/', '/pro', '/skins', '/display/ABC234', '/remote/ABC234', '/local', '/local/remote']) {
+    for (const path of ['/', '/pro', '/skins', '/terms', '/privacy', '/privacy/', '/refunds', '/contact', '/display/ABC234', '/remote/ABC234', '/local', '/local/remote']) {
       const response = await fetch(baseURL + path)
       assert.equal(response.status, 200)
       assert.equal(response.headers.get('cache-control'), 'no-store')

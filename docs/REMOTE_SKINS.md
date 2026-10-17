@@ -26,6 +26,35 @@ zero width. Container-based sizing handles small teaser objects as well as
 showroom cards; obsolete viewport overrides no longer distort the step keys.
 Live speed controls and the preserved lab studies keep their input semantics.
 
+## 17 October in-session library candidate
+
+The online remote's skin button is a 44 px swatch icon beside Quick Edit.
+It opens an in-session library with all sixteen static instrument previews,
+material labels and a check on the effective current skin. On phones this is
+a two-column bottom sheet; larger screens use a centered library. A compact
+“Skins” heading and close button stay visible while the collection scrolls.
+There is no promotional heading, eyebrow, subtitle or redundant selection footer;
+the bottom status area appears only while applying or reporting an error.
+Opening the library focuses and reveals the current choice. One tap verifies
+the existing Pro grant, saves the browser preference, closes the library and
+returns focus to the icon. Opening or applying does not pause playback, edit
+the script or navigate away from the session. Pending seek input is flushed
+before opening.
+
+Locked choices explain Pro access within the library. The contextual Pro link
+opens separately to retain the paired remote. Failed verification or storage
+keeps the library open with recovery text. Selection requests are serialized;
+Escape and Close remain available during verification. Revocation still falls
+back to Original without deleting the saved preference. Local/DIRECT behavior,
+the public showroom and all archived design studies are preserved.
+
+Browser automation covers one-tap selection across the full catalog, playback
+continuity, phone portrait/landscape and desktop sizing, complete previews,
+keyboard focus, saved preference/reload, locked choices, verification revocation,
+denied storage and closing during an in-flight request. Physical iPhone/iPad and
+Android acceptance remains pending under REMOTE_DEVICE_QA.md. This is a review
+candidate; production publication requires separate owner authorization.
+
 ## Historical launch scope
 
 - Online free V1 remains the delivery priority. Do not activate checkout, add a paid-launch dependency or change existing script limits for this experiment.

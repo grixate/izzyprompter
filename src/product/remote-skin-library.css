@@ -6,7 +6,8 @@
 .remote-skin-library[open] { display:flex; flex-direction:column; }
 .remote-skin-library::backdrop { background:#0d160dbd; backdrop-filter:blur(5px); }
 .remote-skin-heading { display:flex; flex-shrink:0; justify-content:space-between; align-items:center; gap:16px; padding:12px 24px; border-bottom:1px solid #cfd2c4; }
-.remote-skin-heading h2 { margin:0; font:600 22px/1.2 'Avenir Next','Helvetica Neue',sans-serif; letter-spacing:-.025em; }
+/* Align the visible letterforms with the close icon, rather than the font's line box. */
+.remote-skin-heading h2 { margin:0; font:600 22px/1.2 'Avenir Next','Helvetica Neue',sans-serif; letter-spacing:-.025em; transform:translateY(2px); }
 .remote-skin-close { display:grid; place-items:center; flex-shrink:0; width:44px; height:44px; border:1px solid #c3c9b7; border-radius:50%; background:transparent; color:inherit; cursor:pointer; }
 .remote-skin-grid { min-height:0; overflow-y:auto; overscroll-behavior:contain; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px 12px; padding:20px 24px 24px; scrollbar-width:thin; scrollbar-color:#99a38b transparent; }
 .remote-skin-card { min-width:0; padding:0 0 4px; border:0; background:transparent; color:inherit; text-align:left; cursor:pointer; border-radius:8px; font:inherit; }

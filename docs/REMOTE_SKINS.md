@@ -55,6 +55,17 @@ denied storage and closing during an in-flight request. Physical iPhone/iPad and
 Android acceptance remains pending under REMOTE_DEVICE_QA.md. This is a review
 candidate; production publication requires separate owner authorization.
 
+## 18 October live-remote readiness review
+
+All sixteen live finishes now have catalog-driven acceptance checks against a
+paired local display, alongside responsive, keyboard, reduced-motion and rendered
+contrast checks. The review repairs touch targets, legibility/focus, short-screen
+scrolling, missing material cues and a shared interrupted-drag capture bug.
+The reproducible playbook now maps both lab construction and live integration.
+See [the per-finish acceptance record and remaining device gates](REMOTE_SKIN_QA.md).
+This is still a review candidate; physical-device and screen-reader approval
+remain open, and no production publication is implied.
+
 ## Historical launch scope
 
 - Online free V1 remains the delivery priority. Do not activate checkout, add a paid-launch dependency or change existing script limits for this experiment.

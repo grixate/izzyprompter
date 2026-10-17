@@ -174,7 +174,7 @@ export function RemoteSurface({ sessionId, session }: { sessionId: string; sessi
       <SessionNotice connection={connection} surface="remote" onRetry={reconnect} />
       <header className="remote-header">
         <div className="remote-identity">
-          <strong>R–01</strong>
+          <strong>R–{skinById(appearance.skin).number}</strong>
           <RemoteBrand sessionId={sessionId} />
         </div>
         <div className="remote-link-state">
@@ -201,7 +201,7 @@ export function RemoteSurface({ sessionId, session }: { sessionId: string; sessi
         canEdit={hasDisplayPosition} beforeOpen={flushSeek} />
       {!appearance.local && <><button className="remote-finish-button" aria-label="Change remote skin" aria-describedby="remote-current-skin" title={`Change remote skin · ${skinById(appearance.skin).name}`} aria-haspopup="dialog" aria-expanded={finishOpen} aria-controls={finishOpen ? 'remote-skin-library' : undefined} onClick={event => { event.currentTarget.focus(); flushSeek(); setFinishOpen(true) }}><SwatchBook size={19} strokeWidth={1.6} /></button><span id="remote-current-skin" className="sr-only" aria-live="polite">Current skin: {skinById(appearance.skin).name}</span></>}
       </div>
-      <footer className="remote-footer"><span>TURN TO SEEK</span><span>PRESS CENTER TO {localPlaying ? 'PAUSE' : 'PLAY'}</span></footer>
+      <footer className="remote-footer"><span>TURN TO SEEK</span><span>PRESS {localPlaying ? 'PAUSE' : 'PLAY'} TO {localPlaying ? 'HOLD' : 'RUN'}</span></footer>
       {finishOpen && <RemoteSkinLibrary selected={appearance.skin} pro={appearance.pro} onApply={appearance.apply} onClose={() => setFinishOpen(false)} />}
     </main>
   )

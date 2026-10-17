@@ -1,0 +1,368 @@
+{
+  "date": "2026-10-18",
+  "tests": [
+    {
+      "title": "remote wheel works by keyboard and exposes Play as a separate accessible control",
+      "project": "chromium",
+      "status": "passed"
+    },
+    {
+      "title": "display chrome remains visible while focused and speed shortcuts clamp safely",
+      "project": "chromium",
+      "status": "passed"
+    },
+    {
+      "title": "unavailable local storage offers a text-only backup and explicit retry without blocking creation",
+      "project": "chromium",
+      "status": "passed"
+    },
+    {
+      "title": "terminal recovery is modal and returns the in-memory script without a page reload",
+      "project": "chromium",
+      "status": "passed"
+    },
+    {
+      "title": "clipboard refusal exposes a selectable pairing link rather than claiming success",
+      "project": "chromium",
+      "status": "passed"
+    },
+    {
+      "title": "remote wheel works by keyboard and exposes Play as a separate accessible control",
+      "project": "firefox",
+      "status": "passed"
+    },
+    {
+      "title": "display chrome remains visible while focused and speed shortcuts clamp safely",
+      "project": "firefox",
+      "status": "passed"
+    },
+    {
+      "title": "unavailable local storage offers a text-only backup and explicit retry without blocking creation",
+      "project": "firefox",
+      "status": "passed"
+    },
+    {
+      "title": "terminal recovery is modal and returns the in-memory script without a page reload",
+      "project": "firefox",
+      "status": "passed"
+    },
+    {
+      "title": "clipboard refusal exposes a selectable pairing link rather than claiming success",
+      "project": "firefox",
+      "status": "passed"
+    },
+    {
+      "title": "remote wheel works by keyboard and exposes Play as a separate accessible control",
+      "project": "webkit",
+      "status": "passed"
+    },
+    {
+      "title": "display chrome remains visible while focused and speed shortcuts clamp safely",
+      "project": "webkit",
+      "status": "passed"
+    },
+    {
+      "title": "unavailable local storage offers a text-only backup and explicit retry without blocking creation",
+      "project": "webkit",
+      "status": "passed"
+    },
+    {
+      "title": "terminal recovery is modal and returns the in-memory script without a page reload",
+      "project": "webkit",
+      "status": "passed"
+    },
+    {
+      "title": "clipboard refusal exposes a selectable pairing link rather than claiming success",
+      "project": "webkit",
+      "status": "passed"
+    },
+    {
+      "title": "the entry preview runs independently, scrubs, and never creates a session",
+      "project": "chromium",
+      "status": "passed"
+    },
+    {
+      "title": "editing pauses the preview, shows your words, and preserves the draft",
+      "project": "chromium",
+      "status": "passed"
+    },
+    {
+      "title": "login opens account setup without blocking the guest flow",
+      "project": "chromium",
+      "status": "passed"
+    },
+    {
+      "title": "reduced motion starts the sample paused",
+      "project": "chromium",
+      "status": "passed"
+    },
+    {
+      "title": "phone entry has no horizontal overflow and keeps setup before the preview",
+      "project": "chromium",
+      "status": "passed"
+    },
+    {
+      "title": "preview keeps the reading line and paired device proportions through responsive reflow",
+      "project": "chromium",
+      "status": "passed"
+    },
+    {
+      "title": "pause stops the wheel and words together; play resumes both",
+      "project": "chromium",
+      "status": "passed"
+    },
+    {
+      "title": "the entry preview runs independently, scrubs, and never creates a session",
+      "project": "firefox",
+      "status": "passed"
+    },
+    {
+      "title": "editing pauses the preview, shows your words, and preserves the draft",
+      "project": "firefox",
+      "status": "passed"
+    },
+    {
+      "title": "login opens account setup without blocking the guest flow",
+      "project": "firefox",
+      "status": "passed"
+    },
+    {
+      "title": "reduced motion starts the sample paused",
+      "project": "firefox",
+      "status": "passed"
+    },
+    {
+      "title": "phone entry has no horizontal overflow and keeps setup before the preview",
+      "project": "firefox",
+      "status": "passed"
+    },
+    {
+      "title": "preview keeps the reading line and paired device proportions through responsive reflow",
+      "project": "firefox",
+      "status": "passed"
+    },
+    {
+      "title": "pause stops the wheel and words together; play resumes both",
+      "project": "firefox",
+      "status": "passed"
+    },
+    {
+      "title": "the entry preview runs independently, scrubs, and never creates a session",
+      "project": "webkit",
+      "status": "passed"
+    },
+    {
+      "title": "editing pauses the preview, shows your words, and preserves the draft",
+      "project": "webkit",
+      "status": "passed"
+    },
+    {
+      "title": "login opens account setup without blocking the guest flow",
+      "project": "webkit",
+      "status": "passed"
+    },
+    {
+      "title": "reduced motion starts the sample paused",
+      "project": "webkit",
+      "status": "passed"
+    },
+    {
+      "title": "phone entry has no horizontal overflow and keeps setup before the preview",
+      "project": "webkit",
+      "status": "passed"
+    },
+    {
+      "title": "preview keeps the reading line and paired device proportions through responsive reflow",
+      "project": "webkit",
+      "status": "passed"
+    },
+    {
+      "title": "pause stops the wheel and words together; play resumes both",
+      "project": "webkit",
+      "status": "passed"
+    },
+    {
+      "title": "typing is live on two displays, the editor, and another phone before Done",
+      "project": "chromium",
+      "status": "passed"
+    },
+    {
+      "title": "recovered offline draft never overwrites a correction from another phone",
+      "project": "chromium",
+      "status": "passed"
+    },
+    {
+      "title": "offline draft survives refresh and is sent only after explicit resume",
+      "project": "chromium",
+      "status": "passed"
+    },
+    {
+      "title": "an unsent phone edit with unavailable storage offers a backup without claiming reload recovery",
+      "project": "chromium",
+      "status": "passed"
+    },
+    {
+      "title": "typing is live on two displays, the editor, and another phone before Done",
+      "project": "firefox",
+      "status": "passed"
+    },
+    {
+      "title": "recovered offline draft never overwrites a correction from another phone",
+      "project": "firefox",
+      "status": "passed"
+    },
+    {
+      "title": "offline draft survives refresh and is sent only after explicit resume",
+      "project": "firefox",
+      "status": "passed"
+    },
+    {
+      "title": "an unsent phone edit with unavailable storage offers a backup without claiming reload recovery",
+      "project": "firefox",
+      "status": "passed"
+    },
+    {
+      "title": "typing is live on two displays, the editor, and another phone before Done",
+      "project": "webkit",
+      "status": "passed"
+    },
+    {
+      "title": "recovered offline draft never overwrites a correction from another phone",
+      "project": "webkit",
+      "status": "passed"
+    },
+    {
+      "title": "offline draft survives refresh and is sent only after explicit resume",
+      "project": "webkit",
+      "status": "passed"
+    },
+    {
+      "title": "an unsent phone edit with unavailable storage offers a backup without claiming reload recovery",
+      "project": "webkit",
+      "status": "passed"
+    },
+    {
+      "title": "phone navigation uses measured paragraphs through typography changes, rapid steps, and reload",
+      "project": "chromium",
+      "status": "passed"
+    },
+    {
+      "title": "only the primary display publishes position and its differently sized backup takes over",
+      "project": "chromium",
+      "status": "passed"
+    },
+    {
+      "title": "phone navigation uses measured paragraphs through typography changes, rapid steps, and reload",
+      "project": "firefox",
+      "status": "passed"
+    },
+    {
+      "title": "only the primary display publishes position and its differently sized backup takes over",
+      "project": "firefox",
+      "status": "passed"
+    },
+    {
+      "title": "phone navigation uses measured paragraphs through typography changes, rapid steps, and reload",
+      "project": "webkit",
+      "status": "passed"
+    },
+    {
+      "title": "only the primary display publishes position and its differently sized backup takes over",
+      "project": "webkit",
+      "status": "passed"
+    },
+    {
+      "title": "remote skin library fits and keeps playback at 360 × 640",
+      "project": "chromium",
+      "status": "passed"
+    },
+    {
+      "title": "remote skin library fits and keeps playback at 390 × 844",
+      "project": "chromium",
+      "status": "passed"
+    },
+    {
+      "title": "remote skin library fits and keeps playback at 844 × 390",
+      "project": "chromium",
+      "status": "passed"
+    },
+    {
+      "title": "remote skin library fits and keeps playback at 1280 × 900",
+      "project": "chromium",
+      "status": "passed"
+    },
+    {
+      "title": "locked skins stay in the session and storage failure leaves the library recoverable",
+      "project": "chromium",
+      "status": "passed"
+    },
+    {
+      "title": "keyboard focus stays inside the library; closing during a selection is safe",
+      "project": "chromium",
+      "status": "passed"
+    },
+    {
+      "title": "remote skin library fits and keeps playback at 360 × 640",
+      "project": "firefox",
+      "status": "passed"
+    },
+    {
+      "title": "remote skin library fits and keeps playback at 390 × 844",
+      "project": "firefox",
+      "status": "passed"
+    },
+    {
+      "title": "remote skin library fits and keeps playback at 844 × 390",
+      "project": "firefox",
+      "status": "passed"
+    },
+    {
+      "title": "remote skin library fits and keeps playback at 1280 × 900",
+      "project": "firefox",
+      "status": "passed"
+    },
+    {
+      "title": "locked skins stay in the session and storage failure leaves the library recoverable",
+      "project": "firefox",
+      "status": "passed"
+    },
+    {
+      "title": "keyboard focus stays inside the library; closing during a selection is safe",
+      "project": "firefox",
+      "status": "passed"
+    },
+    {
+      "title": "remote skin library fits and keeps playback at 360 × 640",
+      "project": "webkit",
+      "status": "passed"
+    },
+    {
+      "title": "remote skin library fits and keeps playback at 390 × 844",
+      "project": "webkit",
+      "status": "passed"
+    },
+    {
+      "title": "remote skin library fits and keeps playback at 844 × 390",
+      "project": "webkit",
+      "status": "passed"
+    },
+    {
+      "title": "remote skin library fits and keeps playback at 1280 × 900",
+      "project": "webkit",
+      "status": "passed"
+    },
+    {
+      "title": "locked skins stay in the session and storage failure leaves the library recoverable",
+      "project": "webkit",
+      "status": "passed"
+    },
+    {
+      "title": "keyboard focus stays inside the library; closing during a selection is safe",
+      "project": "webkit",
+      "status": "passed"
+    }
+  ],
+  "totals": {
+    "passed": 72
+  }
+}

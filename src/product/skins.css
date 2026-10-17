@@ -13,6 +13,7 @@
 .skin-face.skin--graphite .speed-module :is(button,.speed-step), .skin-face.skin--original .speed-module :is(button,.speed-step) { color: #d7dbcd; background: #3e4534; border-color: #151c0e; }
 .skin-face.skin--ivory { --instrument-type: #44473f; background: linear-gradient(125deg, #f0eee3, #e1dfd2); border-color: #bfbfb0; }
 .skin-face.skin--ivory .wheel-rotor { background: #edece2; box-shadow: inset 0 0 0 1px #b8bdad, inset 0 0 0 3px #f6f5ed, 0 2px 3px #555d4030; }
+.skin-face.skin--ivory .wheel-rotor::after { content: ""; position: absolute; top: 7%; left: calc(50% - 2px); width: 4px; height: 9%; border-radius: 2px; background: #ed6834; }
 .skin-face.skin--ivory .wheel-disc { inset: 13%; background: radial-gradient(circle at 35% 25%, #eeece1, #d3d4c6); box-shadow: inset 0 1px #fff9, 0 0 0 1px #babdae, inset 0 -2px 5px #636a4d15; }
 .skin-face.skin--ivory .transport-button { inset: 35%; border: 1px solid #343a2c; background: #373d30; color: #e9ecdf; box-shadow: inset 0 1px #929b7d4d, 0 2px 3px #37442b40; }
 .skin-face.skin--ivory .speed-module :is(button,.speed-step) { background: #ecebdf; }
@@ -177,7 +178,7 @@
 .skin-face .wheel-input:focus-visible, .skin-face .transport-button:focus-visible, .jog-wheel .wheel-input:focus-visible, .jog-wheel .transport-button:focus-visible { outline:none; }
 .skin-face .wheel-input:focus:not(:focus-visible) { outline:none; }
 .standalone-remote.skin-face { color:var(--instrument-type,#dddccf); }
-.standalone-remote.skin-face .speed-module strong,.standalone-remote.skin-face .phrase-nav button,.standalone-remote.skin-face .remote-footer { color:inherit; }
+.standalone-remote.skin-face .speed-module strong,.standalone-remote.skin-face .remote-footer { color:inherit; }
 .standalone-remote.skin-face .remote-header .network-state { color:inherit; }
 @media(prefers-reduced-motion:reduce){.remote-instrument .wheel-rotor{animation:none}}
 .standalone-remote.skin-face .transport-button { min-width:44px; min-height:44px; }
@@ -194,4 +195,76 @@
   .remote-instrument .instrument-speed { grid-template-columns:16px minmax(20px,1fr) 16px max-content; gap:4px; }
   .remote-instrument .speed-step { width:16px; height:16px; font-size:10px; }
   .remote-instrument .instrument-speed strong { font-size:11px; }
+}
+
+.skin-face.skin--signal .speed-track > span { background: #f3e3b7; }
+.skin-face.skin--oxide .speed-track > span { background: #dfbb7b; }
+.skin-face.skin--switchboard .speed-track > span { background: #dfc584; }
+.skin-face.skin--vector .speed-track > span { background: #a7da80; }
+.skin-face.skin--cartridge .speed-track > span { background: #505ba1; }
+.skin-face.skin--aperture .speed-track > span { background: #d1b77e; }
+.skin-face.skin--correspondent .speed-track > span { background: #d6b97d; }
+.skin-face.skin--foundry .speed-track > span { background: #e4c18a; }
+.skin-face.skin--inox .speed-track > span { background: #335760; }
+.skin-face.skin--airframe .speed-track > span { background: #af5939; }
+
+/* Live controls need their own sizing/legibility, separate from inert miniatures. */
+.standalone-remote.skin-face {
+  height: 100dvh;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.standalone-remote.skin-face > :not(.control-deck) { flex-shrink: 0; }
+.standalone-remote.skin-face .control-deck { flex-shrink: 0; min-height: min-content; }
+.standalone-remote.skin-face .wheel-column { position: relative; }
+.standalone-remote.skin-face .jog-wheel { max-width: 100%; }
+/* A finish change must not tween essential ink through an unreadable colour. */
+.standalone-remote.skin-face .transport-button { transition: transform .12s ease; }
+.standalone-remote.skin--signal { --instrument-type: #302015; }
+.standalone-remote.skin-face .speed-module {
+  position: relative;
+  grid-template-columns: 44px minmax(44px, 1fr) 44px auto;
+  gap: 9px;
+}
+.standalone-remote.skin-face .speed-title { position: absolute; top: -16px; left: 0; color: inherit; font-size: 10px; }
+.standalone-remote.skin-face .speed-module button { width: 44px; height: 44px; color: inherit; }
+.standalone-remote.skin--field .speed-module button { background: #d7dbd0; }
+.standalone-remote.skin-face .speed-track { height: 44px; }
+.standalone-remote.skin-face .speed-track::before { background: currentColor; opacity: .65; }
+.standalone-remote.skin-face .speed-track > span { box-shadow: none; }
+.standalone-remote.skin-face .speed-track > span::after {
+  content: ""; position: absolute; right: -5px; top: -4px;
+  width: 10px; height: 10px; border-radius: 50%; background: currentColor;
+}
+.standalone-remote.skin-face .remote-link-state small,
+.standalone-remote.skin-face .remote-brand,
+.standalone-remote.skin-face .quick-edit-trigger,
+.standalone-remote.skin-face .quick-edit-feedback { color: inherit; }
+.standalone-remote.skin-face .network-state,
+.standalone-remote.skin-face .remote-link-state small,
+.standalone-remote.skin-face .remote-brand { font-size: 10px; letter-spacing: .08em; }
+.standalone-remote.skin-face .quick-edit-trigger { font-size: 11px; }
+.standalone-remote.skin-face .display-kicker,
+.standalone-remote.skin-face .timecode span { color: #a4afa0; }
+.standalone-remote.skin-face .display-kicker,
+.standalone-remote.skin-face .state-label { font-size: 10px; letter-spacing: .06em; }
+.standalone-remote.skin-face .phrase-nav button { color: #e3e4df; }
+.standalone-remote.skin-face .phrase-count small { color: #b1b3ad; }
+.standalone-remote.skin-face .phrase-nav button small,
+.standalone-remote.skin-face .phrase-count small { font-size: 10px; }
+/* A visible cue for each keyboard stop, even on faces with no idle caption. */
+.standalone-remote.skin-face .transport-button:focus-visible { outline: 2px solid var(--instrument-type, #dddccf); outline-offset: 5px; }
+.standalone-remote.skin-face .speed-track:has(input:focus-visible) { outline: 2px solid currentColor; outline-offset: 2px; border-radius: 3px; }
+.standalone-remote.skin-face .speed-module button:focus-visible,
+.standalone-remote.skin-face .phrase-nav button:focus-visible,
+.standalone-remote.skin-face .quick-edit-trigger:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+.standalone-remote.skin-face .wheel-column:has(.wheel-input:focus-visible) .wheel-caption {
+  display: block; color: inherit; font-size: 10px; text-decoration: underline; text-underline-offset: 5px;
+}
+.standalone-remote:is(.skin--field,.skin--graphite,.skin--glacier,.skin--correspondent,.skin--airframe) .wheel-column:has(.wheel-input:focus-visible) .wheel-caption {
+  /* The reserved key bay has a 19px gap between wheel and transport. */
+  position: absolute; top: calc(100% - 52px); margin: 0; line-height: 12px; white-space: nowrap;
+}
+@media (prefers-reduced-motion: reduce) {
+  .standalone-remote.skin-face .transport-button { transition: none; }
 }

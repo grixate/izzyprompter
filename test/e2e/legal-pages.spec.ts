@@ -46,6 +46,15 @@ for (const width of [320, 390, 1280]) {
       const footer = page.getByRole('navigation', { name: 'Legal', exact: true })
       await footer.scrollIntoViewIfNeeded()
       for (const [href] of documents) await expect(footer.locator(`a[href="${href}"]`)).toBeVisible()
+      const contrast = await footer.locator('a').first().evaluate(link => {
+        const luminance = (color: string) => (color.match(/[\d.]+/g) ?? []).slice(0, 3)
+          .map(value => Number(value) / 255).map(value => value <= .04045 ? value / 12.92 : ((value + .055) / 1.055) ** 2.4)
+          .reduce((sum, value, index) => sum + value * [.2126, .7152, .0722][index], 0)
+        const foreground = luminance(getComputedStyle(link).color)
+        const background = luminance(getComputedStyle(link.closest('main')!).backgroundColor)
+        return (Math.max(foreground, background) + .05) / (Math.min(foreground, background) + .05)
+      })
+      expect(contrast).toBeGreaterThanOrEqual(4.5)
       expect(await page.locator('main').evaluate(el => el.scrollWidth <= el.clientWidth)).toBe(true)
     }
   })

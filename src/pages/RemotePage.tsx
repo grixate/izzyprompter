@@ -1,4 +1,5 @@
 import { RemoteBrand } from '../components/BrandLogo'
+import { SwatchBook } from 'lucide-react'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { JogControls, TransportReadout } from '../components/JogControls'
 import { legacySessionScriptToDocument } from '../domain/document'
@@ -16,7 +17,8 @@ import { QuickEdit } from './QuickEdit'
 import { boundedSpeed } from '../realtime/keyboard'
 import type { SessionControllerView } from '../realtime/controller'
 import { useRemoteAppearance } from '../product/useRemoteAppearance'
-import { SkinDialog } from '../product/SkinDialog'
+import { RemoteSkinLibrary } from '../product/RemoteSkinLibrary'
+import { skinById } from '../product/catalog'
 import '../product/skins.css'
 
 export function RemotePage({ sessionId }: { sessionId: string }) {
@@ -197,10 +199,10 @@ export function RemoteSurface({ sessionId, session }: { sessionId: string; sessi
       <QuickEdit sessionId={sessionId} epoch={sessionEpoch} connectionId={connectionId} connection={connection}
         document={izzyDocument} revision={script.revision} editing={editing} request={request}
         canEdit={hasDisplayPosition} beforeOpen={flushSeek} />
-      {!appearance.local && <button className="remote-finish-button" onClick={event => { event.currentTarget.focus(); setFinishOpen(true) }}>Remote finish</button>}
+      {!appearance.local && <><button className="remote-finish-button" aria-label="Change remote skin" aria-describedby="remote-current-finish" title={`Change remote skin · ${skinById(appearance.skin).name}`} aria-haspopup="dialog" aria-expanded={finishOpen} aria-controls={finishOpen ? 'remote-skin-library' : undefined} onClick={event => { event.currentTarget.focus(); flushSeek(); setFinishOpen(true) }}><SwatchBook size={19} strokeWidth={1.6} /></button><span id="remote-current-finish" className="sr-only" aria-live="polite">Current finish: {skinById(appearance.skin).name}</span></>}
       </div>
       <footer className="remote-footer"><span>TURN TO SEEK</span><span>PRESS CENTER TO {localPlaying ? 'PAUSE' : 'PLAY'}</span></footer>
-      {finishOpen && <SkinDialog initial={appearance.skin} selected={appearance.skin} pro={appearance.pro} onApply={appearance.apply} onClose={() => setFinishOpen(false)} />}
+      {finishOpen && <RemoteSkinLibrary selected={appearance.skin} pro={appearance.pro} onApply={appearance.apply} onClose={() => setFinishOpen(false)} />}
     </main>
   )
 }

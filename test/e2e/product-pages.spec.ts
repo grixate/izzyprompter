@@ -106,7 +106,7 @@ test('every finish can be applied on an entitled remote without changing its con
     entitled = false
     await remote.getByRole('button', { name: 'Change remote skin', exact: true }).click()
     await remote.getByRole('button', { name: 'Use Orbit', exact: true }).click()
-    await expect(remote.getByRole('dialog')).toContainText('Could not change the finish')
+    await expect(remote.getByRole('dialog')).toContainText('Could not change the skin')
     await expect(remote.getByRole('main', { name: 'Remote controller' })).toHaveClass(/skin--original/)
     expect(await remote.evaluate(() => localStorage.getItem('izzy:remote-finish:v1'))).toBe('airframe')
     await remote.keyboard.press('Escape')

@@ -1,12 +1,12 @@
-# In-session remote finish library
+# In-session remote skin library
 
 The swatch icon beside Quick Edit opens a compact library instead of the public
-showroom's one-at-a-time preview. Tap any unlocked finish to apply it and return
+showroom's one-at-a-time preview. Tap any unlocked skin to apply it and return
 to the take. The collection uses IZZY's cream and olive palette, material labels
 and the actual shared instrument artwork. Previews remain still during a take.
 
 - [Mobile library](mobile-library.png): two columns, current-choice check,
-  fixed heading/close and current-finish footer.
+  compact “Skins” heading and fixed Close control. Status appears only when needed.
 - [Remote with Airframe applied](mobile-remote.png): 44 px swatch button beside
   Quick Edit; transport continues through selection.
 

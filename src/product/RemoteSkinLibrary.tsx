@@ -34,7 +34,7 @@ export function RemoteSkinLibrary({ selected, pro, onApply, onClose }: {
     if (applying.current) return
     const skin = skinById(id)
     if (skin.pro && !pro) {
-      setNotice(`${skin.name} is a Pro finish.`); setLocked(true)
+      setNotice(`${skin.name} requires Pro.`); setLocked(true)
       return
     }
     applying.current = true
@@ -43,15 +43,15 @@ export function RemoteSkinLibrary({ selected, pro, onApply, onClose }: {
       const ok = await onApply(id)
       if (!alive.current) return
       if (ok) onClose()
-      else setNotice('Could not change the finish. Check your connection and Pro access, then try again.')
+      else setNotice('Could not change the skin. Check your connection and Pro access, then try again.')
     } catch {
-      if (alive.current) setNotice('Could not change the finish. Please try again.')
+      if (alive.current) setNotice('Could not change the skin. Please try again.')
     } finally {
       applying.current = false
       if (alive.current) setPending(null)
     }
   }
-  return createPortal(<dialog ref={dialog} id="remote-skin-library" className="remote-skin-library" aria-labelledby="remote-skin-title" aria-describedby="remote-skin-help"
+  return createPortal(<dialog ref={dialog} id="remote-skin-library" className="remote-skin-library" aria-labelledby="remote-skin-title"
     onCancel={event => { event.preventDefault(); onClose() }} onClick={event => { if (event.target === event.currentTarget) onClose() }}
     onKeyDown={event => {
       if (event.key !== 'Tab') return
@@ -60,11 +60,11 @@ export function RemoteSkinLibrary({ selected, pro, onApply, onClose }: {
       if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last?.focus() }
       else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first?.focus() }
     }}>
-    <header className="remote-skin-heading"><div><span className="remote-skin-eyebrow">R–01 / FINISH LIBRARY</span><h2 id="remote-skin-title">Make it yours.</h2><p id="remote-skin-help">Tap a finish. Back to your take.</p></div><button className="remote-skin-close" onClick={onClose} aria-label="Close skin library"><X size={20} /></button></header>
-    <div className="remote-skin-grid" role="group" aria-label="Remote finishes" aria-busy={pending !== null}>{skins.map(skin => <button key={skin.id} className="remote-skin-card" aria-label={`Use ${skin.name}${skin.pro && !pro ? ' · Pro finish' : ''}`} aria-pressed={selected === skin.id} disabled={pending !== null} onClick={() => void choose(skin.id)}>
+    <header className="remote-skin-heading"><h2 id="remote-skin-title">Skins</h2><button className="remote-skin-close" onClick={onClose} aria-label="Close skin library"><X size={20} /></button></header>
+    <div className="remote-skin-grid" role="group" aria-label="Remote skins" aria-busy={pending !== null}>{skins.map(skin => <button key={skin.id} className="remote-skin-card" aria-label={`Use ${skin.name}${skin.pro && !pro ? ' · Pro skin' : ''}`} aria-pressed={selected === skin.id} disabled={pending !== null} onClick={() => void choose(skin.id)}>
       <span className="remote-skin-sample"><RemoteInstrument skin={skin.id} motion={false} /><span className="remote-skin-marker">{selected === skin.id ? <Check size={14} /> : skin.pro && !pro ? <LockKeyhole size={12} /> : skin.number}</span></span>
       <span className="remote-skin-name">{skin.name}</span><span className="remote-skin-material">{skin.material}</span>
     </button>)}</div>
-    <footer className="remote-skin-footer"><div role="status">{pending ? `Applying ${skinById(pending).name}…` : notice || <><Check size={14} /><span>{skinById(selected).name}<small>ON THIS REMOTE</small></span></>}</div>{locked && <a href="/pro" target="_blank" rel="noopener noreferrer">Explore Pro ↗</a>}<span className="remote-skin-count">16 FINISHES</span></footer>
+    {(pending || notice) && <footer className="remote-skin-footer"><div role="status">{pending ? `Applying ${skinById(pending).name}…` : notice}</div>{locked && <a href="/pro" target="_blank" rel="noopener noreferrer">Pro details ↗</a>}</footer>}
   </dialog>, document.body)
 }

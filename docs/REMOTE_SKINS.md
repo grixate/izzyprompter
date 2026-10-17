@@ -28,11 +28,13 @@ Live speed controls and the preserved lab studies keep their input semantics.
 
 ## 17 October in-session library candidate
 
-The online remote's finish link becomes a 44 px swatch icon beside Quick Edit.
+The online remote's skin button is a 44 px swatch icon beside Quick Edit.
 It opens an in-session library with all sixteen static instrument previews,
-material labels and a check on the effective current finish. On phones this is
-a two-column bottom sheet; larger screens use a centered library. The heading,
-close button and current-finish footer stay visible while the collection scrolls.
+material labels and a check on the effective current skin. On phones this is
+a two-column bottom sheet; larger screens use a centered library. A compact
+“Skins” heading and close button stay visible while the collection scrolls.
+There is no promotional heading, eyebrow, subtitle or redundant selection footer;
+the bottom status area appears only while applying or reporting an error.
 Opening the library focuses and reveals the current choice. One tap verifies
 the existing Pro grant, saves the browser preference, closes the library and
 returns focus to the icon. Opening or applying does not pause playback, edit

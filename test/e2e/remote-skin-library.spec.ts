@@ -2,7 +2,7 @@ import { test, expect, type Page } from '@playwright/test'
 
 async function openRemote(page: Page, pro = true) {
   await page.goto('/')
-  await page.getByRole('textbox', { name: 'Teleprompter script' }).fill('A synthetic take for the remote finish library.\n\nA second paragraph for playback checks.')
+  await page.getByRole('textbox', { name: 'Teleprompter script' }).fill('A synthetic take for the remote skin library.\n\nA second paragraph for playback checks.')
   await page.getByRole('button', { name: 'SET UP PROMPTER', exact: true }).click()
   const href = await page.getByRole('link', { name: /OPEN REMOTE/ }).getAttribute('href')
   await page.route('**/api/sessions/*/appearance', route => route.fulfill({ json: { pro } }))
@@ -27,7 +27,7 @@ for (const viewport of [{ width: 360, height: 640 }, { width: 390, height: 844 }
     expect(bounds!.width).toBeGreaterThanOrEqual(44)
     expect(bounds!.height).toBeGreaterThanOrEqual(44)
     await trigger.click()
-    const dialog = page.getByRole('dialog', { name: 'Make it yours.' })
+    const dialog = page.getByRole('dialog', { name: 'Skins' })
     await expect(dialog.getByRole('button', { name: /^Use / })).toHaveCount(16)
     await expect(dialog.getByRole('button', { name: 'Use Original', exact: true })).toBeFocused()
     expect(await dialog.evaluate(el => el.scrollWidth - el.clientWidth)).toBeLessThanOrEqual(1)
@@ -36,7 +36,7 @@ for (const viewport of [{ width: 360, height: 640 }, { width: 390, height: 844 }
     expect(box!.x).toBeGreaterThanOrEqual(0)
     expect(box!.y + box!.height).toBeLessThanOrEqual(viewport.height + 1)
     await expect(dialog.getByRole('button', { name: 'Close skin library' })).toBeInViewport()
-    await expect(dialog.locator('.remote-skin-footer')).toBeInViewport()
+    await expect(dialog.locator('.remote-skin-footer')).toHaveCount(0)
     for (const sample of await dialog.locator('.remote-skin-sample').all()) {
       const stage = await sample.boundingBox()
       const object = await sample.locator('.remote-instrument').boundingBox()
@@ -60,14 +60,14 @@ for (const viewport of [{ width: 360, height: 640 }, { width: 390, height: 844 }
   })
 }
 
-test('locked finishes stay in the session and storage failure leaves the library recoverable', async ({ page }) => {
+test('locked skins stay in the session and storage failure leaves the library recoverable', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 })
   await openRemote(page, false)
   const trigger = page.getByRole('button', { name: 'Change remote skin' })
   await trigger.click()
-  await page.getByRole('button', { name: 'Use Orbit · Pro finish', exact: true }).click()
-  await expect(page.getByRole('status')).toContainText('Orbit is a Pro finish.')
-  await expect(page.getByRole('link', { name: 'Explore Pro' })).toHaveAttribute('target', '_blank')
+  await page.getByRole('button', { name: 'Use Orbit · Pro skin', exact: true }).click()
+  await expect(page.getByRole('status')).toContainText('Orbit requires Pro.')
+  await expect(page.getByRole('link', { name: 'Pro details' })).toHaveAttribute('target', '_blank')
   await expect(page.getByRole('main', { name: 'Remote controller' })).toHaveClass(/skin--original/)
   await page.keyboard.press('Escape')
   await expect(trigger).toBeFocused()
@@ -78,7 +78,7 @@ test('locked finishes stay in the session and storage failure leaves the library
   await expect(page.getByRole('button', { name: 'Use Orbit', exact: true })).toBeVisible()
   await page.evaluate(() => { Storage.prototype.setItem = () => { throw new Error('Storage unavailable') } })
   await page.getByRole('button', { name: 'Use Orbit', exact: true }).click()
-  await expect(page.getByRole('dialog')).toContainText('Could not change the finish')
+  await expect(page.getByRole('dialog')).toContainText('Could not change the skin')
   await expect(page.getByRole('button', { name: 'Use Orbit', exact: true })).toBeEnabled()
   await expect(page.getByRole('main', { name: 'Remote controller' })).toHaveClass(/skin--original/)
   await page.getByRole('button', { name: 'Close skin library' }).click()

@@ -21,8 +21,12 @@ resources and explicit scope.
 Staging requires the `izzy-review` HTTP Basic login over valid HTTPS. Its password
 is in `~/.ssh/izzy_staging_access.json` on this Mac (mode 0600), outside the repo.
 The server holds only the password hash in `/etc/caddy/staging-users`; Caddy
-removes the Authorization header before proxying to Phoenix. Every route,
-including assets, health, API, and WebSockets, requires authentication. Response
+removes the Authorization header before proxying to Phoenix. Assets, health,
+account/API pages and WebSockets require HTTP Basic authentication. Only exact
+`POST /api/payments/lava` requests reach the app without HTTP Basic; the app
+requires the separate staging webhook secret in `X-Api-Key` and rejects missing
+or incorrect keys. Other methods, trailing slashes and other provider routes
+remain behind HTTP Basic. Response
 headers discourage indexing and shared caching. On a phone, open staging and
 enter the same login before using a pairing link.
 

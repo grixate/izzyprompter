@@ -32,8 +32,16 @@ staging.izzyprompter.com {
 		X-Robots-Tag "noindex, nofollow, noarchive"
 		Cache-Control "private, no-store"
 	}
+	# Only Lava's exact POST callback uses the app's X-Api-Key authentication.
+	# All other requests retain staging's HTTP Basic protection.
+	@review_only {
+		not {
+			method POST
+			path /api/payments/lava
+		}
+	}
 	# Caddy 2.6 uses the older basicauth directive name. Keep hashes out of Git.
-	basicauth bcrypt "IZZY staging" {
+	basicauth @review_only bcrypt "IZZY staging" {
 		import /etc/caddy/staging-users
 	}
 	request_body {

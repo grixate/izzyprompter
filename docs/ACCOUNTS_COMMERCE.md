@@ -1,12 +1,12 @@
 # IZZY V1 — accounts, library and lifetime Pro
 
-Updated 2026-10-12: **lava.top is the sole checkout provider; Lifetime Pro is US$29 once, USD only.** This supersedes the earlier dual-provider proposal. Historical purchases and grants remain readable. Payment activation, Google/SMTP delivery and public deployment require server/merchant configuration and verification; no real purchase, refund or payout has been performed. Follow [Lava.top setup](LAVA_TOP.md).
+Updated 2026-10-17: **lava.top is the sole checkout provider; Lifetime Pro is US$29 at launch, US$49 in regular-price mode, USD only and paid once.** This supersedes the earlier dual-provider proposal. Historical purchases and grants remain readable. Email-link accounts/SMTP are documented in ACCOUNT_OPERATIONS.md and POSTBOX_EMAIL.md; Google and live payment acceptance remain separate. No real purchase, refund or payout pass is claimed here. Follow [Lava.top setup](LAVA_TOP.md).
 
 ## Product and architecture
 
 - Guest prompting remains available without a database or login. Hosted phone/tablet sessions require internet access to the Phoenix server, not a user computer.
-- A free account has three non-trashed scripts. A production Pro grant removes the count limit and enables named/default presets. Document and realtime budgets remain unchanged.
-- Fixed prices are **RUB 249,000 kopecks** or **USD 2,900 cents**. The browser cannot set a price. No exchange-rate calculation occurs in IZZY.
+- A free account has three non-trashed scripts. A production Pro grant removes the count limit, enables named/default presets and unlocks fifteen Pro remote finishes. Document and realtime budgets remain unchanged.
+- The server-owned product price is **USD 2,900 cents** in launch mode or **USD 4,900 cents** otherwise. Historical RUB purchases remain supported; new checkout is USD only. The browser cannot set a price. No exchange-rate calculation occurs in IZZY.
 - React, account HTTP endpoints, authenticated account channels and capability-based session channels run on one origin. PostgreSQL stores accounts, tokens, scripts/revisions, mutation receipts, presets, checkout attempts, event inbox, grants and audits.
 - Ordinary account editing saves after 500 ms, one request at a time. Newest pending text is journaled in IndexedDB under account/script/draft identity. Each tab has its own journal; closed-tab drafts can be explicitly recovered from the account library. Another account's data is never silently adopted. Device storage is not a backup: browser clearing/private-mode restrictions can remove it; export remains available.
 - Compare-and-swap revisions and mutation IDs prevent silent overwrites/repeated writes. Conflicts explicitly choose saved, local, or a new copy. Receipts expire after 30 days; an old retry then conflicts against its stale revision instead of overwriting newer text.
@@ -46,9 +46,9 @@ the candidate serves account traffic. Sales and hosted configuration are unchang
 
 ## Payment setup — disabled by default
 
-The owner selected lava.top exclusively on 2026-10-12 and confirmed a US$29 lifetime purchase, without rubles at launch. New checkout accepts only `provider=lava` and `currency=USD`; prices are server-owned. No subscriptions or paid skin selection are shipped by this integration. The twelve skins remain in the development lab.
+The owner selected lava.top exclusively on 2026-10-12 and confirmed a US$29 lifetime purchase, without rubles at launch. New checkout accepts only `provider=lava` and `currency=USD`; prices are server-owned. No subscriptions are offered. The current public showroom has sixteen finishes: Original is free and fifteen require Pro. Previewing a finish does not grant access.
 
-Follow [Lava.top setup and acceptance](LAVA_TOP.md) for the one-time offer, server credentials, webhook selection, return flow and payment checks. Checkout stays disabled by default until the merchant is configured and verified. Missing or identical outbound/inbound credentials keep the offer unavailable, even if the global payment flag is on.
+Legal pages and checkout disclosures have owner approval; complete [legal publication readiness](LEGAL_PAGES.md) before public release. Follow [Lava.top setup and acceptance](LAVA_TOP.md) for the one-time offer, server credentials, webhook selection, return flow and payment checks. Checkout stays disabled by default until the merchant is configured and verified. Missing or identical outbound/inbound credentials keep the offer unavailable, even if the global payment flag is on.
 
 The Prodamus adapter and callback authentication remain for historical transaction support, but cannot start new checkout even if old Prodamus approval variables are set. Existing purchases, refunds and grants are not migrated or deleted.
 

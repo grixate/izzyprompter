@@ -73,6 +73,9 @@ preserve those recovery and migration/rollback controls.
    `docker compose -f /opt/izzy-staging/compose.yaml up -d` on the server.
    Confirm readiness and run the hosted smoke below. Review on the owner's
    actual tablet/phone for changes that affect prompting or interaction.
+   For candidates containing the new legal documents, follow LEGAL_PAGES.md;
+   drafts can be reviewed privately, but `npm run check:legal` must pass and
+   the policy wording must be approved before public publication.
 5. Merge after checks and review. A merge does not change production. Record
    which image has approval, even if the merge produces a different Git SHA.
 6. After explicit publication approval, promote the exact staging-tested image

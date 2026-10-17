@@ -13,7 +13,7 @@ export function ProPage() {
   useEffect(() => { document.title = 'Izzy Pro — Yours for good'; track('pro_page_viewed') }, [])
   return <main className="product-page pro-page"><PublicNav light />
     <section className="pro-hero page-width">
-      <div className="pro-hero-copy"><h1>Make it<br /><em>yours.</em></h1><p>Fifteen finishes. Unlimited scripts.</p><div className="pro-hero-offer"><Offer /><ProAction source="pro_hero" /></div></div>
+      <div className="pro-hero-copy"><h1>Make it<br /><em>yours.</em></h1><p>Fifteen finishes. Unlimited scripts.</p><div className="pro-hero-offer"><Offer /><ProAction source="pro_hero" /><p className="lifetime-note">Lifetime access while IZZY operates. No subscription. <a href="/terms">Read the terms</a>.</p></div></div>
       <div className="pro-hero-object"><div className="hero-orbit" aria-hidden="true" /><RemoteInstrument skin={finish} />
         <div className="hero-finish-picker"><span>{skinById(finish).name}</span><div role="group" aria-label="Preview a remote finish">{heroFinishes.map(id => <button key={id} className={`finish-dot finish-dot--${id}`} aria-label={`Preview ${skinById(id).name}`} aria-pressed={finish === id} onClick={() => { setFinish(id); track('skin_previewed', { skin: id, source: 'pro_hero' }) }} />)}</div></div>
       </div>

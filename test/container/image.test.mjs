@@ -70,6 +70,12 @@ test('Linux container runs unprivileged, pairs and live-edits, loses sessions ex
     assert.equal(response.status, 200)
     assert.match(response.headers.get('cache-control'), /immutable/)
     assert.equal((await fetch(origin + '/assets/not-real.js')).status, 404)
+    for (const path of ['/terms', '/privacy', '/privacy/', '/refunds', '/contact']) {
+      const legal = await fetch(origin + path)
+      assert.equal(legal.status, 200)
+      assert.match(legal.headers.get('content-type'), /text\/html/)
+      assert.equal(legal.headers.get('set-cookie'), null)
+    }
     assert.equal((await fetch(origin + '/api/sessions', {
       method: 'POST', headers: { Origin: 'https://foreign.example', 'Content-Type': 'application/json' },
       body: JSON.stringify({ protocol_version: 2, content: 'Must not be created', speed: 1 }),

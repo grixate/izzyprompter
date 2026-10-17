@@ -2,14 +2,14 @@
 
 Updated 2026-10-17: use **lava.top exclusively**, with **US$29 paid once during launch**, or **US$49 when launch mode ends**. The server-owned product controls both displayed and invoiced prices. New checkout uses USD only. No recurring billing. Existing RUB/Prodamus history and entitlements remain supported, but neither is offered for new purchases.
 
-## Current readiness, 15 October 2026
+## Current readiness, 17 October 2026
 
-See [the payment readiness audit](PAYMENT_READINESS_2026-10-15.md) for observed
-host configuration, local corrections and remaining merchant/real-payment gates.
-The review candidate adds optional remote finishes, durable bounded invoice
-recovery, a safe purchase return after reauthentication, offer snapshots and
-release-eval support. The approved production release and sales flags are unchanged.
-An additive migration is required before deploying this candidate.
+The account/payment code and migrations described in the historical
+[payment readiness audit](PAYMENT_READINESS_2026-10-15.md) are now deployed with
+the approved legal-pages release. Public sales remain disabled. A merchant API
+read on 17 October found the published one-time offer and its US$29 price; it
+reported `isDynamicPrice=false`. API pricing, merchant webhook registration,
+provider delivery and real purchase/refund acceptance remain release gates.
 
 ## What is implemented
 
@@ -30,6 +30,24 @@ An additive migration is required before deploying this candidate.
 4. Add a webhook at `https://YOUR_DOMAIN/api/payments/lava`, authenticate it with **Your service's API key / X-Api-Key**, and enter that inbound secret. Select **payment.success**, **payment.failed**, **refund.success** and **chargeback.initiated**. Subscription events are unnecessary for this offer; unknown events are acknowledged safely.
 5. Deploy the account-enabled app behind HTTPS using [account setup](ACCOUNTS_COMMERCE.md) and [deployment instructions](DEPLOYMENT.md). Apply migrations once, configure mail, and verify account sign-in. If your network filters incoming webhooks, consult Lava's current documented source IP.
 6. Set the runtime variables below in the server environment. Phoenix does not load `.env` files automatically. No key belongs in `VITE_*`, browser code, source control, screenshots or chat.
+
+For staging, use `https://staging.izzyprompter.com/api/payments/lava` and a
+separate staging inbound secret. The reviewed proxy configuration exempts only
+that exact POST from HTTP Basic; Phoenix still authenticates `X-Api-Key`.
+Do not register production delivery or enable public checkout for this test.
+Keep the webhook attached to the API key used by staging, and use a separate
+key/webhook configuration when preparing production so events cannot cross
+environments.
+
+After configuring staging, run `node scripts/verify-lava-staging.mjs`. It reads
+the protected local files `~/.ssh/izzy_lava_api_key`,
+`~/.ssh/izzy_lava_staging_webhook_secret` and
+`~/.ssh/izzy_staging_access.json`; no secret is supplied in command arguments.
+It checks missing/wrong/outbound keys, accepts an authenticated unknown event,
+and verifies that other routes still require HTTP Basic and both checkouts
+remain off. The probe neither creates an invoice nor stores a payment event.
+This verifies our endpoint, not Lava delivery; the latter remains a separate
+merchant acceptance check.
 
 ```sh
 PUBLIC_ORIGIN=https://YOUR_DOMAIN

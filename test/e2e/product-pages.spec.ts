@@ -66,7 +66,7 @@ test('visible wheels move and offscreen showroom rotors suspend', async ({ page 
 })
 
 test('every finish can be applied on an entitled remote without changing its controls', async ({ page, browser }) => {
-  // Sixteen real modal/apply cycles plus revocation/reload. Linux WebKit's
+  // Sixteen one-tap library cycles plus revocation/reload. Linux WebKit's
   // rendering makes this longer than a single flow; retain normal assertion budgets.
   test.setTimeout(90_000)
   await page.goto('/')
@@ -88,12 +88,10 @@ test('every finish can be applied on an entitled remote without changing its con
     await expect(remote.locator('.network-state')).toHaveText('CONNECTED')
     for (const skin of skins) {
       await test.step(`Apply and inspect ${skin.name}`, async () => {
-      await remote.getByRole('button', { name: 'Remote finish', exact: true }).click()
-      // The preview follows the current selection; move through the shared catalog.
-      while (await remote.locator('#skin-dialog-title').innerText() !== skin.name) await remote.getByRole('button', { name: 'Next skin', exact: true }).click()
-      await remote.getByRole('button', { name: /Apply (this finish|to my remote)/ }).click()
-      await expect(remote.getByRole('dialog')).toContainText(`${skin.name} selected`)
-      await remote.keyboard.press('Escape')
+      await remote.getByRole('button', { name: 'Change remote skin', exact: true }).click()
+      await remote.getByRole('button', { name: `Use ${skin.name}`, exact: true }).click()
+      await expect(remote.getByRole('dialog')).toHaveCount(0)
+      await expect(remote.getByRole('button', { name: 'Change remote skin', exact: true })).toBeFocused()
       await expect(remote.getByRole('main', { name: 'Remote controller' })).toHaveClass(new RegExp(`skin--${skin.id}`))
       await expect(remote.getByRole('button', { name: 'Play', exact: true })).toBeEnabled()
       const key = remote.getByRole('button', { name: 'Play', exact: true })
@@ -106,8 +104,9 @@ test('every finish can be applied on an entitled remote without changing its con
     await jog.press('ArrowRight')
     await expect(jog).toHaveAttribute('aria-valuenow', '48')
     entitled = false
-    await remote.getByRole('button', { name: 'Remote finish', exact: true }).click()
-    await remote.getByRole('button', { name: /Apply (this finish|to my remote)/ }).click()
+    await remote.getByRole('button', { name: 'Change remote skin', exact: true }).click()
+    await remote.getByRole('button', { name: 'Use Orbit', exact: true }).click()
+    await expect(remote.getByRole('dialog')).toContainText('Could not change the skin')
     await expect(remote.getByRole('main', { name: 'Remote controller' })).toHaveClass(/skin--original/)
     expect(await remote.evaluate(() => localStorage.getItem('izzy:remote-finish:v1'))).toBe('airframe')
     await remote.keyboard.press('Escape')

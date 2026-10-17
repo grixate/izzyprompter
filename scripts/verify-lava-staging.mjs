@@ -6,15 +6,17 @@ import { join } from 'node:path'
 // Probe authentication only: the unknown event is acknowledged without storing
 // an event, creating an invoice, sending mail, or granting an entitlement.
 const origin = 'https://staging.izzyprompter.com'
-const secret = (await readFile(join(homedir(), '.ssh/izzy_lava_staging_webhook_secret'), 'utf8')).trim()
-assert.match(secret, /^[a-f0-9]{64}$/)
-const credentials = JSON.parse(await readFile(join(homedir(), '.ssh/izzy_staging_access.json'), 'utf8'))
 const body = JSON.stringify({ eventType: 'izzy.integration.probe' })
 const checks = []
 async function request(path, options = {}) {
   return fetch(origin + path, { ...options, redirect: 'manual', signal: AbortSignal.timeout(10_000) })
 }
 try {
+  // Keep parsing/validation inside the sanitized error handler too: assertion
+  // errors and JSON parser diagnostics can otherwise include secret values.
+  const secret = (await readFile(join(homedir(), '.ssh/izzy_lava_staging_webhook_secret'), 'utf8')).trim()
+  assert.ok(/^[a-f0-9]{64}$/.test(secret), 'Invalid webhook secret format')
+  const credentials = JSON.parse(await readFile(join(homedir(), '.ssh/izzy_staging_access.json'), 'utf8'))
   for (const [label, key, status] of [
     ['missing key rejected', undefined, 401],
     ['wrong key rejected', 'invalid-integration-probe', 401],

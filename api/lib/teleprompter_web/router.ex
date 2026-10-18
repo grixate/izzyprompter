@@ -41,6 +41,11 @@ defmodule TeleprompterWeb.Router do
     post "/scripts/:id/session", LibraryController, :start_session
     delete "/scripts/:id/session", LibraryController, :end_session
     post "/scripts/:id/apply-preset", LibraryController, :apply_preset
+    get "/folders", LibraryController, :folders
+    post "/folders", LibraryController, :save_folder
+    patch "/folders/:id", LibraryController, :save_folder
+    delete "/folders/:id", LibraryController, :delete_folder
+    patch "/scripts/:id/folder", LibraryController, :move_to_folder
     get "/presets", LibraryController, :presets
     post "/presets", LibraryController, :save_preset
     patch "/presets/:id", LibraryController, :save_preset

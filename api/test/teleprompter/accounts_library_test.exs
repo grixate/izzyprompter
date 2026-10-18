@@ -185,6 +185,86 @@ defmodule Teleprompter.AccountsLibraryTest do
     end
   end
 
+  test "project folders isolate accounts and organize scripts without changing document revisions",
+       %{user: user} do
+    assert {:error, :pro_required} = Library.save_folder(user, nil, %{"name" => "Interview"})
+    make_pro(user)
+    {:ok, folder} = Library.save_folder(user, nil, %{"name" => "Interview"})
+    {:ok, other_folder} = Library.save_folder(user, nil, %{"name" => "Studio"})
+    {:ok, renamed} = Library.save_folder(user, folder.id, %{"name" => "Interviews"})
+    assert renamed.name == "Interviews"
+
+    {:ok, saved} =
+      Library.create(user, %{
+        "title" => "Take 1",
+        "content" => "Private opening.",
+        "folder_id" => folder.id
+      })
+
+    {:ok, plain} = script(user)
+    assert Enum.map(Library.list(user, "", false, 0, folder.id), & &1.id) == [saved.id]
+    assert Enum.map(Library.list(user, "", false, 0, "unfiled"), & &1.id) == [plain.id]
+    assert Library.list(user, "missing", false, 0, folder.id) == []
+    assert Library.list(user, "", false, 0, "invalid") == []
+    assert Enum.find(Library.folders(user), &(&1.id == folder.id)).script_count == 1
+    {:ok, moved} = Library.move_to_folder(user, saved.id, other_folder.id)
+    assert moved.revision == saved.revision
+    assert moved.document == saved.document
+    {:ok, edited} = Library.update(user, saved.id, write(saved, "Still writable"))
+    assert edited.folder_id == other_folder.id
+    {:ok, copy} = Library.duplicate(user, saved.id)
+    assert copy.folder_id == other_folder.id
+
+    other = Repo.insert!(%User{email: Ecto.UUID.generate() <> "@example.com"})
+    make_pro(other)
+    assert Library.folders(other) == []
+    assert Library.list(other, "", false, 0, other_folder.id) == []
+
+    assert {:error, :not_found} =
+             Library.save_folder(other, other_folder.id, %{"name" => "Intruder"})
+
+    assert {:error, :not_found} = Library.delete_folder(other, other_folder.id)
+    assert {:error, :not_found} = Library.move_to_folder(other, saved.id, other_folder.id)
+    assert {:error, :not_found} = Library.move_to_folder(user, plain.id, Ecto.UUID.generate())
+    {:ok, foreign} = Library.save_folder(other, nil, %{"name" => "Private project"})
+    assert {:error, :not_found} = Library.move_to_folder(user, plain.id, foreign.id)
+
+    assert {:error, :not_found} =
+             Library.create(user, %{
+               "title" => "Bad",
+               "content" => "No",
+               "folder_id" => foreign.id
+             })
+
+    assert {:error, :invalid_folder} = Library.save_folder(user, nil, %{"name" => " "})
+  end
+
+  test "folder removal and Pro revocation preserve active and trashed scripts", %{user: user} do
+    attempt = make_pro(user)
+    {:ok, folder} = Library.save_folder(user, nil, %{"name" => "Client"})
+
+    {:ok, saved} =
+      Library.create(user, %{"title" => "Active", "content" => "Words", "folder_id" => folder.id})
+
+    {:ok, deleted} = Library.duplicate(user, saved.id)
+    {:ok, _} = Library.trash(user, deleted.id)
+    assert Enum.find(Library.folders(user), &(&1.id == folder.id)).script_count == 1
+    {:ok, :ok} = Commerce.operator_confirm(attempt.id, "refunded", "test", "fixture-refund")
+    assert length(Library.folders(user)) == 1
+    assert length(Library.list(user, "", false, 0, folder.id)) == 1
+    assert length(Library.list(user, "", true, 0, folder.id)) == 1
+    assert {:error, :pro_required} = Library.save_folder(user, folder.id, %{"name" => "Changed"})
+    assert {:error, :pro_required} = Library.move_to_folder(user, saved.id, folder.id)
+    {:ok, unfiled} = Library.move_to_folder(user, saved.id, nil)
+    assert is_nil(unfiled.folder_id)
+    assert {:ok, _} = Library.delete_folder(user, folder.id)
+    assert Library.folders(user) == []
+    assert Library.get(user, saved.id).document == saved.document
+    [trash] = Library.list(user, "", true)
+    assert trash.id == deleted.id
+    assert is_nil(trash.folder_id)
+  end
+
   test "saved session is exclusive, serializes library edits and hides private identity", %{
     user: user
   } do

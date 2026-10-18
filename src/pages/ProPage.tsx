@@ -13,7 +13,7 @@ export function ProPage() {
   useEffect(() => { document.title = 'Izzy Pro — Yours for good'; track('pro_page_viewed') }, [])
   return <main className="product-page pro-page"><PublicNav light />
     <section className="pro-hero page-width">
-      <div className="pro-hero-copy"><h1>Make it<br /><em>yours.</em></h1><p>Fifteen finishes. Unlimited scripts.</p><div className="pro-hero-offer"><Offer /><ProAction source="pro_hero" /><p className="lifetime-note">Lifetime access while IZZY operates. No subscription. <a href="/terms">Read the terms</a>.</p></div></div>
+      <div className="pro-hero-copy"><h1>Make it<br /><em>yours.</em></h1><p>Unlimited scripts. Project folders. Reading profiles. Fifteen finishes.</p><div className="pro-hero-offer"><Offer /><ProAction source="pro_hero" /><p className="lifetime-note">Lifetime access while IZZY operates. No subscription. <a href="/terms">Read the terms</a>.</p></div></div>
       <div className="pro-hero-object"><div className="hero-orbit" aria-hidden="true" /><RemoteInstrument skin={finish} />
         <div className="hero-finish-picker"><span>{skinById(finish).name}</span><div role="group" aria-label="Preview a remote finish">{heroFinishes.map(id => <button key={id} className={`finish-dot finish-dot--${id}`} aria-label={`Preview ${skinById(id).name}`} aria-pressed={finish === id} onClick={() => { setFinish(id); track('skin_previewed', { skin: id, source: 'pro_hero' }) }} />)}</div></div>
       </div>
@@ -28,7 +28,7 @@ export function ProPage() {
       <a className="action-text" href="/skins">Explore all {skins.length} finishes <ArrowUpRight size={18} /></a>
     </section>
     <section className="pro-workflow"><div className="page-width workflow-grid">
-      <div><h2>More room<br /><em>for your words.</em></h2><ul><li><Check size={16} />Unlimited saved scripts</li><li><Check size={16} />Named display presets</li></ul>
+      <div><h2>More room<br /><em>for your words.</em></h2><ul><li><Check size={16} />Unlimited saved scripts</li><li><Check size={16} />Project folders</li><li><Check size={16} />Reading profiles: speed, text size, spacing and mirroring</li></ul><p className="pro-profile-copy">Save setups for interviews, presentations or a faster read. Choose a default profile or switch before each take.</p>
         <details className="pro-limits"><summary>Script limits</summary><p>Pro removes the three-script count limit. Individual script size and storage limits still apply.</p></details>
       </div>
       <div className="workflow-proof" aria-label="Example account script library"><div><span>Example library</span></div>{['A better first take', 'Notes from the studio', 'The next big idea'].map(title => <article key={title}><h3>{title}</h3><ArrowUpRight size={18} /></article>)}</div>

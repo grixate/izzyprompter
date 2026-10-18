@@ -41,7 +41,8 @@ test('isolated PostgreSQL backup restores private scripts, revisions, trash, pre
       Accounts.issue_token(user.id, "session", 3600)
       Repo.insert!(%Accounts.Identity{user_id: user.id, provider: "email", subject: user.email})
       document = %{"schemaVersion" => 1, "id" => "restore-document", "title" => "Private", "blocks" => [%{"id" => "stable-paragraph", "type" => "paragraph", "text" => "Unpublished restore fixture."}]}
-      script = Repo.insert!(%Library.Script{user_id: user.id, title: "Private", document: document, revision: 7})
+      folder = Repo.insert!(%Library.ProjectFolder{user_id: user.id, name: "Restore project"})
+      script = Repo.insert!(%Library.Script{user_id: user.id, folder_id: folder.id, title: "Private", document: document, revision: 7})
       Repo.insert!(%Library.Mutation{script_id: script.id, mutation_id: "restore-mutation", fingerprint: <<1,2,3>>, result: Library.serialize(script)})
       Repo.insert!(%Library.Script{user_id: user.id, title: "Trash", document: document, deleted_at: DateTime.utc_now()})
       Repo.insert!(%Library.Preset{user_id: user.id, name: "Studio", is_default: true, settings: Teleprompter.PromptSettings.defaults()})
@@ -52,7 +53,7 @@ test('isolated PostgreSQL backup restores private scripts, revisions, trash, pre
       Repo.insert!(%Commerce.Event{provider: "lava", environment: "production", external_key: "restore-event", status: "processed", payload: %{"external_id" => "restore-invoice", "type" => "paid", "amount_minor" => 2900, "currency" => "USD"}})
       Repo.insert!(%Commerce.Audit{attempt_id: attempt.id, actor: "restore-fixture", action: "verified"})
     `])
-    const tables = ['schema_migrations', 'users', 'identities', 'account_tokens', 'scripts', 'script_mutations', 'presets', 'purchase_intents', 'checkout_attempts', 'payment_events', 'entitlement_grants', 'commerce_audits']
+    const tables = ['schema_migrations', 'users', 'identities', 'account_tokens', 'project_folders', 'scripts', 'script_mutations', 'presets', 'purchase_intents', 'checkout_attempts', 'payment_events', 'entitlement_grants', 'commerce_audits']
     const fingerprints = async db => {
       const result = {}
       for (const table of tables) {
@@ -73,6 +74,9 @@ test('isolated PostgreSQL backup restores private scripts, revisions, trash, pre
       owner = Repo.get_by!(Accounts.User, email: "restore-owner@izzy.example")
       other = Repo.get_by!(Accounts.User, email: "restore-other@izzy.example")
       [script] = Library.list(owner)
+      [folder] = Library.folders(owner)
+      true = script.folder_id == folder.id
+      [] = Library.folders(other)
       true = script.revision == 7
       true = hd(script.document["blocks"])["id"] == "stable-paragraph"
       [] = Library.list(other)

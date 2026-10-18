@@ -18,7 +18,8 @@ defmodule TeleprompterWeb.LibraryController do
           conn.assigns.current_user,
           if(is_binary(params["q"]), do: String.slice(params["q"], 0, 200), else: ""),
           params["trash"] == "true",
-          page
+          page,
+          params["folder_id"]
         )
     })
   end
@@ -42,6 +43,19 @@ defmodule TeleprompterWeb.LibraryController do
 
   def restore(conn, %{"id" => id}),
     do: respond(conn, Library.restore(conn.assigns.current_user, id))
+
+  def folders(conn, _), do: json(conn, %{folders: Library.folders(conn.assigns.current_user)})
+
+  def save_folder(conn, params),
+    do: respond(conn, Library.save_folder(conn.assigns.current_user, params["id"], params))
+
+  def delete_folder(conn, %{"id" => id}),
+    do: respond(conn, Library.delete_folder(conn.assigns.current_user, id))
+
+  def move_to_folder(conn, %{"id" => id, "folder_id" => folder_id}),
+    do: respond(conn, Library.move_to_folder(conn.assigns.current_user, id, folder_id))
+
+  def move_to_folder(conn, _), do: TeleprompterWeb.AccountController.error(conn, :invalid_folder)
 
   def presets(conn, _), do: json(conn, %{presets: Library.presets(conn.assigns.current_user)})
 

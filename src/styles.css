@@ -1078,3 +1078,23 @@ a.login-button { display: inline-flex; align-items: center; justify-content: cen
   .preview-remote .speed-module button { width: 36px; height: 36px; }
   .preview-remote .speed-title { font-size: 7px; }
 }
+
+/* Project organization stays close to the library, with one flat level. */
+.project-folders { margin-top: 24px; }
+.project-toolbar { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
+.project-toolbar > label { display: flex; align-items: center; gap: 9px; flex: 1; min-width: 160px; }
+.project-toolbar button { display: inline-flex; align-items: center; justify-content: center; gap: 7px; font-size: 13px; }
+.project-form { display: flex; align-items: end; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+.project-form label { flex: 1; min-width: 170px; font-size: 12px; }
+.project-form label input { display: block; margin-top: 8px; }
+.project-form .account-primary { min-height: 44px; padding: 10px 14px; gap: 8px; }
+.project-note { margin: 12px 0 0; color: #5b6253; font-size: 12px; line-height: 1.5; }
+.script-project { max-width: 160px; }
+.account-page .script-project select { min-height: 36px; padding: 7px; font-size: 11px; }
+.pro-profile-copy { color: #b8bbb1; font-size: 14px; line-height: 1.6; max-width: 400px; }
+@media (max-width: 720px) {
+  .project-toolbar > label { flex-basis: 100%; }
+  .script-card:has(.script-project) { grid-template-columns: 20px minmax(0, 1fr); }
+  .script-card:has(.script-project) .script-card-actions { grid-column: 2; flex-direction: row; flex-wrap: wrap; align-items: center; }
+  .script-project { max-width: 100%; flex: 1; min-width: 100px; }
+}

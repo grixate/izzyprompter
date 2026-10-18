@@ -2,19 +2,20 @@ defmodule Teleprompter.Library do
   import Ecto.Query
   alias Teleprompter.{Repo, Accounts, Document, Commerce, PromptSettings}
   alias Teleprompter.Accounts.User
-  alias Teleprompter.Library.{Script, Mutation, Preset}
+  alias Teleprompter.Library.{Script, Mutation, Preset, ProjectFolder}
 
-  def list(user, search \\ "", trash \\ false, page \\ 0) do
-    list_query(user, search, trash, page) |> Repo.all() |> Enum.map(&serialize/1)
+  def list(user, search \\ "", trash \\ false, page \\ 0, folder_id \\ nil) do
+    list_query(user, search, trash, page, folder_id) |> Repo.all() |> Enum.map(&serialize/1)
   end
 
   # A library page must not load thirty full, potentially 2 MB documents into
   # either the API process or the phone just to display short card excerpts.
-  def list_summaries(user, search \\ "", trash \\ false, page \\ 0) do
-    from(s in list_query(user, search, trash, page),
+  def list_summaries(user, search \\ "", trash \\ false, page \\ 0, folder_id \\ nil) do
+    from(s in list_query(user, search, trash, page, folder_id),
       select: %{
         id: s.id,
         title: s.title,
+        folder_id: s.folder_id,
         revision: s.revision,
         deleted_at: s.deleted_at,
         updated_at: s.updated_at,
@@ -24,7 +25,7 @@ defmodule Teleprompter.Library do
     |> Repo.all()
   end
 
-  defp list_query(user, search, trash, page) do
+  defp list_query(user, search, trash, page, folder_id) do
     cutoff = DateTime.add(DateTime.utc_now(), -30 * 24 * 60 * 60, :second)
     query = from(s in Script, where: s.user_id == ^user.id)
 
@@ -43,6 +44,23 @@ defmodule Teleprompter.Library do
                 ilike(fragment("?::text", s.document), ^"%#{search}%")
           )
 
+    query =
+      case folder_id do
+        nil ->
+          query
+
+        "" ->
+          query
+
+        "unfiled" ->
+          from(s in query, where: is_nil(s.folder_id))
+
+        id ->
+          if valid_id?(id),
+            do: from(s in query, where: s.folder_id == ^id),
+            else: from(s in query, where: false)
+      end
+
     from(s in query, order_by: [desc: s.updated_at, asc: s.id], limit: 30, offset: ^(page * 30))
   end
 
@@ -59,7 +77,14 @@ defmodule Teleprompter.Library do
     with {:ok, title, document} <- prepare(params) do
       transact(user, fn ->
         check_limit!(user)
-        Repo.insert!(%Script{user_id: user.id, title: title, document: document}) |> serialize()
+
+        Repo.insert!(%Script{
+          user_id: user.id,
+          title: title,
+          document: document,
+          folder_id: folder_for_write!(user, params["folder_id"])
+        })
+        |> serialize()
       end)
     end
   end
@@ -72,6 +97,7 @@ defmodule Teleprompter.Library do
       script ->
         create(user, %{
           "title" => String.slice(script.title <> " — copy", 0, 200),
+          "folder_id" => if(Commerce.pro?(user), do: script.folder_id),
           "content" => document_text(script.document)
         })
     end
@@ -189,6 +215,70 @@ defmodule Teleprompter.Library do
     end
   end
 
+  def folders(user) do
+    Repo.all(
+      from(f in ProjectFolder,
+        left_join: s in Script,
+        on: s.folder_id == f.id and s.user_id == f.user_id and is_nil(s.deleted_at),
+        where: f.user_id == ^user.id,
+        group_by: [f.id, f.name],
+        order_by: [asc: f.name, asc: f.id],
+        select: %{id: f.id, name: f.name, script_count: count(s.id)}
+      )
+    )
+  end
+
+  def save_folder(user, id, params) do
+    if valid_title?(params["name"]) do
+      transact(user, fn ->
+        if not Commerce.pro?(user), do: Repo.rollback(:pro_required)
+
+        folder =
+          if is_nil(id), do: %ProjectFolder{user_id: user.id}, else: owned_folder!(user, id)
+
+        saved =
+          folder
+          |> Ecto.Changeset.change(name: String.trim(params["name"]))
+          |> Repo.insert_or_update!()
+
+        %{id: saved.id, name: saved.name}
+      end)
+    else
+      {:error, :invalid_folder}
+    end
+  end
+
+  def delete_folder(user, id) do
+    transact(user, fn ->
+      # ON DELETE SET NULL preserves both active and trashed scripts.
+      folder = owned_folder!(user, id)
+      Repo.delete!(folder)
+      %{id: id}
+    end)
+  end
+
+  def move_to_folder(user, script_id, folder_id) do
+    transact(user, fn ->
+      script = get(user, script_id)
+      if is_nil(script), do: Repo.rollback(:not_found)
+      destination = folder_for_write!(user, folder_id)
+      script |> Ecto.Changeset.change(folder_id: destination) |> Repo.update!() |> serialize()
+    end)
+  end
+
+  defp owned_folder!(user, id) do
+    folder = if valid_id?(id), do: Repo.get_by(ProjectFolder, id: id, user_id: user.id)
+    if is_nil(folder), do: Repo.rollback(:not_found)
+    folder
+  end
+
+  defp folder_for_write!(_user, nil), do: nil
+
+  defp folder_for_write!(user, id) do
+    if not Commerce.pro?(user), do: Repo.rollback(:pro_required)
+    owned_folder!(user, id).id
+  end
+
   def presets(user),
     do:
       Repo.all(
@@ -268,6 +358,7 @@ defmodule Teleprompter.Library do
     do: %{
       id: s.id,
       title: s.title,
+      folder_id: s.folder_id,
       document: s.document,
       revision: s.revision,
       deleted_at: s.deleted_at,
@@ -278,6 +369,7 @@ defmodule Teleprompter.Library do
     do: %{
       id: s["id"],
       title: s["title"],
+      folder_id: s["folder_id"],
       document: s["document"],
       revision: s["revision"],
       deleted_at: s["deleted_at"],

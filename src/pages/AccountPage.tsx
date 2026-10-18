@@ -4,6 +4,7 @@ import { ArrowLeft, ArrowUpRight, Copy, Download, Plus, Trash2, Upload } from 'l
 import { QRCodeSVG } from 'qrcode.react'
 import { useAccount } from '../account/AccountProvider'
 import { accountApi, accountMessage, AccountError, type Account, type SavedScript, type ScriptSummary, type Preset } from '../account/api'
+import { ProjectFolders, useProjectFolders } from '../account/ProjectFolders'
 import { useSavedScript } from '../account/useSavedScript'
 import { listPending, type PendingEdit } from '../account/pendingEdits'
 import { DEFAULT_PROMPT_SETTINGS, loadWorkspaceStorage, rememberPlaybackSpeed, type PromptSettingsV1 } from '../domain/storage'
@@ -85,6 +86,8 @@ function LibraryWorkspace({ user }: { user: Account }) {
   const [scripts, setScripts] = useState<ScriptSummary[]>([])
   const [search, setSearch] = useState('')
   const [trash, setTrash] = useState(false)
+  const [project, setProject] = useState('')
+  const folderState = useProjectFolders(user.id)
   const [page, setPage] = useState(0)
   const [notice, setNotice] = useState('')
   const [busy, setBusy] = useState(false)
@@ -103,7 +106,7 @@ function LibraryWorkspace({ user }: { user: Account }) {
     const load = async () => {
       const sequence = ++request
       try {
-        const result = await accountApi<{ scripts: ScriptSummary[] }>(`/scripts?q=${encodeURIComponent(search)}&trash=${trash}&page=${page}`)
+        const result = await accountApi<{ scripts: ScriptSummary[] }>(`/scripts?q=${encodeURIComponent(search)}&trash=${trash}&page=${page}&folder_id=${encodeURIComponent(project)}`)
         if (active && sequence === request) { setScripts(result.scripts); setLoaded(true) }
       } catch (error) { if (active) setNotice(accountMessage(error)) }
     }
@@ -112,16 +115,24 @@ function LibraryWorkspace({ user }: { user: Account }) {
     window.addEventListener('izzy:account-update', refresh)
     window.addEventListener('online', refresh)
     return () => { active = false; window.clearTimeout(timer); window.removeEventListener('izzy:account-update', refresh); window.removeEventListener('online', refresh) }
-  }, [search, trash, page])
+  }, [search, trash, page, project])
   const create = async (title = 'Untitled script', content = '') => {
     setBusy(true)
-    try { const script = await accountApi<SavedScript>('/scripts', 'POST', { title, content }); window.location.assign(`/account/scripts/${script.id}`) }
+    try { const script = await accountApi<SavedScript>('/scripts', 'POST', { title, content, folder_id: project && project !== 'unfiled' && user.pro ? project : null }); window.location.assign(`/account/scripts/${script.id}`) }
     catch (error) { setNotice(accountMessage(error)); setBusy(false) }
   }
   const action = async (script: ScriptSummary, name: 'duplicate' | 'delete' | 'restore') => {
     setBusy(true)
     try {
       await accountApi(`/scripts/${script.id}${name === 'delete' ? '' : `/${name}`}`, name === 'delete' ? 'DELETE' : 'POST', {})
+      window.dispatchEvent(new Event('izzy:account-update'))
+    } catch (error) { setNotice(accountMessage(error)) }
+    finally { setBusy(false) }
+  }
+  const move = async (script: ScriptSummary, folderId: string) => {
+    setBusy(true)
+    try {
+      await accountApi(`/scripts/${script.id}/folder`, 'PATCH', { folder_id: folderId || null })
       window.dispatchEvent(new Event('izzy:account-update'))
     } catch (error) { setNotice(accountMessage(error)) }
     finally { setBusy(false) }
@@ -140,7 +151,8 @@ function LibraryWorkspace({ user }: { user: Account }) {
     <section className="account-library">
       {trash && <button className="account-back library-back" onClick={() => { setTrash(false); setPage(0) }}><ArrowLeft size={16} />Back to scripts</button>}
       <div className="account-eyebrow"><span>WORKSPACE / {user.pro ? 'PRO' : 'FREE · 3 SCRIPTS'}</span><span>{user.email}</span></div>
-      <div className="account-title-row"><h1>{trash ? 'Trash' : 'Your scripts'}</h1>{!trash && <button className="account-primary" disabled={busy} onClick={() => void create()}><Plus size={16} />New script</button>}</div>
+      <ProjectFolders pro={user.pro} {...folderState} value={project} onChange={id => { setProject(id); setPage(0) }} />
+      <div className="account-title-row"><h1>{trash ? 'Trash' : folderState.folders.find(folder => folder.id === project)?.name ?? (project === 'unfiled' ? 'No project' : 'Your scripts')}</h1>{!trash && <button className="account-primary" disabled={busy} onClick={() => void create()}><Plus size={16} />New script</button>}</div>
       <div className="library-toolbar"><label className="sr-only" htmlFor="library-search">Search scripts</label><input id="library-search" type="search" placeholder="Find a title or a line…" value={search} onChange={event => { setSearch(event.target.value); setPage(0) }} />
         {!trash && <><button onClick={() => { setTrash(true); setPage(0) }}><Trash2 size={16} />Trash</button>
         <button disabled={busy} onClick={() => file.current?.click()}><Upload size={16} />Upload</button></>}
@@ -152,7 +164,7 @@ function LibraryWorkspace({ user }: { user: Account }) {
       <div className="script-list">{scripts.map((script, index) => <article key={script.id} className="script-card">
         <span className="script-number">{String(page * 30 + index + 1).padStart(2, '0')}</span>
         <div>{trash ? <h2>{script.title}</h2> : <a href={`/account/scripts/${script.id}`}><h2>{script.title}</h2></a>}<p>{script.excerpt || 'A clean page. Ready for your next take.'}</p><span className="script-date">{trash ? 'TRASH · RETAINED FOR 30 DAYS' : `SAVED ${new Date(script.updated_at).toLocaleDateString()}`}</span></div>
-        <div className="script-card-actions">{trash ? <button disabled={busy} onClick={() => void action(script, 'restore')}>Restore</button> : <><button title="Duplicate script" aria-label={`Duplicate ${script.title}`} disabled={busy} onClick={() => void action(script, 'duplicate')}><Copy size={15} /></button><button title="Move to trash" aria-label={`Move ${script.title} to trash`} disabled={busy} onClick={() => void action(script, 'delete')}><Trash2 size={15} /></button></>}</div>
+        <div className="script-card-actions">{!trash && folderState.folders.length > 0 && <label className="script-project"><span className="sr-only">Project for {script.title}</span><select aria-label={`Project for ${script.title}`} value={script.folder_id ?? ''} disabled={busy || (!user.pro && !script.folder_id)} onChange={event => void move(script, event.target.value)}><option value="">No project</option>{folderState.folders.map(folder => <option key={folder.id} value={folder.id} disabled={!user.pro}>{folder.name}</option>)}</select></label>}{trash ? <button disabled={busy} onClick={() => void action(script, 'restore')}>Restore</button> : <><button title="Duplicate script" aria-label={`Duplicate ${script.title}`} disabled={busy} onClick={() => void action(script, 'duplicate')}><Copy size={15} /></button><button title="Move to trash" aria-label={`Move ${script.title} to trash`} disabled={busy} onClick={() => void action(script, 'delete')}><Trash2 size={15} /></button></>}</div>
       </article>)}</div>
       {loaded && !scripts.length && <p className="library-empty">{trash ? 'Nothing in trash.' : search ? 'No matching scripts.' : 'Your next take starts with a few words. Create a script or upload a text file.'}</p>}
       <div className="library-pagination"><button disabled={page === 0} onClick={() => setPage(value => value - 1)}>Previous</button><span>PAGE {page + 1}</span><button disabled={scripts.length < 30} onClick={() => setPage(value => value + 1)}>Next</button></div>
@@ -253,7 +265,7 @@ function SavedEditor({ user, id }: { user: Account; id: string }) {
       <p className="account-save-status" role="status">{editor.status}</p>
       {editor.conflict && <div className="account-conflict" role="alert"><p>A newer version is saved in your account. Your local words are safe here.</p><button disabled={editor.busy} onClick={() => void editor.resolve('saved')}>Use saved version</button><button disabled={editor.busy} onClick={() => void editor.resolve('mine')}>Keep my version</button><button disabled={editor.busy} onClick={() => void editor.resolve('copy')}>Save as copy</button></div>}
       {notice && <p className="account-notice" role="status">{notice}</p>}
-      {user.pro && presets.length > 0 && <div className="preset-session"><label>PRESET<select value={preset} onChange={event => setPreset(event.target.value)}><option value="">Standard settings</option>{presets.map(p => <option key={p.id} value={p.id}>{p.name}</option>)}</select></label>{session && preset && <button onClick={() => void applyPreset()}>Apply live</button>}</div>}
+      {user.pro && presets.length > 0 && <div className="preset-session"><label>READING PROFILE<select value={preset} onChange={event => setPreset(event.target.value)}><option value="">Standard settings</option>{presets.map(p => <option key={p.id} value={p.id}>{p.name}</option>)}</select></label>{session && preset && <button onClick={() => void applyPreset()}>Apply live</button>}</div>}
       <div className="workspace-actions">{session ? <><button onClick={() => pairing.current?.showModal()}>Pair devices</button><button onClick={() => void end()}>End session</button></> : <button className="start-button" disabled={busy || !editor.ready || !editor.draft?.content.trim() || editor.busy || !!editor.conflict} onClick={() => void start()}>{busy ? 'STARTING…' : 'SET UP PROMPTER'}<ArrowUpRight /></button>}</div>
       {session && <p className="setup-hint">{connection.toUpperCase()} · DISPLAY {presence.display} / REMOTE {presence.remote}{connection === 'expired' ? ' · End this session to start a new one.' : ''}</p>}
     </div><LivePreview content={editor.draft?.content ?? ''} pauseVersion={previewPause} /></div>
@@ -347,7 +359,7 @@ function ProPanel({ user }: { user: Account }) {
     }
   }, [returned?.id])
   if (!user.pro && !canPurchase && !commerce?.purchases.length && !returnedPurchase) return null
-  return <section className="pro-panel"><span className="section-index">IZZY / {user.pro || canPurchase ? 'LIFETIME PRO' : 'PURCHASE HISTORY'}</span>{(user.pro || canPurchase) && <><h2>{user.pro ? 'Ready for every take.' : 'Make room for more.'}</h2><p>{user.pro ? 'Pro is active on your account. Your scripts and presets travel with you.' : 'Unlimited saved scripts. Named display presets. One payment, no subscription.'}</p></>}
+  return <section className="pro-panel"><span className="section-index">IZZY / {user.pro || canPurchase ? 'LIFETIME PRO' : 'PURCHASE HISTORY'}</span>{(user.pro || canPurchase) && <><h2>{user.pro ? 'Ready for every take.' : 'Make room for more.'}</h2><p>{user.pro ? 'Your Pro workspace includes unlimited scripts, project folders, reading profiles and fifteen remote finishes.' : 'Unlimited saved scripts. Reading profiles for speed and layout. Project folders. Fifteen remote finishes. One payment, no subscription.'}</p></>}
     {returned && <p className="account-notice" role="status">{purchaseMessage(returned)}<br /><small>Order reference: {returned.id}</small></p>}
     {finishReturn && <a className="account-primary" href={finishReturn}>Choose your finish <ArrowUpRight size={16} /></a>}
     {returnedPurchase && commerce && !returned && <p className="account-notice" role="status">This purchase was not found in your account. Sign in with the account you used at checkout to see its status.</p>}
@@ -385,7 +397,7 @@ function PresetPanel({ user }: { user: Account }) {
     event.preventDefault(); setBusy(true)
     try {
       const result = await accountApi<Preset>(id ? `/presets/${id}` : '/presets', id ? 'PATCH' : 'POST', { name, settings, is_default: isDefault })
-      setId(result.id); setNotice('Preset saved. Apply it explicitly when prompting.'); window.dispatchEvent(new Event('izzy:account-update'))
+      setId(result.id); setNotice('Profile saved. Apply it when prompting.'); window.dispatchEvent(new Event('izzy:account-update'))
     } catch (error) { setNotice(accountMessage(error)) }
     finally { setBusy(false) }
   }
@@ -396,12 +408,12 @@ function PresetPanel({ user }: { user: Account }) {
     finally { setBusy(false) }
   }
   if (!user.pro && presets.length === 0) return null
-  return <section className="preset-panel"><span className="section-index">DISPLAY / PRESETS</span><h2>Your preferred setup.</h2>{!user.pro && <p>Save named setups with Pro. Existing presets stay here if your access changes.</p>}
-    <label>PRESET<select value={id} onChange={event => select(event.target.value)}><option value="">New preset</option>{presets.map(p => <option key={p.id} value={p.id}>{p.name}{p.is_default ? ' · default' : ''}</option>)}</select></label>
+  return <section className="preset-panel"><span className="section-index">READING / PROFILES</span><h2>Your reading profiles.</h2>{!user.pro && <p>Save reading profiles with Pro. Existing profiles stay here if your access changes.</p>}
+    <label>READING PROFILE<select value={id} onChange={event => select(event.target.value)}><option value="">New reading profile</option>{presets.map(p => <option key={p.id} value={p.id}>{p.name}{p.is_default ? ' · default' : ''}</option>)}</select></label>
     <form onSubmit={event => void save(event)}><fieldset disabled={!user.pro || busy}><label>Name<input required maxLength={200} value={name} onChange={event => setName(event.target.value)} /></label>
       {([{ key: 'speed', title: 'Speed', min: .5, max: 1.5, step: .01 }, { key: 'fontSize', title: 'Text size', min: 20, max: 160, step: 2 }, { key: 'lineHeight', title: 'Line spacing', min: .8, max: 3, step: .02 }, { key: 'textWidth', title: 'Text width', min: 25, max: 100, step: 1 }] as const).map(control => <label key={control.key}>{control.title}<output aria-hidden="true">{settings[control.key]}</output><input aria-label={control.title} type="range" min={control.min} max={control.max} step={control.step} value={settings[control.key]} onChange={event => setSettings(value => ({ ...value, [control.key]: Number(event.target.value) }))} /></label>)}
       <label className="preset-checkbox"><input type="checkbox" checked={settings.mirrored} onChange={event => setSettings(value => ({ ...value, mirrored: event.target.checked }))} />Mirror text</label><label className="preset-checkbox"><input type="checkbox" checked={isDefault} onChange={event => setIsDefault(event.target.checked)} />Use by default</label>
-      <button className="account-primary">Save preset</button>{id && <button type="button" onClick={() => void remove()}>Delete preset</button>}
+      <button className="account-primary">Save profile</button>{id && <button type="button" onClick={() => void remove()}>Delete profile</button>}
     </fieldset></form>{notice && <p className="account-notice" role="status">{notice}</p>}
   </section>
 }

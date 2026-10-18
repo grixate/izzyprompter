@@ -2,7 +2,8 @@ import { RemoteBrand } from './BrandLogo'
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import { JogControls, TransportReadout } from './JogControls'
 import { PromptSurface } from './PromptSurface'
-import { PREVIEW_SCRIPT, previewFrame } from '../prompt/preview'
+import { previewFrame } from '../prompt/preview'
+import { usePlaybackSpeed } from '../prompt/usePlaybackSpeed'
 import { clamp } from '../prompt/position'
 import { normalizePlainText } from '../domain/textNormalization'
 
@@ -14,15 +15,15 @@ export function LivePreview({ content, pauseVersion }: { content: string; pauseV
   const maximumRef = useRef(0)
   const [position, setPosition] = useState(0)
   const [maximum, setMaximum] = useState(0)
-  const [speed, setSpeed] = useState(0.86)
-  const [playing, setPlaying] = useState(() => !content.trim() && !window.matchMedia('(prefers-reduced-motion: reduce)').matches)
+  const [speed, setSpeed] = usePlaybackSpeed()
+  const [playing, setPlaying] = useState(false)
   const [visible, setVisible] = useState(true)
   const [foreground, setForeground] = useState(document.visibilityState === 'visible')
   const ownScript = Boolean(content.trim())
   // Large imports remain intact in the editor; the miniature only needs an excerpt.
-  const blocks = useMemo(() => normalizePlainText(content.trim() ? content.slice(0, 20_000) : PREVIEW_SCRIPT)
-    .split('\n\n').map((text, index) => ({ id: `preview-${index}`, text })), [content])
-  const running = playing && visible && foreground && maximum > 0
+  const blocks = useMemo(() => normalizePlainText(content.slice(0, 20_000))
+    .split('\n\n').filter(Boolean).map((text, index) => ({ id: `preview-${index}`, text })), [content])
+  const running = ownScript && playing && visible && foreground && maximum > 0
 
   const paint = (next: number, publish = true) => {
     positionRef.current = clamp(next, 0, maximumRef.current)
@@ -78,13 +79,13 @@ export function LivePreview({ content, pauseVersion }: { content: string; pauseV
 
   return <aside className="preview-stage" ref={section} aria-label="Interactive teleprompter preview">
     <div className="preview-heading"><h2>ONE SCRIPT. TWO SCREENS.</h2></div>
-    <div ref={viewport} className="display-panel live-preview" aria-label={ownScript ? 'Your script preview' : 'Sample script preview'}>
-      <PromptSurface blocks={blocks} trackRef={track} />
+    <div ref={viewport} className="display-panel live-preview" aria-label="Your script preview">
+      <PromptSurface blocks={blocks} trackRef={track} emptyText="" />
     </div>
     <div className="remote-panel preview-remote" aria-label="Preview remote">
       <header className="remote-header"><div className="remote-identity"><strong>R–01</strong><RemoteBrand /></div><span className="preview-only">PREVIEW</span></header>
-      <TransportReadout position={position} speed={speed} playing={running} label={ownScript ? 'YOUR SCRIPT' : 'SAMPLE SCRIPT'} />
-      <JogControls enabled playing={running} speed={speed} position={position} maximum={Math.max(1, maximum)}
+      <TransportReadout position={position} speed={speed} playing={running} label="YOUR SCRIPT" available={ownScript} />
+      <JogControls enabled={ownScript} playing={running} speed={speed} position={position} maximum={Math.max(1, maximum)}
         positionText={`Preview position ${Math.round(position)} of ${Math.round(maximum)} pixels`}
         onToggle={() => { if (positionRef.current >= maximumRef.current) paint(0); setPlaying(!playing) }}
         onSeek={(delta) => paint(positionRef.current + delta)}

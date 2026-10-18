@@ -26,11 +26,11 @@ defmodule Teleprompter.Sessions do
     end
   end
 
-  def create_saved(user, script_id, preset_id \\ nil) do
+  def create_saved(user, script_id, preset_id \\ nil, speed \\ nil) do
     Teleprompter.SavedSessions.lock(script_id, fn ->
       with :none <- Teleprompter.SavedSessions.lookup(script_id),
            script when not is_nil(script) <- Teleprompter.Library.get(user, script_id),
-           {:ok, settings} <- saved_settings(user, preset_id) do
+           {:ok, settings} <- saved_settings(user, preset_id, speed) do
         create_session(
           Teleprompter.Library.document_text(script.document),
           settings["speed"],
@@ -54,16 +54,25 @@ defmodule Teleprompter.Sessions do
     end)
   end
 
-  defp saved_settings(user, nil) do
+  defp saved_settings(user, nil, speed) do
     default =
       if Teleprompter.Commerce.pro?(user),
         do: Enum.find(Teleprompter.Library.presets(user), & &1.is_default)
 
-    {:ok, if(default, do: default.settings, else: Teleprompter.PromptSettings.defaults())}
+    if default, do: {:ok, default.settings}, else: standard_settings(speed)
   end
 
-  defp saved_settings(_user, "standard"), do: {:ok, Teleprompter.PromptSettings.defaults()}
-  defp saved_settings(user, preset_id), do: Teleprompter.Library.preset_settings(user, preset_id)
+  defp saved_settings(_user, "standard", speed), do: standard_settings(speed)
+
+  defp saved_settings(user, preset_id, _speed),
+    do: Teleprompter.Library.preset_settings(user, preset_id)
+
+  defp standard_settings(nil), do: {:ok, Teleprompter.PromptSettings.defaults()}
+
+  defp standard_settings(speed) when is_number(speed) and speed >= 0.5 and speed <= 1.5,
+    do: {:ok, Map.put(Teleprompter.PromptSettings.defaults(), "speed", speed)}
+
+  defp standard_settings(_), do: {:error, :invalid_settings}
 
   defp create_session(content, speed, supervisor, extra \\ %{}) do
     id =

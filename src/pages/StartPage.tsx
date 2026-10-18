@@ -8,8 +8,8 @@ import {
   replaceTextSelection,
 } from '../domain/textNormalization'
 import {
-  DEFAULT_PROMPT_SETTINGS,
   clearWorkspaceStorage,
+  savePromptSettings,
   createDebouncedStorageWriter,
   loadWorkspaceStorage,
   persistDraftDocument,
@@ -72,7 +72,6 @@ export function StartPage() {
   const titleRef = useRef(
     restoredStorage.draft?.title ?? restoredStorage.document?.title ?? 'Untitled script',
   )
-  const settingsRef = useRef(restoredStorage.settings)
   const [draftWriter] = useState(() => createDebouncedStorageWriter<string>({
     delay: 250,
     write: (nextContent) => persistDraftDocument({
@@ -210,7 +209,7 @@ export function StartPage() {
     try {
       const response = await fetch('/api/sessions', {
         method: 'POST', headers: { 'Content-Type': 'application/json' }, signal: controller.signal,
-        body: JSON.stringify({ protocol_version: 2, content: normalizedContent, speed: settingsRef.current.speed }),
+        body: JSON.stringify({ protocol_version: 2, content: normalizedContent, speed: loadWorkspaceStorage().settings.speed }),
       })
       // Reverse proxies can return HTML for 413/429. Status-based recovery
       // must still preserve the draft and honor the retry hint.
@@ -240,10 +239,11 @@ export function StartPage() {
     }
 
     draftWriter.cancel()
+    const settings = loadWorkspaceStorage().settings
     clearWorkspaceStorage()
+    savePromptSettings(settings)
     documentIdRef.current = `doc_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 9)}`
     titleRef.current = 'Untitled script'
-    settingsRef.current = { ...DEFAULT_PROMPT_SETTINGS }
     const emptyDraft: IzzyDraftStateV1 = {
       documentId: documentIdRef.current,
       title: titleRef.current,

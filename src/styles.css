@@ -947,9 +947,9 @@ a.login-button { display: inline-flex; align-items: center; justify-content: cen
 .account-page { color: var(--ink); }
 .account-page a { color: inherit; text-decoration: none; }
 .account-page button, .account-page a, .account-page input, .account-page select { -webkit-tap-highlight-color: transparent; }
-.account-page button { min-height: 40px; padding: 8px 12px; border: 1px solid #a2a49e; border-radius: 3px; background: transparent; color: inherit; cursor: pointer; }
-.account-page button:hover:not(:disabled) { border-color: #555a4d; background: #ffffff30; }
-.account-page button:disabled, .account-page fieldset:disabled { opacity: .48; cursor: not-allowed; }
+.account-page button:where(:not(.preview-remote button, .editor-meta button)) { min-height: 40px; padding: 8px 12px; border: 1px solid #a2a49e; border-radius: 3px; background: transparent; color: inherit; cursor: pointer; }
+.account-page button:where(:not(.preview-remote button, .editor-meta button)):hover:not(:disabled) { border-color: #555a4d; background: #ffffff30; }
+.account-page button:where(:not(.preview-remote button, .editor-meta button)):disabled, .account-page fieldset:disabled { opacity: .48; cursor: not-allowed; }
 .account-page :focus-visible { outline: 2px solid #b33a13; outline-offset: 4px; }
 .account-page .start-header nav { display: flex; align-items: center; gap: 24px; font-size: 13px; }
 .account-page .start-header nav a { padding: 12px 0; }
@@ -1021,7 +1021,10 @@ a.login-button { display: inline-flex; align-items: center; justify-content: cen
 .preset-panel fieldset > button { width: 100%; margin-top: 8px; }
 .account-back { display: inline-flex; align-items: center; gap: 9px; margin: 26px 40px 0; font-size: 13px; }
 .saved-editor .workbench-stage { min-height: 640px; }
-.saved-title { margin: 24px 0 18px; font: 10px monospace; letter-spacing: .08em; }
+.saved-title { display: block; margin: 0; font: 10px monospace; letter-spacing: .08em; }
+.saved-editor .editor-label { flex-wrap: wrap; gap: 8px 20px; }
+.saved-editor .editor-meta { margin-left: auto; gap: 11px; }
+.field-count { margin: 8px 0 18px; font: 11px/1.5 "Avenir Next", Avenir, sans-serif; color: #5d654f; text-align: right; overflow-wrap: anywhere; }
 .saved-title input { margin-top: 10px; font: 600 28px "Avenir Next Condensed", sans-serif !important; }
 .account-save-status { min-height: 30px; font: 11px/1.6 monospace; color: #5d654f; }
 .account-conflict { padding: 16px; margin-bottom: 18px; border: 1px solid #b75a36; border-radius: 3px; }

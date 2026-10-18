@@ -36,6 +36,8 @@ This helper is restricted to development, loopback PostgreSQL, private HTTP orig
 5. **Pro:** save a named/default preset, start a session, explicitly apply a different preset. Both displays should update without resetting the reading position. Temporarily revoke demo Pro: existing scripts and presets stay, editing/export remain, excess creation and preset application stop.
 6. **Real devices:** lock the phone, switch apps, rotate the tablet and briefly change Wi-Fi. Verify fresh state on return and no replay of old jog gestures. These physical checks still need your observation; automated browser emulation is not proof.
 
+Playback speed uses the last setting on this device for previews and new guest, saved and offline sessions. A selected Pro preset takes priority when starting a saved session. Changes from a paired phone are remembered by the connected reading screen/editor as well. This is a browser preference; it does not sync through the account to an unrelated device. Empty previews stay blank and paused until you add your own text.
+
 Do not expect real email delivery, Google login or checkout in this preview. Both payment integrations are tested with synthetic responses; activation remains off.
 
 ## Restart this preview

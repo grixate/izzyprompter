@@ -156,6 +156,35 @@ defmodule Teleprompter.AccountsLibraryTest do
     assert Library.list(user, "", true) == []
   end
 
+  test "saved sessions use the device speed and explicit presets keep priority", %{user: user} do
+    {:ok, s} = script(user)
+
+    for speed <- [0.49, 1.51, "fast"] do
+      assert {:error, :invalid_settings} = Sessions.create_saved(user, s.id, "standard", speed)
+    end
+
+    {:ok, live} = Sessions.create_saved(user, s.id, "standard", 1.23)
+    {:ok, snapshot} = Sessions.snapshot(live.session_id)
+    assert snapshot.transport.speed == 1.23
+    assert :ok = Sessions.end_saved(live.session_id, user)
+
+    make_pro(user)
+
+    {:ok, preset} =
+      Library.save_preset(user, nil, %{
+        "name" => "Studio",
+        "is_default" => true,
+        "settings" => Map.put(Teleprompter.PromptSettings.defaults(), "speed", 0.73)
+      })
+
+    for preset_id <- [nil, preset.id] do
+      {:ok, live} = Sessions.create_saved(user, s.id, preset_id, 1.23)
+      {:ok, snapshot} = Sessions.snapshot(live.session_id)
+      assert snapshot.transport.speed == 0.73
+      assert :ok = Sessions.end_saved(live.session_id, user)
+    end
+  end
+
   test "saved session is exclusive, serializes library edits and hides private identity", %{
     user: user
   } do

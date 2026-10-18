@@ -148,7 +148,7 @@ export function LocalPage() {
     const document = unchanged ? { ...selected.document, title: title.trim() }
       : createIzzyDocumentFromLegacyText(content, { documentId: selected?.document.id ?? `local-${localId()}`, title: title.trim() })
     if (!validDocument(document)) { setMessage('Script is invalid or too large. Your text is kept here.'); return }
-    const item: PreparedScript = { version: 1, document, settings: selected?.settings ?? { ...DEFAULT_PROMPT_SETTINGS },
+    const item: PreparedScript = { version: 1, document, settings: { ...(selected?.settings ?? DEFAULT_PROMPT_SETTINGS), speed: loadWorkspaceStorage().settings.speed },
       anchor: unchanged ? selected.anchor : null, savedAt: Date.now() }
     setBusy(true)
     try { await savePreparedScript(item); setMessage('Script saved on this device.'); setSelected(item); await refresh() }

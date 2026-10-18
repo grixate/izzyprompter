@@ -6,10 +6,11 @@ import { useAccount } from '../account/AccountProvider'
 import { accountApi, accountMessage, AccountError, type Account, type SavedScript, type ScriptSummary, type Preset } from '../account/api'
 import { useSavedScript } from '../account/useSavedScript'
 import { listPending, type PendingEdit } from '../account/pendingEdits'
-import { DEFAULT_PROMPT_SETTINGS, loadWorkspaceStorage, type PromptSettingsV1 } from '../domain/storage'
+import { DEFAULT_PROMPT_SETTINGS, loadWorkspaceStorage, rememberPlaybackSpeed, type PromptSettingsV1 } from '../domain/storage'
 import { izzyDocumentToLegacyText } from '../domain/document'
 import { prepareScriptImport, validateScriptFile } from '../domain/fileImport'
 import { downloadScript } from '../domain/textBackup'
+import { FieldCount } from '../components/FieldCount'
 import { LivePreview } from '../components/LivePreview'
 import { sessionLink, isSessionCredentials, type SessionCredentials } from '../realtime/credentials'
 import { useSession } from '../realtime/useSession'
@@ -188,7 +189,10 @@ function SavedEditor({ user, id }: { user: Account; id: string }) {
   const [session, setSession] = useState<SessionCredentials | null>(() => {
     try { const value: unknown = JSON.parse(sessionStorage.getItem(`izzy:saved-session:${user.id}:${id}`) || 'null'); return isSessionCredentials(value) ? value : null } catch { return null }
   })
-  const { connection, presence } = useSession(session?.session_id ?? null, 'editor', session?.tokens.editor)
+  const { connection, presence, transport } = useSession(session?.session_id ?? null, 'editor', session?.tokens.editor)
+  useEffect(() => {
+    if (connection === 'connected') rememberPlaybackSpeed(transport.speed)
+  }, [connection, transport.speed])
   const [notice, setNotice] = useState('')
   const [busy, setBusy] = useState(false)
   const [previewPause, setPreviewPause] = useState(0)
@@ -210,7 +214,7 @@ function SavedEditor({ user, id }: { user: Account; id: string }) {
     try {
       await editor.save()
       if (editor.hasPending()) { setNotice('Save or resolve your pending changes before starting a session.'); return }
-      const created = await accountApi<SessionCredentials>(`/scripts/${id}/session`, 'POST', { preset_id: user.pro && preset ? preset : 'standard' })
+      const created = await accountApi<SessionCredentials>(`/scripts/${id}/session`, 'POST', { preset_id: user.pro && preset ? preset : 'standard', speed: loadWorkspaceStorage().settings.speed })
       if (!isSessionCredentials(created)) throw new Error('Invalid session')
       setPairing(created)
       pairing.current?.showModal()
@@ -240,10 +244,11 @@ function SavedEditor({ user, id }: { user: Account; id: string }) {
   return <section className="saved-editor">
     <a className="account-back" href="/account"><ArrowLeft size={15} />All scripts</a>
     <div className="workbench-stage"><div className="script-workspace">
-      <span className="section-index">LIBRARY / {user.pro ? 'PRO' : 'FREE'}</span>
-      <label className="saved-title">SCRIPT TITLE<input aria-label="Script title" maxLength={200} disabled={!editor.ready} value={editor.draft?.title ?? ''} onChange={event => { if (editor.draft) editor.edit({ ...editor.draft, title: event.target.value }) }} /></label>
+      <label className="saved-title">SCRIPT TITLE<input aria-label="Script title" aria-describedby="saved-title-count" maxLength={200} disabled={!editor.ready} value={editor.draft?.title ?? ''} onChange={event => { if (editor.draft) editor.edit({ ...editor.draft, title: event.target.value }) }} /></label>
+      <FieldCount id="saved-title-count" value={editor.draft?.title ?? ''} title />
       <div className="editor-label"><label htmlFor="saved-script-input">YOUR SCRIPT</label><div className="editor-meta"><button disabled={!editor.ready} onClick={() => file.current?.click()}><Upload size={13} />Replace from text file</button><button disabled={!editor.draft} onClick={() => downloadScript(editor.draft?.content ?? '', 'izzy-script.txt')}><Download size={13} />Export</button></div></div>
-      <div className="editor-input has-content"><textarea id="saved-script-input" aria-label="Saved script text" disabled={!editor.ready} value={editor.draft?.content ?? ''} onFocus={() => setPreviewPause(value => value + 1)} onChange={event => { if (editor.draft) editor.edit({ ...editor.draft, content: event.target.value }); setPreviewPause(value => value + 1) }} placeholder="Write your next take…" /></div>
+      <div className="editor-input has-content"><textarea id="saved-script-input" aria-label="Saved script text" aria-describedby="saved-content-count" disabled={!editor.ready} value={editor.draft?.content ?? ''} onFocus={() => setPreviewPause(value => value + 1)} onChange={event => { if (editor.draft) editor.edit({ ...editor.draft, content: event.target.value }); setPreviewPause(value => value + 1) }} placeholder="Write your next take…" /></div>
+      <FieldCount id="saved-content-count" value={editor.draft?.content ?? ''} />
       <input hidden ref={file} type="file" accept=".txt,.md" onChange={event => { void importText(event.target.files); event.target.value = '' }} />
       <p className="account-save-status" role="status">{editor.status}</p>
       {editor.conflict && <div className="account-conflict" role="alert"><p>A newer version is saved in your account. Your local words are safe here.</p><button disabled={editor.busy} onClick={() => void editor.resolve('saved')}>Use saved version</button><button disabled={editor.busy} onClick={() => void editor.resolve('mine')}>Keep my version</button><button disabled={editor.busy} onClick={() => void editor.resolve('copy')}>Save as copy</button></div>}

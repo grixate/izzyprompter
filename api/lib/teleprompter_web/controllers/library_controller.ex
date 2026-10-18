@@ -55,7 +55,12 @@ defmodule TeleprompterWeb.LibraryController do
     do:
       respond(
         conn,
-        Teleprompter.Sessions.create_saved(conn.assigns.current_user, id, params["preset_id"])
+        Teleprompter.Sessions.create_saved(
+          conn.assigns.current_user,
+          id,
+          params["preset_id"],
+          params["speed"]
+        )
       )
 
   def end_session(conn, %{"id" => id}) do

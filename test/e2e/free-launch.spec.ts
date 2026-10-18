@@ -6,7 +6,7 @@ test.describe('online free launch', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto(`/account/login#token=${accountFixture().token}`)
     await page.getByRole('button', { name: 'Sign in to IZZY', exact: true }).click()
-    await expect(page.getByRole('heading', { name: 'Your scripts.', exact: true })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Your scripts', exact: true })).toBeVisible()
   })
 
   test('disabled checkout has no upsell, locked empty presets or provider setup placeholder', async ({ page }, testInfo) => {
@@ -22,6 +22,12 @@ test.describe('online free launch', () => {
       return { status: response.status, body: await response.json() }
     })
     expect(result).toEqual({ status: 422, body: { reason: 'payments_unavailable' } })
+    await expect(page.getByRole('link', { name: 'My scripts', exact: true })).toHaveAttribute('aria-current', 'page')
+    await expect(page.locator('.start-header .brand-context')).toHaveCount(0)
+    for (const name of ['New script', 'Trash', 'Upload']) {
+      await expect(page.getByRole('button', { name, exact: true })).toHaveCSS('font-size', '13px')
+      await expect(page.getByRole('button', { name, exact: true })).toHaveCSS('height', '44px')
+    }
     await expect(page.locator('.library-empty')).toBeVisible()
     await page.screenshot({ path: testInfo.outputPath('free-library-desktop.png'), fullPage: true })
     await page.setViewportSize({ width: 390, height: 844 })
@@ -63,6 +69,12 @@ test.describe('online free launch', () => {
     await expect(page).toHaveURL(/\/account\/scripts\/[a-f0-9-]+$/)
     await page.goto('/account')
     await page.getByRole('button', { name: 'Trash', exact: true }).click()
+    await expect(page.getByRole('heading', { name: 'Trash', exact: true })).toBeVisible()
+    await expect(page.locator('.library-toolbar').getByRole('button')).toHaveCount(0)
+    const back = await page.getByRole('button', { name: 'Back to scripts', exact: true }).boundingBox()
+    const title = await page.getByRole('heading', { name: 'Trash', exact: true }).boundingBox()
+    expect(back!.y + back!.height).toBeLessThan(title!.y)
+    expect(back!.x).toBeLessThanOrEqual(title!.x)
     await expect(page.locator('.script-card')).toHaveCount(1)
     await page.getByRole('button', { name: 'Restore', exact: true }).click()
     await expect(page.getByRole('status')).toContainText('Move one to trash to make room')
@@ -74,7 +86,7 @@ test.describe('online free launch', () => {
   test('unavailable commerce never flashes an offer or blocks the free library', async ({ page }) => {
     await page.route('**/api/account/commerce', route => route.fulfill({ status: 503, json: { reason: 'database_unavailable' } }))
     await page.reload()
-    await expect(page.getByRole('heading', { name: 'Your scripts.', exact: true })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Your scripts', exact: true })).toBeVisible()
     await expect(page.locator('.pro-panel')).toHaveCount(0)
     await page.getByRole('button', { name: 'New script', exact: true }).click()
     await expect(page.getByRole('textbox', { name: 'Saved script text', exact: true })).toBeEnabled()

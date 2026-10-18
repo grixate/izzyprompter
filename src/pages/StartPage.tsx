@@ -390,7 +390,7 @@ export function StartPage() {
         <div className="editor-label">
           <label htmlFor="script-input">YOUR SCRIPT</label>
           <div className="editor-meta">
-            <button type="button" disabled={isCreating} onClick={() => fileInputRef.current?.click()}><Upload size={13} />Import text</button>
+            <button type="button" disabled={isCreating} onClick={() => fileInputRef.current?.click()}><Upload size={13} />Upload text</button>
           </div>
         </div>
         <div
@@ -431,7 +431,7 @@ export function StartPage() {
             }}
           />
         </div>
-        <p id="editor-input-help" className="sr-only">Enter plain text, paste, or import a TXT or Markdown file. Maximum 2 MB and 5,000 paragraphs.</p>
+        <p id="editor-input-help" className="sr-only">Enter plain text, paste, or upload a TXT or Markdown file. Maximum 2 MB and 5,000 paragraphs.</p>
         <div className={words || inputFeedback ? "script-feedback" : "script-feedback sr-only"}>
           <span id="editor-feedback" className={inputFeedback?.kind === 'error' ? 'is-error' : inputFeedback ? 'is-success' : ''} role="status" aria-live={inputFeedback ? 'polite' : 'off'}>
             {inputFeedback?.message ?? (words ? `${words} words${draftSaved === true ? ' · Saved on this device' : ''}` : '')}

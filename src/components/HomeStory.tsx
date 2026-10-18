@@ -6,7 +6,7 @@ export function HomeStory() {
   return <>
     <section className="how-section page-width" id="how-it-works" aria-label="How it works">
       <div className="how-steps">
-        <article><Monitor size={24} strokeWidth={1.3} /><h3>Add your script.</h3><p>Paste or import it here. No files to move between devices.</p></article>
+        <article><Monitor size={24} strokeWidth={1.3} /><h3>Add your script.</h3><p>Paste or upload it here. No files to move between devices.</p></article>
         <article><ScanLine size={24} strokeWidth={1.3} /><h3>Connect your screens.</h3><p>Open the display on your tablet or computer. Scan the QR with your phone.</p></article>
         <article><SlidersHorizontal size={24} strokeWidth={1.3} /><h3>Control the take.</h3><p>Play, pause and find your pace.</p></article>
       </div>

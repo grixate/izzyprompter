@@ -76,7 +76,7 @@ export function LegalPage() {
   const Content = documents[document.href]
   useEffect(() => { window.document.title = `${document.title} — IZZY Prompter` }, [document.title])
   return <main className="product-page legal-page">
-    <header className="legal-header"><a href="/" aria-label="IZZY home"><BrandLogo context="TELEPROMPTER" /></a><a href="/pro">Izzy Pro <ArrowUpRight size={16} /></a></header>
+    <header className="legal-header"><a href="/" aria-label="IZZY home"><BrandLogo /></a><a href="/pro">Izzy Pro <ArrowUpRight size={16} /></a></header>
     <article className="legal-article"><a className="legal-back" href="/"><ArrowLeft size={16} />Back to IZZY</a>
       <h1>{document.title}</h1><p className="legal-date">{legalReady ? 'Last updated' : 'Draft updated'} <time dateTime={siteDetails.updatedDate}>{new Date(`${siteDetails.updatedDate}T12:00:00Z`).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' })}</time></p>
       {!legalReady && <aside className="legal-draft" aria-label="Draft status">Draft for review. The policy wording is awaiting final approval before publication.</aside>}

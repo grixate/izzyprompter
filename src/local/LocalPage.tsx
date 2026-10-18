@@ -186,18 +186,18 @@ export function LocalPage() {
         <label>Script text<textarea aria-label="Local script text" value={content} onChange={event => { setContent(event.target.value); setMessage('Unsaved text. Save locally or export before closing.') }} spellCheck /></label>
         <div className="local-actions"><button className="offline-primary" disabled={busy || !content.trim()} onClick={() => void prepare(true)}>Start local prompting<ArrowUpRight size={16} /></button>
           <button disabled={busy || !content.trim()} onClick={() => void prepare(false)}>Save script offline</button></div>
-        <details className="offline-script-options"><summary>Import, export and more</summary><div className="local-actions">
+        <details className="offline-script-options"><summary>Upload, export and more</summary><div className="local-actions">
           <button disabled={!content} onClick={() => downloadScript(content)}>Export text</button></div>
         <div className="local-actions"><button onClick={() => {
           const stored = loadWorkspaceStorage(); const text = stored.draft?.content ?? (stored.document ? izzyDocumentToLegacyText(stored.document) : '')
           if (!text) { setMessage('No editor draft found in this browser.'); return }
           setSelected(null); setContent(text); setTitle(stored.draft?.title ?? 'Editor draft'); setMessage('Draft copied here. Save it locally before leaving.')
         }}>Use current editor draft</button>
-        <label className="local-file">Import TXT / MD<input type="file" accept=".txt,.md,text/plain,text/markdown" onChange={event => {
+        <label className="local-file">Upload TXT / MD<input type="file" accept=".txt,.md,text/plain,text/markdown" onChange={event => {
           const file = event.target.files?.[0]; event.target.value = ''
           if (!file) return
           if (file.size > 2 * 1024 * 1024 || !/\.(txt|md)$/i.test(file.name)) { setMessage('Choose a TXT or MD file up to 2 MB.'); return }
-          void file.text().then(text => { if (!validContent(text)) throw new Error(); setSelected(null); setContent(text); setTitle(file.name.slice(0, 200)); setMessage('Imported text. Save locally to prepare it.') }).catch(() => setMessage('Could not import this script. Existing text is kept.'))
+          void file.text().then(text => { if (!validContent(text)) throw new Error(); setSelected(null); setContent(text); setTitle(file.name.slice(0, 200)); setMessage('Uploaded text. Save locally to prepare it.') }).catch(() => setMessage('Could not upload this script. Existing text is kept.'))
         }} /></label>
         {selected && <button onClick={() => {
           if (!removeArmed) { setRemoveArmed(true); return }

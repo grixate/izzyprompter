@@ -23,7 +23,7 @@ export function PublicNav({ mode = 'online', beforeNavigate, light = false }: { 
   const { status } = useAccount()
   const [open, setOpen] = useState(false)
   return <header className="public-nav">
-    <a className="public-brand" href="/" aria-label="IZZY home" onClick={beforeNavigate}><BrandLogo context="TELEPROMPTER" light={light} /></a>
+    <a className="public-brand" href="/" aria-label="IZZY home" onClick={beforeNavigate}><BrandLogo light={light} /></a>
     <nav className="public-links" aria-label="Main navigation">
       <a className="nav-pro" href="/pro" onClick={() => { beforeNavigate?.(); track('homepage_pro_clicked', { source: 'nav' }) }}>Pro <Discount /></a>
     </nav>
@@ -35,7 +35,7 @@ export function PublicNav({ mode = 'online', beforeNavigate, light = false }: { 
   </header>
 }
 export function PublicFooter({ light = false, beforeNavigate, offlineHint = false }: { light?: boolean; beforeNavigate?: () => void; offlineHint?: boolean }) {
-  return <footer className="public-footer"><a href="/" aria-label="IZZY home" onClick={beforeNavigate}><BrandLogo context="" light={light} /></a><nav aria-label="Footer"><a href="/pro" onClick={beforeNavigate}>Lifetime Pro</a><a href="/local" onClick={beforeNavigate}>Offline</a><a href="/account" onClick={beforeNavigate}>My scripts</a></nav>
+  return <footer className="public-footer"><a href="/" aria-label="IZZY home" onClick={beforeNavigate}><BrandLogo light={light} /></a><nav aria-label="Footer"><a href="/pro" onClick={beforeNavigate}>Lifetime Pro</a><a href="/local" onClick={beforeNavigate}>Offline</a><a href="/account" onClick={beforeNavigate}>My scripts</a></nav>
     <div className="public-footer-legal"><span>© {new Date().getFullYear()} IZZY Prompter</span><LegalLinks beforeNavigate={beforeNavigate} offlineHint={offlineHint} /></div>
   </footer>
 }

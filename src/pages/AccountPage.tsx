@@ -56,8 +56,8 @@ export function AccountPage() {
   }
   return <main className="start-page workbench-page account-page">
     <header className="start-header">
-      <a href="/" aria-label="IZZY home"><BrandLogo context="TELEPROMPTER" /></a>
-      <nav aria-label="Account navigation">{status?.user ? <><a href="/account">My scripts</a><button onClick={() => void logout()}>Log out</button></> : <a href="/">Back to prompter</a>}</nav>
+      <a href="/" aria-label="IZZY home"><BrandLogo /></a>
+      <nav aria-label="Account navigation">{status?.user ? <><a href="/account" aria-current={scriptId ? undefined : 'page'}>My scripts</a><button onClick={() => void logout()}>Log out</button></> : <a href="/">Back to prompter</a>}</nav>
     </header>
     {notice && <p className="account-notice" role="status">{notice}</p>}
     {loading ? <p className="account-loading">Opening your workspace…</p> : !status?.user || token ? <section className="account-login">
@@ -137,22 +137,23 @@ function LibraryWorkspace({ user }: { user: Account }) {
   }
   return <div className="account-layout">
     <section className="account-library">
+      {trash && <button className="account-back library-back" onClick={() => { setTrash(false); setPage(0) }}><ArrowLeft size={16} />Back to scripts</button>}
       <div className="account-eyebrow"><span>WORKSPACE / {user.pro ? 'PRO' : 'FREE · 3 SCRIPTS'}</span><span>{user.email}</span></div>
-      <div className="account-title-row"><h1>Your scripts.</h1><button className="account-primary" disabled={busy} onClick={() => void create()}><Plus size={16} />New script</button></div>
+      <div className="account-title-row"><h1>{trash ? 'Trash' : 'Your scripts'}</h1>{!trash && <button className="account-primary" disabled={busy} onClick={() => void create()}><Plus size={16} />New script</button>}</div>
       <div className="library-toolbar"><label className="sr-only" htmlFor="library-search">Search scripts</label><input id="library-search" type="search" placeholder="Find a title or a line…" value={search} onChange={event => { setSearch(event.target.value); setPage(0) }} />
-        <button aria-pressed={trash} onClick={() => { setTrash(value => !value); setPage(0) }}>{trash ? 'Back to scripts' : 'Trash'}</button>
-        <button disabled={busy} onClick={() => file.current?.click()}><Upload size={14} />Import</button>
+        {!trash && <><button onClick={() => { setTrash(true); setPage(0) }}><Trash2 size={16} />Trash</button>
+        <button disabled={busy} onClick={() => file.current?.click()}><Upload size={16} />Upload</button></>}
         <input ref={file} hidden type="file" accept=".txt,.md" onChange={event => { void importFile(event.target.files); event.target.value = '' }} />
       </div>
       {notice && <p className="account-notice" role="status">{notice}{!user.pro && product?.checkout_available && notice === accountMessage(new AccountError('script_limit', 422)) && <> <a href="/pro" onClick={() => track('script_limit_upgrade_clicked', { source: 'library' })}>Explore unlimited scripts with Pro</a></>}</p>}
       {pending.map(draft => <div className="guest-adoption" key={`${draft.scriptId}:${draft.draftId}`}><div><strong>Unsent device draft · {draft.title}</strong><p>Review this tab’s saved changes before synchronizing.</p></div><a href={`/account/scripts/${draft.scriptId}#draft=${draft.draftId}`}>Recover draft</a></div>)}
-      {guestDraft && !trash && !search && page === 0 && <div className="guest-adoption"><div><strong>A draft on this device</strong><p>Keep a separate copy in this account. Nothing is moved automatically.</p></div><button disabled={busy} onClick={() => void create('Imported device draft', guestDraft)}>Save a copy</button></div>}
+      {guestDraft && !trash && !search && page === 0 && <div className="guest-adoption"><div><strong>A draft on this device</strong><p>Keep a separate copy in this account. Nothing is moved automatically.</p></div><button disabled={busy} onClick={() => void create('Uploaded device draft', guestDraft)}>Save a copy</button></div>}
       <div className="script-list">{scripts.map((script, index) => <article key={script.id} className="script-card">
         <span className="script-number">{String(page * 30 + index + 1).padStart(2, '0')}</span>
         <div>{trash ? <h2>{script.title}</h2> : <a href={`/account/scripts/${script.id}`}><h2>{script.title}</h2></a>}<p>{script.excerpt || 'A clean page. Ready for your next take.'}</p><span className="script-date">{trash ? 'TRASH · RETAINED FOR 30 DAYS' : `SAVED ${new Date(script.updated_at).toLocaleDateString()}`}</span></div>
         <div className="script-card-actions">{trash ? <button disabled={busy} onClick={() => void action(script, 'restore')}>Restore</button> : <><button title="Duplicate script" aria-label={`Duplicate ${script.title}`} disabled={busy} onClick={() => void action(script, 'duplicate')}><Copy size={15} /></button><button title="Move to trash" aria-label={`Move ${script.title} to trash`} disabled={busy} onClick={() => void action(script, 'delete')}><Trash2 size={15} /></button></>}</div>
       </article>)}</div>
-      {loaded && !scripts.length && <p className="library-empty">{trash ? 'Nothing in trash.' : search ? 'No matching scripts.' : 'Your next take starts with a few words. Create a script or import a text file.'}</p>}
+      {loaded && !scripts.length && <p className="library-empty">{trash ? 'Nothing in trash.' : search ? 'No matching scripts.' : 'Your next take starts with a few words. Create a script or upload a text file.'}</p>}
       <div className="library-pagination"><button disabled={page === 0} onClick={() => setPage(value => value - 1)}>Previous</button><span>PAGE {page + 1}</span><button disabled={scripts.length < 30} onClick={() => setPage(value => value + 1)}>Next</button></div>
       {status?.google_enabled && <a className="account-google" href="/auth/google">Link Google to this account</a>}
     </section>

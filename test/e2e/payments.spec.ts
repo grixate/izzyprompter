@@ -11,7 +11,7 @@ test.describe('lava.top checkout', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto(`/account/login#token=${accountFixture().token}`)
     await page.getByRole('button', { name: 'Sign in to IZZY', exact: true }).click()
-    await expect(page.getByRole('heading', { name: 'Your scripts.', exact: true })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Your scripts', exact: true })).toBeVisible()
   })
 
   test('offers only US$29 once and opens the hosted Lava checkout', async ({ page }, testInfo) => {

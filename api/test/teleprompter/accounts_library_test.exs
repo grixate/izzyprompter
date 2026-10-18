@@ -247,18 +247,20 @@ defmodule Teleprompter.AccountsLibraryTest do
       Library.create(user, %{"title" => "Active", "content" => "Words", "folder_id" => folder.id})
 
     {:ok, deleted} = Library.duplicate(user, saved.id)
+    {:ok, detach} = Library.duplicate(user, saved.id)
     {:ok, _} = Library.trash(user, deleted.id)
-    assert Enum.find(Library.folders(user), &(&1.id == folder.id)).script_count == 1
+    assert Enum.find(Library.folders(user), &(&1.id == folder.id)).script_count == 2
     {:ok, :ok} = Commerce.operator_confirm(attempt.id, "refunded", "test", "fixture-refund")
     assert length(Library.folders(user)) == 1
-    assert length(Library.list(user, "", false, 0, folder.id)) == 1
+    assert length(Library.list(user, "", false, 0, folder.id)) == 2
     assert length(Library.list(user, "", true, 0, folder.id)) == 1
     assert {:error, :pro_required} = Library.save_folder(user, folder.id, %{"name" => "Changed"})
     assert {:error, :pro_required} = Library.move_to_folder(user, saved.id, folder.id)
-    {:ok, unfiled} = Library.move_to_folder(user, saved.id, nil)
+    {:ok, unfiled} = Library.move_to_folder(user, detach.id, nil)
     assert is_nil(unfiled.folder_id)
     assert {:ok, _} = Library.delete_folder(user, folder.id)
     assert Library.folders(user) == []
+    assert is_nil(Library.get(user, saved.id).folder_id)
     assert Library.get(user, saved.id).document == saved.document
     [trash] = Library.list(user, "", true)
     assert trash.id == deleted.id

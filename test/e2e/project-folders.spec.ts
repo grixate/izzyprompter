@@ -39,6 +39,8 @@ test.describe('project folders', () => {
     await expect(page.locator('.script-card')).toHaveCount(2)
     await expect(project.locator('option:checked')).toHaveText('Presentations (2)')
     await page.screenshot({ path: testInfo.outputPath('projects-desktop.png'), fullPage: true })
+    await page.setViewportSize({ width: 320, height: 844 })
+    await expect.poll(() => page.evaluate(() => document.documentElement.scrollWidth)).toBe(320)
     await page.setViewportSize({ width: 390, height: 844 })
     await expect.poll(() => page.evaluate(() => document.documentElement.scrollWidth)).toBe(390)
     await page.screenshot({ path: testInfo.outputPath('projects-phone.png'), fullPage: true })

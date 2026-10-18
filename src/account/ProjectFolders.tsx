@@ -42,7 +42,7 @@ export function ProjectFolders({ pro, folders, value, onChange, refresh, loaded,
   const save = async (event: FormEvent) => {
     event.preventDefault(); setBusy(true); setNotice('')
     try {
-      const folder = await accountApi<ProjectFolder>(editing === 'rename' && selected ? `/folders/${selected.id}` : '/folders', editing === 'rename' ? 'PATCH' : 'POST', { name })
+      const folder = await accountApi<Pick<ProjectFolder, 'id' | 'name'>>(editing === 'rename' && selected ? `/folders/${selected.id}` : '/folders', editing === 'rename' ? 'PATCH' : 'POST', { name })
       await refresh(); onChange(folder.id); setEditing(null)
       window.dispatchEvent(new Event('izzy:account-update'))
     } catch (error) { setNotice(accountMessage(error)) }

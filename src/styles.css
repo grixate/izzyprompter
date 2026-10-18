@@ -1080,6 +1080,8 @@ a.login-button { display: inline-flex; align-items: center; justify-content: cen
 }
 
 /* Project organization stays close to the library, with one flat level. */
+.account-title-row h1 { min-width: 0; overflow-wrap: anywhere; }
+.account-title-row .account-primary { flex-shrink: 0; white-space: nowrap; }
 .project-folders { margin-top: 24px; }
 .project-toolbar { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
 .project-toolbar > label { display: flex; align-items: center; gap: 9px; flex: 1; min-width: 160px; }

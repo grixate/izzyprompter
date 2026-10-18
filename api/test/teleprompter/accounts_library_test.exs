@@ -207,9 +207,23 @@ defmodule Teleprompter.AccountsLibraryTest do
     assert Library.list(user, "missing", false, 0, folder.id) == []
     assert Library.list(user, "", false, 0, "invalid") == []
     assert Enum.find(Library.folders(user), &(&1.id == folder.id)).script_count == 1
+    {:ok, live} = Sessions.create_saved(user, saved.id)
+    {:ok, session_pid} = Sessions.lookup(live.session_id)
+    {:ok, before_move} = Sessions.snapshot(live.session_id)
+
+    on_exit(fn ->
+      if match?({:ok, _}, Sessions.lookup(live.session_id)),
+        do: Sessions.end_saved(live.session_id, user)
+    end)
+
     {:ok, moved} = Library.move_to_folder(user, saved.id, other_folder.id)
     assert moved.revision == saved.revision
     assert moved.document == saved.document
+    assert {:ok, ^session_pid} = Sessions.lookup(live.session_id)
+    {:ok, after_move} = Sessions.snapshot(live.session_id)
+    assert after_move.transport == before_move.transport
+    assert after_move.script == before_move.script
+    refute Map.has_key?(after_move, :folder_id)
     {:ok, edited} = Library.update(user, saved.id, write(saved, "Still writable"))
     assert edited.folder_id == other_folder.id
     {:ok, copy} = Library.duplicate(user, saved.id)

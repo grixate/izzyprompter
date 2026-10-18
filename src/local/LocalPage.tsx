@@ -108,6 +108,13 @@ export function LocalPage() {
   useEffect(() => { if (workspaceOpen && !take) { setupRef.current?.scrollIntoView({ block: 'start' }); setupRef.current?.focus({ preventScroll: true }) } }, [workspaceOpen, take])
   const [draftWriter] = useState(() => createDebouncedStorageWriter<LocalEditorDraft>({ delay: 250, write: saveLocalEditorDraft,
     onResult: ok => { if (!ok) setMessage('Draft recovery unavailable. Keep this tab open and save or export your text.') } }))
+  const latestDraft = useRef<{ ready: boolean; value: LocalEditorDraft } | null>(null)
+  latestDraft.current = { ready: loaded && !take, value: { version: 1, title, content, documentId: selected?.document.id ?? null, updatedAt: Date.now() } }
+  const flushDraft = useCallback(() => {
+    // Navigation can arrive before the autosave effect schedules the latest input.
+    if (latestDraft.current?.ready) draftWriter.schedule(latestDraft.current.value)
+    draftWriter.flush()
+  }, [draftWriter])
   const refresh = () => preparedScripts().then(setItems).catch(() => setMessage('Local storage unavailable. You can prompt in this tab; export your text before closing.')).finally(() => setLoaded(true))
   useEffect(() => {
     const draft = loadLocalEditorDraft()
@@ -129,11 +136,11 @@ export function LocalPage() {
     if (loaded && !take) draftWriter.schedule({ version: 1, title, content, documentId: selected?.document.id ?? null, updatedAt: Date.now() })
   }, [title, content, selected?.document.id, loaded, take, draftWriter])
   useEffect(() => {
-    const flush = () => { draftWriter.flush() }
+    const flush = flushDraft
     const hidden = () => { if (document.visibilityState === 'hidden') flush() }
     window.addEventListener('pagehide', flush); document.addEventListener('visibilitychange', hidden)
     return () => { flush(); draftWriter.dispose(); window.removeEventListener('pagehide', flush); document.removeEventListener('visibilitychange', hidden) }
-  }, [draftWriter])
+  }, [draftWriter, flushDraft])
   useEffect(() => {
     document.title = 'Offline — IZZY'
     const link = document.createElement('link'); link.rel = 'manifest'; link.href = '/manifest.webmanifest'; document.head.appendChild(link)
@@ -159,7 +166,7 @@ export function LocalPage() {
   }
   if (take) return <LocalTake initial={take} onExit={item => { setTake(null); select(item); void refresh() }} />
   return <main className="local-workspace offline-studio product-page">
-    <PublicNav mode="offline" beforeNavigate={() => draftWriter.flush()} />
+    <PublicNav mode="offline" beforeNavigate={flushDraft} />
     <section className="offline-hero">
       <div className="local-intro"><h1>Your words.<br /><em>Anywhere.</em></h1>
         <p>A free teleprompter for the moments without internet. Prepare here, then read on this device.</p>
@@ -182,8 +189,8 @@ export function LocalPage() {
       </aside>
       <section className="local-editor" aria-label="Local script editor">
         <h2>Your script</h2>
-        <label>Script title<input aria-label="Local script title" value={title} maxLength={200} onChange={event => setTitle(event.target.value)} /></label>
-        <label>Script text<textarea aria-label="Local script text" value={content} onChange={event => { setContent(event.target.value); setMessage('Unsaved text. Save locally or export before closing.') }} spellCheck /></label>
+        <label>Script title<input aria-label="Local script title" disabled={!loaded || busy} value={title} maxLength={200} onChange={event => setTitle(event.target.value)} /></label>
+        <label>Script text<textarea aria-label="Local script text" disabled={!loaded || busy} value={content} onChange={event => { setContent(event.target.value); setMessage('Unsaved text. Save locally or export before closing.') }} spellCheck /></label>
         <div className="local-actions"><button className="offline-primary" disabled={busy || !content.trim()} onClick={() => void prepare(true)}>Start local prompting<ArrowUpRight size={16} /></button>
           <button disabled={busy || !content.trim()} onClick={() => void prepare(false)}>Save script offline</button></div>
         <details className="offline-script-options"><summary>Upload, export and more</summary><div className="local-actions">
@@ -209,6 +216,6 @@ export function LocalPage() {
     <p className="offline-backup-note">Saved in this browser. Keep a text backup before clearing browser data.</p>
     </section>
     <details className="offline-remote-info"><summary>Using a phone remote?</summary><p>Standalone reading works on this device. Direct phone pairing is experimental and requires a reachable local network. Prepare the app on both devices first.</p><a href="/local/remote">Open direct remote preview <ArrowUpRight size={15} /></a></details>
-    <PublicFooter beforeNavigate={() => draftWriter.flush()} offlineHint />
+    <PublicFooter beforeNavigate={flushDraft} offlineHint />
   </main>
 }

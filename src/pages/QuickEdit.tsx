@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { Pencil } from 'lucide-react'
+import { QuickEditTrigger } from '../components/SecondaryControls'
 import type { IzzyDocumentV1 } from '../domain/document'
 import { loadQuickEditDraft, saveQuickEditDraft, type QuickEditDraftV1 } from '../domain/storage'
 import type { CommandResult, ConnectionState, EditingState, SessionSnapshot } from '../realtime/protocol'
@@ -180,9 +180,9 @@ export function QuickEdit(props: Props) {
   const storageFailed = !draftStored && draft?.text !== draft?.acknowledgedText
 
   return <>
-    <button ref={trigger} className="quick-edit-trigger" disabled={busy || props.connection !== 'connected' || (!props.canEdit && !props.editing.active)} onClick={() => void begin()} aria-label="Quick edit current paragraph">
-      <Pencil size={12} /><span>{busy ? 'CHECKPOINTING…' : props.editing.active ? 'VIEW LIVE EDIT' : 'QUICK EDIT'}</span>
-    </button>
+    <QuickEditTrigger ref={trigger} disabled={busy || props.connection !== 'connected' || (!props.canEdit && !props.editing.active)} onClick={() => void begin()} aria-label="Quick edit current paragraph">
+      {busy ? 'CHECKPOINTING…' : props.editing.active ? 'VIEW LIVE EDIT' : 'QUICK EDIT'}
+    </QuickEditTrigger>
     {!open && message && <p className="quick-edit-feedback" role="status">{message}</p>}
     <dialog ref={dialog} className="quick-edit-dialog" aria-labelledby="quick-edit-title" aria-describedby="quick-edit-explanation" data-state={state}
       onCancel={(event) => { event.preventDefault(); if (observer || synced) void close() }}>

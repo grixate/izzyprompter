@@ -1,0 +1,17 @@
+{
+  "stats": {
+    "startTime": "2026-10-19T20:13:54.083Z",
+    "duration": 373107.067,
+    "expected": 158,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  },
+  "remainingFailures": [
+    {
+      "title": "Rally: responsive controls, keyboard focus and reduced motion",
+      "project": "webkit",
+      "status": "unexpected"
+    }
+  ]
+}

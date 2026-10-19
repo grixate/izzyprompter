@@ -193,7 +193,7 @@ for (const skin of skins) {
       }
       const wheelBox = (await page.locator('.jog-wheel').boundingBox())!
       const playBox = (await page.getByRole('button', { name: 'Play', exact: true }).boundingBox())!
-      const separate = ['field', 'graphite', 'glacier', 'correspondent', 'airframe'].includes(skin.id)
+      const separate = ['graphite', 'glacier', 'correspondent', 'airframe'].includes(skin.id)
       expect.soft(Math.abs(playBox.x + playBox.width / 2 - wheelBox.x - wheelBox.width / 2), `${viewport.width}: centered Play key`).toBeLessThan(1)
       if (separate) expect.soft(playBox.y, `${viewport.width}: separate Play key`).toBeGreaterThan(wheelBox.y + wheelBox.height)
       else expect.soft(Math.abs(playBox.y + playBox.height / 2 - wheelBox.y - wheelBox.height / 2), `${viewport.width}: centered Play key`).toBeLessThan(1)

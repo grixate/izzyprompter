@@ -36,3 +36,6 @@ export function preferredSkin(): SkinId {
 export function saveSkin(id: SkinId): boolean {
   try { localStorage.setItem(skinStorageKey, id); window.dispatchEvent(new Event('izzy:skin-change')); return true } catch { return false }
 }
+
+// Owner-directed control pass; archived studies stay available under their IDs.
+export const controlCraftSkins: ReadonlySet<SkinId> = new Set(['original','ivory','graphite','field','signal','groove','switchboard','vector','cartridge','correspondent','foundry','observatory','clear','arcade'])

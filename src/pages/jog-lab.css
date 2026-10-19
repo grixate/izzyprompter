@@ -295,3 +295,12 @@
   .lab-device--correspondent .transport-button::after,
   .lab-device--airframe .transport-button::after { content: ""; position: absolute; inset: -5px; border-radius: inherit; }
 }
+
+/* Curated review uses the production skins and the shared lower controls. */
+.jog-lab--controls .lab-device .phrase-nav {margin-top:24px;}
+.jog-lab--controls .lab-device .quick-edit-trigger {width:100%;margin-top:12px;}
+.jog-lab--controls .lab-device .phrase-nav button {font-family:monospace;}
+.jog-lab--controls .lab-device .lab-script-monitor {margin-top:20px;}
+.lab-inline-edit label {display:block;font:9px monospace;}
+.lab-inline-edit textarea {display:block;width:100%;min-height:100px;margin:8px 0;background:#eff0e6;color:#29382b;border:1px solid #7d8d70;padding:10px;font:14px/1.5 sans-serif;}
+.lab-inline-edit button {min-height:44px;padding:8px 18px;border:1px solid currentColor;border-radius:3px;background:transparent;color:inherit;}

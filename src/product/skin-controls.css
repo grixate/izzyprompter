@@ -1,0 +1,76 @@
+/* The complete control bank belongs to its instrument, including the edit key. */
+.skin-face.skin--original { --key-face:linear-gradient(#393e33,#2d3328);--key-ink:#e4e7db;--key-edge:#111b10;--key-light:#73806366;--key-foot:#121c12;--key-radius:3px;--bank-face:#1f281e;--bank-ink:#d2d6c8;--bank-gap:1px; }
+.skin-face.skin--ivory { --key-face:linear-gradient(#f3f1e7,#dbddce);--key-ink:#394232;--key-edge:#a8ae99;--key-light:#ffffffe6;--key-foot:#bbc1aa;--key-radius:22px;--bank-face:#d5d8c7;--bank-ink:#394232;--bank-gap:8px; }
+.skin-face.skin--graphite { --key-face:linear-gradient(#414a36,#303a29);--key-ink:#e2e7d5;--key-edge:#16230f;--key-light:#82916b66;--key-foot:#14200e;--key-radius:5px;--bank-face:#242f1e;--bank-ink:#d6dfc7;--bank-gap:6px; }
+.skin-face.skin--field { --key-face:linear-gradient(#dce1d7,#c1c9bb);--key-ink:#303a2a;--key-edge:#98a28d;--key-light:#f9fff0;--key-foot:#9fa994;--key-radius:2px;--bank-face:#c5cebc;--bank-ink:#303a2a;--bank-gap:1px; }
+.skin-face.skin--signal { --key-face:linear-gradient(#eee2bf,#d6caa7);--key-ink:#302519;--key-edge:#aa6d42;--key-light:#fff2cd;--key-foot:#9e623b;--key-radius:22px;--bank-face:#c47746;--bank-ink:#251b13;--bank-gap:8px; }
+.skin-face.skin--groove { --key-face:linear-gradient(#e7dec4,#cec1a1);--key-ink:#463b28;--key-edge:#a09572;--key-light:#fff0d1;--key-foot:#a79870;--key-radius:3px;--bank-face:#c2b594;--bank-ink:#463b28;--bank-gap:3px; }
+.skin-face.skin--switchboard { --key-face:linear-gradient(#f1e6c7,#d5c398);--key-ink:#274333;--key-edge:#ab9c73;--key-light:#fff4d6;--key-foot:#b1a176;--key-radius:25px;--bank-face:#234b3d;--bank-ink:#f0e3bf;--bank-gap:8px; }
+.skin-face.skin--vector { --key-face:linear-gradient(#203e28,#122c1a);--key-ink:#c3edaa;--key-edge:#66845c;--key-light:#afda8c33;--key-foot:#0a1f10;--key-radius:2px;--bank-face:#0c2112;--bank-ink:#bde9a5;--bank-gap:5px; }
+.skin-face.skin--cartridge { --key-face:linear-gradient(#ded3ef,#b7a7d2);--key-ink:#35334f;--key-edge:#9d90b3;--key-light:#fbf0ff;--key-foot:#8e81a7;--key-radius:5px;--bank-face:#a8a6b1;--bank-ink:#2d3047;--bank-gap:7px; }
+.skin-face.skin--correspondent { --key-face:linear-gradient(#3c3b31,#272b22);--key-ink:#efdfb9;--key-edge:#ad925c;--key-light:#d5be8166;--key-foot:#151e13;--key-radius:6px;--bank-face:#1e251d;--bank-ink:#e9d5a8;--bank-gap:8px; }
+.skin-face.skin--foundry { --key-face:linear-gradient(#7d6a43,#5d5636);--key-ink:#fff1d0;--key-edge:#4d4c2d;--key-light:#dcc28a99;--key-foot:#41442b;--key-radius:7px;--bank-face:#4b4b30;--bank-ink:#f7e5bb;--bank-gap:6px; }
+.skin-face.skin--observatory { --key-face:linear-gradient(#dfcea0,#b39a65);--key-ink:#213448;--key-edge:#a38c5b;--key-light:#fff0c3;--key-foot:#7b744e;--key-radius:22px;--bank-face:#21334b;--bank-ink:#ebdbb4;--bank-gap:8px; }
+.skin-face.skin--clear { --key-face:linear-gradient(#f1f4edcf,#cdd8d0c9);--key-ink:#293b33;--key-edge:#91a497;--key-light:#fff;--key-foot:#a4b5a9;--key-radius:12px;--bank-face:#c2d0c5a6;--bank-ink:#293b33;--bank-gap:8px; }
+.skin-face.skin--arcade { --key-face:radial-gradient(ellipse at 35% 15%,#f5dfaa,#d4b46f);--key-ink:#303b31;--key-edge:#958353;--key-light:#fff2cb;--key-foot:#9b854e;--key-radius:25px;--bank-face:#416252;--bank-ink:#f1e5c8;--bank-gap:10px; }
+
+.skin-controls .phrase-nav {
+  gap:var(--bank-gap,3px);padding:3px;border:1px solid var(--key-edge,#717965);
+  border-radius:calc(var(--key-radius,3px) + 3px);background:var(--bank-face,#283127);
+  box-shadow:inset 0 1px 3px #14201530,0 1px var(--key-light,#ffffff30);
+}
+.skin-controls .phrase-nav button {
+  min-width:44px;min-height:48px;border:1px solid var(--key-edge,#717965);
+  border-radius:var(--key-radius,3px);background:var(--key-face,#404b38);color:var(--key-ink,#eff0df);
+  box-shadow:inset 0 1px var(--key-light,#ffffff50),0 2px 0 var(--key-foot,#172314);
+  transition:transform 100ms ease,box-shadow 100ms ease;
+}
+.skin-controls .phrase-nav button :is(span,small) {color:inherit;}
+.skin-controls .phrase-count {min-height:48px;background:transparent;color:var(--bank-ink,#e6e6d5);font-size:11px;}
+.skin-controls .phrase-count small {color:inherit;opacity:1;font-size:10px;}
+.skin-controls .phrase-nav button small {font-size:10px;}
+.skin-controls .quick-edit-trigger,.skin-controls .remote-finish-button {
+  min-height:44px;border:1px solid var(--key-edge,#717965);border-radius:var(--key-radius,3px);
+  background:var(--key-face,#404b38);color:var(--key-ink,#eff0df);
+  box-shadow:inset 0 1px var(--key-light,#ffffff50),0 1px 0 var(--key-foot,#172314);
+  font-size:10px;transition:transform 100ms ease,box-shadow 100ms ease;
+}
+.skin-controls .phrase-nav button:first-child {border-right-color:var(--key-edge,#717965);}
+.skin-controls .phrase-nav button:last-child {border-left-color:var(--key-edge,#717965);}
+.standalone-remote.skin-face.skin-controls .remote-finish-button {
+  background:var(--key-face);color:var(--key-ink);border-color:var(--key-edge);
+  border-radius:var(--key-radius);box-shadow:inset 0 1px var(--key-light),0 1px var(--key-foot);
+}
+/* Match the live surface's specificity so the generic dark bank cannot win. */
+.standalone-remote.skin-face.skin-controls .phrase-nav button,.standalone-remote.skin-face.skin-controls .quick-edit-trigger {color:var(--key-ink,#eff0df);}
+.standalone-remote.skin-face.skin-controls .phrase-count small {color:var(--bank-ink,#e6e6d5);}
+.skin-controls :is(.phrase-nav button,.quick-edit-trigger,.remote-finish-button):active {
+  color:var(--key-ink,#eff0df);background:var(--key-face,#404b38);transform:translateY(2px);
+  box-shadow:inset 0 1px 3px #17241340;
+}
+.skin-controls :is(.phrase-nav button,.quick-edit-trigger,.remote-finish-button):focus-visible {outline:2px solid var(--instrument-type);outline-offset:3px;}
+.skin-face.skin--field :is(.phrase-nav,.quick-edit-trigger) {box-shadow:inset 0 1px 2px #48583b30,0 1px #f4f8ea99;}
+.skin-face.skin--field .phrase-nav button {box-shadow:inset 0 1px #f8ffed; text-shadow:0 1px #f7ffeb;}
+.skin-face.skin--groove .phrase-nav button {border-top:3px solid #a3936b;}
+.skin-face.skin--groove .quick-edit-trigger {background:transparent;box-shadow:inset 0 1px #f5ebce77;text-shadow:0 1px #f5ebce77;}
+.skin-face.skin--graphite .phrase-nav button {border-bottom:3px solid #1b2813;}
+.skin-face.skin--vector .phrase-nav {box-shadow:inset 0 0 8px #0005,0 0 0 1px #142c18;}
+.skin-face.skin--vector .phrase-nav button {box-shadow:inset 0 0 5px #83c16212;}
+.skin-face.skin--cartridge .phrase-nav {padding:5px;}
+.skin-face.skin--cartridge .phrase-nav button {box-shadow:inset 0 2px #fff2,0 3px var(--key-foot);}
+.skin-face.skin--foundry :is(.phrase-nav button,.quick-edit-trigger) {border-width:2px;}
+.skin-face.skin--arcade .phrase-nav button:last-child {background:radial-gradient(ellipse at 35% 15%,#edac8c,#ca7866);color:#211713;border-color:#8e3939;--key-foot:#863c3b;}
+.skin-face.skin--arcade .phrase-nav button {box-shadow:inset 0 2px #fff5,0 4px var(--key-foot);}
+
+/* Field's metal boss is the key surface; the glyph is an engraving in it. */
+:is(.skin-face.skin--field,.lab-device--field) .wheel-column {padding-bottom:36px;}
+:is(.skin-face.skin--field,.lab-device--field) .wheel-caption {display:block;color:inherit;}
+:is(.skin-face.skin--field,.lab-device--field) .transport-button {
+  inset:34%;top:34%;width:32%;height:32%;border:0;border-radius:50%;background:transparent;
+  color:#263121;box-shadow:none;
+}
+:is(.skin-face.skin--field,.lab-device--field) .transport-button svg {filter:drop-shadow(0 1px .45px #f0f6df);stroke-width:1.3;}
+:is(.skin-face.skin--field,.lab-device--field) .transport-button:active {background:transparent;box-shadow:none;transform:translateY(1px);}
+.standalone-remote.skin--field .wheel-column:has(.wheel-input:focus-visible) .wheel-caption {position:static;top:auto;line-height:normal;}
+:is(.skin-face.skin--signal,.lab-device--signal) .transport-button {border-radius:50%;}
+@media(prefers-reduced-motion:reduce){.skin-controls :is(.phrase-nav button,.quick-edit-trigger,.remote-finish-button){transition:none;}}

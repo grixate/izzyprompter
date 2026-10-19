@@ -1,5 +1,7 @@
 # Remote skins — product direction
 
+> **19 October — owner-directed curation:** the goal is recognisable objects and interests, with no finish-count quota. See [the current brief](design/2026-10-19-skin-craft/CURATED_DIRECTION.md). The [first control pass](design/2026-10-19-skin-craft/v3-controls/PASS.md) styles the lower controls and centres Field's engraved Play; Signal's key is round. Previous 25-candidate records below are historical, not an approved release selection.
+
 Creative development follows the [remote instrument design playbook](REMOTE_DESIGN_PLAYBOOK.md). It records the reference collection, reusable workflow and collaboration/quality gates; this file records product scope and entitlement decisions.
 
 Owner direction, 2026-10-12: preserve the wheel studies, explore more variants, and offer remote skins as a future Pro feature. Preferred default: **R–03 / Orbit**. Current implementation is the twelve-study development playground only, not a shipped theme selector or paid entitlement. Collection 03 closes this exploration for now at the owner's request; retain all three collections and their previews.

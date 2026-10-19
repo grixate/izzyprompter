@@ -4,12 +4,13 @@ import { JogControls, TransportReadout } from '../components/JogControls'
 import { BASE_PIXELS_PER_SECOND } from '../prompt/motion'
 import './jog-lab.css'
 import { skins } from '../product/catalog'
-import '../product/skin-craft.css'
+import '../product/skins.css'
+import { PhraseNavigation, QuickEditTrigger } from '../components/SecondaryControls'
 
 const studies = [
   { id: 'field', number: '01', name: 'Field reel', material: 'SATIN ALUMINIUM', tag: 'THE QUIET ONE',
-    description: 'One broad disc. A fine seam. Transport moves off the wheel, giving your thumb the whole surface.',
-    detail: 'Separate play key · engraved face · shallow edge' },
+    description: 'One broad disc. A fine seam. A small engraved play mark sits in the machined centre.',
+    detail: 'Engraved central transport · shallow edge' },
   { id: 'graphite', number: '02', name: 'Thumbprint', material: 'ANODIZED GRAPHITE', tag: 'THE TACTILE ONE',
     description: 'A recessed finger pocket and a restrained, gripped edge. More tool, less interface.',
     detail: 'Finger recess · separate play key · soft machining' },
@@ -21,7 +22,7 @@ const studies = [
     detail: 'Central transport · full grip ring · deep graphite' },
   { id: 'signal', number: '04', name: 'Signal', material: 'SAFETY ORANGE', tag: 'THE BOLD ONE',
     description: 'A little broadcast equipment, a little field instrument. An orange shell, a dark disc, and one unmistakable play key.',
-    detail: 'Enamel shell · inset charcoal wheel · square transport' },
+    detail: 'Enamel shell · inset charcoal wheel · round transport' },
   { id: 'groove', number: '05', name: 'Groove', material: 'SMOKED VINYL', tag: 'THE ANALOG ONE',
     description: 'Fine record grooves catch the light as you turn. A warm studio finish and a small orange label bring a little soul to the take.',
     detail: 'Concentric grooves · label-like hub · studio cream' },
@@ -70,9 +71,11 @@ const sample = [
   'One more breath. One more take. You have found your rhythm.',
 ]
 
-function StudyDevice({ study, reset, sensitivity, motor, large }: {
-  study: Study; reset: number; sensitivity: number; motor: boolean; large: boolean
+function StudyDevice({ study, reset, sensitivity, motor, large, controlsReview }: {
+  study: Study; reset: number; sensitivity: number; motor: boolean; large: boolean; controlsReview: boolean
 }) {
+  const [lines, setLines] = useState<string[]>([...sample])
+  const [editing, setEditing] = useState(false)
   const [position, setPosition] = useState(310)
   const [playing, setPlaying] = useState(false)
   const [speed, setSpeed] = useState(.86)
@@ -108,7 +111,7 @@ function StudyDevice({ study, reset, sensitivity, motor, large }: {
     setPosition(value => Math.max(0, Math.min(duration, value + delta * sensitivity)))
   }
   const currentLine = Math.min(sample.length - 1, Math.floor(position / duration * sample.length))
-  return <div className={`lab-device lab-device--${study.id}${Number(study.number) >= 16 ? ` skin-face skin--${study.id}` : ''}${large ? ' lab-device--large' : ''}`}
+  return <div className={`lab-device lab-device--${study.id}${controlsReview || Number(study.number) >= 16 ? ` skin-face skin--${study.id}` : ''}${large ? ' lab-device--large' : ''}${controlsReview?' skin-controls':''}`}
     style={{ '--lab-angle': `${angle}rad` } as CSSProperties}>
     <div className="lab-device-top"><span className="lab-model">R–{study.number}</span><span className="lab-device-mark">IZZY<br />DESIGN STUDY</span></div>
     <TransportReadout position={position} speed={speed} playing={playing} label="LOCAL / DEMO" />
@@ -117,9 +120,15 @@ function StudyDevice({ study, reset, sensitivity, motor, large }: {
       onToggle={() => { if (position >= duration) setPosition(0); setPlaying(value => !value) }}
       onSeek={seek} onEdge={edge => setPosition(edge === 'start' ? 0 : duration)}
       onSpeedChange={setSpeed} onDraggingChange={setDragging} />
+    {controlsReview && <>
+      <PhraseNavigation enabled index={currentLine} total={lines.length}
+        onPrevious={() => setPosition(Math.max(0,currentLine-1)*duration/lines.length)}
+        onNext={() => setPosition(Math.min(lines.length-1,currentLine+1)*duration/lines.length)} />
+      <QuickEditTrigger onClick={() => {setPlaying(false);setEditing(true)}} />
+    </>}
     <div className="lab-script-monitor" aria-label={`${study.name} script preview`}>
       <div className="lab-monitor-label"><span>{dragging ? 'SCRUBBING' : playing ? 'READING' : 'CUE'}</span><span>{String(currentLine + 1).padStart(2, '0')} / 08</span></div>
-      <p>{sample[currentLine]}</p>
+      {controlsReview && editing ? <div className="lab-inline-edit"><label>DEMO / CURRENT PARAGRAPH<textarea autoFocus aria-label="Demo current paragraph" value={lines[currentLine]} onChange={event => setLines(value => value.map((line,index) => index===currentLine?event.target.value:line))} /></label><button onClick={() => setEditing(false)}>Done</button></div> : <p>{lines[currentLine]}</p>}
       <div className="lab-progress"><span style={{ width: `${position / duration * 100}%` }} /></div>
     </div>
     <div className="lab-device-bottom"><span>JOG / BIDIRECTIONAL</span><span>↶ &nbsp; ↷</span></div>
@@ -127,8 +136,13 @@ function StudyDevice({ study, reset, sensitivity, motor, large }: {
 }
 
 export default function JogLabPage() {
-  const [view, setView] = useState<'compare' | 'focus'>('compare')
-  const [selected, setSelected] = useState<Study['id']>('ivory')
+  const controlsReview = new URLSearchParams(location.search).get('review') === 'controls'
+  const order = ['groove','field','signal','vector','foundry','ivory','original','graphite','cartridge','switchboard','correspondent','observatory']
+  const collection = controlsReview ? order.flatMap(id => studies.filter(study => study.id===id)) : studies
+  const requested = new URLSearchParams(location.search).get('skin')
+  const initial = collection.find(study => study.id===requested)?.id ?? (controlsReview?'groove':'ivory')
+  const [view, setView] = useState<'compare' | 'focus'>(controlsReview?'focus':'compare')
+  const [selected, setSelected] = useState<Study['id']>(initial)
   const [favorite, setFavorite] = useState<Study['id'] | null>(null)
   const [sensitivity, setSensitivity] = useState(1)
   const [motor, setMotor] = useState(true)
@@ -138,24 +152,24 @@ export default function JogLabPage() {
     document.title = 'IZZY — Wheel studies'
     return () => { document.title = before }
   }, [])
-  const visible = view === 'focus' ? studies.filter(study => study.id === selected) : studies
-  return <main className={`jog-lab ${view === 'focus' ? 'jog-lab--focus' : ''}`}>
+  const visible = view === 'focus' ? collection.filter(study => study.id === selected) : collection
+  return <main className={`jog-lab ${view === 'focus' ? 'jog-lab--focus' : ''} ${controlsReview?'jog-lab--controls':''}`}>
     <header className="lab-header"><a href="/" className="lab-wordmark"><span>I</span> IZZY <span className="lab-wordmark-divider">/</span> DESIGN LAB</a><a href="/" className="lab-back"><ArrowLeft size={14} />Back to IZZY</a></header>
-    <section className="lab-intro"><div><p className="lab-eyebrow">EXPERIMENT 001 / THE JOG WHEEL</p><h1>Less interface.<br />More instrument.</h1></div><div className="lab-intro-note"><span className="lab-orange-dot" /><p>Twenty-six studies. One familiar gesture.<br />Six collections. Different ways to feel it.</p><small>R–03 / Orbit is your default candidate. The live remote stays as it is.</small></div></section>
+    <section className="lab-intro"><div><p className="lab-eyebrow">{controlsReview?'CURATED / CONTROL DETAILS':'EXPERIMENT 001 / THE JOG WHEEL'}</p><h1>{controlsReview?'One complete instrument.':<>Less interface.<br />More instrument.</>}</h1></div><div className="lab-intro-note"><span className="lab-orange-dot" />{controlsReview?<><p>First pass: matching lower controls, an engraved Field key and a round Signal key.</p><small>Local demo. Try Play, scrub, phrase keys and Quick Edit.</small></>:<><p>Twenty-six studies. One familiar gesture.<br />Six collections. Different ways to feel it.</p><small>R–03 / Orbit is your default candidate. The live remote stays as it is.</small></>}</div></section>
     <div className="lab-toolbar">
-      <div className="lab-view-switch" role="group" aria-label="Study layout"><button aria-pressed={view === 'compare'} onClick={() => setView('compare')}>Compare all <span>{String(studies.length).padStart(2, '0')}</span></button><button aria-pressed={view === 'focus'} onClick={() => setView('focus')}>Focus view <Maximize2 size={13} /></button></div>
+      <div className="lab-view-switch" role="group" aria-label="Study layout"><button aria-pressed={view === 'compare'} onClick={() => setView('compare')}>Compare all <span>{String(collection.length).padStart(2, '0')}</span></button><button aria-pressed={view === 'focus'} onClick={() => setView('focus')}>Focus view <Maximize2 size={13} /></button></div>
       <div className="lab-tuning"><label className="lab-motor"><input type="checkbox" checked={motor} onChange={event => setMotor(event.target.checked)} />Spin on playback</label><label className="lab-sensitivity">FEEL<select aria-label="Scrub sensitivity" value={sensitivity} onChange={event => setSensitivity(Number(event.target.value))}><option value={.5}>Precise</option><option value={1}>Balanced</option><option value={2}>Fast</option></select></label><button className="lab-reset" onClick={() => setReset(value => value + 1)}><RotateCcw size={13} /><span>Reset</span></button></div>
     </div>
-    {view === 'focus' && <nav className="lab-focus-tabs" aria-label="Choose wheel study">{studies.map(study => <button key={study.id} aria-pressed={selected === study.id} onClick={() => setSelected(study.id)}>{study.number} / {study.name}</button>)}</nav>}
+    {view === 'focus' && <nav className="lab-focus-tabs" aria-label="Choose wheel study">{collection.map(study => <button key={study.id} aria-pressed={selected === study.id} onClick={() => setSelected(study.id)}>{study.number} / {study.name}</button>)}</nav>}
     <section className="lab-grid" aria-label="Interactive wheel studies">{visible.map(study => <Fragment key={study.id}>
-      {view === 'compare' && study.id === 'signal' && <div className="lab-collection-divider"><div><span className="lab-eyebrow">COLLECTION 02 / NEW EXPLORATIONS</span><h2>A different kind of character.</h2></div><p>Same controls. Four new personalities.<br />A first sketch for future Pro skins.</p></div>}
-      {view === 'compare' && study.id === 'switchboard' && <div className="lab-collection-divider lab-collection-divider--final"><div><span className="lab-eyebrow">COLLECTION 03 / THE FINAL FOUR</span><h2>Somewhere out of time.</h2></div><p>From the switchboard to the cinema.<br />Four last instruments. Then, a pause.</p></div>}
-      {view === 'compare' && study.id === 'clear' && <div className="lab-collection-divider"><div><span className="lab-eyebrow">COLLECTION 05 / OPEN CONSTRUCTION</span><h2>Beautiful on the inside.</h2></div><p>Clear shells. Moving mechanisms.<br />Six new ways to make it yours.</p></div>}
-      {view === 'compare' && study.id === 'loom' && <div className="lab-collection-divider"><div><span className="lab-eyebrow">COLLECTION 06 / PERSONAL OBJECTS</span><h2>A different world.</h2></div><p>Woven, playful, orbital and driven.<br />Four distinct instruments.</p></div>}
-      {view === 'compare' && study.id === 'correspondent' && <div className="lab-collection-divider lab-collection-divider--material"><div><span className="lab-eyebrow">COLLECTION 04 / MATERIAL MEMORY</span><h2>Better with a little wear.</h2></div><p>Leather. Brass. Bronze. Steel. Aluminium.<br />Four instruments with something to hold on to.</p></div>}
+      {!controlsReview && view === 'compare' && study.id === 'signal' && <div className="lab-collection-divider"><div><span className="lab-eyebrow">COLLECTION 02 / NEW EXPLORATIONS</span><h2>A different kind of character.</h2></div><p>Same controls. Four new personalities.<br />A first sketch for future Pro skins.</p></div>}
+      {!controlsReview && view === 'compare' && study.id === 'switchboard' && <div className="lab-collection-divider lab-collection-divider--final"><div><span className="lab-eyebrow">COLLECTION 03 / THE FINAL FOUR</span><h2>Somewhere out of time.</h2></div><p>From the switchboard to the cinema.<br />Four last instruments. Then, a pause.</p></div>}
+      {!controlsReview && view === 'compare' && study.id === 'clear' && <div className="lab-collection-divider"><div><span className="lab-eyebrow">COLLECTION 05 / OPEN CONSTRUCTION</span><h2>Beautiful on the inside.</h2></div><p>Clear shells. Moving mechanisms.<br />Six new ways to make it yours.</p></div>}
+      {!controlsReview && view === 'compare' && study.id === 'loom' && <div className="lab-collection-divider"><div><span className="lab-eyebrow">COLLECTION 06 / PERSONAL OBJECTS</span><h2>A different world.</h2></div><p>Woven, playful, orbital and driven.<br />Four distinct instruments.</p></div>}
+      {!controlsReview && view === 'compare' && study.id === 'correspondent' && <div className="lab-collection-divider lab-collection-divider--material"><div><span className="lab-eyebrow">COLLECTION 04 / MATERIAL MEMORY</span><h2>Better with a little wear.</h2></div><p>Leather. Brass. Bronze. Steel. Aluminium.<br />Four instruments with something to hold on to.</p></div>}
       <article className={`lab-study${favorite === study.id ? ' lab-study--favorite' : ''}${study.id === 'ivory' ? ' lab-study--candidate' : ''}`}>
       <div className="lab-study-heading"><span>{study.number} / {study.material}</span><button aria-label={`Focus ${study.name}`} onClick={() => { setSelected(study.id); setView('focus') }}><ArrowUpRight size={17} /></button></div>
-      <div className="lab-device-stage"><StudyDevice study={study} reset={reset} sensitivity={sensitivity} motor={motor} large={view === 'focus'} /></div>
+      <div className="lab-device-stage"><StudyDevice study={study} reset={reset} sensitivity={sensitivity} motor={motor} large={view === 'focus'} controlsReview={controlsReview} /></div>
       <div className="lab-study-notes"><div><span className={`lab-eyebrow${study.id === 'ivory' ? ' lab-candidate-label' : ''}`}>{study.id === 'ivory' ? 'YOUR DEFAULT CANDIDATE' : study.tag}</span><h2>{study.name}</h2></div><button className="lab-favorite" aria-label={`Shortlist ${study.name}`} aria-pressed={favorite === study.id} onClick={() => setFavorite(value => value === study.id ? null : study.id)}>{favorite === study.id ? <><Check size={13} />Shortlisted</> : 'Shortlist'}</button><p>{study.description}</p><small>{study.detail}</small></div>
     </article></Fragment>)}</section>
     <footer className="lab-footer"><p>Drag around the edge to scrub. Use the play key to roll.<br />Keyboard: arrows to jog · Home / End to jump. No sound, no session, no saved-script changes.</p><a href="https://teenage.engineering/products/tp-7" target="_blank" rel="noreferrer">REFERENCE / TP–7<ArrowUpRight size={12} /></a><span>{favorite ? `SHORTLIST / ${studies.find(study => study.id === favorite)?.name.toUpperCase()}` : 'IZZY / WORK IN PROGRESS'}</span></footer>

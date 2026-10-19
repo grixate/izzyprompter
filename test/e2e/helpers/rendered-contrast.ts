@@ -8,7 +8,7 @@ export async function checkRenderedContrast(page: Page, testInfo: TestInfo) {
     ['.display-kicker', 4.5], ['.timecode', 3], ['.state-label', 4.5],
     ['.speed-title', 4.5], ['.speed-module strong', 4.5], ['.speed-module button', 4.5],
     ['.phrase-nav button small', 4.5], ['.phrase-count', 4.5], ['.phrase-count small', 4.5],
-    ['.quick-edit-trigger', 4.5], ['.transport-button svg', 3],
+    ['.quick-edit-trigger', 4.5], ['.transport-button svg', 3], ['.remote-finish-button svg', 3],
   ] as const
   const targets = await page.evaluate(checks => checks.flatMap(([selector, minimum]) =>
     [...document.querySelectorAll<HTMLElement>(selector)].filter(el => el.getBoundingClientRect().width > 0).map(el => {

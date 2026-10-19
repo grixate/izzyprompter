@@ -1,4 +1,5 @@
 import { RemoteBrand } from '../components/BrandLogo'
+import { PhraseNavigation } from '../components/SecondaryControls'
 import { SwatchBook } from 'lucide-react'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { JogControls, TransportReadout } from '../components/JogControls'
@@ -18,7 +19,7 @@ import { boundedSpeed } from '../realtime/keyboard'
 import type { SessionControllerView } from '../realtime/controller'
 import { useRemoteAppearance } from '../product/useRemoteAppearance'
 import { RemoteSkinLibrary } from '../product/RemoteSkinLibrary'
-import { skinById } from '../product/catalog'
+import { skinById, controlCraftSkins } from '../product/catalog'
 import '../product/skins.css'
 
 export function RemotePage({ sessionId }: { sessionId: string }) {
@@ -170,7 +171,7 @@ export function RemoteSurface({ sessionId, session }: { sessionId: string; sessi
   }
 
   return (
-    <main className={`remote-panel standalone-remote skin-face skin--${appearance.skin}`} aria-label="Remote controller">
+    <main className={`remote-panel standalone-remote skin-face skin--${appearance.skin}${controlCraftSkins.has(appearance.skin) ? ' skin-controls' : ''}`} aria-label="Remote controller">
       <SessionNotice connection={connection} surface="remote" onRetry={reconnect} />
       <header className="remote-header">
         <div className="remote-identity">
@@ -190,11 +191,8 @@ export function RemoteSurface({ sessionId, session }: { sessionId: string; sessi
         onToggle={toggle} onSeek={queueSeek} onEdge={seekEdge} onSpeedChange={changeSpeed}
         onDraggingChange={setIsDragging} onSeekEnd={flushSeek} />
 
-      <div className="phrase-nav">
-        <button disabled={!controlsReady || currentPhraseIndex < 0} onClick={() => jumpPhrase(-1)} aria-label="Previous phrase"><span>←</span><small>PREV</small></button>
-        <span className="phrase-count"><small>PHRASE</small>{currentPhraseIndex < 0 ? '—' : String(currentPhraseIndex + 1).padStart(2, '0')} / {String(Math.max(1, izzyDocument.blocks.length)).padStart(2, '0')}</span>
-        <button disabled={!controlsReady || currentPhraseIndex < 0} onClick={() => jumpPhrase(1)} aria-label="Next phrase"><small>NEXT</small><span>→</span></button>
-      </div>
+      <PhraseNavigation enabled={controlsReady} index={currentPhraseIndex} total={izzyDocument.blocks.length}
+        onPrevious={() => jumpPhrase(-1)} onNext={() => jumpPhrase(1)} />
       <div className="remote-tools">
       <QuickEdit sessionId={sessionId} epoch={sessionEpoch} connectionId={connectionId} connection={connection}
         document={izzyDocument} revision={script.revision} editing={editing} request={request}

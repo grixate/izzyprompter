@@ -1,19 +1,21 @@
-import { useRef } from 'react'
-import { Play } from 'lucide-react'
+import { memo, useRef } from 'react'
+import { Pause, Play } from 'lucide-react'
 import { skinById, type SkinId } from '../product/catalog'
 import { useWheelMotion } from './useWheelMotion'
+import { InstrumentMechanism } from './InstrumentMechanism'
 import '../product/skins.css'
 
-export function RemoteInstrument({ skin = 'ivory', phase = 0, motion = true }: { skin?: SkinId; phase?: number; motion?: boolean }) {
+export const RemoteInstrument = memo(function RemoteInstrument({ skin = 'ivory', phase = 0, motion = true, playing = false }: { skin?: SkinId; phase?: number; motion?: boolean; playing?: boolean }) {
   const face = skinById(skin)
   const root = useRef<HTMLDivElement>(null)
-  useWheelMotion(root, { enabled: motion, playing: false, speed: 1, phase, ambient: true })
+  useWheelMotion(root, { enabled: motion, playing, speed: 1, phase, ambient: !playing, artwork: skin })
   return <div className={`remote-instrument skin-face skin--${face.id}`} ref={root} aria-hidden="true">
     <div className="instrument-top"><span className="instrument-model">R–{face.number}</span><span className="instrument-wordmark">IZZY<span>PHONE REMOTE</span></span></div>
     <div className="instrument-plate"><span>{face.name}</span><small>{face.material}</small></div>
-    <div className="control-deck"><div className="wheel-column"><div className="jog-wheel">
+    <div className="control-deck"><div className="wheel-column"><div className="jog-wheel" data-running={playing} data-dragging="false" data-available="true">
       <div className="wheel-rotor"><div className="wheel-disc" /></div><div className="wheel-input" />
-      <div className="transport-button"><Play size={28} fill="currentColor" /></div>
+      <InstrumentMechanism skin={skin} />
+      <div className="transport-button">{playing ? <Pause size={28} fill="currentColor" /> : <Play size={28} fill="currentColor" />}</div>
     </div><span className="wheel-caption">JOG / SCRUB</span></div>
     <div className="instrument-speed speed-module">
       <span className="speed-step">−</span>
@@ -22,4 +24,4 @@ export function RemoteInstrument({ skin = 'ivory', phase = 0, motion = true }: {
     </div></div>
     <div className="instrument-bottom"><span>TURN TO FIND YOUR PACE</span><i /></div>
   </div>
-}
+})

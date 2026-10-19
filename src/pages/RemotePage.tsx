@@ -184,7 +184,7 @@ export function RemoteSurface({ sessionId, session }: { sessionId: string; sessi
       </header>
 
       <TransportReadout position={position} speed={localSpeed} playing={localPlaying} available={hasDisplayPosition} />
-      <JogControls enabled={controlsReady} playing={localPlaying} speed={localSpeed} position={position}
+      <JogControls skin={appearance.skin} enabled={controlsReady} playing={localPlaying} speed={localSpeed} position={position}
         maximum={reading.checkpoint?.maximum ?? 100000000}
         positionText={hasDisplayPosition ? `Display position ${Math.round(position)} pixels` : 'Waiting for display position'}
         onToggle={toggle} onSeek={queueSeek} onEdge={seekEdge} onSpeedChange={changeSpeed}

@@ -3,6 +3,8 @@ import { ArrowLeft, ArrowUpRight, Check, Maximize2, RotateCcw } from 'lucide-rea
 import { JogControls, TransportReadout } from '../components/JogControls'
 import { BASE_PIXELS_PER_SECOND } from '../prompt/motion'
 import './jog-lab.css'
+import { skins } from '../product/catalog'
+import '../product/skin-craft.css'
 
 const studies = [
   { id: 'field', number: '01', name: 'Field reel', material: 'SATIN ALUMINIUM', tag: 'THE QUIET ONE',
@@ -53,6 +55,7 @@ const studies = [
   { id: 'airframe', number: '15', name: 'Airframe', material: 'ANODISED AVIATION ALUMINIUM', tag: 'THE LIGHTWEIGHT ONE',
     description: 'Material removed with purpose. Six lightening slots, a pale machined reel, and a rust-orange transport key. An aircraft workshop, reduced to the parts you actually need.',
     detail: 'Six milled slots · captive fasteners · separate transport' },
+  ...skins.filter(skin => Number(skin.number) >= 16).map(skin => ({ ...skin, tag: 'OPEN CONSTRUCTION / NEW PERSONALITIES', description: skin.note, detail: skin.material })),
 ] as const
 type Study = typeof studies[number]
 const duration = 2400
@@ -105,11 +108,11 @@ function StudyDevice({ study, reset, sensitivity, motor, large }: {
     setPosition(value => Math.max(0, Math.min(duration, value + delta * sensitivity)))
   }
   const currentLine = Math.min(sample.length - 1, Math.floor(position / duration * sample.length))
-  return <div className={`lab-device lab-device--${study.id}${large ? ' lab-device--large' : ''}`}
+  return <div className={`lab-device lab-device--${study.id}${Number(study.number) >= 16 ? ` skin-face skin--${study.id}` : ''}${large ? ' lab-device--large' : ''}`}
     style={{ '--lab-angle': `${angle}rad` } as CSSProperties}>
     <div className="lab-device-top"><span className="lab-model">R–{study.number}</span><span className="lab-device-mark">IZZY<br />DESIGN STUDY</span></div>
     <TransportReadout position={position} speed={speed} playing={playing} label="LOCAL / DEMO" />
-    <JogControls enabled playing={playing} speed={speed} position={position} maximum={duration}
+    <JogControls skin={study.id} spinOnPlayback={motor} enabled playing={playing} speed={speed} position={position} maximum={duration}
       positionText={`${Math.round(position / duration * 100)} percent through the demo script`}
       onToggle={() => { if (position >= duration) setPosition(0); setPlaying(value => !value) }}
       onSeek={seek} onEdge={edge => setPosition(edge === 'start' ? 0 : duration)}
@@ -138,7 +141,7 @@ export default function JogLabPage() {
   const visible = view === 'focus' ? studies.filter(study => study.id === selected) : studies
   return <main className={`jog-lab ${view === 'focus' ? 'jog-lab--focus' : ''}`}>
     <header className="lab-header"><a href="/" className="lab-wordmark"><span>I</span> IZZY <span className="lab-wordmark-divider">/</span> DESIGN LAB</a><a href="/" className="lab-back"><ArrowLeft size={14} />Back to IZZY</a></header>
-    <section className="lab-intro"><div><p className="lab-eyebrow">EXPERIMENT 001 / THE JOG WHEEL</p><h1>Less interface.<br />More instrument.</h1></div><div className="lab-intro-note"><span className="lab-orange-dot" /><p>Sixteen studies. One familiar gesture.<br />Four collections. Different ways to feel it.</p><small>R–03 / Orbit is your default candidate. The live remote stays as it is.</small></div></section>
+    <section className="lab-intro"><div><p className="lab-eyebrow">EXPERIMENT 001 / THE JOG WHEEL</p><h1>Less interface.<br />More instrument.</h1></div><div className="lab-intro-note"><span className="lab-orange-dot" /><p>Twenty-six studies. One familiar gesture.<br />Six collections. Different ways to feel it.</p><small>R–03 / Orbit is your default candidate. The live remote stays as it is.</small></div></section>
     <div className="lab-toolbar">
       <div className="lab-view-switch" role="group" aria-label="Study layout"><button aria-pressed={view === 'compare'} onClick={() => setView('compare')}>Compare all <span>{String(studies.length).padStart(2, '0')}</span></button><button aria-pressed={view === 'focus'} onClick={() => setView('focus')}>Focus view <Maximize2 size={13} /></button></div>
       <div className="lab-tuning"><label className="lab-motor"><input type="checkbox" checked={motor} onChange={event => setMotor(event.target.checked)} />Spin on playback</label><label className="lab-sensitivity">FEEL<select aria-label="Scrub sensitivity" value={sensitivity} onChange={event => setSensitivity(Number(event.target.value))}><option value={.5}>Precise</option><option value={1}>Balanced</option><option value={2}>Fast</option></select></label><button className="lab-reset" onClick={() => setReset(value => value + 1)}><RotateCcw size={13} /><span>Reset</span></button></div>
@@ -147,6 +150,8 @@ export default function JogLabPage() {
     <section className="lab-grid" aria-label="Interactive wheel studies">{visible.map(study => <Fragment key={study.id}>
       {view === 'compare' && study.id === 'signal' && <div className="lab-collection-divider"><div><span className="lab-eyebrow">COLLECTION 02 / NEW EXPLORATIONS</span><h2>A different kind of character.</h2></div><p>Same controls. Four new personalities.<br />A first sketch for future Pro skins.</p></div>}
       {view === 'compare' && study.id === 'switchboard' && <div className="lab-collection-divider lab-collection-divider--final"><div><span className="lab-eyebrow">COLLECTION 03 / THE FINAL FOUR</span><h2>Somewhere out of time.</h2></div><p>From the switchboard to the cinema.<br />Four last instruments. Then, a pause.</p></div>}
+      {view === 'compare' && study.id === 'clear' && <div className="lab-collection-divider"><div><span className="lab-eyebrow">COLLECTION 05 / OPEN CONSTRUCTION</span><h2>Beautiful on the inside.</h2></div><p>Clear shells. Moving mechanisms.<br />Six new ways to make it yours.</p></div>}
+      {view === 'compare' && study.id === 'loom' && <div className="lab-collection-divider"><div><span className="lab-eyebrow">COLLECTION 06 / PERSONAL OBJECTS</span><h2>A different world.</h2></div><p>Woven, playful, orbital and driven.<br />Four distinct instruments.</p></div>}
       {view === 'compare' && study.id === 'correspondent' && <div className="lab-collection-divider lab-collection-divider--material"><div><span className="lab-eyebrow">COLLECTION 04 / MATERIAL MEMORY</span><h2>Better with a little wear.</h2></div><p>Leather. Brass. Bronze. Steel. Aluminium.<br />Four instruments with something to hold on to.</p></div>}
       <article className={`lab-study${favorite === study.id ? ' lab-study--favorite' : ''}${study.id === 'ivory' ? ' lab-study--candidate' : ''}`}>
       <div className="lab-study-heading"><span>{study.number} / {study.material}</span><button aria-label={`Focus ${study.name}`} onClick={() => { setSelected(study.id); setView('focus') }}><ArrowUpRight size={17} /></button></div>

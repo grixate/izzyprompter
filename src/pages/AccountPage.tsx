@@ -1,3 +1,4 @@
+import { proSkinCount } from '../product/catalog'
 import { BrandLogo } from '../components/BrandLogo'
 import { useEffect, useRef, useState, type FormEvent } from 'react'
 import { ArrowLeft, ArrowUpRight, Copy, Download, Plus, Trash2, Upload } from 'lucide-react'
@@ -359,7 +360,7 @@ function ProPanel({ user }: { user: Account }) {
     }
   }, [returned?.id])
   if (!user.pro && !canPurchase && !commerce?.purchases.length && !returnedPurchase) return null
-  return <section className="pro-panel"><span className="section-index">IZZY / {user.pro || canPurchase ? 'LIFETIME PRO' : 'PURCHASE HISTORY'}</span>{(user.pro || canPurchase) && <><h2>{user.pro ? 'Ready for every take.' : 'Make room for more.'}</h2><p>{user.pro ? 'Your Pro workspace includes unlimited scripts, project folders, reading profiles and fifteen remote finishes.' : 'Unlimited saved scripts. Reading profiles for speed and layout. Project folders. Fifteen remote finishes. One payment, no subscription.'}</p></>}
+  return <section className="pro-panel"><span className="section-index">IZZY / {user.pro || canPurchase ? 'LIFETIME PRO' : 'PURCHASE HISTORY'}</span>{(user.pro || canPurchase) && <><h2>{user.pro ? 'Ready for every take.' : 'Make room for more.'}</h2><p>{user.pro ? `Your Pro workspace includes unlimited scripts, project folders, reading profiles and ${proSkinCount} remote finishes.` : `Unlimited saved scripts. Reading profiles for speed and layout. Project folders. ${proSkinCount} remote finishes. One payment, no subscription.`}</p></>}
     {returned && <p className="account-notice" role="status">{purchaseMessage(returned)}<br /><small>Order reference: {returned.id}</small></p>}
     {finishReturn && <a className="account-primary" href={finishReturn}>Choose your finish <ArrowUpRight size={16} /></a>}
     {returnedPurchase && commerce && !returned && <p className="account-notice" role="status">This purchase was not found in your account. Sign in with the account you used at checkout to see its status.</p>}

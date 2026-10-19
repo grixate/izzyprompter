@@ -3,6 +3,8 @@ import { Pause, Play } from 'lucide-react'
 import { boundedSpeed, jogKeyDelta } from '../realtime/keyboard'
 import { positionTimecode } from '../prompt/timecode'
 import { useWheelMotion } from './useWheelMotion'
+import { InstrumentMechanism } from './InstrumentMechanism'
+import type { SkinId } from '../product/catalog'
 
 const normalizeAngle = (angle: number) => angle > Math.PI ? angle - Math.PI * 2 : angle < -Math.PI ? angle + Math.PI * 2 : angle
 
@@ -11,7 +13,7 @@ type Props = {
   positionText: string; onToggle: () => void; onSeek: (delta: number) => void
   onEdge: (edge: 'start' | 'end') => void; onSpeedChange: (speed: number) => void
   onDraggingChange?: (dragging: boolean) => void; onSeekEnd?: () => void
-  pageSize?: number
+  pageSize?: number; skin?: SkinId; spinOnPlayback?: boolean
 }
 
 /** One control surface for both the paired remote and the local entry preview. */
@@ -23,7 +25,7 @@ export function JogControls(props: Props) {
   const latest = useRef(props)
   latest.current = props
   const [dragging, setDragging] = useState(false)
-  const motor = useWheelMotion(wheel, { enabled: props.enabled, playing: props.playing, speed: props.speed, dragging })
+  const motor = useWheelMotion(wheel, { enabled: props.enabled, playing: props.playing && (props.spinOnPlayback ?? true), speed: props.speed, dragging, artwork: props.skin })
   const setDrag = (value: boolean) => { setDragging(value); latest.current.onDraggingChange?.(value) }
 
   useEffect(() => {
@@ -50,7 +52,7 @@ export function JogControls(props: Props) {
 
   return <div className="control-deck">
     <div className="wheel-column">
-      <div ref={wheel} className={`jog-wheel ${dragging ? 'is-dragging' : ''}`}
+      <div ref={wheel} className={`jog-wheel ${dragging ? 'is-dragging' : ''}`} data-running={props.enabled && props.playing} data-dragging={dragging} data-available={props.enabled}
         onPointerDown={(event) => {
           if (!props.enabled || activePointer.current !== null || event.button !== 0 || (event.target as HTMLElement).closest('.transport-button')) return
           event.preventDefault()
@@ -72,6 +74,7 @@ export function JogControls(props: Props) {
         onPointerUp={release} onPointerCancel={release}
         onLostPointerCapture={release}>
         <div className="wheel-rotor" aria-hidden="true"><div className="wheel-disc" /></div>
+        <InstrumentMechanism skin={props.skin ?? 'original'} />
         <div className="wheel-input" role="slider" tabIndex={0}
           aria-label="Jog script position" aria-describedby={helpId} aria-orientation="horizontal"
           aria-disabled={!props.enabled} aria-valuemin={0} aria-valuemax={props.maximum}

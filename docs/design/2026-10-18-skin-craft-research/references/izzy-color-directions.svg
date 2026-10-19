@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="880" viewBox="0 0 960 880" role="img" aria-labelledby="title desc">
+<title id="title">IZZY — proposed material color directions</title>
+<desc id="desc">Eight author-proposed palettes for review: Studio, Clear, Smoke Violet, Deep Teal, Cobalt, Butter/Sulfur, Blush/Oxblood, Moss/Cocoa. These are concept colors, not official brand values.</desc>
+<rect width="960" height="880" fill="#F5F4EE"/>
+<g font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" fill="#272B28">
+<text x="36" y="48" font-size="29" font-weight="650">IZZY / MATERIAL COLOUR DIRECTIONS</text>
+<text x="36" y="76" font-size="14" fill="#63716B">19 OCT 2026 · CONCEPT PALETTES · NOT FINAL SKIN COLOURS</text>
+<g transform="translate(36,104)">
+<rect width="432" height="168" rx="12" fill="#FFFFFF"/>
+<text x="16" y="26" font-size="16" font-weight="650">STUDIO</text>
+<rect x="16" y="40" width="242" height="68" fill="#E9E2D2"/>
+<rect x="258" y="40" width="94" height="68" fill="#272B28"/>
+<rect x="352" y="40" width="64" height="68" fill="#D8683C"/>
+<text x="16" y="131" font-size="12" font-family="ui-monospace,monospace">#E9E2D2  /  #272B28  /  #D8683C</text>
+<text x="16" y="152" font-size="12" fill="#63716B">Warm chalk / graphite / ember</text>
+</g>
+<g transform="translate(492,104)">
+<rect width="432" height="168" rx="12" fill="#FFFFFF"/>
+<text x="16" y="26" font-size="16" font-weight="650">CLEAR</text>
+<rect x="16" y="40" width="242" height="68" fill="#DDE5E3"/>
+<rect x="258" y="40" width="94" height="68" fill="#3C4745"/>
+<rect x="352" y="40" width="64" height="68" fill="#D75C43"/>
+<text x="16" y="131" font-size="12" font-family="ui-monospace,monospace">#DDE5E3  /  #3C4745  /  #D75C43</text>
+<text x="16" y="152" font-size="12" fill="#63716B">Clear edge / internal frame / vermilion</text>
+</g>
+<g transform="translate(36,288)">
+<rect width="432" height="168" rx="12" fill="#FFFFFF"/>
+<text x="16" y="26" font-size="16" font-weight="650">SMOKE VIOLET</text>
+<rect x="16" y="40" width="242" height="68" fill="#B1A6C8"/>
+<rect x="258" y="40" width="94" height="68" fill="#282834"/>
+<rect x="352" y="40" width="64" height="68" fill="#C5D86D"/>
+<text x="16" y="131" font-size="12" font-family="ui-monospace,monospace">#B1A6C8  /  #282834  /  #C5D86D</text>
+<text x="16" y="152" font-size="12" fill="#63716B">Tinted shell / ink / acid</text>
+</g>
+<g transform="translate(492,288)">
+<rect width="432" height="168" rx="12" fill="#FFFFFF"/>
+<text x="16" y="26" font-size="16" font-weight="650">DEEP TEAL</text>
+<rect x="16" y="40" width="242" height="68" fill="#276160"/>
+<rect x="258" y="40" width="94" height="68" fill="#E0E8DB"/>
+<rect x="352" y="40" width="64" height="68" fill="#E3835D"/>
+<text x="16" y="131" font-size="12" font-family="ui-monospace,monospace">#276160  /  #E0E8DB  /  #E3835D</text>
+<text x="16" y="152" font-size="12" fill="#63716B">Teal / mineral / apricot</text>
+</g>
+<g transform="translate(36,472)">
+<rect width="432" height="168" rx="12" fill="#FFFFFF"/>
+<text x="16" y="26" font-size="16" font-weight="650">COBALT</text>
+<rect x="16" y="40" width="242" height="68" fill="#4249A3"/>
+<rect x="258" y="40" width="94" height="68" fill="#DDD9EE"/>
+<rect x="352" y="40" width="64" height="68" fill="#F4F1E7"/>
+<text x="16" y="131" font-size="12" font-family="ui-monospace,monospace">#4249A3  /  #DDD9EE  /  #F4F1E7</text>
+<text x="16" y="152" font-size="12" fill="#63716B">Cobalt / lilac / chalk</text>
+</g>
+<g transform="translate(492,472)">
+<rect width="432" height="168" rx="12" fill="#FFFFFF"/>
+<text x="16" y="26" font-size="16" font-weight="650">BUTTER / SULFUR</text>
+<rect x="16" y="40" width="242" height="68" fill="#DFDB77"/>
+<rect x="258" y="40" width="94" height="68" fill="#32382A"/>
+<rect x="352" y="40" width="64" height="68" fill="#B85634"/>
+<text x="16" y="131" font-size="12" font-family="ui-monospace,monospace">#DFDB77  /  #32382A  /  #B85634</text>
+<text x="16" y="152" font-size="12" fill="#63716B">Soft yellow / charcoal / clay</text>
+</g>
+<g transform="translate(36,656)">
+<rect width="432" height="168" rx="12" fill="#FFFFFF"/>
+<text x="16" y="26" font-size="16" font-weight="650">BLUSH / OXBLOOD</text>
+<rect x="16" y="40" width="242" height="68" fill="#DCA6A2"/>
+<rect x="258" y="40" width="94" height="68" fill="#593936"/>
+<rect x="352" y="40" width="64" height="68" fill="#F4E8D4"/>
+<text x="16" y="131" font-size="12" font-family="ui-monospace,monospace">#DCA6A2  /  #593936  /  #F4E8D4</text>
+<text x="16" y="152" font-size="12" fill="#63716B">Blush glaze / wine / porcelain</text>
+</g>
+<g transform="translate(492,656)">
+<rect width="432" height="168" rx="12" fill="#FFFFFF"/>
+<text x="16" y="26" font-size="16" font-weight="650">MOSS / COCOA</text>
+<rect x="16" y="40" width="242" height="68" fill="#64705B"/>
+<rect x="258" y="40" width="94" height="68" fill="#D9D1BE"/>
+<rect x="352" y="40" width="64" height="68" fill="#694839"/>
+<text x="16" y="131" font-size="12" font-family="ui-monospace,monospace">#64705B  /  #D9D1BE  /  #694839</text>
+<text x="16" y="152" font-size="12" fill="#63716B">Moss / oat / cocoa</text>
+</g>
+<text x="36" y="862" font-size="13" fill="#63716B">One object, one coherent material palette. Compare colors on the same construction and light.</text>
+</g></svg>

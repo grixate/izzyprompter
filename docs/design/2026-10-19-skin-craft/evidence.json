@@ -1,0 +1,197 @@
+{
+  "kind": "izzy-skin-craft-review-evidence",
+  "date": "2026-10-19",
+  "capture": "Chromium / 390\u00d7844 / local paired transport / synthetic script / simulated PRO permission",
+  "limitations": [
+    "Not physical device acceptance",
+    "Not audience research",
+    "SVG files are schematic studies, not browser evidence"
+  ],
+  "files": [
+    {
+      "path": "references/airframe-paired.png",
+      "bytes": 221788,
+      "sha256": "3ae6ec20eee76e262b10ad6ae838abcea214445ea23002d87c88d1986788d138"
+    },
+    {
+      "path": "references/aperture-compositions.svg",
+      "bytes": 4532,
+      "sha256": "e6192d11e779b27a3c7415fccf5286e04232bdd116495f30405f58d3212056eb"
+    },
+    {
+      "path": "references/aperture-paired.png",
+      "bytes": 343058,
+      "sha256": "cc637d6b3739395678e025bfa02fa38e3c0e52652202dffda18aab0d5a3d4b74"
+    },
+    {
+      "path": "references/aperture-running.png",
+      "bytes": 339938,
+      "sha256": "5d8f437efde2b7eb8750f53c4c5e9a4b64e3125ee029914188bd5c35b20c2f56"
+    },
+    {
+      "path": "references/arcade-paired.png",
+      "bytes": 242089,
+      "sha256": "7ef85a82d9c5b39b48c3588e106db0a6985ee33c230b74519c2bcf5e98f765a1"
+    },
+    {
+      "path": "references/cartridge-paired.png",
+      "bytes": 169655,
+      "sha256": "d8947c7d474b27aab0fd3af9cb2554ad9f029feef2a9ee9d8c316b62b8a7b016"
+    },
+    {
+      "path": "references/clear-paired.png",
+      "bytes": 309183,
+      "sha256": "a96a06f74473db65b166e44b9bf631b6ff6c1ea144911d42c524582e169ee2e0"
+    },
+    {
+      "path": "references/clear-running.png",
+      "bytes": 306996,
+      "sha256": "e8cb575b74a5274295b1b4ec78ca3c8dc7053367d6d45d4d794e3edb988da46c"
+    },
+    {
+      "path": "references/collection-paired-matrix.jpg",
+      "bytes": 571328,
+      "sha256": "dad02d88b00f7a6caa3853de36390f37853b6fa8b0b380696e55539a8049d69a"
+    },
+    {
+      "path": "references/correspondent-paired.png",
+      "bytes": 372308,
+      "sha256": "c059864e2d42fe4e6d1cd6121d6f561054ec538e4590e3b7198a4dfe4ee819f7"
+    },
+    {
+      "path": "references/field-paired.png",
+      "bytes": 243009,
+      "sha256": "738062876647bac0e8713256fe554e78d950b00909414e565c498c76b891c498"
+    },
+    {
+      "path": "references/field-running.png",
+      "bytes": 238453,
+      "sha256": "e3b0eff895661d8ddfda3f0579ca40679070ef41406717a083572daa63096812"
+    },
+    {
+      "path": "references/foundry-paired.png",
+      "bytes": 404653,
+      "sha256": "253729b1ce88ed6fe1e378fca6ba5c46489f7827a08f0e6fa44355512a68a1cb"
+    },
+    {
+      "path": "references/foundry-running.png",
+      "bytes": 403903,
+      "sha256": "ace72b978b9c8634e21c225bdc3d10b76c53a30d21baec65e4ca80c72832d2ef"
+    },
+    {
+      "path": "references/glacier-paired.png",
+      "bytes": 255938,
+      "sha256": "3faf8a59bae0a49184723cc291dc56b64cec13d9325b7466c632ce062f43fb8f"
+    },
+    {
+      "path": "references/glaze-paired.png",
+      "bytes": 290080,
+      "sha256": "1e68f979b2bcfa56f621ccbed2255b77b6b2317958f2fe3380cabc4526e47d00"
+    },
+    {
+      "path": "references/graphite-paired.png",
+      "bytes": 301684,
+      "sha256": "0ebd78547cf5d44ff57e1886545ccce2ecc8cb94fd21ec15518794532c23ab9d"
+    },
+    {
+      "path": "references/groove-arm-layouts.svg",
+      "bytes": 2564,
+      "sha256": "053bacf9b1b49aa88949cc47c6974696c5f5f472fc9cf0007e46069aaab9b305"
+    },
+    {
+      "path": "references/groove-motion-chromium.webm",
+      "bytes": 194548,
+      "sha256": "3b33c10aed95e2f07918bdfd3f4d07ea0ec11cf418cd48439bb244abeed63d13"
+    },
+    {
+      "path": "references/groove-paired.png",
+      "bytes": 299414,
+      "sha256": "ddb299bafab3fb5830b290c32ee5ddae751106e47fca48a0420aaa85a74f4160"
+    },
+    {
+      "path": "references/groove-running.png",
+      "bytes": 321915,
+      "sha256": "16735dddaccd41a77ab7c69a98560e317f248f267769621bbf315c8f194944d2"
+    },
+    {
+      "path": "references/inox-paired.png",
+      "bytes": 281506,
+      "sha256": "18c39a5ae599b67cce7e2205025fb56d484def83f40e1638c8b19a417548802b"
+    },
+    {
+      "path": "references/ivory-paired.png",
+      "bytes": 249569,
+      "sha256": "9b5b03783bee7892e1d137d1a5af11e03c074ea03719ffbfb7ac884913e931c0"
+    },
+    {
+      "path": "references/loom-paired.png",
+      "bytes": 353654,
+      "sha256": "dae392e43c5e16aa3e7c4c03ee3ae4cdf5df7797e9b02fc7e5b4401a67ad9874"
+    },
+    {
+      "path": "references/mono-paired.png",
+      "bytes": 271115,
+      "sha256": "2d7cc7ba06a9d6b6916d7c82dd190f3b990a530407fc70848a11e0bb7ef8cdf5"
+    },
+    {
+      "path": "references/moss-paired.png",
+      "bytes": 325410,
+      "sha256": "e5973ec69de688b29abd70bcc666dc1bd6d332444854f6e8347a785a1dbd26ae"
+    },
+    {
+      "path": "references/observatory-paired.png",
+      "bytes": 343717,
+      "sha256": "36ec37ca7e80e461e140573ed0a851a1ab1e596b39ea399c3dffa33dc5377cae"
+    },
+    {
+      "path": "references/original-paired.png",
+      "bytes": 320392,
+      "sha256": "e058a6fe13d8863217193c3b24215f460fe2427b2cf5c9d01d0cdf0bbbe01a06"
+    },
+    {
+      "path": "references/oxide-paired.png",
+      "bytes": 306226,
+      "sha256": "1f9c356f865b1fd14604c070c2f394b6dcbbc344d7c00d39a9546cced466563a"
+    },
+    {
+      "path": "references/palette-trials.svg",
+      "bytes": 13888,
+      "sha256": "e8b744f69c3347d6157eb9445f2986e21b56b969fcff094826bdfd3b9dbbde18"
+    },
+    {
+      "path": "references/pop-paired.png",
+      "bytes": 191712,
+      "sha256": "f76393c3e3a97d173bb598010a7310605a3b33e37a7eb66ff8d2eb9c6dd06007"
+    },
+    {
+      "path": "references/rally-paired.png",
+      "bytes": 201601,
+      "sha256": "f621e05f004486f63a33df497c3b978345428990c4c92d335e2429cbda1db8c4"
+    },
+    {
+      "path": "references/signal-paired.png",
+      "bytes": 288005,
+      "sha256": "b576181d6445487b952d7df6abcda778d79ffd643905e667df6a28f105197740"
+    },
+    {
+      "path": "references/spool-paired.png",
+      "bytes": 339564,
+      "sha256": "16170cb9fcd02f17e1cc608ae84f4e74534287baf034e6cecb449ca5325b6a60"
+    },
+    {
+      "path": "references/spool-running.png",
+      "bytes": 341781,
+      "sha256": "2b4185b587e16d10e4a9cc7cd7231a00cd567d8923645d17604fbbbf8e98fe80"
+    },
+    {
+      "path": "references/switchboard-paired.png",
+      "bytes": 325950,
+      "sha256": "ca46df5aeac17e5aa2a081265154675bbf48faf2b9a1ed88527a4c87d999b5fa"
+    },
+    {
+      "path": "references/vector-paired.png",
+      "bytes": 348137,
+      "sha256": "2188d3fdc2e7c49138eba50992b19fc4387afb4d39eae332e2d58ebf3ac77cbe"
+    }
+  ]
+}

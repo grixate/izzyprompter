@@ -66,6 +66,21 @@ See [the per-finish acceptance record and remaining device gates](REMOTE_SKIN_QA
 This is still a review candidate; physical-device and screen-reader approval
 remain open, and no production publication is implied.
 
+## 19 October skin craft candidate
+
+The owner authorized execution of the revised skin research: full transparent
+bodies, more ambitious moving mechanisms and a coherent colour system. The review
+catalog now has Original plus 25 PRO candidates. Clear and Spool lead the six
+primary additions; four further distinct directions are implemented for review,
+not automatically approved for publication. Groove gains the state-linked
+arm; tape, iris, belt and geared mechanisms share the same accessible controls.
+Prices, permissions and the free default are retained.
+
+See [the collection and actual renders](design/2026-10-19-skin-craft/COLLECTION.md)
+and [implementation evidence](SKIN_CRAFT_IMPLEMENTATION.md). Owner selection,
+physical-device and audience acceptance remain open. This supersedes the earlier
+pause on exploration, not the separate requirement for production authorization.
+
 ## Historical launch scope
 
 - Online free V1 remains the delivery priority. Do not activate checkout, add a paid-launch dependency or change existing script limits for this experiment.

@@ -1,3 +1,4 @@
+import { createSyntheticSession } from './helpers/create-synthetic-session'
 import { skins } from '../../src/product/catalog'
 import { test, expect, type Page } from '@playwright/test'
 
@@ -7,7 +8,7 @@ test.use({ trace:'off', screenshot:'off' })
 async function openRemote(page: Page, pro = true) {
   await page.goto('/')
   await page.getByRole('textbox', { name: 'Teleprompter script' }).fill('A synthetic take for the remote skin library.\n\nA second paragraph for playback checks.')
-  await page.getByRole('button', { name: 'SET UP PROMPTER', exact: true }).click()
+  await createSyntheticSession(page)
   const href = await page.getByRole('link', { name: /OPEN REMOTE/ }).getAttribute('href')
   await page.route('**/api/sessions/*/appearance', route => route.fulfill({ json: { pro } }))
   await page.goto(href!)

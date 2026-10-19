@@ -4,11 +4,11 @@ import { wheel, focus, angle } from './helpers/wheel-mechanism'
 test.use({trace:'off',screenshot:'off'})
 
 for (const name of ['Clear','Spool','Field reel','Cartridge','Foundry','Observatory']) {
-  test(`${name}: mechanically linked parts stop together and follow a reversed jog`,async({page})=>{
+  test(`${name}: rotor and linked parts stop together and follow a reversed jog`,async({page})=>{
     await focus(page,name)
     await page.getByRole('button',{name:'Play',exact:true}).click()
     const count=await wheel(page).locator('[data-wheel-ratio], [data-wheel-distance]').count()
-    expect(count).toBeGreaterThan(0)
+    expect(count).toBe(['Foundry','Observatory'].includes(name) ? 1 : 0)
     await expect.poll(()=>wheel(page).evaluate(el=>el.getAnimations({subtree:true}).filter(a=>a.playState==='running' && a.effect?.getTiming().iterations===Infinity).length)).toBe(count+1)
     const times=await wheel(page).evaluate(el=>el.getAnimations({subtree:true}).filter(a=>a.effect?.getTiming().iterations===Infinity).map(a=>Number(a.startTime)))
     expect(Math.max(...times)-Math.min(...times)).toBeLessThan(1)
@@ -18,11 +18,14 @@ for (const name of ['Clear','Spool','Field reel','Cartridge','Foundry','Observat
       const m=new DOMMatrixReadOnly(getComputedStyle(el).transform)
       return {angle:Math.atan2(m.b,m.a),ratio:Number((el as SVGElement).dataset.wheelRatio)}
     }))
+    const chassis=wheel(page).locator('[data-mechanism=coaxial]')
+    const fixedPose=['Clear','Spool'].includes(name)?await chassis.evaluate(el=>getComputedStyle(el).transform):null
     const before=await readParts(), beforeDriver=await angle(page,'.lab-device .wheel-rotor'), box=(await wheel(page).boundingBox())!
     const cx=box.x+box.width/2,cy=box.y+box.height/2,r=box.width*.43
     await page.mouse.move(cx+r,cy);await page.mouse.down()
     await page.mouse.move(cx+r*Math.cos(-.1),cy+r*Math.sin(-.1));await page.mouse.up()
     const after=await readParts()
+    if(fixedPose!==null) expect(await chassis.evaluate(el=>getComputedStyle(el).transform)).toBe(fixedPose)
     const afterDriver=await angle(page,'.lab-device .wheel-rotor')
     const driverDelta=Math.atan2(Math.sin(afterDriver-beforeDriver),Math.cos(afterDriver-beforeDriver))
     expect(Math.abs(driverDelta)).toBeGreaterThan(.05)
@@ -51,7 +54,7 @@ test('showroom previews deliberately play and pause the same mechanism',async({p
   await hero.getByRole('button',{name:'Play preview',exact:true}).click()
   await expect(hero.locator('.jog-wheel')).toHaveAttribute('data-running','true')
   await hero.getByRole('button',{name:'Preview Clear',exact:true}).click()
-  await expect(hero.locator('[data-mechanism="belt"]')).toBeVisible()
+  await expect(hero.locator('[data-mechanism="coaxial"]')).toBeVisible()
   await hero.getByRole('button',{name:'Pause preview',exact:true}).click()
   await expect.poll(()=>hero.locator('.jog-wheel').evaluate(el=>el.getAnimations({subtree:true}).length)).toBe(0)
 })

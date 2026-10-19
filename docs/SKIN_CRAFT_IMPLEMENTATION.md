@@ -69,12 +69,12 @@ Paired flows disable retained traces/editor snapshots because those surfaces con
 
 The [collection gallery](design/2026-10-19-skin-craft/review.html) includes actual renders of all 26 live faces, six focused RUN states, a paced six-second synthetic motion recording, original geometry sketches and twelve equal-geometry rendered palette studies. The A materials are the tested candidates; B alternatives are review-only colour trials and do not inherit A’s acceptance. Its fingerprint manifest distinguishes rendered evidence from schematic drawings. The two founding archival capsules remain unchanged. The new `skin-materials.css` is byte-identical to the prior `skins.css`; its wrapper establishes explicit cascade order.
 
-## Completion gates still open
+## Current review and integration status
 
-- Commit, push, open the integration PR and attach it to this chat. GitHub `test`, `accounts`, `container` must actually succeed before merge.
+- Draft [PR 12](https://github.com/grixate/izzyprompter/pull/12) is open, pushed and attached. GitHub `test`, `accounts`, `container` must actually succeed before merge.
 - Obtain the immutable tested candidate artifact, verify checksums and stage the exact image under `RELEASE_WORKFLOW.md`. Staging restarts terminate staging sessions; keep production on its approved image.
-- Owner visual review and physical iPhone/iPad Safari, Android Chrome, VoiceOver/TalkBack and sustained-playback checks remain human/device gates. Browser emulation does not close them.
-- The planned small audience sessions and willingness-to-pay work have not occurred. No participants were contacted, and no actual conversion data is available. The product event adapter is currently local-only; existing event names do not imply an external collector or a valid unique-visitor funnel.
+- Owner visual review is the acceptance gate for this design iteration. The owner explicitly declined a participant/device campaign; it is not required to finish this iteration. Physical iPhone/iPad Safari, Android Chrome, VoiceOver/TalkBack and sustained-playback results remain unclaimed.
+- The optional audience protocol is retained for future use. No participants were contacted, and no actual conversion data is available. The product event adapter remains local-only.
 - Production publication remains a separate owner decision. No production image change or payment activation is included in the current work.
 
 Do not mark the full plan achieved from a passing local build or from the ten new catalog records. Update this record with current-state evidence as work proceeds.
@@ -84,3 +84,17 @@ Do not mark the full plan achieved from a passing local build or from the ten ne
 [Run 39207332361](https://github.com/grixate/izzyprompter/actions/runs/39207332361) reached the WebKit portion but its `test` job hit the 25-minute job limit. The full-catalog product test timed out twice at its old 90-second budget; one five-viewport Arcade case hit its 30-second whole-test limit. The session-capacity hypothesis was not supported: per-finish creations continued successfully. Production/staging capacity was not changed.
 
 The revised harness scales the two full-catalog loop budgets with catalog size, gives five-viewport readiness 60 seconds and makes room for the expanded jobs (40 minutes). Normal 8-second assertion budgets and all functional/contrast assertions remain intact. These are CI execution budgets, not physical-device performance acceptance. The two full-catalog WebKit cases passed again locally (13.8 / 14.4 seconds). A fresh exact-source run is required; the canceled run is not reported as passed.
+
+## Owner update and complete-CI diagnosis
+
+On 19 October the owner declined participant/device recruitment for this design iteration: **the owner evaluates the designs**. Audience sessions are no longer a completion gate for the design work. Physical-device results remain unclaimed; production publication is still a separate decision. The local-only preview was not usable for the owner, so a protected HTTPS review with an isolated synthetic lab is being prepared on staging. This static review does not promote an application image.
+
+The complete [second CI run](https://github.com/grixate/izzyprompter/actions/runs/39210185147) finished with 383 pass / 56 skip / 5 fail in `test` and 434 pass / 2 skip / 8 fail in `accounts`. The final failures wait for pairing links during creation, after earlier cases pass. A fresh local test VM reproduced the test pool boundary: exactly **256 creations and 44 capacity refusals** in a 300-session batch. The full retained multi-browser inventory needs a larger **test-only** pool. It is now 1024; production and staging admission limits are unchanged. Catalog helpers assert the actual 201 creation response, so a future refusal fails clearly before link lookup. The first time-budget diagnosis was incomplete; the earlier capacity hypothesis is now supported by the completed run and local boundary check.
+
+The optional sustained desktop run recorded only the first 60 seconds of Original before a long interruption and whole-test timeout; it is **not passed**, and supplies no long-take or physical-device acceptance.
+
+## Owner-directed quality repair — revision 2
+
+See [the complete owner feedback and response](design/2026-10-19-skin-craft/OWNER_FEEDBACK_V1.md). The mechanism table above describes the first pass and is historical: the added tape/drive overlays, Signal flag, Switchboard stop and Correspondent lever have been removed. Groove no longer has a parking support on the vinyl. Moss no longer has the added recess under its key. Clear/Spool were reconstructed as fixed stators beneath transparent rotating flanges; their stable IDs remain. Foundry has a real 72-tooth rim and a 12-tooth pinion at a shared pitch. Rally now reads as a three-spoke steering wheel.
+
+Nothing's official Phone (3a) design gallery was visually inspected before reconstructing the transparent cases. The new gallery is `design/2026-10-19-skin-craft/v2/review.html`; its comparison buttons preserve the previous screenshots. The owner-liked studies were not regenerated. Browser and build results for this revision are recorded with the new evidence, separately from the first-pass results.

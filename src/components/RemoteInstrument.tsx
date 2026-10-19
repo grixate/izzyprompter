@@ -2,7 +2,7 @@ import { memo, useRef } from 'react'
 import { Pause, Play } from 'lucide-react'
 import { skinById, type SkinId } from '../product/catalog'
 import { useWheelMotion } from './useWheelMotion'
-import { InstrumentMechanism } from './InstrumentMechanism'
+import { InstrumentMechanism, InstrumentRotor } from './InstrumentMechanism'
 import '../product/skins.css'
 
 export const RemoteInstrument = memo(function RemoteInstrument({ skin = 'ivory', phase = 0, motion = true, playing = false }: { skin?: SkinId; phase?: number; motion?: boolean; playing?: boolean }) {
@@ -13,7 +13,7 @@ export const RemoteInstrument = memo(function RemoteInstrument({ skin = 'ivory',
     <div className="instrument-top"><span className="instrument-model">R–{face.number}</span><span className="instrument-wordmark">IZZY<span>PHONE REMOTE</span></span></div>
     <div className="instrument-plate"><span>{face.name}</span><small>{face.material}</small></div>
     <div className="control-deck"><div className="wheel-column"><div className="jog-wheel" data-running={playing} data-dragging="false" data-available="true">
-      <div className="wheel-rotor"><div className="wheel-disc" /></div><div className="wheel-input" />
+      <div className="wheel-rotor"><InstrumentRotor skin={skin} /><div className="wheel-disc" /></div><div className="wheel-input" />
       <InstrumentMechanism skin={skin} />
       <div className="transport-button">{playing ? <Pause size={28} fill="currentColor" /> : <Play size={28} fill="currentColor" />}</div>
     </div><span className="wheel-caption">JOG / SCRUB</span></div>

@@ -1,3 +1,4 @@
+import { createSyntheticSession } from './helpers/create-synthetic-session'
 import { test, expect, type Page } from '@playwright/test'
 import { skins, skinStorageKey } from '../../src/product/catalog'
 import { phoneOptions } from './helpers/phone'
@@ -24,7 +25,7 @@ const paragraphDistance = (page: Page, index: number) => page.locator('.script-t
 async function pair(editor: Page, display: Page, remote: Page) {
   await editor.goto('/')
   await editor.getByRole('textbox', { name: 'Teleprompter script' }).fill(paragraphs.join('\n\n'))
-  await editor.getByRole('button', { name: 'SET UP PROMPTER', exact: true }).click()
+  await createSyntheticSession(editor)
   const displayHref = await editor.getByRole('link', { name: /OPEN DISPLAY/ }).getAttribute('href')
   const remoteHref = await editor.getByRole('link', { name: /OPEN REMOTE/ }).getAttribute('href')
   // Entitlement is the only simulated API; transport and reading use Phoenix.
@@ -175,7 +176,7 @@ for (const skin of skins) {
     await page.route('**/api/sessions/*/appearance', route => route.fulfill({ json: { pro: true } }))
     await page.goto('/')
     await page.getByRole('textbox', { name: 'Teleprompter script' }).fill(paragraphs.join('\n\n'))
-    await page.getByRole('button', { name: 'SET UP PROMPTER', exact: true }).click()
+    await createSyntheticSession(page)
     await page.goto((await page.getByRole('link', { name: /OPEN REMOTE/ }).getAttribute('href'))!)
     await expect(page.locator('main')).toHaveClass(new RegExp(`skin--${skin.id}`))
     await expect(page.getByRole('button', { name: 'Play', exact: true })).toBeEnabled()

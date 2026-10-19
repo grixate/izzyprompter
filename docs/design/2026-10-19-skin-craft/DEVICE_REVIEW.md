@@ -1,5 +1,7 @@
 # Physical-device and owner review
 
+Owner update, 19 October: external participant/device recruitment is not a gate for this design iteration; the owner evaluates the designs. The unrun device checks below are limitations, not a request to organize a campaign. No physical-device pass or production approval is inferred.
+
 Prepared 19 October 2026. **All entries below are NOT RUN.** Browser emulation and automated WebKit do not certify iPhone/iPad Safari or VoiceOver.
 
 Record actual device model, OS/browser version, date and reviewer. Use the staged exact candidate image and synthetic text. Pairing links and staging credentials must stay out of screenshots and logs. A staging restart ends staging sessions; schedule any image change between takes.

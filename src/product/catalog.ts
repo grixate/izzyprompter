@@ -15,8 +15,8 @@ export const skins = [
   { id: 'foundry', number: '13', name: 'Foundry', material: 'Cast bronze', note: 'Polished edges. Patina in the recesses.', pro: true },
   { id: 'inox', number: '14', name: 'Inox', material: 'Brushed stainless steel', note: 'Precision, down to the last seam.', pro: true },
   { id: 'airframe', number: '15', name: 'Airframe', material: 'Aviation aluminium', note: 'Material removed. Character retained.', pro: true },
-  { id: 'clear', number: '16', name: 'Clear', material: 'Clear shell / exposed drive', note: 'A clear shell. An open frame. Every little movement in view.', pro: true },
-  { id: 'spool', number: '17', name: 'Spool', material: 'Smoked violet / magnetic tape', note: 'A violet window onto reels, rollers and a ribbon of tape.', pro: true },
+  { id: 'clear', number: '16', name: 'Clear', material: 'Clear shell / pearl chassis', note: 'A glass dial floats over a fixed coil and pearl structural plates.', pro: true },
+  { id: 'spool', number: '17', name: 'Spool', material: 'Smoked glass / copper coil', note: 'A transparent three-arm flange turns over a copper coil. One ivory hub holds the centre.', pro: true },
   { id: 'glaze', number: '18', name: 'Glaze', material: 'Blush glaze / porcelain', note: 'Soft glaze, a warm foot and a deep oxblood key.', pro: true },
   { id: 'pop', number: '19', name: 'Pop', material: 'Butter yellow / colour blocks', note: 'Big shapes. Bright colour. A little everyday joy.', pro: true },
   { id: 'moss', number: '20', name: 'Moss', material: 'Mineral green / walnut', note: 'A wooden rim around a quiet mineral centre.', pro: true },
@@ -24,7 +24,7 @@ export const skins = [
   { id: 'loom', number: '22', name: 'Loom', material: 'Woven oxblood / warm enamel', note: 'A woven case, a stitched edge and a smooth enamel dial.', pro: true },
   { id: 'arcade', number: '23', name: 'Arcade', material: 'Aqua ABS / rubber / cherry', note: 'Four soft grips. One cherry key. Ready for another take.', pro: true },
   { id: 'observatory', number: '24', name: 'Observatory', material: 'Midnight enamel / brass', note: 'Orbital rings, a brass meridian and a small moving satellite.', pro: true },
-  { id: 'rally', number: '25', name: 'Rally', material: 'Chalk enamel / competition rubber', note: 'A broad rubber grip and a bright racing stripe.', pro: true },
+  { id: 'rally', number: '25', name: 'Rally', material: 'Chalk enamel / competition rubber', note: 'A three-spoke steering wheel, a rubber grip and one centre key. A little classic motorsport.', pro: true },
 ] as const
 export const proSkinCount = skins.filter(skin => skin.pro).length
 export type SkinId = typeof skins[number]['id']

@@ -1,20 +1,10 @@
 .instrument-mechanism { position:absolute; inset:0; width:100%; height:100%; overflow:visible; pointer-events:none; z-index:4; }
 .instrument-mechanism * { pointer-events:none; }
 .mechanism-drive { transform-box:view-box; }
-.tape-pinch { transform:translateY(-5px); transition:transform 180ms ease; }
-.jog-wheel[data-running=true][data-dragging=false] .tape-pinch { transform:translateY(0); }
-.mechanism--tape { filter:drop-shadow(1px 3px 2px #14201966); }
-.mechanism--field { --mechanism-reel:#d0d4c6; --mechanism-edge:#7a8976; --mechanism-window:#566550; --mechanism-tape:#a97d4f; }
-.mechanism--cartridge { --mechanism-reel:#c3b8df; --mechanism-edge:#686a91; --mechanism-window:#252c48; --mechanism-dark:#343d69; --mechanism-tape:#84633d; }
-.mechanism--spool { --mechanism-reel:#c4bdd7; --mechanism-edge:#766d91; --mechanism-window:#2c283dbb; --mechanism-dark:#46405d; --mechanism-tape:#b49458; }
-.mechanism--glacier { opacity:.72; --mechanism-reel:#c6e1e0; --mechanism-edge:#799fa8; --mechanism-dark:#79a9b3; }
+.instrument-gear-rim { position:absolute; inset:0; width:100%; height:100%; overflow:visible; }
+.mechanism--chassis { z-index:0; }
 .iris-leaves { transform-origin:150px 150px; transform:scale(1) rotate(0); transition:transform 320ms cubic-bezier(.25,.65,.3,1); }
 .jog-wheel[data-running=true] .iris-leaves { transform:scale(1.25) rotate(9deg); }
-.transport-flag { transform:translateY(0); transition:transform 160ms ease; }
-.jog-wheel[data-running=true] .transport-flag { transform:translateY(17px); }
-.mechanism--correspondent { filter:sepia(.2); }
-.shutter-lever { transform-origin:274px 33px; transform:rotate(-12deg); transition:transform 180ms ease; }
-.jog-wheel[data-running=true] .shutter-lever { transform:rotate(12deg); }
 .mechanism--foundry { filter:drop-shadow(1px 3px 2px #18291b99); }
 .mechanism--groove { filter:drop-shadow(0 1px 1px #151e1330); }
 .tonearm { transform-origin:282px 41px; transform:rotate(-10deg); transition:transform 340ms cubic-bezier(.22,.68,.24,1); }

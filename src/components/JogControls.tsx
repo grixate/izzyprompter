@@ -3,7 +3,7 @@ import { Pause, Play } from 'lucide-react'
 import { boundedSpeed, jogKeyDelta } from '../realtime/keyboard'
 import { positionTimecode } from '../prompt/timecode'
 import { useWheelMotion } from './useWheelMotion'
-import { InstrumentMechanism } from './InstrumentMechanism'
+import { InstrumentMechanism, InstrumentRotor } from './InstrumentMechanism'
 import type { SkinId } from '../product/catalog'
 
 const normalizeAngle = (angle: number) => angle > Math.PI ? angle - Math.PI * 2 : angle < -Math.PI ? angle + Math.PI * 2 : angle
@@ -73,7 +73,7 @@ export function JogControls(props: Props) {
         }}
         onPointerUp={release} onPointerCancel={release}
         onLostPointerCapture={release}>
-        <div className="wheel-rotor" aria-hidden="true"><div className="wheel-disc" /></div>
+        <div className="wheel-rotor" aria-hidden="true"><InstrumentRotor skin={props.skin ?? 'original'} /><div className="wheel-disc" /></div>
         <InstrumentMechanism skin={props.skin ?? 'original'} />
         <div className="wheel-input" role="slider" tabIndex={0}
           aria-label="Jog script position" aria-describedby={helpId} aria-orientation="horizontal"

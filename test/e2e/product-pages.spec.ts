@@ -1,3 +1,4 @@
+import { createSyntheticSession } from './helpers/create-synthetic-session'
 import { test, expect } from '@playwright/test'
 import { skins } from '../../src/product/catalog'
 
@@ -75,7 +76,7 @@ test('every finish can be applied on an entitled remote without changing its con
   test.setTimeout(30_000 + skins.length * 6_000)
   await page.goto('/')
   await page.getByRole('textbox', { name: 'Teleprompter script' }).fill('First synthetic paragraph.\n\nSecond synthetic paragraph.')
-  await page.getByRole('button', { name: 'SET UP PROMPTER', exact: true }).click()
+  await createSyntheticSession(page)
   const href = await page.getByRole('link', { name: /OPEN REMOTE/ }).getAttribute('href')
   const context = await browser.newContext({ viewport: { width: 390, height: 844 } })
   const remote = await context.newPage()

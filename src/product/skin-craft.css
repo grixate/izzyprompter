@@ -1,26 +1,27 @@
-/* Collection 05/06. Materials describe a constructed object, not a colour filter. */
+/* Clear and Spool: fixed shield / coil, a transparent rotating flange, a fixed hub. */
 .skin-face.skin--clear {
-  --instrument-type:#1c3027; --craft-accent:#c25232;
-  border-radius:22px; border-color:#a7b7ae;
-  background:url('../assets/skin-clear-frame.svg') center / 100% 100%,linear-gradient(135deg,#eef3edee,#d8e3debd 55%,#c5d5cdde);
-  box-shadow:inset 0 0 0 3px #fbfff699,inset 0 0 0 6px #82958b45,inset -8px -10px 16px #697e7026,0 16px 26px -20px #223c3466;
+  --instrument-type:#293432; --craft-accent:#c4543b;
+  --chassis-base:#c4cfca; --chassis-edge:#8b9691; --chassis-coil:#d7dcd6; --chassis-plate:#eef0e9;
+  border-radius:24px; border-color:#9ca8a4;
+  background:url('../assets/skin-clear-frame.svg') center / 100% 100%,linear-gradient(115deg,#f5f6ef,#dce2dd 64%,#c7d1cb);
+  box-shadow:inset 0 0 0 2px #ffffffce,inset 0 0 0 6px #9caaa354,inset -5px -7px 8px #64736c33,0 12px 20px -16px #273c36aa;
 }
-.skin-face.skin--clear .wheel-rotor { background:#c8d6cb66; box-shadow:inset 0 0 0 2px #fcfff4,inset 0 0 0 5px #7c94857a,0 0 0 1px #668475,0 5px 9px #25443544; }
-.skin-face.skin--clear .wheel-disc { inset:7%; background:repeating-conic-gradient(from 15deg,#f3f7ec70 0deg 36deg,#c9d4c333 37deg 118deg,#405c4c33 119deg 120deg),radial-gradient(circle,#eff3e28f 0 35%,#6e8a7340 36% 38%,transparent 39% 66%,#e9f0deaa 67% 71%,transparent 72%); box-shadow:inset 0 0 0 1px #657d6e80; }
-.skin-face.skin--clear .transport-button { inset:35%; border-radius:50%; color:#fff3dc; background:linear-gradient(135deg,#d86745,#aa482e); border-color:#983d26; box-shadow:inset 0 1px #f6b58c,0 3px 0 #7d3e2b,0 6px 7px #243d3755; }
-.skin-face.skin--clear .speed-module :is(button,.speed-step) { color:inherit; background:#e5eddf; border-color:#7e9786; border-radius:6px; }
-.skin-face.skin--clear .wheel-column { padding-bottom:36px; }
 .skin-face.skin--spool {
-  --instrument-type:#f3edf5; --craft-accent:#d5df9b;
-  border-radius:12px 12px 25px 25px; border-color:#69627b;
-  background:url('../assets/skin-spool-frame.svg') center / 100% 100%,linear-gradient(125deg,#61566ff5,#3f374fed 65%,#50445fee);
-  box-shadow:inset 0 0 0 3px #d9d2e745,inset 0 0 0 6px #27253966,0 16px 26px -20px #241a3c99;
+  --instrument-type:#eeeaf2; --craft-accent:#d5bf9e;
+  --chassis-base:#353740; --chassis-edge:#85858f; --chassis-coil:#a8876e; --chassis-plate:#515561;
+  border-radius:24px; border-color:#666776;
+  background:url('../assets/skin-spool-frame.svg') center / 100% 100%,linear-gradient(115deg,#676674,#434653 64%,#393d48);
+  box-shadow:inset 0 0 0 2px #ced0dc70,inset 0 0 0 6px #20283166,inset -5px -7px 8px #121e2e66,0 12px 20px -16px #152132cc;
 }
-.skin-face.skin--spool .wheel-rotor { background:radial-gradient(circle,#453f57 0 20%,transparent 21%),conic-gradient(from -30deg,#b9afcb75 0 39deg,#27253740 40deg 118deg,#b9afcb75 120deg 159deg,#27253740 160deg 238deg,#b9afcb75 240deg 279deg,#27253740 280deg); box-shadow:inset 0 0 0 2px #d3c9df,inset 0 0 0 6px #b0a4c34d,0 0 0 1px #28233a,0 4px 8px #21182d88; }
-.skin-face.skin--spool .wheel-disc { inset:5%; background:radial-gradient(circle,transparent 0 33%,#2e293b 34% 62%,#bca3c125 63% 67%,transparent 68%),conic-gradient(from -30deg,#d5c5df66 0 39deg,transparent 40deg 118deg,#d5c5df66 120deg 159deg,transparent 160deg 238deg,#d5c5df66 240deg 279deg,transparent 280deg); box-shadow:inset 0 0 0 1px #f5dfeb99; }
-.skin-face.skin--spool .transport-button { inset:35%; border-radius:18%; background:linear-gradient(135deg,#e0e4ad,#b7c479); border-color:#84914e; color:#30362a; box-shadow:inset 0 1px #f6f5ce,0 3px 0 #707c45,0 5px 8px #21182d88; }
-.skin-face.skin--spool .speed-module :is(button,.speed-step) { background:#655d77; border-color:#a79bb4; color:#ece4ee; border-radius:4px; }
-.skin-face.skin--spool .wheel-column { padding-bottom:36px; }
+.skin-face:is(.skin--clear,.skin--spool) .jog-wheel { isolation:isolate; filter:drop-shadow(0 5px 4px #152b2833); }
+.skin-face:is(.skin--clear,.skin--spool) .wheel-rotor { z-index:1; background:url('../assets/skin-clear-rotor.svg') center / contain no-repeat; box-shadow:inset 0 0 0 1px #f4ffefbd,inset 0 0 0 4px #6d7f7540,0 1px 1px #fcfff4aa,0 4px 6px #1a2d2a33; }
+.skin-face:is(.skin--clear,.skin--spool) .wheel-disc { inset:6%; background:transparent; box-shadow:inset 0 0 0 1px #f5fff44d; }
+.skin-face.skin--spool .wheel-rotor { background-image:url('../assets/skin-spool-rotor.svg'); box-shadow:inset 0 0 0 1px #e4e6f3b3,inset 0 0 0 4px #d8d4e733,0 4px 6px #14202e66; }
+.skin-face.skin--clear .transport-button { inset:35%; border-radius:50%; color:#fff6e6; background:linear-gradient(140deg,#d36b51,#b24a36); border-color:#993e2f; box-shadow:inset 0 1px #f3b193,0 2px 0 #843a2c,0 5px 6px #263c3744; }
+.skin-face.skin--spool .transport-button { inset:35%; border-radius:50%; color:#36383f; background:linear-gradient(140deg,#f1eee1,#cfc9ba); border-color:#a6a394; box-shadow:inset 0 1px #fffbea,0 2px 0 #8f8d83,0 5px 6px #19253277; }
+.skin-face.skin--clear .speed-module :is(button,.speed-step) { color:inherit; background:#e9ece5; border-color:#a1ada4; border-radius:50%; }
+.skin-face.skin--spool .speed-module :is(button,.speed-step) { color:#eeeaf2; background:#555965; border-color:#9c9ba8; border-radius:50%; }
+.skin-face:is(.skin--clear,.skin--spool) .wheel-column { padding-bottom:36px; }
 /* Broad glazed planes and a visible raw ceramic foot. */
 .skin-face.skin--glaze { --instrument-type:#432c29; --craft-accent:#7a393c; border-radius:36px 36px 24px 24px; background:linear-gradient(125deg,#eed1c4,#d9a6a1 60%,#c58f8b); border-color:#b98479; box-shadow:inset 0 2px 2px #fff0df,0 5px 0 #bd9e88,0 13px 18px -8px #713f3a55; }
 .skin-face.skin--glaze .wheel-rotor { background:linear-gradient(135deg,#f5dfd1,#bc787c); box-shadow:inset 0 0 0 2px #f4d8c5,inset 0 0 0 6px #b6786c,0 5px 9px #7b45465c; }
@@ -40,7 +41,6 @@
 .skin-face.skin--moss { --instrument-type:#eff0d6; --craft-accent:#e4cf9d; background:linear-gradient(140deg,#5e6a53,#4e5e47 80%); border-color:#43533e; border-radius:25px; box-shadow:inset 0 1px #acb292,0 10px 16px -8px #263b2888; }
 .skin-face.skin--moss .wheel-rotor { background:repeating-radial-gradient(ellipse at 42% 38%,#5e4933 0 4px,#94734f 5px 6px,#735738 7px 11px); box-shadow:inset 0 0 0 2px #aa8e62,inset 0 0 0 4px #4d402b,0 5px 8px #1e322799; }
 .skin-face.skin--moss .wheel-disc { inset:13%; background:radial-gradient(ellipse at 32% 22%,#d8dbc0,#b0b99b); box-shadow:inset 0 1px #f3edd0,0 0 0 2px #443e2b,inset 0 -2px 4px #5c695745; }
-.skin-face.skin--moss .wheel-disc::after { content:"";position:absolute;left:22%;top:18%;width:9%;height:26%;border-radius:60%;transform:rotate(35deg);background:#64745b28;box-shadow:inset 1px 1px 2px #59664f55,0 1px #f3ebce88; }
 .skin-face.skin--moss .transport-button { inset:37% 29%; border-radius:40%; background:#524533; color:#f3e5bd; border-color:#92774c; box-shadow:inset 0 1px #ad9461,0 2px 4px #39432b77; }
 .skin-face.skin--moss .speed-module :is(button,.speed-step) { background:#536347; border-color:#a6ad88; color:#f0edd0; }
 .skin-face.skin--moss .wheel-column { padding-bottom:36px; }
@@ -76,8 +76,8 @@
 .skin-face.skin--observatory .wheel-column { padding-bottom:36px; }
 .skin-face.skin--rally { --instrument-type:#162a20;--craft-accent:#b54e34; background:linear-gradient(90deg,transparent 0 13%,#d96e45 13% 19%,#333b31 19% 21%,transparent 21%),#e7e3ce;border-color:#b1b49b;border-radius:4px;box-shadow:inset 0 -4px #babca1,0 10px 14px -8px #36472e55; }
 .skin-face.skin--rally .wheel-rotor { background:repeating-conic-gradient(#1c3027 0deg 13deg,#52634d 13deg 16deg,#1c3027 16deg 30deg);box-shadow:inset 0 0 0 3px #13261b,0 5px 6px #31432a66; }
-.skin-face.skin--rally .wheel-disc { inset:12%;background:conic-gradient(from -12deg,#df7146 0 24deg,#3b5040 24deg 360deg);box-shadow:inset 0 0 0 2px #829278,inset 0 -3px 6px #18302066; }
-.skin-face.skin--rally .transport-button { inset:0 26%;height:22%;margin-block:auto;border-radius:3px;background:#e4d67c;border-color:#a8a958;color:#263c2d;box-shadow:inset 0 1px #fff0b0,0 3px 0 #7d884d,0 5px 6px #1a302855; }
+.skin-face.skin--rally .wheel-disc { inset:0;background:url('../assets/skin-rally-wheel.svg') center / contain no-repeat;box-shadow:none; }
+.skin-face.skin--rally .transport-button { inset:36%;height:auto;margin:0;border-radius:50%;background:linear-gradient(135deg,#e9d982,#c4b65e);border-color:#9d9e59;color:#263c2d;box-shadow:inset 0 1px #fff0b0,0 3px 0 #7d884d,0 5px 6px #1a302855; }
 .skin-face.skin--rally .speed-module :is(button,.speed-step) { border-radius:3px;background:#e2e1c9;border-color:#879477;color:inherit; }
 .skin-face.skin--rally .wheel-column { padding-bottom:36px; }
 /* Finish-specific speed ink and fixed readout supports preserve operation. */
@@ -90,7 +90,8 @@
 :is(.skin-face.skin--aperture,.lab-device--aperture) .wheel-disc { background:radial-gradient(circle,#09121b,#28343e); }
 :is(.skin-face.skin--groove,.lab-device--groove) .wheel-disc { background:repeating-radial-gradient(circle,#22291f 0 1.4px,#41473a 1.8px 2.2px,#282d22 2.6px 4px); }
 :is(.skin-face.skin--groove,.lab-device--groove) .jog-wheel::after { content:"";position:absolute;inset:3%;border-radius:50%;background:conic-gradient(from -25deg,transparent 0 50deg,#dfd4a419 67deg,transparent 85deg 233deg,#dfd4a410 247deg,transparent 266deg);pointer-events:none;z-index:1; }
-:is(.skin-face.skin--foundry,.lab-device--foundry) .wheel-rotor { background:repeating-conic-gradient(#b2915c 0deg 2deg,#4f5c3a 2deg 3.5deg,#9e8654 3.5deg 5deg); }
+:is(.skin-face.skin--foundry,.lab-device--foundry) .wheel-rotor { background:transparent; box-shadow:none; }
+:is(.skin-face.skin--foundry,.lab-device--foundry) .wheel-disc { inset:6%; }
 :is(.skin-face.skin--inox,.lab-device--inox) .jog-wheel::after { content:"";position:absolute;inset:3%;border-radius:50%;background:linear-gradient(125deg,#ffffff20,transparent 43%,#162e3515 78%,transparent);pointer-events:none;z-index:1; }
 :is(.skin-face.skin--oxide,.lab-device--oxide) .jog-wheel::after { content:"";position:absolute;inset:-3%;border-radius:15%;border:1px solid #c6967440;box-shadow:inset 0 -2px #2b1c1266;pointer-events:none; }
 :is(.skin-face.skin--airframe,.lab-device--airframe) .wheel-disc { box-shadow:inset 0 1px #fff9,inset 0 -2px 2px #456b7888,0 0 0 1px #5b7e8b; }

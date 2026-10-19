@@ -1,6 +1,6 @@
 # Skin craft — participant session guide
 
-Prepared 19 October 2026. **No participant sessions have taken place.** This is the review kit, not results or evidence of purchase uplift.
+Prepared 19 October 2026. **Owner update: external participant sessions are not required for this iteration; the owner evaluates designs. This guide is retained as an optional future research protocol. No participant sessions have taken place.** This is the review kit, not results or evidence of purchase uplift.
 
 Recruit 12–16 people who recently recorded prepared speech: solo video creators, experts/educators, audio authors and video operators. Include people who do not collect audio/camera hardware. Use participant codes P01–P16; do not put contact details or their real script material into this repository.
 

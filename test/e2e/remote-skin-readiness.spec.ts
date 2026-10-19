@@ -169,6 +169,8 @@ for (const skin of skins) {
   })
 
   test(`${skin.name}: responsive controls, keyboard focus and reduced motion`, async ({ page, browserName }, testInfo) => {
+    // Five complete viewport/focus cycles need room on Linux WebKit runners.
+    test.setTimeout(60_000)
     await page.addInitScript(({ key, id }) => localStorage.setItem(key, id), { key: skinStorageKey, id: skin.id })
     await page.route('**/api/sessions/*/appearance', route => route.fulfill({ json: { pro: true } }))
     await page.goto('/')
@@ -232,7 +234,7 @@ for (const skin of skins) {
 }
 
 test('every finish can be selected during real playback and keeps a truthful readout', async ({ page: editor, browser, browserName }) => {
-  test.setTimeout(60_000)
+  test.setTimeout(30_000 + skins.length * 6_000)
   const displays = await browser.newContext({ viewport: { width: 1280, height: 800 } })
   const phones = await browser.newContext(phoneOptions(browserName))
   const display = await displays.newPage(), remote = await phones.newPage()

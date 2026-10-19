@@ -63,11 +63,11 @@ The final tape travel was then rounded to 600 SVG units per main turn, matching 
 
 [Browser results](design/2026-10-19-skin-craft/browser-checks.json) contain only test titles/statuses. [Rendered contrast](design/2026-10-19-skin-craft/rendered-contrast.json) has 78 per-finish/browser sets (14 targeted selectors, including individual speed keys). The narrowest ratio is 1.019 times its applicable threshold. This targeted pixel sampling is not a full accessibility certification.
 
-Fresh 90 client unit / 99 non-database backend tests and the production build passed. Both archive verifiers passed again. Dependency checks reported zero npm vulnerabilities and zero unresolved Hex advisories; the existing explicitly reviewed cowlib mitigation remains unchanged.
+Fresh 90 client unit / 99 non-database backend tests and the production build passed. The local offline suite passed six cases across the three engines; three native DIRECT peer cases remain explicitly skipped under the existing physical/network limitation. Both archive verifiers passed again. Dependency checks reported zero npm vulnerabilities and zero unresolved Hex advisories; the existing explicitly reviewed cowlib mitigation remains unchanged.
 
 Paired flows disable retained traces/editor snapshots because those surfaces contain pairing capabilities. Global setup propagates the snapshot setting before browser workers spawn. Assertions remain intact. Deliberate screenshots contain only the synthetic remote body; the isolated Groove lab video contains no pairing surface.
 
-The [collection gallery](design/2026-10-19-skin-craft/review.html) includes actual renders of all 26 live faces, six focused RUN states, original geometry sketches and paired palette studies. Its fingerprint manifest distinguishes rendered evidence from schematic drawings. The two founding archival capsules remain unchanged. The new `skin-materials.css` is byte-identical to the prior `skins.css`; its wrapper establishes explicit cascade order.
+The [collection gallery](design/2026-10-19-skin-craft/review.html) includes actual renders of all 26 live faces, six focused RUN states, a paced six-second synthetic motion recording, original geometry sketches and twelve equal-geometry rendered palette studies. The A materials are the tested candidates; B alternatives are review-only colour trials and do not inherit A’s acceptance. Its fingerprint manifest distinguishes rendered evidence from schematic drawings. The two founding archival capsules remain unchanged. The new `skin-materials.css` is byte-identical to the prior `skins.css`; its wrapper establishes explicit cascade order.
 
 ## Completion gates still open
 
@@ -78,3 +78,9 @@ The [collection gallery](design/2026-10-19-skin-craft/review.html) includes actu
 - Production publication remains a separate owner decision. No production image change or payment activation is included in the current work.
 
 Do not mark the full plan achieved from a passing local build or from the ten new catalog records. Update this record with current-state evidence as work proceeds.
+
+## First GitHub candidate
+
+[Run 39207332361](https://github.com/grixate/izzyprompter/actions/runs/39207332361) reached the WebKit portion but its `test` job hit the 25-minute job limit. The full-catalog product test timed out twice at its old 90-second budget; one five-viewport Arcade case hit its 30-second whole-test limit. The session-capacity hypothesis was not supported: per-finish creations continued successfully. Production/staging capacity was not changed.
+
+The revised harness scales the two full-catalog loop budgets with catalog size, gives five-viewport readiness 60 seconds and makes room for the expanded jobs (40 minutes). Normal 8-second assertion budgets and all functional/contrast assertions remain intact. These are CI execution budgets, not physical-device performance acceptance. The two full-catalog WebKit cases passed again locally (13.8 / 14.4 seconds). A fresh exact-source run is required; the canceled run is not reported as passed.

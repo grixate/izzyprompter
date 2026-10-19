@@ -44,6 +44,16 @@
       "sha256": "a96a06f74473db65b166e44b9bf631b6ff6c1ea144911d42c524582e169ee2e0"
     },
     {
+      "path": "references/clear-palette-a.png",
+      "bytes": 403844,
+      "sha256": "a231882bb1db174244b993bbfb15a95612028bc0a085f9abb16583ebdc9ac678"
+    },
+    {
+      "path": "references/clear-palette-b.png",
+      "bytes": 397797,
+      "sha256": "71099bac74cc4321a2cc7dbfc2d3f9999dd92d1d12841b69723defb969ae610a"
+    },
+    {
       "path": "references/clear-running.png",
       "bytes": 306996,
       "sha256": "e8cb575b74a5274295b1b4ec78ca3c8dc7053367d6d45d4d794e3edb988da46c"
@@ -89,6 +99,16 @@
       "sha256": "1e68f979b2bcfa56f621ccbed2255b77b6b2317958f2fe3380cabc4526e47d00"
     },
     {
+      "path": "references/glaze-palette-a.png",
+      "bytes": 422004,
+      "sha256": "4fe675cdd4f453fa6b5d04cd56aea74301850eee648bd18b3a0dcfbf317e43f4"
+    },
+    {
+      "path": "references/glaze-palette-b.png",
+      "bytes": 429016,
+      "sha256": "c6703530b098ccee631299b059fb41e3c98397d117a04239bd8ca3390f76b2a9"
+    },
+    {
       "path": "references/graphite-paired.png",
       "bytes": 301684,
       "sha256": "0ebd78547cf5d44ff57e1886545ccce2ecc8cb94fd21ec15518794532c23ab9d"
@@ -100,8 +120,8 @@
     },
     {
       "path": "references/groove-motion-chromium.webm",
-      "bytes": 194548,
-      "sha256": "3b33c10aed95e2f07918bdfd3f4d07ea0ec11cf418cd48439bb244abeed63d13"
+      "bytes": 527636,
+      "sha256": "f0b089891ebd315483dcdae520decfea6ece64c284f8004b47173d05c2e9b274"
     },
     {
       "path": "references/groove-paired.png",
@@ -129,14 +149,39 @@
       "sha256": "dae392e43c5e16aa3e7c4c03ee3ae4cdf5df7797e9b02fc7e5b4401a67ad9874"
     },
     {
+      "path": "references/mechanism-trio.jpg",
+      "bytes": 184188,
+      "sha256": "fbc50fa7bd88cc0fe69fa9c3983a10375d389a9708bdf759fab0e811dbfc61cc"
+    },
+    {
       "path": "references/mono-paired.png",
       "bytes": 271115,
       "sha256": "2d7cc7ba06a9d6b6916d7c82dd190f3b990a530407fc70848a11e0bb7ef8cdf5"
     },
     {
+      "path": "references/mono-palette-a.png",
+      "bytes": 52571,
+      "sha256": "2d1bad3f4e827cbbb550feb69006febb6c19b7dda090fcf9610df17b47d587b9"
+    },
+    {
+      "path": "references/mono-palette-b.png",
+      "bytes": 55852,
+      "sha256": "3f9dad2bd33ed6f604f49a80710f2fff78dbdada6a11d54cb545097a11d57bd1"
+    },
+    {
       "path": "references/moss-paired.png",
       "bytes": 325410,
       "sha256": "e5973ec69de688b29abd70bcc666dc1bd6d332444854f6e8347a785a1dbd26ae"
+    },
+    {
+      "path": "references/moss-palette-a.png",
+      "bytes": 265050,
+      "sha256": "bcd98d0756173c78bb807d840a1bb1e98d0b3a189deebef45a48709a34a03d65"
+    },
+    {
+      "path": "references/moss-palette-b.png",
+      "bytes": 291351,
+      "sha256": "dfab4abfb7a04f608d992a0d0da415c5b3ad2cb147d6f7650d897b072c2549bd"
     },
     {
       "path": "references/observatory-paired.png",
@@ -154,6 +199,11 @@
       "sha256": "1f9c356f865b1fd14604c070c2f394b6dcbbc344d7c00d39a9546cced466563a"
     },
     {
+      "path": "references/palette-render-matrix.jpg",
+      "bytes": 233900,
+      "sha256": "bb9d89a0f1960cedd37ba15184f6760c8bfa28838ebf9eeb94c690d64dc1543e"
+    },
+    {
       "path": "references/palette-trials.svg",
       "bytes": 13888,
       "sha256": "e8b744f69c3347d6157eb9445f2986e21b56b969fcff094826bdfd3b9dbbde18"
@@ -162,6 +212,16 @@
       "path": "references/pop-paired.png",
       "bytes": 191712,
       "sha256": "f76393c3e3a97d173bb598010a7310605a3b33e37a7eb66ff8d2eb9c6dd06007"
+    },
+    {
+      "path": "references/pop-palette-a.png",
+      "bytes": 58137,
+      "sha256": "60d7aebcc3c5aeb85c45240d6ef61de4896e7aa4c4e8e1f94b433bab953a8141"
+    },
+    {
+      "path": "references/pop-palette-b.png",
+      "bytes": 59057,
+      "sha256": "e5c8422fbbe8423236c3ece168fe45a2d9c72505790e99fb0d65eed20690fcb6"
     },
     {
       "path": "references/rally-paired.png",
@@ -179,6 +239,16 @@
       "sha256": "16170cb9fcd02f17e1cc608ae84f4e74534287baf034e6cecb449ca5325b6a60"
     },
     {
+      "path": "references/spool-palette-a.png",
+      "bytes": 398929,
+      "sha256": "8bcc2e2d59629b7bbe1d441775c96ce9b959ccff88f190362433b70d5d79223a"
+    },
+    {
+      "path": "references/spool-palette-b.png",
+      "bytes": 424071,
+      "sha256": "02b27a841c8c02e0a57eb82c5d2d858ca00ac7c3dff25bfc516b850e2d6153d2"
+    },
+    {
       "path": "references/spool-running.png",
       "bytes": 341781,
       "sha256": "2b4185b587e16d10e4a9cc7cd7231a00cd567d8923645d17604fbbbf8e98fe80"
@@ -193,5 +263,6 @@
       "bytes": 348137,
       "sha256": "2188d3fdc2e7c49138eba50992b19fc4387afb4d39eae332e2d58ebf3ac77cbe"
     }
-  ]
+  ],
+  "paletteCapture": "Chromium / same 330 px showroom object at DPR 2 / HOLD / alternate B is an unaccepted colour trial, not contrast acceptance"
 }

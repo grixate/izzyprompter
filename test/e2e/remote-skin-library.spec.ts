@@ -22,6 +22,7 @@ async function openRemote(page: Page, pro = true) {
 
 for (const viewport of [{ width: 360, height: 640 }, { width: 390, height: 844 }, { width: 844, height: 390 }, { width: 1280, height: 900 }]) {
   test(`remote skin library fits and keeps playback at ${viewport.width} × ${viewport.height}`, async ({ page, browserName }) => {
+    test.setTimeout(30_000 + skins.length * 1_000)
     await page.setViewportSize(viewport)
     await openRemote(page)
     await page.getByRole('button', { name: 'Play', exact: true }).click()

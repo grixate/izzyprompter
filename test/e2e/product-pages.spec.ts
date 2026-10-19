@@ -72,7 +72,7 @@ test('visible wheels move and offscreen showroom rotors suspend', async ({ page 
 test('every finish can be applied on an entitled remote without changing its controls', async ({ page, browser }) => {
   // Catalog-driven one-tap library cycles plus revocation/reload. Linux WebKit's
   // rendering makes this longer than a single flow; retain normal assertion budgets.
-  test.setTimeout(90_000)
+  test.setTimeout(30_000 + skins.length * 6_000)
   await page.goto('/')
   await page.getByRole('textbox', { name: 'Teleprompter script' }).fill('First synthetic paragraph.\n\nSecond synthetic paragraph.')
   await page.getByRole('button', { name: 'SET UP PROMPTER', exact: true }).click()

@@ -947,12 +947,13 @@ a.login-button { display: inline-flex; align-items: center; justify-content: cen
 .account-page { color: var(--ink); }
 .account-page a { color: inherit; text-decoration: none; }
 .account-page button, .account-page a, .account-page input, .account-page select { -webkit-tap-highlight-color: transparent; }
-.account-page button { min-height: 40px; padding: 8px 12px; border: 1px solid #a2a49e; border-radius: 3px; background: transparent; color: inherit; cursor: pointer; }
-.account-page button:hover:not(:disabled) { border-color: #555a4d; background: #ffffff30; }
-.account-page button:disabled, .account-page fieldset:disabled { opacity: .48; cursor: not-allowed; }
+.account-page button:where(:not(.preview-remote button, .editor-meta button)) { min-height: 40px; padding: 8px 12px; border: 1px solid #a2a49e; border-radius: 3px; background: transparent; color: inherit; cursor: pointer; }
+.account-page button:where(:not(.preview-remote button, .editor-meta button)):hover:not(:disabled) { border-color: #555a4d; background: #ffffff30; }
+.account-page button:where(:not(.preview-remote button, .editor-meta button)):disabled, .account-page fieldset:disabled { opacity: .48; cursor: not-allowed; }
 .account-page :focus-visible { outline: 2px solid #b33a13; outline-offset: 4px; }
 .account-page .start-header nav { display: flex; align-items: center; gap: 24px; font-size: 13px; }
 .account-page .start-header nav a { padding: 12px 0; }
+.account-page .start-header nav a[aria-current="page"] { color: #ae3d18; font-weight: 600; box-shadow: inset 0 -2px currentColor; }
 .account-page .account-primary { display: inline-flex; align-items: center; justify-content: center; gap: 16px; min-height: 46px; padding: 12px 18px; border: 1px solid #252821; border-radius: 3px; background: #252821; color: #f0f1e9; font-size: 13px; text-decoration: none; }
 .account-page .account-primary:hover:not(:disabled) { background: #3d4434; }
 .account-page input:not([type=range]):not([type=checkbox]):not([type=radio]), .account-page select { width: 100%; min-height: 44px; padding: 10px 12px; border: 1px solid #a2a49e; border-radius: 3px; background: #ffffff26; color: var(--ink); font: inherit; }
@@ -971,6 +972,9 @@ a.login-button { display: inline-flex; align-items: center; justify-content: cen
 .account-eyebrow { display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; color: #5e6457; font: 10px/1.6 monospace; letter-spacing: .09em; overflow-wrap: anywhere; }
 .account-title-row { display: flex; align-items: center; justify-content: space-between; gap: 20px; margin: 28px 0; }
 .account-title-row h1 { margin: 0; font: 600 52px/1 "Avenir Next Condensed", sans-serif; letter-spacing: -.04em; }
+.account-library button { min-height: 44px; font-size: 13px; line-height: 20px; }
+.account-library .account-primary { min-height: 44px; padding: 10px 16px; gap: 8px; }
+.account-library .library-back { margin: 0 0 24px; padding: 10px 0; border: 0; }
 .library-toolbar { display: flex; gap: 10px; margin-bottom: 25px; }
 .library-toolbar button { display: inline-flex; align-items: center; gap: 8px; flex-shrink: 0; }
 .guest-adoption { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 20px 0; border-top: 1px solid #aeb2a7; font-size: 13px; }
@@ -1017,7 +1021,10 @@ a.login-button { display: inline-flex; align-items: center; justify-content: cen
 .preset-panel fieldset > button { width: 100%; margin-top: 8px; }
 .account-back { display: inline-flex; align-items: center; gap: 9px; margin: 26px 40px 0; font-size: 13px; }
 .saved-editor .workbench-stage { min-height: 640px; }
-.saved-title { margin: 24px 0 18px; font: 10px monospace; letter-spacing: .08em; }
+.saved-title { display: block; margin: 0; font: 10px monospace; letter-spacing: .08em; }
+.saved-editor .editor-label { flex-wrap: wrap; gap: 8px 20px; }
+.saved-editor .editor-meta { margin-left: auto; gap: 11px; }
+.field-count { margin: 8px 0 18px; font: 11px/1.5 "Avenir Next", Avenir, sans-serif; color: #5d654f; text-align: right; overflow-wrap: anywhere; }
 .saved-title input { margin-top: 10px; font: 600 28px "Avenir Next Condensed", sans-serif !important; }
 .account-save-status { min-height: 30px; font: 11px/1.6 monospace; color: #5d654f; }
 .account-conflict { padding: 16px; margin-bottom: 18px; border: 1px solid #b75a36; border-radius: 3px; }
@@ -1070,4 +1077,26 @@ a.login-button { display: inline-flex; align-items: center; justify-content: cen
   .preview-remote .speed-module { grid-template-columns: auto 36px minmax(55px, 1fr) 36px auto; }
   .preview-remote .speed-module button { width: 36px; height: 36px; }
   .preview-remote .speed-title { font-size: 7px; }
+}
+
+/* Project organization stays close to the library, with one flat level. */
+.account-title-row h1 { min-width: 0; overflow-wrap: anywhere; }
+.account-title-row .account-primary { flex-shrink: 0; white-space: nowrap; }
+.project-folders { margin-top: 24px; }
+.project-toolbar { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
+.project-toolbar > label { display: flex; align-items: center; gap: 9px; flex: 1; min-width: 160px; }
+.project-toolbar button { display: inline-flex; align-items: center; justify-content: center; gap: 7px; font-size: 13px; }
+.project-form { display: flex; align-items: end; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+.project-form label { flex: 1; min-width: 170px; font-size: 12px; }
+.project-form label input { display: block; margin-top: 8px; }
+.project-form .account-primary { min-height: 44px; padding: 10px 14px; gap: 8px; }
+.project-note { margin: 12px 0 0; color: #5b6253; font-size: 12px; line-height: 1.5; }
+.script-project { max-width: 160px; }
+.account-page .script-project select { min-height: 36px; padding: 7px; font-size: 11px; }
+.pro-profile-copy { color: #b8bbb1; font-size: 14px; line-height: 1.6; max-width: 400px; }
+@media (max-width: 720px) {
+  .project-toolbar > label { flex-basis: 100%; }
+  .script-card:has(.script-project) { grid-template-columns: 20px minmax(0, 1fr); }
+  .script-card:has(.script-project) .script-card-actions { grid-column: 2; flex-direction: row; flex-wrap: wrap; align-items: center; }
+  .script-project { max-width: 100%; flex: 1; min-width: 100px; }
 }

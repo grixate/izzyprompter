@@ -45,6 +45,7 @@ test('a guest upgrade preserves the skin through the safe sign-in destination', 
 test('wheel focus stays outside the wheel; reduced motion stops previews and keyboard input still works', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' })
   await page.goto('/')
+  await page.getByRole('textbox', { name: 'Teleprompter script' }).fill('Your own words for a keyboard preview.\n\n'.repeat(20))
   const jog = page.getByRole('slider', { name: 'Jog script position' })
   await jog.focus(); await jog.press('ArrowRight')
   await expect(jog).toHaveAttribute('aria-valuenow', '48')

@@ -1,6 +1,8 @@
 import { test, expect } from '@playwright/test'
 
-test('the entry preview runs independently, scrubs, and never creates a session', async ({ page }) => {
+const previewText = Array.from({ length: 20 }, (_, i) => `Paragraph ${i + 1}. Words for a synthetic preview and playback check.`).join('\n\n')
+
+test('the empty preview stays blank, then plays your own words without creating a session', async ({ page }) => {
   const creations: string[] = []
   page.on('request', (request) => {
     if (request.method() === 'POST' && /\/sessions$/.test(request.url())) creations.push(request.url())
@@ -10,6 +12,10 @@ test('the entry preview runs independently, scrubs, and never creates a session'
   const jog = page.getByRole('slider', { name: 'Jog script position' })
   await expect(editor).toHaveValue('')
   await expect(page.getByRole('button', { name: 'SET UP PROMPTER' })).toBeDisabled()
+  await expect(page.locator('.live-preview .script-content')).toHaveText('')
+  await expect(page.getByRole('button', { name: 'Play', exact: true })).toBeDisabled()
+  await editor.fill(previewText)
+  await page.getByRole('button', { name: 'Play', exact: true }).click()
   await expect.poll(async () => Number(await jog.getAttribute('aria-valuenow'))).toBeGreaterThan(0)
   await page.getByRole('button', { name: 'Pause', exact: true }).click()
   await jog.press('Home')
@@ -23,9 +29,10 @@ test('the entry preview runs independently, scrubs, and never creates a session'
   await expect(page.getByRole('slider', { name: 'Playback speed' })).toHaveValue('0.91')
   await page.getByRole('button', { name: 'Play', exact: true }).click()
   await expect.poll(async () => Number(await jog.getAttribute('aria-valuenow'))).toBeLessThan(maximum)
-  await expect(editor).toHaveValue('')
+  await expect(editor).toHaveValue(previewText)
   expect(creations).toEqual([])
-  await expect.poll(() => page.evaluate(() => localStorage.getItem('izzy.prompt-settings'))).toBeNull()
+  await page.reload()
+  await expect(page.getByRole('slider', { name: 'Playback speed' })).toHaveValue('0.91')
 })
 
 test('editing pauses the preview, shows your words, and preserves the draft', async ({ page }) => {
@@ -50,7 +57,7 @@ test('login opens account setup without blocking the guest flow', async ({ page 
   await expect(page.getByRole('textbox', { name: 'Teleprompter script' })).toBeVisible()
 })
 
-test('reduced motion starts the sample paused', async ({ page }) => {
+test('reduced motion keeps an empty preview paused', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' })
   await page.goto('/')
   await expect(page.getByRole('button', { name: 'Play', exact: true })).toBeVisible()
@@ -118,6 +125,8 @@ test('preview keeps the reading line and paired device proportions through respo
 
 test('pause stops the wheel and words together; play resumes both', async ({ page }) => {
   await page.goto('/')
+  await page.getByRole('textbox', { name: 'Teleprompter script' }).fill(previewText)
+  await page.getByRole('button', { name: 'Play', exact: true }).click()
   const rotor = page.locator('.preview-remote .wheel-rotor')
   const track = page.locator('.live-preview .script-track')
   await page.getByRole('button', { name: 'Pause', exact: true }).click()

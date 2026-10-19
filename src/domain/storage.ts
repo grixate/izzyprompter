@@ -216,8 +216,16 @@ export const savePromptSettings = (
   settings: PromptSettingsV1,
   storage: StorageLike | null = getBrowserStorage(),
   now: () => number = Date.now,
-) => isPromptSettings(settings)
-  && writeStoredValue(STORAGE_KEYS.settings, settings, storage, now)
+) => {
+  if (!isPromptSettings(settings)) return false
+  const saved = writeStoredValue(STORAGE_KEYS.settings, settings, storage, now)
+  if (typeof window !== 'undefined') window.dispatchEvent(new CustomEvent('izzy:playback-speed', { detail: settings.speed }))
+  return saved
+}
+
+/** Change only speed; preserve this device's other reading settings. */
+export const rememberPlaybackSpeed = (speed: number) =>
+  savePromptSettings({ ...loadWorkspaceStorage().settings, speed })
 
 export const savePromptPosition = (
   position: PromptPositionV1,

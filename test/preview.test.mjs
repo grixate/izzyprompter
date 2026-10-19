@@ -1,6 +1,6 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import { PREVIEW_SCRIPT, previewFrame } from '../src/prompt/preview.ts'
+import { previewFrame } from '../src/prompt/preview.ts'
 import { BASE_PIXELS_PER_SECOND } from '../src/prompt/motion.ts'
 
 test('preview playback follows the same base rate as the real prompter', () => {
@@ -17,10 +17,4 @@ test('preview playback clamps to the measured script and handles an empty viewpo
 test('a paused or backwards timestamp cannot advance the preview', () => {
   assert.equal(previewFrame(200, 1000, 1, 0), 200)
   assert.equal(previewFrame(200, 1000, 1, -2), 200)
-})
-
-test('the preview has a long independent sample with distinct paragraphs to scrub', () => {
-  assert.ok(PREVIEW_SCRIPT.split(/\s+/).length > 400)
-  assert.equal(PREVIEW_SCRIPT.split('\n\n').length, 12)
-  assert.match(PREVIEW_SCRIPT, /^Find your rhythm/)
 })

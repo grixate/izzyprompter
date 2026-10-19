@@ -81,7 +81,7 @@ test.describe('account security and save failure edges', () => {
     await page.goto(`/account/login#token=${other.token}`)
     await page.getByRole('button', { name: 'Sign in to IZZY', exact: true }).click()
     await page.waitForURL(/\/account$/)
-    await expect(page.getByRole('heading', { name: 'Your scripts.', exact: true })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Your scripts', exact: true })).toBeVisible()
     await expect(page.getByText('Unsent device draft', { exact: false })).toHaveCount(0)
     await expect(page.locator('.script-card')).toHaveCount(0)
     await page.goto(scriptUrl)

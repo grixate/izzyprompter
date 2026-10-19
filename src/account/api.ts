@@ -3,7 +3,8 @@ import type { PromptSettingsV1 } from '../domain/storage'
 
 export type Account = { id: string; email: string; pro: boolean }
 export type AccountStatus = { enabled: boolean; google_enabled: boolean; csrf_token: string; user: Account | null }
-export type SavedScript = { id: string; title: string; document: IzzyDocumentV1; revision: number; deleted_at: string | null; updated_at: string; superseded_by?: SavedScript }
+export type ProjectFolder = { id: string; name: string; script_count: number }
+export type SavedScript = { folder_id: string | null; id: string; title: string; document: IzzyDocumentV1; revision: number; deleted_at: string | null; updated_at: string; superseded_by?: SavedScript }
 export type ScriptSummary = Omit<SavedScript, 'document' | 'superseded_by'> & { excerpt: string | null }
 export type Preset = { id: string; name: string; settings: PromptSettingsV1; is_default: boolean }
 export class AccountError extends Error {
@@ -54,7 +55,7 @@ export const accountMessage = (error: unknown) => {
     login_required: 'Please sign in again. Your unsent edits are kept on this device.',
     account_changed: 'This browser signed in to a different account. Your original draft is kept separately. Refresh before continuing.',
     invalid_token: 'This sign-in link has expired or was already used. Request a new link.',
-    pro_required: 'Named presets are part of Lifetime Pro.',
+    pro_required: 'Project folders and reading profiles are part of Lifetime Pro.',
     accounts_unavailable: 'Accounts are not configured on this server yet. Guest prompting still works.',
     payments_unavailable: 'Payments are not enabled yet.',
     payment_pending: 'An earlier checkout may still be payable. Check its status before opening another payment.',
@@ -64,6 +65,7 @@ export const accountMessage = (error: unknown) => {
     editing_active: 'Quick Edit is active on the remote. Finish it before saving here.',
     mail_unavailable: 'We could not send the sign-in email. Please try again later.',
     rate_limited: 'Too many attempts. Please wait a minute before trying again.',
+    invalid_folder: 'Use a project name between 1 and 200 characters.',
     invalid_email: 'Enter a valid email address.',
   }
   return error instanceof AccountError ? messages[error.reason] ?? 'The request could not be completed. Your text has not been discarded.'

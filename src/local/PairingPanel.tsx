@@ -29,14 +29,14 @@ export function PairingPanel({ peer, host, onClose }: { peer: DirectPeer; host: 
     <header><span className="eyebrow">DIRECT / EXPERIMENTAL PREVIEW</span>{onClose && <button onClick={onClose} aria-label="Close direct pairing">Close</button>}</header>
     <h2>{host ? 'Connect your remote.' : 'Connect to your reading screen.'}</h2>
     <p>Keep both devices on the same reachable network. Open <strong>/local/remote</strong> on the phone. Prepare both apps before going offline.</p>
-    <p>{host ? '1. Create an offer and send its file or text to the phone. 2. Import the phone’s answer here.'
-      : '1. Import the reading screen’s offer. 2. Send your answer back to that screen.'}</p>
+    <p>{host ? '1. Create an offer and send its file or text to the phone. 2. Upload or paste the phone’s answer here.'
+      : '1. Upload or paste the reading screen’s offer. 2. Send your answer back to that screen.'}</p>
     <p className={`local-status pairing-progress ${state.connection === 'connected' ? 'is-connected' : ''}`} role="status">{message || (state.connection === 'connected' ? 'Remote connected. Your controls are ready.' : state.connection === 'connecting' ? 'Waiting for the other device…' : 'Ready for a fresh pairing exchange.')}</p>
     {host && <button disabled={busy} onClick={() => void run(peer.createOffer)}>Create pairing offer</button>}
     <details className="manual-connection-options" open={Boolean(outgoing) || !host}><summary>Connection options · manual exchange</summary>
     <label>{host ? 'Remote answer' : 'Reading screen offer'}<textarea aria-label={host ? 'Remote answer' : 'Reading screen offer'} value={incoming}
       maxLength={96 * 1024} onChange={event => setIncoming(event.target.value)} spellCheck={false} /></label>
-    <label className="local-file">Import pairing file<input type="file" accept=".json,.txt,application/json,text/plain" disabled={busy} onChange={event => {
+    <label className="local-file">Upload pairing file<input type="file" accept=".json,.txt,application/json,text/plain" disabled={busy} onChange={event => {
       const file = event.target.files?.[0]; event.target.value = ''
       if (!file) return
       if (file.size > 96 * 1024) { setMessage('Pairing file is too large.'); return }

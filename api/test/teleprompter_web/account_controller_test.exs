@@ -15,8 +15,10 @@ defmodule TeleprompterWeb.AccountControllerTest do
       |> init_test_session(account_token: Accounts.issue_token(user.id, "session", 3600))
       |> put_private(:plug_skip_csrf_protection, false)
 
-    assert_error_sent 403, fn ->
-      post(conn, "/api/account/scripts", %{"title" => "Forged", "content" => "No"})
+    for path <- ["/api/account/scripts", "/api/account/folders"] do
+      assert_error_sent 403, fn ->
+        post(conn, path, %{"title" => "Forged", "content" => "No", "name" => "Forged"})
+      end
     end
   end
 
@@ -57,8 +59,8 @@ defmodule TeleprompterWeb.AccountControllerTest do
   end
 
   test "unauthenticated reads cannot access the library", %{conn: conn} do
-    assert conn |> get("/api/account/scripts") |> json_response(401) == %{
-             "reason" => "login_required"
-           }
+    for path <- ["/api/account/scripts", "/api/account/folders"] do
+      assert conn |> get(path) |> json_response(401) == %{"reason" => "login_required"}
+    end
   end
 end

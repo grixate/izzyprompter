@@ -8,8 +8,8 @@ import {
   replaceTextSelection,
 } from '../domain/textNormalization'
 import {
-  DEFAULT_PROMPT_SETTINGS,
   clearWorkspaceStorage,
+  savePromptSettings,
   createDebouncedStorageWriter,
   loadWorkspaceStorage,
   persistDraftDocument,
@@ -72,7 +72,6 @@ export function StartPage() {
   const titleRef = useRef(
     restoredStorage.draft?.title ?? restoredStorage.document?.title ?? 'Untitled script',
   )
-  const settingsRef = useRef(restoredStorage.settings)
   const [draftWriter] = useState(() => createDebouncedStorageWriter<string>({
     delay: 250,
     write: (nextContent) => persistDraftDocument({
@@ -210,7 +209,7 @@ export function StartPage() {
     try {
       const response = await fetch('/api/sessions', {
         method: 'POST', headers: { 'Content-Type': 'application/json' }, signal: controller.signal,
-        body: JSON.stringify({ protocol_version: 2, content: normalizedContent, speed: settingsRef.current.speed }),
+        body: JSON.stringify({ protocol_version: 2, content: normalizedContent, speed: loadWorkspaceStorage().settings.speed }),
       })
       // Reverse proxies can return HTML for 413/429. Status-based recovery
       // must still preserve the draft and honor the retry hint.
@@ -240,10 +239,11 @@ export function StartPage() {
     }
 
     draftWriter.cancel()
+    const settings = loadWorkspaceStorage().settings
     clearWorkspaceStorage()
+    savePromptSettings(settings)
     documentIdRef.current = `doc_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 9)}`
     titleRef.current = 'Untitled script'
-    settingsRef.current = { ...DEFAULT_PROMPT_SETTINGS }
     const emptyDraft: IzzyDraftStateV1 = {
       documentId: documentIdRef.current,
       title: titleRef.current,
@@ -390,7 +390,7 @@ export function StartPage() {
         <div className="editor-label">
           <label htmlFor="script-input">YOUR SCRIPT</label>
           <div className="editor-meta">
-            <button type="button" disabled={isCreating} onClick={() => fileInputRef.current?.click()}><Upload size={13} />Import text</button>
+            <button type="button" disabled={isCreating} onClick={() => fileInputRef.current?.click()}><Upload size={13} />Upload text</button>
           </div>
         </div>
         <div
@@ -431,7 +431,7 @@ export function StartPage() {
             }}
           />
         </div>
-        <p id="editor-input-help" className="sr-only">Enter plain text, paste, or import a TXT or Markdown file. Maximum 2 MB and 5,000 paragraphs.</p>
+        <p id="editor-input-help" className="sr-only">Enter plain text, paste, or upload a TXT or Markdown file. Maximum 2 MB and 5,000 paragraphs.</p>
         <div className={words || inputFeedback ? "script-feedback" : "script-feedback sr-only"}>
           <span id="editor-feedback" className={inputFeedback?.kind === 'error' ? 'is-error' : inputFeedback ? 'is-success' : ''} role="status" aria-live={inputFeedback ? 'polite' : 'off'}>
             {inputFeedback?.message ?? (words ? `${words} words${draftSaved === true ? ' · Saved on this device' : ''}` : '')}

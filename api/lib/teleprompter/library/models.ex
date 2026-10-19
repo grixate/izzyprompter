@@ -3,6 +3,7 @@ defmodule Teleprompter.Library.Script do
   @primary_key {:id, :binary_id, autogenerate: true}
   schema "scripts" do
     field(:user_id, :binary_id)
+    field(:folder_id, :binary_id)
     field(:title, :string, redact: true)
     field(:document, :map, redact: true)
     field(:revision, :integer, default: 1)
@@ -31,6 +32,16 @@ defmodule Teleprompter.Library.Preset do
     field(:name, :string, redact: true)
     field(:settings, :map)
     field(:is_default, :boolean, default: false)
+    timestamps(type: :utc_datetime_usec)
+  end
+end
+
+defmodule Teleprompter.Library.ProjectFolder do
+  use Ecto.Schema
+  @primary_key {:id, :binary_id, autogenerate: true}
+  schema "project_folders" do
+    field(:user_id, :binary_id)
+    field(:name, :string, redact: true)
     timestamps(type: :utc_datetime_usec)
   end
 end

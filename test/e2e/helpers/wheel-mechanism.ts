@@ -10,4 +10,3 @@ export const angle = (page: Page, selector: string) => page.locator(selector).ev
   const m = new DOMMatrixReadOnly(getComputedStyle(el).transform)
   return Math.atan2(m.b,m.a)
 })
-

@@ -61,7 +61,7 @@ export function useWheelMotion(root: RefObject<HTMLDivElement | null>, { enabled
     write(angle.current, targets)
     if (targets.length && enabled && (playing || ambient) && visible && foreground && !reduced && !dragging) {
       if (root.current) root.current.dataset.motionDirection = 'forward'
-      const duration = playing ? 24_000 / Math.max(.5, speed) : 160_000
+      const duration = playing ? 24_000 / Math.max(.2, speed) : 160_000
       const startTime = document.timeline.currentTime
       const animations = targets.map(part => {
         const animation = part.element.animate([pose(part, angle.current), pose(part, angle.current + turn)], { duration, iterations: Infinity, easing: 'linear' })

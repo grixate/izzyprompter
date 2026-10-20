@@ -1,0 +1,688 @@
+{
+  "audit-browsers": {
+    "stats": {
+      "startTime": "2026-10-20T17:08:19.478Z",
+      "duration": 113117.564,
+      "expected": 27,
+      "skipped": 3,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "cases": [
+      {
+        "title": "paragraph editor follows browser and keyboard viewport offsets with safe insets",
+        "project": "chromium",
+        "status": "expected",
+        "runs": [
+          {
+            "status": "passed",
+            "errors": []
+          }
+        ]
+      },
+      {
+        "title": "paragraph editor follows browser and keyboard viewport offsets with safe insets",
+        "project": "firefox",
+        "status": "expected",
+        "runs": [
+          {
+            "status": "passed",
+            "errors": []
+          }
+        ]
+      },
+      {
+        "title": "paragraph editor follows browser and keyboard viewport offsets with safe insets",
+        "project": "webkit",
+        "status": "expected",
+        "runs": [
+          {
+            "status": "passed",
+            "errors": []
+          }
+        ]
+      },
+      {
+        "title": "typing is live on two displays, the editor, and another phone before Done",
+        "project": "chromium",
+        "status": "expected",
+        "runs": [
+          {
+            "status": "passed",
+            "errors": []
+          }
+        ]
+      },
+      {
+        "title": "recovered offline draft never overwrites a correction from another phone",
+        "project": "chromium",
+        "status": "expected",
+        "runs": [
+          {
+            "status": "passed",
+            "errors": []
+          }
+        ]
+      },
+      {
+        "title": "offline draft survives refresh and is sent only after explicit resume",
+        "project": "chromium",
+        "status": "expected",
+        "runs": [
+          {
+            "status": "passed",
+            "errors": []
+          }
+        ]
+      },
+      {
+        "title": "an unsent phone edit with unavailable storage offers a backup without claiming reload recovery",
+        "project": "chromium",
+        "status": "expected",
+        "runs": [
+          {
+            "status": "passed",
+            "errors": []
+          }
+        ]
+      },
+      {
+        "title": "typing is live on two displays, the editor, and another phone before Done",
+        "project": "firefox",
+        "status": "expected",
+        "runs": [
+          {
+            "status": "passed",
+            "errors": []
+          }
+        ]
+      },
+      {
+        "title": "recovered offline draft never overwrites a correction from another phone",
+        "project": "firefox",
+        "status": "expected",
+        "runs": [
+          {
+            "status": "passed",
+            "errors": []
+          }
+        ]
+      },
+      {
+        "title": "offline draft survives refresh and is sent only after explicit resume",
+        "project": "firefox",
+        "status": "expected",
+        "runs": [
+          {
+            "status": "passed",
+            "errors": []
+          }
+        ]
+      },
+      {
+        "title": "an unsent phone edit with unavailable storage offers a backup without claiming reload recovery",
+        "project": "firefox",
+        "status": "expected",
+        "runs": [
+          {
+            "status": "passed",
+            "errors": []
+          }
+        ]
+      },
+      {
+        "title": "typing is live on two displays, the editor, and another phone before Done",
+        "project": "webkit",
+        "status": "expected",
+        "runs": [
+          {
+            "status": "passed",
+            "errors": []
+          }
+        ]
+      },
+      {
+        "title": "recovered offline draft never overwrites a correction from another phone",
+        "project": "webkit",
+        "status": "expected",
+        "runs": [
+          {
+            "status": "passed",
+            "errors": []
+          }
+        ]
+      },
+      {
+        "title": "offline draft survives refresh and is sent only after explicit resume",
+        "project": "webkit",
+        "status": "expected",
+        "runs": [
+          {
+            "status": "passed",
+            "errors": []
+          }
+        ]
+      },
+      {
+        "title": "an unsent phone edit with unavailable storage offers a backup without claiming reload recovery",
+        "project": "webkit",
+        "status": "expected",
+        "runs": [
+          {
+            "status": "passed",
+            "errors": []
+          }
+        ]
+      },
+      {
+        "title": "every catalog remote is a stationary phone instrument, with all controls visible",
+        "project": "chromium",
+        "status": "expected",
+        "runs": [
+          {
+            "status": "passed",
+            "errors": []
+          }
+        ]
+      },
+      {
+        "title": "current paragraph opens above the stationary remote and stays usable with a keyboard-sized viewport",
+        "project": "chromium",
+        "status": "expected",
+        "runs": [
+          {
+            "status": "passed",
+            "errors": []
+          }
+        ]
+      },
+      {
+        "title": "a speed acknowledgement survives delayed broadcasts and newer reading checkpoints",
+        "project": "chromium",
+        "status": "expected",
+        "runs": [
+          {
+            "status": "passed",
+            "errors": []
+          }
+        ]
+      },
+      {
+        "title": "every catalog remote is a stationary phone instrument, with all controls visible",
+        "project": "firefox",
+        "status": "expected",
+        "runs": [
+          {
+            "status": "passed",
+            "errors": []
+          }
+        ]
+      },
+      {
+        "title": "current paragraph opens above the stationary remote and stays usable with a keyboard-sized viewport",
+        "project": "firefox",
+        "status": "expected",
+        "runs": [
+          {
+            "status": "passed",
+            "errors": []
+          }
+        ]
+      },
+      {
+        "title": "a speed acknowledgement survives delayed broadcasts and newer reading checkpoints",
+        "project": "firefox",
+        "status": "expected",
+        "runs": [
+          {
+            "status": "passed",
+            "errors": []
+          }
+        ]
+      },
+      {
+        "title": "every catalog remote is a stationary phone instrument, with all controls visible",
+        "project": "webkit",
+        "status": "expected",
+        "runs": [
+          {
+            "status": "passed",
+            "errors": []
+          }
+        ]
+      },
+      {
+        "title": "current paragraph opens above the stationary remote and stays usable with a keyboard-sized viewport",
+        "project": "webkit",
+        "status": "expected",
+        "runs": [
+          {
+            "status": "passed",
+            "errors": []
+          }
+        ]
+      },
+      {
+        "title": "a speed acknowledgement survives delayed broadcasts and newer reading checkpoints",
+        "project": "webkit",
+        "status": "expected",
+        "runs": [
+          {
+            "status": "passed",
+            "errors": []
+          }
+        ]
+      },
+      {
+        "title": "empty preview, counters, remote geometry and the last device speed survive the full take flow",
+        "project": "chromium",
+        "status": "skipped",
+        "runs": [
+          {
+            "status": "skipped",
+            "errors": []
+          }
+        ]
+      },
+      {
+        "title": "empty preview, counters, remote geometry and the last device speed survive the full take flow",
+        "project": "firefox",
+        "status": "skipped",
+        "runs": [
+          {
+            "status": "skipped",
+            "errors": []
+          }
+        ]
+      },
+      {
+        "title": "empty preview, counters, remote geometry and the last device speed survive the full take flow",
+        "project": "webkit",
+        "status": "skipped",
+        "runs": [
+          {
+            "status": "skipped",
+            "errors": []
+          }
+        ]
+      },
+      {
+        "title": "fourteen self-contained instruments keep paired precision",
+        "project": "chromium",
+        "status": "expected",
+        "runs": [
+          {
+            "status": "passed",
+            "errors": []
+          }
+        ]
+      },
+      {
+        "title": "fourteen self-contained instruments keep paired precision",
+        "project": "firefox",
+        "status": "expected",
+        "runs": [
+          {
+            "status": "passed",
+            "errors": []
+          }
+        ]
+      },
+      {
+        "title": "fourteen self-contained instruments keep paired precision",
+        "project": "webkit",
+        "status": "expected",
+        "runs": [
+          {
+            "status": "passed",
+            "errors": []
+          }
+        ]
+      }
+    ]
+  },
+  "audit-final-browsers": {
+    "stats": {
+      "startTime": "2026-10-20T17:13:02.196Z",
+      "duration": 154688.701,
+      "expected": 11,
+      "skipped": 0,
+      "unexpected": 1,
+      "flaky": 0
+    },
+    "cases": [
+      {
+        "title": "every catalog remote is a stationary phone instrument, with all controls visible",
+        "project": "chromium",
+        "status": "expected",
+        "runs": [
+          {
+            "status": "passed",
+            "errors": []
+          }
+        ]
+      },
+      {
+        "title": "current paragraph opens above the stationary remote and stays usable with a keyboard-sized viewport",
+        "project": "chromium",
+        "status": "expected",
+        "runs": [
+          {
+            "status": "passed",
+            "errors": []
+          }
+        ]
+      },
+      {
+        "title": "a speed acknowledgement survives delayed broadcasts and newer reading checkpoints",
+        "project": "chromium",
+        "status": "expected",
+        "runs": [
+          {
+            "status": "passed",
+            "errors": []
+          }
+        ]
+      },
+      {
+        "title": "every catalog remote is a stationary phone instrument, with all controls visible",
+        "project": "firefox",
+        "status": "expected",
+        "runs": [
+          {
+            "status": "passed",
+            "errors": []
+          }
+        ]
+      },
+      {
+        "title": "current paragraph opens above the stationary remote and stays usable with a keyboard-sized viewport",
+        "project": "firefox",
+        "status": "expected",
+        "runs": [
+          {
+            "status": "passed",
+            "errors": []
+          }
+        ]
+      },
+      {
+        "title": "a speed acknowledgement survives delayed broadcasts and newer reading checkpoints",
+        "project": "firefox",
+        "status": "expected",
+        "runs": [
+          {
+            "status": "passed",
+            "errors": []
+          }
+        ]
+      },
+      {
+        "title": "every catalog remote is a stationary phone instrument, with all controls visible",
+        "project": "webkit",
+        "status": "expected",
+        "runs": [
+          {
+            "status": "passed",
+            "errors": []
+          }
+        ]
+      },
+      {
+        "title": "current paragraph opens above the stationary remote and stays usable with a keyboard-sized viewport",
+        "project": "webkit",
+        "status": "unexpected",
+        "runs": [
+          {
+            "status": "timedOut",
+            "errors": [
+              "\u001b[31mTest timeout of 90000ms exceeded.\u001b[39m",
+              "Error: page.waitForResponse: Test timeout of 90000ms exceeded.\n\n   at helpers/create-synthetic-session.ts:5\n\n  3 | /** Fail on admission refusal before looking for capability-bearing links. */\n  4 | export async function createSyntheticSession(page: Page) {\n> 5 |   const creation = page.waitForResponse(response => response.request().method() === 'POST' && new URL(response.url()).pathname === '/api/sessions')\n    |                         ^\n  6 |   await page.getByRole('button', { name: 'SET UP PROMPTER', exact: true }).click()\n  7 |   expect((await creation).status(), 'Synthetic session creation status').toBe(201)\n  8 | }\n    at createSyntheticSession (/Users/grixate/.codex/worktrees/skin-craft-research/Teleprompter/test/e2e/helpers/create-synthetic-session.ts:5:25)\n    at pair (/Users/grixate/.codex/worktrees/skin-craft-research/Teleprompter/test/e2e/remote-viewport.spec.ts:10:8)\n    at /Users/grixate/.codex/worktrees/skin-craft-research/Teleprompter/test/e2e/remote-viewport.spec.ts:76:3"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "a speed acknowledgement survives delayed broadcasts and newer reading checkpoints",
+        "project": "webkit",
+        "status": "expected",
+        "runs": [
+          {
+            "status": "passed",
+            "errors": []
+          }
+        ]
+      },
+      {
+        "title": "fourteen self-contained instruments keep paired precision",
+        "project": "chromium",
+        "status": "expected",
+        "runs": [
+          {
+            "status": "passed",
+            "errors": []
+          }
+        ]
+      },
+      {
+        "title": "fourteen self-contained instruments keep paired precision",
+        "project": "firefox",
+        "status": "expected",
+        "runs": [
+          {
+            "status": "passed",
+            "errors": []
+          }
+        ]
+      },
+      {
+        "title": "fourteen self-contained instruments keep paired precision",
+        "project": "webkit",
+        "status": "expected",
+        "runs": [
+          {
+            "status": "passed",
+            "errors": []
+          }
+        ]
+      }
+    ]
+  },
+  "audit-webkit-drawer-final": {
+    "stats": {
+      "startTime": "2026-10-20T17:16:00.043Z",
+      "duration": 6336.8009999999995,
+      "expected": 1,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "cases": [
+      {
+        "title": "current paragraph opens above the stationary remote and stays usable with a keyboard-sized viewport",
+        "project": "webkit",
+        "status": "expected",
+        "runs": [
+          {
+            "status": "passed",
+            "errors": []
+          }
+        ]
+      }
+    ]
+  },
+  "audit-local": {
+    "stats": {
+      "startTime": "2026-10-20T17:10:28.990Z",
+      "duration": 49367.733,
+      "expected": 3,
+      "skipped": 3,
+      "unexpected": 3,
+      "flaky": 0
+    },
+    "cases": [
+      {
+        "title": "prepared app cold-opens offline, restores text/settings/anchor and never needs an API",
+        "project": "chromium",
+        "status": "expected",
+        "runs": [
+          {
+            "status": "passed",
+            "errors": []
+          }
+        ]
+      },
+      {
+        "title": "native direct peer: controls, Quick Edit and peer loss with app HTTP blocked",
+        "project": "chromium",
+        "status": "skipped",
+        "runs": [
+          {
+            "status": "skipped",
+            "errors": []
+          }
+        ]
+      },
+      {
+        "title": "storage failure preserves the in-memory script through local prompting",
+        "project": "chromium",
+        "status": "unexpected",
+        "runs": [
+          {
+            "status": "failed",
+            "errors": [
+              "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.display-footer')\nExpected substring: \u001b[32m\"\u001b[7m1.20\u001b[27m\u00d7\"\u001b[39m\nReceived string:    \u001b[31m\"\u001b[7mSTANDBY0.72\u001b[27m\u00d7\"\u001b[39m\nTimeout: 10000ms\n\nCall log:\n\u001b[2m  - Expect \"toContainText\" locator('.display-footer') with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('.display-footer')\u001b[22m\n\u001b[2m    24 \u00d7 locator resolved to <footer class=\"display-footer display-chrome \">\u2026</footer>\u001b[22m\n\u001b[2m       - unexpected value \"STANDBY0.72\u00d7\"\u001b[22m\n\n\n  158 |   await page.getByRole('button', { name: 'Prompt settings', exact: true }).click()\n  159 |   await page.getByRole('slider', { name: 'Local playback speed', exact: true }).fill('0.72')\n> 160 |   await expect(page.locator('.display-footer')).toContainText('1.20\u00d7')\n      |                                                 ^\n  161 |   const beforeJog = await position(page)\n  162 |   await page.getByRole('button', { name: 'Jog forward', exact: true }).click()\n  163 |   await expect.poll(() => position(page)).toBeGreaterThan(beforeJog + 20)\n    at /Users/grixate/.codex/worktrees/skin-craft-research/Teleprompter/test/offline/local.spec.ts:160:49"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "prepared app cold-opens offline, restores text/settings/anchor and never needs an API",
+        "project": "firefox",
+        "status": "expected",
+        "runs": [
+          {
+            "status": "passed",
+            "errors": []
+          }
+        ]
+      },
+      {
+        "title": "native direct peer: controls, Quick Edit and peer loss with app HTTP blocked",
+        "project": "firefox",
+        "status": "skipped",
+        "runs": [
+          {
+            "status": "skipped",
+            "errors": []
+          }
+        ]
+      },
+      {
+        "title": "storage failure preserves the in-memory script through local prompting",
+        "project": "firefox",
+        "status": "unexpected",
+        "runs": [
+          {
+            "status": "failed",
+            "errors": [
+              "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.display-footer')\nExpected substring: \u001b[32m\"\u001b[7m1.20\u001b[27m\u00d7\"\u001b[39m\nReceived string:    \u001b[31m\"\u001b[7mSTANDBY0.72\u001b[27m\u00d7\"\u001b[39m\nTimeout: 10000ms\n\nCall log:\n\u001b[2m  - Expect \"toContainText\" locator('.display-footer') with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('.display-footer')\u001b[22m\n\u001b[2m    24 \u00d7 locator resolved to <footer class=\"display-footer display-chrome \">\u2026</footer>\u001b[22m\n\u001b[2m       - unexpected value \"STANDBY0.72\u00d7\"\u001b[22m\n\n\n  158 |   await page.getByRole('button', { name: 'Prompt settings', exact: true }).click()\n  159 |   await page.getByRole('slider', { name: 'Local playback speed', exact: true }).fill('0.72')\n> 160 |   await expect(page.locator('.display-footer')).toContainText('1.20\u00d7')\n      |                                                 ^\n  161 |   const beforeJog = await position(page)\n  162 |   await page.getByRole('button', { name: 'Jog forward', exact: true }).click()\n  163 |   await expect.poll(() => position(page)).toBeGreaterThan(beforeJog + 20)\n    at /Users/grixate/.codex/worktrees/skin-craft-research/Teleprompter/test/offline/local.spec.ts:160:49"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "prepared app cold-opens offline, restores text/settings/anchor and never needs an API",
+        "project": "webkit",
+        "status": "expected",
+        "runs": [
+          {
+            "status": "passed",
+            "errors": []
+          }
+        ]
+      },
+      {
+        "title": "native direct peer: controls, Quick Edit and peer loss with app HTTP blocked",
+        "project": "webkit",
+        "status": "skipped",
+        "runs": [
+          {
+            "status": "skipped",
+            "errors": []
+          }
+        ]
+      },
+      {
+        "title": "storage failure preserves the in-memory script through local prompting",
+        "project": "webkit",
+        "status": "unexpected",
+        "runs": [
+          {
+            "status": "failed",
+            "errors": [
+              "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.display-footer')\nExpected substring: \u001b[32m\"\u001b[7m1.20\u001b[27m\u00d7\"\u001b[39m\nReceived string:    \u001b[31m\"\u001b[7mSTANDBY0.72\u001b[27m\u00d7\"\u001b[39m\nTimeout: 10000ms\n\nCall log:\n\u001b[2m  - Expect \"toContainText\" locator('.display-footer') with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for locator('.display-footer')\u001b[22m\n\u001b[2m    24 \u00d7 locator resolved to <footer class=\"display-footer display-chrome \">\u2026</footer>\u001b[22m\n\u001b[2m       - unexpected value \"STANDBY0.72\u00d7\"\u001b[22m\n\n\n  158 |   await page.getByRole('button', { name: 'Prompt settings', exact: true }).click()\n  159 |   await page.getByRole('slider', { name: 'Local playback speed', exact: true }).fill('0.72')\n> 160 |   await expect(page.locator('.display-footer')).toContainText('1.20\u00d7')\n      |                                                 ^\n  161 |   const beforeJog = await position(page)\n  162 |   await page.getByRole('button', { name: 'Jog forward', exact: true }).click()\n  163 |   await expect.poll(() => position(page)).toBeGreaterThan(beforeJog + 20)\n    at /Users/grixate/.codex/worktrees/skin-craft-research/Teleprompter/test/offline/local.spec.ts:160:49"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "audit-local-final": {
+    "stats": {
+      "startTime": "2026-10-20T17:12:31.302Z",
+      "duration": 13271.618,
+      "expected": 3,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "cases": [
+      {
+        "title": "storage failure preserves the in-memory script through local prompting",
+        "project": "chromium",
+        "status": "expected",
+        "runs": [
+          {
+            "status": "passed",
+            "errors": []
+          }
+        ]
+      },
+      {
+        "title": "storage failure preserves the in-memory script through local prompting",
+        "project": "firefox",
+        "status": "expected",
+        "runs": [
+          {
+            "status": "passed",
+            "errors": []
+          }
+        ]
+      },
+      {
+        "title": "storage failure preserves the in-memory script through local prompting",
+        "project": "webkit",
+        "status": "expected",
+        "runs": [
+          {
+            "status": "passed",
+            "errors": []
+          }
+        ]
+      }
+    ]
+  },
+  "unit": {
+    "passed": 92,
+    "failed": 0
+  },
+  "api": {
+    "passed": 100,
+    "failed": 0,
+    "databaseExcluded": 69
+  },
+  "build": "passed",
+  "diff": "passed",
+  "physicalDevices": "not run"
+}

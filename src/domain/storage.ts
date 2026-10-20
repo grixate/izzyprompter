@@ -1,3 +1,4 @@
+import {boundedSpeed, MIN_SPEED, LEGACY_MAX_SPEED} from '../prompt/speed.ts'
 import {
   createIzzyDocumentFromLegacyText,
   isIzzyDocumentV1,
@@ -170,7 +171,7 @@ const isDraftState = (value: unknown): value is IzzyDraftStateV1 => {
 
 const isPromptSettings = (value: unknown): value is PromptSettingsV1 => {
   if (!isRecord(value)) return false
-  return typeof value.speed === 'number' && value.speed >= 0.5 && value.speed <= 1.5
+  return typeof value.speed === 'number' && value.speed >= MIN_SPEED && value.speed <= LEGACY_MAX_SPEED
     && typeof value.fontSize === 'number' && value.fontSize >= 20 && value.fontSize <= 160
     && typeof value.lineHeight === 'number' && value.lineHeight >= 0.8 && value.lineHeight <= 3
     && typeof value.textWidth === 'number' && value.textWidth >= 25 && value.textWidth <= 100
@@ -191,8 +192,7 @@ export function loadWorkspaceStorage(storage: StorageLike | null = getBrowserSto
   return {
     document: readStoredValue(STORAGE_KEYS.document, isIzzyDocumentV1, storage),
     draft: readStoredValue(STORAGE_KEYS.draft, isDraftState, storage),
-    settings: readStoredValue(STORAGE_KEYS.settings, isPromptSettings, storage)
-      ?? { ...DEFAULT_PROMPT_SETTINGS },
+    settings: (() => {const saved=readStoredValue(STORAGE_KEYS.settings,isPromptSettings,storage) ?? DEFAULT_PROMPT_SETTINGS;return {...saved,speed:boundedSpeed(saved.speed)}})(),
     position: readStoredValue(STORAGE_KEYS.position, isPromptPosition, storage)
       ?? { ...DEFAULT_PROMPT_POSITION },
   }
@@ -218,8 +218,8 @@ export const savePromptSettings = (
   now: () => number = Date.now,
 ) => {
   if (!isPromptSettings(settings)) return false
-  const saved = writeStoredValue(STORAGE_KEYS.settings, settings, storage, now)
-  if (typeof window !== 'undefined') window.dispatchEvent(new CustomEvent('izzy:playback-speed', { detail: settings.speed }))
+  const saved = writeStoredValue(STORAGE_KEYS.settings, {...settings,speed:boundedSpeed(settings.speed)}, storage, now)
+  if (typeof window !== 'undefined') window.dispatchEvent(new CustomEvent('izzy:playback-speed', { detail: boundedSpeed(settings.speed) }))
   return saved
 }
 

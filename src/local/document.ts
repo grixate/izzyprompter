@@ -1,3 +1,4 @@
+import {MIN_SPEED, LEGACY_MAX_SPEED} from '../prompt/speed.ts'
 import { isIzzyDocumentV1, izzyDocumentToLegacyText, type IzzyDocumentV1 } from '../domain/document.ts'
 import type { PromptSettingsV1 } from '../domain/storage.ts'
 import type { ReadingAnchor } from '../prompt/position.ts'
@@ -22,7 +23,7 @@ export function validAnchor(document: IzzyDocumentV1, value: unknown): value is 
 export function validSettings(value: unknown): value is PromptSettingsV1 {
   if (!value || typeof value !== 'object') return false
   const s = value as PromptSettingsV1
-  return Number.isFinite(s.speed) && s.speed >= .5 && s.speed <= 1.5
+  return Number.isFinite(s.speed) && s.speed >= MIN_SPEED && s.speed <= LEGACY_MAX_SPEED
     && Number.isFinite(s.fontSize) && s.fontSize >= 20 && s.fontSize <= 160
     && Number.isFinite(s.lineHeight) && s.lineHeight >= .8 && s.lineHeight <= 3
     && Number.isFinite(s.textWidth) && s.textWidth >= 25 && s.textWidth <= 100 && typeof s.mirrored === 'boolean'

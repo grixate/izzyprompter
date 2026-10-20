@@ -27,6 +27,9 @@ test('every catalog remote is a stationary phone instrument, with all controls v
    await remote.getByRole('button',{name:'Change remote skin'}).click()
    await remote.getByRole('button',{name:'Use '+skin.name,exact:true}).click()
    await expect(remote.locator('#remote-skin-library')).toHaveCount(0)
+   // A rotated circular face still has a square CSS box. Exercise that pose
+   // before resizing so hidden corners cannot create a second scrolling page.
+   for(let n=0;n<7;n++)await remote.getByRole('slider',{name:'Jog script position'}).press('ArrowRight')
    for(const size of sizes){
     await remote.setViewportSize(size)
     const geometry=await remote.evaluate(()=>{
@@ -125,10 +128,10 @@ test('a speed acknowledgement survives delayed broadcasts and newer reading chec
   hold=true
   await speed.fill('1');await expect(display.locator('.display-footer')).toContainText('1.00×')
   const previous=readings
-  await speed.press('Home');await expect(speed).toHaveValue('0.5');await expect(display.locator('.display-footer')).toContainText('0.50×')
+  await speed.press('Home');await expect(speed).toHaveValue('0.2');await expect(display.locator('.display-footer')).toContainText('0.20×')
   await expect.poll(()=>readings).toBeGreaterThan(previous)
-  await expect(speed).toHaveValue('0.5')
-  await speed.press('ArrowUp');await expect(speed).toHaveValue('0.51');await expect(display.locator('.display-footer')).toContainText('0.51×')
-  release();await expect(speed).toHaveValue('0.51')
+  await expect(speed).toHaveValue('0.2')
+  await speed.press('ArrowUp');await expect(speed).toHaveValue('0.21');await expect(display.locator('.display-footer')).toContainText('0.21×')
+  release();await expect(speed).toHaveValue('0.21')
  }finally{await phones.close();await displays.close()}
 })

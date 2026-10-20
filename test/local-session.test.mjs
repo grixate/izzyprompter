@@ -26,6 +26,18 @@ test('standalone play/pause uses the monotonic clock and preserves elapsed movem
   assert.equal(controller.getSnapshot().transport.status, 'paused')
   assert.equal(controller.getSnapshot().presence.remote, 0)
 })
+test('slow local takes persist exact speed and legacy fast settings keep their layout', () => {
+ const document=createIzzyDocumentFromLegacyText('A synthetic slow take')
+ const controller=new LocalSessionController(document,{...DEFAULT_PROMPT_SETTINGS,speed:1.35,fontSize:92})
+ assert.equal(controller.getSnapshot().transport.speed,1)
+ assert.equal(controller.getSnapshot().display_settings.fontSize,92)
+ assert.equal(controller.execute('transport:set_speed',{speed:.2}).ok,true)
+ assert.equal(controller.getSnapshot().transport.speed,.2)
+ assert.equal(controller.execute('transport:set_speed',{speed:.56}).ok,true)
+ assert.equal(controller.getSnapshot().transport.speed,.56)
+ assert.equal(controller.execute('transport:set_speed',{speed:.19}).ok,false)
+ assert.equal(controller.getSnapshot().transport.speed,.56)
+})
 test('semantic navigation and measured bounds discard overshoot before reversing', () => {
   const { controller, checkpoint, document } = fixture()
   assert.equal(checkpoint(950).ok, true)

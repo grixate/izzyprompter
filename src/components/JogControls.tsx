@@ -1,6 +1,7 @@
 import { useEffect, useId, useRef, useState } from 'react'
 import { Pause, Play } from 'lucide-react'
-import { boundedSpeed, jogKeyDelta } from '../realtime/keyboard'
+import { jogKeyDelta } from '../realtime/keyboard'
+import { boundedSpeed, MIN_SPEED, MAX_SPEED, SPEED_STEP, speedFraction } from '../prompt/speed'
 import { positionTimecode } from '../prompt/timecode'
 import { useWheelMotion } from './useWheelMotion'
 import { InstrumentMechanism, InstrumentRotor } from './InstrumentMechanism'
@@ -75,7 +76,7 @@ export function JogControls(props: Props) {
         }}
         onPointerUp={release} onPointerCancel={release}
         onLostPointerCapture={release}>
-        <div className="wheel-rotor" aria-hidden="true"><InstrumentRotor skin={props.skin ?? 'original'} /><div className="wheel-disc" /></div>
+        <div className="wheel-rotor-mask" aria-hidden="true"><div className="wheel-rotor"><InstrumentRotor skin={props.skin ?? 'original'} /><div className="wheel-disc" /></div></div>
         <InstrumentMechanism skin={props.skin ?? 'original'} />
         <div className="wheel-input" role="slider" tabIndex={0}
           aria-label="Jog script position" aria-describedby={helpId} aria-orientation="horizontal"
@@ -98,9 +99,9 @@ export function JogControls(props: Props) {
       <span className="speed-title">SPEED</span>
       <button aria-label="Decrease speed" disabled={!props.enabled} onClick={() => props.onSpeedChange(boundedSpeed(props.speed - 0.05))}>−</button>
       <div className="speed-track">
-        <input disabled={!props.enabled} type="range" min="0.5" max="1.5" step="0.01" value={props.speed}
+        <input disabled={!props.enabled} type="range" min={MIN_SPEED} max={MAX_SPEED} step={SPEED_STEP} value={props.speed}
           onChange={(event) => props.onSpeedChange(boundedSpeed(Number(event.target.value)))} aria-label="Playback speed" aria-valuetext={`${props.speed.toFixed(2)} times normal speed`} />
-        <span style={{ width: `${(props.speed - 0.5) * 100}%` }} />
+        <span style={{ width: `${speedFraction(props.speed) * 100}%` }} />
       </div>
       <button aria-label="Increase speed" disabled={!props.enabled} onClick={() => props.onSpeedChange(boundedSpeed(props.speed + 0.05))}>+</button>
       <strong>{props.speed.toFixed(2)}×</strong>
@@ -117,7 +118,7 @@ export function TransportReadout({ position, speed, playing, available = true, l
     <div className="display-kicker"><span>{label}</span><span>POS {available ? String(Math.round(position)).padStart(5, '0') : '—'}</span></div>
     <div className="timecode" aria-label={craft?`Script position ${value}`:undefined}>{craft ? ['groove','foundry','switchboard','correspondent'].includes(skin!)
       ? <><CounterTime value={available?time:'—'} playing={playing} scrubbing={scrubbing} /><small className="counter-fraction">{available?`.${fraction}`:''}</small></>
-      : <><span className="sr-only">{value}</span>{skin==='field'||skin==='signal'?<SegmentTime value={value}/>:skin==='observatory'?<><ClockFaces value={available?time:'00:00'}/><b className="clock-number" aria-hidden="true" data-value={value}/></>:skin==='ivory'||skin==='original'||skin==='vector'||skin==='graphite'?<b className="printed-time" aria-hidden="true" data-value={value} data-minutes={time.split(':')[0]} data-seconds={`${time.split(':')[1]}.${fraction}`}/>:<MatrixTime value={value} square={skin==='arcade'||skin==='cartridge'} />}</>
+      : <><span className="sr-only">{value}</span>{skin==='field'||skin==='signal'?<SegmentTime value={value}/>:skin==='observatory'?<><ClockFaces value={available?value:'00:00.0'}/><b className="clock-number" aria-hidden="true" data-value={value}/></>:skin==='ivory'||skin==='original'||skin==='vector'||skin==='graphite'?<b className="printed-time" aria-hidden="true" data-value={value} data-minutes={time.split(':')[0]} data-seconds={`${time.split(':')[1]}.${fraction}`}/>:<MatrixTime value={value} square={skin==='arcade'||skin==='cartridge'} />}</>
       : <>{available ? time : '—'}<span>{available ? `.${fraction}` : ''}</span></>}</div>
     {craft&&<div className="readout-units" aria-hidden="true">MIN <span>/</span> SEC</div>}
     <div className={`state-label ${playing ? 'is-playing' : ''}`}><i />{playing ? 'RUN' : 'HOLD'}</div>

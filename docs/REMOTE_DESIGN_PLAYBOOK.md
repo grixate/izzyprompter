@@ -263,6 +263,8 @@ when changing finishes; do not animate it through low-contrast intermediate colo
 
 Ask five questions: Is it recognisably its own idea? Is the material coherent? Is Play immediately clear? Does it feel as carefully made as the best existing study? Does it remain beautiful without motion or branding?
 
+When checking fixed-viewport geometry, rotate the wheel before resizing. A visually round rotor still has a square CSS box; its transformed corners must not increase scrollable overflow. Keep the clipping window separate from external mechanisms and transport buttons.
+
 A broken control, illegible essential state, misleading indicator or visibly unfinished mechanism blocks acceptance regardless of novelty. If the craft is sound but the concept is weak, keep it as an explicitly labelled exploration or remove the new candidate from the round; do not silently replace an existing owner's favourite. Approval remains a human design decision, not a numeric claim of guaranteed taste.
 
 ## 7. Brand collaborations

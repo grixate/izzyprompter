@@ -164,3 +164,6 @@ Record device/OS/browser/date and pass/fail, without script material or pairing
 keys. Hosted acceptance uses the isolated staging environment and exact candidate
 image under [RELEASE_WORKFLOW.md](RELEASE_WORKFLOW.md). Production publication
 still requires explicit owner authorization; merging a PR does not deploy it.
+
+
+20 October — final audit keeps the selected14. Useful speed range is0.20–1.00, step0.01; legacy fast settings normalize without losing scripts/layout. Observatory regains three elliptical orbits and a readable chronometer. Unit labels, short-scale collisions, Original line metrics and rotated-rotor overflow are fixed. [Current gallery, per-skin findings and evidence](design/2026-10-20-final-audit/PASS.md). Previous previews remain preserved.

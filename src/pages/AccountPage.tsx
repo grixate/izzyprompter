@@ -1,3 +1,4 @@
+import { MIN_SPEED, MAX_SPEED, SPEED_STEP, boundedSpeed } from '../prompt/speed'
 import { proSkinCount } from '../product/catalog'
 import { BrandLogo } from '../components/BrandLogo'
 import { useEffect, useRef, useState, type FormEvent } from 'react'
@@ -392,7 +393,8 @@ function PresetPanel({ user }: { user: Account }) {
   const select = (value: string) => {
     setId(value)
     const p = presets.find(p => p.id === value)
-    setName(p?.name ?? 'My setup'); setSettings(p?.settings ?? { ...DEFAULT_PROMPT_SETTINGS }); setIsDefault(p?.is_default ?? false)
+    const restored=p?.settings ?? DEFAULT_PROMPT_SETTINGS
+    setName(p?.name ?? 'My setup'); setSettings({...restored,speed:boundedSpeed(restored.speed)}); setIsDefault(p?.is_default ?? false)
   }
   const save = async (event: FormEvent) => {
     event.preventDefault(); setBusy(true)
@@ -412,7 +414,7 @@ function PresetPanel({ user }: { user: Account }) {
   return <section className="preset-panel"><span className="section-index">READING / PROFILES</span><h2>Your reading profiles.</h2>{user.pro && <p>Save speed and text layout for interviews, presentations or a faster read. Choose a profile as your default.</p>}{!user.pro && <p>Save reading profiles with Pro. Existing profiles stay here if your access changes.</p>}
     <label>READING PROFILE<select value={id} onChange={event => select(event.target.value)}><option value="">New reading profile</option>{presets.map(p => <option key={p.id} value={p.id}>{p.name}{p.is_default ? ' · default' : ''}</option>)}</select></label>
     <form onSubmit={event => void save(event)}><fieldset disabled={!user.pro || busy}><label>Name<input required maxLength={200} value={name} onChange={event => setName(event.target.value)} /></label>
-      {([{ key: 'speed', title: 'Speed', min: .5, max: 1.5, step: .01 }, { key: 'fontSize', title: 'Text size', min: 20, max: 160, step: 2 }, { key: 'lineHeight', title: 'Line spacing', min: .8, max: 3, step: .02 }, { key: 'textWidth', title: 'Text width', min: 25, max: 100, step: 1 }] as const).map(control => <label key={control.key}>{control.title}<output aria-hidden="true">{settings[control.key]}</output><input aria-label={control.title} type="range" min={control.min} max={control.max} step={control.step} value={settings[control.key]} onChange={event => setSettings(value => ({ ...value, [control.key]: Number(event.target.value) }))} /></label>)}
+      {([{ key: 'speed', title: 'Speed', min: MIN_SPEED, max: MAX_SPEED, step: SPEED_STEP }, { key: 'fontSize', title: 'Text size', min: 20, max: 160, step: 2 }, { key: 'lineHeight', title: 'Line spacing', min: .8, max: 3, step: .02 }, { key: 'textWidth', title: 'Text width', min: 25, max: 100, step: 1 }] as const).map(control => <label key={control.key}>{control.title}<output aria-hidden="true">{settings[control.key]}</output><input aria-label={control.title} type="range" min={control.min} max={control.max} step={control.step} value={settings[control.key]} onChange={event => setSettings(value => ({ ...value, [control.key]: Number(event.target.value) }))} /></label>)}
       <label className="preset-checkbox"><input type="checkbox" checked={settings.mirrored} onChange={event => setSettings(value => ({ ...value, mirrored: event.target.checked }))} />Mirror text</label><label className="preset-checkbox"><input type="checkbox" checked={isDefault} onChange={event => setIsDefault(event.target.checked)} />Use by default</label>
       <button className="account-primary">Save profile</button>{id && <button type="button" onClick={() => void remove()}>Delete profile</button>}
     </fieldset></form>{notice && <p className="account-notice" role="status">{notice}</p>}

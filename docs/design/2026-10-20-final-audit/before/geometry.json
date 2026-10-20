@@ -1,0 +1,870 @@
+[
+  {
+    "id": "groove",
+    "readout": {
+      "height": 73.1875,
+      "scrollWidth": 350,
+      "width": 350,
+      "parts": [
+        {
+          "class": "display-kicker",
+          "rect": {
+            "x": 32,
+            "y": 61.890625,
+            "width": 326,
+            "height": 10,
+            "top": 61.890625,
+            "right": 358,
+            "bottom": 71.890625,
+            "left": 32
+          }
+        },
+        {
+          "class": "timecode",
+          "rect": {
+            "x": 32,
+            "y": 75.890625,
+            "width": 273.59375,
+            "height": 32.1875,
+            "top": 75.890625,
+            "right": 305.59375,
+            "bottom": 108.078125,
+            "left": 32
+          }
+        },
+        {
+          "class": "readout-units",
+          "rect": {
+            "x": 32,
+            "y": 112.078125,
+            "width": 110,
+            "height": 9,
+            "top": 112.078125,
+            "right": 142,
+            "bottom": 121.078125,
+            "left": 32
+          }
+        },
+        {
+          "class": "state-label ",
+          "rect": {
+            "x": 317.59375,
+            "y": 85.984375,
+            "width": 40.40625,
+            "height": 12,
+            "top": 85.984375,
+            "right": 358,
+            "bottom": 97.984375,
+            "left": 317.59375
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "clear",
+    "readout": {
+      "height": 73.8125,
+      "scrollWidth": 352,
+      "width": 352,
+      "parts": [
+        {
+          "class": "display-kicker",
+          "rect": {
+            "x": 19,
+            "y": 61.890625,
+            "width": 352,
+            "height": 10,
+            "top": 61.890625,
+            "right": 371,
+            "bottom": 71.890625,
+            "left": 19
+          }
+        },
+        {
+          "class": "timecode",
+          "rect": {
+            "x": 19,
+            "y": 75.890625,
+            "width": 299.59375,
+            "height": 34.8125,
+            "top": 75.890625,
+            "right": 318.59375,
+            "bottom": 110.703125,
+            "left": 19
+          }
+        },
+        {
+          "class": "readout-units",
+          "rect": {
+            "x": 19,
+            "y": 114.703125,
+            "width": 299.59375,
+            "height": 9,
+            "top": 114.703125,
+            "right": 318.59375,
+            "bottom": 123.703125,
+            "left": 19
+          }
+        },
+        {
+          "class": "state-label ",
+          "rect": {
+            "x": 330.59375,
+            "y": 87.296875,
+            "width": 40.40625,
+            "height": 12,
+            "top": 87.296875,
+            "right": 371,
+            "bottom": 99.296875,
+            "left": 330.59375
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "arcade",
+    "readout": {
+      "height": 89.90625,
+      "scrollWidth": 346,
+      "width": 346,
+      "parts": [
+        {
+          "class": "display-kicker",
+          "rect": {
+            "x": 34,
+            "y": 66.890625,
+            "width": 322,
+            "height": 10,
+            "top": 66.890625,
+            "right": 356,
+            "bottom": 76.890625,
+            "left": 34
+          }
+        },
+        {
+          "class": "timecode",
+          "rect": {
+            "x": 34,
+            "y": 82.890625,
+            "width": 269.59375,
+            "height": 38.90625,
+            "top": 82.890625,
+            "right": 303.59375,
+            "bottom": 121.796875,
+            "left": 34
+          }
+        },
+        {
+          "class": "readout-units",
+          "rect": {
+            "x": 34,
+            "y": 127.796875,
+            "width": 269.59375,
+            "height": 9,
+            "top": 127.796875,
+            "right": 303.59375,
+            "bottom": 136.796875,
+            "left": 34
+          }
+        },
+        {
+          "class": "state-label ",
+          "rect": {
+            "x": 315.59375,
+            "y": 96.34375,
+            "width": 40.40625,
+            "height": 12,
+            "top": 96.34375,
+            "right": 356,
+            "bottom": 108.34375,
+            "left": 315.59375
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "field",
+    "readout": {
+      "height": 84.0625,
+      "scrollWidth": 350,
+      "width": 350,
+      "parts": [
+        {
+          "class": "display-kicker",
+          "rect": {
+            "x": 32,
+            "y": 61.890625,
+            "width": 326,
+            "height": 10,
+            "top": 61.890625,
+            "right": 358,
+            "bottom": 71.890625,
+            "left": 32
+          }
+        },
+        {
+          "class": "timecode",
+          "rect": {
+            "x": 32,
+            "y": 75.890625,
+            "width": 273.59375,
+            "height": 43.0625,
+            "top": 75.890625,
+            "right": 305.59375,
+            "bottom": 118.953125,
+            "left": 32
+          }
+        },
+        {
+          "class": "readout-units",
+          "rect": {
+            "x": 32,
+            "y": 122.953125,
+            "width": 273.59375,
+            "height": 9,
+            "top": 122.953125,
+            "right": 305.59375,
+            "bottom": 131.953125,
+            "left": 32
+          }
+        },
+        {
+          "class": "state-label ",
+          "rect": {
+            "x": 317.59375,
+            "y": 91.421875,
+            "width": 40.40625,
+            "height": 12,
+            "top": 91.421875,
+            "right": 358,
+            "bottom": 103.421875,
+            "left": 317.59375
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "signal",
+    "readout": {
+      "height": 88.0625,
+      "scrollWidth": 346,
+      "width": 346,
+      "parts": [
+        {
+          "class": "display-kicker",
+          "rect": {
+            "x": 32,
+            "y": 63.890625,
+            "width": 326,
+            "height": 10,
+            "top": 63.890625,
+            "right": 358,
+            "bottom": 73.890625,
+            "left": 32
+          }
+        },
+        {
+          "class": "timecode",
+          "rect": {
+            "x": 32,
+            "y": 77.890625,
+            "width": 273.59375,
+            "height": 43.0625,
+            "top": 77.890625,
+            "right": 305.59375,
+            "bottom": 120.953125,
+            "left": 32
+          }
+        },
+        {
+          "class": "readout-units",
+          "rect": {
+            "x": 32,
+            "y": 124.953125,
+            "width": 273.59375,
+            "height": 9,
+            "top": 124.953125,
+            "right": 305.59375,
+            "bottom": 133.953125,
+            "left": 32
+          }
+        },
+        {
+          "class": "state-label ",
+          "rect": {
+            "x": 317.59375,
+            "y": 93.421875,
+            "width": 40.40625,
+            "height": 12,
+            "top": 93.421875,
+            "right": 358,
+            "bottom": 105.421875,
+            "left": 317.59375
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "vector",
+    "readout": {
+      "height": 67,
+      "scrollWidth": 350,
+      "width": 350,
+      "parts": [
+        {
+          "class": "display-kicker",
+          "rect": {
+            "x": 33,
+            "y": 60.890625,
+            "width": 326,
+            "height": 10,
+            "top": 60.890625,
+            "right": 359,
+            "bottom": 70.890625,
+            "left": 33
+          }
+        },
+        {
+          "class": "timecode",
+          "rect": {
+            "x": 33,
+            "y": 74.890625,
+            "width": 273.59375,
+            "height": 28,
+            "top": 74.890625,
+            "right": 306.59375,
+            "bottom": 102.890625,
+            "left": 33
+          }
+        },
+        {
+          "class": "readout-units",
+          "rect": {
+            "x": 33,
+            "y": 106.890625,
+            "width": 273.59375,
+            "height": 9,
+            "top": 106.890625,
+            "right": 306.59375,
+            "bottom": 115.890625,
+            "left": 33
+          }
+        },
+        {
+          "class": "state-label ",
+          "rect": {
+            "x": 318.59375,
+            "y": 82.890625,
+            "width": 40.40625,
+            "height": 12,
+            "top": 82.890625,
+            "right": 359,
+            "bottom": 94.890625,
+            "left": 318.59375
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "cartridge",
+    "readout": {
+      "height": 75.8125,
+      "scrollWidth": 350,
+      "width": 350,
+      "parts": [
+        {
+          "class": "display-kicker",
+          "rect": {
+            "x": 32,
+            "y": 73.890625,
+            "width": 326,
+            "height": 10,
+            "top": 73.890625,
+            "right": 358,
+            "bottom": 83.890625,
+            "left": 32
+          }
+        },
+        {
+          "class": "timecode",
+          "rect": {
+            "x": 32,
+            "y": 87.890625,
+            "width": 273.59375,
+            "height": 34.8125,
+            "top": 87.890625,
+            "right": 305.59375,
+            "bottom": 122.703125,
+            "left": 32
+          }
+        },
+        {
+          "class": "readout-units",
+          "rect": {
+            "x": 32,
+            "y": 126.703125,
+            "width": 273.59375,
+            "height": 9,
+            "top": 126.703125,
+            "right": 305.59375,
+            "bottom": 135.703125,
+            "left": 32
+          }
+        },
+        {
+          "class": "state-label ",
+          "rect": {
+            "x": 317.59375,
+            "y": 99.296875,
+            "width": 40.40625,
+            "height": 12,
+            "top": 99.296875,
+            "right": 358,
+            "bottom": 111.296875,
+            "left": 317.59375
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "switchboard",
+    "readout": {
+      "height": 75.1875,
+      "scrollWidth": 348,
+      "width": 348,
+      "parts": [
+        {
+          "class": "display-kicker",
+          "rect": {
+            "x": 35,
+            "y": 62.890625,
+            "width": 320,
+            "height": 10,
+            "top": 62.890625,
+            "right": 355,
+            "bottom": 72.890625,
+            "left": 35
+          }
+        },
+        {
+          "class": "timecode",
+          "rect": {
+            "x": 35,
+            "y": 76.890625,
+            "width": 267.59375,
+            "height": 32.1875,
+            "top": 76.890625,
+            "right": 302.59375,
+            "bottom": 109.078125,
+            "left": 35
+          }
+        },
+        {
+          "class": "readout-units",
+          "rect": {
+            "x": 35,
+            "y": 113.078125,
+            "width": 267.59375,
+            "height": 9,
+            "top": 113.078125,
+            "right": 302.59375,
+            "bottom": 122.078125,
+            "left": 35
+          }
+        },
+        {
+          "class": "state-label ",
+          "rect": {
+            "x": 314.59375,
+            "y": 86.984375,
+            "width": 40.40625,
+            "height": 12,
+            "top": 86.984375,
+            "right": 355,
+            "bottom": 98.984375,
+            "left": 314.59375
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "correspondent",
+    "readout": {
+      "height": 73.1875,
+      "scrollWidth": 350,
+      "width": 350,
+      "parts": [
+        {
+          "class": "display-kicker",
+          "rect": {
+            "x": 33,
+            "y": 61.890625,
+            "width": 324,
+            "height": 10,
+            "top": 61.890625,
+            "right": 357,
+            "bottom": 71.890625,
+            "left": 33
+          }
+        },
+        {
+          "class": "timecode",
+          "rect": {
+            "x": 33,
+            "y": 75.890625,
+            "width": 271.59375,
+            "height": 32.1875,
+            "top": 75.890625,
+            "right": 304.59375,
+            "bottom": 108.078125,
+            "left": 33
+          }
+        },
+        {
+          "class": "readout-units",
+          "rect": {
+            "x": 33,
+            "y": 112.078125,
+            "width": 271.59375,
+            "height": 9,
+            "top": 112.078125,
+            "right": 304.59375,
+            "bottom": 121.078125,
+            "left": 33
+          }
+        },
+        {
+          "class": "state-label ",
+          "rect": {
+            "x": 316.59375,
+            "y": 85.984375,
+            "width": 40.40625,
+            "height": 12,
+            "top": 85.984375,
+            "right": 357,
+            "bottom": 97.984375,
+            "left": 316.59375
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "foundry",
+    "readout": {
+      "height": 77.1875,
+      "scrollWidth": 346,
+      "width": 346,
+      "parts": [
+        {
+          "class": "display-kicker",
+          "rect": {
+            "x": 32,
+            "y": 63.890625,
+            "width": 326,
+            "height": 10,
+            "top": 63.890625,
+            "right": 358,
+            "bottom": 73.890625,
+            "left": 32
+          }
+        },
+        {
+          "class": "timecode",
+          "rect": {
+            "x": 32,
+            "y": 77.890625,
+            "width": 273.59375,
+            "height": 32.1875,
+            "top": 77.890625,
+            "right": 305.59375,
+            "bottom": 110.078125,
+            "left": 32
+          }
+        },
+        {
+          "class": "readout-units",
+          "rect": {
+            "x": 32,
+            "y": 114.078125,
+            "width": 273.59375,
+            "height": 9,
+            "top": 114.078125,
+            "right": 305.59375,
+            "bottom": 123.078125,
+            "left": 32
+          }
+        },
+        {
+          "class": "state-label ",
+          "rect": {
+            "x": 317.59375,
+            "y": 87.984375,
+            "width": 40.40625,
+            "height": 12,
+            "top": 87.984375,
+            "right": 358,
+            "bottom": 99.984375,
+            "left": 317.59375
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "observatory",
+    "readout": {
+      "height": 105.4375,
+      "scrollWidth": 350,
+      "width": 350,
+      "parts": [
+        {
+          "class": "display-kicker",
+          "rect": {
+            "x": 32,
+            "y": 63.890625,
+            "width": 326,
+            "height": 10,
+            "top": 63.890625,
+            "right": 358,
+            "bottom": 73.890625,
+            "left": 32
+          }
+        },
+        {
+          "class": "timecode",
+          "rect": {
+            "x": 32,
+            "y": 78.890625,
+            "width": 273.59375,
+            "height": 58.4375,
+            "top": 78.890625,
+            "right": 305.59375,
+            "bottom": 137.328125,
+            "left": 32
+          }
+        },
+        {
+          "class": "readout-units",
+          "rect": {
+            "x": 32,
+            "y": 142.328125,
+            "width": 273.59375,
+            "height": 9,
+            "top": 142.328125,
+            "right": 305.59375,
+            "bottom": 151.328125,
+            "left": 32
+          }
+        },
+        {
+          "class": "state-label ",
+          "rect": {
+            "x": 317.59375,
+            "y": 102.109375,
+            "width": 40.40625,
+            "height": 12,
+            "top": 102.109375,
+            "right": 358,
+            "bottom": 114.109375,
+            "left": 317.59375
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "ivory",
+    "readout": {
+      "height": 69.390625,
+      "scrollWidth": 352,
+      "width": 352,
+      "parts": [
+        {
+          "class": "display-kicker",
+          "rect": {
+            "x": 19,
+            "y": 60.890625,
+            "width": 352,
+            "height": 10,
+            "top": 60.890625,
+            "right": 371,
+            "bottom": 70.890625,
+            "left": 19
+          }
+        },
+        {
+          "class": "timecode",
+          "rect": {
+            "x": 19,
+            "y": 74.890625,
+            "width": 299.59375,
+            "height": 29.390625,
+            "top": 74.890625,
+            "right": 318.59375,
+            "bottom": 104.28125,
+            "left": 19
+          }
+        },
+        {
+          "class": "readout-units",
+          "rect": {
+            "x": 19,
+            "y": 108.28125,
+            "width": 299.59375,
+            "height": 9,
+            "top": 108.28125,
+            "right": 318.59375,
+            "bottom": 117.28125,
+            "left": 19
+          }
+        },
+        {
+          "class": "state-label ",
+          "rect": {
+            "x": 330.59375,
+            "y": 83.578125,
+            "width": 40.40625,
+            "height": 12,
+            "top": 83.578125,
+            "right": 371,
+            "bottom": 95.578125,
+            "left": 330.59375
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "graphite",
+    "readout": {
+      "height": 96.375,
+      "scrollWidth": 350,
+      "width": 350,
+      "parts": [
+        {
+          "class": "display-kicker",
+          "rect": {
+            "x": 34,
+            "y": 61.890625,
+            "width": 322,
+            "height": 10,
+            "top": 61.890625,
+            "right": 356,
+            "bottom": 71.890625,
+            "left": 34
+          }
+        },
+        {
+          "class": "timecode",
+          "rect": {
+            "x": 34,
+            "y": 75.890625,
+            "width": 269.59375,
+            "height": 64.375,
+            "top": 75.890625,
+            "right": 303.59375,
+            "bottom": 140.265625,
+            "left": 34
+          }
+        },
+        {
+          "class": "readout-units",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 0,
+            "height": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0,
+            "left": 0
+          }
+        },
+        {
+          "class": "state-label ",
+          "rect": {
+            "x": 315.59375,
+            "y": 102.078125,
+            "width": 40.40625,
+            "height": 12,
+            "top": 102.078125,
+            "right": 356,
+            "bottom": 114.078125,
+            "left": 315.59375
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "original",
+    "readout": {
+      "height": 67,
+      "scrollWidth": 352,
+      "width": 352,
+      "parts": [
+        {
+          "class": "display-kicker",
+          "rect": {
+            "x": 19,
+            "y": 60.890625,
+            "width": 352,
+            "height": 10,
+            "top": 60.890625,
+            "right": 371,
+            "bottom": 70.890625,
+            "left": 19
+          }
+        },
+        {
+          "class": "timecode",
+          "rect": {
+            "x": 19,
+            "y": 74.890625,
+            "width": 299.59375,
+            "height": 28,
+            "top": 74.890625,
+            "right": 318.59375,
+            "bottom": 102.890625,
+            "left": 19
+          }
+        },
+        {
+          "class": "readout-units",
+          "rect": {
+            "x": 19,
+            "y": 106.890625,
+            "width": 299.59375,
+            "height": 9,
+            "top": 106.890625,
+            "right": 318.59375,
+            "bottom": 115.890625,
+            "left": 19
+          }
+        },
+        {
+          "class": "state-label ",
+          "rect": {
+            "x": 330.59375,
+            "y": 82.890625,
+            "width": 40.40625,
+            "height": 12,
+            "top": 82.890625,
+            "right": 371,
+            "bottom": 94.890625,
+            "left": 330.59375
+          }
+        }
+      ]
+    }
+  }
+]

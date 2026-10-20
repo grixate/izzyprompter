@@ -3,6 +3,22 @@ defmodule Teleprompter.SessionsTest do
 
   alias Teleprompter.Sessions
 
+  test "reading speeds include slow takes and normalize legacy fast values" do
+    {:ok, session} = Sessions.create("Slow synthetic take", 0.2)
+    {:ok, snapshot} = Sessions.snapshot(session.session_id)
+    assert snapshot.transport.speed == 0.2
+    {:ok, changed} = Sessions.command(session.session_id, "remote", "display-1", envelope(1), {:set_speed, 0.56})
+    assert changed.transport.speed == 0.56
+    {:ok, changed} = Sessions.command(session.session_id, "remote", "display-1", envelope(2), {:set_speed, 1.5})
+    assert changed.transport.speed == 1.0
+    assert {:error, :invalid_command} = Sessions.command(session.session_id, "remote", "display-1", envelope(3), {:set_speed, 0.19})
+    {:ok, legacy} = Sessions.create("Legacy take", 1.35)
+    {:ok, snapshot} = Sessions.snapshot(legacy.session_id)
+    assert snapshot.transport.speed == 1.0
+    assert {:ok, %{"speed" => 0.2}} = Teleprompter.PromptSettings.validate(%{"speed" => 0.2})
+    assert {:ok, %{"speed" => 1.0, "fontSize" => 92}} = Teleprompter.PromptSettings.validate(%{"speed" => 1.35, "fontSize" => 92})
+  end
+
   test "keeps authoritative transport anchors in an ephemeral session" do
     {:ok, session} = Sessions.create("Test script", 0.86)
     id = session.session_id

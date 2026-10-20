@@ -80,8 +80,8 @@ test('authenticated chunked snapshot, controls, Quick Edit, peer loss and fresh 
     assert.equal(controller.getSnapshot().transport.status, 'paused')
     assert.equal((await remote.request('transport:play')).ok, false)
     await pair(host, remote)
-    assert.equal((await remote.request('transport:set_speed', { speed: 1.2 })).ok, true)
-    assert.equal(controller.getSnapshot().transport.speed, 1.2)
+    assert.equal((await remote.request('transport:set_speed', { speed: 0.56 })).ok, true)
+    assert.equal(controller.getSnapshot().transport.speed, 0.56)
   } finally { host.dispose(); remote.dispose() }
 })
 test('pairing rejects oversized, mismatched and obsolete negotiation material', async () => {

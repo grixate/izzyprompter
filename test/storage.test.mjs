@@ -38,7 +38,7 @@ test('stores document, draft, settings, and semantic position independently', ()
     documentId: 'persistent-document',
     title: 'Persistent document',
   })
-  const settings = { ...DEFAULT_PROMPT_SETTINGS, speed: 1.15, mirrored: true }
+  const settings = { ...DEFAULT_PROMPT_SETTINGS, speed: 0.56, mirrored: true }
   const position = { blockId: document.blocks[1].id, characterOffset: 2 }
 
   assert.equal(persistDraftDocument({
@@ -62,14 +62,14 @@ test('a corrupt storage entry does not prevent other entries from recovering', (
   const storage = new MemoryStorage()
   const document = createIzzyDocumentFromLegacyText('Recovered', { documentId: 'recovered' })
   saveStoredDocument(document, storage)
-  savePromptSettings({ ...DEFAULT_PROMPT_SETTINGS, speed: 1.05 }, storage)
+  savePromptSettings({ ...DEFAULT_PROMPT_SETTINGS, speed: 0.65 }, storage)
   storage.setItem(STORAGE_KEYS.draft, '{broken json')
   storage.setItem(STORAGE_KEYS.position, JSON.stringify({ storageVersion: 99, updatedAt: 1, data: {} }))
 
   const restored = loadWorkspaceStorage(storage)
   assert.deepEqual(restored.document, document)
   assert.equal(restored.draft, null)
-  assert.deepEqual(restored.settings, { ...DEFAULT_PROMPT_SETTINGS, speed: 1.05 })
+  assert.deepEqual(restored.settings, { ...DEFAULT_PROMPT_SETTINGS, speed: 0.65 })
   assert.deepEqual(restored.position, DEFAULT_PROMPT_POSITION)
 })
 
@@ -162,4 +162,14 @@ test('a revoked storage write reports failure instead of throwing out of a flush
   writer.schedule('script')
   assert.equal(writer.flush(), false)
   assert.deepEqual(results, [false])
+})
+
+// Legacy settings must not be discarded because the useful range moved.
+test('old fast settings retain typography and mirroring while moving to the new ceiling', () => {
+ const storage=new MemoryStorage()
+ const saved={...DEFAULT_PROMPT_SETTINGS,speed:1.35,fontSize:92,mirrored:true}
+ storage.setItem(STORAGE_KEYS.settings,JSON.stringify({storageVersion:IZZY_STORAGE_VERSION,updatedAt:1,data:saved}))
+ assert.deepEqual(loadWorkspaceStorage(storage).settings,{...saved,speed:1})
+ assert.equal(savePromptSettings({...saved,speed:.2},storage),true)
+ assert.equal(loadWorkspaceStorage(storage).settings.speed,.2)
 })

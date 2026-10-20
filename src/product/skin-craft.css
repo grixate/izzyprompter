@@ -70,7 +70,7 @@
 .skin-face.skin--arcade .wheel-column { padding-bottom:36px; }
 .skin-face.skin--observatory { --instrument-type:#e1d4b3;--craft-accent:#d4b77c;background:linear-gradient(135deg,#35475c,#1e2c42 80%);border-color:#162333;border-radius:10px;box-shadow:inset 0 1px #79848c,0 10px 16px -8px #15213788; }
 .skin-face.skin--observatory .wheel-rotor { background:repeating-conic-gradient(#b19a6d 0 1deg,#23344a 1deg 10deg);box-shadow:inset 0 0 0 2px #ac9667,0 0 0 2px #101f31,0 5px 8px #10213788; }
-.skin-face.skin--observatory .wheel-disc { inset:5%; background:radial-gradient(circle,transparent 0 49%,#bba77277 49.5% 50%,transparent 50.5% 71%,#bba77299 71.5% 72%,transparent 72.5%),radial-gradient(ellipse at 30% 20%,#3d5870,#1d3049 80%);box-shadow:inset 0 0 0 1px #a89d7e; }
+.skin-face.skin--observatory .wheel-disc { inset:5%; background:radial-gradient(ellipse at 30% 20%,#3d5870,#1d3049 80%);box-shadow:inset 0 0 0 1px #a89d7e; }
 .skin-face.skin--observatory .transport-button { inset:37%;border-radius:50%;color:#182f41;background:linear-gradient(135deg,#e0cf9f,#b79c66);border-color:#cbb581;box-shadow:inset 0 1px #fff0c6,0 3px 6px #0f213888; }
 .skin-face.skin--observatory .speed-module :is(button,.speed-step) { background:#34485c;border-color:#9a947d;color:#ede0b9; }
 .skin-face.skin--observatory .wheel-column { padding-bottom:36px; }

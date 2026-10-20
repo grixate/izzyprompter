@@ -1,0 +1,20 @@
+[
+  {
+    "browser": "chromium",
+    "cards": 14,
+    "images": 14,
+    "reportStatus": 200
+  },
+  {
+    "browser": "firefox",
+    "cards": 14,
+    "images": 14,
+    "reportStatus": 200
+  },
+  {
+    "browser": "webkit",
+    "cards": 14,
+    "images": 14,
+    "reportStatus": 200
+  }
+]

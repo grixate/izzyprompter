@@ -51,7 +51,8 @@ export const SegmentTime=memo(function SegmentTime({value}:{value:string}){
  return <svg className="segment-time" viewBox={`0 0 ${x} 19`} aria-hidden="true" focusable="false">{shapes}</svg>
 })
 
+/** Seconds subdial complements the exact chronometer reading; never a wall clock. */
 export function ClockFaces({value}:{value:string}){
- const [minutes,seconds]=value.split(':').map(Number)
- return <svg className="clock-faces" viewBox="0 0 124 54" aria-hidden="true" focusable="false">{[Number.isFinite(minutes)?minutes:0,Number.isFinite(seconds)?seconds:0].map((number,index)=><g key={index} transform={`translate(${index*68} 0)`}><circle cx="27" cy="27" r="25" fill="none" stroke="currentColor" strokeWidth="1"/>{Array.from({length:12},(_,i)=><path key={i} d="M27 4v4" fill="none" stroke="currentColor" transform={`rotate(${i*30} 27 27)`}/>)}<path d="M27 29V10" fill="none" stroke="currentColor" strokeWidth="2" transform={`rotate(${number*6} 27 27)`}/><circle cx="27" cy="27" r="2"/></g>)}</svg>
+ const seconds=Number(value.split(':')[1]),number=Number.isFinite(seconds)?seconds:0
+ return <svg className="clock-faces" viewBox="0 0 54 54" aria-hidden="true" focusable="false"><circle cx="27" cy="27" r="25" fill="none" stroke="currentColor" strokeWidth="1"/>{Array.from({length:12},(_,i)=><path key={i} d="M27 4v4" fill="none" stroke="currentColor" transform={`rotate(${i*30} 27 27)`}/>)}<path className="seconds-hand" d="M27 31V10" fill="none" stroke="currentColor" strokeWidth="1.8" transform={`rotate(${number*6} 27 27)`}/><circle cx="27" cy="27" r="2"/></svg>
 }

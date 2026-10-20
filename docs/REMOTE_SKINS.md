@@ -118,3 +118,6 @@ No payment activation, database migration, entitlement change, production defaul
 
 
 20 October — Quick Edit is now a minimal prompter sheet: compact header/Done, quiet text surface and no normal footer. Full VisualViewport geometry and safe insets keep editing above the keyboard/browser chrome. Shared across all selected14; sync and draft recovery preserved. [Current preview and evidence](design/2026-10-20-quiet-editor/PASS.md). 18 browser cases passed in three engines; final six layout cases and static nine states passed. Physical keyboards/devices are not certified.
+
+
+20 October — final audit keeps the selected14. Useful speed range is0.20–1.00, step0.01; legacy fast settings normalize without losing scripts/layout. Observatory regains three elliptical orbits and a readable chronometer. Unit labels, short-scale collisions, Original line metrics and rotated-rotor overflow are fixed. [Current gallery, per-skin findings and evidence](design/2026-10-20-final-audit/PASS.md). Previous previews remain preserved.

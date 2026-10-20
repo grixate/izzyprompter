@@ -207,7 +207,7 @@ export class DirectPeer {
       const document = s.script.document ?? (s.script.revision === this.state.snapshot?.script.revision ? this.state.snapshot?.script.document : null)
       if (!validDocument(document) || !record(s.transport) || !['playing', 'paused'].includes(s.transport.status)
         || !Number.isFinite(s.transport.anchor_position) || !Number.isFinite(s.transport.anchor_server_time)
-        || !Number.isFinite(s.transport.speed) || s.transport.speed < .5 || s.transport.speed > 1.5
+        || !Number.isFinite(s.transport.speed) || s.transport.speed < .2 || s.transport.speed > 1.5
         || !Number.isSafeInteger(s.transport.revision) || !Number.isSafeInteger(s.script.revision)
         || !record(s.reading) || !record(s.editing) || !record(s.presence) || !validSettings(s.display_settings)) throw new Error('Invalid snapshot fields')
       if (s.reading.checkpoint && !validAnchor(document, s.reading.checkpoint.anchor)) throw new Error('Invalid checkpoint')

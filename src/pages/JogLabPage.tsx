@@ -81,13 +81,13 @@ function StudyDevice({ study, reset, sensitivity, motor, large, controlsReview, 
   const [editing, setEditing] = useState(()=>standalone&&new URLSearchParams(location.search).get('edit')==='1')
   const [position, setPosition] = useState(310)
   const [playing, setPlaying] = useState(false)
-  const [speed, setSpeed] = useState(.86)
+  const [speed, setSpeed] = useState(.56)
   const [dragging, setDragging] = useState(false)
   const [angle, setAngle] = useState(0)
   const state = useRef({ position, playing, speed, dragging, motor })
   state.current = { position, playing, speed, dragging, motor }
   useEffect(() => {
-    setPosition(310); setPlaying(false); setSpeed(.86); setAngle(0)
+    setPosition(310); setPlaying(false); setSpeed(.56); setAngle(0)
   }, [reset])
   useEffect(() => {
     let last = 0

@@ -740,7 +740,7 @@ defmodule Teleprompter.Sessions.Session do
   defp valid_command?(command) when command in [:play, :pause], do: true
 
   defp valid_command?({:set_speed, speed}) when is_number(speed),
-    do: speed >= 0.5 and speed <= 1.5
+    do: speed >= 0.2 and speed <= 1.5
 
   defp valid_command?({:seek_delta, delta}) when is_number(delta), do: abs(delta) <= 10_000
 
@@ -758,7 +758,7 @@ defmodule Teleprompter.Sessions.Session do
   end
 
   defp apply_command(transport, {:set_speed, speed}, now) when is_number(speed) do
-    anchor(transport, current_position(transport, now), now, %{speed: clamp(speed, 0.5, 1.5)})
+    anchor(transport, current_position(transport, now), now, %{speed: clamp(speed, 0.2, 1.0)})
   end
 
   defp apply_command(transport, {:seek_delta, delta}, now) when is_number(delta) do

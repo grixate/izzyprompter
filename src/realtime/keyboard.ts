@@ -6,6 +6,4 @@ export function jogKeyDelta(key: string, pageSize: number) {
   return null
 }
 
-export function boundedSpeed(speed: number) {
-  return Math.max(0.5, Math.min(1.5, Math.round(speed * 100) / 100))
-}
+export {boundedSpeed} from '../prompt/speed.ts'

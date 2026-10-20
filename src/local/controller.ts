@@ -1,3 +1,4 @@
+import {boundedSpeed, MIN_SPEED, LEGACY_MAX_SPEED} from '../prompt/speed.ts'
 import type { IzzyDocumentV1 } from '../domain/document.ts'
 import { izzyDocumentToLegacyText } from '../domain/document.ts'
 import type { PromptSettingsV1 } from '../domain/storage.ts'
@@ -21,6 +22,7 @@ export class LocalSessionController {
     now = localNow, epoch = localId()) {
     this.now = now
     if (!validDocument(document) || !validSettings(settings)) throw new Error('Invalid local script or settings')
+    settings={...settings,speed:boundedSpeed(settings.speed)}
     const target = anchor && validAnchor(document, anchor) ? anchor : { blockId: document.blocks[0].id, characterOffset: 0 }
     this.state = {
       // This is the UI snapshot shape. Direct wire messages have their own version.
@@ -49,6 +51,7 @@ export class LocalSessionController {
   }
   settings = (value: PromptSettingsV1) => {
     if (!validSettings(value)) return
+    value={...value,speed:boundedSpeed(value.speed)}
     const s = this.state
     if (JSON.stringify(s.display_settings) === JSON.stringify(value)) return
     this.publish({ ...s, display_settings: { ...value }, settings_revision: (s.settings_revision ?? 0) + 1 })
@@ -84,8 +87,8 @@ export class LocalSessionController {
       if (s.editing.active) return failure('editing_active')
       let transport: TransportState
       if (event === 'transport:play' || event === 'transport:pause') transport = this.at(this.position, { status: event === 'transport:play' ? 'playing' : 'paused' })
-      else if (event === 'transport:set_speed' && typeof payload.speed === 'number' && Number.isFinite(payload.speed) && payload.speed >= .5 && payload.speed <= 1.5) {
-        transport = this.at(this.position, { speed: payload.speed })
+      else if (event === 'transport:set_speed' && typeof payload.speed === 'number' && Number.isFinite(payload.speed) && payload.speed >= MIN_SPEED && payload.speed <= LEGACY_MAX_SPEED) {
+        transport = this.at(this.position, { speed: boundedSpeed(payload.speed) })
       } else if (event === 'transport:seek_delta' && typeof payload.delta === 'number' && Number.isFinite(payload.delta) && Math.abs(payload.delta) <= 10_000) {
         const cp = s.reading.checkpoint, current = this.position, intent = s.transport.semantic_anchor
         let target = current + payload.delta

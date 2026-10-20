@@ -1,5 +1,9 @@
 .instrument-mechanism { position:absolute; inset:0; width:100%; height:100%; overflow:visible; pointer-events:none; z-index:4; }
 .instrument-mechanism * { pointer-events:none; }
+/* Rotating a circular face must not grow scrollable overflow through its square
+   CSS box. Leave a small halo for material shadows; external mechanisms stay out. */
+.wheel-rotor-mask {position:absolute;inset:-12px;overflow:hidden;border-radius:50%;pointer-events:none;}
+.wheel-rotor-mask>.wheel-rotor {inset:12px;}
 .mechanism-drive { transform-box:view-box; }
 .instrument-gear-rim { position:absolute; inset:0; width:100%; height:100%; overflow:visible; }
 .mechanism--chassis { z-index:0; }

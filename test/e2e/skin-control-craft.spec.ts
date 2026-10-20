@@ -38,7 +38,7 @@ test('curated control banks keep real phrase navigation, live editing and touch 
       const corrected=`${skin.name}: ${text}`
       await remote.getByRole('textbox',{name:'CURRENT PARAGRAPH'}).fill(corrected)
       await expect(display.locator('.script-track p').first()).toHaveText(corrected)
-      await remote.getByRole('button',{name:/^DONE/}).click()
+      await remote.getByRole('button',{name:/^Done/i}).click()
       await expect(remote.getByRole('button',{name:'Quick edit current paragraph'})).toBeFocused()
       await remote.getByRole('button',{name:'Play',exact:true}).click()
       await expect(display.locator('.display-footer')).toContainText('ROLLING')

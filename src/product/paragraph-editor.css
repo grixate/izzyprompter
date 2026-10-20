@@ -1,0 +1,39 @@
+/* A quiet prompter editor: one bar, then text. The OS owns the keyboard. */
+.remote-drawer.quick-edit-dialog.paragraph-editor {
+ --editor-safe-top:env(safe-area-inset-top,0px);--editor-safe-bottom:env(safe-area-inset-bottom,0px);
+ --editor-safe-left:env(safe-area-inset-left,0px);--editor-safe-right:env(safe-area-inset-right,0px);
+ --editor-gap:max(8px,var(--editor-safe-top));
+ left:calc(var(--drawer-left,0px) + var(--drawer-width,100vw)/2);right:auto;
+ width:min(620px,var(--drawer-width,100vw));max-width:none;height:min(600px,calc(var(--drawer-height,100dvh) - var(--editor-gap)));
+ max-height:calc(var(--drawer-height,100dvh) - var(--editor-gap));transform:translate(-50%,-100%);
+ border:1px solid #5d645440;border-bottom:0;border-radius:14px 14px 0 0;background:#20231d;color:#eef0e7;
+}
+.remote-drawer.quick-edit-dialog.paragraph-editor::backdrop {background:#11130fa6;}
+.remote-drawer.quick-edit-dialog.paragraph-editor header {
+ flex:none;min-height:64px;gap:12px;padding:8px max(16px,var(--editor-safe-right)) 8px max(16px,var(--editor-safe-left));
+ border-bottom:1px solid #b8c5a51f;font-family:'Avenir Next',Avenir,sans-serif;letter-spacing:0;color:#eef0e7;
+}
+.remote-drawer.quick-edit-dialog.paragraph-editor header>div {min-width:0;}
+.remote-drawer.quick-edit-dialog.paragraph-editor header h1 {
+ position:static;width:auto;height:auto;clip-path:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+ padding:0;margin:0 0 2px;font:500 17px/1.25 'Avenir Next',Avenir,sans-serif;letter-spacing:-.02em;
+}
+.remote-drawer.quick-edit-dialog.paragraph-editor .edit-sync {display:block;text-align:left;font:12px/1.3 'Avenir Next',Avenir,sans-serif;color:#b9c2ad;}
+.remote-drawer.quick-edit-dialog.paragraph-editor .edit-sync.blocked {color:#f1bb96;}
+.remote-drawer.quick-edit-dialog.paragraph-editor .edit-done {
+ display:block;flex:0 0 64px;min-width:64px;min-height:44px;padding:0 10px;border:0;border-radius:7px;
+ background:#c56f4526;color:#f4b48e;font:500 15px/1 'Avenir Next',Avenir,sans-serif;letter-spacing:0;
+}
+.remote-drawer.quick-edit-dialog.paragraph-editor .edit-done:focus-visible {outline:2px solid #f4b48e;outline-offset:1px;}
+.remote-drawer.quick-edit-dialog.paragraph-editor .quick-edit-body {
+ min-height:0;gap:10px;padding:8px max(16px,var(--editor-safe-right)) max(12px,var(--editor-safe-bottom)) max(16px,var(--editor-safe-left));
+}
+.remote-drawer.quick-edit-dialog.paragraph-editor label.sr-only {position:absolute;display:block;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);}
+.remote-drawer.quick-edit-dialog.paragraph-editor textarea {
+ flex:1 1 0;min-height:64px;height:auto;margin:0;padding:10px 2px;border:0;border-radius:0;background:transparent;
+ color:#eef0e7;font:20px/1.55 Georgia,serif;box-shadow:none;scroll-padding-block:12px;caret-color:#f4b48e;
+}
+.remote-drawer.quick-edit-dialog.paragraph-editor textarea:focus-visible {outline:1px solid #8e9a7d66;outline-offset:3px;border-radius:3px;}
+.remote-drawer.quick-edit-dialog.paragraph-editor:has(>footer) .quick-edit-body {padding-bottom:8px;}
+.remote-drawer.quick-edit-dialog.paragraph-editor footer {min-height:0;margin:0;padding:8px max(16px,var(--editor-safe-right)) max(12px,var(--editor-safe-bottom)) max(16px,var(--editor-safe-left));border-color:#b8c5a51f;}
+.remote-drawer.quick-edit-dialog.paragraph-editor footer button {font-family:'Avenir Next',Avenir,sans-serif;letter-spacing:0;font-size:13px;}

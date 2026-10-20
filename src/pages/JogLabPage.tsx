@@ -5,6 +5,7 @@ import { BASE_PIXELS_PER_SECOND } from '../prompt/motion'
 import './jog-lab.css'
 import { skins } from '../product/catalog'
 import '../product/skins.css'
+import { ParagraphEditor } from '../components/ParagraphEditor'
 import { RemoteDrawer } from '../components/RemoteDrawer'
 import { PhraseNavigation, QuickEditTrigger } from '../components/SecondaryControls'
 
@@ -77,7 +78,7 @@ function StudyDevice({ study, reset, sensitivity, motor, large, controlsReview, 
 }) {
   const editId=useId()
   const [lines, setLines] = useState<string[]>([...sample])
-  const [editing, setEditing] = useState(false)
+  const [editing, setEditing] = useState(()=>standalone&&new URLSearchParams(location.search).get('edit')==='1')
   const [position, setPosition] = useState(310)
   const [playing, setPlaying] = useState(false)
   const [speed, setSpeed] = useState(.86)
@@ -134,7 +135,9 @@ function StudyDevice({ study, reset, sensitivity, motor, large, controlsReview, 
       <p>{lines[currentLine]}</p>
       <div className="lab-progress"><span style={{ width: `${position / duration * 100}%` }} /></div>
     </div>}
-    <RemoteDrawer open={editing} onRequestClose={()=>setEditing(false)} labelledBy={`${editId}-title`} describedBy={`${editId}-explanation`}><header><span>QUICK EDIT</span><span className="edit-sync live">LOCAL PREVIEW</span></header><div className="quick-edit-body"><h1 id={`${editId}-title`}>A small correction.</h1><p className="edit-explanation" id={`${editId}-explanation`}>Playback is paused. This changes only the synthetic demo.</p><label htmlFor={`${editId}-text`}>CURRENT PARAGRAPH</label><textarea id={`${editId}-text`} aria-label="Demo current paragraph" value={lines[currentLine]} onChange={event=>setLines(value=>value.map((line,index)=>index===currentLine?event.target.value:line))}/></div><footer><span>LOCAL / DEMO</span><button className="edit-done" onClick={()=>setEditing(false)}>Done <span>↗</span></button></footer></RemoteDrawer>
+    <ParagraphEditor open={editing} onRequestClose={()=>setEditing(false)} onDone={()=>setEditing(false)} status="Preview" state="live" description="Playback is paused. This changes only the synthetic demo.">
+      <label className="sr-only" htmlFor={`${editId}-text`}>CURRENT PARAGRAPH</label><textarea id={`${editId}-text`} aria-label="Demo current paragraph" value={lines[currentLine]} onChange={event=>setLines(value=>value.map((line,index)=>index===currentLine?event.target.value:line))}/>
+    </ParagraphEditor>
     {!standalone&&<div className="lab-device-bottom"><span>JOG / BIDIRECTIONAL</span><span>↶ &nbsp; ↷</span></div>}
   </Surface>
 }

@@ -84,21 +84,22 @@ test('current paragraph opens above the stationary remote and stays usable with 
   await expect(display.locator('.display-footer')).toContainText('STANDBY')
   for(const size of [{width:390,height:250},{width:390,height:400},{width:844,height:390},{width:320,height:480}]){
    await remote.setViewportSize(size)
-   const done=remote.getByRole('button',{name:/^DONE/})
+   const done=remote.getByRole('button',{name:/^Done/})
    await expect.poll(async()=>{const box=(await drawer.boundingBox())!;return box.y+box.height}).toBeLessThanOrEqual(size.height+1)
    const button=(await done.boundingBox())!,text=(await field.boundingBox())!
    expect(button.y).toBeGreaterThanOrEqual(0);expect(button.y+button.height).toBeLessThanOrEqual(size.height+1)
-   expect(text.y).toBeGreaterThanOrEqual(0);expect(text.height).toBeGreaterThanOrEqual(70)
-   expect(text.y+text.height).toBeLessThanOrEqual(button.y)
+   expect(text.y).toBeGreaterThanOrEqual(button.y+button.height);expect(text.height).toBeGreaterThanOrEqual(70)
+   const sheet=(await drawer.boundingBox())!
+   expect(text.y+text.height).toBeLessThanOrEqual(sheet.y+sheet.height-10)
    await field.focus();await field.press('Tab');expect(await remote.evaluate(()=>Boolean(document.activeElement?.closest('.remote-drawer')))).toBe(true)
    expect(await remote.evaluate(()=>[scrollY,document.querySelector('main')!.scrollTop])).toEqual([0,0])
    if(browserName==='chromium')await drawer.screenshot({path:info.outputPath(`drawer-${size.width}x${size.height}.png`)})
   }
   await remote.setViewportSize({width:390,height:844})
-  await remote.getByRole('button',{name:/^DONE/}).click()
+  await remote.getByRole('button',{name:/^Done/}).click()
   await expect(drawer).not.toBeVisible();await expect(remote.getByRole('button',{name:'Quick edit current paragraph'})).toBeFocused()
   expect(await root.boundingBox()).toEqual(before)
-  await remote.getByRole('button',{name:'Quick edit current paragraph'}).click();await expect(remote.getByText('LIVE ON ALL SCREENS')).toBeVisible();await field.press('Escape');await expect(drawer).not.toBeVisible()
+  await remote.getByRole('button',{name:'Quick edit current paragraph'}).click();await expect(remote.getByRole('status').filter({hasText:/^Updated$/})).toBeVisible();await field.press('Escape');await expect(drawer).not.toBeVisible()
   await remote.getByRole('button',{name:'Play',exact:true}).click();await expect(display.locator('.display-footer')).toContainText('ROLLING')
   await remote.getByRole('button',{name:'Pause',exact:true}).click()
  }finally{await phones.close();await displays.close()}

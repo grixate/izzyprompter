@@ -115,3 +115,6 @@ No payment activation, database migration, entitlement change, production defaul
 
 
 20 October — phone remote is now a fixed viewport instrument. Grid allocation keeps all controls visible without page scrolling; short portrait and landscape layouts preserve touch targets. Shared Quick Edit is a native drawer outside the casing, including the standalone fourteen-skin demo. [Current implementation and actual evidence](design/2026-10-20-fixed-remote/PASS.md). Historical previews remain preserved.
+
+
+20 October — Quick Edit is now a minimal prompter sheet: compact header/Done, quiet text surface and no normal footer. Full VisualViewport geometry and safe insets keep editing above the keyboard/browser chrome. Shared across all selected14; sync and draft recovery preserved. [Current preview and evidence](design/2026-10-20-quiet-editor/PASS.md). 18 browser cases passed in three engines; final six layout cases and static nine states passed. Physical keyboards/devices are not certified.

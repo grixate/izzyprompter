@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { RemoteDrawer } from '../components/RemoteDrawer'
+import { ParagraphEditor } from '../components/ParagraphEditor'
 import { QuickEditTrigger } from '../components/SecondaryControls'
 import type { IzzyDocumentV1 } from '../domain/document'
 import { loadQuickEditDraft, saveQuickEditDraft, type QuickEditDraftV1 } from '../domain/storage'
@@ -170,12 +170,12 @@ export function QuickEdit(props: Props) {
       {busy ? 'CHECKPOINTING…' : props.editing.active ? 'VIEW LIVE EDIT' : 'QUICK EDIT'}
     </QuickEditTrigger>
     {!open && message && <p className="quick-edit-feedback" role="status">{message}</p>}
-    <RemoteDrawer dialogRef={dialog} returnTo={trigger} open={open} labelledBy="quick-edit-title" describedBy="quick-edit-explanation" state={state}
-      onRequestClose={() => { if (observer || synced) void close() }}>
-      <header><span>{observer ? 'LIVE MONITOR' : 'QUICK EDIT'}</span><span className={`edit-sync ${state}`} role="status">{observer ? 'READ ONLY · LIVE' : message ? 'DRAFT KEPT' : synced ? 'LIVE ON ALL SCREENS' : 'SYNCING…'}</span></header>
-      <div className="quick-edit-body"><h1 id="quick-edit-title">{observer ? 'One text. Every screen.' : 'A small correction.'}</h1>
-      <p className="edit-explanation" id="quick-edit-explanation">{observer ? 'Another device is editing. Changes appear here as they happen.' : 'Playback is paused. Your changes appear on every connected screen as you type.'}</p>
-      <label htmlFor="quick-edit-text">CURRENT PARAGRAPH</label>
+    <ParagraphEditor dialogRef={dialog} returnTo={trigger} open={open} state={state}
+      status={observer?'Read only':message?'Draft kept':synced?'Updated':'Updating…'}
+      description={observer?'Another device is editing. Changes appear here as they happen.':'Playback is paused. Your changes appear on every connected screen as you type.'}
+      onRequestClose={() => { if (observer || synced) void close() }} onDone={() => void close()} doneDisabled={busy || (!observer && !synced)}
+      recoveryFooter={message&&!observer?<button onClick={() => void close(true)} disabled={busy || saving}>Close · keep draft</button>:undefined}>
+      <label className="sr-only" htmlFor="quick-edit-text">CURRENT PARAGRAPH</label>
       <textarea id="quick-edit-text" ref={field} value={observer ? observedText : draft?.text ?? ''} readOnly={Boolean(observer)} spellCheck
         onCompositionStart={() => { composing.current = true; setComposition(true) }} onCompositionEnd={() => { composing.current = false; setComposition(false) }}
         onChange={(event) => { if (draftRef.current) update({ ...draftRef.current, text: event.target.value }) }} />
@@ -191,10 +191,6 @@ export function QuickEdit(props: Props) {
         <button disabled={busy || props.connection !== 'connected'} onClick={() => void resume()}>RESUME LIVE EDIT</button>
         <button disabled={busy || props.connection !== 'connected'} onClick={() => void resume(true)}>USE LIVE TEXT</button>
       </div></div>}
-      </div><footer><span>{observer ? 'SHARED SCRIPT' : 'TEXT ONLY · AUTO-SYNC'}</span>
-        {message && !observer && <button onClick={() => void close(true)} disabled={busy || saving}>CLOSE · KEEP DRAFT</button>}
-        <button className="edit-done" disabled={busy || (!observer && !synced)} onClick={() => void close()}>DONE <span>↗</span></button>
-      </footer>
-    </RemoteDrawer>
+    </ParagraphEditor>
   </>
 }

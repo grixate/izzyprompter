@@ -114,7 +114,7 @@ test('Linux container runs unprivileged, pairs and live-edits, loses sessions ex
     await phone.getByRole('textbox', { name: 'CURRENT PARAGRAPH' }).fill(correction)
     await eventually(async () => assert.equal(await display.locator('.script-track p').first().textContent(), correction))
     await eventually(async () => assert.equal(await editor.locator('.pairing-live-edit p').textContent(), correction))
-    await phone.getByRole('button', { name: /^DONE/ }).click()
+    await phone.getByRole('button', { name: /^Done/i }).click()
     await phone.reload()
     await eventually(async () => assert.equal((await phone.locator('.network-state').textContent()).trim(), 'CONNECTED'))
     assert.ok(sockets.length >= 3)

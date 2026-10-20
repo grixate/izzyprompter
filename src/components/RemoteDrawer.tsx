@@ -3,8 +3,8 @@ import { useEffect, useRef, type ReactNode, type RefObject } from 'react'
 
 /** Native modal focus/inert behaviour, aligned to the visible viewport when a
  * phone keyboard or browser chrome changes its height. Only the sheet scrolls. */
-export function RemoteDrawer({open,onRequestClose,children,labelledBy,describedBy,dialogRef,returnTo,state}: {
-  open:boolean;onRequestClose:()=>void;children:ReactNode;labelledBy:string;describedBy?:string
+export function RemoteDrawer({open,onRequestClose,children,labelledBy,describedBy,dialogRef,returnTo,state,kind}: {
+  kind?:'paragraph';open:boolean;onRequestClose:()=>void;children:ReactNode;labelledBy:string;describedBy?:string
   dialogRef?:RefObject<HTMLDialogElement|null>;returnTo?:RefObject<HTMLButtonElement|null>;state?:string
 }) {
   const own=useRef<HTMLDialogElement>(null),invoker=useRef<HTMLElement|null>(null),ref=dialogRef??own
@@ -18,13 +18,14 @@ export function RemoteDrawer({open,onRequestClose,children,labelledBy,describedB
       return
     }
     const viewport=window.visualViewport
-    const resize=()=>{dialog.style.setProperty('--drawer-height',`${viewport?.height??innerHeight}px`);dialog.style.setProperty('--drawer-top',`${viewport?.offsetTop??0}px`)}
+    const resize=()=>{dialog.style.setProperty('--drawer-height',`${viewport?.height??innerHeight}px`);dialog.style.setProperty('--drawer-top',`${viewport?.offsetTop??0}px`);dialog.style.setProperty('--drawer-width',`${viewport?.width??innerWidth}px`);dialog.style.setProperty('--drawer-left',`${viewport?.offsetLeft??0}px`)}
     resize()
-    if(!dialog.open){invoker.current=document.activeElement as HTMLElement;dialog.showModal();dialog.querySelector<HTMLElement>('textarea,button')?.focus({preventScroll:true})}
     viewport?.addEventListener('resize',resize);viewport?.addEventListener('scroll',resize);window.addEventListener('resize',resize)
-    return()=>{viewport?.removeEventListener('resize',resize);viewport?.removeEventListener('scroll',resize);window.removeEventListener('resize',resize)}
+    if(!dialog.open){invoker.current=document.activeElement as HTMLElement;dialog.showModal();(dialog.querySelector<HTMLElement>('textarea')??dialog.querySelector<HTMLElement>('button'))?.focus({preventScroll:true})}
+    const frame=requestAnimationFrame(resize)
+    return()=>{cancelAnimationFrame(frame);viewport?.removeEventListener('resize',resize);viewport?.removeEventListener('scroll',resize);window.removeEventListener('resize',resize)}
   },[open,ref,returnTo])
-  return createPortal(<dialog ref={ref} className="quick-edit-dialog remote-drawer" aria-labelledby={labelledBy} aria-describedby={describedBy} data-state={state}
+  return createPortal(<dialog ref={ref} className={`quick-edit-dialog remote-drawer${kind==='paragraph'?' paragraph-editor':''}`} aria-labelledby={labelledBy} aria-describedby={describedBy} data-state={state}
     onCancel={event=>{event.preventDefault();onRequestClose()}} onKeyDown={event=>{
       if(event.key!=='Tab')return
       const stops=[...event.currentTarget.querySelectorAll<HTMLElement>('textarea:not(:disabled),button:not(:disabled),input:not(:disabled),a[href]')].filter(el=>el.getClientRects().length>0)

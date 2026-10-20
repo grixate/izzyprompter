@@ -5,6 +5,8 @@ import { positionTimecode } from '../prompt/timecode'
 import { useWheelMotion } from './useWheelMotion'
 import { InstrumentMechanism, InstrumentRotor } from './InstrumentMechanism'
 import type { SkinId } from '../product/catalog'
+import { ClockFaces, CounterTime, MatrixTime, SegmentTime } from './InstrumentTime'
+import { hasCraftSpeed, InstrumentSpeed } from './InstrumentSpeed'
 
 const normalizeAngle = (angle: number) => angle > Math.PI ? angle - Math.PI * 2 : angle < -Math.PI ? angle + Math.PI * 2 : angle
 
@@ -92,7 +94,7 @@ export function JogControls(props: Props) {
       <span className="wheel-caption">JOG / SCRUB</span>
       <span id={helpId} className="sr-only">Use arrow keys to jog the script. Page Up and Page Down move farther; Home and End go to the beginning and end. Tab to the separate Play or Pause button. On Mac Safari, use Option+Tab if Tab skips controls.</span>
     </div>
-    <div className="speed-module">
+    {hasCraftSpeed(props.skin) ? <InstrumentSpeed skin={props.skin!} speed={props.speed} enabled={props.enabled} onChange={props.onSpeedChange} /> : <div className="speed-module">
       <span className="speed-title">SPEED</span>
       <button aria-label="Decrease speed" disabled={!props.enabled} onClick={() => props.onSpeedChange(boundedSpeed(props.speed - 0.05))}>−</button>
       <div className="speed-track">
@@ -102,17 +104,22 @@ export function JogControls(props: Props) {
       </div>
       <button aria-label="Increase speed" disabled={!props.enabled} onClick={() => props.onSpeedChange(boundedSpeed(props.speed + 0.05))}>+</button>
       <strong>{props.speed.toFixed(2)}×</strong>
-    </div>
+    </div>}
   </div>
 }
 
-export function TransportReadout({ position, speed, playing, available = true, label = 'TRANSPORT' }: {
-  position: number; speed: number; playing: boolean; available?: boolean; label?: string
+export function TransportReadout({ position, speed, playing, available = true, label = 'TRANSPORT', skin, scrubbing=false }: {
+  position: number; speed: number; playing: boolean; available?: boolean; label?: string; skin?:SkinId;scrubbing?:boolean
 }) {
   const [time, fraction] = positionTimecode(position, speed).split('.')
-  return <div className="transport-readout">
+  const craft=hasCraftSpeed(skin),value=available?`${time}.${fraction}`:'—'
+  return <div className={`transport-readout${craft?` readout-craft readout--${skin}`:''}`}>
     <div className="display-kicker"><span>{label}</span><span>POS {available ? String(Math.round(position)).padStart(5, '0') : '—'}</span></div>
-    <div className="timecode">{available ? time : '—'}<span>{available ? `.${fraction}` : ''}</span></div>
+    <div className="timecode" aria-label={craft?`Script position ${value}`:undefined}>{craft ? ['groove','foundry','switchboard','correspondent'].includes(skin!)
+      ? <><CounterTime value={available?time:'—'} playing={playing} scrubbing={scrubbing} /><small className="counter-fraction">{available?`.${fraction}`:''}</small></>
+      : <><span className="sr-only">{value}</span>{skin==='field'||skin==='signal'?<SegmentTime value={value}/>:skin==='observatory'?<><ClockFaces value={available?time:'00:00'}/><b className="clock-number" aria-hidden="true" data-value={value}/></>:skin==='ivory'||skin==='original'||skin==='vector'||skin==='graphite'?<b className="printed-time" aria-hidden="true" data-value={value} data-minutes={time.split(':')[0]} data-seconds={`${time.split(':')[1]}.${fraction}`}/>:<MatrixTime value={value} square={skin==='arcade'||skin==='cartridge'} />}</>
+      : <>{available ? time : '—'}<span>{available ? `.${fraction}` : ''}</span></>}</div>
+    {craft&&<div className="readout-units" aria-hidden="true">MIN <span>/</span> SEC</div>}
     <div className={`state-label ${playing ? 'is-playing' : ''}`}><i />{playing ? 'RUN' : 'HOLD'}</div>
   </div>
 }

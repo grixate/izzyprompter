@@ -39,6 +39,10 @@ export function RemoteSurface({ sessionId, session }: { sessionId: string; sessi
   const [isDragging, setIsDragging] = useState(false)
   const [localPlaying, setLocalPlaying] = useState(false)
   const [localSpeed, setLocalSpeed] = useState(restoredStorage.settings.speed)
+  const speedIntent = useRef<number | null>(null)
+  const speedSequence = useRef(0)
+  const latestTransport = useRef(transport)
+  latestTransport.current = transport
   const [position, setPositionState] = useState(0)
   const settingsRef = useRef(restoredStorage.settings)
   const [settingsWriter] = useState(() => createDebouncedStorageWriter<number>({
@@ -57,6 +61,9 @@ export function RemoteSurface({ sessionId, session }: { sessionId: string; sessi
 
   useEffect(() => {
     if (controlsReady) return
+    speedIntent.current = null
+    speedSequence.current += 1
+    setLocalSpeed(latestTransport.current.speed)
     if (seekTimerRef.current !== null) window.clearTimeout(seekTimerRef.current)
     seekTimerRef.current = null
     pendingSeekRef.current = 0
@@ -81,7 +88,7 @@ export function RemoteSurface({ sessionId, session }: { sessionId: string; sessi
   useEffect(() => {
     if (connection !== 'connected') return
     setLocalPlaying(transport.status === 'playing')
-    setLocalSpeed(transport.speed)
+    if (speedIntent.current === null) setLocalSpeed(transport.speed)
     if (!isDragging) setPosition(measuredPosition(reading, transport, script.revision, clockOffset, now?.()) ?? serverPosition(transport, clockOffset, now?.()))
   }, [clockOffset, connection, transport, reading, script.revision])
 
@@ -152,8 +159,16 @@ export function RemoteSurface({ sessionId, session }: { sessionId: string; sessi
   const changeSpeed = (next: number) => {
     if (!controlsReady) return
     const speed = boundedSpeed(next)
+    const sequence = ++speedSequence.current
+    speedIntent.current = sequence
     setLocalSpeed(speed)
-    send('transport:set_speed', { speed })
+    // Earlier reading checkpoints and acknowledgements must not undo a newer
+    // drag/keyboard intent. The existing protocol still owns the final value.
+    void request<{ speed: number }>('transport:set_speed', { speed }).then(result => {
+      if (speedIntent.current !== sequence) return
+      speedIntent.current = null
+      setLocalSpeed(result.ok ? result.value.speed : latestTransport.current.speed)
+    })
   }
 
   const jumpPhrase = (direction: -1 | 1) => {
@@ -184,7 +199,7 @@ export function RemoteSurface({ sessionId, session }: { sessionId: string; sessi
         </div>
       </header>
 
-      <TransportReadout position={position} speed={localSpeed} playing={localPlaying} available={hasDisplayPosition} />
+      <TransportReadout skin={appearance.skin} position={position} speed={localSpeed} playing={localPlaying} available={hasDisplayPosition} scrubbing={isDragging} />
       <JogControls skin={appearance.skin} enabled={controlsReady} playing={localPlaying} speed={localSpeed} position={position}
         maximum={reading.checkpoint?.maximum ?? 100000000}
         positionText={hasDisplayPosition ? `Display position ${Math.round(position)} pixels` : 'Waiting for display position'}

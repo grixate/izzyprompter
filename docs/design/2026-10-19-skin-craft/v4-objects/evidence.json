@@ -1,0 +1,60 @@
+{
+  "files": [
+    {
+      "file": "src/components/InstrumentMechanism.tsx",
+      "sha256": "365ab8fa801d670a2f30bd36ced4e967edab7dc35a3dd0dad70ec846ecf0f12a"
+    },
+    {
+      "file": "src/product/skin-objects.css",
+      "sha256": "f37f6a8dcf8e61091f0ac6ae14a0a0d19381e64867862e696ec515fad83d2643"
+    },
+    {
+      "file": "src/assets/skin-clear-graphite.svg",
+      "sha256": "c51e25eb06b097fff3cf27fac68336b4c5242c920d33111d0782f9bb193975bf"
+    },
+    {
+      "file": "src/product/catalog.ts",
+      "sha256": "d0ac1459e83239b4bdc4de42707f1feb832a8c904c848a5409ee1d15832a7636"
+    },
+    {
+      "file": "src/pages/JogLabPage.tsx",
+      "sha256": "a973a93e5bd217f1da27e75e32fe49c05c9eca29322b58765c0e9a609ae773df"
+    },
+    {
+      "file": "docs/design/2026-10-19-skin-craft/v4-objects/references/clear-miniature.png",
+      "sha256": "d989bada3e57e788a8d82fb8e3f569d611fd5eea93b54bc1d6c7368d9a6ce86d"
+    },
+    {
+      "file": "docs/design/2026-10-19-skin-craft/v4-objects/references/gallery.png",
+      "sha256": "192df09555302ed11af202ddf7f8596b0e85d857cbfda7fcfca52b15e8604d49"
+    },
+    {
+      "file": "docs/design/2026-10-19-skin-craft/v4-objects/references/arcade.png",
+      "sha256": "bb8ffd74917dfa058547dafee1a4c2518952d1fb38910ffe33ae20df7acdb101"
+    },
+    {
+      "file": "docs/design/2026-10-19-skin-craft/v4-objects/references/clear-running.png",
+      "sha256": "cc9ebcbef924c60ee0f899de1a1c961d710c88e3c73942860722e0fc905816a0"
+    },
+    {
+      "file": "docs/design/2026-10-19-skin-craft/v4-objects/references/clear.png",
+      "sha256": "7f91e5006f822bf86e72f22aef8eae323f8849b23e6487f69f7283c0bba32e2a"
+    },
+    {
+      "file": "docs/design/2026-10-19-skin-craft/v4-objects/references/comparison.jpg",
+      "sha256": "975b644916a514fbced24621770dac75ca04f0fb8084f30484d7967696ceedf0"
+    },
+    {
+      "file": "docs/design/2026-10-19-skin-craft/v4-objects/references/clear-demo.png",
+      "sha256": "88e9d2726d846c15fe62149ad2c64e02d5d873ed5fd9842bcd3f6c08c95ac996"
+    },
+    {
+      "file": "docs/design/2026-10-19-skin-craft/v4-objects/references/arcade-miniature.png",
+      "sha256": "97b89f4d7b2dac3ad8dd7a0d6229d182c41693c2826752425ac7e13aafea0aec"
+    },
+    {
+      "file": "docs/design/2026-10-19-skin-craft/v4-objects/references/arcade-demo.png",
+      "sha256": "45300bb3276ce2849c3bc3e71191187ed0cd3a2130feb87165456e7dca31b2d8"
+    }
+  ]
+}

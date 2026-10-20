@@ -100,3 +100,15 @@ pause on exploration, not the separate requirement for production authorization.
 - Preserve the owner's existing designs and the lab when a production skin is selected. Do not silently replace the collection with its winner.
 
 No payment activation, database migration, entitlement change, production default change or Git push is authorized by this note.
+
+
+19 October — Clear and Arcade rebuilt around graphite Phone (1) glass and a TAITO paddle spinner. Synthetic review and paired browser evidence: [object pass](design/2026-10-19-skin-craft/v4-objects/PASS.md). No new IDs, release selection, grants or hosted app update.
+
+
+20 October — owner accepted refined Clear and praised Arcade. Next priority is distinct time displays and speed controls for all 14 selected instruments. Groove/Clear/Arcade are examples, not a three-skin scope limit. Excluded and reserve studies stay outside this pass. [Saved plan](design/2026-10-19-skin-craft/TIME_AND_SPEED_PLAN.md); planning only, implementation has not started.
+
+
+20 October — first time/speed batch implemented for Groove, Clear and Arcade. The selected collection remains14. [Implementation, gallery and actual validation](design/2026-10-20-time-speed/PASS.md).21 paired browser cases,90 unit tests and build passed; no hosted app publication or physical-device claim.
+
+
+20 October — the full selected14 now have instrument-specific time and self-contained speed controls. No duplicate +/-; editable exact speed, native keyboard precision, captured relative gestures, and ACK ordering are shared. [Current collection and evidence](design/2026-10-20-collection/PASS.md).87 paired browser cases have successful latest results across Chromium/Firefox/WebKit; static review and miniatures checked separately. No merge, hosted publication or physical-device claim.

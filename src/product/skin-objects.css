@@ -1,0 +1,65 @@
+/* Reference-led rebuilds: graphite glass / a Japanese paddle cabinet. */
+.skin-face.skin--clear {
+  --instrument-type:#ebecef;--craft-accent:#e0e2e5;
+  --key-face:linear-gradient(140deg,#363a3fdd,#202328ee);--key-ink:#f0f1f3;--key-edge:#73777c;
+  --key-light:#abb1b53d;--key-foot:#101215;--key-radius:22px;
+  --bank-face:#17191dcc;--bank-ink:#f0f1f3;--bank-gap:8px;
+  background:linear-gradient(110deg,#ffffff0c,transparent 35% 73%,#ffffff08),url('../assets/skin-clear-graphite.svg') center / 100% 100%,#222428;
+  border:1px solid #94989c;border-radius:27px;
+  box-shadow:inset 0 0 0 2px #cbd0d34a,inset 0 0 0 6px #0d0f12,inset 0 0 0 7px #5f6368,0 12px 22px -12px #11131899;
+}
+.skin-face.skin--clear .transport-readout {background:#111316;border:1px solid #666a6f;border-radius:7px;box-shadow:0 0 0 4px #303338,inset 0 1px 4px #000;}
+.skin-face.skin--clear :is(.timecode,.state-label,.instrument-plate) {color:#f2f2f0;}
+.skin-face.skin--clear .jog-wheel {isolation:isolate;filter:none;}
+.skin-face.skin--clear .mechanism--clear-glass {z-index:0;}
+.skin-face.skin--clear .clear-light {stroke:#92969c;transition:stroke 180ms,filter 180ms;}
+.skin-face.skin--clear [data-running=true] .clear-light {stroke:#fafbff;filter:drop-shadow(0 0 3px #dce4fa99);}
+.skin-face.skin--clear .wheel-rotor {
+  z-index:1;background:linear-gradient(130deg,#e9efff14,transparent 38% 67%,#e9efff0a);
+  box-shadow:inset 0 0 0 1px #c0c6cc77,inset 0 0 0 5px #bfc5cc0d,0 3px 6px #0004;
+}
+.skin-face.skin--clear .wheel-rotor::after {content:"";position:absolute;top:2%;left:49%;width:2%;height:3%;border-radius:2px;background:#b6bdc6;}
+.skin-face.skin--clear .wheel-disc {inset:5%;background:none;box-shadow:none;}
+.skin-face.skin--clear .transport-button {inset:36%;border:1px solid #8a8e92;border-radius:50%;background:linear-gradient(140deg,#363b41cc,#171a1eee);color:#f8f8f5;box-shadow:inset 0 1px #ccd0d44d,0 2px 4px #0009;}
+.skin-face.skin--clear .speed-module :is(button,.speed-step) {color:#f0f1f3;background:linear-gradient(#383c41,#22252a);border:1px solid #74787e;}
+.skin-face.skin--clear .speed-track > span {background:#dedfe3;}
+.standalone-remote.skin--clear .remote-brand img {filter:none;}
+.skin-face.skin--clear .instrument-bottom i {background:#e14f41;}
+.skin-face.skin--clear .lab-progress span {background:#e14f41;}
+
+.skin-face.skin--arcade {
+  --instrument-type:#34313c;--craft-accent:#5f4694;
+  --key-face:radial-gradient(ellipse at 35% 12%,#8266b2,#60458f 70%);--key-ink:#fffdf8;--key-edge:#4b376e;
+  --key-light:#d9c8ef;--key-foot:#4b376e;--key-radius:28px;
+  --bank-face:#dedcd9;--bank-ink:#3c3449;--bank-gap:12px;
+  background:linear-gradient(120deg,#fffaf3,#e6e4df 70%);border:1px solid #b1aaa9;border-radius:18px 18px 34px 34px;
+  box-shadow:inset 0 2px #fff,inset 0 -7px #b8b7b7,inset 0 -9px #eceae5,0 13px 18px -12px #35303b88;
+}
+.skin-face.skin--arcade :is(.transport-readout,.instrument-plate) {border-radius:9px;border:3px solid #d2cbda;background:radial-gradient(circle,#77718326 .65px,transparent .8px) 0 0 / 3px 3px,#25222c;box-shadow:0 0 0 1px #84788f,inset 0 2px 6px #0008;color:#f6e6fb;}
+.skin-face.skin--arcade :is(.timecode,.state-label) {color:#f6e6fb;}
+.skin-face.skin--arcade .control-deck {background:linear-gradient(105deg,transparent 0 16%,#ad4478 16% 18%,transparent 18% 21%,#ad4478 21% 23%,transparent 23%) left bottom / 100% 17px no-repeat;}
+.skin-face.skin--arcade .jog-wheel {filter:none;}
+.skin-face.skin--arcade .wheel-rotor {
+  border-radius:50%;background:repeating-conic-gradient(#7c7b85 0deg 2deg,#e7e6eb 2deg 4deg,#a6a4af 4deg 6deg);
+  box-shadow:inset 0 0 0 2px #f4f0fa,0 0 0 2px #8c8792,0 7px 0 #8c8893,0 10px 0 2px #d0ccd4,0 13px 6px #38303c3d;
+}
+.skin-face.skin--arcade .wheel-disc {inset:7%;border-radius:50%;background:radial-gradient(ellipse at 33% 18%,#9273c2,#694a9c 65%,#573d83);box-shadow:inset 0 2px #c8b2e7,0 0 0 2px #4d3e67,inset 0 -5px 8px #402b6a44;}
+.skin-face.skin--arcade .wheel-disc::after {content:"";position:absolute;left:47%;top:9%;width:6%;height:6%;border-radius:50%;background:#4d346f;box-shadow:inset 0 2px 2px #301d51,0 1px #c7adeb77;}
+.skin-face.skin--arcade .wheel-column {padding-bottom:68px;}
+.skin-face.skin--arcade .wheel-caption {display:none;}
+.skin-face.skin--arcade .transport-button {
+  inset:auto 34% auto;top:calc(100% + 20px);width:32%;height:44px;border:1px solid #8d3462;border-radius:24px;
+  background:radial-gradient(ellipse at 34% 12%,#d36c9f,#b04479 70%);color:#fff7ed;
+  box-shadow:inset 0 2px #f4b8d5,0 4px #7d3459,0 0 0 4px #c9c5ca,0 7px 5px #39303d44;
+}
+.skin-face.skin--arcade .transport-button:active {transform:translateY(3px);box-shadow:inset 0 1px #f4b8d5,0 1px #7d3459,0 0 0 4px #c9c5ca;}
+.skin-face.skin--arcade .speed-module :is(button,.speed-step) {border-radius:50%;background:radial-gradient(ellipse at 35% 15%,#fffdf7,#d7d5d3);color:#3b3349;border:1px solid #aaa5ae;box-shadow:inset 0 2px #fff,0 3px #a19ba6;}
+.skin-face.skin--arcade .speed-track > span {background:#6a4a9d;}
+.skin-face.skin--arcade .phrase-nav {padding:9px 5px;border:0;border-radius:12px;box-shadow:inset 0 1px #fff;background:#d4d0d4;}
+.skin-face.skin--arcade .phrase-nav button {border-radius:28px;box-shadow:inset 0 2px #d9c8ef,0 4px #4b376e,0 0 0 3px #a6a0ad;}
+.skin-face.skin--arcade .phrase-nav button:last-child {background:var(--key-face);color:var(--key-ink);border-color:var(--key-edge);--key-foot:#4b376e;}
+.skin-face.skin--arcade .quick-edit-trigger {border-radius:5px;background:linear-gradient(#f4f0ee,#dcd7dc);--key-ink:#3b3349;color:var(--key-ink);border-color:#a19aa7;box-shadow:inset 0 1px #fff,0 2px #b4acbb;}
+.skin-face.skin--arcade .phrase-nav button:active {transform:translateY(3px);box-shadow:inset 0 1px #d9c8ef,0 1px #4b376e,0 0 0 3px #a6a0ad;}
+.pro-skin-strip .skin--arcade .jog-wheel {width:100%;}
+.standalone-remote.skin--arcade .wheel-column:has(.wheel-input:focus-visible) .wheel-caption {display:block;position:absolute;top:calc(100% - 68px);font-size:9px;line-height:12px;}
+@media(prefers-reduced-motion:reduce){.skin-face.skin--clear .clear-light {transition:none;}}

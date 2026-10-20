@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 800" preserveAspectRatio="none">
+<g fill="none" stroke="#55595f" stroke-width="1">
+<rect x="13" y="13" width="294" height="774" rx="20"/>
+<path d="M23 72H297M23 728H297M23 72V728M297 72V728"/>
+<path d="M31 17V63H112V17M121 17V63H224V17M233 17V63H289V17"/>
+<path d="M28 740H126V780M136 740H235V780M245 740H292"/>
+</g>
+<g fill="#31353a" stroke="#666a70" stroke-width=".7"><rect x="25" y="87" width="7" height="109" rx="3"/><rect x="287" y="87" width="7" height="109" rx="3"/><rect x="28" y="746" width="87" height="25" rx="3"/><rect x="145" y="746" width="76" height="25" rx="3"/></g>
+<g stroke="#73777e" stroke-width=".8"><path d="M34 751h75m-75 4h75m-75 4h75m-75 4h75M150 751h65m-65 4h65m-65 4h65m-65 4h65"/></g>
+<g fill="#15171a" stroke="#72767b"><circle cx="20" cy="31" r="3"/><circle cx="300" cy="31" r="3"/><circle cx="20" cy="766" r="3"/><circle cx="300" cy="766" r="3"/></g>
+<g stroke="#9b9fa4" stroke-width=".6"><path d="M18 31h4m-2-2v4M298 31h4m-2-2v4M18 766h4m-2-2v4M298 766h4m-2-2v4"/></g>
+<path d="M259 746V774" stroke="#d7dade" stroke-width="4" stroke-linecap="round"/><circle cx="277" cy="759" r="2.5" fill="#df5548"/>
+</svg>

@@ -51,3 +51,12 @@ Collection 03 verification: all four final studies play/pause, reach 0/2400 usin
 Aperture correction: replaced the uneven last-over-first blade overlap with six rotationally symmetric segments sharing boundary endpoints around a clear hexagonal opening. The artwork now fits the disc without 110% oversizing. The optical rim, central key, radar and other ten studies are unchanged. In-browser checks confirm pointer scrubbing (310 → 417), playback/pause, Home/End (0/2400), and a 320 px phone rendering without horizontal overflow. Updated preview: `artifacts/jog-wheel-aperture-fixed.png`; historical collection previews remain preserved. Build and 79 client tests pass.
 
 Correspondent refinement, 2026-10-13: keep its recessed finger well as the single wheel cue and remove the duplicate thin index line. The historical Material memory capsule is unchanged; [the refinement record](design/remote-skins/2026-10-13-correspondent-refinement/REFINEMENT.md) identifies the latest target. Other faces and shared controls are untouched.
+
+
+19 October — Clear and Arcade rebuilt around graphite Phone (1) glass and a TAITO paddle spinner. Synthetic review and paired browser evidence: [object pass](design/2026-10-19-skin-craft/v4-objects/PASS.md). No new IDs, release selection, grants or hosted app update.
+
+
+20 October — first time/speed batch implemented for Groove, Clear and Arcade. The selected collection remains14. [Implementation, gallery and actual validation](design/2026-10-20-time-speed/PASS.md).21 paired browser cases,90 unit tests and build passed; no hosted app publication or physical-device claim.
+
+
+20 October — the full selected14 now have instrument-specific time and self-contained speed controls. No duplicate +/-; editable exact speed, native keyboard precision, captured relative gestures, and ACK ordering are shared. [Current collection and evidence](design/2026-10-20-collection/PASS.md).87 paired browser cases have successful latest results across Chromium/Firefox/WebKit; static review and miniatures checked separately. No merge, hosted publication or physical-device claim.

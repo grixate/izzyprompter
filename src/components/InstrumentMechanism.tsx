@@ -21,7 +21,21 @@ export function InstrumentRotor({ skin }: { skin: SkinId }) {
 /** Inert artwork shared by the working jog and every product miniature. */
 export const InstrumentMechanism = memo(function InstrumentMechanism({ skin }: { skin: SkinId }) {
   const id = useId().replaceAll(':', '')
-  if (skin === 'clear' || skin === 'spool') return <svg className={`instrument-mechanism mechanism--chassis mechanism--${skin}`} viewBox="0 0 300 300" aria-hidden="true" focusable="false" data-mechanism="coaxial">
+  if (skin === 'switchboard') return <svg className="instrument-mechanism mechanism--telephone" viewBox="0 0 300 300" aria-hidden="true" focusable="false" data-mechanism="fixed-number-plate">
+    <circle cx="150" cy="150" r="130" fill="none" stroke="#ded0a6" strokeWidth="22" />
+    {['1','2','3','4','5','6','7','8','9','0'].map((digit,index)=>{const angle=(index*36-90)*Math.PI/180;return <text key={digit} x={150+Math.cos(angle)*130} y={150+Math.sin(angle)*130} textAnchor="middle" dominantBaseline="central" fill="#294b39" fontFamily="Georgia,serif" fontSize="14">{digit}</text>})}
+  </svg>
+  if (skin === 'clear') return <svg className="instrument-mechanism mechanism--clear-glass" viewBox="0 0 300 300" aria-hidden="true" focusable="false" data-mechanism="fixed-coil">
+    <circle cx="150" cy="150" r="143" fill="#1b1d20" stroke="#62666b" />
+    {[103,107,111,115,119,123,127].map(r => <circle key={r} cx="150" cy="150" r={r} fill="none" stroke="#55595e" strokeWidth="1" />)}
+    <path d="M248 72A125 125 0 1 0 268 192" fill="none" stroke="#101113" strokeWidth="13" strokeLinecap="round" />
+    <path className="clear-light clear-light--ring" d="M248 72A125 125 0 1 0 268 192" fill="none" strokeWidth="6" strokeLinecap="round" />
+    <path d="M251 23l26 26" fill="none" stroke="#101113" strokeWidth="13" strokeLinecap="round" />
+    <path className="clear-light clear-light--bar" d="M251 23l26 26" fill="none" strokeWidth="6" strokeLinecap="round" />
+    <circle cx="150" cy="150" r="52" fill="#26292d" stroke="#65696e" />
+    <circle cx="150" cy="150" r="42" fill="#141619" stroke="#393d42" />
+  </svg>
+  if (skin === 'spool') return <svg className={`instrument-mechanism mechanism--chassis mechanism--${skin}`} viewBox="0 0 300 300" aria-hidden="true" focusable="false" data-mechanism="coaxial">
     <circle cx="150" cy="150" r="143" fill="var(--chassis-base)" stroke="var(--chassis-edge)" strokeWidth="2" />
     <circle cx="150" cy="150" r="119" fill="none" stroke="var(--chassis-coil)" strokeWidth="28" />
     {[108,112,116,120,124,128,132].map(r => <circle key={r} cx="150" cy="150" r={r} fill="none" stroke="var(--chassis-edge)" strokeOpacity=".45" strokeWidth=".7" />)}
@@ -47,7 +61,7 @@ export const InstrumentMechanism = memo(function InstrumentMechanism({ skin }: {
       </g>
     </svg>
   }
-  if (skin === 'observatory') return <svg className="instrument-mechanism mechanism--observatory" viewBox="0 0 300 300" aria-hidden="true" focusable="false" data-mechanism="orbital"><ellipse cx="150" cy="150" rx="140" ry="61" transform="rotate(-25 150 150)" fill="none" stroke="#cfb985" strokeOpacity=".65" strokeWidth="1" /><path d="M150 7v37m0 212v37M7 150h27m232 0h27" stroke="#d2b67b" strokeWidth="2" /><g className="mechanism-drive" data-wheel-ratio="-2" style={{transformOrigin:'150px 150px'}}><circle cx="150" cy="22" r="6" fill="#e1c181" stroke="#f5e5bb" /><circle cx="150" cy="22" r="9" fill="none" stroke="#e1c181" strokeOpacity=".3" /></g></svg>
+  if (skin === 'observatory') return <svg className="instrument-mechanism mechanism--observatory" viewBox="0 0 300 300" aria-hidden="true" focusable="false" data-mechanism="orbital"><circle className="observatory-orbit" cx="150" cy="150" r="128" fill="none" stroke="#cfb985" strokeOpacity=".65" strokeWidth="1" /><path d="M150 7v37m0 212v37M7 150h27m232 0h27" stroke="#d2b67b" strokeWidth="2" /><g className="mechanism-drive" data-wheel-ratio="-2" style={{transformOrigin:'150px 150px'}}><circle className="observatory-satellite" cx="150" cy="22" r="6" fill="#e1c181" stroke="#f5e5bb" /><circle cx="150" cy="22" r="9" fill="none" stroke="#e1c181" strokeOpacity=".3" /></g></svg>
   if (skin !== 'groove') return null
   return <svg className="instrument-mechanism mechanism--groove" viewBox="0 0 300 300" aria-hidden="true" focusable="false" data-mechanism="tonearm">
     <defs>

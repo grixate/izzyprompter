@@ -1,6 +1,6 @@
 import { createSyntheticSession } from './helpers/create-synthetic-session'
 import { test, expect, type Page } from '@playwright/test'
-import { skins, skinStorageKey } from '../../src/product/catalog'
+import { skins, skinStorageKey, controlCraftSkins } from '../../src/product/catalog'
 import { phoneOptions } from './helpers/phone'
 import { checkRenderedContrast } from './helpers/rendered-contrast'
 import { tabKey } from './helpers/keyboard'
@@ -120,16 +120,27 @@ for (const skin of skins) {
         await expect.poll(async () => Math.abs(await position(remote) - await displayPosition(display))).toBeLessThan(3)
       }
       const speed = remote.getByRole('slider', { name: 'Playback speed' })
-      await speed.fill('1.5')
-      await remote.getByRole('button', { name: 'Increase speed' }).click()
-      await expect(speed).toHaveValue('1.5')
-      await remote.getByRole('button', { name: 'Decrease speed' }).click()
-      await expect(speed).toHaveValue('1.45')
-      await speed.fill('0.5')
-      await remote.getByRole('button', { name: 'Decrease speed' }).click()
-      await expect(speed).toHaveValue('0.5')
-      await remote.getByRole('button', { name: 'Increase speed' }).click()
-      await expect(speed).toHaveValue('0.55')
+      if(controlCraftSkins.has(skin.id)) {
+        const exact=remote.getByRole('textbox',{name:'Exact playback speed'})
+        await expect(remote.getByRole('button',{name:'Increase speed'})).toHaveCount(0)
+        await exact.fill('1.37');await exact.press('Enter');await expect(speed).toHaveValue('1.37')
+        await expect(display.locator('.display-footer')).toContainText('1.37×')
+        await speed.press('End');await speed.press('ArrowUp');await expect(speed).toHaveValue('1.5')
+        await speed.press('ArrowDown');await expect(speed).toHaveValue('1.49')
+        await speed.press('Home');await speed.press('ArrowDown');await expect(speed).toHaveValue('0.5')
+        await speed.press('ArrowUp');await expect(speed).toHaveValue('0.51')
+      } else {
+        await speed.fill('1.5')
+        await remote.getByRole('button', { name: 'Increase speed' }).click()
+        await expect(speed).toHaveValue('1.5')
+        await remote.getByRole('button', { name: 'Decrease speed' }).click()
+        await expect(speed).toHaveValue('1.45')
+        await speed.fill('0.5')
+        await remote.getByRole('button', { name: 'Decrease speed' }).click()
+        await expect(speed).toHaveValue('0.5')
+        await remote.getByRole('button', { name: 'Increase speed' }).click()
+        await expect(speed).toHaveValue('0.55')
+      }
       await remote.getByRole('button', { name: 'Next phrase' }).click()
       await expect(remote.locator('.phrase-count')).toContainText('02 / 03')
       await remote.getByRole('button', { name: 'Previous phrase' }).click()
@@ -183,8 +194,8 @@ for (const skin of skins) {
     for (const viewport of [{ width: 320, height: 568 }, { width: 390, height: 844 }, { width: 844, height: 390 }, { width: 768, height: 1024 }, { width: 1280, height: 900 }]) {
       await page.setViewportSize(viewport)
       expect.soft(await page.evaluate(() => document.documentElement.scrollWidth - innerWidth), `${viewport.width}: horizontal overflow`).toBeLessThanOrEqual(1)
-      for (const name of ['Play', 'Decrease speed', 'Increase speed', 'Playback speed']) {
-        const control = page.getByRole(name === 'Playback speed' ? 'slider' : 'button', { name, exact: true })
+      for (const name of controlCraftSkins.has(skin.id)?['Play','Exact playback speed','Playback speed']:['Play', 'Decrease speed', 'Increase speed', 'Playback speed']) {
+        const control = page.getByRole(name === 'Playback speed' ? 'slider' : name==='Exact playback speed'?'textbox':'button', { name, exact: true })
         const box = (await control.boundingBox())!
         expect.soft(box.width, `${viewport.width}: ${name} width`).toBeGreaterThanOrEqual(44)
         expect.soft(box.height, `${viewport.width}: ${name} height`).toBeGreaterThanOrEqual(44)
@@ -193,7 +204,7 @@ for (const skin of skins) {
       }
       const wheelBox = (await page.locator('.jog-wheel').boundingBox())!
       const playBox = (await page.getByRole('button', { name: 'Play', exact: true }).boundingBox())!
-      const separate = ['graphite', 'glacier', 'correspondent', 'airframe'].includes(skin.id)
+      const separate = ['graphite', 'glacier', 'correspondent', 'airframe', 'arcade'].includes(skin.id)
       expect.soft(Math.abs(playBox.x + playBox.width / 2 - wheelBox.x - wheelBox.width / 2), `${viewport.width}: centered Play key`).toBeLessThan(1)
       if (separate) expect.soft(playBox.y, `${viewport.width}: separate Play key`).toBeGreaterThan(wheelBox.y + wheelBox.height)
       else expect.soft(Math.abs(playBox.y + playBox.height / 2 - wheelBox.y - wheelBox.height / 2), `${viewport.width}: centered Play key`).toBeLessThan(1)

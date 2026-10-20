@@ -1,0 +1,142 @@
+[
+  {
+    "skin": "groove",
+    "widths": [
+      390,
+      768,
+      1280
+    ],
+    "contained": true,
+    "focusableInputs": 0
+  },
+  {
+    "skin": "clear",
+    "widths": [
+      390,
+      768,
+      1280
+    ],
+    "contained": true,
+    "focusableInputs": 0
+  },
+  {
+    "skin": "arcade",
+    "widths": [
+      390,
+      768,
+      1280
+    ],
+    "contained": true,
+    "focusableInputs": 0
+  },
+  {
+    "skin": "field",
+    "widths": [
+      390,
+      768,
+      1280
+    ],
+    "contained": true,
+    "focusableInputs": 0
+  },
+  {
+    "skin": "signal",
+    "widths": [
+      390,
+      768,
+      1280
+    ],
+    "contained": true,
+    "focusableInputs": 0
+  },
+  {
+    "skin": "vector",
+    "widths": [
+      390,
+      768,
+      1280
+    ],
+    "contained": true,
+    "focusableInputs": 0
+  },
+  {
+    "skin": "cartridge",
+    "widths": [
+      390,
+      768,
+      1280
+    ],
+    "contained": true,
+    "focusableInputs": 0
+  },
+  {
+    "skin": "switchboard",
+    "widths": [
+      390,
+      768,
+      1280
+    ],
+    "contained": true,
+    "focusableInputs": 0
+  },
+  {
+    "skin": "correspondent",
+    "widths": [
+      390,
+      768,
+      1280
+    ],
+    "contained": true,
+    "focusableInputs": 0
+  },
+  {
+    "skin": "foundry",
+    "widths": [
+      390,
+      768,
+      1280
+    ],
+    "contained": true,
+    "focusableInputs": 0
+  },
+  {
+    "skin": "observatory",
+    "widths": [
+      390,
+      768,
+      1280
+    ],
+    "contained": true,
+    "focusableInputs": 0
+  },
+  {
+    "skin": "ivory",
+    "widths": [
+      390,
+      768,
+      1280
+    ],
+    "contained": true,
+    "focusableInputs": 0
+  },
+  {
+    "skin": "graphite",
+    "widths": [
+      390,
+      768,
+      1280
+    ],
+    "contained": true,
+    "focusableInputs": 0
+  },
+  {
+    "skin": "original",
+    "widths": [
+      390,
+      768,
+      1280
+    ],
+    "contained": true,
+    "focusableInputs": 0
+  }
+]

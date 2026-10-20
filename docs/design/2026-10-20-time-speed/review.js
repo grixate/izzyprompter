@@ -1,0 +1,1 @@
+document.querySelectorAll('article').forEach(c=>c.querySelector('button').addEventListener('click',e=>{const b=e.currentTarget,old=b.getAttribute('aria-pressed')!=='true';b.setAttribute('aria-pressed',String(old));b.textContent=old?'Показать новый':'До / после';c.querySelector('img').src=(old?'before/':'references/')+c.dataset.skin+'.png'}));

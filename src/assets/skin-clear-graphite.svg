@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 800" preserveAspectRatio="none">
+<!-- All chassis art stays in the outer edge, clear of every content column. -->
+<rect x="8" y="8" width="304" height="784" rx="20" fill="none" stroke="#55595f" stroke-width=".7"/>
+<g fill="#15171a" stroke="#72767b" stroke-width=".7">
+<circle cx="9" cy="35" r="2"/><circle cx="311" cy="35" r="2"/>
+<circle cx="9" cy="765" r="2"/><circle cx="311" cy="765" r="2"/>
+</g>
+<path d="M8 35h2m300 0h2M8 765h2m300 0h2" stroke="#9b9fa4" stroke-width=".6"/>
+</svg>

@@ -4,7 +4,8 @@ import { createSyntheticSession } from './helpers/create-synthetic-session'
 import { phoneOptions } from './helpers/phone'
 import { checkRenderedContrast } from './helpers/rendered-contrast'
 
-const ids=['groove','field','signal','vector','foundry','ivory','original','graphite','cartridge','switchboard','correspondent','observatory']
+// Local object-only review uses the same paired flow; CI keeps the complete set.
+const ids=process.env.IZZY_OBJECT_REVIEW ? ['clear','arcade'] : ['groove','field','signal','vector','foundry','ivory','original','graphite','cartridge','switchboard','correspondent','observatory','clear','arcade']
 const collection=ids.map(id=>skins.find(skin=>skin.id===id)!)
 test.use({trace:'off',screenshot:'off'})
 

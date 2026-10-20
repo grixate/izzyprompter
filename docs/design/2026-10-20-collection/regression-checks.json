@@ -1,0 +1,48 @@
+{
+  "stats": {
+    "startTime": "2026-10-20T07:12:02.169Z",
+    "duration": 69531.79,
+    "expected": 6,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "cases": [
+    {
+      "browser": "chromium",
+      "case": "every finish can be selected during real playback and keeps a truthful readout",
+      "status": "passed",
+      "durationMs": 8670
+    },
+    {
+      "browser": "firefox",
+      "case": "every finish can be selected during real playback and keeps a truthful readout",
+      "status": "passed",
+      "durationMs": 13991
+    },
+    {
+      "browser": "webkit",
+      "case": "every finish can be selected during real playback and keeps a truthful readout",
+      "status": "passed",
+      "durationMs": 13847
+    },
+    {
+      "browser": "chromium",
+      "case": "curated control banks keep real phrase navigation, live editing and touch geometry",
+      "status": "passed",
+      "durationMs": 21988
+    },
+    {
+      "browser": "firefox",
+      "case": "curated control banks keep real phrase navigation, live editing and touch geometry",
+      "status": "passed",
+      "durationMs": 23817
+    },
+    {
+      "browser": "webkit",
+      "case": "curated control banks keep real phrase navigation, live editing and touch geometry",
+      "status": "passed",
+      "durationMs": 27470
+    }
+  ]
+}

@@ -1,0 +1,147 @@
+/* First reference-led time/speed batch. All selectors stop at these three faces. */
+.skin-face .readout-craft {
+  width:fit-content;max-width:100%;min-height:0;margin-top:20px;position:relative;
+  grid-template-columns:minmax(0,1fr) auto;grid-template-rows:auto auto auto;gap:8px 14px;
+}
+.skin-face .readout-craft .display-kicker {font-size:9px;letter-spacing:.07em;gap:12px;}
+.skin-face .readout-craft .timecode {grid-column:1;grid-row:2;font-size:34px;letter-spacing:0;line-height:1;white-space:nowrap;min-width:0;}
+.skin-face .readout-craft .timecode span {font-size:inherit;color:inherit;margin:0;}
+.skin-face .readout-craft .state-label {grid-column:2;grid-row:2;align-self:center;font-size:10px;padding:0;white-space:nowrap;}
+.skin-face .readout-craft .readout-units {grid-column:1;grid-row:3;font:8px monospace;letter-spacing:.16em;display:flex;justify-content:space-around;gap:6px;}
+.skin-face .readout-craft .readout-units span {opacity:.6;}
+.skin-face .readout-craft .matrix-time {display:block;width:210px;max-width:100%;height:auto;fill:currentColor;overflow:visible;}
+
+/* Groove: a mechanical register in a small cast-metal bezel. */
+.skin-face.skin--groove .readout--groove {
+  padding:9px 12px 8px;border:1px solid #978a69;border-radius:3px;background:linear-gradient(125deg,#ddd4bb,#bcb293);
+  box-shadow:inset 0 1px #fff2d9,0 2px #9a8e6e; color:#3e3526;
+}
+.skin-face.skin--groove .readout--groove .display-kicker {color:#3e3526;}
+.skin-face .readout--groove .timecode {display:flex;align-items:center;gap:4px;color:#f9f0da;}
+.skin-face .counter-digits {display:inline-flex;align-items:center;gap:2px;}
+.skin-face .counter-drum {position:relative;display:inline-flex;justify-content:center;width:.64em;height:1.15em;overflow:hidden;background:linear-gradient(#121810,#30392a 40%,#11190f 51%,#273021 70%,#0e170c);border:1px solid #191f12;border-radius:2px;box-shadow:inset 0 2px 3px #0008,0 1px #ede4c488;color:#faf0d8;font-weight:500;}
+.skin-face .counter-drum::after {content:"";position:absolute;top:50%;left:0;right:0;height:1px;background:#0004;}
+.skin-face .counter-drum i {font-style:normal;line-height:1.12;}
+.skin-face [data-roll=true] .counter-drum i {animation:counter-step 170ms ease-out;}
+.skin-face .counter-colon {font-style:normal;font-size:.75em;color:#443923;}
+.skin-face .counter-fraction {font:12px monospace;color:#443923;align-self:flex-end;margin-bottom:2px;}
+.skin-face .readout--groove .readout-units {width:110px;}
+.skin-face.skin--groove .readout--groove .state-label {color:#3e3526;}
+.skin-face.skin--groove .readout--groove .state-label.is-playing {color:#3e3526;}
+@keyframes counter-step {from{transform:translateY(-65%);opacity:.4}to{transform:translateY(0);opacity:1}}
+
+/* Clear: the numerals sit under the same sheet of smoked glass. */
+.skin-face.skin--clear .readout--clear {background:transparent;border:0;border-radius:0;padding:4px 0 0;box-shadow:none;gap:12px 16px;color:#f5f6fa;}
+.skin-face.skin--clear .readout--clear .display-kicker {color:#bdc2ca;}
+.skin-face.skin--clear .readout--clear .timecode {color:#f4f7ff;filter:drop-shadow(0 0 2px #dbe6ff22);}
+.skin-face.skin--clear .readout--clear .state-label {color:#c8cdd5;}
+.skin-face.skin--clear .readout--clear .readout-units {color:#b8bdc7;justify-content:flex-start;gap:15px;}
+.skin-face.skin--clear .readout--clear .state-label.is-playing {color:#fff;}
+
+/* Arcade: a pixel register with inset cabinet glass and an explicit unit strip. */
+.skin-face.skin--arcade .readout--arcade {padding:10px 12px 8px;background:#26212f;border:3px solid #b7a7cb;border-radius:3px;box-shadow:inset 0 2px 6px #0008,0 0 0 1px #796887;gap:9px 12px;}
+.skin-face.skin--arcade .readout--arcade .display-kicker {color:#decce9;}
+.skin-face.skin--arcade .readout--arcade .timecode {color:#f6d6a5;}
+.skin-face.skin--arcade .readout--arcade .state-label {color:#e6d5f1;}
+.skin-face.skin--arcade .readout--arcade .readout-units {color:#ded0ed;justify-content:flex-start;gap:22px;}
+
+/* Shared native-range geometry; its 44px thumb matches the visible rail travel. */
+.skin-face .speed-craft {
+  position:relative;display:grid;grid-template-columns:1fr auto;grid-template-areas:"title value" "track track" "fine fine";
+  width:100%;gap:5px 12px;min-width:0;height:auto;color:var(--instrument-type);
+}
+.skin-face .speed-craft .speed-title {grid-area:title;position:static;display:block;align-self:center;font:9px monospace;letter-spacing:.1em;color:inherit;}
+.skin-face .speed-craft strong {grid-area:value;font:500 22px/1.2 'Avenir Next Condensed',sans-serif;color:inherit;min-width:60px;}
+.skin-face .speed-craft .speed-track {grid-area:track;position:relative;height:58px;min-width:44px;width:100%;}
+.skin-face .speed-craft .speed-track::before {display:none;}
+.skin-face .speed-craft .speed-track input {appearance:none;-webkit-appearance:none;inset:0;width:100%;height:100%;opacity:0;z-index:3;touch-action:none;}
+.skin-face .speed-craft input::-webkit-slider-thumb {appearance:none;-webkit-appearance:none;width:44px;height:44px;border:0;}
+.skin-face .speed-craft input::-moz-range-thumb {width:44px;height:44px;border:0;}
+.skin-face .speed-craft input::-webkit-slider-runnable-track {height:44px;}
+.skin-face .speed-craft input::-moz-range-track {height:44px;}
+.skin-face .speed-rail {position:absolute;inset:12px 22px 12px;pointer-events:none;}
+.skin-face .speed-handle {position:absolute;left:var(--speed-percent);top:50%;transform:translate(-50%,-50%);}
+.skin-face .speed-marks {position:absolute;left:0;right:0;top:100%;display:flex;justify-content:space-between;font:8px monospace;}
+.skin-face .speed-marks b {font-weight:400;}
+.skin-face .speed-fine {grid-area:fine;display:flex;gap:8px;align-items:center;}
+.skin-face .speed-craft .speed-fine :is(button,.speed-step) {width:44px;height:44px;min-width:44px;padding:0;font:16px monospace;}
+.skin-face .speed-craft .speed-fine .speed-reset {width:auto;min-width:70px;margin-left:auto;font:11px monospace;border-radius:3px;display:grid;place-items:center;}
+.skin-face .speed-craft .speed-track:has(input:focus-visible) {outline:2px solid currentColor;outline-offset:3px;border-radius:4px;}
+.skin-face .speed-craft[data-available=false] {opacity:.5;}
+/* The legacy lab/live four-column grid must not add anonymous extra tracks. */
+:is(.standalone-remote,.lab-device,.remote-instrument).skin-face .speed-module.speed-craft {grid-template-columns:minmax(0,1fr) auto;}
+:is(.standalone-remote,.lab-device,.remote-instrument).skin-face .speed-module.speed--arcade {grid-template-columns:minmax(0,1fr) 90px;}
+
+.skin-face.skin--groove .speed--groove {padding:10px 12px 8px;border:1px solid #aa9a75;border-radius:3px;background:linear-gradient(120deg,#d8cdb0,#c8b994);box-shadow:inset 0 1px #f5e9c9;}
+.skin-face .speed--groove .speed-rail {background:linear-gradient(90deg,transparent calc(50% - 1px),#8a4a2c calc(50% - 1px) calc(50% + 1px),transparent calc(50% + 1px)),repeating-linear-gradient(90deg,#8e8061 0 1px,transparent 1px 10%);background-size:100% 100%;}
+.skin-face .speed--groove .speed-rail::before {content:"";position:absolute;left:0;right:0;top:14px;height:5px;border-radius:3px;background:#4a4536;box-shadow:inset 0 2px #171c1380,0 1px #f4e9c3;}
+.skin-face .speed--groove .speed-handle {width:29px;height:31px;border:1px solid #656a59;border-radius:2px;background:linear-gradient(#e4e8d8,#9da68e 43%,#c7cdb9 46% 58%,#b1b9a2);box-shadow:inset 0 1px #fff6db,0 3px 3px #383d2955;}
+.skin-face .speed--groove .speed-handle::after {content:"";position:absolute;inset:14px 4px auto;height:2px;background:#3f4634;box-shadow:0 1px #ecedcf;}
+.skin-face .speed--groove .speed-fine button {border-radius:3px;background:linear-gradient(#e4d9bd,#c9b995);border:1px solid #a3936c;color:#423725;box-shadow:inset 0 1px #fff2d5,0 1px #ad9b71;}
+
+.skin-face .speed--clear {padding:8px 0 0;}
+.skin-face .speed--clear .speed-rail {background:repeating-linear-gradient(90deg,#747b86 0 2px,transparent 2px 9px);height:10px;top:21px;bottom:auto;}
+.skin-face .speed--clear .speed-fill {position:absolute;left:0;top:0;height:100%;width:var(--speed-percent);background:repeating-linear-gradient(90deg,#e4ebfa 0 2px,transparent 2px 9px);filter:drop-shadow(0 0 3px #dce4fa55);}
+.skin-face .speed--clear .speed-handle {width:12px;height:28px;border:1px solid #fff;border-radius:6px;background:#edf3ff;box-shadow:0 0 9px #d3e0fc66,0 0 2px #fff;}
+.skin-face .speed--clear .speed-marks {top:24px;color:#c2c8d1;}
+.skin-face .speed--clear .speed-fine {justify-content:space-between;}
+.skin-face .speed--clear .speed-fine button {background:transparent;border:1px solid #7e858e;color:#ecf0f8;box-shadow:none;}
+
+.skin-face .speed--arcade {grid-template-columns:minmax(0,1fr) 90px;grid-template-areas:"title track" "value track" "fine track";gap:8px 20px;padding:14px 18px;border:1px solid #b6adbd;border-radius:12px;background:linear-gradient(125deg,#e7e1ec,#c8bed5);box-shadow:inset 0 1px #fff,0 3px #b1a4bf;}
+.skin-face .speed--arcade strong {text-align:left;font:600 32px/1 'Avenir Next Condensed',sans-serif;}
+.skin-face .speed--arcade .speed-track {height:146px;width:90px;}
+.skin-face .speed--arcade .speed-track input {writing-mode:vertical-lr;direction:rtl;cursor:ns-resize;}
+.skin-face .speed--arcade input::-webkit-slider-runnable-track {width:44px;height:100%;}
+.skin-face .speed--arcade input::-moz-range-track {width:44px;height:100%;}
+.skin-face .speed--arcade .speed-rail {inset:22px 30px;border-radius:15px;background:linear-gradient(90deg,#83738f,#423449 35% 65%,#b2a1bf);box-shadow:inset 0 2px 4px #35213d88;}
+.skin-face .speed--arcade .speed-handle {left:50%;top:var(--speed-offset);width:43px;height:43px;border:1px solid #59416d;border-radius:50%;background:radial-gradient(circle at 33% 22%,#ba9fe2,#7957a7 55%,#50316f 95%);box-shadow:inset 0 2px #decef2,0 4px #5b3e76,0 6px 6px #3a244977;}
+.skin-face .speed--arcade .speed-marks {left:auto;right:-23px;top:-3px;bottom:-3px;flex-direction:column-reverse;font-size:8px;}
+.skin-face .speed--arcade .speed-fine {gap:12px;}
+.skin-face .speed--arcade .speed-fine button {border-radius:50%;border:1px solid #68507c;background:radial-gradient(ellipse at 32% 18%,#fcf9f2,#dcd1e5);color:#493454;box-shadow:inset 0 2px #fff,0 3px #9885aa;}
+
+/* Readouts/controls in preserved lab cards and inert collection miniatures. */
+.lab-device.skin-face .readout-craft {width:100%;}
+.lab-device.skin-face .readout-craft .timecode {font-size:32px;}
+.lab-device.skin-face .readout-craft .matrix-time {width:190px;}
+.lab-device.skin-face .speed-craft .speed-fine button {width:44px;height:44px;}
+.remote-instrument .readout-craft {width:100%;margin-top:20px;gap:5px;}
+.remote-instrument .readout-craft .display-kicker {font-size:6px;}
+.remote-instrument .readout-craft .display-kicker span:last-child {display:none;}
+.remote-instrument .readout-craft .timecode {font-size:clamp(14px,12cqw,30px);}
+.remote-instrument .readout-craft .state-label {font-size:6px;}
+.remote-instrument .readout-craft .readout-units {font-size:6px;}
+.remote-instrument .speed-craft {gap:5px;}
+.remote-instrument .speed-craft .speed-title {font-size:7px;}
+.remote-instrument .speed-craft strong {font-size:16px;min-width:0;}
+.remote-instrument .speed-craft .speed-fine {display:none;}
+.remote-instrument .speed-craft .speed-marks {display:none;}
+.remote-instrument .speed--arcade {grid-template-columns:1fr 50px;grid-template-areas:"title track" "value track";padding:10px;}
+.remote-instrument .speed--arcade .speed-track {height:82px;width:50px;}
+.remote-instrument .speed--arcade .speed-rail {inset:13px 19px;}
+.remote-instrument .speed--arcade .speed-handle {width:26px;height:26px;}
+.remote-instrument.skin-face .speed-module.speed--arcade {grid-template-columns:minmax(0,1fr) 50px;}
+.standalone-remote.skin-face:is(.skin--groove,.skin--clear,.skin--arcade) .jog-wheel {width:min(70vw,31dvh,280px);max-width:100%;}
+.standalone-remote.skin-face:is(.skin--groove,.skin--clear,.skin--arcade) .transport-button {transition:none;}
+.standalone-remote.skin-face:is(.skin--groove,.skin--clear) .transport-button {inset:auto;left:50%;top:50%;width:max(45px,30%);height:max(45px,30%);transform:translate(-50%,-50%);}
+.standalone-remote.skin-face:is(.skin--groove,.skin--clear) .transport-button:active {transform:translate(-50%,-50%) translateY(1px) scale(.97);}
+.standalone-remote.skin-face.skin--arcade .jog-wheel {width:min(65vw,25dvh,245px);}
+.standalone-remote.skin-face.skin--arcade .transport-button {inset:auto;left:50%;top:calc(100% + 20px);width:max(45px,32%);height:45px;transform:translateX(-50%);background:radial-gradient(ellipse at 34% 12%,#c35c91,#a73c70 70%);}
+.standalone-remote.skin-face.skin--arcade .transport-button:active {transform:translateX(-50%) translateY(3px);}
+.standalone-remote.skin-face.skin--arcade .speed--arcade .speed-track {height:130px;}
+.standalone-remote.skin-face.skin--arcade .readout--arcade {gap:6px 12px;padding:8px 12px 6px;}
+.standalone-remote.skin-face.skin--arcade .matrix-time {width:190px;}
+.standalone-remote.skin-face .speed-module.speed-craft .speed-fine button {width:45px;height:45px;min-width:45px;}
+.standalone-remote.skin-face .speed-module.speed-craft .speed-fine .speed-reset {width:auto;min-width:70px;}
+@media(prefers-reduced-motion:reduce){.skin-face [data-roll=true] .counter-drum i {animation:none;}}
+
+/* Owner correction: the instrument itself provides coarse and exact adjustment. */
+:is(.standalone-remote,.lab-device,.remote-instrument).skin-face .speed-module.speed-craft {grid-template-areas:"title value" "track track" "help help";gap:5px 12px;}
+.skin-face .speed-craft .speed-value {grid-area:value;display:flex;align-items:center;justify-content:flex-end;gap:1px;min-width:90px;font:500 24px/1.2 'Avenir Next Condensed',sans-serif;color:inherit;}
+.skin-face .speed-craft .speed-exact {width:68px;min-width:0;height:45px;border:0;border-bottom:1px solid currentColor;border-radius:0;padding:0 3px;background:transparent;font:inherit;font-variant-numeric:tabular-nums;color:inherit;text-align:right;}
+.skin-face .speed-exact:focus {outline:2px solid currentColor;outline-offset:3px;}
+.skin-face .speed-exact[aria-invalid=true] {border-bottom-style:dashed;}
+.skin-face .speed-help {grid-area:help;font:8px/1.5 monospace;letter-spacing:.04em;color:inherit;margin:8px 0 0;}
+:is(.standalone-remote,.lab-device,.remote-instrument).skin-face .speed-module.speed--arcade {grid-template-areas:"title track" "value track" "help track";}
+.skin-face .speed--arcade .speed-value {justify-content:flex-start;font-size:32px;}
+.remote-instrument .speed-craft .speed-value {min-width:0;font-size:16px;}
+.remote-instrument.skin-face .speed-module.speed--arcade {grid-template-areas:"title track" "value track";}

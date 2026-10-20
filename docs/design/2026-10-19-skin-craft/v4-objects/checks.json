@@ -1,0 +1,13 @@
+{
+  "pairedBrowsers": {
+    "startTime": "2026-10-19T20:52:18.168Z",
+    "duration": 38916.394,
+    "expected": 15,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "clientUnitTests": 90,
+  "productionBuild": "passed",
+  "physicalDevices": "not run"
+}

@@ -114,7 +114,7 @@ function StudyDevice({ study, reset, sensitivity, motor, large, controlsReview }
   return <div className={`lab-device lab-device--${study.id}${controlsReview || Number(study.number) >= 16 ? ` skin-face skin--${study.id}` : ''}${large ? ' lab-device--large' : ''}${controlsReview?' skin-controls':''}`}
     style={{ '--lab-angle': `${angle}rad` } as CSSProperties}>
     <div className="lab-device-top"><span className="lab-model">R–{study.number}</span><span className="lab-device-mark">IZZY<br />DESIGN STUDY</span></div>
-    <TransportReadout position={position} speed={speed} playing={playing} label="LOCAL / DEMO" />
+    <TransportReadout skin={study.id} position={position} speed={speed} playing={playing} scrubbing={dragging} label="LOCAL / DEMO" />
     <JogControls skin={study.id} spinOnPlayback={motor} enabled playing={playing} speed={speed} position={position} maximum={duration}
       positionText={`${Math.round(position / duration * 100)} percent through the demo script`}
       onToggle={() => { if (position >= duration) setPosition(0); setPlaying(value => !value) }}
@@ -135,9 +135,12 @@ function StudyDevice({ study, reset, sensitivity, motor, large, controlsReview }
   </div>
 }
 
-export default function JogLabPage() {
-  const controlsReview = new URLSearchParams(location.search).get('review') === 'controls'
-  const order = ['groove','field','signal','vector','foundry','ivory','original','graphite','cartridge','switchboard','correspondent','observatory']
+export default function JogLabPage({ review }: { review?: 'objects'|'time-speed'|'collection' } = {}) {
+  const collectionReview=(new URLSearchParams(location.search).get('review') ?? review)==='collection'
+  const timeReview=(new URLSearchParams(location.search).get('review') ?? review)==='time-speed'
+  const objectsReview = (new URLSearchParams(location.search).get('review') ?? review) === 'objects'
+  const controlsReview = collectionReview || timeReview || objectsReview || new URLSearchParams(location.search).get('review') === 'controls'
+  const order = collectionReview ? ['groove','clear','arcade','field','signal','vector','cartridge','switchboard','correspondent','foundry','observatory','ivory','graphite','original'] : timeReview ? ['groove','clear','arcade'] : objectsReview ? ['clear','arcade'] : ['groove','field','signal','vector','foundry','ivory','original','graphite','cartridge','switchboard','correspondent','observatory']
   const collection = controlsReview ? order.flatMap(id => studies.filter(study => study.id===id)) : studies
   const requested = new URLSearchParams(location.search).get('skin')
   const initial = collection.find(study => study.id===requested)?.id ?? (controlsReview?'groove':'ivory')
@@ -155,7 +158,7 @@ export default function JogLabPage() {
   const visible = view === 'focus' ? collection.filter(study => study.id === selected) : collection
   return <main className={`jog-lab ${view === 'focus' ? 'jog-lab--focus' : ''} ${controlsReview?'jog-lab--controls':''}`}>
     <header className="lab-header"><a href="/" className="lab-wordmark"><span>I</span> IZZY <span className="lab-wordmark-divider">/</span> DESIGN LAB</a><a href="/" className="lab-back"><ArrowLeft size={14} />Back to IZZY</a></header>
-    <section className="lab-intro"><div><p className="lab-eyebrow">{controlsReview?'CURATED / CONTROL DETAILS':'EXPERIMENT 001 / THE JOG WHEEL'}</p><h1>{controlsReview?'One complete instrument.':<>Less interface.<br />More instrument.</>}</h1></div><div className="lab-intro-note"><span className="lab-orange-dot" />{controlsReview?<><p>First pass: matching lower controls, an engraved Field key and a round Signal key.</p><small>Local demo. Try Play, scrub, phrase keys and Quick Edit.</small></>:<><p>Twenty-six studies. One familiar gesture.<br />Six collections. Different ways to feel it.</p><small>R–03 / Orbit is your default candidate. The live remote stays as it is.</small></>}</div></section>
+    <section className="lab-intro"><div><p className="lab-eyebrow">{collectionReview?'SELECTED FOURTEEN / INSTRUMENTS':timeReview?'TIME & SPEED / FIRST BATCH':objectsReview?'REFERENCE / GLASS & ARCADE':controlsReview?'CURATED / CONTROL DETAILS':'EXPERIMENT 001 / THE JOG WHEEL'}</p><h1>{collectionReview?'An instrument of your own.':timeReview?'A different kind of time.':objectsReview?'Two familiar worlds.':controlsReview?'One complete instrument.':<>Less interface.<br />More instrument.</>}</h1></div><div className="lab-intro-note"><span className="lab-orange-dot" />{collectionReview?<><p>Fourteen selected instruments. One self-contained speed control each.</p><small>Drag the control or type an exact value. Synthetic local demo.</small></>:timeReview?<><p>Groove, Clear and Arcade: three distinct clocks and three real speed controls.</p><small>First batch of the selected fourteen. Synthetic local demo.</small></>:objectsReview?<><p>Graphite glass inspired by Phone (1). A paddle instrument inspired by EGRET II.</p><small>Local demo. Play, scrub, phrase keys and Quick Edit work.</small></>:controlsReview?<><p>First pass: matching lower controls, an engraved Field key and a round Signal key.</p><small>Local demo. Try Play, scrub, phrase keys and Quick Edit.</small></>:<><p>Twenty-six studies. One familiar gesture.<br />Six collections. Different ways to feel it.</p><small>R–03 / Orbit is your default candidate. The live remote stays as it is.</small></>}</div></section>
     <div className="lab-toolbar">
       <div className="lab-view-switch" role="group" aria-label="Study layout"><button aria-pressed={view === 'compare'} onClick={() => setView('compare')}>Compare all <span>{String(collection.length).padStart(2, '0')}</span></button><button aria-pressed={view === 'focus'} onClick={() => setView('focus')}>Focus view <Maximize2 size={13} /></button></div>
       <div className="lab-tuning"><label className="lab-motor"><input type="checkbox" checked={motor} onChange={event => setMotor(event.target.checked)} />Spin on playback</label><label className="lab-sensitivity">FEEL<select aria-label="Scrub sensitivity" value={sensitivity} onChange={event => setSensitivity(Number(event.target.value))}><option value={.5}>Precise</option><option value={1}>Balanced</option><option value={2}>Fast</option></select></label><button className="lab-reset" onClick={() => setReset(value => value + 1)}><RotateCcw size={13} /><span>Reset</span></button></div>

@@ -1,0 +1,139 @@
+/* Group the name and exact value; reserve a separate band for scale legends.
+   Legacy lab cards retain their established grid until opened as a phone. */
+.speed-summary {display:contents;}
+.standalone-remote.skin-face.skin-controls {gap:10px;padding-inline:max(16px,env(safe-area-inset-left)) max(16px,env(safe-area-inset-right));}
+.standalone-remote.skin-face.skin-controls .control-deck {gap:12px;}
+.standalone-remote.skin-face.skin-controls .speed-module.speed-craft {
+ grid-template-columns:minmax(0,1fr);grid-template-areas:"summary" "track" "help";
+ gap:6px 16px;padding:12px 16px;max-width:420px;
+}
+.standalone-remote.skin-face.skin-controls .speed-summary {grid-area:summary;display:flex;align-items:center;justify-content:flex-start;gap:12px;min-width:0;}
+.standalone-remote.skin-face.skin-controls .speed-summary .speed-title {font-size:11px;letter-spacing:.06em;}
+.standalone-remote.skin-face.skin-controls .speed-summary .speed-value {min-width:0;justify-content:flex-start;font-size:28px;}
+.standalone-remote.skin-face.skin-controls .speed-exact {height:48px;width:4.2ch;min-width:52px;text-align:left;padding-left:0;}
+.standalone-remote.skin-face.skin-controls.skin--arcade .control-deck {background:none;}
+.standalone-remote.skin-face.skin-controls .control-deck .speed-craft .speed-track {height:84px;width:100%;margin:0;}
+.standalone-remote.skin-face.skin-controls .speed-track>input {height:56px;}
+.standalone-remote.skin-face.skin-controls .speed-marks {font-size:11px;letter-spacing:0;}
+.standalone-remote.skin-face.skin-controls .speed-marks b {font:inherit;flex-shrink:0;white-space:nowrap;}
+.standalone-remote.skin-face.skin-controls .speed-kind--linear .speed-rail {inset:12px 22px auto;height:32px;}
+.standalone-remote.skin-face.skin-controls .speed-kind--linear .speed-marks {top:44px;}
+.standalone-remote.skin-face.skin-controls .speed--clear .speed-rail {top:22px;height:12px;}
+.standalone-remote.skin-face.skin-controls .speed--clear .speed-marks {top:34px;}
+.standalone-remote.skin-face.skin-controls .speed--foundry .speed-rail {top:23px;height:10px;}
+.standalone-remote.skin-face.skin-controls .speed--foundry .speed-marks {top:33px;}
+.standalone-remote.skin-face.skin-controls .speed--original .speed-rail {top:26px;height:4px;}
+.standalone-remote.skin-face.skin-controls .speed--original .speed-marks {top:30px;}
+.standalone-remote.skin-face.skin-controls .speed--observatory .speed-rail::before {top:13px;}
+.standalone-remote.skin-face.skin-controls .speed-craft .speed-help {position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);margin:0;}
+.standalone-remote.skin-face.skin-controls .speed-craft:has(.speed-exact[aria-invalid=true]) .speed-help {position:static;width:auto;height:auto;clip-path:none;font-size:12px;}
+
+.standalone-remote.skin-face.skin-controls .speed-module:is(.speed-kind--dial,.speed-kind--vertical) {grid-template-columns:minmax(0,1fr) 128px;grid-template-areas:"summary track" "help help";}
+.standalone-remote.skin-face.skin-controls .speed-module.speed-kind--dial {grid-template-columns:minmax(0,1fr) 120px;}
+.standalone-remote.skin-face.skin-controls :is(.speed-kind--dial,.speed-kind--vertical) .speed-summary {flex-direction:column;align-items:flex-start;justify-content:center;gap:2px;}
+.standalone-remote.skin-face.skin-controls :is(.speed-kind--dial,.speed-kind--vertical) .speed-title {align-self:flex-start;text-align:left;}
+.standalone-remote.skin-face.skin-controls .control-deck .speed-kind--dial .speed-track {width:120px;height:126px;}
+.standalone-remote.skin-face.skin-controls .speed-kind--dial .speed-track>input {height:100%;}
+.standalone-remote.skin-face.skin-controls .speed-kind--dial .speed-rail {inset:22px 18px 22px;aspect-ratio:auto;}
+.standalone-remote.skin-face.skin-controls .speed-kind--dial .speed-marks {inset:-20px -12px;}
+.standalone-remote.skin-face.skin-controls .speed-kind--dial .speed-marks b:nth-child(2) {top:0;}
+.standalone-remote.skin-face.skin-controls .speed-kind--dial .speed-handle {width:60px;height:60px;}
+.standalone-remote.skin-face.skin-controls .speed--signal .speed-handle {width:7px;height:40px;}
+.standalone-remote.skin-face.skin-controls .control-deck .speed-kind--roller .speed-track {height:100px;}
+.standalone-remote.skin-face.skin-controls .speed-kind--roller .speed-track>input {height:76px;}
+.standalone-remote.skin-face.skin-controls .speed-kind--roller .speed-rail {inset:10px 22px 32px;}
+.standalone-remote.skin-face.skin-controls .speed-kind--roller .speed-marks {top:calc(100% + 12px);}
+.standalone-remote.skin-face.skin-controls .control-deck .speed-kind--vertical .speed-track {width:128px;height:146px;}
+.standalone-remote.skin-face.skin-controls .speed-kind--vertical .speed-track>input {height:124px;}
+.standalone-remote.skin-face.skin-controls .speed-kind--vertical .speed-rail {inset:22px 52px 44px;}
+.standalone-remote.skin-face.skin-controls .speed-kind--vertical .speed-marks {left:auto;right:-48px;top:0;bottom:0;}
+
+/* A thumb can leave the speed surface without landing on Next. */
+.standalone-remote.skin-face.skin-controls .phrase-nav {margin-top:16px;padding:0;gap:6px;grid-template-columns:56px minmax(0,1fr) 56px;background:transparent;border:0;box-shadow:none;}
+.standalone-remote.skin-face.skin-controls .phrase-nav :is(button,.phrase-count) {min-height:56px;}
+.standalone-remote.skin-face.skin-controls .phrase-nav button {min-width:52px;padding:0;}
+.standalone-remote.skin-face.skin-controls .phrase-nav button span {font-size:22px;}
+.standalone-remote.skin-face.skin-controls .phrase-nav button small {display:none;}
+.standalone-remote.skin-face.skin-controls .phrase-count {font-size:12px;letter-spacing:0;}
+.standalone-remote.skin-face.skin-controls .phrase-count small {font-size:10px;}
+.standalone-remote.skin-face.skin-controls .remote-tools {gap:8px;margin-top:4px;min-height:52px;}
+.standalone-remote.skin-face.skin-controls :is(.quick-edit-trigger,.remote-finish-button) {min-height:52px;height:52px;}
+.standalone-remote.skin-face.skin-controls .remote-finish-button {width:52px;flex-basis:52px;}
+.standalone-remote.skin-face.skin-controls .quick-edit-trigger svg {width:20px;height:20px;}
+
+@media(orientation:portrait) and (max-height:700px) {
+ .standalone-remote.skin-face.skin-controls {grid-template-columns:minmax(0,1fr) 112px;gap:8px 12px;}
+ .standalone-remote.skin-face.skin-controls .phrase-nav {grid-template-columns:52px minmax(0,1fr) 52px;}
+ .standalone-remote.skin-face.skin-controls .phrase-count {font-size:10px;white-space:nowrap;}
+ .standalone-remote.skin-face.skin-controls .phrase-count small {font-size:9px;}
+ .standalone-remote.skin-face.skin-controls .remote-tools {margin-top:16px;}
+ .standalone-remote.skin-face.skin-controls .quick-edit-trigger {width:52px;flex-basis:52px;}
+}
+@media(orientation:portrait) and (max-height:600px) {
+ .standalone-remote.skin-face.skin-controls .control-deck {grid-template-columns:minmax(0,1fr) 112px;grid-template-rows:minmax(0,1fr);gap:12px;}
+ .standalone-remote.skin-face.skin-controls .wheel-column {grid-column:1;grid-row:1;}
+ .standalone-remote.skin-face.skin-controls .speed-module.speed-craft {grid-column:2;grid-row:1;align-self:center;grid-template-columns:minmax(0,1fr);grid-template-areas:"summary" "track" "help";padding:6px;gap:4px;}
+ .standalone-remote.skin-face.skin-controls .speed-summary {flex-direction:column;align-items:flex-start;gap:0;}
+ .standalone-remote.skin-face.skin-controls .speed-title {align-self:flex-start;text-align:left;}
+ .standalone-remote.skin-face.skin-controls .speed-module.speed-craft .speed-track {width:100%;}
+ .standalone-remote.skin-face.skin-controls .speed-kind--dial .speed-rail {inset:26px 14px 28px;}
+ .standalone-remote.skin-face.skin-controls .speed-kind--dial .speed-handle {width:54px;height:54px;}
+ .standalone-remote.skin-face.skin-controls .speed--signal .speed-handle {width:7px;height:34px;}
+ .standalone-remote.skin-face.skin-controls :is(.speed-kind--linear,.speed-kind--roller) .speed-marks b:nth-child(2) {display:none;}
+ .standalone-remote.skin-face.skin-controls :is(.speed-kind--linear,.speed-kind--roller) .speed-marks {left:-22px;right:-22px;}
+ .standalone-remote.skin-face.skin-controls .speed-kind--roller .speed-handle {width:54px;}
+ .standalone-remote.skin-face.skin-controls .speed-kind--vertical .speed-track>input {width:76px;}
+ .standalone-remote.skin-face.skin-controls .speed-kind--vertical .speed-rail {left:30px;right:54px;}
+ .standalone-remote.skin-face.skin-controls .speed-kind--vertical .speed-marks {right:-52px;}
+}
+/* A separate Play key needs its own bay. Put speed beside these wheels on
+   browser-height phones instead of shrinking the wheel to a tiny ornament. */
+@media(orientation:portrait) and (max-height:700px) {
+ .standalone-remote.skin-face.skin-controls:is(.skin--arcade,.skin--graphite,.skin--correspondent) .control-deck {grid-template-columns:minmax(0,1fr) 112px;grid-template-rows:minmax(0,1fr);gap:12px;}
+ .standalone-remote.skin-face.skin-controls:is(.skin--arcade,.skin--graphite,.skin--correspondent) .wheel-column {grid-column:1;grid-row:1;}
+ .standalone-remote.skin-face.skin-controls:is(.skin--arcade,.skin--graphite,.skin--correspondent) .speed-module.speed-craft {grid-column:2;grid-row:1;align-self:center;grid-template-columns:minmax(0,1fr);grid-template-areas:"summary" "track" "help";padding:6px;gap:4px;}
+ .standalone-remote.skin-face.skin-controls:is(.skin--arcade,.skin--graphite,.skin--correspondent) .speed-summary {flex-direction:column;align-items:flex-start;gap:0;}
+ .standalone-remote.skin-face.skin-controls:is(.skin--arcade,.skin--graphite,.skin--correspondent) .speed-title {align-self:flex-start;text-align:left;}
+ .standalone-remote.skin-face.skin-controls:is(.skin--arcade,.skin--graphite,.skin--correspondent) .control-deck .speed-craft .speed-track {width:100%;}
+ .standalone-remote.skin-face.skin-controls:is(.skin--arcade,.skin--graphite,.skin--correspondent) .wheel-column {--key-bay:60px;}
+ .standalone-remote.skin-face.skin-controls.skin--correspondent .speed-kind--dial .speed-rail {inset:26px 14px 28px;}
+ .standalone-remote.skin-face.skin-controls.skin--correspondent .speed-kind--dial .speed-handle {width:54px;height:54px;}
+ .standalone-remote.skin-face.skin-controls:is(.skin--arcade,.skin--graphite) .speed-kind--vertical .speed-track>input {width:76px;}
+ .standalone-remote.skin-face.skin-controls:is(.skin--arcade,.skin--graphite) .speed-kind--vertical .speed-rail {left:30px;right:54px;}
+ .standalone-remote.skin-face.skin-controls:is(.skin--arcade,.skin--graphite) .speed-kind--vertical .speed-marks {right:-52px;}
+}
+@media(orientation:landscape) and (max-height:700px) {
+ .standalone-remote.skin-face.skin-controls {grid-template-columns:minmax(0,1fr) minmax(260px,1fr);grid-template-rows:30px minmax(0,1fr) auto;gap:8px 24px;}
+ .standalone-remote.skin-face.skin-controls .control-deck {grid-row:2;grid-template-rows:minmax(0,1fr);gap:16px 24px;}
+ .standalone-remote.skin-face.skin-controls .control-deck .wheel-column {grid-row:1;}
+ .standalone-remote.skin-face.skin-controls .speed-module.speed-craft {grid-template-columns:minmax(0,1fr) 112px;grid-template-areas:"summary track" "help help";padding:4px 8px;}
+ .standalone-remote.skin-face.skin-controls .speed-summary {flex-direction:column;align-items:flex-start;justify-content:center;gap:0;}
+ .standalone-remote.skin-face.skin-controls .speed-title {align-self:flex-start;text-align:left;}
+ .standalone-remote.skin-face.skin-controls .control-deck .speed-craft .speed-track {width:112px;}
+ .standalone-remote.skin-face.skin-controls .control-deck .speed-kind--dial .speed-track {height:110px;}
+ .standalone-remote.skin-face.skin-controls .speed-kind--dial .speed-rail {inset:22px 20px 18px;}
+ .standalone-remote.skin-face.skin-controls .speed-kind--dial .speed-handle {width:54px;height:54px;}
+ .standalone-remote.skin-face.skin-controls .speed--signal .speed-handle {width:7px;height:34px;}
+ .standalone-remote.skin-face.skin-controls .control-deck .speed-kind--vertical .speed-track {height:124px;}
+ .standalone-remote.skin-face.skin-controls .speed-kind--vertical .speed-track>input {height:102px;width:76px;}
+ .standalone-remote.skin-face.skin-controls .speed-kind--vertical .speed-rail {inset:22px 66px 44px 30px;}
+ .standalone-remote.skin-face.skin-controls .speed-kind--vertical .speed-marks {right:-52px;}
+ .standalone-remote.skin-face.skin-controls .speed-kind--roller .speed-handle {width:64px;}
+ .standalone-remote.skin-face.skin-controls :is(.speed-kind--linear,.speed-kind--roller) .speed-marks b:nth-child(2) {display:none;}
+ .standalone-remote.skin-face.skin-controls :is(.speed-kind--linear,.speed-kind--roller) .speed-marks {left:-22px;right:-22px;}
+ .standalone-remote.skin-face.skin-controls .phrase-nav {grid-column:1;grid-row:3;}
+ .standalone-remote.skin-face.skin-controls .remote-tools {grid-column:2;grid-row:3;margin-top:16px;align-self:center;}
+ .standalone-remote.skin-face.skin-controls:is(.skin--arcade,.skin--graphite,.skin--correspondent) .control-deck .wheel-column {--key-bay:0px;padding:0 68px 0 0;}
+ .standalone-remote.skin-face.skin-controls:is(.skin--arcade,.skin--graphite,.skin--correspondent) .jog-wheel .transport-button {left:calc(100% + 16px);top:50%;width:52px;height:52px;transform:translateY(-50%);}
+ .standalone-remote.skin-face.skin-controls:is(.skin--arcade,.skin--graphite,.skin--correspondent) .jog-wheel .transport-button:active {transform:translateY(-50%) translateY(1px);}
+ .standalone-remote.skin-face.skin-controls .readout--graphite .printed-time::before,.standalone-remote.skin-face.skin-controls .readout--graphite .printed-time::after {display:inline;}
+ .standalone-remote.skin-face.skin-controls .readout--graphite .printed-time::after {margin-left:8px;}
+}
+@media(orientation:landscape) and (max-height:350px) {
+ .standalone-remote.skin-face.skin-controls .transport-readout .display-kicker {display:none;}
+ .standalone-remote.skin-face.skin-controls .transport-readout.readout-craft {grid-template-rows:auto;gap:0;padding:6px 10px;}
+ .standalone-remote.skin-face.skin-controls .transport-readout :is(.timecode,.state-label) {grid-row:1;}
+ .standalone-remote.skin-face.skin-controls .control-deck .speed-kind--vertical .speed-track {height:112px;}
+ .standalone-remote.skin-face.skin-controls .speed-kind--vertical .speed-track>input {height:90px;}
+ .standalone-remote.skin-face.skin-controls .speed-kind--vertical .speed-marks b:nth-child(2) {display:none;}
+}

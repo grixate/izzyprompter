@@ -69,3 +69,6 @@ Correspondent refinement, 2026-10-13: keep its recessed finger well as the singl
 
 
 20 October — final audit keeps the selected14. Useful speed range is0.20–1.00, step0.01; legacy fast settings normalize without losing scripts/layout. Observatory regains three elliptical orbits and a readable chronometer. Unit labels, short-scale collisions, Original line metrics and rotated-rotor overflow are fixed. [Current gallery, per-skin findings and evidence](design/2026-10-20-final-audit/PASS.md). Previous previews remain preserved.
+
+
+20 October — selected14 now separate speed from phrase/tool actions with an inactive touch gap, larger52–56px actions and11px legends. Name/value stay grouped. Compact side controls and landscape Play placement preserve a usable jog. [Current mobile touch review and evidence](design/2026-10-20-touch-layout/PASS.md). Existing mechanics, time displays, speed bounds and editor behavior are preserved.

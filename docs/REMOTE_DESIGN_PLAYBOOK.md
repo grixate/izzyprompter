@@ -263,6 +263,8 @@ when changing finishes; do not animate it through low-contrast intermediate colo
 
 Ask five questions: Is it recognisably its own idea? Is the material coherent? Is Play immediately clear? Does it feel as carefully made as the best existing study? Does it remain beautiful without motion or branding?
 
+For the selected phone remotes, budget the speed and phrase/tool sections as separate touch zones: at least20px between their hit targets,52px secondary actions,11px scale legends and8px between visible legend strings. Group speed name/value. Preserve a usable jog through compact layout changes rather than shrinking it to make crowded controls fit. Numeric legend flex items must not shrink below their text: non-overlapping item rectangles alone do not prove non-overlapping glyphs. These are IZZY house targets, not a claim of WCAG certification.
+
 When checking fixed-viewport geometry, rotate the wheel before resizing. A visually round rotor still has a square CSS box; its transformed corners must not increase scrollable overflow. Keep the clipping window separate from external mechanisms and transport buttons.
 
 A broken control, illegible essential state, misleading indicator or visibly unfinished mechanism blocks acceptance regardless of novelty. If the craft is sound but the concept is weak, keep it as an explicitly labelled exploration or remove the new candidate from the round; do not silently replace an existing owner's favourite. Approval remains a human design decision, not a numeric claim of guaranteed taste.

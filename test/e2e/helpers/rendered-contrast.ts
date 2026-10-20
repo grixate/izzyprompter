@@ -7,7 +7,7 @@ export async function checkRenderedContrast(page: Page, testInfo: TestInfo) {
     ['.remote-identity strong', 4.5], ['.network-state', 4.5], ['.remote-link-state small', 4.5],
     ['.display-kicker', 4.5], ['.timecode:not(:has(.counter-digits))', 3], ['.state-label', 4.5],
     ['.counter-drum', 3], ['.counter-colon', 3], ['.counter-fraction', 4.5],
-    ['.speed-exact',4.5], ['.speed-help',4.5], ['.speed-title', 4.5], ['.speed-module strong', 4.5], ['.speed-module button', 4.5],
+    ['.speed-exact',4.5], ['.speed-help',4.5], ['.speed-title', 4.5], ['.speed-marks b',4.5], ['.speed-module strong', 4.5], ['.speed-module button', 4.5],
     ['.phrase-nav button small', 4.5], ['.phrase-count', 4.5], ['.phrase-count small', 4.5],
     ['.quick-edit-trigger', 4.5], ['.transport-button svg', 3], ['.remote-finish-button svg', 3],
   ] as const

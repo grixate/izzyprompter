@@ -10,9 +10,9 @@ function RemotePreview({ peer }: { peer: DirectPeer }) {
   const [pairing, setPairing] = useState(true)
   useEffect(() => { if (state.connection === 'connected') setPairing(false) }, [state.connection])
   return <div className="local-remote-page">
-    {state.snapshot && <RemoteSurface sessionId="DIRECT" session={peer.view()} />}
+    {state.snapshot && <RemoteSurface sessionId="DIRECT" session={peer.view()} onPairing={()=>setPairing(true)} />}
     {!state.snapshot && <main className="local-workspace"><a href="/local">Local scripts</a><OfflinePreparation /></main>}
-    <nav className="local-remote-tools"><button onClick={() => setPairing(true)}>Direct pairing</button><span role="status">{state.message}</span></nav>
+    {!state.snapshot&&<nav className="local-remote-tools"><button onClick={() => setPairing(true)}>Direct pairing</button><span role="status">{state.message}</span></nav>}
     {pairing && <PairingDialog onClose={() => setPairing(false)}>
       <PairingPanel peer={peer} host={false} onClose={() => setPairing(false)} />
     </PairingDialog>}

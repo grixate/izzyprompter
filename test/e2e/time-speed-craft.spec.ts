@@ -72,7 +72,7 @@ test('fourteen self-contained instruments keep paired precision',async({page:edi
     const sb=(await speed.boundingBox())!;expect(sb.width).toBeGreaterThanOrEqual(44);expect(sb.height).toBeGreaterThanOrEqual(44)
     expect(await remote.evaluate(()=>document.documentElement.scrollWidth-innerWidth)).toBeLessThanOrEqual(1)
     const rb=(await remote.locator('.transport-readout').boundingBox())!,wb=(await remote.locator('.jog-wheel').boundingBox())!
-    expect(rb.y+rb.height).toBeLessThanOrEqual(wb.y)
+    expect(rb.x<wb.x+wb.width-1&&rb.x+rb.width>wb.x+1&&rb.y<wb.y+wb.height-1&&rb.y+rb.height>wb.y+1).toBe(false)
    }
    await remote.locator('.remote-header').click()
    await checkRenderedContrast(remote,info)

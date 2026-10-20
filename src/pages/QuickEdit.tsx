@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { RemoteDrawer } from '../components/RemoteDrawer'
 import { QuickEditTrigger } from '../components/SecondaryControls'
 import type { IzzyDocumentV1 } from '../domain/document'
 import { loadQuickEditDraft, saveQuickEditDraft, type QuickEditDraftV1 } from '../domain/storage'
@@ -18,7 +19,6 @@ export function QuickEdit(props: Props) {
   const dialog = useRef<HTMLDialogElement>(null)
   const field = useRef<HTMLTextAreaElement>(null)
   const trigger = useRef<HTMLButtonElement>(null)
-  const returnFocus = useRef<HTMLElement | null>(null)
   const alive = useRef(true)
   const restored = useRef(false)
   const draftRef = useRef<Draft | null>(null)
@@ -52,20 +52,6 @@ export function QuickEdit(props: Props) {
       setOpen(true)
     }
   }, [props.epoch])
-  useEffect(() => {
-    if (open && !dialog.current?.open) {
-      // Touch browsers need not focus a tapped button. The explicit invoker,
-      // not the previously active element, is the reliable return destination.
-      returnFocus.current = trigger.current
-      dialog.current?.showModal()
-      field.current?.focus()
-    } else if (!open && dialog.current?.open) {
-      dialog.current.close()
-      const destination = returnFocus.current
-      if (destination?.isConnected && !(destination instanceof HTMLButtonElement && destination.disabled)) destination.focus()
-      else document.querySelector<HTMLElement>('.wheel-input')?.focus()
-    }
-  }, [open])
   useEffect(() => {
     if (!open || observer || props.connection === 'connected') return
     blocked.current = true
@@ -184,10 +170,10 @@ export function QuickEdit(props: Props) {
       {busy ? 'CHECKPOINTING…' : props.editing.active ? 'VIEW LIVE EDIT' : 'QUICK EDIT'}
     </QuickEditTrigger>
     {!open && message && <p className="quick-edit-feedback" role="status">{message}</p>}
-    <dialog ref={dialog} className="quick-edit-dialog" aria-labelledby="quick-edit-title" aria-describedby="quick-edit-explanation" data-state={state}
-      onCancel={(event) => { event.preventDefault(); if (observer || synced) void close() }}>
-      <header><span>R–01 / {observer ? 'LIVE MONITOR' : 'QUICK EDIT'}</span><span className={`edit-sync ${state}`} role="status">{observer ? 'READ ONLY · LIVE' : message ? 'DRAFT KEPT' : synced ? 'LIVE ON ALL SCREENS' : 'SYNCING…'}</span></header>
-      <h1 id="quick-edit-title">{observer ? 'One text. Every screen.' : 'A small correction.'}</h1>
+    <RemoteDrawer dialogRef={dialog} returnTo={trigger} open={open} labelledBy="quick-edit-title" describedBy="quick-edit-explanation" state={state}
+      onRequestClose={() => { if (observer || synced) void close() }}>
+      <header><span>{observer ? 'LIVE MONITOR' : 'QUICK EDIT'}</span><span className={`edit-sync ${state}`} role="status">{observer ? 'READ ONLY · LIVE' : message ? 'DRAFT KEPT' : synced ? 'LIVE ON ALL SCREENS' : 'SYNCING…'}</span></header>
+      <div className="quick-edit-body"><h1 id="quick-edit-title">{observer ? 'One text. Every screen.' : 'A small correction.'}</h1>
       <p className="edit-explanation" id="quick-edit-explanation">{observer ? 'Another device is editing. Changes appear here as they happen.' : 'Playback is paused. Your changes appear on every connected screen as you type.'}</p>
       <label htmlFor="quick-edit-text">CURRENT PARAGRAPH</label>
       <textarea id="quick-edit-text" ref={field} value={observer ? observedText : draft?.text ?? ''} readOnly={Boolean(observer)} spellCheck
@@ -205,10 +191,10 @@ export function QuickEdit(props: Props) {
         <button disabled={busy || props.connection !== 'connected'} onClick={() => void resume()}>RESUME LIVE EDIT</button>
         <button disabled={busy || props.connection !== 'connected'} onClick={() => void resume(true)}>USE LIVE TEXT</button>
       </div></div>}
-      <footer><span>{observer ? 'SHARED SCRIPT' : 'TEXT ONLY · AUTO-SYNC'}</span>
+      </div><footer><span>{observer ? 'SHARED SCRIPT' : 'TEXT ONLY · AUTO-SYNC'}</span>
         {message && !observer && <button onClick={() => void close(true)} disabled={busy || saving}>CLOSE · KEEP DRAFT</button>}
         <button className="edit-done" disabled={busy || (!observer && !synced)} onClick={() => void close()}>DONE <span>↗</span></button>
       </footer>
-    </dialog>
+    </RemoteDrawer>
   </>
 }

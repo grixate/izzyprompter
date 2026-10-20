@@ -115,7 +115,7 @@ test('portable ZIP relocates, runs with only bundled runtimes, pairs/edits witho
     await remote.getByRole('button', { name: 'Play', exact: true }).click()
     await eventually(async () => assert.ok(await display.locator('.script-track').evaluate((element) => -new DOMMatrixReadOnly(getComputedStyle(element).transform).m42) > 20))
     await remote.getByRole('button', { name: 'Quick edit current paragraph' }).click()
-    await remote.getByRole('textbox').fill('Portable correction. ' + paragraph)
+    await remote.getByRole('textbox', { name: 'CURRENT PARAGRAPH' }).fill('Portable correction. ' + paragraph)
     await eventually(async () => assert.equal(await display.locator('.script-track p').first().textContent(), 'Portable correction. ' + paragraph))
     await eventually(async () => assert.equal(await editor.locator('.pairing-live-edit p').textContent(), 'Portable correction. ' + paragraph))
     await eventually(async () => assert.equal(await remote.getByRole('button', { name: /DONE/ }).isEnabled(), true))

@@ -1,10 +1,11 @@
-import { Fragment, useEffect, useRef, useState, type CSSProperties } from 'react'
-import { ArrowLeft, ArrowUpRight, Check, Maximize2, RotateCcw } from 'lucide-react'
+import { Fragment, useEffect, useId, useRef, useState, type CSSProperties } from 'react'
+import { ArrowLeft, ArrowUpRight, Check, Maximize2, RotateCcw, SwatchBook } from 'lucide-react'
 import { JogControls, TransportReadout } from '../components/JogControls'
 import { BASE_PIXELS_PER_SECOND } from '../prompt/motion'
 import './jog-lab.css'
 import { skins } from '../product/catalog'
 import '../product/skins.css'
+import { RemoteDrawer } from '../components/RemoteDrawer'
 import { PhraseNavigation, QuickEditTrigger } from '../components/SecondaryControls'
 
 const studies = [
@@ -71,9 +72,10 @@ const sample = [
   'One more breath. One more take. You have found your rhythm.',
 ]
 
-function StudyDevice({ study, reset, sensitivity, motor, large, controlsReview }: {
-  study: Study; reset: number; sensitivity: number; motor: boolean; large: boolean; controlsReview: boolean
+function StudyDevice({ study, reset, sensitivity, motor, large, controlsReview, standalone=false, onChoose }: {
+  study: Study; reset: number; sensitivity: number; motor: boolean; large: boolean; controlsReview: boolean; standalone?:boolean; onChoose?:()=>void
 }) {
+  const editId=useId()
   const [lines, setLines] = useState<string[]>([...sample])
   const [editing, setEditing] = useState(false)
   const [position, setPosition] = useState(310)
@@ -111,9 +113,10 @@ function StudyDevice({ study, reset, sensitivity, motor, large, controlsReview }
     setPosition(value => Math.max(0, Math.min(duration, value + delta * sensitivity)))
   }
   const currentLine = Math.min(sample.length - 1, Math.floor(position / duration * sample.length))
-  return <div className={`lab-device lab-device--${study.id}${controlsReview || Number(study.number) >= 16 ? ` skin-face skin--${study.id}` : ''}${large ? ' lab-device--large' : ''}${controlsReview?' skin-controls':''}`}
+  const Surface=standalone?'main':'div'
+  return <Surface className={standalone?`remote-panel standalone-remote skin-face skin--${study.id} skin-controls demo-remote`:`lab-device lab-device--${study.id}${controlsReview || Number(study.number) >= 16 ? ` skin-face skin--${study.id}` : ''}${large ? ' lab-device--large' : ''}${controlsReview?' skin-controls':''}`}
     style={{ '--lab-angle': `${angle}rad` } as CSSProperties}>
-    <div className="lab-device-top"><span className="lab-model">R–{study.number}</span><span className="lab-device-mark">IZZY<br />DESIGN STUDY</span></div>
+    {standalone?<header className="remote-header"><div className="remote-identity"><strong>R–{study.number}</strong><span className="remote-brand">IZZY / DEMO</span></div><div className="remote-link-state"><span className="network-state connected">LOCAL</span><small>SYNTHETIC SCRIPT</small></div></header>:<div className="lab-device-top"><span className="lab-model">R–{study.number}</span><span className="lab-device-mark">IZZY<br />DESIGN STUDY</span></div>}
     <TransportReadout skin={study.id} position={position} speed={speed} playing={playing} scrubbing={dragging} label="LOCAL / DEMO" />
     <JogControls skin={study.id} spinOnPlayback={motor} enabled playing={playing} speed={speed} position={position} maximum={duration}
       positionText={`${Math.round(position / duration * 100)} percent through the demo script`}
@@ -124,18 +127,19 @@ function StudyDevice({ study, reset, sensitivity, motor, large, controlsReview }
       <PhraseNavigation enabled index={currentLine} total={lines.length}
         onPrevious={() => setPosition(Math.max(0,currentLine-1)*duration/lines.length)}
         onNext={() => setPosition(Math.min(lines.length-1,currentLine+1)*duration/lines.length)} />
-      <QuickEditTrigger onClick={() => {setPlaying(false);setEditing(true)}} />
+      <div className={standalone?"remote-tools":undefined}><QuickEditTrigger onClick={event => {event.currentTarget.focus({preventScroll:true});setPlaying(false);setEditing(true)}} />{standalone&&<button className="remote-finish-button" aria-label="Change remote skin" onClick={event=>{event.currentTarget.focus({preventScroll:true});onChoose?.()}}><SwatchBook size={19}/></button>}</div>
     </>}
-    <div className="lab-script-monitor" aria-label={`${study.name} script preview`}>
+    {!standalone&&<div className="lab-script-monitor" aria-label={`${study.name} script preview`}>
       <div className="lab-monitor-label"><span>{dragging ? 'SCRUBBING' : playing ? 'READING' : 'CUE'}</span><span>{String(currentLine + 1).padStart(2, '0')} / 08</span></div>
-      {controlsReview && editing ? <div className="lab-inline-edit"><label>DEMO / CURRENT PARAGRAPH<textarea autoFocus aria-label="Demo current paragraph" value={lines[currentLine]} onChange={event => setLines(value => value.map((line,index) => index===currentLine?event.target.value:line))} /></label><button onClick={() => setEditing(false)}>Done</button></div> : <p>{lines[currentLine]}</p>}
+      <p>{lines[currentLine]}</p>
       <div className="lab-progress"><span style={{ width: `${position / duration * 100}%` }} /></div>
-    </div>
-    <div className="lab-device-bottom"><span>JOG / BIDIRECTIONAL</span><span>↶ &nbsp; ↷</span></div>
-  </div>
+    </div>}
+    <RemoteDrawer open={editing} onRequestClose={()=>setEditing(false)} labelledBy={`${editId}-title`} describedBy={`${editId}-explanation`}><header><span>QUICK EDIT</span><span className="edit-sync live">LOCAL PREVIEW</span></header><div className="quick-edit-body"><h1 id={`${editId}-title`}>A small correction.</h1><p className="edit-explanation" id={`${editId}-explanation`}>Playback is paused. This changes only the synthetic demo.</p><label htmlFor={`${editId}-text`}>CURRENT PARAGRAPH</label><textarea id={`${editId}-text`} aria-label="Demo current paragraph" value={lines[currentLine]} onChange={event=>setLines(value=>value.map((line,index)=>index===currentLine?event.target.value:line))}/></div><footer><span>LOCAL / DEMO</span><button className="edit-done" onClick={()=>setEditing(false)}>Done <span>↗</span></button></footer></RemoteDrawer>
+    {!standalone&&<div className="lab-device-bottom"><span>JOG / BIDIRECTIONAL</span><span>↶ &nbsp; ↷</span></div>}
+  </Surface>
 }
 
-export default function JogLabPage({ review }: { review?: 'objects'|'time-speed'|'collection' } = {}) {
+export default function JogLabPage({ review, device=false }: { device?:boolean; review?: 'objects'|'time-speed'|'collection' } = {}) {
   const collectionReview=(new URLSearchParams(location.search).get('review') ?? review)==='collection'
   const timeReview=(new URLSearchParams(location.search).get('review') ?? review)==='time-speed'
   const objectsReview = (new URLSearchParams(location.search).get('review') ?? review) === 'objects'
@@ -149,13 +153,19 @@ export default function JogLabPage({ review }: { review?: 'objects'|'time-speed'
   const [favorite, setFavorite] = useState<Study['id'] | null>(null)
   const [sensitivity, setSensitivity] = useState(1)
   const [motor, setMotor] = useState(true)
+  const deviceMode=controlsReview&&(device||new URLSearchParams(location.search).get('device')==='1')
+  const [choosing,setChoosing]=useState(false)
   const [reset, setReset] = useState(0)
   useEffect(() => {
     const before = document.title
-    document.title = 'IZZY — Wheel studies'
+    document.title = deviceMode?'IZZY — Remote preview':'IZZY — Wheel studies'
     return () => { document.title = before }
-  }, [])
+  }, [deviceMode])
   const visible = view === 'focus' ? collection.filter(study => study.id === selected) : collection
+  if(deviceMode)return <>
+    <StudyDevice key={selected} study={collection.find(s=>s.id===selected)!} reset={reset} sensitivity={sensitivity} motor={motor} large controlsReview standalone onChoose={()=>setChoosing(true)}/>
+    <RemoteDrawer open={choosing} onRequestClose={()=>setChoosing(false)} labelledBy="demo-skins-title"><header><span>SELECTED FOURTEEN</span></header><div className="quick-edit-body"><h1 id="demo-skins-title">Choose an instrument.</h1><div className="demo-skin-picker">{collection.map(study=><button key={study.id} aria-label={'Use '+study.name} aria-pressed={selected===study.id} onClick={()=>{setSelected(study.id);setChoosing(false)}}>{study.name}</button>)}</div></div><footer><button className="edit-done" onClick={()=>setChoosing(false)}>Done</button></footer></RemoteDrawer>
+  </>
   return <main className={`jog-lab ${view === 'focus' ? 'jog-lab--focus' : ''} ${controlsReview?'jog-lab--controls':''}`}>
     <header className="lab-header"><a href="/" className="lab-wordmark"><span>I</span> IZZY <span className="lab-wordmark-divider">/</span> DESIGN LAB</a><a href="/" className="lab-back"><ArrowLeft size={14} />Back to IZZY</a></header>
     <section className="lab-intro"><div><p className="lab-eyebrow">{collectionReview?'SELECTED FOURTEEN / INSTRUMENTS':timeReview?'TIME & SPEED / FIRST BATCH':objectsReview?'REFERENCE / GLASS & ARCADE':controlsReview?'CURATED / CONTROL DETAILS':'EXPERIMENT 001 / THE JOG WHEEL'}</p><h1>{collectionReview?'An instrument of your own.':timeReview?'A different kind of time.':objectsReview?'Two familiar worlds.':controlsReview?'One complete instrument.':<>Less interface.<br />More instrument.</>}</h1></div><div className="lab-intro-note"><span className="lab-orange-dot" />{collectionReview?<><p>Fourteen selected instruments. One self-contained speed control each.</p><small>Drag the control or type an exact value. Synthetic local demo.</small></>:timeReview?<><p>Groove, Clear and Arcade: three distinct clocks and three real speed controls.</p><small>First batch of the selected fourteen. Synthetic local demo.</small></>:objectsReview?<><p>Graphite glass inspired by Phone (1). A paddle instrument inspired by EGRET II.</p><small>Local demo. Play, scrub, phrase keys and Quick Edit work.</small></>:controlsReview?<><p>First pass: matching lower controls, an engraved Field key and a round Signal key.</p><small>Local demo. Try Play, scrub, phrase keys and Quick Edit.</small></>:<><p>Twenty-six studies. One familiar gesture.<br />Six collections. Different ways to feel it.</p><small>R–03 / Orbit is your default candidate. The live remote stays as it is.</small></>}</div></section>

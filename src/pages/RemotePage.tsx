@@ -1,6 +1,6 @@
 import { RemoteBrand } from '../components/BrandLogo'
 import { PhraseNavigation } from '../components/SecondaryControls'
-import { SwatchBook } from 'lucide-react'
+import { Link2, SwatchBook } from 'lucide-react'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { JogControls, TransportReadout } from '../components/JogControls'
 import { legacySessionScriptToDocument } from '../domain/document'
@@ -16,6 +16,7 @@ import { latestReading, measuredPosition } from '../realtime/reading'
 import { serverPosition } from '../prompt/motion'
 import { QuickEdit } from './QuickEdit'
 import { boundedSpeed } from '../realtime/keyboard'
+import type { TransportState } from '../realtime/protocol'
 import type { SessionControllerView } from '../realtime/controller'
 import { useRemoteAppearance } from '../product/useRemoteAppearance'
 import { RemoteSkinLibrary } from '../product/RemoteSkinLibrary'
@@ -27,7 +28,7 @@ export function RemotePage({ sessionId }: { sessionId: string }) {
   return <RemoteSurface sessionId={sessionId} session={session} />
 }
 
-export function RemoteSurface({ sessionId, session }: { sessionId: string; session: SessionControllerView }) {
+export function RemoteSurface({ sessionId, session, onPairing }: { sessionId: string; session: SessionControllerView; onPairing?:()=>void }) {
   const { connection, transport, script, presence, clockOffset, reading, send, request, editing, connectionId, sessionEpoch, reconnect, now } = session
   const controlsReady = connection === 'connected' && !editing.active
   const appearance = useRemoteAppearance(sessionId, connection === 'connected')
@@ -41,6 +42,7 @@ export function RemoteSurface({ sessionId, session }: { sessionId: string; sessi
   const [localSpeed, setLocalSpeed] = useState(restoredStorage.settings.speed)
   const speedIntent = useRef<number | null>(null)
   const speedSequence = useRef(0)
+  const speedRevisionFloor = useRef(0)
   const latestTransport = useRef(transport)
   latestTransport.current = transport
   const [position, setPositionState] = useState(0)
@@ -63,6 +65,7 @@ export function RemoteSurface({ sessionId, session }: { sessionId: string; sessi
     if (controlsReady) return
     speedIntent.current = null
     speedSequence.current += 1
+    speedRevisionFloor.current = 0
     setLocalSpeed(latestTransport.current.speed)
     if (seekTimerRef.current !== null) window.clearTimeout(seekTimerRef.current)
     seekTimerRef.current = null
@@ -88,7 +91,7 @@ export function RemoteSurface({ sessionId, session }: { sessionId: string; sessi
   useEffect(() => {
     if (connection !== 'connected') return
     setLocalPlaying(transport.status === 'playing')
-    if (speedIntent.current === null) setLocalSpeed(transport.speed)
+    if (speedIntent.current === null && transport.revision >= speedRevisionFloor.current) setLocalSpeed(transport.speed)
     if (!isDragging) setPosition(measuredPosition(reading, transport, script.revision, clockOffset, now?.()) ?? serverPosition(transport, clockOffset, now?.()))
   }, [clockOffset, connection, transport, reading, script.revision])
 
@@ -164,9 +167,10 @@ export function RemoteSurface({ sessionId, session }: { sessionId: string; sessi
     setLocalSpeed(speed)
     // Earlier reading checkpoints and acknowledgements must not undo a newer
     // drag/keyboard intent. The existing protocol still owns the final value.
-    void request<{ speed: number }>('transport:set_speed', { speed }).then(result => {
+    void request<TransportState>('transport:set_speed', { speed }).then(result => {
       if (speedIntent.current !== sequence) return
       speedIntent.current = null
+      if (result.ok) speedRevisionFloor.current = Math.max(speedRevisionFloor.current, result.value.revision)
       setLocalSpeed(result.ok ? result.value.speed : latestTransport.current.speed)
     })
   }
@@ -212,6 +216,7 @@ export function RemoteSurface({ sessionId, session }: { sessionId: string; sessi
       <QuickEdit sessionId={sessionId} epoch={sessionEpoch} connectionId={connectionId} connection={connection}
         document={izzyDocument} revision={script.revision} editing={editing} request={request}
         canEdit={hasDisplayPosition} beforeOpen={flushSeek} />
+      {onPairing&&<button className="remote-finish-button" aria-label="Direct pairing" onClick={onPairing}><Link2 size={19}/></button>}
       {!appearance.local && <><button className="remote-finish-button" aria-label="Change remote skin" aria-describedby="remote-current-skin" title={`Change remote skin · ${skinById(appearance.skin).name}`} aria-haspopup="dialog" aria-expanded={finishOpen} aria-controls={finishOpen ? 'remote-skin-library' : undefined} onClick={event => { event.currentTarget.focus(); flushSeek(); setFinishOpen(true) }}><SwatchBook size={19} strokeWidth={1.6} /></button><span id="remote-current-skin" className="sr-only" aria-live="polite">Current skin: {skinById(appearance.skin).name}</span></>}
       </div>
       <footer className="remote-footer"><span>TURN TO SEEK</span><span>PRESS {localPlaying ? 'PAUSE' : 'PLAY'} TO {localPlaying ? 'HOLD' : 'RUN'}</span></footer>

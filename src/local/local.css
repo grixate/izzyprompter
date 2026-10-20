@@ -33,7 +33,7 @@
 .local-reading-controls { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 14px 0; }
 .local-reading-controls button { min-height: 44px; border: 1px solid #515448; padding: 8px; color: #dce0d1; background: transparent; font: 10px/1.5 "SFMono-Regular", Consolas, monospace; cursor: pointer; }
 .local-reading-controls button:disabled { opacity: .45; cursor: default; }
-.local-remote-page { height: 100dvh; overflow-y: auto; }
+.local-remote-page { height: 100dvh; overflow: hidden; }
 .local-remote-tools { display: flex; gap: 14px; align-items: center; padding: 20px; background: #171816; color: #eeefeb; font-size: 12px; }
 .local-pairing-overlay { position: fixed; z-index: 40; inset: 0; width: 100%; height: 100%; max-width: none; max-height: none; margin: 0; box-sizing: border-box; border: 0; background: transparent; overflow: auto; padding: 24px; overscroll-behavior: contain; }
 .local-pairing-overlay::backdrop { background: #111c; }

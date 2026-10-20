@@ -38,7 +38,7 @@ test('typing is live on two displays, the editor, and another phone before Done'
     await expect(remote.getByRole('textbox', { name: 'CURRENT PARAGRAPH' })).toHaveValue(paragraphs[1])
     await expect(display.locator('.display-footer')).toContainText('STANDBY')
     await observer.getByRole('button', { name: 'Quick edit current paragraph' }).click()
-    await expect(observer.getByRole('textbox')).toHaveAttribute('readonly', '')
+    await expect(observer.getByRole('textbox', { name: 'CURRENT PARAGRAPH' })).toHaveAttribute('readonly', '')
     const originalAnchor = await display.evaluate(() => {
       const id = location.pathname.split('/').at(-1)!
       return JSON.parse(localStorage.getItem('izzy.display-positions')!).data[id].anchor as { blockId: string; characterOffset: number }
@@ -46,10 +46,10 @@ test('typing is live on two displays, the editor, and another phone before Done'
     expect(originalAnchor.characterOffset).toBeGreaterThan(0)
     const prefix = 'Live correction 🎥 — café. '
     const corrected = prefix + paragraphs[1]
-    await remote.getByRole('textbox').fill(corrected)
+    await remote.getByRole('textbox', { name: 'CURRENT PARAGRAPH' }).fill(corrected)
     for (const screen of [display, backup]) await expect(screen.locator('.script-track p').nth(1)).toHaveText(corrected)
     await expect(editor.locator('.pairing-live-edit p')).toHaveText(corrected)
-    await expect(observer.getByRole('textbox')).toHaveValue(corrected)
+    await expect(observer.getByRole('textbox', { name: 'CURRENT PARAGRAPH' })).toHaveValue(corrected)
     await expect(remote.getByText('LIVE ON ALL SCREENS')).toBeVisible()
     expect(await display.locator('p[data-block-id]').evaluateAll((items) => items.map((item) => (item as HTMLElement).dataset.blockId))).toEqual(ids)
     // The original word after the insertion is still at the reading line.
@@ -64,8 +64,8 @@ test('typing is live on two displays, the editor, and another phone before Done'
     }
     await remote.screenshot({ path: testInfo.outputPath('quick-edit-phone.png') })
     const last = corrected + ' Last keystrokes.'
-    await remote.getByRole('textbox').press('End')
-    await remote.getByRole('textbox').fill(last)
+    await remote.getByRole('textbox', { name: 'CURRENT PARAGRAPH' }).press('End')
+    await remote.getByRole('textbox', { name: 'CURRENT PARAGRAPH' }).fill(last)
     await expect(display.locator('.script-track p').nth(1)).toHaveText(last)
     await remote.getByRole('button', { name: 'DONE', exact: false }).click()
     await expect(remote.getByRole('dialog')).not.toBeVisible()
@@ -92,21 +92,21 @@ test('recovered offline draft never overwrites a correction from another phone',
     await phoneContext.setOffline(true)
     await expect(remote.locator('.network-state')).not.toHaveText('CONNECTED')
     const draft = 'Unsent old draft. ' + paragraphs[1]
-    await remote.getByRole('textbox').fill(draft)
+    await remote.getByRole('textbox', { name: 'CURRENT PARAGRAPH' }).fill(draft)
     await expect(other.getByRole('button', { name: 'Quick edit current paragraph' })).toHaveText('QUICK EDIT')
     await other.getByRole('button', { name: 'Quick edit current paragraph' }).click()
     const correction = 'Accepted from the other phone. ' + paragraphs[1]
-    await other.getByRole('textbox').fill(correction)
+    await other.getByRole('textbox', { name: 'CURRENT PARAGRAPH' }).fill(correction)
     await expect(display.locator('.script-track p').nth(1)).toHaveText(correction)
     await other.getByRole('button', { name: 'DONE', exact: false }).click()
     await phoneContext.setOffline(false)
     await expect(remote.locator('.network-state')).toHaveText('CONNECTED')
     await remote.getByRole('button', { name: 'RESUME LIVE EDIT' }).click()
     await expect(remote.getByRole('alert')).toContainText('The live text changed')
-    await expect(remote.getByRole('textbox')).toHaveValue(draft)
+    await expect(remote.getByRole('textbox', { name: 'CURRENT PARAGRAPH' })).toHaveValue(draft)
     await expect(display.locator('.script-track p').nth(1)).toHaveText(correction)
     await remote.getByRole('button', { name: 'USE LIVE TEXT' }).click()
-    await expect(remote.getByRole('textbox')).toHaveValue(correction)
+    await expect(remote.getByRole('textbox', { name: 'CURRENT PARAGRAPH' })).toHaveValue(correction)
     await expect(remote.getByText('LIVE ON ALL SCREENS')).toBeVisible()
     await remote.getByRole('button', { name: 'DONE', exact: false }).click()
     await expect(remote.getByRole('dialog')).not.toBeVisible()
@@ -124,13 +124,13 @@ test('offline draft survives refresh and is sent only after explicit resume', as
     await phoneContext.setOffline(true)
     await expect(remote.locator('.network-state')).not.toHaveText('CONNECTED')
     const draft = 'Unsent correction. ' + paragraphs[1]
-    await remote.getByRole('textbox').fill(draft)
+    await remote.getByRole('textbox', { name: 'CURRENT PARAGRAPH' }).fill(draft)
     await expect(display.locator('.script-track p').nth(1)).toHaveText(paragraphs[1])
     await phoneContext.setOffline(false)
     await expect(remote.locator('.network-state')).toHaveText('CONNECTED')
     await remote.reload()
     await expect(remote.getByRole('dialog')).toBeVisible()
-    await expect(remote.getByRole('textbox')).toHaveValue(draft)
+    await expect(remote.getByRole('textbox', { name: 'CURRENT PARAGRAPH' })).toHaveValue(draft)
     await expect(display.locator('.script-track p').nth(1)).toHaveText(paragraphs[1])
     await remote.getByRole('button', { name: 'RESUME LIVE EDIT' }).click()
     await expect(display.locator('.script-track p').nth(1)).toHaveText(draft)

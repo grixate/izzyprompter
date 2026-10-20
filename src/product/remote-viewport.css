@@ -1,0 +1,169 @@
+/* A remote is one stationary object. Allocate the remaining space to its wheel;
+   never shrink touch controls or let intrinsic artwork dictate the page height. */
+.standalone-remote.skin-face {
+  height:100dvh;min-height:0;max-height:100dvh;overflow:hidden;
+  display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:auto auto minmax(0,1fr) auto auto;
+  gap:8px;padding: max(12px,env(safe-area-inset-top)) max(18px,env(safe-area-inset-right)) max(12px,env(safe-area-inset-bottom)) max(18px,env(safe-area-inset-left));
+}
+.standalone-remote.skin-face .remote-header {position:static;padding:0;min-height:34px;grid-row:1;}
+.standalone-remote.skin-face .transport-readout {position:relative;inset:auto;transform:none;width:100%;min-height:0;margin:0;grid-row:2;}
+.standalone-remote.skin-face .control-deck {
+  grid-row:3;display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,1fr) auto;
+  width:100%;height:100%;min-height:0;gap:10px;padding:0;align-items:stretch;justify-items:center;
+}
+.standalone-remote.skin-face .wheel-column {
+  --key-bay:0px;--jog-size:min(94cqw,calc(100cqh - var(--key-bay) - 36px),310px);
+  container-type:size;position:relative;display:grid;place-items:center;width:100%;height:100%;min-height:0;padding:0;gap:0;
+}
+.standalone-remote.skin-face:is(.skin--graphite,.skin--glacier,.skin--correspondent,.skin--airframe,.skin--arcade) .wheel-column {--key-bay:66px;}
+.standalone-remote.skin-face .jog-wheel {width:var(--jog-size);max-width:none;flex:none;transform:translateY(calc(var(--key-bay) / -2));}
+.standalone-remote.skin-face .wheel-caption,
+.standalone-remote.skin-face .wheel-column:has(.wheel-input:focus-visible) .wheel-caption {
+  display:block;position:absolute;top:calc(50% - var(--key-bay)/2 + var(--jog-size)/2 + 6px);bottom:auto;
+  margin:0;padding:0;line-height:12px;font-size:8px;white-space:nowrap;
+}
+.standalone-remote.skin-face .transport-button {transition:none;}
+.standalone-remote.skin-face:not(:is(.skin--graphite,.skin--glacier,.skin--correspondent,.skin--airframe,.skin--arcade)) .transport-button {
+  inset:auto;left:50%;top:50%;width:30%;height:30%;min-width:45px;min-height:45px;transform:translate(-50%,-50%);
+}
+.standalone-remote.skin-face:not(:is(.skin--graphite,.skin--glacier,.skin--correspondent,.skin--airframe,.skin--arcade)) .transport-button:active {transform:translate(-50%,-50%) translateY(1px);}
+.standalone-remote.skin-face:is(.skin--graphite,.skin--glacier,.skin--correspondent,.skin--airframe,.skin--arcade) .transport-button {
+  inset:auto;left:50%;top:calc(100% + 22px);width:58%;height:45px;min-width:45px;min-height:45px;transform:translateX(-50%);
+}
+.standalone-remote.skin-face:is(.skin--graphite,.skin--glacier,.skin--correspondent,.skin--airframe,.skin--arcade) .transport-button:active {transform:translateX(-50%) translateY(1px);}
+.standalone-remote.skin-face .speed-module {width:100%;max-width:380px;margin:0;}
+.standalone-remote.skin-face .speed-module.speed-craft {gap:0 12px;}
+.standalone-remote.skin-face .speed-craft .speed-help {margin:2px 0 0;}
+.standalone-remote.skin-face .speed-craft .speed-track {height:54px;}
+.standalone-remote.skin-face .speed-kind--dial .speed-track {height:100px;}
+.standalone-remote.skin-face .speed-kind--roller .speed-track {height:76px;}
+.standalone-remote.skin-face :is(.speed--arcade,.speed--cartridge,.speed--graphite) .speed-track {height:100px;}
+.standalone-remote.skin-face .phrase-nav {grid-row:4;width:100%;margin:0;}
+.standalone-remote.skin-face .phrase-nav :is(button,.phrase-count) {min-height:45px;}
+.standalone-remote.skin-face .remote-tools {grid-row:5;min-height:45px;display:flex;align-items:stretch;gap:8px;margin:0;}
+.standalone-remote.skin-face .quick-edit-trigger {margin:0;min-height:45px;}
+.standalone-remote.skin-face .remote-finish-button {width:45px;height:45px;flex-basis:45px;}
+.standalone-remote.skin-face .remote-footer {display:none;}
+.standalone-remote.skin-face .quick-edit-feedback {position:fixed;z-index:20;bottom:64px;left:16px;right:16px;padding:12px;background:#20211e;color:#f2dac4;border:1px solid #a58668;}
+@media(max-height:700px) {
+  .standalone-remote.skin-face {gap:5px;padding-top:max(8px,env(safe-area-inset-top));padding-bottom:max(8px,env(safe-area-inset-bottom));}
+  .standalone-remote.skin-face .remote-header {min-height:30px;}
+  .standalone-remote.skin-face .remote-header strong {font-size:22px;}
+  .standalone-remote.skin-face .readout-craft {gap:4px 12px;padding-top:6px;padding-bottom:6px;}
+  .standalone-remote.skin-face .readout-craft .timecode {font-size:28px;}
+  .standalone-remote.skin-face .matrix-time,.standalone-remote.skin-face .segment-time {width:170px;}
+  .standalone-remote.skin-face .clock-faces {width:86px;}
+  .standalone-remote.skin-face .clock-number {font-size:11px;}
+  .standalone-remote.skin-face .control-deck {gap:4px;}
+  .standalone-remote.skin-face .speed-craft .speed-help {position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);}
+  .standalone-remote.skin-face .speed-kind--dial .speed-track {height:84px;width:92px;}
+  .standalone-remote.skin-face .speed-module.speed-kind--dial {grid-template-columns:minmax(0,1fr) 92px;}
+  .standalone-remote.skin-face .speed-kind--dial .speed-handle {width:56px;height:56px;}
+  .standalone-remote.skin-face .speed--signal .speed-handle {width:7px;height:36px;}
+  .standalone-remote.skin-face .speed-kind--roller .speed-track {height:66px;}
+  .standalone-remote.skin-face :is(.speed--arcade,.speed--cartridge,.speed--graphite) .speed-track {height:84px;}
+}
+/* Landscape is a two-handed instrument, not the portrait column squeezed down. */
+@media(orientation:landscape) and (max-height:700px) {
+  .standalone-remote.skin-face {width:min(100%,1000px);grid-template-columns:minmax(0,1fr) minmax(260px,1fr);grid-template-rows:34px minmax(0,1fr) 52px 45px;gap:7px 24px;}
+  .standalone-remote.skin-face .remote-header {grid-column:1 / -1;grid-row:1;}
+  .standalone-remote.skin-face .transport-readout {grid-column:2;grid-row:2;align-self:start;}
+  .standalone-remote.skin-face .control-deck {grid-column:1 / -1;grid-row:2 / -1;grid-template-columns:minmax(0,1fr) minmax(260px,1fr);grid-template-rows:minmax(0,1fr) 52px 45px;gap:7px 24px;}
+  .standalone-remote.skin-face .wheel-column {grid-column:1;grid-row:1 / -1;}
+  .standalone-remote.skin-face .speed-module {grid-column:2;grid-row:1;align-self:end;max-width:none;}
+  .standalone-remote.skin-face .speed-module.speed-craft {grid-template-columns:minmax(0,1fr) 100px;grid-template-areas:"title track" "value track";}
+  .standalone-remote.skin-face .speed-craft .speed-value {justify-content:flex-start;}
+  .standalone-remote.skin-face .speed-craft .speed-track {width:100px;height:60px;}
+  .standalone-remote.skin-face .speed-kind--dial .speed-track {height:80px;}
+  .standalone-remote.skin-face .speed-kind--roller .speed-handle {width:64px;height:32px;}
+  .standalone-remote.skin-face .phrase-nav {grid-column:2;grid-row:3;}
+  .standalone-remote.skin-face .remote-tools {grid-column:2;grid-row:4;}
+  .standalone-remote.skin-face .state-label {display:block;}
+}
+
+/* The native modal lives above the unmoving instrument, including with a keyboard. */
+.remote-drawer.quick-edit-dialog {
+  position:fixed;inset:auto 0 auto;margin:0 auto;top:calc(var(--drawer-top,0px) + var(--drawer-height,100dvh));transform:translateY(-100%);
+  width:min(640px,100%);height:min(680px,calc(var(--drawer-height,100dvh) - 12px));max-height:calc(var(--drawer-height,100dvh) - 12px);
+  padding:0;border:1px solid #626658;border-bottom:0;border-radius:20px 20px 0 0;overflow:hidden;
+  background:#22251e;color:#eef0e5;box-shadow:0 -18px 70px #0007;
+}
+.remote-drawer[open] {display:flex;flex-direction:column;}
+.remote-drawer::backdrop {background:#11130fc4;}
+.remote-drawer.quick-edit-dialog header {flex:none;min-height:48px;padding:16px 20px 12px;color:#c1c7b6;gap:12px;}
+.remote-drawer .quick-edit-body {min-height:0;flex:1;display:flex;flex-direction:column;overflow:auto;overscroll-behavior:contain;padding:16px 20px;}
+.remote-drawer.quick-edit-dialog h1 {font-size:30px;line-height:1.05;margin:0 0 10px;}
+.remote-drawer .edit-explanation {font-size:13px;line-height:1.5;margin:0 0 18px;color:#c5cabd;}
+.remote-drawer.quick-edit-dialog label {flex:none;font-size:10px;color:#bec6b2;margin-bottom:8px;}
+.remote-drawer.quick-edit-dialog textarea {flex:1;min-height:100px;height:100%;resize:none;border-radius:8px;font:18px/1.5 Georgia,serif;padding:12px;}
+.remote-drawer.quick-edit-dialog footer {flex:none;min-height:68px;margin:0;padding:10px 20px max(10px,env(safe-area-inset-bottom));gap:8px;color:#c1c7b6;}
+.remote-drawer.quick-edit-dialog button {min-height:45px;font-size:10px;}
+.remote-drawer.quick-edit-dialog .edit-done {border-radius:7px;background:#eb7b47;color:#171c12;border-color:#eb7b47;font-size:12px;}
+.demo-skin-picker {display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+@media(max-height:500px) {
+  .remote-drawer.quick-edit-dialog header {min-height:36px;padding:8px 16px;}
+  .remote-drawer .quick-edit-body {padding:10px 16px;}
+  .remote-drawer.quick-edit-dialog h1 {font-size:22px;}
+  .remote-drawer .edit-explanation {display:none;}
+  .remote-drawer.quick-edit-dialog footer {min-height:57px;padding:6px 16px max(6px,env(safe-area-inset-bottom));}
+}
+/* Structural rules outrank the material-specific size presets. */
+.standalone-remote.skin-face .control-deck .wheel-column {display:flex;flex-direction:column;justify-content:center;align-items:center;padding:0 0 var(--key-bay);gap:6px;}
+.standalone-remote.skin-face .control-deck .jog-wheel {width:min(94cqw,calc(100cqh - 24px),310px);max-width:none;transform:none;}
+.standalone-remote.skin-face .control-deck .wheel-caption,
+.standalone-remote.skin-face .control-deck .wheel-column:has(.wheel-input:focus-visible) .wheel-caption {position:static;inset:auto;flex:none;margin:0;line-height:12px;}
+.standalone-remote.skin-face .control-deck .speed-craft .speed-track {height:54px;}
+.standalone-remote.skin-face .control-deck .speed-kind--dial .speed-track {height:100px;}
+.standalone-remote.skin-face .control-deck .speed-kind--roller .speed-track {height:76px;}
+.standalone-remote.skin-face .control-deck :is(.speed--arcade,.speed--cartridge,.speed--graphite) .speed-track {height:100px;}
+@media(max-height:700px) {
+ .standalone-remote.skin-face .control-deck .speed-kind--dial .speed-track {height:84px;}
+ .standalone-remote.skin-face .control-deck .speed-kind--roller .speed-track {height:66px;}
+ .standalone-remote.skin-face .control-deck :is(.speed--arcade,.speed--cartridge,.speed--graphite) .speed-track {height:84px;}
+ .standalone-remote.skin-face .transport-readout .clock-faces {width:86px;}
+}
+@media(orientation:landscape) and (max-height:700px) {
+ .standalone-remote.skin-face .transport-readout {padding:5px 10px;gap:4px 10px;}
+ .standalone-remote.skin-face .transport-readout .readout-units {display:none;}
+ .standalone-remote.skin-face .transport-readout .clock-faces {width:60px;display:inline-block;vertical-align:middle;}
+ .standalone-remote.skin-face .transport-readout .clock-number {display:inline-block;vertical-align:middle;margin-left:8px;}
+ .standalone-remote.skin-face .transport-readout .matrix-time,.standalone-remote.skin-face .transport-readout .segment-time {width:145px;}
+ .standalone-remote.skin-face .transport-readout .timecode {font-size:26px;}
+ .standalone-remote.skin-face .control-deck .speed-craft .speed-track {height:60px;}
+ .standalone-remote.skin-face .control-deck .speed-kind--dial .speed-track {height:76px;}
+}
+/* On short portrait phones, share the bottom row rather than sacrifice the jog. */
+@media(orientation:portrait) and (max-height:700px) {
+ .standalone-remote.skin-face {grid-template-columns:minmax(0,1fr) 98px;grid-template-rows:auto auto minmax(0,1fr) auto;gap:5px 8px;}
+ .standalone-remote.skin-face :is(.remote-header,.transport-readout,.control-deck) {grid-column:1 / -1;}
+ .standalone-remote.skin-face .phrase-nav {grid-column:1;grid-row:4;padding:3px;gap:3px;grid-template-columns:45px minmax(0,1fr) 45px;}
+ .standalone-remote.skin-face .phrase-nav button small {display:none;}
+ .standalone-remote.skin-face .phrase-count {font-size:10px;letter-spacing:0;}
+ .standalone-remote.skin-face .phrase-count small {font-size:8px;letter-spacing:0;}
+ .standalone-remote.skin-face .remote-tools {grid-column:2;grid-row:4;align-self:center;}
+ .standalone-remote.skin-face .quick-edit-trigger {flex:0 0 45px;width:45px;}
+ .standalone-remote.skin-face .quick-edit-trigger span {position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);}
+ .standalone-remote.skin-face .quick-edit-trigger svg {width:18px;height:18px;}
+}
+@media(orientation:portrait) and (max-height:540px) {
+ .standalone-remote.skin-face .control-deck {grid-template-columns:minmax(0,1fr) 100px;grid-template-rows:minmax(0,1fr);gap:10px;}
+ .standalone-remote.skin-face .wheel-column {grid-column:1;grid-row:1;}
+ .standalone-remote.skin-face .speed-module.speed-craft {grid-column:2;grid-row:1;align-self:center;grid-template-columns:minmax(0,1fr);grid-template-areas:"title" "value" "track";padding:6px;}
+ .standalone-remote.skin-face .speed-craft .speed-value {min-width:0;font-size:24px;justify-content:flex-start;}
+ .standalone-remote.skin-face .speed-craft .speed-track {max-width:100%;}
+ .standalone-remote.skin-face .speed-kind--roller .speed-handle {width:54px;}
+}
+@media(orientation:landscape) and (max-height:700px) {
+ .standalone-remote.skin-face .transport-readout.readout-craft {grid-template-rows:auto auto;padding:4px 10px;gap:3px 10px;}
+ .standalone-remote.skin-face .speed-module.speed-craft {padding:5px 8px;}
+ .standalone-remote.skin-face .transport-readout .display-kicker {font-size:8px;}
+}
+
+.standalone-remote.skin-face .control-deck .speed-kind--dial .speed-track {margin-bottom:12px;}
+@media(orientation:landscape) and (max-height:700px) {.standalone-remote.skin-face .control-deck .speed-kind--dial .speed-track {margin-bottom:0;}}
+@media(orientation:portrait) and (max-height:700px) {.standalone-remote.skin-face .speed-module.speed--arcade {padding:9px 12px;}}
+@media(max-height:330px) {
+ .remote-drawer.quick-edit-dialog .quick-edit-body h1 {position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;}
+}
+/* The cartridge slot needs its own clearance above the readout, outside branding. */
+.standalone-remote.skin-face.skin--cartridge .transport-readout {margin-top:12px;}

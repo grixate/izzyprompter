@@ -1,0 +1,192 @@
+{
+  "schemaVersion": 1,
+  "kind": "izzy-remote-design-baseline",
+  "baselineId": "2026-10-21-final-details",
+  "files": [
+    {
+      "path": "PASS.md",
+      "bytes": 4169,
+      "sha256": "c2b249f686fd97141856487ffabc318194fec3204084e000af95c5265dc60764"
+    },
+    {
+      "path": "after/arcade.png",
+      "bytes": 222195,
+      "sha256": "80df5fea300f2ee857e12a77f907b186a6c62913ee17ff45a00446535081baca"
+    },
+    {
+      "path": "after/cartridge.png",
+      "bytes": 166114,
+      "sha256": "302bf9362bb40ea8748d1f3ab12b212a83b6125e072e3f8feffc20d1e489266a"
+    },
+    {
+      "path": "after/clear.png",
+      "bytes": 336757,
+      "sha256": "5bc733f815a16e7c9c1694451ff9b1b6c78981943f39c890d8e5fbdb07f2b577"
+    },
+    {
+      "path": "after/correspondent.png",
+      "bytes": 311246,
+      "sha256": "e2d657052dc80e182981aedb43556c3e65751cf0de276992f2e5578ffab02c47"
+    },
+    {
+      "path": "after/field.png",
+      "bytes": 224680,
+      "sha256": "37c25706e53494584eb15f101c581008e39994c5d52954002274e7b6ee08de23"
+    },
+    {
+      "path": "after/foundry.png",
+      "bytes": 371426,
+      "sha256": "ff52353a267f55bb3ff90fbb21517c74be79b8d3eaf296e251697f282bfbe995"
+    },
+    {
+      "path": "after/graphite.png",
+      "bytes": 250231,
+      "sha256": "a9a938f1f4eed2323e4f295addfaf85921b05a27693d165b8e8d3a569d758279"
+    },
+    {
+      "path": "after/groove.png",
+      "bytes": 283879,
+      "sha256": "040dec06d880e56fd471d4d1d3dfc19ef2d407ae46dca670ee2f8ac43714dc5c"
+    },
+    {
+      "path": "after/ivory.png",
+      "bytes": 231028,
+      "sha256": "2f1b13b165e5d2ed25dded2a71e5c3156463cdb0bd908354fcc0345cd41cc394"
+    },
+    {
+      "path": "after/observatory.png",
+      "bytes": 316015,
+      "sha256": "9004d34761e2c6d43cf8d4e68e8e6540d0b373abe26c9dd96a2ff2ea16f15465"
+    },
+    {
+      "path": "after/original.png",
+      "bytes": 271582,
+      "sha256": "73f3189b32d34b0d45160c65c20b33f4891707a75e938cde8c3c4c88ee7a5638"
+    },
+    {
+      "path": "after/signal.png",
+      "bytes": 207871,
+      "sha256": "4769bf9ee5ac44af1dee0810ebb419bf98b0b01b5c9324a29a713f7d1be550f0"
+    },
+    {
+      "path": "after/switchboard-End.png",
+      "bytes": 265866,
+      "sha256": "8319676493109805b0bcc763c2a1d5730c01b4faf2900469e58fb250f55d15dc"
+    },
+    {
+      "path": "after/switchboard-Home.png",
+      "bytes": 266302,
+      "sha256": "293fbd3b44fea3c2b191f37f99faa5b341f7bde19f653e426674dac21ebacd6a"
+    },
+    {
+      "path": "after/switchboard.png",
+      "bytes": 268991,
+      "sha256": "1da288775e667cacfb8d4669e9a2e8d3f1e26a6c97ed458c7bfd52967d80f6e7"
+    },
+    {
+      "path": "after/vector.png",
+      "bytes": 341139,
+      "sha256": "c37fb11873f2cb653998e7044f527f548eb0126521720d8dca8b3887096e83ff"
+    },
+    {
+      "path": "build-review.mjs",
+      "bytes": 450,
+      "sha256": "25cbe6bc796021edba9f924d65f86cef1601a8c0c70ff159df7189b7cb01a9dd"
+    },
+    {
+      "path": "checks.json",
+      "bytes": 73869,
+      "sha256": "b18f957cbbd4aae551a05c99c35a487de1f6571ae2b4b18bbd0c09d9293cc778"
+    },
+    {
+      "path": "gallery.png",
+      "bytes": 971209,
+      "sha256": "6bb1117db2a40ceabc85df6b0234fec81cab640b918683f55c716ae8d7338fc6"
+    },
+    {
+      "path": "live/assets/live-CZ_kzVm7.js",
+      "bytes": 275452,
+      "sha256": "211987bdf84436b14b5897f9197eeb3bb9c8602329b6f52d1dbef771df48427c"
+    },
+    {
+      "path": "live/assets/live-CggbzhmL.css",
+      "bytes": 262230,
+      "sha256": "1b62b1f153b5f20d45ebf1bd58b031ec5adbb437f70e58b785b286b92db52626"
+    },
+    {
+      "path": "live/index.html",
+      "bytes": 356,
+      "sha256": "9d9b73788890e9c8278ddc2e2df92ec0c00628001859e66c7fdc178cdfa353fc"
+    },
+    {
+      "path": "live-entry.tsx",
+      "bytes": 371,
+      "sha256": "4201f2eddb821a619ea7512e31bb3ccab1229931e287ec4c780ac3971d06f3ee"
+    },
+    {
+      "path": "live.html",
+      "bytes": 263,
+      "sha256": "88dfa455433dfd28c1292c3dd4dd7f6f889e8373cb725178c4752b1c8f830ced"
+    },
+    {
+      "path": "review.html",
+      "bytes": 8370,
+      "sha256": "ce041b34a05bfaa9c6aae5840111beb72d21579ef776fbacee1ce5ecc3203481"
+    },
+    {
+      "path": "source/InstrumentSpeed.tsx",
+      "bytes": 6714,
+      "sha256": "ea63d9cffb2628728c6510ecf386a867d4a48c4fa00cc40c2a9859764e5640de"
+    },
+    {
+      "path": "source/InstrumentTime.tsx",
+      "bytes": 4236,
+      "sha256": "6641db35a0fee23921011bdce3ee96b40da6160bd466ecd973909c4ec7cda05e"
+    },
+    {
+      "path": "source/JogControls.tsx",
+      "bytes": 8656,
+      "sha256": "2e2ec1bed63bfeb64b90a77a78c99dcfc824a03e948a9d3417d6ef2dd25d3ee6"
+    },
+    {
+      "path": "source/rendered-contrast.ts",
+      "bytes": 3660,
+      "sha256": "707f13510c1c41950752e5151612ad2e1c8a746b2b15080af1295c44c074c7cf"
+    },
+    {
+      "path": "source/skin-final-details.spec.ts",
+      "bytes": 7972,
+      "sha256": "ad9796e0ab69c734c6bee419554d9ae3f8152641b8d6f8ccb7280ef289721ae7"
+    },
+    {
+      "path": "source/skin-refinements.css",
+      "bytes": 1655,
+      "sha256": "9f8e95add87f55e02334cdb236a225d8d95c20914c876139b1634475ba2f1c43"
+    },
+    {
+      "path": "source/skin-time-speed.css",
+      "bytes": 14694,
+      "sha256": "4b77bcd9bd520eb75431d3c7cf9fbed1c612583c040de7ff365ebd329eef6ab2"
+    },
+    {
+      "path": "source/skins.css",
+      "bytes": 374,
+      "sha256": "f96a8b0cc084929569ad235000503f6083df77e60860e04f99d3da96bea54be1"
+    },
+    {
+      "path": "source/time-speed-craft.spec.ts",
+      "bytes": 6974,
+      "sha256": "90070b5789f5c55cc80ddb8a530387b4ff324742943c862800ad1fc75ad31325"
+    },
+    {
+      "path": "validation.json",
+      "bytes": 608,
+      "sha256": "6154ebfa3d69f61f76884af3bafc255b26dc1d1c903779c67f775966a6d3b3f9"
+    },
+    {
+      "path": "verify.mjs",
+      "bytes": 5889,
+      "sha256": "6d874e2488776a8bebe8229129246bf1cf5387f2939d818ced95732e90c01656"
+    }
+  ]
+}

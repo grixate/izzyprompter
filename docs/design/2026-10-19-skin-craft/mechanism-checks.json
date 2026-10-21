@@ -1,0 +1,11 @@
+{
+  "stats": {
+    "startTime": "2026-10-19T05:56:57.722Z",
+    "duration": 38507.771,
+    "expected": 27,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "scope": "Final tape travel, common motor, reverse jogging, reduced motion, intentional previews and tonearm at 390 px. All 27 cases passed without retry."
+}

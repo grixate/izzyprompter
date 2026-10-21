@@ -34,6 +34,57 @@ defmodule Teleprompter.Document do
 
   def text(document), do: Enum.map_join(document.blocks, "\n\n", & &1.text)
 
+  def replace(document, content, anchor) do
+    old_blocks = List.to_tuple(document.blocks)
+    fresh = build(content, document.id).blocks
+
+    fresh =
+      if fresh == [], do: [%{hd(build("empty", document.id).blocks) | text: ""}], else: fresh
+
+    exact = Enum.group_by(document.blocks, & &1.text)
+
+    {matched, _, reserved} =
+      Enum.reduce(fresh, {[], exact, MapSet.new()}, fn block, {result, available, used} ->
+        case Map.get(available, block.text, []) do
+          [old | rest] ->
+            {[{block, old.id} | result], Map.put(available, block.text, rest),
+             MapSet.put(used, old.id)}
+
+          [] ->
+            {[{block, nil} | result], available, used}
+        end
+      end)
+
+    {blocks, _} =
+      matched
+      |> Enum.reverse()
+      |> Enum.with_index()
+      |> Enum.map_reduce(reserved, fn {{block, exact_id}, index}, used ->
+        old = if index < tuple_size(old_blocks), do: elem(old_blocks, index)
+        id = exact_id || if(old && not MapSet.member?(used, old.id), do: old.id, else: block.id)
+        {%{block | id: id}, MapSet.put(used, id)}
+      end)
+
+    old_index = Enum.find_index(document.blocks, &(&1.id == anchor["blockId"])) || 0
+    old = Enum.at(document.blocks, old_index)
+    target = Enum.find(blocks, &(&1.id == anchor["blockId"]))
+
+    target_anchor =
+      if target && old do
+        %{
+          "blockId" => target.id,
+          "characterOffset" => remap_offset(old.text, target.text, anchor["characterOffset"])
+        }
+      else
+        %{
+          "blockId" => Enum.at(blocks, min(old_index, length(blocks) - 1)).id,
+          "characterOffset" => 0
+        }
+      end
+
+    {%{document | blocks: blocks}, target_anchor}
+  end
+
   def patch(document, block_id, text, anchor) do
     old = Enum.find(document.blocks, &(&1.id == block_id))
     blocks = Enum.map(document.blocks, &if(&1.id == block_id, do: %{&1 | text: text}, else: &1))

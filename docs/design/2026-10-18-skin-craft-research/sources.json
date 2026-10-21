@@ -1,0 +1,175 @@
+{
+  "date": "2026-10-18",
+  "status": "Research and proposal; no implementation or release",
+  "source_revision": "3a6bec9",
+  "report_base_revision": "7b035ac",
+  "visuals": {
+    "current_sixteen": "Copied reviewed 2026-10-18 paired Chromium synthetic-script captures at 390x844 CSS px, HOLD, 0.86x; not rerun",
+    "current_groove": "Copied from same acceptance evidence",
+    "groove_lab_playing": "Fresh CUA capture at localhost:5173/lab/jog; Play and Pause observed; not a paired-display test",
+    "web_vinyls_appstore": "Fresh CUA screenshot of public App Store page; iPhone promotional screenshots visible; app not installed",
+    "web_dark_noise": "Fresh CUA screenshot of public landing page; product UI partial; no behavior inferred",
+    "izzy_color_directions": "Original code-native SVG palette board; author-proposed HEX values, not sampled/official manufacturer or Coloro values; no rendered-skin contrast acceptance claimed"
+  },
+  "lazyweb": [
+    {
+      "companyName": "portal",
+      "path": "screenshots/uploaded_portal/auto/compare/2026-08-17/1786940862189_00_app.portal.ios.v1-20260817T035636Z-autocap-12-1786939703.png",
+      "file": "lazyweb-portal-timer.png",
+      "visionDescription": "Focus timer setup screen in a meditation or productivity app featuring a large circular dial to adjust session length, with the duration shown in the center and a prompt to tap the timer to start. The screen also includes quick access to timer settings, close/dismiss action, and bottom navigation for related focus, sound, or lighting modes.",
+      "similarity": 0.43,
+      "matchCount": 1,
+      "review": "Downloaded and visually inspected. Used only for the specific visual principle, not as audience or conversion evidence."
+    },
+    {
+      "companyName": "alyx",
+      "path": "screenshots/uploaded_alyx/compare/2025-12-17/1771177670747_t__-_13172.PNG",
+      "file": "lazyweb-alyx-theme-preview.png",
+      "visionDescription": "Onboarding customization screen for picking an app theme that adapts to light and dark mode, with a color selector for the “Classic” theme and a live preview of how entries and a calendar heatmap will look. Bottom navigation includes a back button and a primary “That’s the One” confirmation action to apply the selected theme.",
+      "similarity": 0.93,
+      "matchCount": 1,
+      "review": "Downloaded and visually inspected. Used only for the specific visual principle, not as audience or conversion evidence."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Teleprompter.com",
+      "url": "https://www.teleprompter.com/",
+      "use": "Public use cases and remote control; vendor description, not market segmentation",
+      "accessed": "2026-10-18"
+    },
+    {
+      "title": "Teleprompter.com audio",
+      "url": "https://www.teleprompter.com/blog/audio-recording-teleprompter",
+      "use": "Audio, narration, education and business use cases",
+      "accessed": "2026-10-18"
+    },
+    {
+      "title": "Teleprompter.com appearance",
+      "url": "https://www.teleprompter.com/faq/how-can-i-change-the-text-and-background-color-in-the-teleprompter-app",
+      "use": "Reading colors and premade themes, not evidence of remote hardware skins",
+      "accessed": "2026-10-18"
+    },
+    {
+      "title": "Vinyls",
+      "url": "https://apps.apple.com/us/app/vinyls-record-player/id1556054655",
+      "use": "Developer description of disc, tonearm and scrub; no conversion results",
+      "accessed": "2026-10-18"
+    },
+    {
+      "title": "Dark Noise",
+      "url": "https://darknoise.app/",
+      "use": "Current product presentation",
+      "accessed": "2026-10-18"
+    },
+    {
+      "title": "Dark Noise App Store",
+      "url": "https://apps.apple.com/us/app/dark-noise/id1465439395",
+      "use": "Developer description of themes and animated icons",
+      "accessed": "2026-10-18"
+    },
+    {
+      "title": "Elgato customization",
+      "url": "https://www.elgato.com/us/en/explorer/products/stream-deck/customize-stream-deck-with-icons-and-icon-packs/",
+      "use": "Style, theme, color as independent browsing axes",
+      "accessed": "2026-10-18"
+    },
+    {
+      "title": "Teenage Engineering TP-7",
+      "url": "https://teenage.engineering/products/tp-7",
+      "use": "Motorized reel, control and visual feedback",
+      "accessed": "2026-10-18"
+    },
+    {
+      "title": "Apple Watch faces",
+      "url": "https://support.apple.com/guide/watch/faces-and-features-apde9218b440/watchos",
+      "use": "Diverse expressive faces for same core task",
+      "accessed": "2026-10-18"
+    },
+    {
+      "title": "Audio-Technica AT-LP60X",
+      "url": "https://docs.audio-technica.com/eu/AT-LP60X_UM_162501370_V2_EN_web_190502.pdf",
+      "use": "Physical distinction: START, STOP and tonearm lift",
+      "accessed": "2026-10-18"
+    },
+    {
+      "title": "Apple WWDC 2018 fluid interfaces",
+      "url": "https://developer.apple.com/videos/play/wwdc2018/803/",
+      "use": "Responsive interruptible interactions",
+      "accessed": "2026-10-18"
+    },
+    {
+      "title": "W3C motion",
+      "url": "https://www.w3.org/WAI/WCAG22/Understanding/animation-from-interactions.html",
+      "use": "Nonessential motion can be disabled",
+      "accessed": "2026-10-18"
+    },
+    {
+      "title": "W3C target size enhanced",
+      "url": "https://www.w3.org/WAI/WCAG22/Understanding/target-size-enhanced.html",
+      "use": "44x44 CSS px enhanced AAA; not AA minimum",
+      "accessed": "2026-10-18"
+    },
+    {
+      "title": "W3C contrast",
+      "url": "https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html",
+      "use": "Text contrast",
+      "accessed": "2026-10-18"
+    },
+    {
+      "title": "W3C nontext contrast",
+      "url": "https://www.w3.org/WAI/WCAG22/Understanding/non-text-contrast.html",
+      "use": "Essential component and state contrast",
+      "accessed": "2026-10-18"
+    },
+    {
+      "title": "Nothing Headphone (1)",
+      "url": "https://nothing.tech/products/headphone-1",
+      "use": "Visible internal construction under transparent casing",
+      "accessed": "2026-10-19"
+    },
+    {
+      "title": "Nothing Headphone (a)",
+      "url": "https://nothing.tech/products/headphone-a",
+      "use": "Transparent construction and black/white/pink/yellow material colors",
+      "accessed": "2026-10-19"
+    },
+    {
+      "title": "Apple MacBook Neo, March 2026",
+      "url": "https://www.apple.com/newsroom/2026/03/say-hello-to-macbook-neo/",
+      "use": "Blush/indigo/silver/citrus color range and coordinated product surfaces",
+      "accessed": "2026-10-19"
+    },
+    {
+      "title": "Coloro / WGSN key colors A/W 26/27",
+      "url": "https://coloro.com/key-colors",
+      "use": "Forecast palette: Transformative Teal, Wax Paper, Fresh Purple, Cocoa Powder and Green Glow; forecast is not adoption data",
+      "accessed": "2026-10-19"
+    },
+    {
+      "title": "Analogue Pocket Transparent Editions",
+      "url": "https://www.analogue.co/editions/pocket-transparent",
+      "use": "Historical example of tinted transparent casing; not treated as proof of a 2026 trend",
+      "accessed": "2026-10-19"
+    }
+  ],
+  "limits": [
+    "No IZZY audience interviews or willingness-to-pay sessions",
+    "No purchase conversion evidence",
+    "No physical device acceptance",
+    "No fresh automated application test runs",
+    "No hosted environment or app changes",
+    "All conceptual directions are author synthesis, not observed preferences"
+  ],
+  "updated": "2026-10-19",
+  "revision": 2,
+  "owner_refinement": {
+    "date": "2026-10-19",
+    "requirements": [
+      "At least one full transparent-body design; explore Clear and tinted Spool",
+      "Bolder mechanical scenes with multiple linked moving elements, including tape/film",
+      "Industry-informed color system that preserves IZZY identity"
+    ],
+    "status": "Plan direction accepted with refinements; no application implementation started"
+  }
+}

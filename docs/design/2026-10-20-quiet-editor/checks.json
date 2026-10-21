@@ -1,0 +1,224 @@
+{
+  "quiet-browsers": {
+    "stats": {
+      "startTime": "2026-10-20T16:50:39.031Z",
+      "duration": 35243.784,
+      "expected": 18,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "cases": [
+      {
+        "title": "paragraph editor follows browser and keyboard viewport offsets with safe insets",
+        "project": "chromium",
+        "status": "expected",
+        "runs": [
+          "passed"
+        ]
+      },
+      {
+        "title": "paragraph editor follows browser and keyboard viewport offsets with safe insets",
+        "project": "firefox",
+        "status": "expected",
+        "runs": [
+          "passed"
+        ]
+      },
+      {
+        "title": "paragraph editor follows browser and keyboard viewport offsets with safe insets",
+        "project": "webkit",
+        "status": "expected",
+        "runs": [
+          "passed"
+        ]
+      },
+      {
+        "title": "typing is live on two displays, the editor, and another phone before Done",
+        "project": "chromium",
+        "status": "expected",
+        "runs": [
+          "passed"
+        ]
+      },
+      {
+        "title": "recovered offline draft never overwrites a correction from another phone",
+        "project": "chromium",
+        "status": "expected",
+        "runs": [
+          "passed"
+        ]
+      },
+      {
+        "title": "offline draft survives refresh and is sent only after explicit resume",
+        "project": "chromium",
+        "status": "expected",
+        "runs": [
+          "passed"
+        ]
+      },
+      {
+        "title": "an unsent phone edit with unavailable storage offers a backup without claiming reload recovery",
+        "project": "chromium",
+        "status": "expected",
+        "runs": [
+          "passed"
+        ]
+      },
+      {
+        "title": "typing is live on two displays, the editor, and another phone before Done",
+        "project": "firefox",
+        "status": "expected",
+        "runs": [
+          "passed"
+        ]
+      },
+      {
+        "title": "recovered offline draft never overwrites a correction from another phone",
+        "project": "firefox",
+        "status": "expected",
+        "runs": [
+          "passed"
+        ]
+      },
+      {
+        "title": "offline draft survives refresh and is sent only after explicit resume",
+        "project": "firefox",
+        "status": "expected",
+        "runs": [
+          "passed"
+        ]
+      },
+      {
+        "title": "an unsent phone edit with unavailable storage offers a backup without claiming reload recovery",
+        "project": "firefox",
+        "status": "expected",
+        "runs": [
+          "passed"
+        ]
+      },
+      {
+        "title": "typing is live on two displays, the editor, and another phone before Done",
+        "project": "webkit",
+        "status": "expected",
+        "runs": [
+          "passed"
+        ]
+      },
+      {
+        "title": "recovered offline draft never overwrites a correction from another phone",
+        "project": "webkit",
+        "status": "expected",
+        "runs": [
+          "passed"
+        ]
+      },
+      {
+        "title": "offline draft survives refresh and is sent only after explicit resume",
+        "project": "webkit",
+        "status": "expected",
+        "runs": [
+          "passed"
+        ]
+      },
+      {
+        "title": "an unsent phone edit with unavailable storage offers a backup without claiming reload recovery",
+        "project": "webkit",
+        "status": "expected",
+        "runs": [
+          "passed"
+        ]
+      },
+      {
+        "title": "current paragraph opens above the stationary remote and stays usable with a keyboard-sized viewport",
+        "project": "chromium",
+        "status": "expected",
+        "runs": [
+          "passed"
+        ]
+      },
+      {
+        "title": "current paragraph opens above the stationary remote and stays usable with a keyboard-sized viewport",
+        "project": "firefox",
+        "status": "expected",
+        "runs": [
+          "passed"
+        ]
+      },
+      {
+        "title": "current paragraph opens above the stationary remote and stays usable with a keyboard-sized viewport",
+        "project": "webkit",
+        "status": "expected",
+        "runs": [
+          "passed"
+        ]
+      }
+    ]
+  },
+  "quiet-layout-final": {
+    "stats": {
+      "startTime": "2026-10-20T16:51:46.543Z",
+      "duration": 12910.172,
+      "expected": 6,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "cases": [
+      {
+        "title": "paragraph editor follows browser and keyboard viewport offsets with safe insets",
+        "project": "chromium",
+        "status": "expected",
+        "runs": [
+          "passed"
+        ]
+      },
+      {
+        "title": "paragraph editor follows browser and keyboard viewport offsets with safe insets",
+        "project": "firefox",
+        "status": "expected",
+        "runs": [
+          "passed"
+        ]
+      },
+      {
+        "title": "paragraph editor follows browser and keyboard viewport offsets with safe insets",
+        "project": "webkit",
+        "status": "expected",
+        "runs": [
+          "passed"
+        ]
+      },
+      {
+        "title": "current paragraph opens above the stationary remote and stays usable with a keyboard-sized viewport",
+        "project": "chromium",
+        "status": "expected",
+        "runs": [
+          "passed"
+        ]
+      },
+      {
+        "title": "current paragraph opens above the stationary remote and stays usable with a keyboard-sized viewport",
+        "project": "firefox",
+        "status": "expected",
+        "runs": [
+          "passed"
+        ]
+      },
+      {
+        "title": "current paragraph opens above the stationary remote and stays usable with a keyboard-sized viewport",
+        "project": "webkit",
+        "status": "expected",
+        "runs": [
+          "passed"
+        ]
+      }
+    ]
+  },
+  "unit": {
+    "passed": 90,
+    "failed": 0
+  },
+  "productionBuild": "passed",
+  "physicalDevices": "not run"
+}

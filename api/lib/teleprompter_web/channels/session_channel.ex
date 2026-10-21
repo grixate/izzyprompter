@@ -158,6 +158,12 @@ defmodule TeleprompterWeb.SessionChannel do
   defp handle_event("script:patch_block", %{"text" => text} = payload, socket),
     do: edit(socket, payload, {:patch, text})
 
+  defp handle_event("script:patch_document", %{"text" => text} = payload, socket),
+    do: edit(socket, payload, {:replace, text})
+
+  defp handle_event("script:select_document", payload, socket),
+    do: edit(socket, payload, :document)
+
   defp handle_event("script:end_edit", payload, socket), do: edit(socket, payload, :end)
 
   defp handle_event("script:select_block", %{"block_id" => _} = payload, socket),

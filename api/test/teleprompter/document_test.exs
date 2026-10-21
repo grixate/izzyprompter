@@ -55,4 +55,27 @@ defmodule Teleprompter.DocumentTest do
     assert target["blockId"] == first.id
     assert Document.valid_anchor?(target, Document.lengths(patched))
   end
+
+  test "full replacements preserve moved reading words, assign unique IDs and recover from empty text" do
+    document = Document.build("Opening\n\nRead 🎥 here\n\nClosing", "replacement")
+    current = Enum.at(document.blocks, 1)
+    anchor = %{"blockId" => current.id, "characterOffset" => 8}
+
+    {next, target} =
+      Document.replace(document, "New opening\n\nOpening\n\nRead 🎥 here\n\nClosing", anchor)
+
+    assert target == anchor
+    assert Enum.at(next.blocks, 2).id == current.id
+    assert length(Enum.uniq(Enum.map(next.blocks, & &1.id))) == 4
+
+    {changed, moved} =
+      Document.replace(next, "New opening\n\nOpening\n\nPrefix Read 🎥 here\n\nClosing", target)
+
+    assert moved["characterOffset"] == 15
+    assert Document.valid_anchor?(moved, Document.lengths(changed))
+    {empty, fallback} = Document.replace(changed, "", moved)
+    assert Document.text(empty) == ""
+    assert length(empty.blocks) == 1
+    assert Document.valid_anchor?(fallback, Document.lengths(empty))
+  end
 end

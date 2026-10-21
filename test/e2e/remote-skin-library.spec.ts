@@ -1,14 +1,18 @@
+import { createSyntheticSession } from './helpers/create-synthetic-session'
+import { skins } from '../../src/product/catalog'
 import { test, expect, type Page } from '@playwright/test'
 
 async function openSkins(page: Page) {
   await page.getByRole('button', { name: 'Reading settings', exact: true }).click()
   await page.getByRole('button', { name: 'Change remote skin' }).click()
 }
+// Pairing capabilities must not enter retained traces or editor screenshots.
+test.use({ trace:'off', screenshot:'off' })
 
 async function openRemote(page: Page, pro = true) {
   await page.goto('/')
   await page.getByRole('textbox', { name: 'Teleprompter script' }).fill('A synthetic take for the remote skin library.\n\nA second paragraph for playback checks.')
-  await page.getByRole('button', { name: 'SET UP PROMPTER', exact: true }).click()
+  await createSyntheticSession(page)
   const href = await page.getByRole('link', { name: /OPEN REMOTE/ }).getAttribute('href')
   await page.route('**/api/sessions/*/appearance', route => route.fulfill({ json: { pro } }))
   await page.goto(href!)
@@ -23,6 +27,7 @@ async function openRemote(page: Page, pro = true) {
 
 for (const viewport of [{ width: 360, height: 640 }, { width: 390, height: 844 }, { width: 844, height: 390 }, { width: 1280, height: 900 }]) {
   test(`remote skin library fits and keeps playback at ${viewport.width} × ${viewport.height}`, async ({ page, browserName }) => {
+    test.setTimeout(30_000 + skins.length * 1_000)
     await page.setViewportSize(viewport)
     await openRemote(page)
     await page.getByRole('button', { name: 'Play', exact: true }).click()
@@ -33,7 +38,7 @@ for (const viewport of [{ width: 360, height: 640 }, { width: 390, height: 844 }
     expect(bounds!.height).toBeGreaterThanOrEqual(44)
     await openSkins(page)
     const dialog = page.getByRole('dialog', { name: 'Skins' })
-    await expect(dialog.getByRole('button', { name: /^Use / })).toHaveCount(16)
+    await expect(dialog.getByRole('button', { name: /^Use / })).toHaveCount(skins.length)
     await expect(dialog.getByRole('button', { name: 'Use Original', exact: true })).toBeFocused()
     expect(await dialog.evaluate(el => el.scrollWidth - el.clientWidth)).toBeLessThanOrEqual(1)
     const box = await dialog.boundingBox()
@@ -50,18 +55,18 @@ for (const viewport of [{ width: 360, height: 640 }, { width: 390, height: 844 }
     expect(await dialog.locator('.wheel-rotor').evaluateAll(els => els.reduce((n, el) => n + el.getAnimations().length, 0))).toBe(0)
     if (browserName === 'chromium' && viewport.width === 390) await page.screenshot({ path: 'artifacts/remote-skin-library/mobile-library.png' })
     // The last tile can be reached by scrolling the library, without moving its close control.
-    await dialog.getByRole('button', { name: 'Use Airframe', exact: true }).click()
+    await dialog.getByRole('button', { name: `Use ${skins.at(-1)!.name}`, exact: true }).click()
     await expect(dialog).toHaveCount(0)
     await expect(trigger).toBeFocused()
-    await expect(page.getByRole('main', { name: 'Remote controller' })).toHaveClass(/skin--airframe/)
+    await expect(page.getByRole('main', { name: 'Remote controller' })).toHaveClass(new RegExp(`skin--${skins.at(-1)!.id}`))
     await expect(page.getByRole('button', { name: 'Pause', exact: true })).toBeVisible()
     if (browserName === 'chromium' && viewport.width === 390) await page.screenshot({ path: 'artifacts/remote-skin-library/mobile-remote.png' })
     await openSkins(page)
-    await expect(page.getByRole('button', { name: 'Use Airframe', exact: true })).toBeFocused()
-    await expect(page.getByRole('button', { name: 'Use Airframe', exact: true })).toBeInViewport()
+    await expect(page.getByRole('button', { name: `Use ${skins.at(-1)!.name}`, exact: true })).toBeFocused()
+    await expect(page.getByRole('button', { name: `Use ${skins.at(-1)!.name}`, exact: true })).toBeInViewport()
     await page.keyboard.press('Escape')
     await page.reload()
-    await expect(page.getByRole('main', { name: 'Remote controller' })).toHaveClass(/skin--airframe/)
+    await expect(page.getByRole('main', { name: 'Remote controller' })).toHaveClass(new RegExp(`skin--${skins.at(-1)!.id}`))
   })
 }
 
@@ -95,7 +100,7 @@ test('keyboard focus stays inside the library; closing during a selection is saf
   await openSkins(page)
   await page.getByRole('button', { name: 'Close skin library' }).focus()
   await page.keyboard.press('Shift+Tab')
-  await expect(page.getByRole('button', { name: 'Use Airframe', exact: true })).toBeFocused()
+  await expect(page.getByRole('button', { name: `Use ${skins.at(-1)!.name}`, exact: true })).toBeFocused()
   await page.keyboard.press('Tab')
   await expect(page.getByRole('button', { name: 'Close skin library' })).toBeFocused()
   let release!: () => void

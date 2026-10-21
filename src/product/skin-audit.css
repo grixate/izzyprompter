@@ -1,0 +1,19 @@
+/* Keep units with their reading, instead of stretching them towards HOLD. */
+.skin-face .readout-craft .readout-units {justify-content:flex-start;gap:10px;letter-spacing:.08em;}
+.skin-face .readout--groove .readout-units {width:auto;}
+.skin-face .readout-craft .printed-time {display:block;line-height:inherit;}
+
+/* Observatory: one exact chronometer, with a subordinate seconds dial. */
+.skin-face.skin--observatory .readout--observatory {gap:6px 12px;}
+.skin-face.skin--observatory .readout--observatory .timecode {display:flex;align-items:center;gap:14px;}
+.skin-face.skin--observatory .readout--observatory .clock-number {order:0;margin:0;font:400 32px/1.15 'Avenir Next Condensed',sans-serif;letter-spacing:.01em;text-align:left;}
+.skin-face.skin--observatory .readout--observatory .clock-faces {order:1;width:46px;flex:0 0 46px;}
+.remote-instrument.skin-face.skin--observatory .readout--observatory .clock-number {font-size:clamp(14px,10cqw,26px);}
+.remote-instrument.skin-face.skin--observatory .readout--observatory .clock-faces {width:28px;flex-basis:28px;}
+@media(max-height:700px) {
+ .standalone-remote.skin-face.skin--observatory .readout--observatory .clock-number {font-size:28px;}
+ .standalone-remote.skin-face.skin--observatory .readout--observatory .clock-faces {width:38px;flex-basis:38px;}
+}
+@media(orientation:portrait) and (max-height:540px) {
+ .standalone-remote.skin-face .speed-kind--linear .speed-marks b:nth-child(2) {display:none;}
+}

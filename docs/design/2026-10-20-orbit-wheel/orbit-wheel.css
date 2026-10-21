@@ -1,0 +1,40 @@
+/* Isolated Orbit composition experiment. Other skins and live app are unchanged. */
+@media (orientation:portrait) and (min-height:620px) {
+ #root .standalone-remote.skin-face.skin-controls.skin--ivory {
+  grid-template-columns:minmax(0,1fr) 112px;
+  grid-template-rows:24px 56px minmax(0,1fr) 56px;
+  gap:8px 12px;
+  padding:max(16px,env(safe-area-inset-top)) max(16px,env(safe-area-inset-right)) max(16px,env(safe-area-inset-bottom)) max(16px,env(safe-area-inset-left));
+ }
+ #root .skin--ivory :is(.remote-header,.transport-readout,.control-deck) {grid-column:1 / -1;}
+ #root .skin--ivory .remote-header {min-height:24px;}
+ #root .skin--ivory .remote-identity {display:flex;align-items:baseline;gap:12px;}
+ #root .skin--ivory .remote-header strong {font-size:18px;}
+ #root .skin--ivory .remote-link-state small {display:none;}
+ #root .skin--ivory .transport-readout.readout-craft {grid-template-rows:1fr;align-items:center;padding:0 0 8px;gap:8px;}
+ #root .skin--ivory .transport-readout .display-kicker {display:none;}
+ #root .skin--ivory .transport-readout .timecode {font-size:36px;grid-row:1;}
+ #root .skin--ivory .transport-readout .state-label {grid-row:1;}
+ #root .skin--ivory .transport-readout .readout-units {display:none;}
+ #root .skin--ivory .control-deck {grid-row:3;grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,1fr) 104px;gap:20px;padding-bottom:16px;}
+ #root .skin--ivory .control-deck .wheel-column {grid-column:1;grid-row:1;padding:0;gap:0;}
+ #root .skin--ivory .control-deck .jog-wheel {width:min(96cqw,calc(100cqh - 8px),380px);}
+ #root .skin--ivory .control-deck .wheel-caption {display:none;}
+ #root .skin--ivory .speed-module.speed-craft {grid-column:1;grid-row:2;align-self:center;grid-template-columns:minmax(0,1fr) 120px;grid-template-areas:"summary track" "help help";gap:0 12px;padding:0 12px;max-width:none;}
+ #root .skin--ivory .speed-summary {flex-direction:row;align-items:center;justify-content:flex-start;gap:12px;}
+ #root .skin--ivory .speed-summary .speed-title {align-self:center;font-size:11px;}
+ #root .skin--ivory .speed-summary .speed-value {font-size:26px;}
+ #root .skin--ivory .speed-exact {height:48px;}
+ #root .skin--ivory .control-deck .speed-craft .speed-track {width:120px;height:104px;margin:0;}
+ #root .skin--ivory .speed-kind--dial .speed-rail {inset:22px 28px;}
+ #root .skin--ivory .speed-kind--dial .speed-marks {inset:-20px -22px;}
+ #root .skin--ivory .speed-kind--dial .speed-handle {width:56px;height:56px;}
+ #root .skin--ivory .phrase-nav {grid-column:1;grid-row:4;margin:0;padding:0;grid-template-columns:56px minmax(0,1fr) 56px;gap:4px;}
+ #root .skin--ivory .phrase-nav :is(button,.phrase-count) {min-height:56px;}
+ #root .skin--ivory .phrase-count {font-size:11px;}
+ #root .skin--ivory .phrase-count small {font-size:9px;}
+ #root .skin--ivory .remote-tools {grid-column:2;grid-row:4;margin:0;min-height:56px;gap:8px;align-self:center;}
+ #root .skin--ivory .quick-edit-trigger {flex:0 0 52px;width:52px;padding:0;}
+ #root .skin--ivory .quick-edit-trigger span {position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);}
+ #root .skin--ivory :is(.quick-edit-trigger,.remote-finish-button) {height:56px;min-height:56px;}
+}

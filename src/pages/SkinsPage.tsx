@@ -12,7 +12,7 @@ export function SkinsPage() {
   const { status, verified } = useAccount()
   const [selected, setSelected] = useState(preferredSkin)
   const [preview, setPreview] = useState<SkinId | null>(() => {
-    const id = new URLSearchParams(location.search).get('skin'); return id && skinById(id).id === id ? skinById(id).id : null
+    const id = new URLSearchParams(location.search).get('skin'); return skins.find(skin => skin.id === id)?.id ?? null
   })
   useEffect(() => { document.title = 'Remote finishes — IZZY'; track('skins_opened') }, [])
   const apply = async (id: SkinId) => {

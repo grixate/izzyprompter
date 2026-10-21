@@ -8,7 +8,7 @@ defmodule Teleprompter.Sessions do
   def create(content, speed, supervisor \\ Teleprompter.Sessions.Supervisor)
 
   def create(content, speed, supervisor) when is_binary(content) and is_number(speed) do
-    if Teleprompter.Document.valid_content?(content) and speed >= 0.5 and speed <= 1.5 do
+    if Teleprompter.Document.valid_content?(content) and speed >= 0.2 and speed <= 1.5 do
       create_session(content, speed, supervisor)
     else
       {:error, :invalid_session}
@@ -20,7 +20,7 @@ defmodule Teleprompter.Sessions do
   def create_owned(content, speed, user, device_settings \\ nil) do
     with true <-
            is_binary(content) and is_number(speed) and
-             Teleprompter.Document.valid_content?(content) and speed >= 0.5 and speed <= 1.5,
+             Teleprompter.Document.valid_content?(content) and speed >= 0.2 and speed <= 1.5,
          {:ok, device_settings} <-
            Teleprompter.PromptSettings.validate(
              if(is_nil(device_settings),
@@ -31,7 +31,7 @@ defmodule Teleprompter.Sessions do
       preferences = Teleprompter.ReadingPreferences.get(user)
 
       settings =
-        preferences.settings || Map.put(device_settings, "speed", speed)
+        preferences.settings || Map.put(device_settings, "speed", min(speed, 1.0))
 
       create_session(content, settings["speed"], Teleprompter.Sessions.Supervisor, %{
         appearance_owner: user,
@@ -96,7 +96,7 @@ defmodule Teleprompter.Sessions do
 
   defp standard_settings(nil), do: {:ok, Teleprompter.PromptSettings.defaults()}
 
-  defp standard_settings(speed) when is_number(speed) and speed >= 0.5 and speed <= 1.5,
+  defp standard_settings(speed) when is_number(speed) and speed >= 0.2 and speed <= 1.5,
     do: {:ok, Map.put(Teleprompter.PromptSettings.defaults(), "speed", speed)}
 
   defp standard_settings(_), do: {:error, :invalid_settings}
@@ -114,6 +114,14 @@ defmodule Teleprompter.Sessions do
       )
 
     token_hashes = Map.new(tokens, fn {role, token} -> {role, :crypto.hash(:sha256, token)} end)
+
+    # Accept old saved speeds without discarding their script or other settings.
+    speed = min(speed, 1.0)
+
+    extra =
+      if Map.has_key?(extra, :settings),
+        do: Map.update!(extra, :settings, &Map.put(&1, "speed", speed)),
+        else: extra
 
     options =
       Map.merge(%{id: id, token_hashes: token_hashes, content: content, speed: speed}, extra)
@@ -146,6 +154,25 @@ defmodule Teleprompter.Sessions do
   def lookup(_), do: {:error, :session_unavailable}
 
   def snapshot(id), do: call(id, :snapshot)
+
+  def activity do
+    Registry.select(Teleprompter.Sessions.Registry, [{{:"$1", :_, :_}, [], [:"$1"]}])
+    |> Enum.reduce(%{sessions: 0, playing: 0, connected_devices: 0, editing: 0}, fn id, counts ->
+      case snapshot(id) do
+        {:ok, snapshot} ->
+          %{
+            sessions: counts.sessions + 1,
+            playing: counts.playing + if(snapshot.transport.status == "playing", do: 1, else: 0),
+            connected_devices: counts.connected_devices + Enum.sum(Map.values(snapshot.presence)),
+            editing: counts.editing + if(snapshot.editing.active, do: 1, else: 0)
+          }
+
+        _ ->
+          counts
+      end
+    end)
+  end
+
   def appearance_owner(id, token), do: call(id, {:appearance_owner, token})
   def saved_update(id, user, params), do: call(id, {:saved_update, user, params})
   def apply_preset(id, user, settings), do: call(id, {:apply_preset, user, settings})

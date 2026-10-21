@@ -4,6 +4,10 @@ Status update: 2026-10-12. **Physical phone/tablet checks have not run.** The ow
 
 Automated Chromium tests cover network loss, simulated visibility/freeze/BFCache events, fresh-snapshot recovery, and a real isolated Phoenix process restart. They do not demonstrate operating-system lock/unlock, browser eviction, real Wi-Fi changes, or laptop sleep.
 
+For the sixteen live remote finishes, also use the per-skin checklist in
+[REMOTE_SKIN_QA.md](REMOTE_SKIN_QA.md). Its automated browser results do not
+close this physical-device matrix or the per-finish screen-reader gates.
+
 Local preview automation now covers standalone cold offline startup/recovery in Chromium, Firefox and WebKit. The native direct spike on the development Mac stalled in ICE checking with a VPN host candidate; no physical peer result or no-uplink pairing pass is claimed. Preserve this failure and record actual device/OS/browser/topology before closing the direct gate. Deterministic fake-RTC protocol tests are separate evidence.
 
 ## Setup

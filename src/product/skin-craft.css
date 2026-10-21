@@ -1,0 +1,118 @@
+/* Clear and Spool: fixed shield / coil, a transparent rotating flange, a fixed hub. */
+.skin-face.skin--clear {
+  --instrument-type:#293432; --craft-accent:#c4543b;
+  --chassis-base:#c4cfca; --chassis-edge:#8b9691; --chassis-coil:#d7dcd6; --chassis-plate:#eef0e9;
+  border-radius:24px; border-color:#9ca8a4;
+  background:url('../assets/skin-clear-frame.svg') center / 100% 100%,linear-gradient(115deg,#f5f6ef,#dce2dd 64%,#c7d1cb);
+  box-shadow:inset 0 0 0 2px #ffffffce,inset 0 0 0 6px #9caaa354,inset -5px -7px 8px #64736c33,0 12px 20px -16px #273c36aa;
+}
+.skin-face.skin--spool {
+  --instrument-type:#eeeaf2; --craft-accent:#d5bf9e;
+  --chassis-base:#353740; --chassis-edge:#85858f; --chassis-coil:#a8876e; --chassis-plate:#515561;
+  border-radius:24px; border-color:#666776;
+  background:url('../assets/skin-spool-frame.svg') center / 100% 100%,linear-gradient(115deg,#676674,#434653 64%,#393d48);
+  box-shadow:inset 0 0 0 2px #ced0dc70,inset 0 0 0 6px #20283166,inset -5px -7px 8px #121e2e66,0 12px 20px -16px #152132cc;
+}
+.skin-face:is(.skin--clear,.skin--spool) .jog-wheel { isolation:isolate; filter:drop-shadow(0 5px 4px #152b2833); }
+.skin-face:is(.skin--clear,.skin--spool) .wheel-rotor { z-index:1; background:url('../assets/skin-clear-rotor.svg') center / contain no-repeat; box-shadow:inset 0 0 0 1px #f4ffefbd,inset 0 0 0 4px #6d7f7540,0 1px 1px #fcfff4aa,0 4px 6px #1a2d2a33; }
+.skin-face:is(.skin--clear,.skin--spool) .wheel-disc { inset:6%; background:transparent; box-shadow:inset 0 0 0 1px #f5fff44d; }
+.skin-face.skin--spool .wheel-rotor { background-image:url('../assets/skin-spool-rotor.svg'); box-shadow:inset 0 0 0 1px #e4e6f3b3,inset 0 0 0 4px #d8d4e733,0 4px 6px #14202e66; }
+.skin-face.skin--clear .transport-button { inset:35%; border-radius:50%; color:#fff6e6; background:linear-gradient(140deg,#d36b51,#b24a36); border-color:#993e2f; box-shadow:inset 0 1px #f3b193,0 2px 0 #843a2c,0 5px 6px #263c3744; }
+.skin-face.skin--spool .transport-button { inset:35%; border-radius:50%; color:#36383f; background:linear-gradient(140deg,#f1eee1,#cfc9ba); border-color:#a6a394; box-shadow:inset 0 1px #fffbea,0 2px 0 #8f8d83,0 5px 6px #19253277; }
+.skin-face.skin--clear .speed-module :is(button,.speed-step) { color:inherit; background:#e9ece5; border-color:#a1ada4; border-radius:50%; }
+.skin-face.skin--spool .speed-module :is(button,.speed-step) { color:#eeeaf2; background:#555965; border-color:#9c9ba8; border-radius:50%; }
+.skin-face:is(.skin--clear,.skin--spool) .wheel-column { padding-bottom:36px; }
+/* Broad glazed planes and a visible raw ceramic foot. */
+.skin-face.skin--glaze { --instrument-type:#432c29; --craft-accent:#7a393c; border-radius:36px 36px 24px 24px; background:linear-gradient(125deg,#eed1c4,#d9a6a1 60%,#c58f8b); border-color:#b98479; box-shadow:inset 0 2px 2px #fff0df,0 5px 0 #bd9e88,0 13px 18px -8px #713f3a55; }
+.skin-face.skin--glaze .wheel-rotor { background:linear-gradient(135deg,#f5dfd1,#bc787c); box-shadow:inset 0 0 0 2px #f4d8c5,inset 0 0 0 6px #b6786c,0 5px 9px #7b45465c; }
+.skin-face.skin--glaze .wheel-disc { inset:6%; background:radial-gradient(ellipse at 30% 20%,#f3d4c6,#d6a09b 60%,#bd8182); box-shadow:inset 0 2px 1px #ffead6,inset 0 -4px 5px #9f62633d; }
+.skin-face.skin--glaze .wheel-disc::after { content:""; position:absolute; inset:10%; border:2px solid #f7d8c044; border-right-color:transparent; border-bottom-color:transparent; border-radius:50%; transform:rotate(-22deg); }
+.skin-face.skin--glaze .transport-button { inset:33% 36%; border-radius:36% 36% 43% 43%; background:linear-gradient(135deg,#75464a,#512e36); border-color:#512e36; color:#f8e8ce; box-shadow:inset 0 1px #b07875,0 4px 5px #6b34345c; }
+.skin-face.skin--glaze .speed-module :is(button,.speed-step) { background:#e2b6aa; border-color:#b67e72; color:inherit; }
+.skin-face.skin--glaze .wheel-column { padding-bottom:36px; }
+/* A graphic, flat object: three large sectors, a square key and a butter shell. */
+.skin-face.skin--pop { --instrument-type:#2c3430; --craft-accent:#4249a3; background:#dfdc86; border-color:#b8b665; border-radius:6px; box-shadow:inset 0 -5px #b7b665,0 10px 15px -8px #61692f55; }
+.skin-face.skin--pop .wheel-rotor { background:#333c34; box-shadow:0 0 0 3px #333c34,0 4px 0 #a2a752; border-radius:46%; }
+.skin-face.skin--pop .wheel-disc { inset:3%; border-radius:44%; background:conic-gradient(from 15deg,#454ca2 0deg 126deg,#dc7450 126deg 245deg,#6c856a 245deg 360deg); box-shadow:none; }
+.skin-face.skin--pop .transport-button { inset:34%; border-radius:4px; background:#f5f0cf; border:2px solid #30382e; color:#30382e; box-shadow:4px 4px 0 #30382e; }
+.skin-face.skin--pop .speed-module :is(button,.speed-step) { border-radius:0; background:#ebe6a3; border:1px solid #4f573b; box-shadow:2px 2px 0 #768054; color:inherit; }
+.skin-face.skin--pop .wheel-column { padding-bottom:36px; }
+/* End-grain is confined to a wooden rim; the centre stays quiet mineral. */
+.skin-face.skin--moss { --instrument-type:#eff0d6; --craft-accent:#e4cf9d; background:linear-gradient(140deg,#5e6a53,#4e5e47 80%); border-color:#43533e; border-radius:25px; box-shadow:inset 0 1px #acb292,0 10px 16px -8px #263b2888; }
+.skin-face.skin--moss .wheel-rotor { background:repeating-radial-gradient(ellipse at 42% 38%,#5e4933 0 4px,#94734f 5px 6px,#735738 7px 11px); box-shadow:inset 0 0 0 2px #aa8e62,inset 0 0 0 4px #4d402b,0 5px 8px #1e322799; }
+.skin-face.skin--moss .wheel-disc { inset:13%; background:radial-gradient(ellipse at 32% 22%,#d8dbc0,#b0b99b); box-shadow:inset 0 1px #f3edd0,0 0 0 2px #443e2b,inset 0 -2px 4px #5c695745; }
+.skin-face.skin--moss .transport-button { inset:37% 29%; border-radius:40%; background:#524533; color:#f3e5bd; border-color:#92774c; box-shadow:inset 0 1px #ad9461,0 2px 4px #39432b77; }
+.skin-face.skin--moss .speed-module :is(button,.speed-step) { background:#536347; border-color:#a6ad88; color:#f0edd0; }
+.skin-face.skin--moss .wheel-column { padding-bottom:36px; }
+/* No simulated metal: a single chalk break against matte ink. */
+.skin-face.skin--mono { --instrument-type:#eeeee4; --craft-accent:#eeeee4; background:#232726; border-color:#0c1713; border-radius:0; box-shadow:none; }
+.skin-face.skin--mono .wheel-rotor { background:conic-gradient(from -16deg,#eeeee4 0deg 318deg,#232726 318deg 360deg); box-shadow:none; }
+.skin-face.skin--mono .wheel-disc { inset:5%; background:#232726; box-shadow:none; }
+.skin-face.skin--mono .transport-button { inset:34%; border-radius:50%; border:0; background:#eeeee4; color:#232726; box-shadow:none; }
+.skin-face.skin--mono .speed-module :is(button,.speed-step) { background:#232726; border:1px solid #c3c9bd; color:#eeeee4; box-shadow:none; }
+.skin-face.skin--mono .transport-readout { border:1px solid #778177; box-shadow:none; border-radius:0; }
+.skin-face.skin--mono .wheel-column { padding-bottom:36px; }
+/* A stitched textile case supports an enamel instrument. */
+.skin-face.skin--loom { --instrument-type:#f0e1c7; --craft-accent:#e3c896; background:repeating-linear-gradient(0deg,transparent 0 4px,#301e2340 4px 6px),repeating-linear-gradient(90deg,#74484a 0 4px,#633a40 4px 6px); border:1px solid #4e3035; border-radius:24px; box-shadow:inset 0 0 0 7px #59383d,0 9px 15px -6px #33222966; }
+.skin-face.skin--loom::after { content:""; position:absolute; inset:10px; border:1px dashed #ccad8277; border-radius:16px; pointer-events:none; }
+.skin-face.skin--loom .wheel-rotor { background:#253d38; box-shadow:inset 0 0 0 3px #d4c396,0 0 0 2px #382f2a,0 5px 8px #241d1d88; border-radius:42%; }
+.skin-face.skin--loom .wheel-disc { inset:4%; border-radius:40%; background:radial-gradient(ellipse at 30% 20%,#437061,#294d42 65%,#243e35); box-shadow:inset 0 1px #91ac87,inset 0 -3px 4px #162c2a55; }
+.skin-face.skin--loom .wheel-disc::after { content:"";position:absolute;inset:12%;border:1px solid #b6be8e55;border-radius:40%; }
+.skin-face.skin--loom .transport-button { inset:35%;border-radius:30%;background:#e2cc9e;color:#3b3b2c;border:1px solid #b89b6f;box-shadow:inset 0 1px #fbebc1,0 3px 5px #122c2777; }
+.skin-face.skin--loom .speed-module :is(button,.speed-step) { background:#634046; color:#f0e1c7; border-color:#bca17f; }
+.skin-face.skin--loom .wheel-column { padding-bottom:36px; }
+/* Wide rubber pads and a cherry key give Arcade its own silhouette. */
+.skin-face.skin--arcade { --instrument-type:#253e3a; --craft-accent:#bd433f; background:linear-gradient(135deg,#c2e0ce,#8fc3b0);border-color:#5f9a8e;border-radius:14px 14px 36px 36px;box-shadow:inset 0 -7px #5f9b8c,inset 0 2px #ebf3d4,0 10px 16px -8px #28574b66; }
+.skin-face.skin--arcade .wheel-rotor { background:conic-gradient(#42403f 0 24deg,#b1d2a3 24deg 66deg,#42403f 66deg 114deg,#c4b2cf 114deg 156deg,#42403f 156deg 204deg,#e3bc6b 204deg 246deg,#42403f 246deg 294deg,#c4b2cf 294deg 336deg,#42403f 336deg);border-radius:37%;box-shadow:inset 0 0 0 3px #293d35,0 6px 0 #537e6d,0 8px 7px #264a3a55; }
+.skin-face.skin--arcade .wheel-disc { inset:12%;border-radius:30%;background:#384b42;box-shadow:inset 0 0 0 2px #688675,inset 0 -5px 8px #132e2555; }
+.skin-face.skin--arcade .transport-button { inset:33%; border-radius:50%;background:radial-gradient(circle at 36% 24%,#dc7362,#ad3c43 65%,#932f38);border-color:#862f39;color:#fff2d0;box-shadow:inset 0 1px #ffc0a0,0 5px 0 #732d38,0 8px 6px #183d2b66; }
+.skin-face.skin--arcade .speed-module :is(button,.speed-step) { border-radius:5px;background:#e4d6bc;border-color:#648d78;color:#253e3a;box-shadow:0 3px 0 #719a81; }
+.skin-face.skin--arcade .wheel-column { padding-bottom:36px; }
+.skin-face.skin--observatory { --instrument-type:#e1d4b3;--craft-accent:#d4b77c;background:linear-gradient(135deg,#35475c,#1e2c42 80%);border-color:#162333;border-radius:10px;box-shadow:inset 0 1px #79848c,0 10px 16px -8px #15213788; }
+.skin-face.skin--observatory .wheel-rotor { background:repeating-conic-gradient(#b19a6d 0 1deg,#23344a 1deg 10deg);box-shadow:inset 0 0 0 2px #ac9667,0 0 0 2px #101f31,0 5px 8px #10213788; }
+.skin-face.skin--observatory .wheel-disc { inset:5%; background:radial-gradient(ellipse at 30% 20%,#3d5870,#1d3049 80%);box-shadow:inset 0 0 0 1px #a89d7e; }
+.skin-face.skin--observatory .transport-button { inset:37%;border-radius:50%;color:#182f41;background:linear-gradient(135deg,#e0cf9f,#b79c66);border-color:#cbb581;box-shadow:inset 0 1px #fff0c6,0 3px 6px #0f213888; }
+.skin-face.skin--observatory .speed-module :is(button,.speed-step) { background:#34485c;border-color:#9a947d;color:#ede0b9; }
+.skin-face.skin--observatory .wheel-column { padding-bottom:36px; }
+.skin-face.skin--rally { --instrument-type:#162a20;--craft-accent:#b54e34; background:linear-gradient(90deg,transparent 0 13%,#d96e45 13% 19%,#333b31 19% 21%,transparent 21%),#e7e3ce;border-color:#b1b49b;border-radius:4px;box-shadow:inset 0 -4px #babca1,0 10px 14px -8px #36472e55; }
+.skin-face.skin--rally .wheel-rotor { background:repeating-conic-gradient(#1c3027 0deg 13deg,#52634d 13deg 16deg,#1c3027 16deg 30deg);box-shadow:inset 0 0 0 3px #13261b,0 5px 6px #31432a66; }
+.skin-face.skin--rally .wheel-disc { inset:0;background:url('../assets/skin-rally-wheel.svg') center / contain no-repeat;box-shadow:none; }
+.skin-face.skin--rally .transport-button { inset:36%;height:auto;margin:0;border-radius:50%;background:linear-gradient(135deg,#e9d982,#c4b65e);border-color:#9d9e59;color:#263c2d;box-shadow:inset 0 1px #fff0b0,0 3px 0 #7d884d,0 5px 6px #1a302855; }
+.skin-face.skin--rally .speed-module :is(button,.speed-step) { border-radius:3px;background:#e2e1c9;border-color:#879477;color:inherit; }
+.skin-face.skin--rally .wheel-column { padding-bottom:36px; }
+/* Finish-specific speed ink and fixed readout supports preserve operation. */
+.skin-face:is(.skin--clear,.skin--spool,.skin--glaze,.skin--pop,.skin--moss,.skin--mono,.skin--loom,.skin--arcade,.skin--observatory,.skin--rally) .speed-track > span { background:var(--craft-accent); }
+.skin-face:is(.skin--clear,.skin--spool,.skin--glaze,.skin--pop,.skin--moss,.skin--mono,.skin--loom,.skin--arcade,.skin--observatory,.skin--rally) .wheel-caption { color:var(--instrument-type); }
+.standalone-remote:is(.skin--clear,.skin--glaze,.skin--pop,.skin--arcade,.skin--rally) .remote-brand img { filter:brightness(0); }
+.lab-device.skin-face { --lab-type:var(--instrument-type); }
+.lab-device.skin-face .speed-module button { color:var(--instrument-type); }
+/* Existing studies: construction refinements retain their IDs and palettes. */
+:is(.skin-face.skin--aperture,.lab-device--aperture) .wheel-disc { background:radial-gradient(circle,#09121b,#28343e); }
+:is(.skin-face.skin--groove,.lab-device--groove) .wheel-disc { background:repeating-radial-gradient(circle,#22291f 0 1.4px,#41473a 1.8px 2.2px,#282d22 2.6px 4px); }
+:is(.skin-face.skin--groove,.lab-device--groove) .jog-wheel::after { content:"";position:absolute;inset:3%;border-radius:50%;background:conic-gradient(from -25deg,transparent 0 50deg,#dfd4a419 67deg,transparent 85deg 233deg,#dfd4a410 247deg,transparent 266deg);pointer-events:none;z-index:1; }
+:is(.skin-face.skin--foundry,.lab-device--foundry) .wheel-rotor { background:transparent; box-shadow:none; }
+:is(.skin-face.skin--foundry,.lab-device--foundry) .wheel-disc { inset:6%; }
+:is(.skin-face.skin--inox,.lab-device--inox) .jog-wheel::after { content:"";position:absolute;inset:3%;border-radius:50%;background:linear-gradient(125deg,#ffffff20,transparent 43%,#162e3515 78%,transparent);pointer-events:none;z-index:1; }
+:is(.skin-face.skin--oxide,.lab-device--oxide) .jog-wheel::after { content:"";position:absolute;inset:-3%;border-radius:15%;border:1px solid #c6967440;box-shadow:inset 0 -2px #2b1c1266;pointer-events:none; }
+:is(.skin-face.skin--airframe,.lab-device--airframe) .wheel-disc { box-shadow:inset 0 1px #fff9,inset 0 -2px 2px #456b7888,0 0 0 1px #5b7e8b; }
+:is(.skin-face.skin--graphite,.lab-device--graphite) .wheel-disc::after { box-shadow:inset 1px 3px 5px #091306aa,0 1px #8f9b7855; }
+:is(.skin-face.skin--ivory,.lab-device--ivory) .wheel-disc { box-shadow:inset 0 1px #fff9,0 0 0 1px #babdae,inset 0 -2px 4px #636a4d25; }
+
+.mechanism-demo { display:block; min-height:44px; margin:14px auto 0; padding:10px 20px; border:1px solid #c1c6b5; border-radius:24px; background:#f0eee2; color:#343d2e; font:12px 'Avenir Next',sans-serif; cursor:pointer; }
+.mechanism-demo[aria-pressed=true] { background:#364430; color:#f4f0da; border-color:#364430; }
+.mechanism-demo:focus-visible { outline:2px solid #a94c2d; outline-offset:4px; }
+:is(.skin-face.skin--vector,.lab-device--vector) .wheel-disc { background:radial-gradient(circle,#436e3a08 0 50%,#0c2113aa 92%),conic-gradient(from -90deg,#d6ffb7 0deg,#153722 1deg 298deg,#2b522f 318deg,#619545 345deg,#d6ffb7 359deg); }
+:is(.skin-face.skin--vector,.lab-device--vector) [data-motion-direction=reverse] .wheel-disc { background:radial-gradient(circle,#436e3a08 0 50%,#0c2113aa 92%),conic-gradient(from -90deg,#d6ffb7 0deg,#619545 14deg,#2b522f 41deg,#153722 62deg 359deg,#d6ffb7 360deg); }
+:is(.skin-face.skin--vector,.lab-device--vector) .jog-wheel::after { content:"";position:absolute;inset:4%;border-radius:50%;background:linear-gradient(132deg,#c1e7ac12,transparent 32% 65%,#050f0740);box-shadow:inset 0 1px 2px #d5fcb22e;pointer-events:none;z-index:2; }
+
+.hero-finish-picker .finish-dot { position:relative; width:44px; height:44px; padding:9px; border:0; background:transparent; box-shadow:none; }
+.hero-finish-picker .finish-dot::before { content:""; position:absolute; inset:9px; border-radius:50%; background:var(--finish-swatch,#e9e5d7); box-shadow:0 0 0 1px #777e69; }
+.hero-finish-picker .finish-dot[aria-pressed=true]::before { box-shadow:0 0 0 2px #e5e8d7; }
+.finish-dot--groove { --finish-swatch:#d48345; }
+.finish-dot--clear { --finish-swatch:#d7e4da; }
+.finish-dot--spool { --finish-swatch:#a89bbb; }
+.finish-dot--glaze { --finish-swatch:#d6a09b; }
+.finish-dot--vector { --finish-swatch:#829d64; }
+
+/* Square-edged rotors need their diagonal clearance in small collection cards. */
+.pro-skin-strip :is(.skin--pop,.skin--loom,.skin--arcade) .jog-wheel { width:78%; margin-inline:auto; }

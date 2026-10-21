@@ -1,0 +1,2022 @@
+{
+  "results": [
+    {
+      "browser": "chromium",
+      "id": "groove",
+      "width": 320,
+      "height": 480,
+      "minimumSeparation": 107.65860846473215,
+      "jogDiameter": 152.265625
+    },
+    {
+      "browser": "chromium",
+      "id": "groove",
+      "width": 320,
+      "height": 568,
+      "minimumSeparation": 151.16754273508084,
+      "jogDiameter": 152.265625
+    },
+    {
+      "browser": "chromium",
+      "id": "groove",
+      "width": 390,
+      "height": 660,
+      "minimumSeparation": 71,
+      "jogDiameter": 226.921875
+    },
+    {
+      "browser": "chromium",
+      "id": "groove",
+      "width": 390,
+      "height": 844,
+      "minimumSeparation": 73,
+      "jogDiameter": 310
+    },
+    {
+      "browser": "chromium",
+      "id": "groove",
+      "width": 568,
+      "height": 320,
+      "minimumSeparation": 48.5,
+      "jogDiameter": 162
+    },
+    {
+      "browser": "chromium",
+      "id": "groove",
+      "width": 844,
+      "height": 390,
+      "minimumSeparation": 48.5,
+      "jogDiameter": 232
+    },
+    {
+      "browser": "chromium",
+      "id": "clear",
+      "width": 320,
+      "height": 480,
+      "minimumSeparation": 106.19289366084014,
+      "jogDiameter": 152.265625
+    },
+    {
+      "browser": "chromium",
+      "id": "clear",
+      "width": 320,
+      "height": 568,
+      "minimumSeparation": 149.74204708118057,
+      "jogDiameter": 152.265625
+    },
+    {
+      "browser": "chromium",
+      "id": "clear",
+      "width": 390,
+      "height": 660,
+      "minimumSeparation": 70,
+      "jogDiameter": 226.296875
+    },
+    {
+      "browser": "chromium",
+      "id": "clear",
+      "width": 390,
+      "height": 844,
+      "minimumSeparation": 72,
+      "jogDiameter": 310
+    },
+    {
+      "browser": "chromium",
+      "id": "clear",
+      "width": 568,
+      "height": 320,
+      "minimumSeparation": 47.5,
+      "jogDiameter": 160
+    },
+    {
+      "browser": "chromium",
+      "id": "clear",
+      "width": 844,
+      "height": 390,
+      "minimumSeparation": 47.5,
+      "jogDiameter": 230
+    },
+    {
+      "browser": "chromium",
+      "id": "arcade",
+      "width": 320,
+      "height": 480,
+      "minimumSeparation": 61.609375,
+      "jogDiameter": 150.203125
+    },
+    {
+      "browser": "chromium",
+      "id": "arcade",
+      "width": 320,
+      "height": 568,
+      "minimumSeparation": 105.33709027636287,
+      "jogDiameter": 152.265625
+    },
+    {
+      "browser": "chromium",
+      "id": "arcade",
+      "width": 390,
+      "height": 660,
+      "minimumSeparation": 150.81102442424634,
+      "jogDiameter": 218.078125
+    },
+    {
+      "browser": "chromium",
+      "id": "arcade",
+      "width": 390,
+      "height": 844,
+      "minimumSeparation": 67,
+      "jogDiameter": 241.046875
+    },
+    {
+      "browser": "chromium",
+      "id": "arcade",
+      "width": 568,
+      "height": 320,
+      "minimumSeparation": 59,
+      "jogDiameter": 160
+    },
+    {
+      "browser": "chromium",
+      "id": "arcade",
+      "width": 844,
+      "height": 390,
+      "minimumSeparation": 59,
+      "jogDiameter": 230
+    },
+    {
+      "browser": "chromium",
+      "id": "field",
+      "width": 320,
+      "height": 480,
+      "minimumSeparation": 90.34258257633826,
+      "jogDiameter": 152.265625
+    },
+    {
+      "browser": "chromium",
+      "id": "field",
+      "width": 320,
+      "height": 568,
+      "minimumSeparation": 133.7480176547021,
+      "jogDiameter": 152.265625
+    },
+    {
+      "browser": "chromium",
+      "id": "field",
+      "width": 390,
+      "height": 660,
+      "minimumSeparation": 66,
+      "jogDiameter": 202.046875
+    },
+    {
+      "browser": "chromium",
+      "id": "field",
+      "width": 390,
+      "height": 844,
+      "minimumSeparation": 68,
+      "jogDiameter": 287.828125
+    },
+    {
+      "browser": "chromium",
+      "id": "field",
+      "width": 568,
+      "height": 320,
+      "minimumSeparation": 55.5,
+      "jogDiameter": 162
+    },
+    {
+      "browser": "chromium",
+      "id": "field",
+      "width": 844,
+      "height": 390,
+      "minimumSeparation": 55.5,
+      "jogDiameter": 232
+    },
+    {
+      "browser": "chromium",
+      "id": "signal",
+      "width": 320,
+      "height": 480,
+      "minimumSeparation": 50.53125,
+      "jogDiameter": 152.265625
+    },
+    {
+      "browser": "chromium",
+      "id": "signal",
+      "width": 320,
+      "height": 568,
+      "minimumSeparation": 94.46180300292018,
+      "jogDiameter": 152.265625
+    },
+    {
+      "browser": "chromium",
+      "id": "signal",
+      "width": 390,
+      "height": 660,
+      "minimumSeparation": 43,
+      "jogDiameter": 224.046875
+    },
+    {
+      "browser": "chromium",
+      "id": "signal",
+      "width": 390,
+      "height": 844,
+      "minimumSeparation": 45,
+      "jogDiameter": 310
+    },
+    {
+      "browser": "chromium",
+      "id": "signal",
+      "width": 568,
+      "height": 320,
+      "minimumSeparation": 37,
+      "jogDiameter": 162
+    },
+    {
+      "browser": "chromium",
+      "id": "signal",
+      "width": 844,
+      "height": 390,
+      "minimumSeparation": 37,
+      "jogDiameter": 232
+    },
+    {
+      "browser": "chromium",
+      "id": "vector",
+      "width": 320,
+      "height": 480,
+      "minimumSeparation": 61.0625,
+      "jogDiameter": 152.265625
+    },
+    {
+      "browser": "chromium",
+      "id": "vector",
+      "width": 320,
+      "height": 568,
+      "minimumSeparation": 104.62255448157438,
+      "jogDiameter": 152.265625
+    },
+    {
+      "browser": "chromium",
+      "id": "vector",
+      "width": 390,
+      "height": 660,
+      "minimumSeparation": 42,
+      "jogDiameter": 247.109375
+    },
+    {
+      "browser": "chromium",
+      "id": "vector",
+      "width": 390,
+      "height": 844,
+      "minimumSeparation": 44,
+      "jogDiameter": 310
+    },
+    {
+      "browser": "chromium",
+      "id": "vector",
+      "width": 568,
+      "height": 320,
+      "minimumSeparation": 36,
+      "jogDiameter": 162
+    },
+    {
+      "browser": "chromium",
+      "id": "vector",
+      "width": 844,
+      "height": 390,
+      "minimumSeparation": 36,
+      "jogDiameter": 232
+    },
+    {
+      "browser": "chromium",
+      "id": "cartridge",
+      "width": 320,
+      "height": 480,
+      "minimumSeparation": 62.65625,
+      "jogDiameter": 152.265625
+    },
+    {
+      "browser": "chromium",
+      "id": "cartridge",
+      "width": 320,
+      "height": 568,
+      "minimumSeparation": 106.36696227712109,
+      "jogDiameter": 152.265625
+    },
+    {
+      "browser": "chromium",
+      "id": "cartridge",
+      "width": 390,
+      "height": 660,
+      "minimumSeparation": 65,
+      "jogDiameter": 204.296875
+    },
+    {
+      "browser": "chromium",
+      "id": "cartridge",
+      "width": 390,
+      "height": 844,
+      "minimumSeparation": 67,
+      "jogDiameter": 282.953125
+    },
+    {
+      "browser": "chromium",
+      "id": "cartridge",
+      "width": 568,
+      "height": 320,
+      "minimumSeparation": 59,
+      "jogDiameter": 162
+    },
+    {
+      "browser": "chromium",
+      "id": "cartridge",
+      "width": 844,
+      "height": 390,
+      "minimumSeparation": 59,
+      "jogDiameter": 232
+    },
+    {
+      "browser": "chromium",
+      "id": "switchboard",
+      "width": 320,
+      "height": 480,
+      "minimumSeparation": 94.69523998893766,
+      "jogDiameter": 152.265625
+    },
+    {
+      "browser": "chromium",
+      "id": "switchboard",
+      "width": 320,
+      "height": 568,
+      "minimumSeparation": 138.14643852290402,
+      "jogDiameter": 152.265625
+    },
+    {
+      "browser": "chromium",
+      "id": "switchboard",
+      "width": 390,
+      "height": 660,
+      "minimumSeparation": 66,
+      "jogDiameter": 210.921875
+    },
+    {
+      "browser": "chromium",
+      "id": "switchboard",
+      "width": 390,
+      "height": 844,
+      "minimumSeparation": 68,
+      "jogDiameter": 294.859375
+    },
+    {
+      "browser": "chromium",
+      "id": "switchboard",
+      "width": 568,
+      "height": 320,
+      "minimumSeparation": 55.5,
+      "jogDiameter": 162
+    },
+    {
+      "browser": "chromium",
+      "id": "switchboard",
+      "width": 844,
+      "height": 390,
+      "minimumSeparation": 55.5,
+      "jogDiameter": 232
+    },
+    {
+      "browser": "chromium",
+      "id": "correspondent",
+      "width": 320,
+      "height": 480,
+      "minimumSeparation": 58.96875,
+      "jogDiameter": 152.265625
+    },
+    {
+      "browser": "chromium",
+      "id": "correspondent",
+      "width": 320,
+      "height": 568,
+      "minimumSeparation": 102.56065754743629,
+      "jogDiameter": 152.265625
+    },
+    {
+      "browser": "chromium",
+      "id": "correspondent",
+      "width": 390,
+      "height": 660,
+      "minimumSeparation": 148.06692229043762,
+      "jogDiameter": 218.078125
+    },
+    {
+      "browser": "chromium",
+      "id": "correspondent",
+      "width": 390,
+      "height": 844,
+      "minimumSeparation": 44,
+      "jogDiameter": 252.859375
+    },
+    {
+      "browser": "chromium",
+      "id": "correspondent",
+      "width": 568,
+      "height": 320,
+      "minimumSeparation": 36,
+      "jogDiameter": 162
+    },
+    {
+      "browser": "chromium",
+      "id": "correspondent",
+      "width": 844,
+      "height": 390,
+      "minimumSeparation": 36,
+      "jogDiameter": 232
+    },
+    {
+      "browser": "chromium",
+      "id": "foundry",
+      "width": 320,
+      "height": 480,
+      "minimumSeparation": 105.51540634695247,
+      "jogDiameter": 152.265625
+    },
+    {
+      "browser": "chromium",
+      "id": "foundry",
+      "width": 320,
+      "height": 568,
+      "minimumSeparation": 149.05955513338452,
+      "jogDiameter": 152.265625
+    },
+    {
+      "browser": "chromium",
+      "id": "foundry",
+      "width": 390,
+      "height": 660,
+      "minimumSeparation": 70,
+      "jogDiameter": 224.921875
+    },
+    {
+      "browser": "chromium",
+      "id": "foundry",
+      "width": 390,
+      "height": 844,
+      "minimumSeparation": 72,
+      "jogDiameter": 310
+    },
+    {
+      "browser": "chromium",
+      "id": "foundry",
+      "width": 568,
+      "height": 320,
+      "minimumSeparation": 47.5,
+      "jogDiameter": 162
+    },
+    {
+      "browser": "chromium",
+      "id": "foundry",
+      "width": 844,
+      "height": 390,
+      "minimumSeparation": 47.5,
+      "jogDiameter": 232
+    },
+    {
+      "browser": "chromium",
+      "id": "observatory",
+      "width": 320,
+      "height": 480,
+      "minimumSeparation": 101.66859842768561,
+      "jogDiameter": 152.265625
+    },
+    {
+      "browser": "chromium",
+      "id": "observatory",
+      "width": 320,
+      "height": 568,
+      "minimumSeparation": 145.18265704363588,
+      "jogDiameter": 152.265625
+    },
+    {
+      "browser": "chromium",
+      "id": "observatory",
+      "width": 390,
+      "height": 660,
+      "minimumSeparation": 70,
+      "jogDiameter": 217.109375
+    },
+    {
+      "browser": "chromium",
+      "id": "observatory",
+      "width": 390,
+      "height": 844,
+      "minimumSeparation": 72,
+      "jogDiameter": 310
+    },
+    {
+      "browser": "chromium",
+      "id": "observatory",
+      "width": 568,
+      "height": 320,
+      "minimumSeparation": 47.5,
+      "jogDiameter": 162
+    },
+    {
+      "browser": "chromium",
+      "id": "observatory",
+      "width": 844,
+      "height": 390,
+      "minimumSeparation": 47.5,
+      "jogDiameter": 232
+    },
+    {
+      "browser": "chromium",
+      "id": "ivory",
+      "width": 320,
+      "height": 480,
+      "minimumSeparation": 59.859375,
+      "jogDiameter": 152.265625
+    },
+    {
+      "browser": "chromium",
+      "id": "ivory",
+      "width": 320,
+      "height": 568,
+      "minimumSeparation": 103.43757670880841,
+      "jogDiameter": 152.265625
+    },
+    {
+      "browser": "chromium",
+      "id": "ivory",
+      "width": 390,
+      "height": 660,
+      "minimumSeparation": 42,
+      "jogDiameter": 244.71875
+    },
+    {
+      "browser": "chromium",
+      "id": "ivory",
+      "width": 390,
+      "height": 844,
+      "minimumSeparation": 44,
+      "jogDiameter": 310
+    },
+    {
+      "browser": "chromium",
+      "id": "ivory",
+      "width": 568,
+      "height": 320,
+      "minimumSeparation": 36,
+      "jogDiameter": 162
+    },
+    {
+      "browser": "chromium",
+      "id": "ivory",
+      "width": 844,
+      "height": 390,
+      "minimumSeparation": 36,
+      "jogDiameter": 232
+    },
+    {
+      "browser": "chromium",
+      "id": "graphite",
+      "width": 320,
+      "height": 480,
+      "minimumSeparation": 59.375,
+      "jogDiameter": 145.734375
+    },
+    {
+      "browser": "chromium",
+      "id": "graphite",
+      "width": 320,
+      "height": 568,
+      "minimumSeparation": 102.96062657637627,
+      "jogDiameter": 152.265625
+    },
+    {
+      "browser": "chromium",
+      "id": "graphite",
+      "width": 390,
+      "height": 660,
+      "minimumSeparation": 148.47016745797788,
+      "jogDiameter": 218.078125
+    },
+    {
+      "browser": "chromium",
+      "id": "graphite",
+      "width": 390,
+      "height": 844,
+      "minimumSeparation": 66,
+      "jogDiameter": 229.453125
+    },
+    {
+      "browser": "chromium",
+      "id": "graphite",
+      "width": 568,
+      "height": 320,
+      "minimumSeparation": 58,
+      "jogDiameter": 162
+    },
+    {
+      "browser": "chromium",
+      "id": "graphite",
+      "width": 844,
+      "height": 390,
+      "minimumSeparation": 58,
+      "jogDiameter": 232
+    },
+    {
+      "browser": "chromium",
+      "id": "original",
+      "width": 320,
+      "height": 480,
+      "minimumSeparation": 110.53790710091266,
+      "jogDiameter": 152.265625
+    },
+    {
+      "browser": "chromium",
+      "id": "original",
+      "width": 320,
+      "height": 568,
+      "minimumSeparation": 154.11725700339335,
+      "jogDiameter": 152.265625
+    },
+    {
+      "browser": "chromium",
+      "id": "original",
+      "width": 390,
+      "height": 660,
+      "minimumSeparation": 70,
+      "jogDiameter": 235.109375
+    },
+    {
+      "browser": "chromium",
+      "id": "original",
+      "width": 390,
+      "height": 844,
+      "minimumSeparation": 72,
+      "jogDiameter": 310
+    },
+    {
+      "browser": "chromium",
+      "id": "original",
+      "width": 568,
+      "height": 320,
+      "minimumSeparation": 47.5,
+      "jogDiameter": 162
+    },
+    {
+      "browser": "chromium",
+      "id": "original",
+      "width": 844,
+      "height": 390,
+      "minimumSeparation": 47.5,
+      "jogDiameter": 232
+    },
+    {
+      "browser": "firefox",
+      "id": "groove",
+      "width": 320,
+      "height": 480,
+      "minimumSeparation": 105.67215829082865,
+      "jogDiameter": 152.2833251953125
+    },
+    {
+      "browser": "firefox",
+      "id": "groove",
+      "width": 320,
+      "height": 568,
+      "minimumSeparation": 149.16502978936012,
+      "jogDiameter": 152.2833251953125
+    },
+    {
+      "browser": "firefox",
+      "id": "groove",
+      "width": 390,
+      "height": 660,
+      "minimumSeparation": 71,
+      "jogDiameter": 223.89999389648438
+    },
+    {
+      "browser": "firefox",
+      "id": "groove",
+      "width": 390,
+      "height": 844,
+      "minimumSeparation": 73,
+      "jogDiameter": 310
+    },
+    {
+      "browser": "firefox",
+      "id": "groove",
+      "width": 568,
+      "height": 320,
+      "minimumSeparation": 48,
+      "jogDiameter": 162
+    },
+    {
+      "browser": "firefox",
+      "id": "groove",
+      "width": 844,
+      "height": 390,
+      "minimumSeparation": 48,
+      "jogDiameter": 232
+    },
+    {
+      "browser": "firefox",
+      "id": "clear",
+      "width": 320,
+      "height": 480,
+      "minimumSeparation": 104.21622353044789,
+      "jogDiameter": 152.2833251953125
+    },
+    {
+      "browser": "firefox",
+      "id": "clear",
+      "width": 320,
+      "height": 568,
+      "minimumSeparation": 147.7505353961159,
+      "jogDiameter": 152.2833251953125
+    },
+    {
+      "browser": "firefox",
+      "id": "clear",
+      "width": 390,
+      "height": 660,
+      "minimumSeparation": 70,
+      "jogDiameter": 223.2833251953125
+    },
+    {
+      "browser": "firefox",
+      "id": "clear",
+      "width": 390,
+      "height": 844,
+      "minimumSeparation": 72,
+      "jogDiameter": 310
+    },
+    {
+      "browser": "firefox",
+      "id": "clear",
+      "width": 568,
+      "height": 320,
+      "minimumSeparation": 47,
+      "jogDiameter": 160
+    },
+    {
+      "browser": "firefox",
+      "id": "clear",
+      "width": 844,
+      "height": 390,
+      "minimumSeparation": 47,
+      "jogDiameter": 230
+    },
+    {
+      "browser": "firefox",
+      "id": "arcade",
+      "width": 320,
+      "height": 480,
+      "minimumSeparation": 59.600006103515625,
+      "jogDiameter": 147.18333435058594
+    },
+    {
+      "browser": "firefox",
+      "id": "arcade",
+      "width": 320,
+      "height": 568,
+      "minimumSeparation": 103.36131404076873,
+      "jogDiameter": 152.2833251953125
+    },
+    {
+      "browser": "firefox",
+      "id": "arcade",
+      "width": 390,
+      "height": 660,
+      "minimumSeparation": 148.81788132397884,
+      "jogDiameter": 218.08334350585938
+    },
+    {
+      "browser": "firefox",
+      "id": "arcade",
+      "width": 390,
+      "height": 844,
+      "minimumSeparation": 67,
+      "jogDiameter": 238.0333251953125
+    },
+    {
+      "browser": "firefox",
+      "id": "arcade",
+      "width": 568,
+      "height": 320,
+      "minimumSeparation": 59,
+      "jogDiameter": 160
+    },
+    {
+      "browser": "firefox",
+      "id": "arcade",
+      "width": 844,
+      "height": 390,
+      "minimumSeparation": 59,
+      "jogDiameter": 230
+    },
+    {
+      "browser": "firefox",
+      "id": "field",
+      "width": 320,
+      "height": 480,
+      "minimumSeparation": 88.3692984414649,
+      "jogDiameter": 152.2833251953125
+    },
+    {
+      "browser": "firefox",
+      "id": "field",
+      "width": 320,
+      "height": 568,
+      "minimumSeparation": 131.75203685571785,
+      "jogDiameter": 152.2833251953125
+    },
+    {
+      "browser": "firefox",
+      "id": "field",
+      "width": 390,
+      "height": 660,
+      "minimumSeparation": 66,
+      "jogDiameter": 199.0333251953125
+    },
+    {
+      "browser": "firefox",
+      "id": "field",
+      "width": 390,
+      "height": 844,
+      "minimumSeparation": 68,
+      "jogDiameter": 284.816650390625
+    },
+    {
+      "browser": "firefox",
+      "id": "field",
+      "width": 568,
+      "height": 320,
+      "minimumSeparation": 55,
+      "jogDiameter": 162
+    },
+    {
+      "browser": "firefox",
+      "id": "field",
+      "width": 844,
+      "height": 390,
+      "minimumSeparation": 55,
+      "jogDiameter": 232
+    },
+    {
+      "browser": "firefox",
+      "id": "signal",
+      "width": 320,
+      "height": 480,
+      "minimumSeparation": 48.51666259765625,
+      "jogDiameter": 152.2833251953125
+    },
+    {
+      "browser": "firefox",
+      "id": "signal",
+      "width": 320,
+      "height": 568,
+      "minimumSeparation": 92.48927617739227,
+      "jogDiameter": 152.2833251953125
+    },
+    {
+      "browser": "firefox",
+      "id": "signal",
+      "width": 390,
+      "height": 660,
+      "minimumSeparation": 43,
+      "jogDiameter": 221.0333251953125
+    },
+    {
+      "browser": "firefox",
+      "id": "signal",
+      "width": 390,
+      "height": 844,
+      "minimumSeparation": 45,
+      "jogDiameter": 309.816650390625
+    },
+    {
+      "browser": "firefox",
+      "id": "signal",
+      "width": 568,
+      "height": 320,
+      "minimumSeparation": 37,
+      "jogDiameter": 162
+    },
+    {
+      "browser": "firefox",
+      "id": "signal",
+      "width": 844,
+      "height": 390,
+      "minimumSeparation": 37,
+      "jogDiameter": 232
+    },
+    {
+      "browser": "firefox",
+      "id": "vector",
+      "width": 320,
+      "height": 480,
+      "minimumSeparation": 59.05000305175781,
+      "jogDiameter": 152.2833251953125
+    },
+    {
+      "browser": "firefox",
+      "id": "vector",
+      "width": 320,
+      "height": 568,
+      "minimumSeparation": 102.64063538852014,
+      "jogDiameter": 152.2833251953125
+    },
+    {
+      "browser": "firefox",
+      "id": "vector",
+      "width": 390,
+      "height": 660,
+      "minimumSeparation": 42,
+      "jogDiameter": 244.10000610351562
+    },
+    {
+      "browser": "firefox",
+      "id": "vector",
+      "width": 390,
+      "height": 844,
+      "minimumSeparation": 44,
+      "jogDiameter": 310
+    },
+    {
+      "browser": "firefox",
+      "id": "vector",
+      "width": 568,
+      "height": 320,
+      "minimumSeparation": 36,
+      "jogDiameter": 162
+    },
+    {
+      "browser": "firefox",
+      "id": "vector",
+      "width": 844,
+      "height": 390,
+      "minimumSeparation": 36,
+      "jogDiameter": 232
+    },
+    {
+      "browser": "firefox",
+      "id": "cartridge",
+      "width": 320,
+      "height": 480,
+      "minimumSeparation": 60.649993896484375,
+      "jogDiameter": 152.2833251953125
+    },
+    {
+      "browser": "firefox",
+      "id": "cartridge",
+      "width": 320,
+      "height": 568,
+      "minimumSeparation": 104.39358815055779,
+      "jogDiameter": 152.2833251953125
+    },
+    {
+      "browser": "firefox",
+      "id": "cartridge",
+      "width": 390,
+      "height": 660,
+      "minimumSeparation": 65,
+      "jogDiameter": 201.2833251953125
+    },
+    {
+      "browser": "firefox",
+      "id": "cartridge",
+      "width": 390,
+      "height": 844,
+      "minimumSeparation": 67,
+      "jogDiameter": 279.95001220703125
+    },
+    {
+      "browser": "firefox",
+      "id": "cartridge",
+      "width": 568,
+      "height": 320,
+      "minimumSeparation": 59,
+      "jogDiameter": 162
+    },
+    {
+      "browser": "firefox",
+      "id": "cartridge",
+      "width": 844,
+      "height": 390,
+      "minimumSeparation": 59,
+      "jogDiameter": 232
+    },
+    {
+      "browser": "firefox",
+      "id": "switchboard",
+      "width": 320,
+      "height": 480,
+      "minimumSeparation": 92.7140870897474,
+      "jogDiameter": 152.2833251953125
+    },
+    {
+      "browser": "firefox",
+      "id": "switchboard",
+      "width": 320,
+      "height": 568,
+      "minimumSeparation": 136.1451644190049,
+      "jogDiameter": 152.2833251953125
+    },
+    {
+      "browser": "firefox",
+      "id": "switchboard",
+      "width": 390,
+      "height": 660,
+      "minimumSeparation": 66,
+      "jogDiameter": 207.89999389648438
+    },
+    {
+      "browser": "firefox",
+      "id": "switchboard",
+      "width": 390,
+      "height": 844,
+      "minimumSeparation": 68,
+      "jogDiameter": 291.8500061035156
+    },
+    {
+      "browser": "firefox",
+      "id": "switchboard",
+      "width": 568,
+      "height": 320,
+      "minimumSeparation": 55,
+      "jogDiameter": 162
+    },
+    {
+      "browser": "firefox",
+      "id": "switchboard",
+      "width": 844,
+      "height": 390,
+      "minimumSeparation": 55,
+      "jogDiameter": 232
+    },
+    {
+      "browser": "firefox",
+      "id": "correspondent",
+      "width": 320,
+      "height": 480,
+      "minimumSeparation": 56.94999694824219,
+      "jogDiameter": 152.2833251953125
+    },
+    {
+      "browser": "firefox",
+      "id": "correspondent",
+      "width": 320,
+      "height": 568,
+      "minimumSeparation": 100.5738778996397,
+      "jogDiameter": 152.2833251953125
+    },
+    {
+      "browser": "firefox",
+      "id": "correspondent",
+      "width": 390,
+      "height": 660,
+      "minimumSeparation": 146.06336309567334,
+      "jogDiameter": 218.08334350585938
+    },
+    {
+      "browser": "firefox",
+      "id": "correspondent",
+      "width": 390,
+      "height": 844,
+      "minimumSeparation": 44,
+      "jogDiameter": 249.85000610351562
+    },
+    {
+      "browser": "firefox",
+      "id": "correspondent",
+      "width": 568,
+      "height": 320,
+      "minimumSeparation": 36,
+      "jogDiameter": 162
+    },
+    {
+      "browser": "firefox",
+      "id": "correspondent",
+      "width": 844,
+      "height": 390,
+      "minimumSeparation": 36,
+      "jogDiameter": 232
+    },
+    {
+      "browser": "firefox",
+      "id": "foundry",
+      "width": 320,
+      "height": 480,
+      "minimumSeparation": 103.52683221761313,
+      "jogDiameter": 152.2833251953125
+    },
+    {
+      "browser": "firefox",
+      "id": "foundry",
+      "width": 320,
+      "height": 568,
+      "minimumSeparation": 147.05579234845723,
+      "jogDiameter": 152.2833251953125
+    },
+    {
+      "browser": "firefox",
+      "id": "foundry",
+      "width": 390,
+      "height": 660,
+      "minimumSeparation": 70,
+      "jogDiameter": 221.89999389648438
+    },
+    {
+      "browser": "firefox",
+      "id": "foundry",
+      "width": 390,
+      "height": 844,
+      "minimumSeparation": 72,
+      "jogDiameter": 308.8500061035156
+    },
+    {
+      "browser": "firefox",
+      "id": "foundry",
+      "width": 568,
+      "height": 320,
+      "minimumSeparation": 47,
+      "jogDiameter": 162
+    },
+    {
+      "browser": "firefox",
+      "id": "foundry",
+      "width": 844,
+      "height": 390,
+      "minimumSeparation": 47,
+      "jogDiameter": 232
+    },
+    {
+      "browser": "firefox",
+      "id": "observatory",
+      "width": 320,
+      "height": 480,
+      "minimumSeparation": 99.6885154177818,
+      "jogDiameter": 152.2833251953125
+    },
+    {
+      "browser": "firefox",
+      "id": "observatory",
+      "width": 320,
+      "height": 568,
+      "minimumSeparation": 143.1858897796238,
+      "jogDiameter": 152.2833251953125
+    },
+    {
+      "browser": "firefox",
+      "id": "observatory",
+      "width": 390,
+      "height": 660,
+      "minimumSeparation": 70,
+      "jogDiameter": 214.10000610351562
+    },
+    {
+      "browser": "firefox",
+      "id": "observatory",
+      "width": 390,
+      "height": 844,
+      "minimumSeparation": 72,
+      "jogDiameter": 310
+    },
+    {
+      "browser": "firefox",
+      "id": "observatory",
+      "width": 568,
+      "height": 320,
+      "minimumSeparation": 47,
+      "jogDiameter": 162
+    },
+    {
+      "browser": "firefox",
+      "id": "observatory",
+      "width": 844,
+      "height": 390,
+      "minimumSeparation": 47,
+      "jogDiameter": 232
+    },
+    {
+      "browser": "firefox",
+      "id": "ivory",
+      "width": 320,
+      "height": 480,
+      "minimumSeparation": 57.850006103515625,
+      "jogDiameter": 152.2833251953125
+    },
+    {
+      "browser": "firefox",
+      "id": "ivory",
+      "width": 320,
+      "height": 568,
+      "minimumSeparation": 101.45946835496481,
+      "jogDiameter": 152.2833251953125
+    },
+    {
+      "browser": "firefox",
+      "id": "ivory",
+      "width": 390,
+      "height": 660,
+      "minimumSeparation": 42,
+      "jogDiameter": 241.70001220703125
+    },
+    {
+      "browser": "firefox",
+      "id": "ivory",
+      "width": 390,
+      "height": 844,
+      "minimumSeparation": 44,
+      "jogDiameter": 310
+    },
+    {
+      "browser": "firefox",
+      "id": "ivory",
+      "width": 568,
+      "height": 320,
+      "minimumSeparation": 36,
+      "jogDiameter": 162
+    },
+    {
+      "browser": "firefox",
+      "id": "ivory",
+      "width": 844,
+      "height": 390,
+      "minimumSeparation": 36,
+      "jogDiameter": 232
+    },
+    {
+      "browser": "firefox",
+      "id": "graphite",
+      "width": 320,
+      "height": 480,
+      "minimumSeparation": 57.850006103515625,
+      "jogDiameter": 143.70001220703125
+    },
+    {
+      "browser": "firefox",
+      "id": "graphite",
+      "width": 320,
+      "height": 568,
+      "minimumSeparation": 101.45946835496481,
+      "jogDiameter": 152.2833251953125
+    },
+    {
+      "browser": "firefox",
+      "id": "graphite",
+      "width": 390,
+      "height": 660,
+      "minimumSeparation": 146.95653874664967,
+      "jogDiameter": 218.08334350585938
+    },
+    {
+      "browser": "firefox",
+      "id": "graphite",
+      "width": 390,
+      "height": 844,
+      "minimumSeparation": 66,
+      "jogDiameter": 227.4499969482422
+    },
+    {
+      "browser": "firefox",
+      "id": "graphite",
+      "width": 568,
+      "height": 320,
+      "minimumSeparation": 58,
+      "jogDiameter": 162
+    },
+    {
+      "browser": "firefox",
+      "id": "graphite",
+      "width": 844,
+      "height": 390,
+      "minimumSeparation": 58,
+      "jogDiameter": 232
+    },
+    {
+      "browser": "firefox",
+      "id": "original",
+      "width": 320,
+      "height": 480,
+      "minimumSeparation": 108.55276667769164,
+      "jogDiameter": 152.2833251953125
+    },
+    {
+      "browser": "firefox",
+      "id": "original",
+      "width": 320,
+      "height": 568,
+      "minimumSeparation": 152.11869974548168,
+      "jogDiameter": 152.2833251953125
+    },
+    {
+      "browser": "firefox",
+      "id": "original",
+      "width": 390,
+      "height": 660,
+      "minimumSeparation": 70,
+      "jogDiameter": 232.10000610351562
+    },
+    {
+      "browser": "firefox",
+      "id": "original",
+      "width": 390,
+      "height": 844,
+      "minimumSeparation": 72,
+      "jogDiameter": 310
+    },
+    {
+      "browser": "firefox",
+      "id": "original",
+      "width": 568,
+      "height": 320,
+      "minimumSeparation": 47,
+      "jogDiameter": 162
+    },
+    {
+      "browser": "firefox",
+      "id": "original",
+      "width": 844,
+      "height": 390,
+      "minimumSeparation": 47,
+      "jogDiameter": 232
+    },
+    {
+      "browser": "webkit",
+      "id": "groove",
+      "width": 320,
+      "height": 480,
+      "minimumSeparation": 107.65860846473215,
+      "jogDiameter": 152.265625
+    },
+    {
+      "browser": "webkit",
+      "id": "groove",
+      "width": 320,
+      "height": 568,
+      "minimumSeparation": 151.16754273508084,
+      "jogDiameter": 152.265625
+    },
+    {
+      "browser": "webkit",
+      "id": "groove",
+      "width": 390,
+      "height": 660,
+      "minimumSeparation": 71,
+      "jogDiameter": 226.921875
+    },
+    {
+      "browser": "webkit",
+      "id": "groove",
+      "width": 390,
+      "height": 844,
+      "minimumSeparation": 73,
+      "jogDiameter": 310
+    },
+    {
+      "browser": "webkit",
+      "id": "groove",
+      "width": 568,
+      "height": 320,
+      "minimumSeparation": 48.5,
+      "jogDiameter": 162
+    },
+    {
+      "browser": "webkit",
+      "id": "groove",
+      "width": 844,
+      "height": 390,
+      "minimumSeparation": 48.5,
+      "jogDiameter": 232
+    },
+    {
+      "browser": "webkit",
+      "id": "clear",
+      "width": 320,
+      "height": 480,
+      "minimumSeparation": 106.19289366084014,
+      "jogDiameter": 152.265625
+    },
+    {
+      "browser": "webkit",
+      "id": "clear",
+      "width": 320,
+      "height": 568,
+      "minimumSeparation": 149.74204708118057,
+      "jogDiameter": 152.265625
+    },
+    {
+      "browser": "webkit",
+      "id": "clear",
+      "width": 390,
+      "height": 660,
+      "minimumSeparation": 70,
+      "jogDiameter": 226.296875
+    },
+    {
+      "browser": "webkit",
+      "id": "clear",
+      "width": 390,
+      "height": 844,
+      "minimumSeparation": 72,
+      "jogDiameter": 310
+    },
+    {
+      "browser": "webkit",
+      "id": "clear",
+      "width": 568,
+      "height": 320,
+      "minimumSeparation": 47.5,
+      "jogDiameter": 160
+    },
+    {
+      "browser": "webkit",
+      "id": "clear",
+      "width": 844,
+      "height": 390,
+      "minimumSeparation": 47.5,
+      "jogDiameter": 230
+    },
+    {
+      "browser": "webkit",
+      "id": "arcade",
+      "width": 320,
+      "height": 480,
+      "minimumSeparation": 61.609375,
+      "jogDiameter": 150.203125
+    },
+    {
+      "browser": "webkit",
+      "id": "arcade",
+      "width": 320,
+      "height": 568,
+      "minimumSeparation": 105.33709027636287,
+      "jogDiameter": 152.265625
+    },
+    {
+      "browser": "webkit",
+      "id": "arcade",
+      "width": 390,
+      "height": 660,
+      "minimumSeparation": 150.81102442424634,
+      "jogDiameter": 218.078125
+    },
+    {
+      "browser": "webkit",
+      "id": "arcade",
+      "width": 390,
+      "height": 844,
+      "minimumSeparation": 67,
+      "jogDiameter": 241.046875
+    },
+    {
+      "browser": "webkit",
+      "id": "arcade",
+      "width": 568,
+      "height": 320,
+      "minimumSeparation": 59,
+      "jogDiameter": 160
+    },
+    {
+      "browser": "webkit",
+      "id": "arcade",
+      "width": 844,
+      "height": 390,
+      "minimumSeparation": 59,
+      "jogDiameter": 230
+    },
+    {
+      "browser": "webkit",
+      "id": "field",
+      "width": 320,
+      "height": 480,
+      "minimumSeparation": 90.34258257633826,
+      "jogDiameter": 152.265625
+    },
+    {
+      "browser": "webkit",
+      "id": "field",
+      "width": 320,
+      "height": 568,
+      "minimumSeparation": 133.7480176547021,
+      "jogDiameter": 152.265625
+    },
+    {
+      "browser": "webkit",
+      "id": "field",
+      "width": 390,
+      "height": 660,
+      "minimumSeparation": 66,
+      "jogDiameter": 202.046875
+    },
+    {
+      "browser": "webkit",
+      "id": "field",
+      "width": 390,
+      "height": 844,
+      "minimumSeparation": 68,
+      "jogDiameter": 287.828125
+    },
+    {
+      "browser": "webkit",
+      "id": "field",
+      "width": 568,
+      "height": 320,
+      "minimumSeparation": 55.5,
+      "jogDiameter": 162
+    },
+    {
+      "browser": "webkit",
+      "id": "field",
+      "width": 844,
+      "height": 390,
+      "minimumSeparation": 55.5,
+      "jogDiameter": 232
+    },
+    {
+      "browser": "webkit",
+      "id": "signal",
+      "width": 320,
+      "height": 480,
+      "minimumSeparation": 50.53125,
+      "jogDiameter": 152.265625
+    },
+    {
+      "browser": "webkit",
+      "id": "signal",
+      "width": 320,
+      "height": 568,
+      "minimumSeparation": 94.46180300292018,
+      "jogDiameter": 152.265625
+    },
+    {
+      "browser": "webkit",
+      "id": "signal",
+      "width": 390,
+      "height": 660,
+      "minimumSeparation": 43,
+      "jogDiameter": 224.046875
+    },
+    {
+      "browser": "webkit",
+      "id": "signal",
+      "width": 390,
+      "height": 844,
+      "minimumSeparation": 45,
+      "jogDiameter": 310
+    },
+    {
+      "browser": "webkit",
+      "id": "signal",
+      "width": 568,
+      "height": 320,
+      "minimumSeparation": 37,
+      "jogDiameter": 162
+    },
+    {
+      "browser": "webkit",
+      "id": "signal",
+      "width": 844,
+      "height": 390,
+      "minimumSeparation": 37,
+      "jogDiameter": 232
+    },
+    {
+      "browser": "webkit",
+      "id": "vector",
+      "width": 320,
+      "height": 480,
+      "minimumSeparation": 61.0625,
+      "jogDiameter": 152.265625
+    },
+    {
+      "browser": "webkit",
+      "id": "vector",
+      "width": 320,
+      "height": 568,
+      "minimumSeparation": 104.62255448157438,
+      "jogDiameter": 152.265625
+    },
+    {
+      "browser": "webkit",
+      "id": "vector",
+      "width": 390,
+      "height": 660,
+      "minimumSeparation": 42,
+      "jogDiameter": 247.109375
+    },
+    {
+      "browser": "webkit",
+      "id": "vector",
+      "width": 390,
+      "height": 844,
+      "minimumSeparation": 44,
+      "jogDiameter": 310
+    },
+    {
+      "browser": "webkit",
+      "id": "vector",
+      "width": 568,
+      "height": 320,
+      "minimumSeparation": 36,
+      "jogDiameter": 162
+    },
+    {
+      "browser": "webkit",
+      "id": "vector",
+      "width": 844,
+      "height": 390,
+      "minimumSeparation": 36,
+      "jogDiameter": 232
+    },
+    {
+      "browser": "webkit",
+      "id": "cartridge",
+      "width": 320,
+      "height": 480,
+      "minimumSeparation": 62.65625,
+      "jogDiameter": 152.265625
+    },
+    {
+      "browser": "webkit",
+      "id": "cartridge",
+      "width": 320,
+      "height": 568,
+      "minimumSeparation": 106.36696227712109,
+      "jogDiameter": 152.265625
+    },
+    {
+      "browser": "webkit",
+      "id": "cartridge",
+      "width": 390,
+      "height": 660,
+      "minimumSeparation": 65,
+      "jogDiameter": 204.296875
+    },
+    {
+      "browser": "webkit",
+      "id": "cartridge",
+      "width": 390,
+      "height": 844,
+      "minimumSeparation": 67,
+      "jogDiameter": 282.953125
+    },
+    {
+      "browser": "webkit",
+      "id": "cartridge",
+      "width": 568,
+      "height": 320,
+      "minimumSeparation": 59,
+      "jogDiameter": 162
+    },
+    {
+      "browser": "webkit",
+      "id": "cartridge",
+      "width": 844,
+      "height": 390,
+      "minimumSeparation": 59,
+      "jogDiameter": 232
+    },
+    {
+      "browser": "webkit",
+      "id": "switchboard",
+      "width": 320,
+      "height": 480,
+      "minimumSeparation": 94.69523998893766,
+      "jogDiameter": 152.265625
+    },
+    {
+      "browser": "webkit",
+      "id": "switchboard",
+      "width": 320,
+      "height": 568,
+      "minimumSeparation": 138.14643852290402,
+      "jogDiameter": 152.265625
+    },
+    {
+      "browser": "webkit",
+      "id": "switchboard",
+      "width": 390,
+      "height": 660,
+      "minimumSeparation": 66,
+      "jogDiameter": 210.921875
+    },
+    {
+      "browser": "webkit",
+      "id": "switchboard",
+      "width": 390,
+      "height": 844,
+      "minimumSeparation": 68,
+      "jogDiameter": 294.859375
+    },
+    {
+      "browser": "webkit",
+      "id": "switchboard",
+      "width": 568,
+      "height": 320,
+      "minimumSeparation": 55.5,
+      "jogDiameter": 162
+    },
+    {
+      "browser": "webkit",
+      "id": "switchboard",
+      "width": 844,
+      "height": 390,
+      "minimumSeparation": 55.5,
+      "jogDiameter": 232
+    },
+    {
+      "browser": "webkit",
+      "id": "correspondent",
+      "width": 320,
+      "height": 480,
+      "minimumSeparation": 58.96875,
+      "jogDiameter": 152.265625
+    },
+    {
+      "browser": "webkit",
+      "id": "correspondent",
+      "width": 320,
+      "height": 568,
+      "minimumSeparation": 102.56065754743629,
+      "jogDiameter": 152.265625
+    },
+    {
+      "browser": "webkit",
+      "id": "correspondent",
+      "width": 390,
+      "height": 660,
+      "minimumSeparation": 148.06692229043762,
+      "jogDiameter": 218.078125
+    },
+    {
+      "browser": "webkit",
+      "id": "correspondent",
+      "width": 390,
+      "height": 844,
+      "minimumSeparation": 44,
+      "jogDiameter": 252.859375
+    },
+    {
+      "browser": "webkit",
+      "id": "correspondent",
+      "width": 568,
+      "height": 320,
+      "minimumSeparation": 36,
+      "jogDiameter": 162
+    },
+    {
+      "browser": "webkit",
+      "id": "correspondent",
+      "width": 844,
+      "height": 390,
+      "minimumSeparation": 36,
+      "jogDiameter": 232
+    },
+    {
+      "browser": "webkit",
+      "id": "foundry",
+      "width": 320,
+      "height": 480,
+      "minimumSeparation": 105.51540634695247,
+      "jogDiameter": 152.265625
+    },
+    {
+      "browser": "webkit",
+      "id": "foundry",
+      "width": 320,
+      "height": 568,
+      "minimumSeparation": 149.05955513338452,
+      "jogDiameter": 152.265625
+    },
+    {
+      "browser": "webkit",
+      "id": "foundry",
+      "width": 390,
+      "height": 660,
+      "minimumSeparation": 70,
+      "jogDiameter": 224.921875
+    },
+    {
+      "browser": "webkit",
+      "id": "foundry",
+      "width": 390,
+      "height": 844,
+      "minimumSeparation": 72,
+      "jogDiameter": 310
+    },
+    {
+      "browser": "webkit",
+      "id": "foundry",
+      "width": 568,
+      "height": 320,
+      "minimumSeparation": 47.5,
+      "jogDiameter": 162
+    },
+    {
+      "browser": "webkit",
+      "id": "foundry",
+      "width": 844,
+      "height": 390,
+      "minimumSeparation": 47.5,
+      "jogDiameter": 232
+    },
+    {
+      "browser": "webkit",
+      "id": "observatory",
+      "width": 320,
+      "height": 480,
+      "minimumSeparation": 101.66859842768561,
+      "jogDiameter": 152.265625
+    },
+    {
+      "browser": "webkit",
+      "id": "observatory",
+      "width": 320,
+      "height": 568,
+      "minimumSeparation": 145.18265704363588,
+      "jogDiameter": 152.265625
+    },
+    {
+      "browser": "webkit",
+      "id": "observatory",
+      "width": 390,
+      "height": 660,
+      "minimumSeparation": 70,
+      "jogDiameter": 217.109375
+    },
+    {
+      "browser": "webkit",
+      "id": "observatory",
+      "width": 390,
+      "height": 844,
+      "minimumSeparation": 72,
+      "jogDiameter": 310
+    },
+    {
+      "browser": "webkit",
+      "id": "observatory",
+      "width": 568,
+      "height": 320,
+      "minimumSeparation": 47.5,
+      "jogDiameter": 162
+    },
+    {
+      "browser": "webkit",
+      "id": "observatory",
+      "width": 844,
+      "height": 390,
+      "minimumSeparation": 47.5,
+      "jogDiameter": 232
+    },
+    {
+      "browser": "webkit",
+      "id": "ivory",
+      "width": 320,
+      "height": 480,
+      "minimumSeparation": 59.859375,
+      "jogDiameter": 152.265625
+    },
+    {
+      "browser": "webkit",
+      "id": "ivory",
+      "width": 320,
+      "height": 568,
+      "minimumSeparation": 103.43757670880841,
+      "jogDiameter": 152.265625
+    },
+    {
+      "browser": "webkit",
+      "id": "ivory",
+      "width": 390,
+      "height": 660,
+      "minimumSeparation": 42,
+      "jogDiameter": 244.71875
+    },
+    {
+      "browser": "webkit",
+      "id": "ivory",
+      "width": 390,
+      "height": 844,
+      "minimumSeparation": 44,
+      "jogDiameter": 310
+    },
+    {
+      "browser": "webkit",
+      "id": "ivory",
+      "width": 568,
+      "height": 320,
+      "minimumSeparation": 36,
+      "jogDiameter": 162
+    },
+    {
+      "browser": "webkit",
+      "id": "ivory",
+      "width": 844,
+      "height": 390,
+      "minimumSeparation": 36,
+      "jogDiameter": 232
+    },
+    {
+      "browser": "webkit",
+      "id": "graphite",
+      "width": 320,
+      "height": 480,
+      "minimumSeparation": 59.375,
+      "jogDiameter": 145.734375
+    },
+    {
+      "browser": "webkit",
+      "id": "graphite",
+      "width": 320,
+      "height": 568,
+      "minimumSeparation": 102.96062657637627,
+      "jogDiameter": 152.265625
+    },
+    {
+      "browser": "webkit",
+      "id": "graphite",
+      "width": 390,
+      "height": 660,
+      "minimumSeparation": 148.47016745797788,
+      "jogDiameter": 218.078125
+    },
+    {
+      "browser": "webkit",
+      "id": "graphite",
+      "width": 390,
+      "height": 844,
+      "minimumSeparation": 66,
+      "jogDiameter": 229.453125
+    },
+    {
+      "browser": "webkit",
+      "id": "graphite",
+      "width": 568,
+      "height": 320,
+      "minimumSeparation": 58,
+      "jogDiameter": 162
+    },
+    {
+      "browser": "webkit",
+      "id": "graphite",
+      "width": 844,
+      "height": 390,
+      "minimumSeparation": 58,
+      "jogDiameter": 232
+    },
+    {
+      "browser": "webkit",
+      "id": "original",
+      "width": 320,
+      "height": 480,
+      "minimumSeparation": 110.53790710091266,
+      "jogDiameter": 152.265625
+    },
+    {
+      "browser": "webkit",
+      "id": "original",
+      "width": 320,
+      "height": 568,
+      "minimumSeparation": 154.11725700339335,
+      "jogDiameter": 152.265625
+    },
+    {
+      "browser": "webkit",
+      "id": "original",
+      "width": 390,
+      "height": 660,
+      "minimumSeparation": 70,
+      "jogDiameter": 235.109375
+    },
+    {
+      "browser": "webkit",
+      "id": "original",
+      "width": 390,
+      "height": 844,
+      "minimumSeparation": 72,
+      "jogDiameter": 310
+    },
+    {
+      "browser": "webkit",
+      "id": "original",
+      "width": 568,
+      "height": 320,
+      "minimumSeparation": 47.5,
+      "jogDiameter": 162
+    },
+    {
+      "browser": "webkit",
+      "id": "original",
+      "width": 844,
+      "height": 390,
+      "minimumSeparation": 47.5,
+      "jogDiameter": 232
+    }
+  ],
+  "pageErrors": 0,
+  "physicalDevices": false
+}

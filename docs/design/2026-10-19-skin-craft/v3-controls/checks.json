@@ -1,0 +1,85 @@
+{
+  "stats": {
+    "startTime": "2026-10-19T20:38:22.127Z",
+    "duration": 46218.945,
+    "expected": 3,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "tests": [
+    {
+      "project": "chromium",
+      "title": "curated control banks keep real phrase navigation, live editing and touch geometry",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 18437
+        }
+      ]
+    },
+    {
+      "project": "firefox",
+      "title": "curated control banks keep real phrase navigation, live editing and touch geometry",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 20069
+        }
+      ]
+    },
+    {
+      "project": "webkit",
+      "title": "curated control banks keep real phrase navigation, live editing and touch geometry",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 24514
+        }
+      ]
+    }
+  ],
+  "scope": {
+    "finishes": [
+      "groove",
+      "field",
+      "signal",
+      "vector",
+      "foundry",
+      "ivory",
+      "original",
+      "graphite",
+      "cartridge",
+      "switchboard",
+      "correspondent",
+      "observatory"
+    ],
+    "viewports": [
+      [
+        320,
+        568
+      ],
+      [
+        844,
+        390
+      ],
+      [
+        390,
+        844
+      ]
+    ],
+    "realTransport": true,
+    "physicalDevices": false
+  },
+  "fieldSignalReadiness": {
+    "startTime": "2026-10-19T20:37:29.879Z",
+    "duration": 29482.262,
+    "expected": 12,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

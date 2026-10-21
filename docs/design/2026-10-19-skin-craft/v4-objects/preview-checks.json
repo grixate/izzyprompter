@@ -1,0 +1,29 @@
+[
+  {
+    "browser": "chromium",
+    "galleryImages": 4,
+    "syntheticControls": 2,
+    "fixedClearChassis": true,
+    "reducedMotion": true,
+    "pageErrors": 0,
+    "sessionOrAccountRequests": 0
+  },
+  {
+    "browser": "firefox",
+    "galleryImages": 4,
+    "syntheticControls": 2,
+    "fixedClearChassis": true,
+    "reducedMotion": true,
+    "pageErrors": 0,
+    "sessionOrAccountRequests": 0
+  },
+  {
+    "browser": "webkit",
+    "galleryImages": 4,
+    "syntheticControls": 2,
+    "fixedClearChassis": true,
+    "reducedMotion": true,
+    "pageErrors": 0,
+    "sessionOrAccountRequests": 0
+  }
+]

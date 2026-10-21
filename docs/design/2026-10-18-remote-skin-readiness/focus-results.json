@@ -1,0 +1,253 @@
+{
+  "date": "2026-10-18",
+  "stats": {
+    "startTime": "2026-10-17T22:09:28.429Z",
+    "duration": 65390.738000000005,
+    "expected": 48,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "tests": [
+    {
+      "title": "Original: responsive controls, keyboard focus and reduced motion",
+      "browser": "chromium",
+      "status": "passed"
+    },
+    {
+      "title": "Orbit: responsive controls, keyboard focus and reduced motion",
+      "browser": "chromium",
+      "status": "passed"
+    },
+    {
+      "title": "Field reel: responsive controls, keyboard focus and reduced motion",
+      "browser": "chromium",
+      "status": "passed"
+    },
+    {
+      "title": "Thumbprint: responsive controls, keyboard focus and reduced motion",
+      "browser": "chromium",
+      "status": "passed"
+    },
+    {
+      "title": "Signal: responsive controls, keyboard focus and reduced motion",
+      "browser": "chromium",
+      "status": "passed"
+    },
+    {
+      "title": "Groove: responsive controls, keyboard focus and reduced motion",
+      "browser": "chromium",
+      "status": "passed"
+    },
+    {
+      "title": "Glacier: responsive controls, keyboard focus and reduced motion",
+      "browser": "chromium",
+      "status": "passed"
+    },
+    {
+      "title": "Bakelite: responsive controls, keyboard focus and reduced motion",
+      "browser": "chromium",
+      "status": "passed"
+    },
+    {
+      "title": "Switchboard: responsive controls, keyboard focus and reduced motion",
+      "browser": "chromium",
+      "status": "passed"
+    },
+    {
+      "title": "Vector: responsive controls, keyboard focus and reduced motion",
+      "browser": "chromium",
+      "status": "passed"
+    },
+    {
+      "title": "Cartridge: responsive controls, keyboard focus and reduced motion",
+      "browser": "chromium",
+      "status": "passed"
+    },
+    {
+      "title": "Aperture: responsive controls, keyboard focus and reduced motion",
+      "browser": "chromium",
+      "status": "passed"
+    },
+    {
+      "title": "Correspondent: responsive controls, keyboard focus and reduced motion",
+      "browser": "chromium",
+      "status": "passed"
+    },
+    {
+      "title": "Foundry: responsive controls, keyboard focus and reduced motion",
+      "browser": "chromium",
+      "status": "passed"
+    },
+    {
+      "title": "Inox: responsive controls, keyboard focus and reduced motion",
+      "browser": "chromium",
+      "status": "passed"
+    },
+    {
+      "title": "Airframe: responsive controls, keyboard focus and reduced motion",
+      "browser": "chromium",
+      "status": "passed"
+    },
+    {
+      "title": "Original: responsive controls, keyboard focus and reduced motion",
+      "browser": "firefox",
+      "status": "passed"
+    },
+    {
+      "title": "Orbit: responsive controls, keyboard focus and reduced motion",
+      "browser": "firefox",
+      "status": "passed"
+    },
+    {
+      "title": "Field reel: responsive controls, keyboard focus and reduced motion",
+      "browser": "firefox",
+      "status": "passed"
+    },
+    {
+      "title": "Thumbprint: responsive controls, keyboard focus and reduced motion",
+      "browser": "firefox",
+      "status": "passed"
+    },
+    {
+      "title": "Signal: responsive controls, keyboard focus and reduced motion",
+      "browser": "firefox",
+      "status": "passed"
+    },
+    {
+      "title": "Groove: responsive controls, keyboard focus and reduced motion",
+      "browser": "firefox",
+      "status": "passed"
+    },
+    {
+      "title": "Glacier: responsive controls, keyboard focus and reduced motion",
+      "browser": "firefox",
+      "status": "passed"
+    },
+    {
+      "title": "Bakelite: responsive controls, keyboard focus and reduced motion",
+      "browser": "firefox",
+      "status": "passed"
+    },
+    {
+      "title": "Switchboard: responsive controls, keyboard focus and reduced motion",
+      "browser": "firefox",
+      "status": "passed"
+    },
+    {
+      "title": "Vector: responsive controls, keyboard focus and reduced motion",
+      "browser": "firefox",
+      "status": "passed"
+    },
+    {
+      "title": "Cartridge: responsive controls, keyboard focus and reduced motion",
+      "browser": "firefox",
+      "status": "passed"
+    },
+    {
+      "title": "Aperture: responsive controls, keyboard focus and reduced motion",
+      "browser": "firefox",
+      "status": "passed"
+    },
+    {
+      "title": "Correspondent: responsive controls, keyboard focus and reduced motion",
+      "browser": "firefox",
+      "status": "passed"
+    },
+    {
+      "title": "Foundry: responsive controls, keyboard focus and reduced motion",
+      "browser": "firefox",
+      "status": "passed"
+    },
+    {
+      "title": "Inox: responsive controls, keyboard focus and reduced motion",
+      "browser": "firefox",
+      "status": "passed"
+    },
+    {
+      "title": "Airframe: responsive controls, keyboard focus and reduced motion",
+      "browser": "firefox",
+      "status": "passed"
+    },
+    {
+      "title": "Original: responsive controls, keyboard focus and reduced motion",
+      "browser": "webkit",
+      "status": "passed"
+    },
+    {
+      "title": "Orbit: responsive controls, keyboard focus and reduced motion",
+      "browser": "webkit",
+      "status": "passed"
+    },
+    {
+      "title": "Field reel: responsive controls, keyboard focus and reduced motion",
+      "browser": "webkit",
+      "status": "passed"
+    },
+    {
+      "title": "Thumbprint: responsive controls, keyboard focus and reduced motion",
+      "browser": "webkit",
+      "status": "passed"
+    },
+    {
+      "title": "Signal: responsive controls, keyboard focus and reduced motion",
+      "browser": "webkit",
+      "status": "passed"
+    },
+    {
+      "title": "Groove: responsive controls, keyboard focus and reduced motion",
+      "browser": "webkit",
+      "status": "passed"
+    },
+    {
+      "title": "Glacier: responsive controls, keyboard focus and reduced motion",
+      "browser": "webkit",
+      "status": "passed"
+    },
+    {
+      "title": "Bakelite: responsive controls, keyboard focus and reduced motion",
+      "browser": "webkit",
+      "status": "passed"
+    },
+    {
+      "title": "Switchboard: responsive controls, keyboard focus and reduced motion",
+      "browser": "webkit",
+      "status": "passed"
+    },
+    {
+      "title": "Vector: responsive controls, keyboard focus and reduced motion",
+      "browser": "webkit",
+      "status": "passed"
+    },
+    {
+      "title": "Cartridge: responsive controls, keyboard focus and reduced motion",
+      "browser": "webkit",
+      "status": "passed"
+    },
+    {
+      "title": "Aperture: responsive controls, keyboard focus and reduced motion",
+      "browser": "webkit",
+      "status": "passed"
+    },
+    {
+      "title": "Correspondent: responsive controls, keyboard focus and reduced motion",
+      "browser": "webkit",
+      "status": "passed"
+    },
+    {
+      "title": "Foundry: responsive controls, keyboard focus and reduced motion",
+      "browser": "webkit",
+      "status": "passed"
+    },
+    {
+      "title": "Inox: responsive controls, keyboard focus and reduced motion",
+      "browser": "webkit",
+      "status": "passed"
+    },
+    {
+      "title": "Airframe: responsive controls, keyboard focus and reduced motion",
+      "browser": "webkit",
+      "status": "passed"
+    }
+  ]
+}

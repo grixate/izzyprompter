@@ -1,0 +1,21 @@
+{
+  "unit": {
+    "passed": 92
+  },
+  "clientBuild": "passed",
+  "frozenBuild": "passed",
+  "playwright": {
+    "passed": 12,
+    "command": "npx playwright test test/e2e/remote-touch.spec.ts test/e2e/remote-viewport.spec.ts --reporter=list",
+    "engines": [
+      "chromium",
+      "firefox",
+      "webkit"
+    ]
+  },
+  "staticStates": 420,
+  "staticFailures": 0,
+  "pageErrors": [],
+  "physicalDevices": false,
+  "hostedPublication": false
+}

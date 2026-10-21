@@ -1,4 +1,5 @@
-import { isIzzyDocumentV1, izzyDocumentToLegacyText, type IzzyDocumentV1 } from '../domain/document.ts'
+import {MIN_SPEED, LEGACY_MAX_SPEED} from '../prompt/speed.ts'
+import { createIzzyDocumentFromLegacyText, isIzzyDocumentV1, izzyDocumentToLegacyText, type IzzyDocumentV1 } from '../domain/document.ts'
 import type { PromptSettingsV1 } from '../domain/storage.ts'
 import type { ReadingAnchor } from '../prompt/position.ts'
 
@@ -22,10 +23,32 @@ export function validAnchor(document: IzzyDocumentV1, value: unknown): value is 
 export function validSettings(value: unknown): value is PromptSettingsV1 {
   if (!value || typeof value !== 'object') return false
   const s = value as PromptSettingsV1
-  return Number.isFinite(s.speed) && s.speed >= .5 && s.speed <= 1.5
+  return Number.isFinite(s.speed) && s.speed >= MIN_SPEED && s.speed <= LEGACY_MAX_SPEED
     && Number.isFinite(s.fontSize) && s.fontSize >= 20 && s.fontSize <= 160
     && Number.isFinite(s.lineHeight) && s.lineHeight >= .8 && s.lineHeight <= 3
     && Number.isFinite(s.textWidth) && s.textWidth >= 25 && s.textWidth <= 100 && typeof s.mirrored === 'boolean'
+}
+
+export function replaceDocument(document: IzzyDocumentV1, text: string, anchor: ReadingAnchor) {
+  const freshId = () => crypto.randomUUID?.() ?? Array.from(crypto.getRandomValues(new Uint8Array(16)), value => value.toString(16).padStart(2, '0')).join('')
+  const fresh = createIzzyDocumentFromLegacyText(text, { documentId: document.id, title: document.title }).blocks
+  if (!fresh.length) fresh.push({ id: freshId(), type: 'paragraph', text: '' })
+  const available = new Map<string, string[]>()
+  for (const block of document.blocks) { const ids = available.get(block.text) ?? []; ids.push(block.id); available.set(block.text, ids) }
+  const cursors = new Map<string, number>()
+  const matches = fresh.map(block => { const index = cursors.get(block.text) ?? 0; cursors.set(block.text, index + 1); return { block, id: available.get(block.text)?.[index] } })
+  const reserved = new Set(matches.flatMap(match => match.id ? [match.id] : []))
+  const blocks = matches.map(({ block, id }, index) => {
+    const old = document.blocks[index]
+    const nextId = id ?? (old && !reserved.has(old.id) ? old.id : freshId())
+    reserved.add(nextId)
+    return { ...block, id: nextId }
+  })
+  const oldIndex = Math.max(0, document.blocks.findIndex(block => block.id === anchor.blockId))
+  const old = document.blocks[oldIndex], target = blocks.find(block => block.id === anchor.blockId)
+  return { document: { ...document, blocks }, anchor: target && old
+    ? { blockId: target.id, characterOffset: remapOffset(old.text, target.text, anchor.characterOffset) }
+    : { blockId: blocks[Math.min(oldIndex, blocks.length - 1)].id, characterOffset: 0 } }
 }
 /** DOM offsets are UTF-16, matching Phoenix Document.remap_offset. */
 export function remapOffset(oldText: string, newText: string, offset: number) {

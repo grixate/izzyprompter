@@ -1,0 +1,177 @@
+{
+  "schemaVersion": 1,
+  "kind": "izzy-remote-design-baseline",
+  "baselineId": "2026-10-21-wheel-first",
+  "files": [
+    {
+      "path": "PASS.md",
+      "bytes": 3937,
+      "sha256": "d8ffcdd29d7bd7e3b74b06a52dde6f744b37dee4987c48e11e9be5ed61753ca0"
+    },
+    {
+      "path": "after/arcade.png",
+      "bytes": 222191,
+      "sha256": "7a20bea37787d3ff2a3bb4820bd069182099275f71c196a99edb132e5e98538f"
+    },
+    {
+      "path": "after/cartridge.png",
+      "bytes": 166114,
+      "sha256": "302bf9362bb40ea8748d1f3ab12b212a83b6125e072e3f8feffc20d1e489266a"
+    },
+    {
+      "path": "after/clear.png",
+      "bytes": 336756,
+      "sha256": "0628492ca71fec14f322a5169c3b21d8201db9504ea5a83d0619ad40a7725011"
+    },
+    {
+      "path": "after/correspondent.png",
+      "bytes": 311246,
+      "sha256": "e2d657052dc80e182981aedb43556c3e65751cf0de276992f2e5578ffab02c47"
+    },
+    {
+      "path": "after/field.png",
+      "bytes": 224678,
+      "sha256": "204982fefb2b4484b5112e82ccf4555347c9ab1662712577f503af20d2caa770"
+    },
+    {
+      "path": "after/foundry.png",
+      "bytes": 371426,
+      "sha256": "ff52353a267f55bb3ff90fbb21517c74be79b8d3eaf296e251697f282bfbe995"
+    },
+    {
+      "path": "after/graphite.png",
+      "bytes": 250231,
+      "sha256": "a9a938f1f4eed2323e4f295addfaf85921b05a27693d165b8e8d3a569d758279"
+    },
+    {
+      "path": "after/groove.png",
+      "bytes": 283879,
+      "sha256": "040dec06d880e56fd471d4d1d3dfc19ef2d407ae46dca670ee2f8ac43714dc5c"
+    },
+    {
+      "path": "after/ivory.png",
+      "bytes": 231028,
+      "sha256": "2f1b13b165e5d2ed25dded2a71e5c3156463cdb0bd908354fcc0345cd41cc394"
+    },
+    {
+      "path": "after/observatory.png",
+      "bytes": 316015,
+      "sha256": "9004d34761e2c6d43cf8d4e68e8e6540d0b373abe26c9dd96a2ff2ea16f15465"
+    },
+    {
+      "path": "after/original.png",
+      "bytes": 291327,
+      "sha256": "6832ec4762f5d7cca77eaa6b83b738418d1bb2c8ce56c879aa320abf17c376a8"
+    },
+    {
+      "path": "after/sheet-1.png",
+      "bytes": 1085817,
+      "sha256": "74631e6a828ba2ea2cbfc5cd2af0942aa48ffb54fded85d672e62225244226d3"
+    },
+    {
+      "path": "after/sheet-2.png",
+      "bytes": 1012368,
+      "sha256": "9dd802b8cd77c267b9ddf63519bfc6211dad82af71c2f8bd3f8cb3b4295d8f35"
+    },
+    {
+      "path": "after/sheet-3.png",
+      "bytes": 1258512,
+      "sha256": "b9e8de420ecdc7aae1dea905a8875feb04a418f018efb383acc555d4b5f848a9"
+    },
+    {
+      "path": "after/sheet-4.png",
+      "bytes": 539348,
+      "sha256": "e2aac5bc9003a49493d743e79f73470e89a5e7bf165a31abf27bb2bd27d30e78"
+    },
+    {
+      "path": "after/signal.png",
+      "bytes": 207871,
+      "sha256": "4769bf9ee5ac44af1dee0810ebb419bf98b0b01b5c9324a29a713f7d1be550f0"
+    },
+    {
+      "path": "after/switchboard.png",
+      "bytes": 268948,
+      "sha256": "ee53131bc0d804e19249ca2c7ec01af0e2d625bdabc93e2a845d29f1a919eb02"
+    },
+    {
+      "path": "after/vector.png",
+      "bytes": 341139,
+      "sha256": "c37fb11873f2cb653998e7044f527f548eb0126521720d8dca8b3887096e83ff"
+    },
+    {
+      "path": "build-review.mjs",
+      "bytes": 448,
+      "sha256": "c23dd17b47480a2176315ef25b274c5fbc19b173bbf7e400fb150b641caf862f"
+    },
+    {
+      "path": "checks.json",
+      "bytes": 73869,
+      "sha256": "b18f957cbbd4aae551a05c99c35a487de1f6571ae2b4b18bbd0c09d9293cc778"
+    },
+    {
+      "path": "gallery-checks.json",
+      "bytes": 190,
+      "sha256": "fc3ed88c3fd4a6f20d72db44ecb6d00c5831d9df1696065b4862fb9c5ca32cda"
+    },
+    {
+      "path": "gallery.png",
+      "bytes": 972447,
+      "sha256": "a6a1da8d30c698f17c73eca6c677491b8dc9c447d2d4f8add55bf077d2052c24"
+    },
+    {
+      "path": "live/assets/live-BGNcc3H_.js",
+      "bytes": 274382,
+      "sha256": "c7648f97aa4690e18497c20b93ce001e833530672a69ede4ab59ac0d9efdf20a"
+    },
+    {
+      "path": "live/assets/live-eFEgOwZW.css",
+      "bytes": 260898,
+      "sha256": "279f91406a1ff09b146338d9e756417c3b8246fec9d2bf070f27637fa858dd66"
+    },
+    {
+      "path": "live/index.html",
+      "bytes": 356,
+      "sha256": "c54f6bb13f342aa33096abc704dba0ace35b3cc3c5d96f2d2460eb947e0f3386"
+    },
+    {
+      "path": "live-entry.tsx",
+      "bytes": 371,
+      "sha256": "4201f2eddb821a619ea7512e31bb3ccab1229931e287ec4c780ac3971d06f3ee"
+    },
+    {
+      "path": "live.html",
+      "bytes": 263,
+      "sha256": "88dfa455433dfd28c1292c3dd4dd7f6f889e8373cb725178c4752b1c8f830ced"
+    },
+    {
+      "path": "review.html",
+      "bytes": 8375,
+      "sha256": "651f98c918285af59059aa54cdababcab98346e06600097591a4b6c4b166bc45"
+    },
+    {
+      "path": "source/remote-touch.spec.ts",
+      "bytes": 4743,
+      "sha256": "f1b8a77fe3268bc6e527a8472cc295b91e01543e7e1906917836c5809f37ceb7"
+    },
+    {
+      "path": "source/remote-wheel.css",
+      "bytes": 9157,
+      "sha256": "b76eec179f551f3fc3a960c475cc462d07399133001f760291737e472b3cb03a"
+    },
+    {
+      "path": "source/skins.css",
+      "bytes": 340,
+      "sha256": "b2f2f5894b300b14d8dcc5e12d96c654f65663cb91cc11569db3b31309c45422"
+    },
+    {
+      "path": "validation.json",
+      "bytes": 446,
+      "sha256": "d17a3c1324d0fbdad4d8ff8ec0397a66ce5ae1114aac799d49511afdb7ac8443"
+    },
+    {
+      "path": "verify.mjs",
+      "bytes": 5887,
+      "sha256": "252cee1d7aa9761cd997636ad5f117f52520706dc8f4953d274fb59bff686244"
+    }
+  ]
+}

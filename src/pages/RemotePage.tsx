@@ -1,4 +1,5 @@
 import { RemoteBrand } from '../components/BrandLogo'
+import { PhraseNavigation } from '../components/SecondaryControls'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { JogControls, TransportReadout } from '../components/JogControls'
 import { legacySessionScriptToDocument } from '../domain/document'
@@ -14,11 +15,12 @@ import { latestReading, measuredPosition } from '../realtime/reading'
 import { serverPosition } from '../prompt/motion'
 import { QuickEdit } from './QuickEdit'
 import { boundedSpeed } from '../realtime/keyboard'
+import type { TransportState, SessionSnapshot } from '../realtime/protocol'
 import type { SessionControllerView } from '../realtime/controller'
 import { useRemoteAppearance } from '../product/useRemoteAppearance'
 import { RemoteSkinLibrary } from '../product/RemoteSkinLibrary'
 import { ReadingControls } from '../components/ReadingControls'
-import { skinById } from '../product/catalog'
+import { skinById, controlCraftSkins } from '../product/catalog'
 import '../product/skins.css'
 
 export function RemotePage({ sessionId }: { sessionId: string }) {
@@ -26,7 +28,7 @@ export function RemotePage({ sessionId }: { sessionId: string }) {
   return <RemoteSurface sessionId={sessionId} session={session} />
 }
 
-export function RemoteSurface({ sessionId, session }: { sessionId: string; session: SessionControllerView }) {
+export function RemoteSurface({ sessionId, session, onPairing }: { sessionId: string; session: SessionControllerView; onPairing?:()=>void }) {
   const { connection, transport, script, presence, clockOffset, reading, send, request, editing, connectionId, sessionEpoch, reconnect, now } = session
   const controlsReady = connection === 'connected' && !editing.active
   const appearance = useRemoteAppearance(sessionId, connection === 'connected')
@@ -38,6 +40,11 @@ export function RemoteSurface({ sessionId, session }: { sessionId: string; sessi
   const [isDragging, setIsDragging] = useState(false)
   const [localPlaying, setLocalPlaying] = useState(false)
   const [localSpeed, setLocalSpeed] = useState(restoredStorage.settings.speed)
+  const speedIntent = useRef<number | null>(null)
+  const speedSequence = useRef(0)
+  const speedRevisionFloor = useRef(0)
+  const latestTransport = useRef(transport)
+  latestTransport.current = transport
   const [position, setPositionState] = useState(0)
   const [settingsWriter] = useState(() => createDebouncedStorageWriter<number>({
     write: rememberPlaybackSpeed,
@@ -52,6 +59,10 @@ export function RemoteSurface({ sessionId, session }: { sessionId: string; sessi
 
   useEffect(() => {
     if (controlsReady) return
+    speedIntent.current = null
+    speedSequence.current += 1
+    speedRevisionFloor.current = 0
+    setLocalSpeed(latestTransport.current.speed)
     if (seekTimerRef.current !== null) window.clearTimeout(seekTimerRef.current)
     seekTimerRef.current = null
     pendingSeekRef.current = 0
@@ -76,7 +87,7 @@ export function RemoteSurface({ sessionId, session }: { sessionId: string; sessi
   useEffect(() => {
     if (connection !== 'connected') return
     setLocalPlaying(transport.status === 'playing')
-    setLocalSpeed(transport.speed)
+    if (speedIntent.current === null && transport.revision >= speedRevisionFloor.current) setLocalSpeed(transport.speed)
     if (!isDragging) setPosition(measuredPosition(reading, transport, script.revision, clockOffset, now?.()) ?? serverPosition(transport, clockOffset, now?.()))
   }, [clockOffset, connection, transport, reading, script.revision])
 
@@ -147,8 +158,18 @@ export function RemoteSurface({ sessionId, session }: { sessionId: string; sessi
   const changeSpeed = (next: number) => {
     if (!controlsReady) return
     const speed = boundedSpeed(next)
+    const sequence = ++speedSequence.current
+    speedIntent.current = sequence
     setLocalSpeed(speed)
-    send('transport:set_speed', { speed })
+    // Earlier reading checkpoints and acknowledgements must not undo a newer
+    // drag/keyboard intent. The existing protocol still owns the final value.
+    void request<TransportState | SessionSnapshot>('transport:set_speed', { speed }).then(result => {
+      if (speedIntent.current !== sequence) return
+      speedIntent.current = null
+      const confirmed = result.ok ? ('transport' in result.value ? result.value.transport : result.value) : latestTransport.current
+      if (result.ok) speedRevisionFloor.current = Math.max(speedRevisionFloor.current, confirmed.revision)
+      setLocalSpeed(confirmed.speed)
+    })
   }
 
   const jumpPhrase = (direction: -1 | 1) => {
@@ -166,11 +187,11 @@ export function RemoteSurface({ sessionId, session }: { sessionId: string; sessi
   }
 
   return (
-    <main className={`remote-panel standalone-remote skin-face skin--${appearance.skin}`} aria-label="Remote controller">
+    <main className={`remote-panel standalone-remote skin-face skin--${appearance.skin}${controlCraftSkins.has(appearance.skin) ? ' skin-controls' : ''}`} aria-label="Remote controller">
       <SessionNotice connection={connection} surface="remote" onRetry={reconnect} />
       <header className="remote-header">
         <div className="remote-identity">
-          <strong>R–01</strong>
+          <strong>R–{skinById(appearance.skin).number}</strong>
           <RemoteBrand sessionId={sessionId} />
         </div>
         <div className="remote-link-state">
@@ -179,26 +200,23 @@ export function RemoteSurface({ sessionId, session }: { sessionId: string; sessi
         </div>
       </header>
 
-      <TransportReadout position={position} speed={localSpeed} playing={localPlaying} available={hasDisplayPosition} />
-      <JogControls enabled={controlsReady} playing={localPlaying} speed={localSpeed} position={position}
+      <TransportReadout skin={appearance.skin} position={position} speed={localSpeed} playing={localPlaying} available={hasDisplayPosition} scrubbing={isDragging} />
+      <JogControls skin={appearance.skin} enabled={controlsReady} playing={localPlaying} speed={localSpeed} position={position}
         maximum={reading.checkpoint?.maximum ?? 100000000}
         positionText={hasDisplayPosition ? `Display position ${Math.round(position)} pixels` : 'Waiting for display position'}
         onToggle={toggle} onSeek={queueSeek} onEdge={seekEdge} onSpeedChange={changeSpeed}
         onDraggingChange={setIsDragging} onSeekEnd={flushSeek} />
 
-      <div className="phrase-nav">
-        <button disabled={!controlsReady || currentPhraseIndex < 0} onClick={() => jumpPhrase(-1)} aria-label="Previous phrase"><span>←</span><small>PREV</small></button>
-        <span className="phrase-count"><small>PHRASE</small>{currentPhraseIndex < 0 ? '—' : String(currentPhraseIndex + 1).padStart(2, '0')} / {String(Math.max(1, izzyDocument.blocks.length)).padStart(2, '0')}</span>
-        <button disabled={!controlsReady || currentPhraseIndex < 0} onClick={() => jumpPhrase(1)} aria-label="Next phrase"><small>NEXT</small><span>→</span></button>
-      </div>
+      <PhraseNavigation enabled={controlsReady} index={currentPhraseIndex} total={izzyDocument.blocks.length}
+        onPrevious={() => jumpPhrase(-1)} onNext={() => jumpPhrase(1)} />
       <div className="remote-tools">
       <QuickEdit sessionId={sessionId} epoch={sessionEpoch} connectionId={connectionId} connection={connection}
         document={izzyDocument} revision={script.revision} editing={editing} request={request}
         canEdit={hasDisplayPosition} beforeOpen={flushSeek} />
-      <ReadingControls session={session} beforeOpen={flushSeek} skinName={skinById(appearance.skin).name}
+      <ReadingControls session={session} beforeOpen={flushSeek} onPairing={onPairing} skinName={skinById(appearance.skin).name}
         onChooseSkin={appearance.local ? undefined : () => { flushSeek(); setFinishOpen(true) }} />
       </div>
-      <footer className="remote-footer"><span>TURN TO SEEK</span><span>PRESS CENTER TO {localPlaying ? 'PAUSE' : 'PLAY'}</span></footer>
+      <footer className="remote-footer"><span>TURN TO SEEK</span><span>PRESS {localPlaying ? 'PAUSE' : 'PLAY'} TO {localPlaying ? 'HOLD' : 'RUN'}</span></footer>
       {finishOpen && <RemoteSkinLibrary selected={appearance.skin} pro={appearance.pro} onApply={appearance.apply} onClose={() => setFinishOpen(false)} />}
     </main>
   )

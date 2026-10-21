@@ -1,10 +1,10 @@
 # Reading controls, feedback and minimal metrics
 
-This change is developed separately from the remote-skin collection. It adds
-controls to the existing remote tools row and does not change wheel geometry.
+This release integrates the approved fourteen remote skins and their large-wheel
+composition with shared reading controls, feedback and minimal metrics.
 The row keeps two controls: Quick Edit and Reading settings. Skin selection is
 inside Reading settings so the narrow wheel-first layout gains no third button.
-Integrate and review both branches together before selecting a release image.
+The earlier study IDs and frozen galleries remain preserved outside the public collection.
 Follow RELEASE_WORKFLOW.md; neither a commit nor a merge deploys production.
 
 ## Reading and preferences
@@ -12,10 +12,11 @@ Follow RELEASE_WORKFLOW.md; neither a commit nor a merge deploys production.
 - The remote's Reading settings button opens text-size controls (20–160, step 2).
   The display's existing typography controls use the same revisioned authority.
   Rapid changes are serialized/coalesced; offline commands are not replayed.
-- Quick Edit can select another paragraph without moving the reading anchor.
+- Quick Edit can select another paragraph or the entire script without moving the reading anchor.
   Playback remains paused; existing draft recovery, edit ownership and saved
-  script revision checks apply. This is paragraph selection, not a replacement
-  full-document editor with paragraph insertion/reordering.
+  script revision checks apply. Full replacements retain the identity of unchanged
+  paragraphs, remap the reading word when possible, and fall back to a nearby
+  paragraph when the current one is removed. Temporarily empty text remains editable.
 - Every signed-in account can remember its latest reading settings. This is
   separate from Pro's named profiles. New defaults use speed 0.56; existing valid
   saved settings are preserved. The skin branch's reviewed speed range must also

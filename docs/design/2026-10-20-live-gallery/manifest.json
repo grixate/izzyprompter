@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "kind": "izzy-remote-design-baseline",
+  "baselineId": "2026-10-20-live-gallery",
+  "files": [
+    {
+      "path": "PASS.md",
+      "bytes": 1834,
+      "sha256": "3de152a9ba58c634a27244df7db8716f32ec4fbaa8918fd163b5fd353489f8e0"
+    },
+    {
+      "path": "checks.json",
+      "bytes": 8261,
+      "sha256": "e107b3aa44d548d47fa07b42f6bb8c3b17ca25c3e0c76922dd4a8372ee1f2cd1"
+    },
+    {
+      "path": "gallery.png",
+      "bytes": 963000,
+      "sha256": "6453a4e3b4866573cf0867415daf71f208f5c0aa93b3598bdfe731da589239db"
+    },
+    {
+      "path": "review.html",
+      "bytes": 8391,
+      "sha256": "a4919dd4eebe9d67ed9fd47eb30862cc11c944402a561c81f8f27c0905f4bcd6"
+    },
+    {
+      "path": "verify.mjs",
+      "bytes": 4922,
+      "sha256": "47246d2d9726a4e418c563fa20297bf84b2a57c15b57eb7c74a293aadaa7915f"
+    }
+  ],
+  "referencedBaseline": {
+    "path": "../2026-10-20-touch-layout",
+    "files": [
+      {
+        "path": "instruments.json",
+        "bytes": 2538,
+        "sha256": "0ced295c9470b10eb51fd33e34776a880659469b3c5792f489c57240063d2742"
+      },
+      {
+        "path": "live/assets/live-CvxEU25K.css",
+        "bytes": 252705,
+        "sha256": "01556709300936ae8d5dcf665c35475208f192111f36d6227b49cd2a0f0382e4"
+      },
+      {
+        "path": "live/assets/live-DyM6lDl_.js",
+        "bytes": 274382,
+        "sha256": "c7648f97aa4690e18497c20b93ce001e833530672a69ede4ab59ac0d9efdf20a"
+      },
+      {
+        "path": "live/index.html",
+        "bytes": 356,
+        "sha256": "1590429de475749cb0b34bbeb205abe8ecdef60c66d4f0fa6db2ce26ddfd65fc"
+      },
+      {
+        "path": "manifest.json",
+        "bytes": 7643,
+        "sha256": "6ef8844fd2362a8358b02b91699965c82d0095a7b8c4f7fb30d22bf8226dd65c"
+      }
+    ]
+  }
+}

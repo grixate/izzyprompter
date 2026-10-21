@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
-import { Pencil } from 'lucide-react'
-import type { IzzyDocumentV1 } from '../domain/document'
+import { ParagraphEditor } from '../components/ParagraphEditor'
+import { QuickEditTrigger } from '../components/SecondaryControls'
+import { izzyDocumentToLegacyText, type IzzyDocumentV1 } from '../domain/document'
 import { loadQuickEditDraft, saveQuickEditDraft, type QuickEditDraftV1 } from '../domain/storage'
 import type { CommandResult, ConnectionState, EditingState, SessionSnapshot } from '../realtime/protocol'
 import { copyText, downloadScript } from '../domain/textBackup'
@@ -18,7 +19,6 @@ export function QuickEdit(props: Props) {
   const dialog = useRef<HTMLDialogElement>(null)
   const field = useRef<HTMLTextAreaElement>(null)
   const trigger = useRef<HTMLButtonElement>(null)
-  const returnFocus = useRef<HTMLElement | null>(null)
   const alive = useRef(true)
   const restored = useRef(false)
   const draftRef = useRef<Draft | null>(null)
@@ -28,6 +28,7 @@ export function QuickEdit(props: Props) {
   const [open, setOpen] = useState(false)
   const [busy, setBusy] = useState(false)
   const [observer, setObserver] = useState<string | null>(null)
+  const observerDocument = useRef(false)
   const [draft, setDraft] = useState<Draft | null>(null)
   const [message, setMessage] = useState('')
   const [saving, setSaving] = useState(false)
@@ -53,20 +54,6 @@ export function QuickEdit(props: Props) {
     }
   }, [props.epoch])
   useEffect(() => {
-    if (open && !dialog.current?.open) {
-      // Touch browsers need not focus a tapped button. The explicit invoker,
-      // not the previously active element, is the reliable return destination.
-      returnFocus.current = trigger.current
-      dialog.current?.showModal()
-      field.current?.focus()
-    } else if (!open && dialog.current?.open) {
-      dialog.current.close()
-      const destination = returnFocus.current
-      if (destination?.isConnected && !(destination instanceof HTMLButtonElement && destination.disabled)) destination.focus()
-      else document.querySelector<HTMLElement>('.wheel-input')?.focus()
-    }
-  }, [open])
-  useEffect(() => {
     if (!open || observer || props.connection === 'connected') return
     blocked.current = true
     setMessage('Connection interrupted. Your unsent changes remain in this tab. Review before resuming.')
@@ -79,7 +66,7 @@ export function QuickEdit(props: Props) {
       || context.editing.active?.owner_id !== context.connectionId || current.text === current.acknowledgedText) return
     inFlight.current = true
     setSaving(true)
-    const result = await context.request<SessionSnapshot>('script:patch_block', {
+    const result = await context.request<SessionSnapshot>(current.scope === 'document' ? 'script:patch_document' : 'script:patch_block', {
       block_id: current.blockId, base_revision: current.revision, text: current.text,
     })
     inFlight.current = false
@@ -92,7 +79,8 @@ export function QuickEdit(props: Props) {
       return
     }
     const newest = draftRef.current!
-    update({ ...newest, revision: result.value.script.revision, acknowledgedText: current.text })
+    const acknowledged = current.scope === 'document' ? result.value.script.content : result.value.script.document?.blocks.find(block => block.id === current.blockId)?.text ?? current.text
+    update({ ...newest, text: newest.text === current.text ? acknowledged : newest.text, revision: result.value.script.revision, acknowledgedText: acknowledged })
   }
   useEffect(() => {
     if (!open || observer || composition) return
@@ -100,7 +88,7 @@ export function QuickEdit(props: Props) {
     return () => window.clearTimeout(timer)
   }, [draft, open, observer, props.editing, props.connection, composition])
 
-  const acquire = async (blockId?: string) => {
+  const acquire = async (blockId?: string, scope?: string) => {
     const context = latest.current
     if (context.connection !== 'connected') return null
     if (context.editing.active?.owner_id === context.connectionId) return null
@@ -109,7 +97,7 @@ export function QuickEdit(props: Props) {
     // Wait for the primary display's *paused* checkpoint, not a length estimate
     // or the last moving sample. The server validates that revision pair.
     for (let attempt = 0; attempt < 30 && alive.current; attempt += 1) {
-      const result = await context.request<SessionSnapshot>('script:begin_edit', blockId ? { block_id: blockId } : {})
+      const result = await context.request<SessionSnapshot>('script:begin_edit', scope === 'document' ? { scope } : blockId ? { block_id: blockId } : {})
       if (result.ok) return result.value
       if (result.reason !== 'reading_unavailable') return null
       await new Promise((resolve) => window.setTimeout(resolve, 100))
@@ -121,7 +109,7 @@ export function QuickEdit(props: Props) {
     if (draftRef.current && draftRef.current.text !== draftRef.current.acknowledgedText) {
       blocked.current = true; setOpen(true); setMessage('Your unsent draft is kept. Resume explicitly to send it.'); return
     }
-    if (props.editing.active) { setObserver(props.editing.active.block_id); setOpen(true); return }
+    if (props.editing.active) { observerDocument.current = props.editing.active.scope === 'document'; setObserver(props.editing.active.block_id); setOpen(true); return }
     setBusy(true); setMessage(''); props.beforeOpen()
     const snapshot = await acquire()
     if (!alive.current) return
@@ -131,27 +119,27 @@ export function QuickEdit(props: Props) {
     if (!snapshot || !edit || !block) { setMessage('Could not open the edit. Keep a display connected and try again.'); return }
     blocked.current = false
     setObserver(null)
-    update({ epoch: snapshot.session_epoch, blockId: block.id, text: block.text, acknowledgedText: block.text, revision: snapshot.script.revision })
+    update({ epoch: snapshot.session_epoch, blockId: block.id, text: block.text, acknowledgedText: block.text, revision: snapshot.script.revision, scope: 'paragraph' })
     setOpen(true)
   }
   const resume = async (useLiveText = false) => {
     const current = draftRef.current
     if (!current || busy) return
-    const live = props.document.blocks.find((block) => block.id === current.blockId)
+    const live = current.scope === 'document' ? { text: izzyDocumentToLegacyText(props.document) } : props.document.blocks.find((block) => block.id === current.blockId)
     if (!live || current.epoch !== props.epoch) { setMessage('This draft belongs to a different script. Copy it before closing.'); return }
     if (!useLiveText && live.text !== current.acknowledgedText && live.text !== current.text) {
       setMessage('The live text changed. Copy your draft, or choose Use live text to discard unsent changes.'); return
     }
     setBusy(true)
-    const snapshot = props.editing.active?.owner_id === props.connectionId ? null : await acquire(current.blockId)
+    const snapshot = props.editing.active?.owner_id === props.connectionId ? null : await acquire(current.blockId, current.scope)
     const owner = snapshot?.editing.active ?? latest.current.editing.active
     if (!alive.current) return
     setBusy(false)
-    if (owner?.owner_id !== latest.current.connectionId || owner.block_id !== current.blockId) {
+    if (owner?.owner_id !== latest.current.connectionId || (current.scope === 'document' ? owner.scope !== 'document' : owner.block_id !== current.blockId || owner.scope === 'document')) {
       if (snapshot?.editing.active?.owner_id === latest.current.connectionId) await props.request('script:end_edit')
       setMessage('Another edit or reading position is active. Your draft is kept.'); return
     }
-    const server = snapshot?.script.document?.blocks.find((block) => block.id === current.blockId)?.text ?? live.text
+    const server = current.scope === 'document' ? snapshot?.script.content ?? live.text : snapshot?.script.document?.blocks.find((block) => block.id === current.blockId)?.text ?? live.text
     if (!useLiveText && server !== current.acknowledgedText && server !== current.text) {
       blocked.current = true; setMessage('The live text changed. Copy your draft or choose Use live text.'); return
     }
@@ -173,38 +161,42 @@ export function QuickEdit(props: Props) {
     const copied = await copyText(draftRef.current?.text ?? '', field.current)
     setCopyFeedback(copied ? 'DRAFT COPIED' : 'Copy unavailable. The text is selected; use your device’s Copy command.')
   }
-  const observedText = props.document.blocks.find((block) => block.id === (props.editing.active?.block_id ?? observer))?.text ?? ''
+  if (observer && props.editing.active) observerDocument.current = props.editing.active.scope === 'document'
+  const observedText = observerDocument.current ? izzyDocumentToLegacyText(props.document) : props.document.blocks.find((block) => block.id === (props.editing.active?.block_id ?? observer))?.text ?? ''
   const owns = props.editing.active?.owner_id === props.connectionId
   const synced = Boolean(draft && draft.text === draft.acknowledgedText && !saving && !message && owns)
   const state = observer ? 'readonly' : message ? 'blocked' : synced ? 'live' : 'pending'
   const storageFailed = !draftStored && draft?.text !== draft?.acknowledgedText
-  const selectParagraph = async (blockId: string) => {
+  const selectParagraph = async (selection: string) => {
     if (!synced || busy || composing.current || props.connection !== 'connected') return
     setBusy(true)
-    const result = await props.request<SessionSnapshot>('script:select_block', { block_id: blockId })
+    const full = selection === 'document'
+    const blockId = selection.slice('paragraph:'.length)
+    const result = await props.request<SessionSnapshot>(full ? 'script:select_document' : 'script:select_block', full ? {} : { block_id: blockId })
     if (!alive.current) return
     setBusy(false)
     if (!result.ok) { setMessage('Could not select the paragraph. Your current draft is kept.'); return }
-    const block = result.value.script.document?.blocks.find(item => item.id === blockId)
-    if (block) update({ epoch: result.value.session_epoch, blockId, text: block.text, acknowledgedText: block.text, revision: result.value.script.revision })
+    const block = full ? { id: result.value.editing.active!.block_id, text: result.value.script.content } : result.value.script.document?.blocks.find(item => item.id === blockId)
+    if (block) update({ epoch: result.value.session_epoch, blockId: block.id, text: block.text, acknowledgedText: block.text, revision: result.value.script.revision, scope: full ? 'document' : 'paragraph' })
   }
 
   return <>
-    <button ref={trigger} className="quick-edit-trigger" disabled={busy || props.connection !== 'connected' || (!props.canEdit && !props.editing.active)} onClick={() => void begin()} aria-label="Quick edit current paragraph">
-      <Pencil size={12} /><span>{busy ? 'CHECKPOINTING…' : props.editing.active ? 'VIEW LIVE EDIT' : 'QUICK EDIT'}</span>
-    </button>
+    <QuickEditTrigger ref={trigger} disabled={busy || props.connection !== 'connected' || (!props.canEdit && !props.editing.active)} onClick={() => void begin()} aria-label="Quick edit current paragraph">
+      {busy ? 'CHECKPOINTING…' : props.editing.active ? 'VIEW LIVE EDIT' : 'QUICK EDIT'}
+    </QuickEditTrigger>
     {!open && message && <p className="quick-edit-feedback" role="status">{message}</p>}
-    <dialog ref={dialog} className="quick-edit-dialog" aria-labelledby="quick-edit-title" aria-describedby="quick-edit-explanation" data-state={state}
-      onCancel={(event) => { event.preventDefault(); if (observer || synced) void close() }}>
-      <header><span>R–01 / {observer ? 'LIVE MONITOR' : 'QUICK EDIT'}</span><span className={`edit-sync ${state}`} role="status">{observer ? 'READ ONLY · LIVE' : message ? 'DRAFT KEPT' : synced ? 'LIVE ON ALL SCREENS' : 'SYNCING…'}</span></header>
-      <h1 id="quick-edit-title">{observer ? 'One text. Every screen.' : 'A small correction.'}</h1>
-      <p className="edit-explanation" id="quick-edit-explanation">{observer ? 'Another device is editing. Changes appear here as they happen.' : 'Playback is paused. Your changes appear on every connected screen as you type.'}</p>
-      {!observer && <label className="edit-paragraph-select">PARAGRAPH
-        <select aria-label="Paragraph to edit" value={draft?.blockId ?? ''} disabled={!synced || busy || composition} onChange={event => void selectParagraph(event.target.value)}>
-          {props.document.blocks.map((block, index) => <option key={block.id} value={block.id}>{index + 1}. {block.text.slice(0, 64) || 'Empty paragraph'}</option>)}
+    <ParagraphEditor dialogRef={dialog} returnTo={trigger} open={open} state={state} title={(observer ? observerDocument.current : draft?.scope === 'document') ? 'Entire script' : 'Current paragraph'}
+      status={observer?'Read only':message?'Draft kept':synced?'Updated':'Updating…'}
+      description={observer?'Another device is editing. Changes appear here as they happen.':'Playback is paused. Your changes appear on every connected screen as you type.'}
+      onRequestClose={() => { if (observer || synced) void close() }} onDone={() => void close()} doneDisabled={busy || (!observer && !synced)}
+      recoveryFooter={message&&!observer?<button onClick={() => void close(true)} disabled={busy || saving}>Close · keep draft</button>:undefined}>
+      {!observer && <label className="edit-paragraph-select">EDIT
+        <select aria-label="Text to edit" value={draft?.scope === 'document' ? 'document' : `paragraph:${draft?.blockId ?? ''}`} disabled={!synced || busy || composition} onChange={event => void selectParagraph(event.target.value)}>
+          <option value="document">Entire script</option>
+          {props.document.blocks.map((block, index) => <option key={block.id} value={`paragraph:${block.id}`}>{index + 1}. {block.text.slice(0, 64) || 'Empty paragraph'}</option>)}
         </select>
       </label>}
-      <label htmlFor="quick-edit-text">CURRENT PARAGRAPH</label>
+      <label className="sr-only" htmlFor="quick-edit-text">{(observer ? observerDocument.current : draft?.scope === 'document') ? 'SCRIPT TEXT' : 'CURRENT PARAGRAPH'}</label>
       <textarea id="quick-edit-text" ref={field} value={observer ? observedText : draft?.text ?? ''} readOnly={Boolean(observer) || busy} spellCheck
         onCompositionStart={() => { composing.current = true; setComposition(true) }} onCompositionEnd={() => { composing.current = false; setComposition(false) }}
         onChange={(event) => { if (draftRef.current) update({ ...draftRef.current, text: event.target.value }) }} />
@@ -220,10 +212,6 @@ export function QuickEdit(props: Props) {
         <button disabled={busy || props.connection !== 'connected'} onClick={() => void resume()}>RESUME LIVE EDIT</button>
         <button disabled={busy || props.connection !== 'connected'} onClick={() => void resume(true)}>USE LIVE TEXT</button>
       </div></div>}
-      <footer><span>{observer ? 'SHARED SCRIPT' : 'TEXT ONLY · AUTO-SYNC'}</span>
-        {message && !observer && <button onClick={() => void close(true)} disabled={busy || saving}>CLOSE · KEEP DRAFT</button>}
-        <button className="edit-done" disabled={busy || (!observer && !synced)} onClick={() => void close()}>DONE <span>↗</span></button>
-      </footer>
-    </dialog>
+    </ParagraphEditor>
   </>
 }

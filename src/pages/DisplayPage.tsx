@@ -1,3 +1,4 @@
+import { MIN_SPEED, MAX_SPEED, SPEED_STEP } from '../prompt/speed'
 import { BrandLogo } from '../components/BrandLogo'
 import { useEffect, useMemo, useRef, useState, type CSSProperties } from 'react'
 import { Expand, Pause, Play, Settings2, X } from 'lucide-react'
@@ -143,7 +144,7 @@ export function DisplaySurface({ sessionId, session, onSettingsChange }: {
         <section className="prompt-settings" id="prompt-settings" ref={settingsPanelRef} aria-label="Prompt settings panel">
           <div className="prompt-settings-heading"><span>DISPLAY / SETUP</span><button className="icon-button" aria-label="Close prompt settings" onClick={() => { setSettingsOpen(false); settingsButtonRef.current?.focus() }}><X size={14} /></button></div>
           {session.path === 'local' && <>
-            <label>PLAYBACK SPEED <output>{transport.speed.toFixed(2)}×</output><input aria-label="Local playback speed" type="range" min="0.5" max="1.5" step="0.05" value={transport.speed} disabled={!controlsReady} onChange={event => send('transport:set_speed', { speed: Number(event.target.value) })} /></label>
+            <label>PLAYBACK SPEED <output>{transport.speed.toFixed(2)}×</output><input aria-label="Local playback speed" type="range" min={MIN_SPEED} max={MAX_SPEED} step={SPEED_STEP} value={transport.speed} disabled={!controlsReady} onChange={event => send('transport:set_speed', { speed: Number(event.target.value) })} /></label>
             <div className="local-reading-controls" aria-label="Local reading navigation">
               <button disabled={!controlsReady} onClick={() => send('transport:seek_delta', { delta: -48 })}>Jog backward</button>
               <button disabled={!controlsReady} onClick={() => send('transport:seek_delta', { delta: 48 })}>Jog forward</button>

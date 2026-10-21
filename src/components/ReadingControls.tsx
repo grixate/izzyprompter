@@ -4,8 +4,8 @@ import type { SessionControllerView } from '../realtime/controller'
 import { useReadingSettings } from '../realtime/useReadingSettings'
 import './reading-controls.css'
 
-export function ReadingControls({ session, beforeOpen, onChooseSkin, skinName }: {
-  session: SessionControllerView; beforeOpen: () => void; onChooseSkin?: () => void; skinName?: string
+export function ReadingControls({ session, beforeOpen, onChooseSkin, skinName, onPairing }: {
+  session: SessionControllerView; beforeOpen: () => void; onChooseSkin?: () => void; skinName?: string; onPairing?: () => void
 }) {
   const [open, setOpen] = useState(false)
   const trigger = useRef<HTMLButtonElement>(null)
@@ -18,7 +18,7 @@ export function ReadingControls({ session, beforeOpen, onChooseSkin, skinName }:
   }, [open])
   const status = session.preferencesStatus ?? 'device'
   return <>
-    <button ref={trigger} className="remote-finish-button" disabled={!enabled} aria-label="Reading settings" aria-describedby="remote-current-skin" aria-haspopup="dialog"
+    <button ref={trigger} className="remote-finish-button" disabled={!enabled && !onPairing && !onChooseSkin} aria-label="Reading settings" aria-describedby="remote-current-skin" aria-haspopup="dialog"
       onClick={() => { beforeOpen(); setOpen(true) }}><Type size={19} strokeWidth={1.6} /></button>
     <span id="remote-current-skin" className="sr-only" aria-live="polite">Current skin: {skinName}</span>
     <dialog ref={dialog} className="quick-edit-dialog remote-reading-settings" aria-labelledby="remote-reading-title"
@@ -38,6 +38,7 @@ export function ReadingControls({ session, beforeOpen, onChooseSkin, skinName }:
       {onChooseSkin && <button className="reading-appearance" aria-label="Change remote skin" onClick={() => {
         dialog.current?.close(); trigger.current?.focus(); setOpen(false); onChooseSkin()
       }}><SwatchBook size={18} /><span>Remote skin<small>{skinName}</small></span><span aria-hidden="true">↗</span></button>}
+      {onPairing && <button className="reading-appearance" onClick={() => { dialog.current?.close(); trigger.current?.focus(); setOpen(false); onPairing() }}>Direct pairing</button>}
       <footer><span>YOUR PACE · YOUR TYPE</span><button className="edit-done" onClick={() => setOpen(false)}>DONE ↗</button></footer>
     </dialog>
   </>

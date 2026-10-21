@@ -1,0 +1,32 @@
+{
+  "unitPassed": 92,
+  "clientBuild": "passed",
+  "frozenBuild": "passed",
+  "combinedPlaywright": {
+    "passed": 16,
+    "skipped": 2,
+    "failed": 0,
+    "engines": [
+      "chromium",
+      "firefox",
+      "webkit"
+    ],
+    "skippedReason": "Trusted touch move protocol is Chromium-only."
+  },
+  "captureReleaseRerun": {
+    "chromiumPassed": 1
+  },
+  "trustedTouchSkins": [
+    "signal",
+    "vector",
+    "ivory",
+    "correspondent",
+    "field",
+    "switchboard"
+  ],
+  "frozenStates": 420,
+  "frozenFailures": [],
+  "pageErrors": [],
+  "physicalDevices": false,
+  "hostedPublication": false
+}

@@ -1,0 +1,564 @@
+{
+  "runs": [
+    {
+      "run": "collection-browsers",
+      "stats": {
+        "startTime": "2026-10-20T07:02:16.917Z",
+        "duration": 229627.887,
+        "expected": 84,
+        "skipped": 0,
+        "unexpected": 3,
+        "flaky": 0
+      }
+    },
+    {
+      "run": "collection-repairs",
+      "stats": {
+        "startTime": "2026-10-20T07:07:50.826Z",
+        "duration": 52428.922,
+        "expected": 8,
+        "skipped": 0,
+        "unexpected": 2,
+        "flaky": 0
+      }
+    },
+    {
+      "run": "collection-final-checks",
+      "stats": {
+        "startTime": "2026-10-20T07:09:26.017Z",
+        "duration": 53679.85,
+        "expected": 9,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      }
+    }
+  ],
+  "latestPerCase": [
+    {
+      "browser": "chromium",
+      "case": "Original: real paired transport, editing and recovery",
+      "status": "passed",
+      "durationMs": 4915
+    },
+    {
+      "browser": "chromium",
+      "case": "Original: responsive controls, keyboard focus and reduced motion",
+      "status": "passed",
+      "durationMs": 2764
+    },
+    {
+      "browser": "chromium",
+      "case": "Orbit: real paired transport, editing and recovery",
+      "status": "passed",
+      "durationMs": 4362
+    },
+    {
+      "browser": "chromium",
+      "case": "Orbit: responsive controls, keyboard focus and reduced motion",
+      "status": "passed",
+      "durationMs": 2261
+    },
+    {
+      "browser": "chromium",
+      "case": "Field reel: real paired transport, editing and recovery",
+      "status": "passed",
+      "durationMs": 4273
+    },
+    {
+      "browser": "chromium",
+      "case": "Field reel: responsive controls, keyboard focus and reduced motion",
+      "status": "passed",
+      "durationMs": 2113
+    },
+    {
+      "browser": "chromium",
+      "case": "Thumbprint: real paired transport, editing and recovery",
+      "status": "passed",
+      "durationMs": 4070
+    },
+    {
+      "browser": "chromium",
+      "case": "Thumbprint: responsive controls, keyboard focus and reduced motion",
+      "status": "passed",
+      "durationMs": 2048
+    },
+    {
+      "browser": "chromium",
+      "case": "Signal: real paired transport, editing and recovery",
+      "status": "passed",
+      "durationMs": 5063
+    },
+    {
+      "browser": "chromium",
+      "case": "Signal: responsive controls, keyboard focus and reduced motion",
+      "status": "passed",
+      "durationMs": 2644
+    },
+    {
+      "browser": "chromium",
+      "case": "Groove: real paired transport, editing and recovery",
+      "status": "passed",
+      "durationMs": 4738
+    },
+    {
+      "browser": "chromium",
+      "case": "Groove: responsive controls, keyboard focus and reduced motion",
+      "status": "passed",
+      "durationMs": 1843
+    },
+    {
+      "browser": "chromium",
+      "case": "Switchboard: real paired transport, editing and recovery",
+      "status": "passed",
+      "durationMs": 4268
+    },
+    {
+      "browser": "chromium",
+      "case": "Switchboard: responsive controls, keyboard focus and reduced motion",
+      "status": "passed",
+      "durationMs": 1921
+    },
+    {
+      "browser": "chromium",
+      "case": "Vector: real paired transport, editing and recovery",
+      "status": "passed",
+      "durationMs": 3896
+    },
+    {
+      "browser": "chromium",
+      "case": "Vector: responsive controls, keyboard focus and reduced motion",
+      "status": "passed",
+      "durationMs": 1748
+    },
+    {
+      "browser": "chromium",
+      "case": "Cartridge: real paired transport, editing and recovery",
+      "status": "passed",
+      "durationMs": 3996
+    },
+    {
+      "browser": "chromium",
+      "case": "Cartridge: responsive controls, keyboard focus and reduced motion",
+      "status": "passed",
+      "durationMs": 1739
+    },
+    {
+      "browser": "chromium",
+      "case": "Correspondent: real paired transport, editing and recovery",
+      "status": "passed",
+      "durationMs": 4152
+    },
+    {
+      "browser": "chromium",
+      "case": "Correspondent: responsive controls, keyboard focus and reduced motion",
+      "status": "passed",
+      "durationMs": 2004
+    },
+    {
+      "browser": "chromium",
+      "case": "Foundry: real paired transport, editing and recovery",
+      "status": "passed",
+      "durationMs": 4961
+    },
+    {
+      "browser": "chromium",
+      "case": "Foundry: responsive controls, keyboard focus and reduced motion",
+      "status": "passed",
+      "durationMs": 2353
+    },
+    {
+      "browser": "chromium",
+      "case": "Clear: real paired transport, editing and recovery",
+      "status": "passed",
+      "durationMs": 5419
+    },
+    {
+      "browser": "chromium",
+      "case": "Clear: responsive controls, keyboard focus and reduced motion",
+      "status": "passed",
+      "durationMs": 2036
+    },
+    {
+      "browser": "chromium",
+      "case": "Arcade: real paired transport, editing and recovery",
+      "status": "passed",
+      "durationMs": 5336
+    },
+    {
+      "browser": "chromium",
+      "case": "Arcade: responsive controls, keyboard focus and reduced motion",
+      "status": "passed",
+      "durationMs": 2289
+    },
+    {
+      "browser": "chromium",
+      "case": "Observatory: real paired transport, editing and recovery",
+      "status": "passed",
+      "durationMs": 5482
+    },
+    {
+      "browser": "chromium",
+      "case": "Observatory: responsive controls, keyboard focus and reduced motion",
+      "status": "passed",
+      "durationMs": 3057
+    },
+    {
+      "browser": "firefox",
+      "case": "Original: real paired transport, editing and recovery",
+      "status": "passed",
+      "durationMs": 7282
+    },
+    {
+      "browser": "firefox",
+      "case": "Original: responsive controls, keyboard focus and reduced motion",
+      "status": "passed",
+      "durationMs": 3055
+    },
+    {
+      "browser": "firefox",
+      "case": "Orbit: real paired transport, editing and recovery",
+      "status": "passed",
+      "durationMs": 7488
+    },
+    {
+      "browser": "firefox",
+      "case": "Orbit: responsive controls, keyboard focus and reduced motion",
+      "status": "passed",
+      "durationMs": 4301
+    },
+    {
+      "browser": "firefox",
+      "case": "Field reel: real paired transport, editing and recovery",
+      "status": "passed",
+      "durationMs": 8466
+    },
+    {
+      "browser": "firefox",
+      "case": "Field reel: responsive controls, keyboard focus and reduced motion",
+      "status": "passed",
+      "durationMs": 3533
+    },
+    {
+      "browser": "firefox",
+      "case": "Thumbprint: real paired transport, editing and recovery",
+      "status": "passed",
+      "durationMs": 6043
+    },
+    {
+      "browser": "firefox",
+      "case": "Thumbprint: responsive controls, keyboard focus and reduced motion",
+      "status": "passed",
+      "durationMs": 2908
+    },
+    {
+      "browser": "firefox",
+      "case": "Signal: real paired transport, editing and recovery",
+      "status": "passed",
+      "durationMs": 8472
+    },
+    {
+      "browser": "firefox",
+      "case": "Signal: responsive controls, keyboard focus and reduced motion",
+      "status": "passed",
+      "durationMs": 2431
+    },
+    {
+      "browser": "firefox",
+      "case": "Groove: real paired transport, editing and recovery",
+      "status": "passed",
+      "durationMs": 5767
+    },
+    {
+      "browser": "firefox",
+      "case": "Groove: responsive controls, keyboard focus and reduced motion",
+      "status": "passed",
+      "durationMs": 2408
+    },
+    {
+      "browser": "firefox",
+      "case": "Switchboard: real paired transport, editing and recovery",
+      "status": "passed",
+      "durationMs": 6422
+    },
+    {
+      "browser": "firefox",
+      "case": "Switchboard: responsive controls, keyboard focus and reduced motion",
+      "status": "passed",
+      "durationMs": 1885
+    },
+    {
+      "browser": "firefox",
+      "case": "Vector: real paired transport, editing and recovery",
+      "status": "passed",
+      "durationMs": 6860
+    },
+    {
+      "browser": "firefox",
+      "case": "Vector: responsive controls, keyboard focus and reduced motion",
+      "status": "passed",
+      "durationMs": 2821
+    },
+    {
+      "browser": "firefox",
+      "case": "Cartridge: real paired transport, editing and recovery",
+      "status": "passed",
+      "durationMs": 7310
+    },
+    {
+      "browser": "firefox",
+      "case": "Cartridge: responsive controls, keyboard focus and reduced motion",
+      "status": "passed",
+      "durationMs": 2845
+    },
+    {
+      "browser": "firefox",
+      "case": "Correspondent: real paired transport, editing and recovery",
+      "status": "passed",
+      "durationMs": 7057
+    },
+    {
+      "browser": "firefox",
+      "case": "Correspondent: responsive controls, keyboard focus and reduced motion",
+      "status": "passed",
+      "durationMs": 2373
+    },
+    {
+      "browser": "firefox",
+      "case": "Foundry: real paired transport, editing and recovery",
+      "status": "passed",
+      "durationMs": 5714
+    },
+    {
+      "browser": "firefox",
+      "case": "Foundry: responsive controls, keyboard focus and reduced motion",
+      "status": "passed",
+      "durationMs": 2589
+    },
+    {
+      "browser": "firefox",
+      "case": "Clear: real paired transport, editing and recovery",
+      "status": "passed",
+      "durationMs": 6929
+    },
+    {
+      "browser": "firefox",
+      "case": "Clear: responsive controls, keyboard focus and reduced motion",
+      "status": "passed",
+      "durationMs": 2588
+    },
+    {
+      "browser": "firefox",
+      "case": "Arcade: real paired transport, editing and recovery",
+      "status": "passed",
+      "durationMs": 6924
+    },
+    {
+      "browser": "firefox",
+      "case": "Arcade: responsive controls, keyboard focus and reduced motion",
+      "status": "passed",
+      "durationMs": 2457
+    },
+    {
+      "browser": "firefox",
+      "case": "Observatory: real paired transport, editing and recovery",
+      "status": "passed",
+      "durationMs": 6572
+    },
+    {
+      "browser": "firefox",
+      "case": "Observatory: responsive controls, keyboard focus and reduced motion",
+      "status": "passed",
+      "durationMs": 2301
+    },
+    {
+      "browser": "webkit",
+      "case": "Original: real paired transport, editing and recovery",
+      "status": "passed",
+      "durationMs": 5180
+    },
+    {
+      "browser": "webkit",
+      "case": "Original: responsive controls, keyboard focus and reduced motion",
+      "status": "passed",
+      "durationMs": 2987
+    },
+    {
+      "browser": "webkit",
+      "case": "Orbit: real paired transport, editing and recovery",
+      "status": "passed",
+      "durationMs": 5116
+    },
+    {
+      "browser": "webkit",
+      "case": "Orbit: responsive controls, keyboard focus and reduced motion",
+      "status": "passed",
+      "durationMs": 2829
+    },
+    {
+      "browser": "webkit",
+      "case": "Field reel: real paired transport, editing and recovery",
+      "status": "passed",
+      "durationMs": 5352
+    },
+    {
+      "browser": "webkit",
+      "case": "Field reel: responsive controls, keyboard focus and reduced motion",
+      "status": "passed",
+      "durationMs": 2867
+    },
+    {
+      "browser": "webkit",
+      "case": "Thumbprint: real paired transport, editing and recovery",
+      "status": "passed",
+      "durationMs": 4156
+    },
+    {
+      "browser": "webkit",
+      "case": "Thumbprint: responsive controls, keyboard focus and reduced motion",
+      "status": "passed",
+      "durationMs": 2239
+    },
+    {
+      "browser": "webkit",
+      "case": "Signal: real paired transport, editing and recovery",
+      "status": "passed",
+      "durationMs": 4553
+    },
+    {
+      "browser": "webkit",
+      "case": "Signal: responsive controls, keyboard focus and reduced motion",
+      "status": "passed",
+      "durationMs": 2479
+    },
+    {
+      "browser": "webkit",
+      "case": "Groove: real paired transport, editing and recovery",
+      "status": "passed",
+      "durationMs": 4500
+    },
+    {
+      "browser": "webkit",
+      "case": "Groove: responsive controls, keyboard focus and reduced motion",
+      "status": "passed",
+      "durationMs": 2541
+    },
+    {
+      "browser": "webkit",
+      "case": "Switchboard: real paired transport, editing and recovery",
+      "status": "passed",
+      "durationMs": 4521
+    },
+    {
+      "browser": "webkit",
+      "case": "Switchboard: responsive controls, keyboard focus and reduced motion",
+      "status": "passed",
+      "durationMs": 2403
+    },
+    {
+      "browser": "webkit",
+      "case": "Vector: real paired transport, editing and recovery",
+      "status": "passed",
+      "durationMs": 4271
+    },
+    {
+      "browser": "webkit",
+      "case": "Vector: responsive controls, keyboard focus and reduced motion",
+      "status": "passed",
+      "durationMs": 2432
+    },
+    {
+      "browser": "webkit",
+      "case": "Cartridge: real paired transport, editing and recovery",
+      "status": "passed",
+      "durationMs": 4541
+    },
+    {
+      "browser": "webkit",
+      "case": "Cartridge: responsive controls, keyboard focus and reduced motion",
+      "status": "passed",
+      "durationMs": 2096
+    },
+    {
+      "browser": "webkit",
+      "case": "Correspondent: real paired transport, editing and recovery",
+      "status": "passed",
+      "durationMs": 4304
+    },
+    {
+      "browser": "webkit",
+      "case": "Correspondent: responsive controls, keyboard focus and reduced motion",
+      "status": "passed",
+      "durationMs": 2230
+    },
+    {
+      "browser": "webkit",
+      "case": "Foundry: real paired transport, editing and recovery",
+      "status": "passed",
+      "durationMs": 4653
+    },
+    {
+      "browser": "webkit",
+      "case": "Foundry: responsive controls, keyboard focus and reduced motion",
+      "status": "passed",
+      "durationMs": 2405
+    },
+    {
+      "browser": "webkit",
+      "case": "Clear: real paired transport, editing and recovery",
+      "status": "passed",
+      "durationMs": 4451
+    },
+    {
+      "browser": "webkit",
+      "case": "Clear: responsive controls, keyboard focus and reduced motion",
+      "status": "passed",
+      "durationMs": 2430
+    },
+    {
+      "browser": "webkit",
+      "case": "Arcade: real paired transport, editing and recovery",
+      "status": "passed",
+      "durationMs": 4131
+    },
+    {
+      "browser": "webkit",
+      "case": "Arcade: responsive controls, keyboard focus and reduced motion",
+      "status": "passed",
+      "durationMs": 1881
+    },
+    {
+      "browser": "webkit",
+      "case": "Observatory: real paired transport, editing and recovery",
+      "status": "passed",
+      "durationMs": 4439
+    },
+    {
+      "browser": "webkit",
+      "case": "Observatory: responsive controls, keyboard focus and reduced motion",
+      "status": "passed",
+      "durationMs": 2499
+    },
+    {
+      "browser": "chromium",
+      "case": "fourteen self-contained instruments keep paired precision",
+      "status": "passed",
+      "durationMs": 18218
+    },
+    {
+      "browser": "firefox",
+      "case": "fourteen self-contained instruments keep paired precision",
+      "status": "passed",
+      "durationMs": 23045
+    },
+    {
+      "browser": "webkit",
+      "case": "fourteen self-contained instruments keep paired precision",
+      "status": "passed",
+      "durationMs": 21683
+    }
+  ],
+  "passed": 87,
+  "failed": 0,
+  "note": "Initial failures and focused repair runs are retained. This is a combined latest result, not a claim of one clean 87-case invocation."
+}

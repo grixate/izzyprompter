@@ -11,7 +11,7 @@ test('jog keys provide small and coarse bidirectional movement without consuming
 })
 
 test('speed steps stay within protocol bounds and avoid floating-point drift', () => {
-  assert.equal(boundedSpeed(1.5 + 0.05), 1.5)
-  assert.equal(boundedSpeed(0.5 - 0.05), 0.5)
+  assert.equal(boundedSpeed(1 + 0.05), 1)
+  assert.equal(boundedSpeed(0.2 - 0.05), 0.2)
   assert.equal(boundedSpeed(0.86 + 0.05), 0.91)
 })

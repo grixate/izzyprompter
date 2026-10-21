@@ -1,9 +1,11 @@
 import { defineConfig, devices } from '@playwright/test'
 
+
 const baseURL = 'http://127.0.0.1:4173'
 
 export default defineConfig({
   testDir: './test/e2e',
+  globalSetup: './test/e2e/global-setup.ts',
   fullyParallel: true,
   forbidOnly: Boolean(process.env.CI),
   retries: process.env.CI ? 1 : 0,
@@ -13,8 +15,8 @@ export default defineConfig({
   reporter: [['list'], ['html', { open: 'never' }]],
   use: {
     baseURL,
-    trace: 'retain-on-failure',
-    screenshot: 'only-on-failure',
+    trace: 'off',
+    screenshot: 'off',
   },
   projects: [
     { name: 'chromium', use: { ...devices['Desktop Chrome'] } },

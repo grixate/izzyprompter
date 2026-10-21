@@ -23,6 +23,49 @@ function fixtureToken(pro = false) {
 
 test.describe('account workspace with PostgreSQL', () => {
   test.skip(!process.env.IZZY_E2E_DATABASE_URL, 'Set IZZY_E2E_DATABASE_URL to a migrated disposable PostgreSQL database')
+  test('phone reading settings survive a new session and feedback survives a retry', async ({ page, browser }, testInfo) => {
+    test.setTimeout(60_000)
+    await page.goto(`/account/login#token=${fixtureToken()}`)
+    await page.getByRole('button', { name: 'Sign in to IZZY', exact: true }).click()
+    await expect(page.getByRole('heading', { name: 'Your scripts', exact: true })).toBeVisible()
+    if (process.env.FEEDBACK_ENABLED === 'true') {
+      const form = page.getByRole('region', { name: 'Leave your feedback.' })
+      await form.getByRole('textbox', { name: 'Your message' }).fill('Synthetic feedback: the next take could be even easier.')
+      await page.route('**/api/account/feedback', route => route.abort())
+      await form.getByRole('button', { name: 'Send feedback', exact: true }).click()
+      await expect(form.getByRole('alert')).toBeVisible()
+      await expect(form.getByRole('textbox', { name: 'Your message' })).toHaveValue(/Synthetic feedback/)
+      await page.unroute('**/api/account/feedback')
+      await form.getByRole('button', { name: 'Send feedback', exact: true }).click()
+      await expect(form.getByRole('status')).toContainText('review queue')
+      await page.setViewportSize({ width: 428, height: 926 })
+      await page.screenshot({ path: testInfo.outputPath('feedback-phone.png'), fullPage: true })
+    }
+    await page.getByRole('button', { name: 'New script', exact: true }).click()
+    await page.getByRole('textbox', { name: 'Saved script text', exact: true }).fill('Synthetic opening. '.repeat(20) + '\n\nSynthetic closing.')
+    await expect(page.getByRole('status')).toHaveText('Saved to account')
+    const openTake = async () => {
+      await page.getByRole('button', { name: 'SET UP PROMPTER', exact: true }).click()
+      const modal = page.getByRole('dialog')
+      return { display: (await modal.getByRole('link', { name: 'Open reading screen' }).getAttribute('href'))!, remote: await modal.getByRole('textbox', { name: 'Remote link' }).inputValue() }
+    }
+    const remoteContext = await browser.newContext({ viewport: { width: 428, height: 926 } })
+    try {
+      const links = await openTake()
+      const display = await page.context().newPage(), remote = await remoteContext.newPage()
+      await display.goto(links.display); await remote.goto(links.remote)
+      await remote.getByRole('button', { name: 'Reading settings', exact: true }).click()
+      await remote.getByRole('slider', { name: 'TEXT SIZE', exact: true }).fill('88')
+      await expect(remote.getByRole('status', { name: 'Reading settings status' })).toHaveText('Saved to your account')
+      await expect(display.locator('.standalone-display')).toHaveCSS('--prompt-size', '88px')
+      await page.getByRole('dialog').getByRole('button', { name: 'Back to script', exact: true }).click()
+      await page.getByRole('button', { name: 'End session', exact: true }).click()
+      const next = await openTake()
+      await display.goto(next.display); await remote.goto(next.remote)
+      await expect(display.locator('.standalone-display')).toHaveCSS('--prompt-size', '88px')
+      await display.close()
+    } finally { await remoteContext.close() }
+  })
   test('sign in, save before pairing, recover offline draft, resolve conflict and sync a remote edit', async ({ page, context }, testInfo) => {
     test.setTimeout(60_000)
     page.on('dialog', dialog => void dialog.accept())

@@ -2,7 +2,7 @@ import { BrandLogo } from '../components/BrandLogo'
 import { useEffect, useMemo, useRef, useState, type CSSProperties } from 'react'
 import { Expand, Pause, Play, Settings2, X } from 'lucide-react'
 import { legacySessionScriptToDocument } from '../domain/document'
-import { DEFAULT_PROMPT_SETTINGS, loadWorkspaceStorage, savePromptSettings } from '../domain/storage'
+import { DEFAULT_PROMPT_SETTINGS } from '../domain/storage'
 import { usePromptEngine } from '../prompt/usePromptEngine'
 import { useSession } from '../realtime/useSession'
 import { SessionNotice } from '../realtime/SessionNotice'
@@ -10,6 +10,7 @@ import { boundedSpeed } from '../realtime/keyboard'
 import { PromptSurface } from '../components/PromptSurface'
 import type { SessionControllerView } from '../realtime/controller'
 import type { PromptSettingsV1 } from '../domain/storage'
+import { useReadingSettings } from '../realtime/useReadingSettings'
 
 export function DisplayPage({ sessionId }: { sessionId: string }) {
   const session = useSession(sessionId, 'display')
@@ -19,13 +20,13 @@ export function DisplayPage({ sessionId }: { sessionId: string }) {
 export function DisplaySurface({ sessionId, session, onSettingsChange }: {
   sessionId: string; session: SessionControllerView; onSettingsChange?: (settings: PromptSettingsV1) => void
 }) {
-  const { connection, transport, script, presence, clockOffset, sessionEpoch, reading, displayId, send, editing, reconnect, displaySettings, now } = session
+  const { connection, transport, script, presence, clockOffset, sessionEpoch, reading, displayId, send, editing, reconnect, now } = session
   const displayRef = useRef<HTMLElement>(null)
   const scriptRef = useRef<HTMLDivElement>(null)
   const settingsButtonRef = useRef<HTMLButtonElement>(null)
   const settingsPanelRef = useRef<HTMLElement>(null)
   const transportRef = useRef(transport)
-  const [settings, setSettings] = useState(() => displaySettings?.value ?? loadWorkspaceStorage().settings)
+  const { settings, change: updateSettings, error: settingsError } = useReadingSettings(session, onSettingsChange)
   const [controlsVisible, setControlsVisible] = useState(true)
   const [settingsOpen, setSettingsOpen] = useState(false)
   const [chromeFocused, setChromeFocused] = useState(false)
@@ -44,22 +45,7 @@ export function DisplaySurface({ sessionId, session, onSettingsChange }: {
 
   useEffect(() => {
     transportRef.current = transport
-    if (connection === 'connected') setSettings((value) => ({ ...value, speed: transport.speed }))
   }, [connection, transport])
-
-  useEffect(() => { savePromptSettings(settings) }, [settings])
-  const updateSettings = (patch: Partial<PromptSettingsV1>) => {
-    const next = { ...settings, ...patch }
-    setSettings(next)
-    // Commit local changes in the input event, before a Back/Save action can
-    // snapshot the controller. Persistence remains asynchronous and separate.
-    onSettingsChange?.(next)
-  }
-  useEffect(() => {
-    // Local settings originate here. Feeding the persisted copy back during a
-    // layout checkpoint can race a user's slider change and restore an old value.
-    if (displaySettings && !onSettingsChange) setSettings({ ...displaySettings.value, speed: transportRef.current.speed })
-  }, [displaySettings, onSettingsChange])
 
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => {
@@ -169,7 +155,8 @@ export function DisplaySurface({ sessionId, session, onSettingsChange }: {
           <label>LINE SPACING <output>{settings.lineHeight.toFixed(2)}</output><input aria-label="Line spacing" type="range" min="0.8" max="3" step="0.02" value={settings.lineHeight} onChange={(event) => updateSettings({ lineHeight: Number(event.target.value) })} /></label>
           <label>TEXT WIDTH <output>{settings.textWidth}%</output><input aria-label="Text width" type="range" min="25" max="100" step="1" value={settings.textWidth} onChange={(event) => updateSettings({ textWidth: Number(event.target.value) })} /></label>
           <label className="mirror-option">MIRROR TEXT <input aria-label="Mirror text" type="checkbox" checked={settings.mirrored} onChange={(event) => updateSettings({ mirrored: event.target.checked })} /></label>
-          <button className="reset-type-button" onClick={() => updateSettings({ ...DEFAULT_PROMPT_SETTINGS, speed: settings.speed })}>RESET DISPLAY</button>
+          <button className="reset-type-button" onClick={() => { const { speed: _, ...defaults } = DEFAULT_PROMPT_SETTINGS; updateSettings(defaults) }}>RESET DISPLAY</button>
+          {settingsError && <p role="status">{settingsError}</p>}
         </section>
       )}
 

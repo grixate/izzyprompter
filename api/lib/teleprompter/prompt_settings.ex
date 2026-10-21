@@ -1,6 +1,6 @@
 defmodule Teleprompter.PromptSettings do
   @defaults %{
-    "speed" => 0.86,
+    "speed" => 0.56,
     "fontSize" => 64,
     "lineHeight" => 1.24,
     "textWidth" => 68,

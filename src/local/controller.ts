@@ -80,6 +80,15 @@ export class LocalSessionController {
         || !Number.isFinite(payload.transport_position) || Math.abs(payload.transport_position) > 100_000_000) return failure('stale_reading')
       const checkpoint = { ...payload, anchor: { ...payload.anchor }, source_id: 'local-display', server_time: this.now() } as ReadingCheckpoint
       next = { ...s, reading: { ...s.reading, revision: s.reading.revision + 1, checkpoint } }
+    } else if (event === 'settings:update') {
+      if (s.editing.active) return failure('editing_active')
+      if (payload.settings_revision !== s.settings_revision) return failure('settings_conflict')
+      const patch = payload.patch
+      if (!patch || typeof patch !== 'object' || Array.isArray(patch)
+        || !Object.keys(patch).length || Object.keys(patch).some(key => !['fontSize', 'lineHeight', 'textWidth', 'mirrored'].includes(key))) return failure('invalid_settings')
+      const settings = { ...s.display_settings!, ...patch }
+      if (!validSettings(settings)) return failure('invalid_settings')
+      next = { ...s, display_settings: settings, settings_revision: (s.settings_revision ?? 0) + 1 }
     } else if (event.startsWith('transport:')) {
       if (s.editing.active) return failure('editing_active')
       let transport: TransportState
@@ -101,14 +110,20 @@ export class LocalSessionController {
         if (index < 0) return failure('reading_unavailable')
         transport = this.seekAnchor({ blockId: doc.blocks[clamp(index + payload.direction, 0, doc.blocks.length - 1)].id, characterOffset: 0 })
       } else return failure('invalid_command')
-      next = { ...s, transport }
+      next = { ...s, transport, ...(event === 'transport:set_speed' ? { display_settings: { ...s.display_settings!, speed: transport.speed }, settings_revision: (s.settings_revision ?? 0) + 1 } : {}) }
     } else if (event === 'script:begin_edit') {
       const cp = s.reading.checkpoint
       if (s.editing.active) return failure('editing_active')
       if (s.transport.status !== 'paused') return failure('pause_required')
       if (!cp || cp.script_revision !== s.script.revision || cp.transport_revision !== s.transport.revision) return failure('reading_unavailable')
+      const blockId = payload.block_id ?? cp.anchor.blockId
+      if (!doc.blocks.some(block => block.id === blockId)) return failure('invalid_block')
       next = { ...s, editing: { revision: s.editing.revision + 1,
-        active: { owner_id: owner, block_id: cp.anchor.blockId, anchor: { ...cp.anchor } } } }
+        active: { owner_id: owner, block_id: blockId as string, anchor: { ...cp.anchor } } } }
+    } else if (event === 'script:select_block') {
+      if (s.editing.active?.owner_id !== owner) return failure('edit_not_owned')
+      if (!doc.blocks.some(block => block.id === payload.block_id)) return failure('invalid_block')
+      next = { ...s, editing: { revision: s.editing.revision + 1, active: { ...s.editing.active, block_id: payload.block_id as string } } }
     } else if (event === 'script:end_edit') {
       if (s.editing.active?.owner_id !== owner) return failure('edit_not_owned')
       next = { ...s, editing: { revision: s.editing.revision + 1, active: null } }
@@ -122,7 +137,7 @@ export class LocalSessionController {
       const document = { ...doc, blocks: doc.blocks.map(b => b.id === old.id ? { ...b, text } : b) }
       const content = izzyDocumentToLegacyText(document)
       if (bytes(content) > 2 * 1024 * 1024) return failure('invalid_patch')
-      const anchor = { ...edit.anchor, characterOffset: remapOffset(old.text, text, edit.anchor.characterOffset) }
+      const anchor = { ...edit.anchor, characterOffset: edit.anchor.blockId === old.id ? remapOffset(old.text, text, edit.anchor.characterOffset) : edit.anchor.characterOffset }
       const revision = s.script.revision + 1, transport = this.at(this.position, { status: 'paused' })
       transport.semantic_anchor = { anchor, script_revision: revision, revision: transport.revision, transport_position: transport.anchor_position }
       next = { ...s, script: { document, content, revision }, transport,

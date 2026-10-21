@@ -1,6 +1,10 @@
 import Config
 
 config :teleprompter,
+  product_metrics_enabled: System.get_env("PRODUCT_METRICS_ENABLED") == "true",
+  feedback_enabled: System.get_env("FEEDBACK_ENABLED") == "true"
+
+config :teleprompter,
   launch_offer_active: System.get_env("IZZY_LAUNCH_OFFER_ACTIVE", "true") != "false"
 
 # Accounts are opt-in: portable/LAN guest builds still run without PostgreSQL.

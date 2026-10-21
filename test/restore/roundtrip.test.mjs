@@ -46,6 +46,9 @@ test('isolated PostgreSQL backup restores private scripts, revisions, trash, pre
       Repo.insert!(%Library.Mutation{script_id: script.id, mutation_id: "restore-mutation", fingerprint: <<1,2,3>>, result: Library.serialize(script)})
       Repo.insert!(%Library.Script{user_id: user.id, title: "Trash", document: document, deleted_at: DateTime.utc_now()})
       Repo.insert!(%Library.Preset{user_id: user.id, name: "Studio", is_default: true, settings: Teleprompter.PromptSettings.defaults()})
+      {:ok, 1} = Teleprompter.ReadingPreferences.save(user, Map.put(Teleprompter.PromptSettings.defaults(), "fontSize", 88), 0)
+      Repo.insert!(%Teleprompter.Feedback.Entry{user_id: user.id, request_id: Ecto.UUID.generate(), category: "idea", message: "Synthetic restore feedback."})
+      Repo.insert_all("product_metrics", [%{day: Date.utc_today(), event: "session_created", count: 7}])
       intent = Repo.insert!(%Commerce.Intent{user_id: user.id})
       attempt = Repo.insert!(%Commerce.Attempt{intent_id: intent.id, provider: "lava", environment: "production", amount_minor: 2900, currency: "USD", external_id: "restore-invoice", status: "paid"})
       Repo.insert!(%Commerce.Grant{user_id: user.id, attempt_id: attempt.id})
@@ -53,7 +56,7 @@ test('isolated PostgreSQL backup restores private scripts, revisions, trash, pre
       Repo.insert!(%Commerce.Event{provider: "lava", environment: "production", external_key: "restore-event", status: "processed", payload: %{"external_id" => "restore-invoice", "type" => "paid", "amount_minor" => 2900, "currency" => "USD"}})
       Repo.insert!(%Commerce.Audit{attempt_id: attempt.id, actor: "restore-fixture", action: "verified"})
     `])
-    const tables = ['schema_migrations', 'users', 'identities', 'account_tokens', 'project_folders', 'scripts', 'script_mutations', 'presets', 'purchase_intents', 'checkout_attempts', 'payment_events', 'entitlement_grants', 'commerce_audits']
+    const tables = ['schema_migrations', 'users', 'identities', 'account_tokens', 'project_folders', 'scripts', 'script_mutations', 'presets', 'feedback', 'product_metrics', 'purchase_intents', 'checkout_attempts', 'payment_events', 'entitlement_grants', 'commerce_audits']
     const fingerprints = async db => {
       const result = {}
       for (const table of tables) {
@@ -83,6 +86,10 @@ test('isolated PostgreSQL backup restores private scripts, revisions, trash, pre
       nil = Library.get(other, script.id)
       [_] = Library.list(owner, "", true)
       [%{is_default: true}] = Library.presets(owner)
+      %{settings: %{"fontSize" => 88}, revision: 1} = Teleprompter.ReadingPreferences.get(owner)
+      [%{user_id: feedback_owner}] = Teleprompter.Feedback.inbox()
+      true = feedback_owner == owner.id
+      [%{event: "session_created", count: 7}] = Teleprompter.Metrics.report().daily_events
       pending = Repo.get_by!(Commerce.Attempt, external_id: "restore-pending-invoice")
       true = pending.check_attempts == 3 and pending.offer_id == "restore-offer" and pending.check_error == "status_unconfirmed"
       true = not is_nil(pending.next_check_at) and not is_nil(pending.check_lease_until)

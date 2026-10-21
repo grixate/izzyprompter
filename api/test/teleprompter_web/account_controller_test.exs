@@ -15,7 +15,7 @@ defmodule TeleprompterWeb.AccountControllerTest do
       |> init_test_session(account_token: Accounts.issue_token(user.id, "session", 3600))
       |> put_private(:plug_skip_csrf_protection, false)
 
-    for path <- ["/api/account/scripts", "/api/account/folders"] do
+    for path <- ["/api/account/scripts", "/api/account/folders", "/api/account/feedback"] do
       assert_error_sent 403, fn ->
         post(conn, path, %{"title" => "Forged", "content" => "No", "name" => "Forged"})
       end

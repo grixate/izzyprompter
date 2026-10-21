@@ -1,5 +1,4 @@
 import { RemoteBrand } from '../components/BrandLogo'
-import { SwatchBook } from 'lucide-react'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { JogControls, TransportReadout } from '../components/JogControls'
 import { legacySessionScriptToDocument } from '../domain/document'
@@ -7,7 +6,7 @@ import {
   createDebouncedStorageWriter,
   loadWorkspaceStorage,
   savePromptPosition,
-  savePromptSettings,
+  rememberPlaybackSpeed,
 } from '../domain/storage'
 import { useSession } from '../realtime/useSession'
 import { SessionNotice } from '../realtime/SessionNotice'
@@ -18,6 +17,7 @@ import { boundedSpeed } from '../realtime/keyboard'
 import type { SessionControllerView } from '../realtime/controller'
 import { useRemoteAppearance } from '../product/useRemoteAppearance'
 import { RemoteSkinLibrary } from '../product/RemoteSkinLibrary'
+import { ReadingControls } from '../components/ReadingControls'
 import { skinById } from '../product/catalog'
 import '../product/skins.css'
 
@@ -39,12 +39,8 @@ export function RemoteSurface({ sessionId, session }: { sessionId: string; sessi
   const [localPlaying, setLocalPlaying] = useState(false)
   const [localSpeed, setLocalSpeed] = useState(restoredStorage.settings.speed)
   const [position, setPositionState] = useState(0)
-  const settingsRef = useRef(restoredStorage.settings)
   const [settingsWriter] = useState(() => createDebouncedStorageWriter<number>({
-    write: (speed) => {
-      settingsRef.current = { ...settingsRef.current, speed }
-      return savePromptSettings(settingsRef.current)
-    },
+    write: rememberPlaybackSpeed,
   }))
   const [positionWriter] = useState(() => createDebouncedStorageWriter<{
     blockId: string | null
@@ -199,7 +195,8 @@ export function RemoteSurface({ sessionId, session }: { sessionId: string; sessi
       <QuickEdit sessionId={sessionId} epoch={sessionEpoch} connectionId={connectionId} connection={connection}
         document={izzyDocument} revision={script.revision} editing={editing} request={request}
         canEdit={hasDisplayPosition} beforeOpen={flushSeek} />
-      {!appearance.local && <><button className="remote-finish-button" aria-label="Change remote skin" aria-describedby="remote-current-skin" title={`Change remote skin · ${skinById(appearance.skin).name}`} aria-haspopup="dialog" aria-expanded={finishOpen} aria-controls={finishOpen ? 'remote-skin-library' : undefined} onClick={event => { event.currentTarget.focus(); flushSeek(); setFinishOpen(true) }}><SwatchBook size={19} strokeWidth={1.6} /></button><span id="remote-current-skin" className="sr-only" aria-live="polite">Current skin: {skinById(appearance.skin).name}</span></>}
+      <ReadingControls session={session} beforeOpen={flushSeek} skinName={skinById(appearance.skin).name}
+        onChooseSkin={appearance.local ? undefined : () => { flushSeek(); setFinishOpen(true) }} />
       </div>
       <footer className="remote-footer"><span>TURN TO SEEK</span><span>PRESS CENTER TO {localPlaying ? 'PAUSE' : 'PLAY'}</span></footer>
       {finishOpen && <RemoteSkinLibrary selected={appearance.skin} pro={appearance.pro} onApply={appearance.apply} onClose={() => setFinishOpen(false)} />}

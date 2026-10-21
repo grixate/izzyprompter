@@ -15,6 +15,7 @@ export type SessionControllerView = {
   connectionId: string | null
   editing: EditingState
   displaySettings: { value: PromptSettingsV1; revision: number } | null
+  preferencesStatus?: string
   send: (event: string, payload?: Record<string, unknown>) => boolean
   request: <T>(event: string, payload?: Record<string, unknown>) => Promise<CommandResult<T>>
   reconnect: () => void

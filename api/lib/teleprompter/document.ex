@@ -37,7 +37,12 @@ defmodule Teleprompter.Document do
   def patch(document, block_id, text, anchor) do
     old = Enum.find(document.blocks, &(&1.id == block_id))
     blocks = Enum.map(document.blocks, &if(&1.id == block_id, do: %{&1 | text: text}, else: &1))
-    offset = remap_offset(old.text, text, anchor["characterOffset"])
+
+    offset =
+      if anchor["blockId"] == block_id,
+        do: remap_offset(old.text, text, anchor["characterOffset"]),
+        else: anchor["characterOffset"]
+
     {%{document | blocks: blocks}, %{anchor | "characterOffset" => offset}}
   end
 

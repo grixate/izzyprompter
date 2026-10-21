@@ -20,6 +20,7 @@ import { safeReturnTo, purchaseReturn } from '../product/navigation'
 import { LegalLinks, PurchaseTerms } from '../legal/LegalLinks'
 import { useProduct } from '../product/ProductProvider'
 import { track } from '../product/events'
+import { FeedbackForm } from '../account/FeedbackForm'
 
 export function AccountPage() {
   const { status, loading, refresh } = useAccount()
@@ -170,7 +171,7 @@ function LibraryWorkspace({ user }: { user: Account }) {
       <div className="library-pagination"><button disabled={page === 0} onClick={() => setPage(value => value - 1)}>Previous</button><span>PAGE {page + 1}</span><button disabled={scripts.length < 30} onClick={() => setPage(value => value + 1)}>Next</button></div>
       {status?.google_enabled && <a className="account-google" href="/auth/google">Link Google to this account</a>}
     </section>
-    <aside className="account-sidebar"><ProPanel user={user} /><PresetPanel user={user} />{!user.pro && <WorkspaceGuide />}</aside>
+    <aside className="account-sidebar"><ProPanel user={user} /><PresetPanel user={user} />{!user.pro && <WorkspaceGuide />}{status?.feedback_enabled && <FeedbackForm key={user.id} accountId={user.id} />}</aside>
   </div>
 }
 

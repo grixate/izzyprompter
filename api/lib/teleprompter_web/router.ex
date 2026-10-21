@@ -31,6 +31,7 @@ defmodule TeleprompterWeb.Router do
     post "/login", AccountController, :login
     post "/logout", AccountController, :logout
     post "/channel-ticket", AccountController, :ticket
+    post "/feedback", FeedbackController, :create
     get "/scripts", LibraryController, :index
     post "/scripts", LibraryController, :create
     get "/scripts/:id", LibraryController, :show

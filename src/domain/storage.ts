@@ -73,7 +73,7 @@ export type WorkspaceStorageState = {
 export type StorageLike = Pick<Storage, 'getItem' | 'setItem' | 'removeItem'>
 
 export const DEFAULT_PROMPT_SETTINGS: PromptSettingsV1 = {
-  speed: 0.86,
+  speed: 0.56,
   fontSize: 64,
   lineHeight: 1.24,
   textWidth: 68,

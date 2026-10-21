@@ -34,6 +34,7 @@ export type PresenceState = {
 }
 
 export type SessionSnapshot = {
+  preferences_status?: string
   display_settings?: import('../domain/storage').PromptSettingsV1 | null
   settings_revision?: number
   saved_revision?: number | null
@@ -53,7 +54,7 @@ export type SessionSnapshot = {
 export const DEFAULT_TRANSPORT: TransportState = {
   status: 'paused',
   anchor_position: 0,
-  speed: 0.86,
+  speed: 0.56,
   anchor_server_time: Date.now(),
   revision: 0,
 }

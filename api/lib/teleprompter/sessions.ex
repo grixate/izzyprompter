@@ -17,20 +17,39 @@ defmodule Teleprompter.Sessions do
 
   def create(_, _, _), do: {:error, :invalid_session}
 
-  def create_owned(content, speed, user) do
-    if is_binary(content) and is_number(speed) and Teleprompter.Document.valid_content?(content) and
-         speed >= 0.5 and speed <= 1.5 do
-      create_session(content, speed, Teleprompter.Sessions.Supervisor, %{appearance_owner: user})
+  def create_owned(content, speed, user, device_settings \\ nil) do
+    with true <-
+           is_binary(content) and is_number(speed) and
+             Teleprompter.Document.valid_content?(content) and speed >= 0.5 and speed <= 1.5,
+         {:ok, device_settings} <-
+           Teleprompter.PromptSettings.validate(
+             if(is_nil(device_settings),
+               do: Teleprompter.PromptSettings.defaults(),
+               else: device_settings
+             )
+           ) do
+      preferences = Teleprompter.ReadingPreferences.get(user)
+
+      settings =
+        preferences.settings || Map.put(device_settings, "speed", speed)
+
+      create_session(content, settings["speed"], Teleprompter.Sessions.Supervisor, %{
+        appearance_owner: user,
+        settings: settings,
+        preferences: preferences
+      })
     else
-      {:error, :invalid_session}
+      _ -> {:error, :invalid_session}
     end
   end
 
   def create_saved(user, script_id, preset_id \\ nil, speed \\ nil) do
     Teleprompter.SavedSessions.lock(script_id, fn ->
+      preferences = Teleprompter.ReadingPreferences.get(user)
+
       with :none <- Teleprompter.SavedSessions.lookup(script_id),
            script when not is_nil(script) <- Teleprompter.Library.get(user, script_id),
-           {:ok, settings} <- saved_settings(user, preset_id, speed) do
+           {:ok, settings} <- saved_settings(user, preset_id, speed, preferences) do
         create_session(
           Teleprompter.Library.document_text(script.document),
           settings["speed"],
@@ -43,7 +62,8 @@ defmodule Teleprompter.Sessions do
               title: script.title
             },
             document: script.document,
-            settings: settings
+            settings: settings,
+            preferences: preferences
           }
         )
       else
@@ -54,18 +74,25 @@ defmodule Teleprompter.Sessions do
     end)
   end
 
-  defp saved_settings(user, nil, speed) do
+  defp saved_settings(user, nil, speed, preferences) do
     default =
       if Teleprompter.Commerce.pro?(user),
         do: Enum.find(Teleprompter.Library.presets(user), & &1.is_default)
 
-    if default, do: {:ok, default.settings}, else: standard_settings(speed)
+    if default, do: {:ok, default.settings}, else: account_settings(preferences, speed)
   end
 
-  defp saved_settings(_user, "standard", speed), do: standard_settings(speed)
+  defp saved_settings(_user, "standard", speed, preferences),
+    do: account_settings(preferences, speed)
 
-  defp saved_settings(user, preset_id, _speed),
+  defp saved_settings(user, preset_id, _speed, _preferences),
     do: Teleprompter.Library.preset_settings(user, preset_id)
+
+  defp account_settings(preferences, speed) do
+    with {:ok, fallback} <- standard_settings(speed) do
+      {:ok, preferences.settings || fallback}
+    end
+  end
 
   defp standard_settings(nil), do: {:ok, Teleprompter.PromptSettings.defaults()}
 
@@ -92,10 +119,18 @@ defmodule Teleprompter.Sessions do
       Map.merge(%{id: id, token_hashes: token_hashes, content: content, speed: speed}, extra)
 
     case DynamicSupervisor.start_child(supervisor, {Session, options}) do
-      {:ok, _pid} -> {:ok, %{protocol_version: 2, session_id: id, tokens: tokens}}
-      {:error, {:already_started, _}} -> create_session(content, speed, supervisor, extra)
-      {:error, :max_children} -> {:error, :session_capacity}
-      other -> other
+      {:ok, _pid} ->
+        Teleprompter.Metrics.record("session_created")
+        {:ok, %{protocol_version: 2, session_id: id, tokens: tokens}}
+
+      {:error, {:already_started, _}} ->
+        create_session(content, speed, supervisor, extra)
+
+      {:error, :max_children} ->
+        {:error, :session_capacity}
+
+      other ->
+        other
     end
   end
 

@@ -288,7 +288,7 @@ export class DirectPeer {
       script: s?.script ?? { content: '', revision: 0 }, presence: s?.presence ?? EMPTY_PRESENCE,
       reading: s?.reading ?? EMPTY_READING, editing: s?.editing ?? EMPTY_EDITING,
       sessionEpoch: s?.session_epoch ?? null, displayId: s?.display_id ?? null, connectionId: s?.connection_id ?? null,
-      displaySettings: null, clockOffset: this.state.clockOffset, now: localNow, path: 'direct',
+      displaySettings: s?.display_settings ? { value: s.display_settings, revision: s.settings_revision ?? 0 } : null, clockOffset: this.state.clockOffset, now: localNow, path: 'direct',
       request: this.request, send: this.sendCommand, reconnect: () => this.close('Exchange fresh pairing data to reconnect.') }
   }
   close = (message = 'Not paired') => {

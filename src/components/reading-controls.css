@@ -1,0 +1,16 @@
+.remote-reading-settings { max-width: 420px; }
+.remote-reading-settings header button { min-width: 44px; min-height: 44px; border: 0; background: transparent; color: inherit; }
+.remote-reading-settings .reading-size-controls { display: grid; grid-template-columns: 64px 1fr 64px; align-items: center; gap: 16px; margin: 24px 0; }
+.remote-reading-settings .reading-size-controls button { min-height: 56px; border: 1px solid currentColor; border-radius: 12px; background: transparent; color: inherit; font-family: inherit; font-size: 24px; line-height: 1; }
+.reading-size-controls output { display: grid; gap: 6px; text-align: center; font-size: 36px; font-variant-numeric: tabular-nums; }
+.reading-size-controls output small { font-size: 10px; letter-spacing: .12em; }
+.remote-reading-settings label { display: grid; gap: 12px; }
+.remote-reading-settings input[type=range] { width: 100%; min-height: 44px; color: inherit; accent-color: #d9ddd1; }
+.remote-reading-settings .reading-save-status { min-height: 3em; margin: 16px 0; font-size: 13px; line-height: 1.5; }
+.remote-reading-settings .reading-save-retry { min-height: 44px; padding: 8px 12px; background: transparent; border: 1px solid currentColor; color: inherit; font: inherit; }
+.remote-reading-settings button:disabled { opacity: .4; }
+.remote-reading-settings .reading-appearance { display: flex; align-items: center; gap: 12px; width: 100%; min-height: 56px; padding: 12px; margin-top: 16px; text-align: left; font-size: 13px; }
+.reading-appearance > span:first-of-type { flex: 1; display: grid; gap: 5px; }
+.reading-appearance small { font-size: 11px; }
+.quick-edit-dialog .edit-paragraph-select { display: grid; gap: 6px; margin: 12px 0; }
+.edit-paragraph-select select { width: 100%; min-height: 44px; font: inherit; color: inherit; background: transparent; border: 1px solid currentColor; border-radius: 6px; padding: 8px; }

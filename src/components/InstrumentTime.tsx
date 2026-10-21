@@ -32,12 +32,12 @@ export const MatrixTime = memo(function MatrixTime({ value, square = false }: {v
 export const CounterTime = memo(function CounterTime({ value, playing, scrubbing }: {value: string;playing: boolean;scrubbing: boolean}) {
   const [m,s]=value.split(':')
   const seconds=Number(m)*60+Number(s)
-  const previous=useRef(seconds)
-  const roll=playing&&!scrubbing&&seconds===previous.current+1
-  useEffect(()=>{previous.current=seconds},[seconds])
-  return <span className="counter-digits" data-roll={roll}>{[...value].map((digit,index)=>digit===':'
+  const previous=useRef({seconds,value})
+  const roll=playing&&!scrubbing&&seconds===previous.current.seconds+1
+  useEffect(()=>{previous.current={seconds,value}},[seconds,value])
+  return <span className="counter-digits">{[...value].map((digit,index)=>digit===':'
     ? <em className="counter-colon" key={index}>:</em>
-    : <b className="counter-drum" key={`${index}-${digit}`}><i>{digit}</i></b>)}</span>
+    : <b className="counter-drum" key={index}><i key={digit} data-roll={roll&&digit!==previous.current.value[index]}>{digit}</i></b>)}</span>
 })
 
 const segmentBits:Record<string,string>={'0':'1111110','1':'0110000','2':'1101101','3':'1111001','4':'0110011','5':'1011011','6':'1011111','7':'1110000','8':'1111111','9':'1111011','—':'0000001'}

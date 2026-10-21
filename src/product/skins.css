@@ -10,3 +10,6 @@
 @import "./paragraph-editor.css";
 @import "./skin-audit.css";
 @import "./remote-touch.css";
+
+@import './remote-wheel.css';
+@import './skin-refinements.css';

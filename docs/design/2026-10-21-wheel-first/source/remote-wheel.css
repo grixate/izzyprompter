@@ -1,0 +1,94 @@
+/* Owner-approved Orbit proportions, extended to the selected collection.
+   Earlier studies, short screens and landscape retain their existing layout. */
+@media (orientation:portrait) and (min-height:620px) {
+ #root .standalone-remote.skin-face.skin-controls {
+  grid-template-columns:minmax(0,1fr) 112px;
+  grid-template-rows:24px 56px minmax(0,1fr) 56px;
+  gap:8px 12px;
+  padding:max(16px,env(safe-area-inset-top)) max(16px,env(safe-area-inset-right)) max(16px,env(safe-area-inset-bottom)) max(16px,env(safe-area-inset-left));
+ }
+ #root .standalone-remote.skin-face.skin-controls :is(.remote-header,.transport-readout,.control-deck) {grid-column:1 / -1;}
+ #root .standalone-remote.skin-face.skin-controls .remote-header {min-height:24px;}
+ #root .standalone-remote.skin-face.skin-controls .remote-identity {display:flex;align-items:baseline;gap:12px;}
+ #root .standalone-remote.skin-face.skin-controls .remote-header strong {font-size:18px;}
+ #root .standalone-remote.skin-face.skin-controls .remote-link-state small {display:none;}
+ #root .standalone-remote.skin-face.skin-controls .transport-readout.readout-craft {grid-template-rows:1fr;align-items:center;padding:0 0 8px;gap:8px;}
+ #root .standalone-remote.skin-face.skin-controls .transport-readout .display-kicker {display:none;}
+ #root .standalone-remote.skin-face.skin-controls .transport-readout .timecode {font-size:36px;grid-row:1;}
+ #root .standalone-remote.skin-face.skin-controls .transport-readout .state-label {grid-row:1;}
+ #root .standalone-remote.skin-face.skin-controls .transport-readout .readout-units {display:none;}
+ #root .standalone-remote.skin-face.skin-controls .control-deck {grid-row:3;grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,1fr) 104px;gap:20px;padding-bottom:16px;}
+ #root .standalone-remote.skin-face.skin-controls .control-deck .wheel-column {grid-column:1;grid-row:1;padding:0;gap:0;}
+ #root .standalone-remote.skin-face.skin-controls .control-deck .jog-wheel {width:min(96cqw,calc(100cqh - 8px),380px);}
+ #root .standalone-remote.skin-face.skin-controls .control-deck .wheel-caption {display:none;}
+ #root .standalone-remote.skin-face.skin-controls .speed-module.speed-craft {grid-column:1;grid-row:2;align-self:center;grid-template-columns:minmax(0,1fr) 120px;grid-template-areas:"summary track" "help help";gap:0 12px;padding:0 12px;max-width:none;}
+ #root .standalone-remote.skin-face.skin-controls .speed-summary {flex-direction:row;align-items:center;justify-content:flex-start;gap:12px;}
+ #root .standalone-remote.skin-face.skin-controls .speed-summary .speed-title {align-self:center;font-size:11px;}
+ #root .standalone-remote.skin-face.skin-controls .speed-summary .speed-value {font-size:26px;}
+ #root .standalone-remote.skin-face.skin-controls .speed-exact {height:48px;}
+ #root .standalone-remote.skin-face.skin-controls .control-deck .speed-craft .speed-track {width:120px;height:104px;margin:0;}
+ #root .standalone-remote.skin-face.skin-controls .speed-kind--dial .speed-rail {inset:22px 28px;}
+ #root .standalone-remote.skin-face.skin-controls .speed-kind--dial .speed-marks {inset:-20px -22px;}
+ #root .standalone-remote.skin-face.skin-controls .speed-kind--dial .speed-handle {width:56px;height:56px;}
+ #root .standalone-remote.skin-face.skin-controls .phrase-nav {grid-column:1;grid-row:4;margin:0;padding:0;grid-template-columns:56px minmax(0,1fr) 56px;gap:4px;}
+ #root .standalone-remote.skin-face.skin-controls .phrase-nav :is(button,.phrase-count) {min-height:56px;}
+ #root .standalone-remote.skin-face.skin-controls .phrase-count {font-size:11px;}
+ #root .standalone-remote.skin-face.skin-controls .phrase-count small {font-size:9px;}
+ #root .standalone-remote.skin-face.skin-controls .remote-tools {grid-column:2;grid-row:4;margin:0;min-height:56px;gap:8px;align-self:center;}
+ #root .standalone-remote.skin-face.skin-controls .quick-edit-trigger {flex:0 0 52px;width:52px;padding:0;}
+ #root .standalone-remote.skin-face.skin-controls .quick-edit-trigger span {position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);}
+ #root .standalone-remote.skin-face.skin-controls :is(.quick-edit-trigger,.remote-finish-button) {height:56px;min-height:56px;}
+}
+
+@media (orientation:portrait) and (min-height:620px) {
+ #root .standalone-remote.skin-face.skin-controls .remote-identity {flex-direction:row;}
+ /* Preserve each display's construction while giving it one compact row. */
+ #root .standalone-remote.skin-face.skin-controls:not(.skin--ivory) .transport-readout.readout-craft {
+  padding:6px 12px;gap:8px;align-content:center;
+ }
+ #root .standalone-remote.skin-face.skin-controls .readout-craft :is(.matrix-time,.segment-time) {width:170px;}
+ #root .standalone-remote.skin-face.skin-controls .readout-craft .timecode:has(.counter-digits) {font-size:30px;display:flex;align-items:center;gap:4px;}
+ #root .standalone-remote.skin-face.skin-controls .readout--graphite .timecode {font-size:24px;}
+ #root .standalone-remote.skin-face.skin-controls .readout--graphite .printed-time::before,
+ #root .standalone-remote.skin-face.skin-controls .readout--graphite .printed-time::after {display:inline;}
+ #root .standalone-remote.skin-face.skin-controls .readout--graphite .printed-time::after {margin-left:12px;}
+ #root .standalone-remote.skin-face.skin-controls .readout--observatory .clock-faces {width:38px;flex-basis:38px;}
+ #root .standalone-remote.skin-face.skin-controls .readout--observatory .clock-number {font-size:30px;}
+ #root .standalone-remote.skin-face.skin-controls.skin--cartridge {grid-template-rows:24px 68px minmax(0,1fr) 56px;}
+ #root .standalone-remote.skin-face.skin-controls.skin--cartridge .transport-readout {margin-top:12px;}
+
+ /* A shallow control strip retains the linear, roller and vertical mechanisms. */
+ #root .standalone-remote.skin-face.skin-controls .speed-module:is(.speed-kind--linear,.speed-kind--roller) {
+  grid-template-columns:minmax(120px,.8fr) minmax(140px,1.2fr);padding:4px 12px;
+ }
+ #root .standalone-remote.skin-face.skin-controls :is(.speed-kind--linear,.speed-kind--roller,.speed-kind--vertical) .speed-summary {flex-direction:column;align-items:flex-start;gap:0;}
+ #root .standalone-remote.skin-face.skin-controls :is(.speed-kind--linear,.speed-kind--roller,.speed-kind--vertical) .speed-title {align-self:flex-start;}
+ #root .standalone-remote.skin-face.skin-controls .control-deck :is(.speed-kind--linear,.speed-kind--roller) .speed-track {width:100%;height:84px;}
+ #root .standalone-remote.skin-face.skin-controls .speed-kind--roller .speed-rail {inset:12px 22px 26px;}
+ #root .standalone-remote.skin-face.skin-controls .speed-kind--roller .speed-track>input {height:64px;}
+ #root .standalone-remote.skin-face.skin-controls .speed-kind--roller .speed-handle {width:80px;}
+ #root .standalone-remote.skin-face.skin-controls .speed-kind--roller .speed-marks {top:calc(100% + 12px);}
+ #root .standalone-remote.skin-face.skin-controls .speed-module.speed-kind--vertical {grid-template-columns:minmax(0,1fr) 128px;}
+ #root .standalone-remote.skin-face.skin-controls .control-deck .speed-kind--vertical .speed-track {width:128px;height:104px;}
+ #root .standalone-remote.skin-face.skin-controls .speed-kind--vertical .speed-track>input {left:12px;width:80px;height:104px;}
+ #root .standalone-remote.skin-face.skin-controls .speed-kind--vertical .speed-rail {inset:22px 52px;}
+ #root .standalone-remote.skin-face.skin-controls .speed--signal .speed-handle {width:7px;height:40px;}
+
+ /* Keep separate Play below the large wheel, in its own left-hand bay.
+    The wheel column is the size container: cqh/cqw anchor the key to the
+    auxiliary strip even when the visible wheel reaches its width limit. */
+ #root .standalone-remote.skin-face.skin-controls:is(.skin--arcade,.skin--graphite,.skin--correspondent) .control-deck .wheel-column {--key-bay:0px;padding:0;}
+ #root .standalone-remote.skin-face.skin-controls:is(.skin--arcade,.skin--graphite,.skin--correspondent) .jog-wheel .transport-button {
+  inset:auto;left:calc(50% - 50cqw + 40px);top:calc(50% + 50cqh + 72px);
+  width:72px;height:56px;min-width:56px;transform:translate(-50%,-50%);
+ }
+ #root .standalone-remote.skin-face.skin-controls:is(.skin--arcade,.skin--graphite,.skin--correspondent) .jog-wheel .transport-button:active {transform:translate(-50%,-50%) translateY(2px);}
+ #root .standalone-remote.skin-face.skin-controls:is(.skin--arcade,.skin--graphite,.skin--correspondent) .speed-module.speed-craft {width:calc(100% - 96px);justify-self:end;padding:0 8px;}
+ #root .standalone-remote.skin-face.skin-controls.skin--correspondent .speed-summary {flex-direction:column;align-items:flex-start;gap:0;}
+ #root .standalone-remote.skin-face.skin-controls.skin--correspondent .speed-title {align-self:flex-start;}
+}
+
+@media (orientation:portrait) and (min-height:620px) and (max-width:360px) {
+ #root .standalone-remote.skin-face.skin-controls .speed-module:is(.speed-kind--linear,.speed-kind--roller) {grid-template-columns:minmax(90px,.8fr) minmax(116px,1.2fr);}
+ #root .standalone-remote.skin-face.skin-controls :is(.speed-kind--linear,.speed-kind--roller) .speed-marks b:nth-child(2) {display:none;}
+}

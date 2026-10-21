@@ -31,13 +31,15 @@ test('fourteen self-contained instruments keep paired precision',async({page:edi
    await expect(remote.getByRole('button',{name:'Decrease speed'})).toHaveCount(0)
    const mode=await remote.locator('.speed-craft').getAttribute('data-speed-mode'),box=(await speed.boundingBox())!
    if(mode==='dial'||mode==='roller') {
+    const rollerWidth=mode==='roller'?(await remote.locator('.speed-rail').boundingBox())!.width:200
+    const distance=mode==='roller'?Math.max(44,rollerWidth)/4:50
     await speed.fill('0.56')
     await remote.mouse.move(box.x+box.width/2,box.y+box.height/2);await remote.mouse.down()
     await expect(speed).toHaveValue('0.56')
-    await remote.mouse.move(box.x+box.width/2+(mode==='roller'?50:0),box.y+box.height/2-(mode==='dial'?50:0),{steps:8})
+    await remote.mouse.move(box.x+box.width/2+(mode==='roller'?distance:0),box.y+box.height/2-(mode==='dial'?distance:0),{steps:8})
     await remote.mouse.up();await expect(speed).toHaveValue('0.76')
     await remote.mouse.move(box.x+box.width/2,box.y+box.height/2);await remote.mouse.down()
-    await remote.mouse.move(box.x+box.width/2+(mode==='roller'?-50:0),box.y+box.height/2+(mode==='dial'?50:0),{steps:8})
+    await remote.mouse.move(box.x+box.width/2+(mode==='roller'?-distance:0),box.y+box.height/2+(mode==='dial'?distance:0),{steps:8})
     await remote.mouse.up();await expect(speed).toHaveValue('0.56')
    } else for(const [target,value] of [[0,'0.2'],[1,'1']] as const) {
     await remote.mouse.click(mode==='vertical'?box.x+box.width/2:box.x+(target?box.width-1:1),mode==='vertical'?box.y+(target?1:box.height-1):box.y+box.height/2)

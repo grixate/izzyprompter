@@ -12,7 +12,7 @@ export async function checkRenderedContrast(page: Page, testInfo: TestInfo) {
     ['.quick-edit-trigger', 4.5], ['.transport-button svg', 3], ['.remote-finish-button svg', 3],
   ] as const
   const targets = await page.evaluate(checks => checks.flatMap(([selector, minimum]) =>
-    [...document.querySelectorAll<HTMLElement>(selector)].filter(el => el.getBoundingClientRect().width > 0).map(el => {
+    [...document.querySelectorAll<HTMLElement>(selector)].filter(el => el.getBoundingClientRect().width > 0 && getComputedStyle(el).clipPath !== 'inset(50%)').map(el => {
       const { x, y, width, height } = el.getBoundingClientRect()
       return { selector, minimum, color: getComputedStyle(el).color, x, y, width, height }
     })), checks)

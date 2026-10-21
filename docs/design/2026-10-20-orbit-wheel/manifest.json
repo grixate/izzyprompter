@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "kind": "izzy-remote-design-baseline",
+  "baselineId": "2026-10-20-orbit-wheel",
+  "files": [
+    {
+      "path": "PASS.md",
+      "bytes": 1495,
+      "sha256": "fd3799daff80b19428cec2505cf9687fd41d5563ffbf6d5d3fcb6bcacc6f43b8"
+    },
+    {
+      "path": "build-review.mjs",
+      "bytes": 442,
+      "sha256": "5d89b26fa29fa5b53612c6efff027c9dcc8bb16855fa0f82959eb6ad393c76a0"
+    },
+    {
+      "path": "checks.json",
+      "bytes": 843,
+      "sha256": "85b3298376160c51b2ac4fda731e32e70d4ee2cd117bdb7cdf7445ae3e9fe522"
+    },
+    {
+      "path": "live/assets/live-CCd09NCH.css",
+      "bytes": 255637,
+      "sha256": "b6773ff8c05fe4289a419d54fd22b4bb33311bdb42c187a95806e747980f00b7"
+    },
+    {
+      "path": "live/assets/live-CjgCCzyl.js",
+      "bytes": 274382,
+      "sha256": "c7648f97aa4690e18497c20b93ce001e833530672a69ede4ab59ac0d9efdf20a"
+    },
+    {
+      "path": "live/index.html",
+      "bytes": 356,
+      "sha256": "ffceefd2aa6f3ff427d535b4c947db1eb5b66f635fe82b95423a53d1ce5fcb46"
+    },
+    {
+      "path": "live-entry.tsx",
+      "bytes": 398,
+      "sha256": "307d5a9cc325e91189d1f6c3dc1fdf48c8638fc5fa9e94e438e4d20e5d3d5928"
+    },
+    {
+      "path": "live.html",
+      "bytes": 263,
+      "sha256": "88dfa455433dfd28c1292c3dd4dd7f6f889e8373cb725178c4752b1c8f830ced"
+    },
+    {
+      "path": "orbit-wheel.css",
+      "bytes": 3218,
+      "sha256": "f817a0a34656fd07ed6eb4a05761e2a41af53a8ad2db3dac69e9564617294c6b"
+    },
+    {
+      "path": "orbit.png",
+      "bytes": 230635,
+      "sha256": "20619666c001da24770eddf5d762ec9515c1e480b3836d98adae6168e211ecd2"
+    },
+    {
+      "path": "review.html",
+      "bytes": 8234,
+      "sha256": "c315e17e592e374ffbf08bef1438bd464e1c249401201b484e4ac6202c1bb67f"
+    }
+  ]
+}

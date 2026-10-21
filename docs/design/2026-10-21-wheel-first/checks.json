@@ -1,0 +1,3367 @@
+{
+  "results": [
+    {
+      "engine": "chromium",
+      "id": "groove",
+      "width": 320,
+      "height": 480,
+      "wheelDiameter": 152.265625,
+      "wheelShare": 0.475830078125
+    },
+    {
+      "engine": "chromium",
+      "id": "groove",
+      "width": 320,
+      "height": 568,
+      "wheelDiameter": 152.265625,
+      "wheelShare": 0.475830078125
+    },
+    {
+      "engine": "chromium",
+      "id": "groove",
+      "width": 320,
+      "height": 640,
+      "wheelDiameter": 274.546875,
+      "wheelShare": 0.857958984375
+    },
+    {
+      "engine": "chromium",
+      "id": "groove",
+      "width": 360,
+      "height": 640,
+      "wheelDiameter": 300,
+      "wheelShare": 0.8333333333333334
+    },
+    {
+      "engine": "chromium",
+      "id": "groove",
+      "width": 390,
+      "height": 660,
+      "wheelDiameter": 320,
+      "wheelShare": 0.8205128205128205
+    },
+    {
+      "engine": "chromium",
+      "id": "groove",
+      "width": 428,
+      "height": 746,
+      "wheelDiameter": 378.234375,
+      "wheelShare": 0.8837251752336449
+    },
+    {
+      "engine": "chromium",
+      "id": "groove",
+      "width": 428,
+      "height": 926,
+      "wheelDiameter": 378.234375,
+      "wheelShare": 0.8837251752336449
+    },
+    {
+      "engine": "chromium",
+      "id": "groove",
+      "width": 568,
+      "height": 320,
+      "wheelDiameter": 162,
+      "wheelShare": 0.2852112676056338
+    },
+    {
+      "engine": "chromium",
+      "id": "groove",
+      "width": 844,
+      "height": 390,
+      "wheelDiameter": 232,
+      "wheelShare": 0.27488151658767773
+    },
+    {
+      "engine": "chromium",
+      "id": "groove",
+      "width": 768,
+      "height": 1024,
+      "wheelDiameter": 380,
+      "wheelShare": 0.4947916666666667
+    },
+    {
+      "engine": "chromium",
+      "id": "clear",
+      "width": 320,
+      "height": 480,
+      "wheelDiameter": 152.265625,
+      "wheelShare": 0.475830078125
+    },
+    {
+      "engine": "chromium",
+      "id": "clear",
+      "width": 320,
+      "height": 568,
+      "wheelDiameter": 152.265625,
+      "wheelShare": 0.475830078125
+    },
+    {
+      "engine": "chromium",
+      "id": "clear",
+      "width": 320,
+      "height": 640,
+      "wheelDiameter": 274.546875,
+      "wheelShare": 0.857958984375
+    },
+    {
+      "engine": "chromium",
+      "id": "clear",
+      "width": 360,
+      "height": 640,
+      "wheelDiameter": 298,
+      "wheelShare": 0.8277777777777777
+    },
+    {
+      "engine": "chromium",
+      "id": "clear",
+      "width": 390,
+      "height": 660,
+      "wheelDiameter": 318,
+      "wheelShare": 0.8153846153846154
+    },
+    {
+      "engine": "chromium",
+      "id": "clear",
+      "width": 428,
+      "height": 746,
+      "wheelDiameter": 378.234375,
+      "wheelShare": 0.8837251752336449
+    },
+    {
+      "engine": "chromium",
+      "id": "clear",
+      "width": 428,
+      "height": 926,
+      "wheelDiameter": 378.234375,
+      "wheelShare": 0.8837251752336449
+    },
+    {
+      "engine": "chromium",
+      "id": "clear",
+      "width": 568,
+      "height": 320,
+      "wheelDiameter": 160,
+      "wheelShare": 0.28169014084507044
+    },
+    {
+      "engine": "chromium",
+      "id": "clear",
+      "width": 844,
+      "height": 390,
+      "wheelDiameter": 230,
+      "wheelShare": 0.2725118483412322
+    },
+    {
+      "engine": "chromium",
+      "id": "clear",
+      "width": 768,
+      "height": 1024,
+      "wheelDiameter": 380,
+      "wheelShare": 0.4947916666666667
+    },
+    {
+      "engine": "chromium",
+      "id": "arcade",
+      "width": 320,
+      "height": 480,
+      "wheelDiameter": 150.203125,
+      "wheelShare": 0.469384765625
+    },
+    {
+      "engine": "chromium",
+      "id": "arcade",
+      "width": 320,
+      "height": 568,
+      "wheelDiameter": 152.265625,
+      "wheelShare": 0.475830078125
+    },
+    {
+      "engine": "chromium",
+      "id": "arcade",
+      "width": 320,
+      "height": 640,
+      "wheelDiameter": 274.546875,
+      "wheelShare": 0.857958984375
+    },
+    {
+      "engine": "chromium",
+      "id": "arcade",
+      "width": 360,
+      "height": 640,
+      "wheelDiameter": 298,
+      "wheelShare": 0.8277777777777777
+    },
+    {
+      "engine": "chromium",
+      "id": "arcade",
+      "width": 390,
+      "height": 660,
+      "wheelDiameter": 318,
+      "wheelShare": 0.8153846153846154
+    },
+    {
+      "engine": "chromium",
+      "id": "arcade",
+      "width": 428,
+      "height": 746,
+      "wheelDiameter": 378.234375,
+      "wheelShare": 0.8837251752336449
+    },
+    {
+      "engine": "chromium",
+      "id": "arcade",
+      "width": 428,
+      "height": 926,
+      "wheelDiameter": 378.234375,
+      "wheelShare": 0.8837251752336449
+    },
+    {
+      "engine": "chromium",
+      "id": "arcade",
+      "width": 568,
+      "height": 320,
+      "wheelDiameter": 160,
+      "wheelShare": 0.28169014084507044
+    },
+    {
+      "engine": "chromium",
+      "id": "arcade",
+      "width": 844,
+      "height": 390,
+      "wheelDiameter": 230,
+      "wheelShare": 0.2725118483412322
+    },
+    {
+      "engine": "chromium",
+      "id": "arcade",
+      "width": 768,
+      "height": 1024,
+      "wheelDiameter": 380,
+      "wheelShare": 0.4947916666666667
+    },
+    {
+      "engine": "chromium",
+      "id": "field",
+      "width": 320,
+      "height": 480,
+      "wheelDiameter": 152.265625,
+      "wheelShare": 0.475830078125
+    },
+    {
+      "engine": "chromium",
+      "id": "field",
+      "width": 320,
+      "height": 568,
+      "wheelDiameter": 152.265625,
+      "wheelShare": 0.475830078125
+    },
+    {
+      "engine": "chromium",
+      "id": "field",
+      "width": 320,
+      "height": 640,
+      "wheelDiameter": 274.546875,
+      "wheelShare": 0.857958984375
+    },
+    {
+      "engine": "chromium",
+      "id": "field",
+      "width": 360,
+      "height": 640,
+      "wheelDiameter": 300,
+      "wheelShare": 0.8333333333333334
+    },
+    {
+      "engine": "chromium",
+      "id": "field",
+      "width": 390,
+      "height": 660,
+      "wheelDiameter": 320,
+      "wheelShare": 0.8205128205128205
+    },
+    {
+      "engine": "chromium",
+      "id": "field",
+      "width": 428,
+      "height": 746,
+      "wheelDiameter": 378.234375,
+      "wheelShare": 0.8837251752336449
+    },
+    {
+      "engine": "chromium",
+      "id": "field",
+      "width": 428,
+      "height": 926,
+      "wheelDiameter": 378.234375,
+      "wheelShare": 0.8837251752336449
+    },
+    {
+      "engine": "chromium",
+      "id": "field",
+      "width": 568,
+      "height": 320,
+      "wheelDiameter": 162,
+      "wheelShare": 0.2852112676056338
+    },
+    {
+      "engine": "chromium",
+      "id": "field",
+      "width": 844,
+      "height": 390,
+      "wheelDiameter": 232,
+      "wheelShare": 0.27488151658767773
+    },
+    {
+      "engine": "chromium",
+      "id": "field",
+      "width": 768,
+      "height": 1024,
+      "wheelDiameter": 380,
+      "wheelShare": 0.4947916666666667
+    },
+    {
+      "engine": "chromium",
+      "id": "signal",
+      "width": 320,
+      "height": 480,
+      "wheelDiameter": 152.265625,
+      "wheelShare": 0.475830078125
+    },
+    {
+      "engine": "chromium",
+      "id": "signal",
+      "width": 320,
+      "height": 568,
+      "wheelDiameter": 152.265625,
+      "wheelShare": 0.475830078125
+    },
+    {
+      "engine": "chromium",
+      "id": "signal",
+      "width": 320,
+      "height": 640,
+      "wheelDiameter": 274.546875,
+      "wheelShare": 0.857958984375
+    },
+    {
+      "engine": "chromium",
+      "id": "signal",
+      "width": 360,
+      "height": 640,
+      "wheelDiameter": 300,
+      "wheelShare": 0.8333333333333334
+    },
+    {
+      "engine": "chromium",
+      "id": "signal",
+      "width": 390,
+      "height": 660,
+      "wheelDiameter": 320,
+      "wheelShare": 0.8205128205128205
+    },
+    {
+      "engine": "chromium",
+      "id": "signal",
+      "width": 428,
+      "height": 746,
+      "wheelDiameter": 378.234375,
+      "wheelShare": 0.8837251752336449
+    },
+    {
+      "engine": "chromium",
+      "id": "signal",
+      "width": 428,
+      "height": 926,
+      "wheelDiameter": 378.234375,
+      "wheelShare": 0.8837251752336449
+    },
+    {
+      "engine": "chromium",
+      "id": "signal",
+      "width": 568,
+      "height": 320,
+      "wheelDiameter": 162,
+      "wheelShare": 0.2852112676056338
+    },
+    {
+      "engine": "chromium",
+      "id": "signal",
+      "width": 844,
+      "height": 390,
+      "wheelDiameter": 232,
+      "wheelShare": 0.27488151658767773
+    },
+    {
+      "engine": "chromium",
+      "id": "signal",
+      "width": 768,
+      "height": 1024,
+      "wheelDiameter": 380,
+      "wheelShare": 0.4947916666666667
+    },
+    {
+      "engine": "chromium",
+      "id": "vector",
+      "width": 320,
+      "height": 480,
+      "wheelDiameter": 152.265625,
+      "wheelShare": 0.475830078125
+    },
+    {
+      "engine": "chromium",
+      "id": "vector",
+      "width": 320,
+      "height": 568,
+      "wheelDiameter": 152.265625,
+      "wheelShare": 0.475830078125
+    },
+    {
+      "engine": "chromium",
+      "id": "vector",
+      "width": 320,
+      "height": 640,
+      "wheelDiameter": 274.546875,
+      "wheelShare": 0.857958984375
+    },
+    {
+      "engine": "chromium",
+      "id": "vector",
+      "width": 360,
+      "height": 640,
+      "wheelDiameter": 300,
+      "wheelShare": 0.8333333333333334
+    },
+    {
+      "engine": "chromium",
+      "id": "vector",
+      "width": 390,
+      "height": 660,
+      "wheelDiameter": 320,
+      "wheelShare": 0.8205128205128205
+    },
+    {
+      "engine": "chromium",
+      "id": "vector",
+      "width": 428,
+      "height": 746,
+      "wheelDiameter": 378.234375,
+      "wheelShare": 0.8837251752336449
+    },
+    {
+      "engine": "chromium",
+      "id": "vector",
+      "width": 428,
+      "height": 926,
+      "wheelDiameter": 378.234375,
+      "wheelShare": 0.8837251752336449
+    },
+    {
+      "engine": "chromium",
+      "id": "vector",
+      "width": 568,
+      "height": 320,
+      "wheelDiameter": 162,
+      "wheelShare": 0.2852112676056338
+    },
+    {
+      "engine": "chromium",
+      "id": "vector",
+      "width": 844,
+      "height": 390,
+      "wheelDiameter": 232,
+      "wheelShare": 0.27488151658767773
+    },
+    {
+      "engine": "chromium",
+      "id": "vector",
+      "width": 768,
+      "height": 1024,
+      "wheelDiameter": 380,
+      "wheelShare": 0.4947916666666667
+    },
+    {
+      "engine": "chromium",
+      "id": "cartridge",
+      "width": 320,
+      "height": 480,
+      "wheelDiameter": 152.265625,
+      "wheelShare": 0.475830078125
+    },
+    {
+      "engine": "chromium",
+      "id": "cartridge",
+      "width": 320,
+      "height": 568,
+      "wheelDiameter": 152.265625,
+      "wheelShare": 0.475830078125
+    },
+    {
+      "engine": "chromium",
+      "id": "cartridge",
+      "width": 320,
+      "height": 640,
+      "wheelDiameter": 274.546875,
+      "wheelShare": 0.857958984375
+    },
+    {
+      "engine": "chromium",
+      "id": "cartridge",
+      "width": 360,
+      "height": 640,
+      "wheelDiameter": 288,
+      "wheelShare": 0.8
+    },
+    {
+      "engine": "chromium",
+      "id": "cartridge",
+      "width": 390,
+      "height": 660,
+      "wheelDiameter": 308,
+      "wheelShare": 0.7897435897435897
+    },
+    {
+      "engine": "chromium",
+      "id": "cartridge",
+      "width": 428,
+      "height": 746,
+      "wheelDiameter": 378.234375,
+      "wheelShare": 0.8837251752336449
+    },
+    {
+      "engine": "chromium",
+      "id": "cartridge",
+      "width": 428,
+      "height": 926,
+      "wheelDiameter": 378.234375,
+      "wheelShare": 0.8837251752336449
+    },
+    {
+      "engine": "chromium",
+      "id": "cartridge",
+      "width": 568,
+      "height": 320,
+      "wheelDiameter": 162,
+      "wheelShare": 0.2852112676056338
+    },
+    {
+      "engine": "chromium",
+      "id": "cartridge",
+      "width": 844,
+      "height": 390,
+      "wheelDiameter": 232,
+      "wheelShare": 0.27488151658767773
+    },
+    {
+      "engine": "chromium",
+      "id": "cartridge",
+      "width": 768,
+      "height": 1024,
+      "wheelDiameter": 380,
+      "wheelShare": 0.4947916666666667
+    },
+    {
+      "engine": "chromium",
+      "id": "switchboard",
+      "width": 320,
+      "height": 480,
+      "wheelDiameter": 152.265625,
+      "wheelShare": 0.475830078125
+    },
+    {
+      "engine": "chromium",
+      "id": "switchboard",
+      "width": 320,
+      "height": 568,
+      "wheelDiameter": 152.265625,
+      "wheelShare": 0.475830078125
+    },
+    {
+      "engine": "chromium",
+      "id": "switchboard",
+      "width": 320,
+      "height": 640,
+      "wheelDiameter": 274.546875,
+      "wheelShare": 0.857958984375
+    },
+    {
+      "engine": "chromium",
+      "id": "switchboard",
+      "width": 360,
+      "height": 640,
+      "wheelDiameter": 300,
+      "wheelShare": 0.8333333333333334
+    },
+    {
+      "engine": "chromium",
+      "id": "switchboard",
+      "width": 390,
+      "height": 660,
+      "wheelDiameter": 320,
+      "wheelShare": 0.8205128205128205
+    },
+    {
+      "engine": "chromium",
+      "id": "switchboard",
+      "width": 428,
+      "height": 746,
+      "wheelDiameter": 378.234375,
+      "wheelShare": 0.8837251752336449
+    },
+    {
+      "engine": "chromium",
+      "id": "switchboard",
+      "width": 428,
+      "height": 926,
+      "wheelDiameter": 378.234375,
+      "wheelShare": 0.8837251752336449
+    },
+    {
+      "engine": "chromium",
+      "id": "switchboard",
+      "width": 568,
+      "height": 320,
+      "wheelDiameter": 162,
+      "wheelShare": 0.2852112676056338
+    },
+    {
+      "engine": "chromium",
+      "id": "switchboard",
+      "width": 844,
+      "height": 390,
+      "wheelDiameter": 232,
+      "wheelShare": 0.27488151658767773
+    },
+    {
+      "engine": "chromium",
+      "id": "switchboard",
+      "width": 768,
+      "height": 1024,
+      "wheelDiameter": 380,
+      "wheelShare": 0.4947916666666667
+    },
+    {
+      "engine": "chromium",
+      "id": "correspondent",
+      "width": 320,
+      "height": 480,
+      "wheelDiameter": 152.265625,
+      "wheelShare": 0.475830078125
+    },
+    {
+      "engine": "chromium",
+      "id": "correspondent",
+      "width": 320,
+      "height": 568,
+      "wheelDiameter": 152.265625,
+      "wheelShare": 0.475830078125
+    },
+    {
+      "engine": "chromium",
+      "id": "correspondent",
+      "width": 320,
+      "height": 640,
+      "wheelDiameter": 274.546875,
+      "wheelShare": 0.857958984375
+    },
+    {
+      "engine": "chromium",
+      "id": "correspondent",
+      "width": 360,
+      "height": 640,
+      "wheelDiameter": 300,
+      "wheelShare": 0.8333333333333334
+    },
+    {
+      "engine": "chromium",
+      "id": "correspondent",
+      "width": 390,
+      "height": 660,
+      "wheelDiameter": 320,
+      "wheelShare": 0.8205128205128205
+    },
+    {
+      "engine": "chromium",
+      "id": "correspondent",
+      "width": 428,
+      "height": 746,
+      "wheelDiameter": 378.234375,
+      "wheelShare": 0.8837251752336449
+    },
+    {
+      "engine": "chromium",
+      "id": "correspondent",
+      "width": 428,
+      "height": 926,
+      "wheelDiameter": 378.234375,
+      "wheelShare": 0.8837251752336449
+    },
+    {
+      "engine": "chromium",
+      "id": "correspondent",
+      "width": 568,
+      "height": 320,
+      "wheelDiameter": 162,
+      "wheelShare": 0.2852112676056338
+    },
+    {
+      "engine": "chromium",
+      "id": "correspondent",
+      "width": 844,
+      "height": 390,
+      "wheelDiameter": 232,
+      "wheelShare": 0.27488151658767773
+    },
+    {
+      "engine": "chromium",
+      "id": "correspondent",
+      "width": 768,
+      "height": 1024,
+      "wheelDiameter": 380,
+      "wheelShare": 0.4947916666666667
+    },
+    {
+      "engine": "chromium",
+      "id": "foundry",
+      "width": 320,
+      "height": 480,
+      "wheelDiameter": 152.265625,
+      "wheelShare": 0.475830078125
+    },
+    {
+      "engine": "chromium",
+      "id": "foundry",
+      "width": 320,
+      "height": 568,
+      "wheelDiameter": 152.265625,
+      "wheelShare": 0.475830078125
+    },
+    {
+      "engine": "chromium",
+      "id": "foundry",
+      "width": 320,
+      "height": 640,
+      "wheelDiameter": 274.546875,
+      "wheelShare": 0.857958984375
+    },
+    {
+      "engine": "chromium",
+      "id": "foundry",
+      "width": 360,
+      "height": 640,
+      "wheelDiameter": 300,
+      "wheelShare": 0.8333333333333334
+    },
+    {
+      "engine": "chromium",
+      "id": "foundry",
+      "width": 390,
+      "height": 660,
+      "wheelDiameter": 320,
+      "wheelShare": 0.8205128205128205
+    },
+    {
+      "engine": "chromium",
+      "id": "foundry",
+      "width": 428,
+      "height": 746,
+      "wheelDiameter": 378.234375,
+      "wheelShare": 0.8837251752336449
+    },
+    {
+      "engine": "chromium",
+      "id": "foundry",
+      "width": 428,
+      "height": 926,
+      "wheelDiameter": 378.234375,
+      "wheelShare": 0.8837251752336449
+    },
+    {
+      "engine": "chromium",
+      "id": "foundry",
+      "width": 568,
+      "height": 320,
+      "wheelDiameter": 162,
+      "wheelShare": 0.2852112676056338
+    },
+    {
+      "engine": "chromium",
+      "id": "foundry",
+      "width": 844,
+      "height": 390,
+      "wheelDiameter": 232,
+      "wheelShare": 0.27488151658767773
+    },
+    {
+      "engine": "chromium",
+      "id": "foundry",
+      "width": 768,
+      "height": 1024,
+      "wheelDiameter": 380,
+      "wheelShare": 0.4947916666666667
+    },
+    {
+      "engine": "chromium",
+      "id": "observatory",
+      "width": 320,
+      "height": 480,
+      "wheelDiameter": 152.265625,
+      "wheelShare": 0.475830078125
+    },
+    {
+      "engine": "chromium",
+      "id": "observatory",
+      "width": 320,
+      "height": 568,
+      "wheelDiameter": 152.265625,
+      "wheelShare": 0.475830078125
+    },
+    {
+      "engine": "chromium",
+      "id": "observatory",
+      "width": 320,
+      "height": 640,
+      "wheelDiameter": 274.546875,
+      "wheelShare": 0.857958984375
+    },
+    {
+      "engine": "chromium",
+      "id": "observatory",
+      "width": 360,
+      "height": 640,
+      "wheelDiameter": 300,
+      "wheelShare": 0.8333333333333334
+    },
+    {
+      "engine": "chromium",
+      "id": "observatory",
+      "width": 390,
+      "height": 660,
+      "wheelDiameter": 320,
+      "wheelShare": 0.8205128205128205
+    },
+    {
+      "engine": "chromium",
+      "id": "observatory",
+      "width": 428,
+      "height": 746,
+      "wheelDiameter": 378.234375,
+      "wheelShare": 0.8837251752336449
+    },
+    {
+      "engine": "chromium",
+      "id": "observatory",
+      "width": 428,
+      "height": 926,
+      "wheelDiameter": 378.234375,
+      "wheelShare": 0.8837251752336449
+    },
+    {
+      "engine": "chromium",
+      "id": "observatory",
+      "width": 568,
+      "height": 320,
+      "wheelDiameter": 162,
+      "wheelShare": 0.2852112676056338
+    },
+    {
+      "engine": "chromium",
+      "id": "observatory",
+      "width": 844,
+      "height": 390,
+      "wheelDiameter": 232,
+      "wheelShare": 0.27488151658767773
+    },
+    {
+      "engine": "chromium",
+      "id": "observatory",
+      "width": 768,
+      "height": 1024,
+      "wheelDiameter": 380,
+      "wheelShare": 0.4947916666666667
+    },
+    {
+      "engine": "chromium",
+      "id": "ivory",
+      "width": 320,
+      "height": 480,
+      "wheelDiameter": 152.265625,
+      "wheelShare": 0.475830078125
+    },
+    {
+      "engine": "chromium",
+      "id": "ivory",
+      "width": 320,
+      "height": 568,
+      "wheelDiameter": 152.265625,
+      "wheelShare": 0.475830078125
+    },
+    {
+      "engine": "chromium",
+      "id": "ivory",
+      "width": 320,
+      "height": 640,
+      "wheelDiameter": 274.546875,
+      "wheelShare": 0.857958984375
+    },
+    {
+      "engine": "chromium",
+      "id": "ivory",
+      "width": 360,
+      "height": 640,
+      "wheelDiameter": 300,
+      "wheelShare": 0.8333333333333334
+    },
+    {
+      "engine": "chromium",
+      "id": "ivory",
+      "width": 390,
+      "height": 660,
+      "wheelDiameter": 320,
+      "wheelShare": 0.8205128205128205
+    },
+    {
+      "engine": "chromium",
+      "id": "ivory",
+      "width": 428,
+      "height": 746,
+      "wheelDiameter": 378.234375,
+      "wheelShare": 0.8837251752336449
+    },
+    {
+      "engine": "chromium",
+      "id": "ivory",
+      "width": 428,
+      "height": 926,
+      "wheelDiameter": 378.234375,
+      "wheelShare": 0.8837251752336449
+    },
+    {
+      "engine": "chromium",
+      "id": "ivory",
+      "width": 568,
+      "height": 320,
+      "wheelDiameter": 162,
+      "wheelShare": 0.2852112676056338
+    },
+    {
+      "engine": "chromium",
+      "id": "ivory",
+      "width": 844,
+      "height": 390,
+      "wheelDiameter": 232,
+      "wheelShare": 0.27488151658767773
+    },
+    {
+      "engine": "chromium",
+      "id": "ivory",
+      "width": 768,
+      "height": 1024,
+      "wheelDiameter": 380,
+      "wheelShare": 0.4947916666666667
+    },
+    {
+      "engine": "chromium",
+      "id": "graphite",
+      "width": 320,
+      "height": 480,
+      "wheelDiameter": 145.734375,
+      "wheelShare": 0.455419921875
+    },
+    {
+      "engine": "chromium",
+      "id": "graphite",
+      "width": 320,
+      "height": 568,
+      "wheelDiameter": 152.265625,
+      "wheelShare": 0.475830078125
+    },
+    {
+      "engine": "chromium",
+      "id": "graphite",
+      "width": 320,
+      "height": 640,
+      "wheelDiameter": 274.546875,
+      "wheelShare": 0.857958984375
+    },
+    {
+      "engine": "chromium",
+      "id": "graphite",
+      "width": 360,
+      "height": 640,
+      "wheelDiameter": 300,
+      "wheelShare": 0.8333333333333334
+    },
+    {
+      "engine": "chromium",
+      "id": "graphite",
+      "width": 390,
+      "height": 660,
+      "wheelDiameter": 320,
+      "wheelShare": 0.8205128205128205
+    },
+    {
+      "engine": "chromium",
+      "id": "graphite",
+      "width": 428,
+      "height": 746,
+      "wheelDiameter": 378.234375,
+      "wheelShare": 0.8837251752336449
+    },
+    {
+      "engine": "chromium",
+      "id": "graphite",
+      "width": 428,
+      "height": 926,
+      "wheelDiameter": 378.234375,
+      "wheelShare": 0.8837251752336449
+    },
+    {
+      "engine": "chromium",
+      "id": "graphite",
+      "width": 568,
+      "height": 320,
+      "wheelDiameter": 162,
+      "wheelShare": 0.2852112676056338
+    },
+    {
+      "engine": "chromium",
+      "id": "graphite",
+      "width": 844,
+      "height": 390,
+      "wheelDiameter": 232,
+      "wheelShare": 0.27488151658767773
+    },
+    {
+      "engine": "chromium",
+      "id": "graphite",
+      "width": 768,
+      "height": 1024,
+      "wheelDiameter": 380,
+      "wheelShare": 0.4947916666666667
+    },
+    {
+      "engine": "chromium",
+      "id": "original",
+      "width": 320,
+      "height": 480,
+      "wheelDiameter": 152.265625,
+      "wheelShare": 0.475830078125
+    },
+    {
+      "engine": "chromium",
+      "id": "original",
+      "width": 320,
+      "height": 568,
+      "wheelDiameter": 152.265625,
+      "wheelShare": 0.475830078125
+    },
+    {
+      "engine": "chromium",
+      "id": "original",
+      "width": 320,
+      "height": 640,
+      "wheelDiameter": 274.546875,
+      "wheelShare": 0.857958984375
+    },
+    {
+      "engine": "chromium",
+      "id": "original",
+      "width": 360,
+      "height": 640,
+      "wheelDiameter": 300,
+      "wheelShare": 0.8333333333333334
+    },
+    {
+      "engine": "chromium",
+      "id": "original",
+      "width": 390,
+      "height": 660,
+      "wheelDiameter": 320,
+      "wheelShare": 0.8205128205128205
+    },
+    {
+      "engine": "chromium",
+      "id": "original",
+      "width": 428,
+      "height": 746,
+      "wheelDiameter": 378.234375,
+      "wheelShare": 0.8837251752336449
+    },
+    {
+      "engine": "chromium",
+      "id": "original",
+      "width": 428,
+      "height": 926,
+      "wheelDiameter": 378.234375,
+      "wheelShare": 0.8837251752336449
+    },
+    {
+      "engine": "chromium",
+      "id": "original",
+      "width": 568,
+      "height": 320,
+      "wheelDiameter": 162,
+      "wheelShare": 0.2852112676056338
+    },
+    {
+      "engine": "chromium",
+      "id": "original",
+      "width": 844,
+      "height": 390,
+      "wheelDiameter": 232,
+      "wheelShare": 0.27488151658767773
+    },
+    {
+      "engine": "chromium",
+      "id": "original",
+      "width": 768,
+      "height": 1024,
+      "wheelDiameter": 380,
+      "wheelShare": 0.4947916666666667
+    },
+    {
+      "engine": "firefox",
+      "id": "groove",
+      "width": 320,
+      "height": 480,
+      "wheelDiameter": 152.2833251953125,
+      "wheelShare": 0.47588539123535156
+    },
+    {
+      "engine": "firefox",
+      "id": "groove",
+      "width": 320,
+      "height": 568,
+      "wheelDiameter": 152.2833251953125,
+      "wheelShare": 0.47588539123535156
+    },
+    {
+      "engine": "firefox",
+      "id": "groove",
+      "width": 320,
+      "height": 640,
+      "wheelDiameter": 274.5666809082031,
+      "wheelShare": 0.8580208778381347
+    },
+    {
+      "engine": "firefox",
+      "id": "groove",
+      "width": 360,
+      "height": 640,
+      "wheelDiameter": 300,
+      "wheelShare": 0.8333333333333334
+    },
+    {
+      "engine": "firefox",
+      "id": "groove",
+      "width": 390,
+      "height": 660,
+      "wheelDiameter": 320,
+      "wheelShare": 0.8205128205128205
+    },
+    {
+      "engine": "firefox",
+      "id": "groove",
+      "width": 428,
+      "height": 746,
+      "wheelDiameter": 378.23333740234375,
+      "wheelShare": 0.8837227509400555
+    },
+    {
+      "engine": "firefox",
+      "id": "groove",
+      "width": 428,
+      "height": 926,
+      "wheelDiameter": 378.23333740234375,
+      "wheelShare": 0.8837227509400555
+    },
+    {
+      "engine": "firefox",
+      "id": "groove",
+      "width": 568,
+      "height": 320,
+      "wheelDiameter": 162,
+      "wheelShare": 0.2852112676056338
+    },
+    {
+      "engine": "firefox",
+      "id": "groove",
+      "width": 844,
+      "height": 390,
+      "wheelDiameter": 232,
+      "wheelShare": 0.27488151658767773
+    },
+    {
+      "engine": "firefox",
+      "id": "groove",
+      "width": 768,
+      "height": 1024,
+      "wheelDiameter": 380,
+      "wheelShare": 0.4947916666666667
+    },
+    {
+      "engine": "firefox",
+      "id": "clear",
+      "width": 320,
+      "height": 480,
+      "wheelDiameter": 152.2833251953125,
+      "wheelShare": 0.47588539123535156
+    },
+    {
+      "engine": "firefox",
+      "id": "clear",
+      "width": 320,
+      "height": 568,
+      "wheelDiameter": 152.2833251953125,
+      "wheelShare": 0.47588539123535156
+    },
+    {
+      "engine": "firefox",
+      "id": "clear",
+      "width": 320,
+      "height": 640,
+      "wheelDiameter": 274.5666809082031,
+      "wheelShare": 0.8580208778381347
+    },
+    {
+      "engine": "firefox",
+      "id": "clear",
+      "width": 360,
+      "height": 640,
+      "wheelDiameter": 298,
+      "wheelShare": 0.8277777777777777
+    },
+    {
+      "engine": "firefox",
+      "id": "clear",
+      "width": 390,
+      "height": 660,
+      "wheelDiameter": 318,
+      "wheelShare": 0.8153846153846154
+    },
+    {
+      "engine": "firefox",
+      "id": "clear",
+      "width": 428,
+      "height": 746,
+      "wheelDiameter": 378.23333740234375,
+      "wheelShare": 0.8837227509400555
+    },
+    {
+      "engine": "firefox",
+      "id": "clear",
+      "width": 428,
+      "height": 926,
+      "wheelDiameter": 378.23333740234375,
+      "wheelShare": 0.8837227509400555
+    },
+    {
+      "engine": "firefox",
+      "id": "clear",
+      "width": 568,
+      "height": 320,
+      "wheelDiameter": 160,
+      "wheelShare": 0.28169014084507044
+    },
+    {
+      "engine": "firefox",
+      "id": "clear",
+      "width": 844,
+      "height": 390,
+      "wheelDiameter": 230,
+      "wheelShare": 0.2725118483412322
+    },
+    {
+      "engine": "firefox",
+      "id": "clear",
+      "width": 768,
+      "height": 1024,
+      "wheelDiameter": 380,
+      "wheelShare": 0.4947916666666667
+    },
+    {
+      "engine": "firefox",
+      "id": "arcade",
+      "width": 320,
+      "height": 480,
+      "wheelDiameter": 147.18333435058594,
+      "wheelShare": 0.45994791984558103
+    },
+    {
+      "engine": "firefox",
+      "id": "arcade",
+      "width": 320,
+      "height": 568,
+      "wheelDiameter": 152.2833251953125,
+      "wheelShare": 0.47588539123535156
+    },
+    {
+      "engine": "firefox",
+      "id": "arcade",
+      "width": 320,
+      "height": 640,
+      "wheelDiameter": 274.5666809082031,
+      "wheelShare": 0.8580208778381347
+    },
+    {
+      "engine": "firefox",
+      "id": "arcade",
+      "width": 360,
+      "height": 640,
+      "wheelDiameter": 298,
+      "wheelShare": 0.8277777777777777
+    },
+    {
+      "engine": "firefox",
+      "id": "arcade",
+      "width": 390,
+      "height": 660,
+      "wheelDiameter": 318,
+      "wheelShare": 0.8153846153846154
+    },
+    {
+      "engine": "firefox",
+      "id": "arcade",
+      "width": 428,
+      "height": 746,
+      "wheelDiameter": 378.23333740234375,
+      "wheelShare": 0.8837227509400555
+    },
+    {
+      "engine": "firefox",
+      "id": "arcade",
+      "width": 428,
+      "height": 926,
+      "wheelDiameter": 378.23333740234375,
+      "wheelShare": 0.8837227509400555
+    },
+    {
+      "engine": "firefox",
+      "id": "arcade",
+      "width": 568,
+      "height": 320,
+      "wheelDiameter": 160,
+      "wheelShare": 0.28169014084507044
+    },
+    {
+      "engine": "firefox",
+      "id": "arcade",
+      "width": 844,
+      "height": 390,
+      "wheelDiameter": 230,
+      "wheelShare": 0.2725118483412322
+    },
+    {
+      "engine": "firefox",
+      "id": "arcade",
+      "width": 768,
+      "height": 1024,
+      "wheelDiameter": 380,
+      "wheelShare": 0.4947916666666667
+    },
+    {
+      "engine": "firefox",
+      "id": "field",
+      "width": 320,
+      "height": 480,
+      "wheelDiameter": 152.2833251953125,
+      "wheelShare": 0.47588539123535156
+    },
+    {
+      "engine": "firefox",
+      "id": "field",
+      "width": 320,
+      "height": 568,
+      "wheelDiameter": 152.2833251953125,
+      "wheelShare": 0.47588539123535156
+    },
+    {
+      "engine": "firefox",
+      "id": "field",
+      "width": 320,
+      "height": 640,
+      "wheelDiameter": 274.5666809082031,
+      "wheelShare": 0.8580208778381347
+    },
+    {
+      "engine": "firefox",
+      "id": "field",
+      "width": 360,
+      "height": 640,
+      "wheelDiameter": 300,
+      "wheelShare": 0.8333333333333334
+    },
+    {
+      "engine": "firefox",
+      "id": "field",
+      "width": 390,
+      "height": 660,
+      "wheelDiameter": 320,
+      "wheelShare": 0.8205128205128205
+    },
+    {
+      "engine": "firefox",
+      "id": "field",
+      "width": 428,
+      "height": 746,
+      "wheelDiameter": 378.23333740234375,
+      "wheelShare": 0.8837227509400555
+    },
+    {
+      "engine": "firefox",
+      "id": "field",
+      "width": 428,
+      "height": 926,
+      "wheelDiameter": 378.23333740234375,
+      "wheelShare": 0.8837227509400555
+    },
+    {
+      "engine": "firefox",
+      "id": "field",
+      "width": 568,
+      "height": 320,
+      "wheelDiameter": 162,
+      "wheelShare": 0.2852112676056338
+    },
+    {
+      "engine": "firefox",
+      "id": "field",
+      "width": 844,
+      "height": 390,
+      "wheelDiameter": 232,
+      "wheelShare": 0.27488151658767773
+    },
+    {
+      "engine": "firefox",
+      "id": "field",
+      "width": 768,
+      "height": 1024,
+      "wheelDiameter": 380,
+      "wheelShare": 0.4947916666666667
+    },
+    {
+      "engine": "firefox",
+      "id": "signal",
+      "width": 320,
+      "height": 480,
+      "wheelDiameter": 152.2833251953125,
+      "wheelShare": 0.47588539123535156
+    },
+    {
+      "engine": "firefox",
+      "id": "signal",
+      "width": 320,
+      "height": 568,
+      "wheelDiameter": 152.2833251953125,
+      "wheelShare": 0.47588539123535156
+    },
+    {
+      "engine": "firefox",
+      "id": "signal",
+      "width": 320,
+      "height": 640,
+      "wheelDiameter": 274.5666809082031,
+      "wheelShare": 0.8580208778381347
+    },
+    {
+      "engine": "firefox",
+      "id": "signal",
+      "width": 360,
+      "height": 640,
+      "wheelDiameter": 300,
+      "wheelShare": 0.8333333333333334
+    },
+    {
+      "engine": "firefox",
+      "id": "signal",
+      "width": 390,
+      "height": 660,
+      "wheelDiameter": 320,
+      "wheelShare": 0.8205128205128205
+    },
+    {
+      "engine": "firefox",
+      "id": "signal",
+      "width": 428,
+      "height": 746,
+      "wheelDiameter": 378.23333740234375,
+      "wheelShare": 0.8837227509400555
+    },
+    {
+      "engine": "firefox",
+      "id": "signal",
+      "width": 428,
+      "height": 926,
+      "wheelDiameter": 378.23333740234375,
+      "wheelShare": 0.8837227509400555
+    },
+    {
+      "engine": "firefox",
+      "id": "signal",
+      "width": 568,
+      "height": 320,
+      "wheelDiameter": 162,
+      "wheelShare": 0.2852112676056338
+    },
+    {
+      "engine": "firefox",
+      "id": "signal",
+      "width": 844,
+      "height": 390,
+      "wheelDiameter": 232,
+      "wheelShare": 0.27488151658767773
+    },
+    {
+      "engine": "firefox",
+      "id": "signal",
+      "width": 768,
+      "height": 1024,
+      "wheelDiameter": 380,
+      "wheelShare": 0.4947916666666667
+    },
+    {
+      "engine": "firefox",
+      "id": "vector",
+      "width": 320,
+      "height": 480,
+      "wheelDiameter": 152.2833251953125,
+      "wheelShare": 0.47588539123535156
+    },
+    {
+      "engine": "firefox",
+      "id": "vector",
+      "width": 320,
+      "height": 568,
+      "wheelDiameter": 152.2833251953125,
+      "wheelShare": 0.47588539123535156
+    },
+    {
+      "engine": "firefox",
+      "id": "vector",
+      "width": 320,
+      "height": 640,
+      "wheelDiameter": 274.5666809082031,
+      "wheelShare": 0.8580208778381347
+    },
+    {
+      "engine": "firefox",
+      "id": "vector",
+      "width": 360,
+      "height": 640,
+      "wheelDiameter": 300,
+      "wheelShare": 0.8333333333333334
+    },
+    {
+      "engine": "firefox",
+      "id": "vector",
+      "width": 390,
+      "height": 660,
+      "wheelDiameter": 320,
+      "wheelShare": 0.8205128205128205
+    },
+    {
+      "engine": "firefox",
+      "id": "vector",
+      "width": 428,
+      "height": 746,
+      "wheelDiameter": 378.23333740234375,
+      "wheelShare": 0.8837227509400555
+    },
+    {
+      "engine": "firefox",
+      "id": "vector",
+      "width": 428,
+      "height": 926,
+      "wheelDiameter": 378.23333740234375,
+      "wheelShare": 0.8837227509400555
+    },
+    {
+      "engine": "firefox",
+      "id": "vector",
+      "width": 568,
+      "height": 320,
+      "wheelDiameter": 162,
+      "wheelShare": 0.2852112676056338
+    },
+    {
+      "engine": "firefox",
+      "id": "vector",
+      "width": 844,
+      "height": 390,
+      "wheelDiameter": 232,
+      "wheelShare": 0.27488151658767773
+    },
+    {
+      "engine": "firefox",
+      "id": "vector",
+      "width": 768,
+      "height": 1024,
+      "wheelDiameter": 380,
+      "wheelShare": 0.4947916666666667
+    },
+    {
+      "engine": "firefox",
+      "id": "cartridge",
+      "width": 320,
+      "height": 480,
+      "wheelDiameter": 152.2833251953125,
+      "wheelShare": 0.47588539123535156
+    },
+    {
+      "engine": "firefox",
+      "id": "cartridge",
+      "width": 320,
+      "height": 568,
+      "wheelDiameter": 152.2833251953125,
+      "wheelShare": 0.47588539123535156
+    },
+    {
+      "engine": "firefox",
+      "id": "cartridge",
+      "width": 320,
+      "height": 640,
+      "wheelDiameter": 274.5666809082031,
+      "wheelShare": 0.8580208778381347
+    },
+    {
+      "engine": "firefox",
+      "id": "cartridge",
+      "width": 360,
+      "height": 640,
+      "wheelDiameter": 288,
+      "wheelShare": 0.8
+    },
+    {
+      "engine": "firefox",
+      "id": "cartridge",
+      "width": 390,
+      "height": 660,
+      "wheelDiameter": 308,
+      "wheelShare": 0.7897435897435897
+    },
+    {
+      "engine": "firefox",
+      "id": "cartridge",
+      "width": 428,
+      "height": 746,
+      "wheelDiameter": 378.23333740234375,
+      "wheelShare": 0.8837227509400555
+    },
+    {
+      "engine": "firefox",
+      "id": "cartridge",
+      "width": 428,
+      "height": 926,
+      "wheelDiameter": 378.23333740234375,
+      "wheelShare": 0.8837227509400555
+    },
+    {
+      "engine": "firefox",
+      "id": "cartridge",
+      "width": 568,
+      "height": 320,
+      "wheelDiameter": 162,
+      "wheelShare": 0.2852112676056338
+    },
+    {
+      "engine": "firefox",
+      "id": "cartridge",
+      "width": 844,
+      "height": 390,
+      "wheelDiameter": 232,
+      "wheelShare": 0.27488151658767773
+    },
+    {
+      "engine": "firefox",
+      "id": "cartridge",
+      "width": 768,
+      "height": 1024,
+      "wheelDiameter": 380,
+      "wheelShare": 0.4947916666666667
+    },
+    {
+      "engine": "firefox",
+      "id": "switchboard",
+      "width": 320,
+      "height": 480,
+      "wheelDiameter": 152.2833251953125,
+      "wheelShare": 0.47588539123535156
+    },
+    {
+      "engine": "firefox",
+      "id": "switchboard",
+      "width": 320,
+      "height": 568,
+      "wheelDiameter": 152.2833251953125,
+      "wheelShare": 0.47588539123535156
+    },
+    {
+      "engine": "firefox",
+      "id": "switchboard",
+      "width": 320,
+      "height": 640,
+      "wheelDiameter": 274.5666809082031,
+      "wheelShare": 0.8580208778381347
+    },
+    {
+      "engine": "firefox",
+      "id": "switchboard",
+      "width": 360,
+      "height": 640,
+      "wheelDiameter": 300,
+      "wheelShare": 0.8333333333333334
+    },
+    {
+      "engine": "firefox",
+      "id": "switchboard",
+      "width": 390,
+      "height": 660,
+      "wheelDiameter": 320,
+      "wheelShare": 0.8205128205128205
+    },
+    {
+      "engine": "firefox",
+      "id": "switchboard",
+      "width": 428,
+      "height": 746,
+      "wheelDiameter": 378.23333740234375,
+      "wheelShare": 0.8837227509400555
+    },
+    {
+      "engine": "firefox",
+      "id": "switchboard",
+      "width": 428,
+      "height": 926,
+      "wheelDiameter": 378.23333740234375,
+      "wheelShare": 0.8837227509400555
+    },
+    {
+      "engine": "firefox",
+      "id": "switchboard",
+      "width": 568,
+      "height": 320,
+      "wheelDiameter": 162,
+      "wheelShare": 0.2852112676056338
+    },
+    {
+      "engine": "firefox",
+      "id": "switchboard",
+      "width": 844,
+      "height": 390,
+      "wheelDiameter": 232,
+      "wheelShare": 0.27488151658767773
+    },
+    {
+      "engine": "firefox",
+      "id": "switchboard",
+      "width": 768,
+      "height": 1024,
+      "wheelDiameter": 380,
+      "wheelShare": 0.4947916666666667
+    },
+    {
+      "engine": "firefox",
+      "id": "correspondent",
+      "width": 320,
+      "height": 480,
+      "wheelDiameter": 152.2833251953125,
+      "wheelShare": 0.47588539123535156
+    },
+    {
+      "engine": "firefox",
+      "id": "correspondent",
+      "width": 320,
+      "height": 568,
+      "wheelDiameter": 152.2833251953125,
+      "wheelShare": 0.47588539123535156
+    },
+    {
+      "engine": "firefox",
+      "id": "correspondent",
+      "width": 320,
+      "height": 640,
+      "wheelDiameter": 274.5666809082031,
+      "wheelShare": 0.8580208778381347
+    },
+    {
+      "engine": "firefox",
+      "id": "correspondent",
+      "width": 360,
+      "height": 640,
+      "wheelDiameter": 300,
+      "wheelShare": 0.8333333333333334
+    },
+    {
+      "engine": "firefox",
+      "id": "correspondent",
+      "width": 390,
+      "height": 660,
+      "wheelDiameter": 320,
+      "wheelShare": 0.8205128205128205
+    },
+    {
+      "engine": "firefox",
+      "id": "correspondent",
+      "width": 428,
+      "height": 746,
+      "wheelDiameter": 378.23333740234375,
+      "wheelShare": 0.8837227509400555
+    },
+    {
+      "engine": "firefox",
+      "id": "correspondent",
+      "width": 428,
+      "height": 926,
+      "wheelDiameter": 378.23333740234375,
+      "wheelShare": 0.8837227509400555
+    },
+    {
+      "engine": "firefox",
+      "id": "correspondent",
+      "width": 568,
+      "height": 320,
+      "wheelDiameter": 162,
+      "wheelShare": 0.2852112676056338
+    },
+    {
+      "engine": "firefox",
+      "id": "correspondent",
+      "width": 844,
+      "height": 390,
+      "wheelDiameter": 232,
+      "wheelShare": 0.27488151658767773
+    },
+    {
+      "engine": "firefox",
+      "id": "correspondent",
+      "width": 768,
+      "height": 1024,
+      "wheelDiameter": 380,
+      "wheelShare": 0.4947916666666667
+    },
+    {
+      "engine": "firefox",
+      "id": "foundry",
+      "width": 320,
+      "height": 480,
+      "wheelDiameter": 152.2833251953125,
+      "wheelShare": 0.47588539123535156
+    },
+    {
+      "engine": "firefox",
+      "id": "foundry",
+      "width": 320,
+      "height": 568,
+      "wheelDiameter": 152.2833251953125,
+      "wheelShare": 0.47588539123535156
+    },
+    {
+      "engine": "firefox",
+      "id": "foundry",
+      "width": 320,
+      "height": 640,
+      "wheelDiameter": 274.5666809082031,
+      "wheelShare": 0.8580208778381347
+    },
+    {
+      "engine": "firefox",
+      "id": "foundry",
+      "width": 360,
+      "height": 640,
+      "wheelDiameter": 300,
+      "wheelShare": 0.8333333333333334
+    },
+    {
+      "engine": "firefox",
+      "id": "foundry",
+      "width": 390,
+      "height": 660,
+      "wheelDiameter": 320,
+      "wheelShare": 0.8205128205128205
+    },
+    {
+      "engine": "firefox",
+      "id": "foundry",
+      "width": 428,
+      "height": 746,
+      "wheelDiameter": 378.23333740234375,
+      "wheelShare": 0.8837227509400555
+    },
+    {
+      "engine": "firefox",
+      "id": "foundry",
+      "width": 428,
+      "height": 926,
+      "wheelDiameter": 378.23333740234375,
+      "wheelShare": 0.8837227509400555
+    },
+    {
+      "engine": "firefox",
+      "id": "foundry",
+      "width": 568,
+      "height": 320,
+      "wheelDiameter": 162,
+      "wheelShare": 0.2852112676056338
+    },
+    {
+      "engine": "firefox",
+      "id": "foundry",
+      "width": 844,
+      "height": 390,
+      "wheelDiameter": 232,
+      "wheelShare": 0.27488151658767773
+    },
+    {
+      "engine": "firefox",
+      "id": "foundry",
+      "width": 768,
+      "height": 1024,
+      "wheelDiameter": 380,
+      "wheelShare": 0.4947916666666667
+    },
+    {
+      "engine": "firefox",
+      "id": "observatory",
+      "width": 320,
+      "height": 480,
+      "wheelDiameter": 152.2833251953125,
+      "wheelShare": 0.47588539123535156
+    },
+    {
+      "engine": "firefox",
+      "id": "observatory",
+      "width": 320,
+      "height": 568,
+      "wheelDiameter": 152.2833251953125,
+      "wheelShare": 0.47588539123535156
+    },
+    {
+      "engine": "firefox",
+      "id": "observatory",
+      "width": 320,
+      "height": 640,
+      "wheelDiameter": 274.5666809082031,
+      "wheelShare": 0.8580208778381347
+    },
+    {
+      "engine": "firefox",
+      "id": "observatory",
+      "width": 360,
+      "height": 640,
+      "wheelDiameter": 300,
+      "wheelShare": 0.8333333333333334
+    },
+    {
+      "engine": "firefox",
+      "id": "observatory",
+      "width": 390,
+      "height": 660,
+      "wheelDiameter": 320,
+      "wheelShare": 0.8205128205128205
+    },
+    {
+      "engine": "firefox",
+      "id": "observatory",
+      "width": 428,
+      "height": 746,
+      "wheelDiameter": 378.23333740234375,
+      "wheelShare": 0.8837227509400555
+    },
+    {
+      "engine": "firefox",
+      "id": "observatory",
+      "width": 428,
+      "height": 926,
+      "wheelDiameter": 378.23333740234375,
+      "wheelShare": 0.8837227509400555
+    },
+    {
+      "engine": "firefox",
+      "id": "observatory",
+      "width": 568,
+      "height": 320,
+      "wheelDiameter": 162,
+      "wheelShare": 0.2852112676056338
+    },
+    {
+      "engine": "firefox",
+      "id": "observatory",
+      "width": 844,
+      "height": 390,
+      "wheelDiameter": 232,
+      "wheelShare": 0.27488151658767773
+    },
+    {
+      "engine": "firefox",
+      "id": "observatory",
+      "width": 768,
+      "height": 1024,
+      "wheelDiameter": 380,
+      "wheelShare": 0.4947916666666667
+    },
+    {
+      "engine": "firefox",
+      "id": "ivory",
+      "width": 320,
+      "height": 480,
+      "wheelDiameter": 152.2833251953125,
+      "wheelShare": 0.47588539123535156
+    },
+    {
+      "engine": "firefox",
+      "id": "ivory",
+      "width": 320,
+      "height": 568,
+      "wheelDiameter": 152.2833251953125,
+      "wheelShare": 0.47588539123535156
+    },
+    {
+      "engine": "firefox",
+      "id": "ivory",
+      "width": 320,
+      "height": 640,
+      "wheelDiameter": 274.5666809082031,
+      "wheelShare": 0.8580208778381347
+    },
+    {
+      "engine": "firefox",
+      "id": "ivory",
+      "width": 360,
+      "height": 640,
+      "wheelDiameter": 300,
+      "wheelShare": 0.8333333333333334
+    },
+    {
+      "engine": "firefox",
+      "id": "ivory",
+      "width": 390,
+      "height": 660,
+      "wheelDiameter": 320,
+      "wheelShare": 0.8205128205128205
+    },
+    {
+      "engine": "firefox",
+      "id": "ivory",
+      "width": 428,
+      "height": 746,
+      "wheelDiameter": 378.23333740234375,
+      "wheelShare": 0.8837227509400555
+    },
+    {
+      "engine": "firefox",
+      "id": "ivory",
+      "width": 428,
+      "height": 926,
+      "wheelDiameter": 378.23333740234375,
+      "wheelShare": 0.8837227509400555
+    },
+    {
+      "engine": "firefox",
+      "id": "ivory",
+      "width": 568,
+      "height": 320,
+      "wheelDiameter": 162,
+      "wheelShare": 0.2852112676056338
+    },
+    {
+      "engine": "firefox",
+      "id": "ivory",
+      "width": 844,
+      "height": 390,
+      "wheelDiameter": 232,
+      "wheelShare": 0.27488151658767773
+    },
+    {
+      "engine": "firefox",
+      "id": "ivory",
+      "width": 768,
+      "height": 1024,
+      "wheelDiameter": 380,
+      "wheelShare": 0.4947916666666667
+    },
+    {
+      "engine": "firefox",
+      "id": "graphite",
+      "width": 320,
+      "height": 480,
+      "wheelDiameter": 143.70001220703125,
+      "wheelShare": 0.44906253814697267
+    },
+    {
+      "engine": "firefox",
+      "id": "graphite",
+      "width": 320,
+      "height": 568,
+      "wheelDiameter": 152.2833251953125,
+      "wheelShare": 0.47588539123535156
+    },
+    {
+      "engine": "firefox",
+      "id": "graphite",
+      "width": 320,
+      "height": 640,
+      "wheelDiameter": 274.5666809082031,
+      "wheelShare": 0.8580208778381347
+    },
+    {
+      "engine": "firefox",
+      "id": "graphite",
+      "width": 360,
+      "height": 640,
+      "wheelDiameter": 300,
+      "wheelShare": 0.8333333333333334
+    },
+    {
+      "engine": "firefox",
+      "id": "graphite",
+      "width": 390,
+      "height": 660,
+      "wheelDiameter": 320,
+      "wheelShare": 0.8205128205128205
+    },
+    {
+      "engine": "firefox",
+      "id": "graphite",
+      "width": 428,
+      "height": 746,
+      "wheelDiameter": 378.23333740234375,
+      "wheelShare": 0.8837227509400555
+    },
+    {
+      "engine": "firefox",
+      "id": "graphite",
+      "width": 428,
+      "height": 926,
+      "wheelDiameter": 378.23333740234375,
+      "wheelShare": 0.8837227509400555
+    },
+    {
+      "engine": "firefox",
+      "id": "graphite",
+      "width": 568,
+      "height": 320,
+      "wheelDiameter": 162,
+      "wheelShare": 0.2852112676056338
+    },
+    {
+      "engine": "firefox",
+      "id": "graphite",
+      "width": 844,
+      "height": 390,
+      "wheelDiameter": 232,
+      "wheelShare": 0.27488151658767773
+    },
+    {
+      "engine": "firefox",
+      "id": "graphite",
+      "width": 768,
+      "height": 1024,
+      "wheelDiameter": 380,
+      "wheelShare": 0.4947916666666667
+    },
+    {
+      "engine": "firefox",
+      "id": "original",
+      "width": 320,
+      "height": 480,
+      "wheelDiameter": 152.2833251953125,
+      "wheelShare": 0.47588539123535156
+    },
+    {
+      "engine": "firefox",
+      "id": "original",
+      "width": 320,
+      "height": 568,
+      "wheelDiameter": 152.2833251953125,
+      "wheelShare": 0.47588539123535156
+    },
+    {
+      "engine": "firefox",
+      "id": "original",
+      "width": 320,
+      "height": 640,
+      "wheelDiameter": 274.5666809082031,
+      "wheelShare": 0.8580208778381347
+    },
+    {
+      "engine": "firefox",
+      "id": "original",
+      "width": 360,
+      "height": 640,
+      "wheelDiameter": 300,
+      "wheelShare": 0.8333333333333334
+    },
+    {
+      "engine": "firefox",
+      "id": "original",
+      "width": 390,
+      "height": 660,
+      "wheelDiameter": 320,
+      "wheelShare": 0.8205128205128205
+    },
+    {
+      "engine": "firefox",
+      "id": "original",
+      "width": 428,
+      "height": 746,
+      "wheelDiameter": 378.23333740234375,
+      "wheelShare": 0.8837227509400555
+    },
+    {
+      "engine": "firefox",
+      "id": "original",
+      "width": 428,
+      "height": 926,
+      "wheelDiameter": 378.23333740234375,
+      "wheelShare": 0.8837227509400555
+    },
+    {
+      "engine": "firefox",
+      "id": "original",
+      "width": 568,
+      "height": 320,
+      "wheelDiameter": 162,
+      "wheelShare": 0.2852112676056338
+    },
+    {
+      "engine": "firefox",
+      "id": "original",
+      "width": 844,
+      "height": 390,
+      "wheelDiameter": 232,
+      "wheelShare": 0.27488151658767773
+    },
+    {
+      "engine": "firefox",
+      "id": "original",
+      "width": 768,
+      "height": 1024,
+      "wheelDiameter": 380,
+      "wheelShare": 0.4947916666666667
+    },
+    {
+      "engine": "webkit",
+      "id": "groove",
+      "width": 320,
+      "height": 480,
+      "wheelDiameter": 152.265625,
+      "wheelShare": 0.475830078125
+    },
+    {
+      "engine": "webkit",
+      "id": "groove",
+      "width": 320,
+      "height": 568,
+      "wheelDiameter": 152.265625,
+      "wheelShare": 0.475830078125
+    },
+    {
+      "engine": "webkit",
+      "id": "groove",
+      "width": 320,
+      "height": 640,
+      "wheelDiameter": 274.546875,
+      "wheelShare": 0.857958984375
+    },
+    {
+      "engine": "webkit",
+      "id": "groove",
+      "width": 360,
+      "height": 640,
+      "wheelDiameter": 300,
+      "wheelShare": 0.8333333333333334
+    },
+    {
+      "engine": "webkit",
+      "id": "groove",
+      "width": 390,
+      "height": 660,
+      "wheelDiameter": 320,
+      "wheelShare": 0.8205128205128205
+    },
+    {
+      "engine": "webkit",
+      "id": "groove",
+      "width": 428,
+      "height": 746,
+      "wheelDiameter": 378.234375,
+      "wheelShare": 0.8837251752336449
+    },
+    {
+      "engine": "webkit",
+      "id": "groove",
+      "width": 428,
+      "height": 926,
+      "wheelDiameter": 378.234375,
+      "wheelShare": 0.8837251752336449
+    },
+    {
+      "engine": "webkit",
+      "id": "groove",
+      "width": 568,
+      "height": 320,
+      "wheelDiameter": 162,
+      "wheelShare": 0.2852112676056338
+    },
+    {
+      "engine": "webkit",
+      "id": "groove",
+      "width": 844,
+      "height": 390,
+      "wheelDiameter": 232,
+      "wheelShare": 0.27488151658767773
+    },
+    {
+      "engine": "webkit",
+      "id": "groove",
+      "width": 768,
+      "height": 1024,
+      "wheelDiameter": 380,
+      "wheelShare": 0.4947916666666667
+    },
+    {
+      "engine": "webkit",
+      "id": "clear",
+      "width": 320,
+      "height": 480,
+      "wheelDiameter": 152.265625,
+      "wheelShare": 0.475830078125
+    },
+    {
+      "engine": "webkit",
+      "id": "clear",
+      "width": 320,
+      "height": 568,
+      "wheelDiameter": 152.265625,
+      "wheelShare": 0.475830078125
+    },
+    {
+      "engine": "webkit",
+      "id": "clear",
+      "width": 320,
+      "height": 640,
+      "wheelDiameter": 274.546875,
+      "wheelShare": 0.857958984375
+    },
+    {
+      "engine": "webkit",
+      "id": "clear",
+      "width": 360,
+      "height": 640,
+      "wheelDiameter": 298,
+      "wheelShare": 0.8277777777777777
+    },
+    {
+      "engine": "webkit",
+      "id": "clear",
+      "width": 390,
+      "height": 660,
+      "wheelDiameter": 318,
+      "wheelShare": 0.8153846153846154
+    },
+    {
+      "engine": "webkit",
+      "id": "clear",
+      "width": 428,
+      "height": 746,
+      "wheelDiameter": 378.234375,
+      "wheelShare": 0.8837251752336449
+    },
+    {
+      "engine": "webkit",
+      "id": "clear",
+      "width": 428,
+      "height": 926,
+      "wheelDiameter": 378.234375,
+      "wheelShare": 0.8837251752336449
+    },
+    {
+      "engine": "webkit",
+      "id": "clear",
+      "width": 568,
+      "height": 320,
+      "wheelDiameter": 160,
+      "wheelShare": 0.28169014084507044
+    },
+    {
+      "engine": "webkit",
+      "id": "clear",
+      "width": 844,
+      "height": 390,
+      "wheelDiameter": 230,
+      "wheelShare": 0.2725118483412322
+    },
+    {
+      "engine": "webkit",
+      "id": "clear",
+      "width": 768,
+      "height": 1024,
+      "wheelDiameter": 380,
+      "wheelShare": 0.4947916666666667
+    },
+    {
+      "engine": "webkit",
+      "id": "arcade",
+      "width": 320,
+      "height": 480,
+      "wheelDiameter": 150.203125,
+      "wheelShare": 0.469384765625
+    },
+    {
+      "engine": "webkit",
+      "id": "arcade",
+      "width": 320,
+      "height": 568,
+      "wheelDiameter": 152.265625,
+      "wheelShare": 0.475830078125
+    },
+    {
+      "engine": "webkit",
+      "id": "arcade",
+      "width": 320,
+      "height": 640,
+      "wheelDiameter": 274.546875,
+      "wheelShare": 0.857958984375
+    },
+    {
+      "engine": "webkit",
+      "id": "arcade",
+      "width": 360,
+      "height": 640,
+      "wheelDiameter": 298,
+      "wheelShare": 0.8277777777777777
+    },
+    {
+      "engine": "webkit",
+      "id": "arcade",
+      "width": 390,
+      "height": 660,
+      "wheelDiameter": 318,
+      "wheelShare": 0.8153846153846154
+    },
+    {
+      "engine": "webkit",
+      "id": "arcade",
+      "width": 428,
+      "height": 746,
+      "wheelDiameter": 378.234375,
+      "wheelShare": 0.8837251752336449
+    },
+    {
+      "engine": "webkit",
+      "id": "arcade",
+      "width": 428,
+      "height": 926,
+      "wheelDiameter": 378.234375,
+      "wheelShare": 0.8837251752336449
+    },
+    {
+      "engine": "webkit",
+      "id": "arcade",
+      "width": 568,
+      "height": 320,
+      "wheelDiameter": 160,
+      "wheelShare": 0.28169014084507044
+    },
+    {
+      "engine": "webkit",
+      "id": "arcade",
+      "width": 844,
+      "height": 390,
+      "wheelDiameter": 230,
+      "wheelShare": 0.2725118483412322
+    },
+    {
+      "engine": "webkit",
+      "id": "arcade",
+      "width": 768,
+      "height": 1024,
+      "wheelDiameter": 380,
+      "wheelShare": 0.4947916666666667
+    },
+    {
+      "engine": "webkit",
+      "id": "field",
+      "width": 320,
+      "height": 480,
+      "wheelDiameter": 152.265625,
+      "wheelShare": 0.475830078125
+    },
+    {
+      "engine": "webkit",
+      "id": "field",
+      "width": 320,
+      "height": 568,
+      "wheelDiameter": 152.265625,
+      "wheelShare": 0.475830078125
+    },
+    {
+      "engine": "webkit",
+      "id": "field",
+      "width": 320,
+      "height": 640,
+      "wheelDiameter": 274.546875,
+      "wheelShare": 0.857958984375
+    },
+    {
+      "engine": "webkit",
+      "id": "field",
+      "width": 360,
+      "height": 640,
+      "wheelDiameter": 300,
+      "wheelShare": 0.8333333333333334
+    },
+    {
+      "engine": "webkit",
+      "id": "field",
+      "width": 390,
+      "height": 660,
+      "wheelDiameter": 320,
+      "wheelShare": 0.8205128205128205
+    },
+    {
+      "engine": "webkit",
+      "id": "field",
+      "width": 428,
+      "height": 746,
+      "wheelDiameter": 378.234375,
+      "wheelShare": 0.8837251752336449
+    },
+    {
+      "engine": "webkit",
+      "id": "field",
+      "width": 428,
+      "height": 926,
+      "wheelDiameter": 378.234375,
+      "wheelShare": 0.8837251752336449
+    },
+    {
+      "engine": "webkit",
+      "id": "field",
+      "width": 568,
+      "height": 320,
+      "wheelDiameter": 162,
+      "wheelShare": 0.2852112676056338
+    },
+    {
+      "engine": "webkit",
+      "id": "field",
+      "width": 844,
+      "height": 390,
+      "wheelDiameter": 232,
+      "wheelShare": 0.27488151658767773
+    },
+    {
+      "engine": "webkit",
+      "id": "field",
+      "width": 768,
+      "height": 1024,
+      "wheelDiameter": 380,
+      "wheelShare": 0.4947916666666667
+    },
+    {
+      "engine": "webkit",
+      "id": "signal",
+      "width": 320,
+      "height": 480,
+      "wheelDiameter": 152.265625,
+      "wheelShare": 0.475830078125
+    },
+    {
+      "engine": "webkit",
+      "id": "signal",
+      "width": 320,
+      "height": 568,
+      "wheelDiameter": 152.265625,
+      "wheelShare": 0.475830078125
+    },
+    {
+      "engine": "webkit",
+      "id": "signal",
+      "width": 320,
+      "height": 640,
+      "wheelDiameter": 274.546875,
+      "wheelShare": 0.857958984375
+    },
+    {
+      "engine": "webkit",
+      "id": "signal",
+      "width": 360,
+      "height": 640,
+      "wheelDiameter": 300,
+      "wheelShare": 0.8333333333333334
+    },
+    {
+      "engine": "webkit",
+      "id": "signal",
+      "width": 390,
+      "height": 660,
+      "wheelDiameter": 320,
+      "wheelShare": 0.8205128205128205
+    },
+    {
+      "engine": "webkit",
+      "id": "signal",
+      "width": 428,
+      "height": 746,
+      "wheelDiameter": 378.234375,
+      "wheelShare": 0.8837251752336449
+    },
+    {
+      "engine": "webkit",
+      "id": "signal",
+      "width": 428,
+      "height": 926,
+      "wheelDiameter": 378.234375,
+      "wheelShare": 0.8837251752336449
+    },
+    {
+      "engine": "webkit",
+      "id": "signal",
+      "width": 568,
+      "height": 320,
+      "wheelDiameter": 162,
+      "wheelShare": 0.2852112676056338
+    },
+    {
+      "engine": "webkit",
+      "id": "signal",
+      "width": 844,
+      "height": 390,
+      "wheelDiameter": 232,
+      "wheelShare": 0.27488151658767773
+    },
+    {
+      "engine": "webkit",
+      "id": "signal",
+      "width": 768,
+      "height": 1024,
+      "wheelDiameter": 380,
+      "wheelShare": 0.4947916666666667
+    },
+    {
+      "engine": "webkit",
+      "id": "vector",
+      "width": 320,
+      "height": 480,
+      "wheelDiameter": 152.265625,
+      "wheelShare": 0.475830078125
+    },
+    {
+      "engine": "webkit",
+      "id": "vector",
+      "width": 320,
+      "height": 568,
+      "wheelDiameter": 152.265625,
+      "wheelShare": 0.475830078125
+    },
+    {
+      "engine": "webkit",
+      "id": "vector",
+      "width": 320,
+      "height": 640,
+      "wheelDiameter": 274.546875,
+      "wheelShare": 0.857958984375
+    },
+    {
+      "engine": "webkit",
+      "id": "vector",
+      "width": 360,
+      "height": 640,
+      "wheelDiameter": 300,
+      "wheelShare": 0.8333333333333334
+    },
+    {
+      "engine": "webkit",
+      "id": "vector",
+      "width": 390,
+      "height": 660,
+      "wheelDiameter": 320,
+      "wheelShare": 0.8205128205128205
+    },
+    {
+      "engine": "webkit",
+      "id": "vector",
+      "width": 428,
+      "height": 746,
+      "wheelDiameter": 378.234375,
+      "wheelShare": 0.8837251752336449
+    },
+    {
+      "engine": "webkit",
+      "id": "vector",
+      "width": 428,
+      "height": 926,
+      "wheelDiameter": 378.234375,
+      "wheelShare": 0.8837251752336449
+    },
+    {
+      "engine": "webkit",
+      "id": "vector",
+      "width": 568,
+      "height": 320,
+      "wheelDiameter": 162,
+      "wheelShare": 0.2852112676056338
+    },
+    {
+      "engine": "webkit",
+      "id": "vector",
+      "width": 844,
+      "height": 390,
+      "wheelDiameter": 232,
+      "wheelShare": 0.27488151658767773
+    },
+    {
+      "engine": "webkit",
+      "id": "vector",
+      "width": 768,
+      "height": 1024,
+      "wheelDiameter": 380,
+      "wheelShare": 0.4947916666666667
+    },
+    {
+      "engine": "webkit",
+      "id": "cartridge",
+      "width": 320,
+      "height": 480,
+      "wheelDiameter": 152.265625,
+      "wheelShare": 0.475830078125
+    },
+    {
+      "engine": "webkit",
+      "id": "cartridge",
+      "width": 320,
+      "height": 568,
+      "wheelDiameter": 152.265625,
+      "wheelShare": 0.475830078125
+    },
+    {
+      "engine": "webkit",
+      "id": "cartridge",
+      "width": 320,
+      "height": 640,
+      "wheelDiameter": 274.546875,
+      "wheelShare": 0.857958984375
+    },
+    {
+      "engine": "webkit",
+      "id": "cartridge",
+      "width": 360,
+      "height": 640,
+      "wheelDiameter": 288,
+      "wheelShare": 0.8
+    },
+    {
+      "engine": "webkit",
+      "id": "cartridge",
+      "width": 390,
+      "height": 660,
+      "wheelDiameter": 308,
+      "wheelShare": 0.7897435897435897
+    },
+    {
+      "engine": "webkit",
+      "id": "cartridge",
+      "width": 428,
+      "height": 746,
+      "wheelDiameter": 378.234375,
+      "wheelShare": 0.8837251752336449
+    },
+    {
+      "engine": "webkit",
+      "id": "cartridge",
+      "width": 428,
+      "height": 926,
+      "wheelDiameter": 378.234375,
+      "wheelShare": 0.8837251752336449
+    },
+    {
+      "engine": "webkit",
+      "id": "cartridge",
+      "width": 568,
+      "height": 320,
+      "wheelDiameter": 162,
+      "wheelShare": 0.2852112676056338
+    },
+    {
+      "engine": "webkit",
+      "id": "cartridge",
+      "width": 844,
+      "height": 390,
+      "wheelDiameter": 232,
+      "wheelShare": 0.27488151658767773
+    },
+    {
+      "engine": "webkit",
+      "id": "cartridge",
+      "width": 768,
+      "height": 1024,
+      "wheelDiameter": 380,
+      "wheelShare": 0.4947916666666667
+    },
+    {
+      "engine": "webkit",
+      "id": "switchboard",
+      "width": 320,
+      "height": 480,
+      "wheelDiameter": 152.265625,
+      "wheelShare": 0.475830078125
+    },
+    {
+      "engine": "webkit",
+      "id": "switchboard",
+      "width": 320,
+      "height": 568,
+      "wheelDiameter": 152.265625,
+      "wheelShare": 0.475830078125
+    },
+    {
+      "engine": "webkit",
+      "id": "switchboard",
+      "width": 320,
+      "height": 640,
+      "wheelDiameter": 274.546875,
+      "wheelShare": 0.857958984375
+    },
+    {
+      "engine": "webkit",
+      "id": "switchboard",
+      "width": 360,
+      "height": 640,
+      "wheelDiameter": 300,
+      "wheelShare": 0.8333333333333334
+    },
+    {
+      "engine": "webkit",
+      "id": "switchboard",
+      "width": 390,
+      "height": 660,
+      "wheelDiameter": 320,
+      "wheelShare": 0.8205128205128205
+    },
+    {
+      "engine": "webkit",
+      "id": "switchboard",
+      "width": 428,
+      "height": 746,
+      "wheelDiameter": 378.234375,
+      "wheelShare": 0.8837251752336449
+    },
+    {
+      "engine": "webkit",
+      "id": "switchboard",
+      "width": 428,
+      "height": 926,
+      "wheelDiameter": 378.234375,
+      "wheelShare": 0.8837251752336449
+    },
+    {
+      "engine": "webkit",
+      "id": "switchboard",
+      "width": 568,
+      "height": 320,
+      "wheelDiameter": 162,
+      "wheelShare": 0.2852112676056338
+    },
+    {
+      "engine": "webkit",
+      "id": "switchboard",
+      "width": 844,
+      "height": 390,
+      "wheelDiameter": 232,
+      "wheelShare": 0.27488151658767773
+    },
+    {
+      "engine": "webkit",
+      "id": "switchboard",
+      "width": 768,
+      "height": 1024,
+      "wheelDiameter": 380,
+      "wheelShare": 0.4947916666666667
+    },
+    {
+      "engine": "webkit",
+      "id": "correspondent",
+      "width": 320,
+      "height": 480,
+      "wheelDiameter": 152.265625,
+      "wheelShare": 0.475830078125
+    },
+    {
+      "engine": "webkit",
+      "id": "correspondent",
+      "width": 320,
+      "height": 568,
+      "wheelDiameter": 152.265625,
+      "wheelShare": 0.475830078125
+    },
+    {
+      "engine": "webkit",
+      "id": "correspondent",
+      "width": 320,
+      "height": 640,
+      "wheelDiameter": 274.546875,
+      "wheelShare": 0.857958984375
+    },
+    {
+      "engine": "webkit",
+      "id": "correspondent",
+      "width": 360,
+      "height": 640,
+      "wheelDiameter": 300,
+      "wheelShare": 0.8333333333333334
+    },
+    {
+      "engine": "webkit",
+      "id": "correspondent",
+      "width": 390,
+      "height": 660,
+      "wheelDiameter": 320,
+      "wheelShare": 0.8205128205128205
+    },
+    {
+      "engine": "webkit",
+      "id": "correspondent",
+      "width": 428,
+      "height": 746,
+      "wheelDiameter": 378.234375,
+      "wheelShare": 0.8837251752336449
+    },
+    {
+      "engine": "webkit",
+      "id": "correspondent",
+      "width": 428,
+      "height": 926,
+      "wheelDiameter": 378.234375,
+      "wheelShare": 0.8837251752336449
+    },
+    {
+      "engine": "webkit",
+      "id": "correspondent",
+      "width": 568,
+      "height": 320,
+      "wheelDiameter": 162,
+      "wheelShare": 0.2852112676056338
+    },
+    {
+      "engine": "webkit",
+      "id": "correspondent",
+      "width": 844,
+      "height": 390,
+      "wheelDiameter": 232,
+      "wheelShare": 0.27488151658767773
+    },
+    {
+      "engine": "webkit",
+      "id": "correspondent",
+      "width": 768,
+      "height": 1024,
+      "wheelDiameter": 380,
+      "wheelShare": 0.4947916666666667
+    },
+    {
+      "engine": "webkit",
+      "id": "foundry",
+      "width": 320,
+      "height": 480,
+      "wheelDiameter": 152.265625,
+      "wheelShare": 0.475830078125
+    },
+    {
+      "engine": "webkit",
+      "id": "foundry",
+      "width": 320,
+      "height": 568,
+      "wheelDiameter": 152.265625,
+      "wheelShare": 0.475830078125
+    },
+    {
+      "engine": "webkit",
+      "id": "foundry",
+      "width": 320,
+      "height": 640,
+      "wheelDiameter": 274.546875,
+      "wheelShare": 0.857958984375
+    },
+    {
+      "engine": "webkit",
+      "id": "foundry",
+      "width": 360,
+      "height": 640,
+      "wheelDiameter": 300,
+      "wheelShare": 0.8333333333333334
+    },
+    {
+      "engine": "webkit",
+      "id": "foundry",
+      "width": 390,
+      "height": 660,
+      "wheelDiameter": 320,
+      "wheelShare": 0.8205128205128205
+    },
+    {
+      "engine": "webkit",
+      "id": "foundry",
+      "width": 428,
+      "height": 746,
+      "wheelDiameter": 378.234375,
+      "wheelShare": 0.8837251752336449
+    },
+    {
+      "engine": "webkit",
+      "id": "foundry",
+      "width": 428,
+      "height": 926,
+      "wheelDiameter": 378.234375,
+      "wheelShare": 0.8837251752336449
+    },
+    {
+      "engine": "webkit",
+      "id": "foundry",
+      "width": 568,
+      "height": 320,
+      "wheelDiameter": 162,
+      "wheelShare": 0.2852112676056338
+    },
+    {
+      "engine": "webkit",
+      "id": "foundry",
+      "width": 844,
+      "height": 390,
+      "wheelDiameter": 232,
+      "wheelShare": 0.27488151658767773
+    },
+    {
+      "engine": "webkit",
+      "id": "foundry",
+      "width": 768,
+      "height": 1024,
+      "wheelDiameter": 380,
+      "wheelShare": 0.4947916666666667
+    },
+    {
+      "engine": "webkit",
+      "id": "observatory",
+      "width": 320,
+      "height": 480,
+      "wheelDiameter": 152.265625,
+      "wheelShare": 0.475830078125
+    },
+    {
+      "engine": "webkit",
+      "id": "observatory",
+      "width": 320,
+      "height": 568,
+      "wheelDiameter": 152.265625,
+      "wheelShare": 0.475830078125
+    },
+    {
+      "engine": "webkit",
+      "id": "observatory",
+      "width": 320,
+      "height": 640,
+      "wheelDiameter": 274.546875,
+      "wheelShare": 0.857958984375
+    },
+    {
+      "engine": "webkit",
+      "id": "observatory",
+      "width": 360,
+      "height": 640,
+      "wheelDiameter": 300,
+      "wheelShare": 0.8333333333333334
+    },
+    {
+      "engine": "webkit",
+      "id": "observatory",
+      "width": 390,
+      "height": 660,
+      "wheelDiameter": 320,
+      "wheelShare": 0.8205128205128205
+    },
+    {
+      "engine": "webkit",
+      "id": "observatory",
+      "width": 428,
+      "height": 746,
+      "wheelDiameter": 378.234375,
+      "wheelShare": 0.8837251752336449
+    },
+    {
+      "engine": "webkit",
+      "id": "observatory",
+      "width": 428,
+      "height": 926,
+      "wheelDiameter": 378.234375,
+      "wheelShare": 0.8837251752336449
+    },
+    {
+      "engine": "webkit",
+      "id": "observatory",
+      "width": 568,
+      "height": 320,
+      "wheelDiameter": 162,
+      "wheelShare": 0.2852112676056338
+    },
+    {
+      "engine": "webkit",
+      "id": "observatory",
+      "width": 844,
+      "height": 390,
+      "wheelDiameter": 232,
+      "wheelShare": 0.27488151658767773
+    },
+    {
+      "engine": "webkit",
+      "id": "observatory",
+      "width": 768,
+      "height": 1024,
+      "wheelDiameter": 380,
+      "wheelShare": 0.4947916666666667
+    },
+    {
+      "engine": "webkit",
+      "id": "ivory",
+      "width": 320,
+      "height": 480,
+      "wheelDiameter": 152.265625,
+      "wheelShare": 0.475830078125
+    },
+    {
+      "engine": "webkit",
+      "id": "ivory",
+      "width": 320,
+      "height": 568,
+      "wheelDiameter": 152.265625,
+      "wheelShare": 0.475830078125
+    },
+    {
+      "engine": "webkit",
+      "id": "ivory",
+      "width": 320,
+      "height": 640,
+      "wheelDiameter": 274.546875,
+      "wheelShare": 0.857958984375
+    },
+    {
+      "engine": "webkit",
+      "id": "ivory",
+      "width": 360,
+      "height": 640,
+      "wheelDiameter": 300,
+      "wheelShare": 0.8333333333333334
+    },
+    {
+      "engine": "webkit",
+      "id": "ivory",
+      "width": 390,
+      "height": 660,
+      "wheelDiameter": 320,
+      "wheelShare": 0.8205128205128205
+    },
+    {
+      "engine": "webkit",
+      "id": "ivory",
+      "width": 428,
+      "height": 746,
+      "wheelDiameter": 378.234375,
+      "wheelShare": 0.8837251752336449
+    },
+    {
+      "engine": "webkit",
+      "id": "ivory",
+      "width": 428,
+      "height": 926,
+      "wheelDiameter": 378.234375,
+      "wheelShare": 0.8837251752336449
+    },
+    {
+      "engine": "webkit",
+      "id": "ivory",
+      "width": 568,
+      "height": 320,
+      "wheelDiameter": 162,
+      "wheelShare": 0.2852112676056338
+    },
+    {
+      "engine": "webkit",
+      "id": "ivory",
+      "width": 844,
+      "height": 390,
+      "wheelDiameter": 232,
+      "wheelShare": 0.27488151658767773
+    },
+    {
+      "engine": "webkit",
+      "id": "ivory",
+      "width": 768,
+      "height": 1024,
+      "wheelDiameter": 380,
+      "wheelShare": 0.4947916666666667
+    },
+    {
+      "engine": "webkit",
+      "id": "graphite",
+      "width": 320,
+      "height": 480,
+      "wheelDiameter": 145.734375,
+      "wheelShare": 0.455419921875
+    },
+    {
+      "engine": "webkit",
+      "id": "graphite",
+      "width": 320,
+      "height": 568,
+      "wheelDiameter": 152.265625,
+      "wheelShare": 0.475830078125
+    },
+    {
+      "engine": "webkit",
+      "id": "graphite",
+      "width": 320,
+      "height": 640,
+      "wheelDiameter": 274.546875,
+      "wheelShare": 0.857958984375
+    },
+    {
+      "engine": "webkit",
+      "id": "graphite",
+      "width": 360,
+      "height": 640,
+      "wheelDiameter": 300,
+      "wheelShare": 0.8333333333333334
+    },
+    {
+      "engine": "webkit",
+      "id": "graphite",
+      "width": 390,
+      "height": 660,
+      "wheelDiameter": 320,
+      "wheelShare": 0.8205128205128205
+    },
+    {
+      "engine": "webkit",
+      "id": "graphite",
+      "width": 428,
+      "height": 746,
+      "wheelDiameter": 378.234375,
+      "wheelShare": 0.8837251752336449
+    },
+    {
+      "engine": "webkit",
+      "id": "graphite",
+      "width": 428,
+      "height": 926,
+      "wheelDiameter": 378.234375,
+      "wheelShare": 0.8837251752336449
+    },
+    {
+      "engine": "webkit",
+      "id": "graphite",
+      "width": 568,
+      "height": 320,
+      "wheelDiameter": 162,
+      "wheelShare": 0.2852112676056338
+    },
+    {
+      "engine": "webkit",
+      "id": "graphite",
+      "width": 844,
+      "height": 390,
+      "wheelDiameter": 232,
+      "wheelShare": 0.27488151658767773
+    },
+    {
+      "engine": "webkit",
+      "id": "graphite",
+      "width": 768,
+      "height": 1024,
+      "wheelDiameter": 380,
+      "wheelShare": 0.4947916666666667
+    },
+    {
+      "engine": "webkit",
+      "id": "original",
+      "width": 320,
+      "height": 480,
+      "wheelDiameter": 152.265625,
+      "wheelShare": 0.475830078125
+    },
+    {
+      "engine": "webkit",
+      "id": "original",
+      "width": 320,
+      "height": 568,
+      "wheelDiameter": 152.265625,
+      "wheelShare": 0.475830078125
+    },
+    {
+      "engine": "webkit",
+      "id": "original",
+      "width": 320,
+      "height": 640,
+      "wheelDiameter": 274.546875,
+      "wheelShare": 0.857958984375
+    },
+    {
+      "engine": "webkit",
+      "id": "original",
+      "width": 360,
+      "height": 640,
+      "wheelDiameter": 300,
+      "wheelShare": 0.8333333333333334
+    },
+    {
+      "engine": "webkit",
+      "id": "original",
+      "width": 390,
+      "height": 660,
+      "wheelDiameter": 320,
+      "wheelShare": 0.8205128205128205
+    },
+    {
+      "engine": "webkit",
+      "id": "original",
+      "width": 428,
+      "height": 746,
+      "wheelDiameter": 378.234375,
+      "wheelShare": 0.8837251752336449
+    },
+    {
+      "engine": "webkit",
+      "id": "original",
+      "width": 428,
+      "height": 926,
+      "wheelDiameter": 378.234375,
+      "wheelShare": 0.8837251752336449
+    },
+    {
+      "engine": "webkit",
+      "id": "original",
+      "width": 568,
+      "height": 320,
+      "wheelDiameter": 162,
+      "wheelShare": 0.2852112676056338
+    },
+    {
+      "engine": "webkit",
+      "id": "original",
+      "width": 844,
+      "height": 390,
+      "wheelDiameter": 232,
+      "wheelShare": 0.27488151658767773
+    },
+    {
+      "engine": "webkit",
+      "id": "original",
+      "width": 768,
+      "height": 1024,
+      "wheelDiameter": 380,
+      "wheelShare": 0.4947916666666667
+    }
+  ],
+  "failures": [],
+  "pageErrors": [],
+  "physicalDevices": false
+}

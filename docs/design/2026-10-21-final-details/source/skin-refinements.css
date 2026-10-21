@@ -1,0 +1,27 @@
+/* Focus follows the visible control; pointer use has no surrounding box. */
+#root .skin-face .speed-craft .speed-track {outline:none;}
+.skin-face .speed-craft .speed-exact:focus {outline:none;}
+.skin-face .speed-craft .speed-exact:focus-visible {border-bottom-width:3px;}
+.skin-face .speed-track[data-keyboard-focus=true] .speed-handle {outline:2px solid currentColor;outline-offset:4px;}
+.skin-face .speed-kind--dial .speed-track>input {cursor:grab;}
+.skin-face .speed-kind--dial .speed-track>input:active {cursor:grabbing;}
+.skin-face .speed-kind--roller .speed-track>input {cursor:ew-resize;}
+
+/* Both rollers are real sliding carriages; texture stays on the carriage. */
+#root .skin-face .speed-kind--roller .speed-handle {
+ left:var(--speed-percent);width:56px;background-position:0 0;
+}
+#root .standalone-remote.skin-face.skin-controls .speed-kind--roller .speed-handle {width:56px;}
+
+/* Restore Original's early black instrument display and monospaced digits. */
+.skin-face.skin--original .readout--original {
+ border:1px solid #070806;border-radius:7px;background:#0a0c0a;color:#e9eee6;
+ box-shadow:inset 0 0 0 1px #343833,inset 0 10px 22px #ffffff06,0 1px #ffffff1f;
+ padding:10px 12px;
+}
+#root .skin-face.skin--original .readout--original .timecode {
+ font:600 32px/1.05 'SFMono-Regular',Consolas,monospace;letter-spacing:-.07em;
+}
+.skin-face .readout--original .printed-time {display:flex;gap:3px;align-items:baseline;}
+.skin-face .readout--original .printed-time::before {content:attr(data-whole);}
+.skin-face .readout--original .printed-time::after {content:'.' attr(data-fraction);font:400 13px/1 monospace;letter-spacing:0;color:#a4afa0;}

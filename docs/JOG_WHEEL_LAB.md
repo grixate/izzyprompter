@@ -72,3 +72,12 @@ Correspondent refinement, 2026-10-13: keep its recessed finger well as the singl
 
 
 20 October — selected14 now separate speed from phrase/tool actions with an inactive touch gap, larger52–56px actions and11px legends. Name/value stay grouped. Compact side controls and landscape Play placement preserve a usable jog. [Current mobile touch review and evidence](design/2026-10-20-touch-layout/PASS.md). Existing mechanics, time displays, speed bounds and editor behavior are preserved.
+
+
+20 October — [live iPhone 13 Pro Max gallery](design/2026-10-20-live-gallery/review.html) now embeds all selected14 as interactive remotes, with browser/full-screen modes, independent reset and fixed428px internal viewports. [Actual verification](design/2026-10-20-live-gallery/PASS.md). Previous screenshot galleries and frozen demo assets remain preserved.
+
+
+21 October — owner-approved Orbit proportions now extend to all selected14. The wheel dominates the browser-height phone; instrument-specific readouts/speed controls are compact and separate Play keys have their own auxiliary bay. [Current live gallery and actual validation](design/2026-10-21-wheel-first/PASS.md). Earlier studies and frozen previews are preserved; no hosted publication.
+
+
+21 October — [final control refinements](design/2026-10-21-final-details/PASS.md): only changed counter digits roll; pointer focus boxes are removed; circular speed controls understand clockwise/counterclockwise gestures; Field Reel/Switchboard rollers visibly track the hand; Original regains its black monitor. The large-wheel14-skin layout is preserved. Live gallery and actual browser/touch-emulation evidence are saved; no hosted publication.

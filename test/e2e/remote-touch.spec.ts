@@ -5,7 +5,7 @@ import {phoneOptions} from './helpers/phone'
 test('selected remotes separate speed from phrase actions and keep readable touch controls',async({browser,browserName},info)=>{
  test.setTimeout(120_000)
  const context=await browser.newContext(phoneOptions(browserName)),page=await context.newPage()
- const sizes=[{width:320,height:480},{width:320,height:568},{width:360,height:640},{width:390,height:660},{width:390,height:844},{width:568,height:320},{width:844,height:390},{width:768,height:1024}]
+ const sizes=[{width:320,height:480},{width:320,height:568},{width:360,height:640},{width:390,height:660},{width:390,height:844},{width:428,height:746},{width:568,height:320},{width:844,height:390},{width:768,height:1024}]
  try{
   for(const skin of skins.filter(s=>controlCraftSkins.has(s.id))){
    await page.goto('/lab/jog?review=collection&device=1&skin='+skin.id)
@@ -22,6 +22,7 @@ test('selected remotes separate speed from phrase actions and keep readable touc
     const label=skin.id+' '+size.width+'×'+size.height
     expect.soft(geometry.scroll,label+' vertical fit').toBeLessThanOrEqual(1);expect.soft(geometry.wide,label+' horizontal fit').toBeLessThanOrEqual(1)
     expect.soft(geometry.wheel.width,label+' jog diameter').toBeGreaterThanOrEqual(128)
+    if(size.width===428&&size.height===746)expect.soft(geometry.wheel.width/size.width,label+' dominant wheel on browser-height iPhone').toBeGreaterThanOrEqual(.8)
     for(const b of [...geometry.speed,...geometry.actions]){
      expect.soft(b.x,label+' left').toBeGreaterThanOrEqual(-1);expect.soft(b.y,label+' top').toBeGreaterThanOrEqual(-1)
      expect.soft(b.right,label+' right').toBeLessThanOrEqual(size.width+1);expect.soft(b.bottom,label+' bottom').toBeLessThanOrEqual(size.height+1)

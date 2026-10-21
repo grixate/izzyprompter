@@ -60,7 +60,10 @@ for (const mobileRemote of [false, true]) {
       await expect(display.locator('.network-state')).toHaveText('CONNECTED')
       await expect(remote.locator('.network-state')).toHaveText('CONNECTED')
       await expect(display.locator('.script-track p')).toHaveText(paragraphs)
-      await expect(remote.getByText('DSP 01 READY')).toBeVisible()
+      // Compact remotes hide this redundant legend; measured playback below
+      // proves the paired display is actually operating.
+      await expect(remote.getByText('DSP 01 READY')).toBeAttached()
+      await expect(remote.getByRole('button', { name: 'Next phrase' })).toBeEnabled()
       await expect(display.getByText('REMOTE READY')).toBeAttached()
       await expect(editor.getByText('DISPLAY ● READY')).toBeVisible()
       await expect(editor.getByText('REMOTE ● READY')).toBeVisible()

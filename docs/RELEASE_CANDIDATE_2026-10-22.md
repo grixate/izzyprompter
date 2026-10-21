@@ -46,3 +46,27 @@ These are configuration/queue checks, not evidence of a real charge/refund.
 This file is a working release record. Record actual checks and image promotion
 below as they complete. Browser emulation is not a physical iPhone/iPad check;
 no physical-device certification or unperformed payment/refund test is implied.
+
+Completed before hosted migration: full encrypted database backup and verified
+copy to the owner's existing protected Mac backup directory. The production
+aggregate check found zero paid production attempts and zero active grants at
+inspection. No customer entitlements were altered.
+
+The combined local browser checks cover font changes, paragraph/full-script
+editing, semantic position, draft recovery, saved-text/profile restoration and
+feedback retry in Chromium/Firefox/WebKit. A prior CI run against the pre-merge
+branch exposed obsolete default-speed and control-shape expectations; the
+recovery checks now follow 0.56, native craft sliders and the compact layout.
+
+Hosted acceptance uses `ops/releases/seed-launch-fixture.exs`, the private
+temporary JSON it creates, and `scripts/verify-launch-hosted.mjs`. Staging alone
+may seed a visibly synthetic test-environment grant to exercise all fourteen
+skins. Production uses a free synthetic account, creates no invoices or grants,
+and sends no email. The cleanup script refuses accounts outside its reserved
+fixture namespace and refuses any production payment attempts. Credentials and
+capability links must never enter terminal output or screenshots.
+
+Enable feedback before the public acceptance pass. Keep production metrics off
+during synthetic checks, remove fixtures/end takes, then enable the already
+staging-tested metrics worker between takes. This keeps synthetic verification
+out of the production product report.

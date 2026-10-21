@@ -95,6 +95,10 @@ test('only the primary display publishes position and its differently sized back
     await backup.getByRole('slider', { name: 'Text size', exact: true }).fill('90')
     await backup.getByRole('slider', { name: 'Text width', exact: true }).fill('45')
     await backup.getByRole('button', { name: 'Close prompt settings' }).click()
+    for (const screen of [primary, backup]) {
+      await expect(screen.locator('.standalone-display')).toHaveCSS('--prompt-size', '90px')
+      await expect(screen.locator('.standalone-display')).toHaveCSS('--prompt-width', '45%')
+    }
     await remote.getByRole('button', { name: 'Next phrase' }).click()
     const id = await primary.locator('p[data-block-id]').nth(1).getAttribute('data-block-id')
     const beginning = { blockId: id!, characterOffset: 0 }

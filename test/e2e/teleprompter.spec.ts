@@ -83,12 +83,12 @@ for (const mobileRemote of [false, true]) {
 
       await dragWheel(remote, -1)
       await expect.poll(() => displayPosition(display)).toBeLessThan(pausedPosition - 150)
-      await remote.getByRole('button', { name: 'Increase speed' }).click()
-      await expect(display.locator('.display-footer')).toContainText('0.91×')
+      await remote.getByRole('slider', { name: 'Playback speed' }).press('ArrowUp')
+      await expect(display.locator('.display-footer')).toContainText('0.57×')
       await remote.reload()
       await expect(remote.locator('.network-state')).toHaveText('CONNECTED')
       await expect(remote.locator('.state-label')).toHaveText('HOLD')
-      await expect(remote.getByRole('slider', { name: 'Playback speed' })).toHaveValue('0.91')
+      await expect(remote.getByRole('slider', { name: 'Playback speed' })).toHaveValue('0.57')
       expect(errors).toEqual([])
     } finally {
       await displayContext.close()

@@ -26,13 +26,13 @@ test('the empty preview stays blank, then plays your own words without creating 
   const maximum = Number(await jog.getAttribute('aria-valuemax'))
   await expect(jog).toHaveAttribute('aria-valuenow', String(Math.round(maximum)))
   await page.getByRole('button', { name: 'Increase speed' }).click()
-  await expect(page.getByRole('slider', { name: 'Playback speed' })).toHaveValue('0.91')
+  await expect(page.getByRole('slider', { name: 'Playback speed' })).toHaveValue('0.61')
   await page.getByRole('button', { name: 'Play', exact: true }).click()
   await expect.poll(async () => Number(await jog.getAttribute('aria-valuenow'))).toBeLessThan(maximum)
   await expect(editor).toHaveValue(previewText)
   expect(creations).toEqual([])
   await page.reload()
-  await expect(page.getByRole('slider', { name: 'Playback speed' })).toHaveValue('0.91')
+  await expect(page.getByRole('slider', { name: 'Playback speed' })).toHaveValue('0.61')
 })
 
 test('editing pauses the preview, shows your words, and preserves the draft', async ({ page }) => {

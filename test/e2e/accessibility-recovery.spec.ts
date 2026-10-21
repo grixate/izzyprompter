@@ -64,7 +64,7 @@ test('display chrome remains visible while focused and speed shortcuts clamp saf
     await display.locator('body').click({ position: { x: 10, y: 200 } })
     for (let index = 0; index < 20; index += 1) {
       await display.locator('body').press('+')
-      await expect(display.locator('.display-footer')).toContainText(`${Math.min(1, 0.86 + (index + 1) * 0.05).toFixed(2)}×`)
+      await expect(display.locator('.display-footer')).toContainText(`${Math.min(1, 0.56 + (index + 1) * 0.05).toFixed(2)}×`)
     }
     await expect(display.locator('.display-footer')).toContainText('1.00×')
     await expect(display.locator('.network-state')).toHaveText('CONNECTED')

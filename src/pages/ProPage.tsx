@@ -7,7 +7,7 @@ import { ProAction } from '../product/ProAction'
 import { skins, skinById, proSkinCount, type SkinId } from '../product/catalog'
 import { track } from '../product/events'
 
-const heroFinishes: SkinId[] = ['groove', 'clear', 'spool', 'glaze', 'vector']
+const heroFinishes: SkinId[] = ['groove', 'clear', 'arcade', 'observatory', 'vector']
 export function ProPage() {
   const [finish, setFinish] = useState<SkinId>('groove')
   const [demoPlaying, setDemoPlaying] = useState(false)
@@ -22,11 +22,11 @@ export function ProPage() {
     </section>
     <section className="pro-material-section" id="pro-finishes">
       <div className="page-width material-heading"><h2>Find your<br /><em>finish.</em></h2></div>
-      <div className="material-parade">{(['groove', 'clear', 'spool'] as SkinId[]).map((id, index) => <figure key={id}><RemoteInstrument skin={id} phase={index * .8} /><figcaption>{skinById(id).name}</figcaption></figure>)}</div>
+      <div className="material-parade">{(['groove', 'clear', 'arcade'] as SkinId[]).map((id, index) => <figure key={id}><RemoteInstrument skin={id} phase={index * .8} /><figcaption>{skinById(id).name}</figcaption></figure>)}</div>
     </section>
     <section className="pro-collection page-width">
       <div className="section-heading"><h2>{proSkinCount} finishes.<br /><em>One familiar gesture.</em></h2></div>
-      <div className="pro-skin-strip">{(['glaze', 'pop', 'moss', 'mono'] as SkinId[]).map((id, index) => <a href={`/skins?skin=${id}`} key={id} aria-label={`Explore ${skinById(id).name}`}><RemoteInstrument skin={id} phase={index * .7} /><span>{skinById(id).name}<ArrowUpRight size={16} /></span></a>)}</div>
+      <div className="pro-skin-strip">{(['field', 'signal', 'cartridge', 'observatory'] as SkinId[]).map((id, index) => <a href={`/skins?skin=${id}`} key={id} aria-label={`Explore ${skinById(id).name}`}><RemoteInstrument skin={id} phase={index * .7} /><span>{skinById(id).name}<ArrowUpRight size={16} /></span></a>)}</div>
       <a className="action-text" href="/skins">Explore all {skins.length} finishes <ArrowUpRight size={18} /></a>
     </section>
     <section className="pro-workflow"><div className="page-width workflow-grid">

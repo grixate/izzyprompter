@@ -116,3 +116,7 @@
 
 /* Square-edged rotors need their diagonal clearance in small collection cards. */
 .pro-skin-strip :is(.skin--pop,.skin--loom,.skin--arcade) .jog-wheel { width:78%; margin-inline:auto; }
+
+/* Swatches for the selected public collection. */
+.finish-dot--arcade { --finish-swatch:#ab8bbd; }
+.finish-dot--observatory { --finish-swatch:#233344; }

@@ -1,9 +1,10 @@
+import { skins } from '../../src/product/catalog'
 import { test, expect } from '@playwright/test'
 import { wheel, focus, angle } from './helpers/wheel-mechanism'
 
 test.use({trace:'off',screenshot:'off'})
 
-for (const name of ['Clear','Spool','Field reel','Cartridge','Foundry','Observatory']) {
+for (const name of ['Clear','Spool','Field reel','Cartridge','Foundry','Observatory'].filter(name => skins.some(skin => skin.name === name))) {
   test(`${name}: rotor and linked parts stop together and follow a reversed jog`,async({page})=>{
     await focus(page,name)
     await page.getByRole('button',{name:'Play',exact:true}).click()

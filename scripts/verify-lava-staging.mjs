@@ -53,8 +53,9 @@ try {
     redirect: 'manual', signal: AbortSignal.timeout(10_000),
   })
   assert.equal(publicResponse.status, 200)
-  assert.equal((await publicResponse.json()).checkout_available, false)
-  checks.push('production checkout remains disabled')
+  const expectedProductionSales = process.env.IZZY_EXPECT_PRODUCTION_SALES === '1'
+  assert.equal((await publicResponse.json()).checkout_available, expectedProductionSales)
+  checks.push('production checkout matches its expected sales setting')
   console.log(JSON.stringify({ result: 'passed', checks, realInvoicesCreated: 0 }, null, 2))
 } catch {
   // Request exceptions may carry header values. Never dump request objects.

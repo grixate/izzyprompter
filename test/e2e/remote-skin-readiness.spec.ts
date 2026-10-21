@@ -125,7 +125,7 @@ for (const skin of skins) {
         const exact=remote.getByRole('textbox',{name:'Exact playback speed'})
         await expect(remote.getByRole('button',{name:'Increase speed'})).toHaveCount(0)
         await exact.fill('0.73');await exact.press('Enter');await expect(speed).toHaveValue('0.73')
-        await expect(display.locator('.display-footer')).toContainText('1.37×')
+        await expect(display.locator('.display-footer')).toContainText('0.73×')
         await speed.press('End');await speed.press('ArrowUp');await expect(speed).toHaveValue('1')
         await speed.press('ArrowDown');await expect(speed).toHaveValue('0.99')
         await speed.press('Home');await speed.press('ArrowDown');await expect(speed).toHaveValue('0.2')
@@ -206,23 +206,35 @@ for (const skin of skins) {
       const wheelBox = (await page.locator('.jog-wheel').boundingBox())!
       const playBox = (await page.getByRole('button', { name: 'Play', exact: true }).boundingBox())!
       const separate = ['graphite', 'glacier', 'correspondent', 'airframe', 'arcade'].includes(skin.id)
-      expect.soft(Math.abs(playBox.x + playBox.width / 2 - wheelBox.x - wheelBox.width / 2), `${viewport.width}: centered Play key`).toBeLessThan(1)
-      if (separate) expect.soft(playBox.y, `${viewport.width}: separate Play key`).toBeGreaterThan(wheelBox.y + wheelBox.height)
-      else expect.soft(Math.abs(playBox.y + playBox.height / 2 - wheelBox.y - wheelBox.height / 2), `${viewport.width}: centered Play key`).toBeLessThan(1)
-      // The speed input is transparent: its visible track must show keyboard focus.
+      const keyBay = separate && viewport.height >= 620 && viewport.height > viewport.width
+      if (keyBay) {
+        expect.soft(playBox.y, `${viewport.width}: separate Play key`).toBeGreaterThan(wheelBox.y + wheelBox.height)
+        const speedBox = (await page.locator('.speed-module').boundingBox())!
+        expect.soft(playBox.x + playBox.width, `${viewport.width}: Play clears speed controls`).toBeLessThanOrEqual(speedBox.x)
+      } else if (separate && viewport.width > viewport.height && viewport.height <= 700) {
+        expect.soft(playBox.x, `${viewport.width}: side Play clears wheel`).toBeGreaterThan(wheelBox.x + wheelBox.width)
+        const speedBox = (await page.locator('.speed-module').boundingBox())!
+        expect.soft(playBox.x + playBox.width, `${viewport.width}: side Play clears speed`).toBeLessThanOrEqual(speedBox.x)
+      } else {
+        expect.soft(Math.abs(playBox.x + playBox.width / 2 - wheelBox.x - wheelBox.width / 2), `${viewport.width}: centered Play key`).toBeLessThan(1)
+        if (separate) expect.soft(playBox.y, `${viewport.width}: separate Play key`).toBeGreaterThan(wheelBox.y + wheelBox.height)
+        else expect.soft(Math.abs(playBox.y + playBox.height / 2 - wheelBox.y - wheelBox.height / 2), `${viewport.width}: centered Play key`).toBeLessThan(1)
+      }
       await jog(page).focus()
       await page.keyboard.press('ArrowRight')
       const wheelFocus = await jog(page).evaluate(el => {
-        const own = getComputedStyle(el)
+        const wheel = getComputedStyle(el.closest('.jog-wheel')!)
         const caption = getComputedStyle(el.closest('.wheel-column')!.querySelector('.wheel-caption')!)
-        return own.outlineStyle !== 'none' || (caption.display !== 'none' && caption.textDecorationLine.includes('underline'))
+        return wheel.outlineStyle !== 'none' || (caption.display !== 'none' && caption.textDecorationLine.includes('underline'))
       })
       expect.soft(wheelFocus, `${viewport.width}: visible jog focus`).toBe(true)
-      const captionBox = (await page.locator('.wheel-caption').boundingBox())!
-      const readoutBox = (await page.locator('.transport-readout').boundingBox())!
-      const focusedPlayBox = (await page.getByRole('button', { name: 'Play', exact: true }).boundingBox())!
-      expect.soft(captionBox.y, `${viewport.width}: focus cue clears readout`).toBeGreaterThanOrEqual(readoutBox.y + readoutBox.height)
-      if (separate) expect.soft(captionBox.y + captionBox.height, `${viewport.width}: focus cue clears Play`).toBeLessThanOrEqual(focusedPlayBox.y)
+      const captionBox = await page.locator('.wheel-caption').boundingBox()
+      if (captionBox) {
+        const readoutBox = (await page.locator('.transport-readout').boundingBox())!
+        const focusedPlayBox = (await page.getByRole('button', { name: 'Play', exact: true }).boundingBox())!
+        expect.soft(captionBox.y, `${viewport.width}: focus cue clears readout`).toBeGreaterThanOrEqual(readoutBox.y + readoutBox.height)
+        if (separate && viewport.height > viewport.width) expect.soft(captionBox.y + captionBox.height, `${viewport.width}: focus cue clears Play`).toBeLessThanOrEqual(focusedPlayBox.y)
+      }
       if (viewport.width === 320 && browserName === 'chromium' && skin.id === 'field') {
         await page.locator('main').screenshot({ path: testInfo.outputPath('field-narrow-focus.png') })
       }
@@ -231,7 +243,7 @@ for (const skin of skins) {
       expect.soft(await page.getByRole('button', { name: 'Play', exact: true }).evaluate(el => getComputedStyle(el).outlineStyle)).not.toBe('none')
       await page.getByRole('slider', { name: 'Playback speed' }).focus()
       await page.keyboard.press('ArrowRight')
-      expect.soft(await page.locator('.speed-track').evaluate(el => getComputedStyle(el).outlineStyle)).not.toBe('none')
+      expect.soft(await page.locator('.speed-handle').evaluate(el => getComputedStyle(el).outlineStyle)).not.toBe('none')
       if (viewport.width === 390 && browserName === 'chromium') {
         await page.locator('main').screenshot({ path: testInfo.outputPath(`${skin.id}.png`) })
       }
@@ -273,7 +285,7 @@ test('every finish can be selected during real playback and keeps a truthful rea
       expect(match, `${skin.name}: complete readout`).not.toBeNull()
       const seconds = Number(match[1]) * 60 + Number(match[2]) + Number(match[3]) / 10
       // Allow a tenth's truncation plus the slider's rounded pixel precision.
-      expect(Math.abs(seconds - clock.pixels / (52 * 1.1)), `${skin.name}: nominal time`).toBeLessThan(.12)
+      expect(Math.abs(seconds - clock.pixels / (52 * .71)), `${skin.name}: nominal time`).toBeLessThan(.12)
     }
     await remote.getByRole('button', { name: 'Pause', exact: true }).click()
     await expect(display.locator('.display-footer')).toContainText('STANDBY')

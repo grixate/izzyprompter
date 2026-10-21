@@ -65,10 +65,10 @@ try {
     -new DOMMatrixReadOnly(getComputedStyle(node).transform).m42), { timeout: 15_000 }).toBeGreaterThan(10)
   await phone.getByRole('button', { name: 'Quick edit current paragraph' }).click()
   const correction = 'Verified secure phone correction. ' + paragraph
-  await phone.getByRole('textbox').fill(correction)
+  await phone.getByRole('textbox', { name: 'CURRENT PARAGRAPH', exact: true }).fill(correction)
   await expect(display.locator('.script-track p').first()).toHaveText(correction, { timeout: 15_000 })
   await expect(editor.locator('.pairing-live-edit p')).toHaveText(correction, { timeout: 15_000 })
-  await phone.getByRole('button', { name: /^DONE/ }).click()
+  await phone.getByRole('button', { name: /^Done/i }).click()
   await phone.reload()
   await expect(phone.locator('.network-state')).toHaveText('CONNECTED', { timeout: 20_000 })
   await display.reload()

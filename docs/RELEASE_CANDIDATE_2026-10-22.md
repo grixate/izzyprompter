@@ -70,3 +70,16 @@ Enable feedback before the public acceptance pass. Keep production metrics off
 during synthetic checks, remove fixtures/end takes, then enable the already
 staging-tested metrics worker between takes. This keeps synthetic verification
 out of the production product report.
+
+Additional pre-deployment findings: restored a keyboard-only focus cue on the
+large wheel (the compact portrait layout hides its caption); preserved the
+approved separate Play bays in portrait and landscape; contained rotating Pro
+showroom art to eliminate horizontal overflow. Recovery checks now compare
+0.73 against 0.73 and calculate nominal time at the actual 0.71 test speed.
+The opaque green speed-container focus box remains removed; keyboard speed
+focus is shown on the physical handle.
+
+A read-only authenticated Lava product API check found the configured offer
+and its USD 29 price. It created no invoice and does not prove an actual
+checkout, delivered provider callback, receipt or refund. Production sales were
+already enabled before this work; staging checkout remains disabled.

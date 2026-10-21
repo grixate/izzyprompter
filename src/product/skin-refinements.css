@@ -25,3 +25,6 @@
 .skin-face .readout--original .printed-time {display:flex;gap:3px;align-items:baseline;}
 .skin-face .readout--original .printed-time::before {content:attr(data-whole);}
 .skin-face .readout--original .printed-time::after {content:'.' attr(data-fraction);font:400 13px/1 monospace;letter-spacing:0;color:#a4afa0;}
+
+/* Keep keyboard position visible when the compact layout hides the caption. */
+.standalone-remote.skin-face .jog-wheel:has(.wheel-input:focus-visible) {outline:2px solid var(--instrument-type, currentColor);outline-offset:5px;}

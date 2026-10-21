@@ -202,3 +202,6 @@
 
 /* Public navigation names distinct destinations; the logo returns to the editor. */
 .public-links { margin-left:auto; }
+
+/* Rotating circular art must stay inside its compact showroom tile. */
+.pro-skin-strip .jog-wheel {overflow:clip;}

@@ -212,3 +212,30 @@
 .skin-card-meta>div {min-width:0;max-width:100%;}
 .skin-card h2 {overflow-wrap:anywhere;}
 .skin-card-meta .skin-state {flex-shrink:0;}
+
+/* The small instruments are real controls, independent of the paired take. */
+.remote-instrument[data-interactive=true] .jog-wheel {cursor:grab;}
+.remote-instrument[data-interactive=true] .jog-wheel.is-dragging {cursor:grabbing;}
+.remote-instrument[data-interactive=true] .transport-button {cursor:pointer;min-width:44px;min-height:44px;}
+.remote-instrument[data-interactive=true] .speed-kind--linear .speed-track {height:44px;}
+.remote-instrument[data-interactive=true] .wheel-caption {font-size:7px;}
+.remote-instrument[data-interactive=true] .wheel-column:has(:focus-visible) .wheel-caption {text-decoration:underline;text-underline-offset:4px;}
+.pro-skin-strip>article {min-width:0;}
+.pro-skin-strip article>a>span {display:flex;justify-content:space-between;align-items:center;margin-top:17px;font-size:13px;color:#b5bea5;}
+.home-pro-objects {gap:24px;}
+.home-pro-objects .remote-instrument:first-child,.home-pro-objects .remote-instrument:last-child {width:calc(50% - 12px);margin:0;transform:rotate(-4deg);}
+.home-pro-objects .remote-instrument:last-child {transform:rotate(4deg) translateY(25px);}
+@media(max-width:650px){
+  .home-pro-objects {flex-direction:column;gap:40px;padding-inline:0;}
+  .home-pro-objects .remote-instrument:first-child,.home-pro-objects .remote-instrument:last-child {width:min(calc(100% - 36px),285px);transform:rotate(-4deg);}
+  .home-pro-objects .remote-instrument:last-child {transform:rotate(4deg);}
+}
+.remote-instrument[data-interactive=true] .speed-exact {width:44px;height:44px;padding-inline:0;text-align:left;}
+@container instrument (max-width:180px){
+  .remote-instrument.skin-face[data-interactive=true] .speed-module.speed-craft {grid-template-columns:minmax(0,1fr);grid-template-areas:"title" "value" "track";gap:6px;}
+  .remote-instrument[data-interactive=true] .speed-value {justify-self:start;}
+  .remote-instrument[data-interactive=true] .speed-track {justify-self:center;}
+  .remote-instrument[data-interactive=true] .speed-kind--linear .speed-track {width:100%;}
+}
+.remote-instrument[data-interactive=true]:not(.skin--arcade):not(.skin--correspondent):not(.skin--graphite) .wheel-column {padding-bottom:0;}
+.remote-instrument[data-interactive=true] .control-deck {gap:16px;}

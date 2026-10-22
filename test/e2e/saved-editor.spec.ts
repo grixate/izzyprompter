@@ -21,7 +21,7 @@ test.describe('saved script editor', () => {
     await expect(page.locator('#saved-content-count')).toHaveText('8 characters · 2,097,135 bytes left of 2 MB')
     await expect(page.getByRole('status')).toHaveText('Saved to account')
     await expect(page.getByLabel('Your script preview')).toContainText('Привет 🌍')
-    const speed = page.getByRole('slider', { name: 'Playback speed', exact: true })
+    const speed = page.locator('.preview-remote').getByRole('slider', { name: 'Playback speed', exact: true })
     await speed.fill('0.56')
     await page.reload()
     await expect(speed).toHaveValue('0.56')

@@ -38,8 +38,7 @@ export function StartPage() {
   const [content, setContent] = useState(() => {
     const restoredContent = restoredStorage.draft?.content
       ?? (restoredStorage.document ? izzyDocumentToLegacyText(restoredStorage.document) : '')
-    // Remove the prototype's old seeded sample once; genuine drafts survive.
-    return restoredContent === sampleScript ? '' : restoredContent
+    return restoredContent
   })
   const [session, setSession] = useState<SessionCredentials | null>(() => {
     try { return loadEditorSession(window.sessionStorage) } catch { return null }
@@ -390,6 +389,7 @@ export function StartPage() {
         <div className="editor-label">
           <label htmlFor="script-input">YOUR SCRIPT</label>
           <div className="editor-meta">
+            {!content.trim() && <button type="button" disabled={isCreating} onClick={() => { setContent(sampleScript); setPreviewPauseVersion(version => version + 1); textareaRef.current?.focus() }}>Use example</button>}
             <button type="button" disabled={isCreating} onClick={() => fileInputRef.current?.click()}><Upload size={13} />Upload text</button>
           </div>
         </div>
@@ -414,7 +414,7 @@ export function StartPage() {
               setPreviewPauseVersion((version) => version + 1)
             }}
             onFocus={() => setPreviewPauseVersion((version) => version + 1)}
-            placeholder={isDraggingFile ? 'Release to load your script.' : 'Paste your script here.'}
+            placeholder={isDraggingFile ? 'Release to load your script.' : sampleScript}
             aria-label="Teleprompter script"
             aria-describedby="editor-input-help editor-feedback"
             spellCheck="true"
@@ -445,7 +445,7 @@ export function StartPage() {
         <a className="entry-pro-link" href="/pro" onClick={() => { draftWriter.flush(); track('homepage_pro_clicked', { source: 'hero' }) }}>Explore Izzy Pro <ArrowUpRight size={15} /></a>
         </div>
       </div>
-      <LivePreview content={content} pauseVersion={previewPauseVersion} />
+      <LivePreview example content={content} pauseVersion={previewPauseVersion} />
       </section>
       {storageWarning}
       <HomeStory /><PublicFooter beforeNavigate={() => draftWriter.flush()} />

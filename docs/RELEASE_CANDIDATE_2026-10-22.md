@@ -60,11 +60,13 @@ recovery checks now follow 0.56, native craft sliders and the compact layout.
 
 Hosted acceptance uses `ops/releases/seed-launch-fixture.exs`, the private
 temporary JSON it creates, and `scripts/verify-launch-hosted.mjs`. Staging alone
-may seed a visibly synthetic test-environment grant to exercise all fourteen
-skins. Production uses a free synthetic account, creates no invoices or grants,
+may seed a synthetic grant in staging to exercise all fourteen skins. Production uses a free synthetic account, creates no invoices or grants,
 and sends no email. The cleanup script refuses accounts outside its reserved
-fixture namespace and refuses any production payment attempts. Credentials and
-capability links must never enter terminal output or screenshots.
+fixture namespace and refuses any real-provider attempts. Synthetic staging
+grants use the production entitlement environment with the reserved
+`release-fixture` provider; they are never provider transactions and are removed
+after acceptance. Credentials and capability links must never enter terminal
+output or screenshots.
 
 Enable feedback before the public acceptance pass. Keep production metrics off
 during synthetic checks, remove fixtures/end takes, then enable the already
@@ -97,3 +99,12 @@ non-Chromium trusted-touch skips), plus all three 320 px fallback-font checks.
 One earlier WebKit admission-click timeout passed five isolated repetitions;
 no full-suite pass is inferred from those repetitions. Required CI must pass
 for the resulting commit before promotion.
+
+The operator acceptance flow also passed against the local running application:
+actual account sign-in without mail, private feedback, all fourteen entitled
+remotes with real paired playback, exact speed, large wheel, full-script save,
+semantic anchor and account preference restoration in a new take. Its synthetic
+account/grant/feedback and temporary login file were removed afterward. The
+operator seed now explicitly restricts synthetic Pro grants to the staging
+origin or a separately opted-in disposable loopback origin; production acceptance
+must use a free fixture. This does not simulate or certify a provider charge.

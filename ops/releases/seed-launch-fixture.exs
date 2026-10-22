@@ -6,12 +6,15 @@ result =
   Teleprompter.Release.commerce(fn ->
     alias Teleprompter.{Accounts, Repo, Commerce}
 
+    pro = System.get_env("IZZY_RELEASE_FIXTURE_PRO") == "1"
+    local = System.get_env("IZZY_RELEASE_FIXTURE_LOCAL") == "1" and Accounts.origin() == "http://127.0.0.1:4173"
+    if pro and Accounts.origin() != "https://staging.izzyprompter.com" and not local,
+      do: raise("Synthetic Pro acceptance is restricted to staging or an explicit disposable local origin.")
+
     user =
       Repo.insert!(%Accounts.User{
         email: "release-probe-" <> Ecto.UUID.generate() <> "@example.invalid"
       })
-
-    pro = System.get_env("IZZY_RELEASE_FIXTURE_PRO") == "1"
 
     if pro do
       intent = Repo.insert!(%Commerce.Intent{user_id: user.id})
@@ -20,7 +23,7 @@ result =
         Repo.insert!(%Commerce.Attempt{
           intent_id: intent.id,
           provider: "release-fixture",
-          environment: "test",
+          environment: "production",
           amount_minor: 2900,
           currency: "USD",
           status: "paid"

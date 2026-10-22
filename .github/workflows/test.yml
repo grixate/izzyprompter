@@ -36,6 +36,18 @@ jobs:
       - run: npm ci
       - run: mix local.hex --force && mix local.rebar --force && mix deps.get
         working-directory: api
+      - name: Use the primary Ubuntu package mirror
+        run: |
+          sudo python3 - <<'PYTHON'
+          from pathlib import Path
+          sources = Path('/etc/apt/sources.list.d')
+          for path in [Path('/etc/apt/sources.list'), *sources.glob('*.sources'), *sources.glob('*.list')]:
+              if path.is_file():
+                  original = path.read_text()
+                  updated = original.replace('azure.archive.ubuntu.com', 'archive.ubuntu.com')
+                  if updated != original:
+                      path.write_text(updated)
+          PYTHON
       - run: npx playwright install --with-deps chromium firefox webkit
       - run: npm test
       - run: npm run test:security-deps
@@ -62,6 +74,18 @@ jobs:
           node-version: '24'
           cache: npm
       - run: npm ci
+      - name: Use the primary Ubuntu package mirror
+        run: |
+          sudo python3 - <<'PYTHON'
+          from pathlib import Path
+          sources = Path('/etc/apt/sources.list.d')
+          for path in [Path('/etc/apt/sources.list'), *sources.glob('*.sources'), *sources.glob('*.list')]:
+              if path.is_file():
+                  original = path.read_text()
+                  updated = original.replace('azure.archive.ubuntu.com', 'archive.ubuntu.com')
+                  if updated != original:
+                      path.write_text(updated)
+          PYTHON
       - run: npx playwright install --with-deps chromium
       - run: docker build --tag izzy:ci .
       - run: npm run test:container
@@ -139,6 +163,18 @@ jobs:
         working-directory: api
       - run: mix test
         working-directory: api
+      - name: Use the primary Ubuntu package mirror
+        run: |
+          sudo python3 - <<'PYTHON'
+          from pathlib import Path
+          sources = Path('/etc/apt/sources.list.d')
+          for path in [Path('/etc/apt/sources.list'), *sources.glob('*.sources'), *sources.glob('*.list')]:
+              if path.is_file():
+                  original = path.read_text()
+                  updated = original.replace('azure.archive.ubuntu.com', 'archive.ubuntu.com')
+                  if updated != original:
+                      path.write_text(updated)
+          PYTHON
       - run: npx playwright install --with-deps chromium firefox webkit
       - run: npm run test:browsers
         env:

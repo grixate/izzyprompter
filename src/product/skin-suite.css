@@ -1,0 +1,128 @@
+/* The selected fourteen: appearance varies; nominal time and speed stay shared. */
+.skin-face .readout-craft .segment-time {display:block;width:190px;max-width:100%;height:auto;fill:currentColor;}
+.skin-face .printed-time::before,.skin-face .clock-number::before {content:attr(data-value);}
+.skin-face .printed-time {font-weight:400;}
+.skin-face .clock-faces {display:block;width:150px;max-width:100%;height:auto;fill:currentColor;}
+.skin-face .clock-number {display:block;font:15px monospace;margin-top:8px;text-align:center;}
+.skin-face.skin--field .readout--field {background:linear-gradient(#c5cbb8,#d7dccb);border:1px solid #8a9380;border-radius:2px;box-shadow:inset 0 2px 3px #4a574a44,0 1px #f6faee;color:#273428;padding:10px 12px;}
+.skin-face.skin--field .readout--field :is(.display-kicker,.state-label,.timecode) {color:#273428;}
+.skin-face.skin--signal .readout--signal {background:#24291f;border:3px solid #a65831;border-radius:7px;box-shadow:inset 0 2px 5px #0007,0 1px #ffc292;color:#f6dfab;}
+.skin-face.skin--signal .readout--signal :is(.display-kicker,.state-label,.timecode) {color:#f6dfab;}
+.skin-face.skin--vector .readout--vector {border:0;border-left:2px solid #729e61;border-radius:0;background:transparent;box-shadow:none;padding:4px 12px;color:#c2f7a4;}
+.skin-face.skin--vector .readout--vector :is(.timecode,.state-label,.display-kicker) {color:#c2f7a4;}
+.skin-face.skin--vector .readout--vector .timecode {text-shadow:0 0 8px #9be57644;font:38px/1 monospace;}
+.skin-face.skin--cartridge .readout--cartridge {border:1px solid #86818e;border-radius:2px;background:#e5e1e8;box-shadow:inset 0 0 0 3px #c7c2d0;color:#373658;padding:12px;}
+.skin-face.skin--cartridge .readout--cartridge :is(.timecode,.state-label,.display-kicker) {color:#373658;}
+.skin-face.skin--switchboard .readout--switchboard {padding:10px 14px;background:#e9dbb7;border:2px solid #ad9d73;border-radius:13px;color:#244435;box-shadow:inset 0 1px #fff0c9,0 2px #192f23;}
+.skin-face.skin--switchboard .readout--switchboard :is(.timecode,.state-label,.display-kicker,.counter-fraction,.counter-colon) {color:#244435;}
+.skin-face.skin--switchboard .counter-drum {color:#244435;background:#f4e9cd;border-color:#ac9e77;box-shadow:inset 0 1px 2px #665b3633;}
+.skin-face.skin--correspondent .readout--correspondent {border:1px solid #ab8c50;border-radius:1px;background:#171e17;box-shadow:inset 0 0 0 4px #353d2a;padding:13px;color:#f0dfb6;}
+.skin-face.skin--correspondent .readout--correspondent::before {content:"";pointer-events:none;position:absolute;inset:6px;border:1px solid #c9b780;clip-path:polygon(0 0,25% 0,25% 3%,3% 3%,3% 25%,0 25%,0 0,100% 0,100% 25%,97% 25%,97% 3%,75% 3%,75% 0,100% 0,100% 100%,75% 100%,75% 97%,97% 97%,97% 75%,100% 75%,100% 100%,0 100%,0 75%,3% 75%,3% 97%,25% 97%,25% 100%,0 100%);}
+.skin-face.skin--correspondent .readout--correspondent :is(.timecode,.state-label,.display-kicker,.counter-fraction,.counter-colon) {color:#f0dfb6;}
+.skin-face.skin--correspondent .counter-drum {background:#192318;border-color:#736c46;color:#f4e8c8;box-shadow:inset 0 1px 4px #0009;}
+.skin-face.skin--foundry .readout--foundry {border:3px solid #a08a57;border-radius:7px;background:linear-gradient(#645839,#45452c);box-shadow:inset 0 2px 4px #1b2b1c77,0 2px #37412a;color:#f7e4b7;}
+.skin-face.skin--foundry .readout--foundry :is(.timecode,.state-label,.display-kicker,.counter-fraction,.counter-colon) {color:#f7e4b7;}
+.skin-face.skin--foundry .counter-drum {background:linear-gradient(#202a1e,#484a31 50%,#1d2a1d);color:#f8ebcb;}
+.skin-face.skin--observatory .readout--observatory {padding:10px 14px;border:1px solid #a49771;background:#23354c;border-radius:4px;box-shadow:inset 0 0 0 3px #14263b;color:#e9d7ac;}
+.skin-face.skin--observatory .readout--observatory :is(.timecode,.state-label,.display-kicker) {color:#e9d7ac;}
+.skin-face.skin--ivory .readout--ivory {border:0;border-bottom:1px solid #a7ac96;border-radius:0;background:transparent;box-shadow:none;padding:3px 0 9px;color:#3c4433;}
+.skin-face.skin--ivory .readout--ivory :is(.timecode,.state-label,.display-kicker) {color:#3c4433;}
+.skin-face.skin--ivory .readout--ivory .timecode {font:400 42px/1.05 'Avenir Next Condensed',sans-serif;letter-spacing:-.04em;}
+.skin-face.skin--graphite .readout--graphite {border:1px solid #637456;background:#1c2716;box-shadow:inset 0 2px 5px #0008;padding:10px 14px;border-radius:8px;color:#e6eddc;}
+.skin-face.skin--graphite .readout--graphite :is(.timecode,.state-label,.display-kicker) {color:#e6eddc;}
+.skin-face.skin--graphite .printed-time::before {content:attr(data-minutes) ' m';display:block;}
+.skin-face.skin--graphite .printed-time::after {content:attr(data-seconds) ' s';display:block;}
+.skin-face.skin--graphite .timecode {font:25px/1.15 monospace;}
+.skin-face.skin--graphite .readout-units {display:none;}
+.skin-face.skin--original .readout--original {border:0;border-radius:0;background:transparent;box-shadow:none;padding:5px 0;color:#e2e7d8;}
+.skin-face.skin--original .readout--original :is(.timecode,.state-label,.display-kicker) {color:#e2e7d8;}
+.skin-face.skin--original .readout--original .timecode {font:300 41px/1 'Avenir Next Condensed',sans-serif;}
+
+/* Relative rotary controls: a large stable hit surface, with an explicit exact value. */
+:is(.standalone-remote,.lab-device,.remote-instrument).skin-face .speed-module.speed-kind--dial {grid-template-columns:minmax(0,1fr) 112px;grid-template-areas:"title track" "value track" "help help";}
+.skin-face .speed-kind--dial .speed-track {width:112px;height:104px;}
+.skin-face .speed-kind--dial .speed-value {justify-content:flex-start;}
+.skin-face .speed-kind--dial .speed-rail {inset:3px;aspect-ratio:1;background:repeating-conic-gradient(from -135deg,currentColor 0 1deg,transparent 1deg 15deg);border-radius:50%;}
+.skin-face .speed-kind--dial .speed-rail::before {content:"";position:absolute;inset:6px;border-radius:50%;background:var(--bank-face,#243226);}
+.skin-face .speed-kind--dial .speed-handle {width:65px;height:65px;left:50%;top:50%;border-radius:50%;border:1px solid var(--key-edge);background:var(--key-face);box-shadow:inset 0 1px var(--key-light),0 3px 5px #0005;transform:translate(-50%,-50%) rotate(var(--speed-angle));}
+.skin-face .speed-kind--dial .speed-handle::after {content:"";position:absolute;top:5px;left:calc(50% - 1.5px);width:3px;height:13px;border-radius:2px;background:var(--key-ink);}
+.skin-face .speed-kind--dial .speed-marks {top:0;bottom:0;left:-8px;right:-8px;}
+.skin-face .speed-kind--dial .speed-marks b {position:absolute;font-size:7px;}
+.skin-face .speed-kind--dial .speed-marks b:nth-child(1) {left:0;bottom:0;}
+.skin-face .speed-kind--dial .speed-marks b:nth-child(2) {left:50%;top:-10px;transform:translateX(-50%);}
+.skin-face .speed-kind--dial .speed-marks b:nth-child(3) {right:0;bottom:0;}
+.skin-face .speed--signal {padding:10px 14px;border:1px solid #b4643a;background:#df8550;border-radius:7px;}
+.skin-face .speed--signal .speed-rail {background:none;border-top:2px solid #76472d;border-left:2px solid #76472d;border-right:2px solid #76472d;}
+.skin-face .speed--signal .speed-rail::before {inset:14px;background:#b36f45;}
+.skin-face .speed--signal .speed-handle {width:7px;height:42px;left:50%;top:70%;border-radius:4px;background:linear-gradient(90deg,#777f6d,#e4dfc8,#777f6d);border:1px solid #6c6044;transform:translate(-50%,-100%) rotate(var(--lever-angle));transform-origin:50% 100%;}
+.skin-face .speed--signal .speed-handle::after {left:-8px;top:-10px;width:21px;height:23px;border-radius:7px;background:linear-gradient(#f4e8c9,#c6b88f);border:1px solid #9b835e;}
+.skin-face .speed--vector .speed-rail {color:#9acb7d;}
+.skin-face .speed--vector .speed-handle {background:radial-gradient(circle at 33% 25%,#355c39,#112b19);border-color:#7a9a65;}
+.skin-face .speed--ivory .speed-handle {background:radial-gradient(circle at 33% 20%,#fffdf2,#d0d4be);border-color:#adb49a;}
+.skin-face .speed--ivory .speed-handle::after {background:#cd653c;}
+.skin-face .speed--correspondent .speed-handle {background:repeating-conic-gradient(#605940 0 4deg,#baa16b 4deg 6deg,#353b29 6deg 10deg);border-color:#b39d64;}
+.skin-face .speed--correspondent .speed-handle::before {content:"";position:absolute;inset:7px;background:#343a29;border-radius:50%;border:1px solid #9e8b58;}
+.skin-face .speed--correspondent .speed-handle::after {z-index:1;background:#e0cc94;}
+
+.skin-face .speed-kind--roller .speed-track {height:76px;}
+.skin-face .speed-kind--roller .speed-rail {inset:10px 22px 18px;border-radius:5px;background:#394230;box-shadow:inset 0 3px 5px #0007;}
+.skin-face .speed-kind--roller .speed-handle {left:50%;width:130px;height:42px;border-radius:9px;background:repeating-linear-gradient(90deg,#aab5a0 0 3px,#e0e4d7 3px 4px,#6a7861 4px 6px);background-position:var(--roller-offset) 0;border:1px solid #5c6a52;box-shadow:inset 0 3px 3px #f3f6e5,0 2px 3px #0005;}
+.skin-face .speed-kind--roller .speed-handle::after {content:"";position:absolute;left:50%;top:-9px;border-left:4px solid transparent;border-right:4px solid transparent;border-top:6px solid currentColor;}
+.skin-face .speed-kind--roller .speed-marks {top:calc(100% + 7px);}
+.skin-face .speed--field .speed-rail {background:#a3af98;}
+.skin-face .speed--switchboard .speed-handle {width:100px;background:repeating-linear-gradient(90deg,#485641 0 3px,#6d7458 3px 4px,#273b2a 4px 7px);border-color:#1c3826;box-shadow:inset 0 2px #9da17d,0 2px 4px #0008;}
+
+:is(.standalone-remote,.lab-device,.remote-instrument).skin-face .speed-module:is(.speed--cartridge,.speed--graphite) {grid-template-columns:minmax(0,1fr) 85px;grid-template-areas:"title track" "value track" "help help";}
+.skin-face :is(.speed--cartridge,.speed--graphite) .speed-value {justify-content:flex-start;}
+.skin-face :is(.speed--cartridge,.speed--graphite) .speed-track {height:112px;width:85px;}
+.skin-face :is(.speed--cartridge,.speed--graphite) .speed-track input {writing-mode:vertical-lr;direction:rtl;cursor:ns-resize;}
+.skin-face :is(.speed--cartridge,.speed--graphite) input::-webkit-slider-runnable-track {width:44px;height:100%;}
+.skin-face :is(.speed--cartridge,.speed--graphite) input::-moz-range-track {width:44px;height:100%;}
+.skin-face :is(.speed--cartridge,.speed--graphite) .speed-rail {inset:22px 32px;border-radius:3px;background:#77798b;box-shadow:inset 0 2px 3px #1c254777;}
+.skin-face :is(.speed--cartridge,.speed--graphite) .speed-handle {left:50%;top:var(--speed-offset);width:45px;height:37px;border-radius:3px;background:repeating-linear-gradient(#cfc0e3 0 4px,#a99cc2 4px 6px);border:1px solid #87739f;box-shadow:inset 0 1px #f4e9ff,0 3px #6b607f;}
+.skin-face :is(.speed--cartridge,.speed--graphite) .speed-marks {left:auto;right:-25px;top:0;bottom:0;flex-direction:column-reverse;}
+.skin-face .speed--cartridge {padding:12px 16px;border:1px solid #9993a4;border-radius:5px;background:linear-gradient(#d5d0dc,#b9b4c4);}
+.skin-face .speed--graphite .speed-rail {background:#172111;border-radius:15px;}
+.skin-face .speed--graphite .speed-handle {border-radius:45%;background:radial-gradient(ellipse at 50% 75%,#667257,#26351c);border-color:#78886b;box-shadow:inset 0 3px 5px #17250d,0 1px #94a47d55;}
+
+.skin-face .speed--foundry .speed-rail {background:repeating-linear-gradient(105deg,#b7a06d 0 2px,#52583b 2px 4px);height:9px;top:26px;bottom:auto;border-radius:4px;}
+.skin-face .speed--foundry .speed-handle {width:36px;height:30px;border-radius:4px;background:linear-gradient(#b19762,#6f6745);border:2px solid #536044;box-shadow:inset 0 2px #dfc28c,0 3px 4px #172b1d88;}
+.skin-face .speed--foundry .speed-handle::after {content:"";position:absolute;inset:7px 10px;border:2px solid #3a5038;border-radius:50%;}
+.skin-face .speed--foundry .speed-marks {top:calc(100% + 15px);}
+.skin-face .speed--observatory .speed-rail {background:repeating-linear-gradient(90deg,#a9996f 0 1px,transparent 1px 7px);}
+.skin-face .speed--observatory .speed-rail::before {content:"";position:absolute;left:0;right:0;top:15px;height:6px;background:repeating-linear-gradient(110deg,#b49b66 0 2px,#5f654c 2px 4px);border-radius:4px;}
+.skin-face .speed--observatory .speed-handle {width:24px;height:32px;background:repeating-linear-gradient(0deg,#ccba84 0 3px,#8c805e 3px 5px);border:1px solid #dfca93;border-radius:3px;box-shadow:0 2px 3px #101e30;}
+.skin-face .speed--original .speed-rail {background:#172211;height:5px;top:27px;bottom:auto;}
+.skin-face .speed--original .speed-handle {width:38px;height:22px;border:1px solid #83926d;border-radius:2px;background:linear-gradient(#738161,#3c4d30);box-shadow:inset 0 1px #afbc97,0 2px 3px #0d190d;}
+.skin-face .speed--original .speed-marks {top:18px;}
+
+/* No tiny clips or anonymous inherited grid tracks in collection miniatures. */
+.remote-instrument .readout-craft .segment-time {width:100%;}
+.remote-instrument .readout-craft .clock-faces {width:90px;}
+.remote-instrument .clock-number {font-size:10px;}
+.remote-instrument .speed-help {display:none;}
+.remote-instrument .speed-kind--dial .speed-track {width:72px;height:72px;}
+.remote-instrument .speed-kind--dial .speed-handle {width:46px;height:46px;}
+.remote-instrument.skin-face .speed-module.speed-kind--dial {grid-template-columns:minmax(0,1fr) 72px;grid-template-areas:"title track" "value track";}
+.remote-instrument .speed-kind--roller .speed-handle {width:65px;height:30px;}
+.remote-instrument .readout--graphite .timecode {font-size:17px;}
+.skin-face.skin--cartridge .readout--cartridge::before {content:"";position:absolute;left:13%;right:13%;top:-13px;height:6px;border-top:2px solid #a7a3a5;border-bottom:2px solid #ede7da;border-radius:1px;background:linear-gradient(#252b3e,#575b6e);box-shadow:0 -2px #d5d1c7;pointer-events:none;}
+.skin-face.skin--correspondent .transport-button {border-width:3px;box-shadow:inset 0 1px #f4e3b3,0 0 0 2px #3c4431,0 3px 5px #0c1b0d99;}
+/* Leave room for the complete live instrument on a normal portrait phone. */
+.standalone-remote.skin-face.skin--cartridge .jog-wheel {width:min(65vw,28dvh,250px);}
+.standalone-remote.skin-face.skin--cartridge .speed-track {height:100px;}
+.standalone-remote.skin-face.skin--observatory .jog-wheel {width:min(65vw,28dvh,250px);}
+.standalone-remote.skin-face.skin--observatory .clock-faces {width:112px;}
+.standalone-remote.skin-face.skin--observatory .readout--observatory {gap:5px 12px;padding:8px 12px;}
+
+/* A real center anchor survives the minimum touch size on narrow wheels. */
+.standalone-remote.skin-face:is(.skin--cartridge,.skin--observatory,.skin--signal) .transport-button {inset:auto;left:50%;top:50%;width:max(45px,28%);height:max(45px,28%);transform:translate(-50%,-50%);transition:none;}
+.standalone-remote.skin-face:is(.skin--cartridge,.skin--observatory,.skin--signal) .transport-button:active {transform:translate(-50%,-50%) translateY(1px) scale(.97);}
+.standalone-remote.skin-face.skin--signal .jog-wheel {width:min(65vw,28dvh,250px);}
+.remote-instrument .speed--signal .speed-handle {width:7px;height:30px;}
+.remote-instrument .speed--signal .speed-handle::after {width:16px;height:18px;left:-5px;top:-7px;}
+.remote-instrument.skin-face.skin--vector .readout--vector .timecode {font-size:clamp(13px,10cqw,26px);}
+.remote-instrument.skin-face .readout-craft .timecode {font-size:clamp(13px,10cqw,26px);}
+.remote-instrument .readout-craft .counter-fraction {font-size:8px;}
+.remote-instrument .readout-craft .counter-digits {gap:1px;}
+.remote-instrument .readout-craft .timecode:has(.counter-digits) {gap:2px;}

@@ -10,8 +10,23 @@ defmodule Teleprompter.Application do
     database =
       if Application.get_env(:teleprompter, :accounts_enabled), do: [Teleprompter.Repo], else: []
 
+    product_workers =
+      if Application.get_env(:teleprompter, :accounts_enabled) do
+        if(Application.get_env(:teleprompter, :feedback_enabled, false),
+          do: [Teleprompter.FeedbackMaintenance],
+          else: []
+        ) ++
+          if(Application.get_env(:teleprompter, :product_metrics_enabled, false),
+            do: [Teleprompter.Metrics],
+            else: []
+          )
+      else
+        []
+      end
+
     children =
       database ++
+        product_workers ++
         [
           TeleprompterWeb.Telemetry,
           {Teleprompter.Diagnostics, name: Teleprompter.Diagnostics},

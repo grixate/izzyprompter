@@ -1,6 +1,6 @@
 defmodule Teleprompter.Product do
   @moduledoc "Public product facts and the server-owned price used by new checkout."
-  @skins ~w(original field graphite ivory signal groove glacier oxide switchboard vector cartridge aperture correspondent foundry inox airframe)
+  @skins ~w(original ivory field graphite signal groove switchboard vector cartridge correspondent foundry clear arcade observatory)
   def skins, do: @skins
   def free_script_limit, do: 3
   def return_to(value) when value in ["/pro", "/skins"], do: value

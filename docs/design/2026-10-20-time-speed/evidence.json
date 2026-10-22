@@ -1,0 +1,96 @@
+{
+  "files": [
+    {
+      "path": "src/components/InstrumentTime.tsx",
+      "sha256": "1b7a303b02524ac839bd11604baccab5e46df2adb480915eed67542fe4f5a010"
+    },
+    {
+      "path": "src/components/InstrumentSpeed.tsx",
+      "sha256": "6cfd8e096329c079f20411b527d13c33b911fde87050597334149d77437e7f4b"
+    },
+    {
+      "path": "src/components/JogControls.tsx",
+      "sha256": "785ddac99d7e3ee4ab8eecbddf13993b4732552fac336591dd4960b6f130e174"
+    },
+    {
+      "path": "src/components/RemoteInstrument.tsx",
+      "sha256": "b4b36c17d02467af269de7b625c8cadf9eb284f22956d7d4bc99ac424e248d5d"
+    },
+    {
+      "path": "src/pages/RemotePage.tsx",
+      "sha256": "65d5750db77a88e744053a00423e4842ba8828a55728bb37f98d2875f8ce464b"
+    },
+    {
+      "path": "src/pages/JogLabPage.tsx",
+      "sha256": "75bd97cc22f8a8d13b841d1cbfcf0a745a160a738812bf4b552f5964125de63a"
+    },
+    {
+      "path": "src/product/skin-time-speed.css",
+      "sha256": "102fc04b92d889e355bffcd278095bac6a437ad319fb7df07046bd32c31b0036"
+    },
+    {
+      "path": "docs/design/2026-10-20-time-speed/references/clear-miniature.png",
+      "sha256": "778d5dfc4c9bf6ef99930722706f3e58569f32adc23a182532ad46fb508d0d18"
+    },
+    {
+      "path": "docs/design/2026-10-20-time-speed/references/gallery.png",
+      "sha256": "5ee5d8ed0488cb14ecc8cdbac916b559efbea37febf184149d886706f0bb3bc3"
+    },
+    {
+      "path": "docs/design/2026-10-20-time-speed/references/arcade.png",
+      "sha256": "ef47358550b470a4709e2abe5b56171e79cd2e7c25f0a7f895afc5f5a19dce09"
+    },
+    {
+      "path": "docs/design/2026-10-20-time-speed/references/clear-precision.png",
+      "sha256": "a3366e47f6f03e9ef9e8536d0c06483fe408b3d04ec6203caaaca4ab1f8ceb24"
+    },
+    {
+      "path": "docs/design/2026-10-20-time-speed/references/clear-running.png",
+      "sha256": "58ae7ee677178fef30aa04289404fa4c62fb5eae072a7c0d57e87d47d763d4a0"
+    },
+    {
+      "path": "docs/design/2026-10-20-time-speed/references/clear.png",
+      "sha256": "488cb37d555e9b2d8571cba3af805f2528a852c4ddcd8c42727455fbd56e03e7"
+    },
+    {
+      "path": "docs/design/2026-10-20-time-speed/references/comparison.jpg",
+      "sha256": "cd4a3128f862d1ddc975281cb9c438ffe20d1b9ab92e2f21e50d550a94fb9c15"
+    },
+    {
+      "path": "docs/design/2026-10-20-time-speed/references/groove-demo.png",
+      "sha256": "b6f5d9bf2a0c3e4755bc22263544d16245572dc206565828d5eabb824e6402ac"
+    },
+    {
+      "path": "docs/design/2026-10-20-time-speed/references/clear-demo.png",
+      "sha256": "db7ef76e17bf84c9a0edf0982b6cfb3e94ba19f3fb4de14311e67c48516b6df0"
+    },
+    {
+      "path": "docs/design/2026-10-20-time-speed/references/groove-running.png",
+      "sha256": "08fe4110e9ad95bcba265b0721c534c5a108179e3be66af856b41b1f5e978fad"
+    },
+    {
+      "path": "docs/design/2026-10-20-time-speed/references/arcade-precision.png",
+      "sha256": "a59f4e49a7d73ff72f7f28f4271aa17948145d1783bb074b2e92d7e1dc6ed8c4"
+    },
+    {
+      "path": "docs/design/2026-10-20-time-speed/references/groove.png",
+      "sha256": "1ae3fd1449e739453ddfca3439c40bec00c2d3d173c8da0b6e7a555e24069123"
+    },
+    {
+      "path": "docs/design/2026-10-20-time-speed/references/arcade-miniature.png",
+      "sha256": "cefee9c3ac17a169a422e6cd493674544195ef9583855b1870e464ca443899c7"
+    },
+    {
+      "path": "docs/design/2026-10-20-time-speed/references/groove-precision.png",
+      "sha256": "3a9a8b69ccc29ff4c678caa9ed2170963546b09a2d9f2cb29bbde0bb443f55ed"
+    },
+    {
+      "path": "docs/design/2026-10-20-time-speed/references/arcade-demo.png",
+      "sha256": "f2255531770891518b10e7974c0b9c8dc32e71ace785f4d6df75334c686418b5"
+    },
+    {
+      "path": "docs/design/2026-10-20-time-speed/references/groove-miniature.png",
+      "sha256": "f931ebd2f143638372fb8951b1031d0547e0b7ad51fe6c436f22ec36e0b08b40"
+    }
+  ]
+}

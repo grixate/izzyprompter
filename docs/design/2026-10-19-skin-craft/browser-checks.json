@@ -1,0 +1,1513 @@
+{
+  "stats": {
+    "startTime": "2026-10-19T05:47:41.944Z",
+    "duration": 458907.045,
+    "expected": 300,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "scope": "Readiness, library, product, mechanisms, entry preview, reading sync, quick edit and accessibility/recovery. Before final tape-distance rounding; focused final mechanics and CI verify the final source.",
+  "tests": [
+    {
+      "browser": "chromium",
+      "test": "remote wheel works by keyboard and exposes Play as a separate accessible control",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "display chrome remains visible while focused and speed shortcuts clamp safely",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "unavailable local storage offers a text-only backup and explicit retry without blocking creation",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "terminal recovery is modal and returns the in-memory script without a page reload",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "clipboard refusal exposes a selectable pairing link rather than claiming success",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "remote wheel works by keyboard and exposes Play as a separate accessible control",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "display chrome remains visible while focused and speed shortcuts clamp safely",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "unavailable local storage offers a text-only backup and explicit retry without blocking creation",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "terminal recovery is modal and returns the in-memory script without a page reload",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "clipboard refusal exposes a selectable pairing link rather than claiming success",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "remote wheel works by keyboard and exposes Play as a separate accessible control",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "display chrome remains visible while focused and speed shortcuts clamp safely",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "unavailable local storage offers a text-only backup and explicit retry without blocking creation",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "terminal recovery is modal and returns the in-memory script without a page reload",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "clipboard refusal exposes a selectable pairing link rather than claiming success",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "the empty preview stays blank, then plays your own words without creating a session",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "editing pauses the preview, shows your words, and preserves the draft",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "login opens account setup without blocking the guest flow",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "reduced motion keeps an empty preview paused",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "phone entry has no horizontal overflow and keeps setup before the preview",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "preview keeps the reading line and paired device proportions through responsive reflow",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "pause stops the wheel and words together; play resumes both",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "the empty preview stays blank, then plays your own words without creating a session",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "editing pauses the preview, shows your words, and preserves the draft",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "login opens account setup without blocking the guest flow",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "reduced motion keeps an empty preview paused",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "phone entry has no horizontal overflow and keeps setup before the preview",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "preview keeps the reading line and paired device proportions through responsive reflow",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "pause stops the wheel and words together; play resumes both",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "the empty preview stays blank, then plays your own words without creating a session",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "editing pauses the preview, shows your words, and preserves the draft",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "login opens account setup without blocking the guest flow",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "reduced motion keeps an empty preview paused",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "phone entry has no horizontal overflow and keeps setup before the preview",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "preview keeps the reading line and paired device proportions through responsive reflow",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "pause stops the wheel and words together; play resumes both",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "public offer, showroom and locked preview work without an account or checkout",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "offer changes are reflected everywhere; a failed response removes stale pricing",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "a guest upgrade preserves the skin through the safe sign-in destination",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "wheel focus stays outside the wheel; reduced motion stops previews and keyboard input still works",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "visible wheels move and offscreen showroom rotors suspend",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "every finish can be applied on an entitled remote without changing its controls",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "product surfaces fit 360px",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "product surfaces fit 390px",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "product surfaces fit 430px",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "product surfaces fit 768px",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "product surfaces fit 1280px",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "product surfaces fit 1440px",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "animated PRO materials stay contained throughout a complete turn",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "public navigation keeps distinct destinations and hides the library entry",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "public offer, showroom and locked preview work without an account or checkout",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "offer changes are reflected everywhere; a failed response removes stale pricing",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "a guest upgrade preserves the skin through the safe sign-in destination",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "wheel focus stays outside the wheel; reduced motion stops previews and keyboard input still works",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "visible wheels move and offscreen showroom rotors suspend",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "every finish can be applied on an entitled remote without changing its controls",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "product surfaces fit 360px",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "product surfaces fit 390px",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "product surfaces fit 430px",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "product surfaces fit 768px",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "product surfaces fit 1280px",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "product surfaces fit 1440px",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "animated PRO materials stay contained throughout a complete turn",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "public navigation keeps distinct destinations and hides the library entry",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "public offer, showroom and locked preview work without an account or checkout",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "offer changes are reflected everywhere; a failed response removes stale pricing",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "a guest upgrade preserves the skin through the safe sign-in destination",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "wheel focus stays outside the wheel; reduced motion stops previews and keyboard input still works",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "visible wheels move and offscreen showroom rotors suspend",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "every finish can be applied on an entitled remote without changing its controls",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "product surfaces fit 360px",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "product surfaces fit 390px",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "product surfaces fit 430px",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "product surfaces fit 768px",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "product surfaces fit 1280px",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "product surfaces fit 1440px",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "animated PRO materials stay contained throughout a complete turn",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "public navigation keeps distinct destinations and hides the library entry",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "typing is live on two displays, the editor, and another phone before Done",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "recovered offline draft never overwrites a correction from another phone",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "offline draft survives refresh and is sent only after explicit resume",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "an unsent phone edit with unavailable storage offers a backup without claiming reload recovery",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "typing is live on two displays, the editor, and another phone before Done",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "recovered offline draft never overwrites a correction from another phone",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "offline draft survives refresh and is sent only after explicit resume",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "an unsent phone edit with unavailable storage offers a backup without claiming reload recovery",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "typing is live on two displays, the editor, and another phone before Done",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "recovered offline draft never overwrites a correction from another phone",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "offline draft survives refresh and is sent only after explicit resume",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "an unsent phone edit with unavailable storage offers a backup without claiming reload recovery",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "phone navigation uses measured paragraphs through typography changes, rapid steps, and reload",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "only the primary display publishes position and its differently sized backup takes over",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "phone navigation uses measured paragraphs through typography changes, rapid steps, and reload",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "only the primary display publishes position and its differently sized backup takes over",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "phone navigation uses measured paragraphs through typography changes, rapid steps, and reload",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "only the primary display publishes position and its differently sized backup takes over",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "remote skin library fits and keeps playback at 360 \u00d7 640",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "remote skin library fits and keeps playback at 390 \u00d7 844",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "remote skin library fits and keeps playback at 844 \u00d7 390",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "remote skin library fits and keeps playback at 1280 \u00d7 900",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "locked skins stay in the session and storage failure leaves the library recoverable",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "keyboard focus stays inside the library; closing during a selection is safe",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "remote skin library fits and keeps playback at 360 \u00d7 640",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "remote skin library fits and keeps playback at 390 \u00d7 844",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "remote skin library fits and keeps playback at 844 \u00d7 390",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "remote skin library fits and keeps playback at 1280 \u00d7 900",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "locked skins stay in the session and storage failure leaves the library recoverable",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "keyboard focus stays inside the library; closing during a selection is safe",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "remote skin library fits and keeps playback at 360 \u00d7 640",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "remote skin library fits and keeps playback at 390 \u00d7 844",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "remote skin library fits and keeps playback at 844 \u00d7 390",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "remote skin library fits and keeps playback at 1280 \u00d7 900",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "locked skins stay in the session and storage failure leaves the library recoverable",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "keyboard focus stays inside the library; closing during a selection is safe",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "Original: real paired transport, editing and recovery",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "Original: responsive controls, keyboard focus and reduced motion",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "Orbit: real paired transport, editing and recovery",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "Orbit: responsive controls, keyboard focus and reduced motion",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "Field reel: real paired transport, editing and recovery",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "Field reel: responsive controls, keyboard focus and reduced motion",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "Thumbprint: real paired transport, editing and recovery",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "Thumbprint: responsive controls, keyboard focus and reduced motion",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "Signal: real paired transport, editing and recovery",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "Signal: responsive controls, keyboard focus and reduced motion",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "Groove: real paired transport, editing and recovery",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "Groove: responsive controls, keyboard focus and reduced motion",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "Glacier: real paired transport, editing and recovery",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "Glacier: responsive controls, keyboard focus and reduced motion",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "Bakelite: real paired transport, editing and recovery",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "Bakelite: responsive controls, keyboard focus and reduced motion",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "Switchboard: real paired transport, editing and recovery",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "Switchboard: responsive controls, keyboard focus and reduced motion",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "Vector: real paired transport, editing and recovery",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "Vector: responsive controls, keyboard focus and reduced motion",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "Cartridge: real paired transport, editing and recovery",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "Cartridge: responsive controls, keyboard focus and reduced motion",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "Aperture: real paired transport, editing and recovery",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "Aperture: responsive controls, keyboard focus and reduced motion",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "Correspondent: real paired transport, editing and recovery",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "Correspondent: responsive controls, keyboard focus and reduced motion",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "Foundry: real paired transport, editing and recovery",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "Foundry: responsive controls, keyboard focus and reduced motion",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "Inox: real paired transport, editing and recovery",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "Inox: responsive controls, keyboard focus and reduced motion",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "Airframe: real paired transport, editing and recovery",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "Airframe: responsive controls, keyboard focus and reduced motion",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "Clear: real paired transport, editing and recovery",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "Clear: responsive controls, keyboard focus and reduced motion",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "Spool: real paired transport, editing and recovery",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "Spool: responsive controls, keyboard focus and reduced motion",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "Glaze: real paired transport, editing and recovery",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "Glaze: responsive controls, keyboard focus and reduced motion",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "Pop: real paired transport, editing and recovery",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "Pop: responsive controls, keyboard focus and reduced motion",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "Moss: real paired transport, editing and recovery",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "Moss: responsive controls, keyboard focus and reduced motion",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "Mono: real paired transport, editing and recovery",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "Mono: responsive controls, keyboard focus and reduced motion",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "Loom: real paired transport, editing and recovery",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "Loom: responsive controls, keyboard focus and reduced motion",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "Arcade: real paired transport, editing and recovery",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "Arcade: responsive controls, keyboard focus and reduced motion",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "Observatory: real paired transport, editing and recovery",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "Observatory: responsive controls, keyboard focus and reduced motion",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "Rally: real paired transport, editing and recovery",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "Rally: responsive controls, keyboard focus and reduced motion",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "every finish can be selected during real playback and keeps a truthful readout",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "Original: real paired transport, editing and recovery",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "Original: responsive controls, keyboard focus and reduced motion",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "Orbit: real paired transport, editing and recovery",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "Orbit: responsive controls, keyboard focus and reduced motion",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "Field reel: real paired transport, editing and recovery",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "Field reel: responsive controls, keyboard focus and reduced motion",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "Thumbprint: real paired transport, editing and recovery",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "Thumbprint: responsive controls, keyboard focus and reduced motion",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "Signal: real paired transport, editing and recovery",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "Signal: responsive controls, keyboard focus and reduced motion",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "Groove: real paired transport, editing and recovery",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "Groove: responsive controls, keyboard focus and reduced motion",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "Glacier: real paired transport, editing and recovery",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "Glacier: responsive controls, keyboard focus and reduced motion",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "Bakelite: real paired transport, editing and recovery",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "Bakelite: responsive controls, keyboard focus and reduced motion",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "Switchboard: real paired transport, editing and recovery",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "Switchboard: responsive controls, keyboard focus and reduced motion",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "Vector: real paired transport, editing and recovery",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "Vector: responsive controls, keyboard focus and reduced motion",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "Cartridge: real paired transport, editing and recovery",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "Cartridge: responsive controls, keyboard focus and reduced motion",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "Aperture: real paired transport, editing and recovery",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "Aperture: responsive controls, keyboard focus and reduced motion",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "Correspondent: real paired transport, editing and recovery",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "Correspondent: responsive controls, keyboard focus and reduced motion",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "Foundry: real paired transport, editing and recovery",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "Foundry: responsive controls, keyboard focus and reduced motion",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "Inox: real paired transport, editing and recovery",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "Inox: responsive controls, keyboard focus and reduced motion",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "Airframe: real paired transport, editing and recovery",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "Airframe: responsive controls, keyboard focus and reduced motion",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "Clear: real paired transport, editing and recovery",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "Clear: responsive controls, keyboard focus and reduced motion",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "Spool: real paired transport, editing and recovery",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "Spool: responsive controls, keyboard focus and reduced motion",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "Glaze: real paired transport, editing and recovery",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "Glaze: responsive controls, keyboard focus and reduced motion",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "Pop: real paired transport, editing and recovery",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "Pop: responsive controls, keyboard focus and reduced motion",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "Moss: real paired transport, editing and recovery",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "Moss: responsive controls, keyboard focus and reduced motion",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "Mono: real paired transport, editing and recovery",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "Mono: responsive controls, keyboard focus and reduced motion",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "Loom: real paired transport, editing and recovery",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "Loom: responsive controls, keyboard focus and reduced motion",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "Arcade: real paired transport, editing and recovery",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "Arcade: responsive controls, keyboard focus and reduced motion",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "Observatory: real paired transport, editing and recovery",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "Observatory: responsive controls, keyboard focus and reduced motion",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "Rally: real paired transport, editing and recovery",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "Rally: responsive controls, keyboard focus and reduced motion",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "every finish can be selected during real playback and keeps a truthful readout",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "Original: real paired transport, editing and recovery",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "Original: responsive controls, keyboard focus and reduced motion",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "Orbit: real paired transport, editing and recovery",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "Orbit: responsive controls, keyboard focus and reduced motion",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "Field reel: real paired transport, editing and recovery",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "Field reel: responsive controls, keyboard focus and reduced motion",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "Thumbprint: real paired transport, editing and recovery",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "Thumbprint: responsive controls, keyboard focus and reduced motion",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "Signal: real paired transport, editing and recovery",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "Signal: responsive controls, keyboard focus and reduced motion",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "Groove: real paired transport, editing and recovery",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "Groove: responsive controls, keyboard focus and reduced motion",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "Glacier: real paired transport, editing and recovery",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "Glacier: responsive controls, keyboard focus and reduced motion",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "Bakelite: real paired transport, editing and recovery",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "Bakelite: responsive controls, keyboard focus and reduced motion",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "Switchboard: real paired transport, editing and recovery",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "Switchboard: responsive controls, keyboard focus and reduced motion",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "Vector: real paired transport, editing and recovery",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "Vector: responsive controls, keyboard focus and reduced motion",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "Cartridge: real paired transport, editing and recovery",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "Cartridge: responsive controls, keyboard focus and reduced motion",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "Aperture: real paired transport, editing and recovery",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "Aperture: responsive controls, keyboard focus and reduced motion",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "Correspondent: real paired transport, editing and recovery",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "Correspondent: responsive controls, keyboard focus and reduced motion",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "Foundry: real paired transport, editing and recovery",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "Foundry: responsive controls, keyboard focus and reduced motion",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "Inox: real paired transport, editing and recovery",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "Inox: responsive controls, keyboard focus and reduced motion",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "Airframe: real paired transport, editing and recovery",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "Airframe: responsive controls, keyboard focus and reduced motion",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "Clear: real paired transport, editing and recovery",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "Clear: responsive controls, keyboard focus and reduced motion",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "Spool: real paired transport, editing and recovery",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "Spool: responsive controls, keyboard focus and reduced motion",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "Glaze: real paired transport, editing and recovery",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "Glaze: responsive controls, keyboard focus and reduced motion",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "Pop: real paired transport, editing and recovery",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "Pop: responsive controls, keyboard focus and reduced motion",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "Moss: real paired transport, editing and recovery",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "Moss: responsive controls, keyboard focus and reduced motion",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "Mono: real paired transport, editing and recovery",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "Mono: responsive controls, keyboard focus and reduced motion",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "Loom: real paired transport, editing and recovery",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "Loom: responsive controls, keyboard focus and reduced motion",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "Arcade: real paired transport, editing and recovery",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "Arcade: responsive controls, keyboard focus and reduced motion",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "Observatory: real paired transport, editing and recovery",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "Observatory: responsive controls, keyboard focus and reduced motion",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "Rally: real paired transport, editing and recovery",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "Rally: responsive controls, keyboard focus and reduced motion",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "every finish can be selected during real playback and keeps a truthful readout",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "Groove tonearm parks, reverses an interrupted transition and leaves scrub available",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "Clear: mechanically linked parts stop together and follow a reversed jog",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "Spool: mechanically linked parts stop together and follow a reversed jog",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "Field reel: mechanically linked parts stop together and follow a reversed jog",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "Cartridge: mechanically linked parts stop together and follow a reversed jog",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "Foundry: mechanically linked parts stop together and follow a reversed jog",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "Observatory: mechanically linked parts stop together and follow a reversed jog",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "reduced motion keeps state changes and freezes every linked part",
+      "status": "expected"
+    },
+    {
+      "browser": "chromium",
+      "test": "showroom previews deliberately play and pause the same mechanism",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "Groove tonearm parks, reverses an interrupted transition and leaves scrub available",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "Clear: mechanically linked parts stop together and follow a reversed jog",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "Spool: mechanically linked parts stop together and follow a reversed jog",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "Field reel: mechanically linked parts stop together and follow a reversed jog",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "Cartridge: mechanically linked parts stop together and follow a reversed jog",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "Foundry: mechanically linked parts stop together and follow a reversed jog",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "Observatory: mechanically linked parts stop together and follow a reversed jog",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "reduced motion keeps state changes and freezes every linked part",
+      "status": "expected"
+    },
+    {
+      "browser": "firefox",
+      "test": "showroom previews deliberately play and pause the same mechanism",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "Groove tonearm parks, reverses an interrupted transition and leaves scrub available",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "Clear: mechanically linked parts stop together and follow a reversed jog",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "Spool: mechanically linked parts stop together and follow a reversed jog",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "Field reel: mechanically linked parts stop together and follow a reversed jog",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "Cartridge: mechanically linked parts stop together and follow a reversed jog",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "Foundry: mechanically linked parts stop together and follow a reversed jog",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "Observatory: mechanically linked parts stop together and follow a reversed jog",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "reduced motion keeps state changes and freezes every linked part",
+      "status": "expected"
+    },
+    {
+      "browser": "webkit",
+      "test": "showroom previews deliberately play and pause the same mechanism",
+      "status": "expected"
+    }
+  ]
+}

@@ -207,7 +207,7 @@ export class DirectPeer {
       const document = s.script.document ?? (s.script.revision === this.state.snapshot?.script.revision ? this.state.snapshot?.script.document : null)
       if (!validDocument(document) || !record(s.transport) || !['playing', 'paused'].includes(s.transport.status)
         || !Number.isFinite(s.transport.anchor_position) || !Number.isFinite(s.transport.anchor_server_time)
-        || !Number.isFinite(s.transport.speed) || s.transport.speed < .5 || s.transport.speed > 1.5
+        || !Number.isFinite(s.transport.speed) || s.transport.speed < .2 || s.transport.speed > 1.5
         || !Number.isSafeInteger(s.transport.revision) || !Number.isSafeInteger(s.script.revision)
         || !record(s.reading) || !record(s.editing) || !record(s.presence) || !validSettings(s.display_settings)) throw new Error('Invalid snapshot fields')
       if (s.reading.checkpoint && !validAnchor(document, s.reading.checkpoint.anchor)) throw new Error('Invalid checkpoint')
@@ -227,7 +227,7 @@ export class DirectPeer {
       if (message.epoch !== this.material?.epoch || !Number.isSafeInteger(message.sequence) || message.sequence <= this.receivedSequence
         || typeof message.event !== 'string' || !record(message.payload)) throw new Error('Invalid command envelope')
       this.receivedSequence = message.sequence
-      const heavy = message.event === 'script:patch_block'
+      const heavy = message.event === 'script:patch_block' || message.event === 'script:patch_document'
       const result = this.tokens < 1 || (heavy && this.textTokens < 1) ? { ok: false as const, reason: 'rate_limited' }
         : this.host.execute(message.event, message.payload, 'local-remote')
       this.tokens = Math.max(0, this.tokens - 1); if (heavy) this.textTokens = Math.max(0, this.textTokens - 1)
@@ -288,7 +288,7 @@ export class DirectPeer {
       script: s?.script ?? { content: '', revision: 0 }, presence: s?.presence ?? EMPTY_PRESENCE,
       reading: s?.reading ?? EMPTY_READING, editing: s?.editing ?? EMPTY_EDITING,
       sessionEpoch: s?.session_epoch ?? null, displayId: s?.display_id ?? null, connectionId: s?.connection_id ?? null,
-      displaySettings: null, clockOffset: this.state.clockOffset, now: localNow, path: 'direct',
+      displaySettings: s?.display_settings ? { value: s.display_settings, revision: s.settings_revision ?? 0 } : null, clockOffset: this.state.clockOffset, now: localNow, path: 'direct',
       request: this.request, send: this.sendCommand, reconnect: () => this.close('Exchange fresh pairing data to reconnect.') }
   }
   close = (message = 'Not paired') => {

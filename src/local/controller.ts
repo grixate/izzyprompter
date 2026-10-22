@@ -1,3 +1,4 @@
+import {boundedSpeed, MIN_SPEED, LEGACY_MAX_SPEED} from '../prompt/speed.ts'
 import type { IzzyDocumentV1 } from '../domain/document.ts'
 import { izzyDocumentToLegacyText } from '../domain/document.ts'
 import type { PromptSettingsV1 } from '../domain/storage.ts'
@@ -5,7 +6,7 @@ import { serverPosition } from '../prompt/motion.ts'
 import { clamp, type ReadingAnchor } from '../prompt/position.ts'
 import { latestReading } from '../realtime/reading.ts'
 import type { CommandResult, ReadingCheckpoint, SessionSnapshot, TransportState } from '../realtime/protocol.ts'
-import { bytes, remapOffset, validAnchor, validContent, validDocument, validSettings } from './document.ts'
+import { bytes, remapOffset, replaceDocument, validAnchor, validContent, validDocument, validSettings } from './document.ts'
 
 export const localId = () => Array.from(crypto.getRandomValues(new Uint8Array(16)), b => b.toString(16).padStart(2, '0')).join('')
 export const localNow = () => performance.now()
@@ -21,6 +22,7 @@ export class LocalSessionController {
     now = localNow, epoch = localId()) {
     this.now = now
     if (!validDocument(document) || !validSettings(settings)) throw new Error('Invalid local script or settings')
+    settings={...settings,speed:boundedSpeed(settings.speed)}
     const target = anchor && validAnchor(document, anchor) ? anchor : { blockId: document.blocks[0].id, characterOffset: 0 }
     this.state = {
       // This is the UI snapshot shape. Direct wire messages have their own version.
@@ -49,6 +51,7 @@ export class LocalSessionController {
   }
   settings = (value: PromptSettingsV1) => {
     if (!validSettings(value)) return
+    value={...value,speed:boundedSpeed(value.speed)}
     const s = this.state
     if (JSON.stringify(s.display_settings) === JSON.stringify(value)) return
     this.publish({ ...s, display_settings: { ...value }, settings_revision: (s.settings_revision ?? 0) + 1 })
@@ -80,12 +83,21 @@ export class LocalSessionController {
         || !Number.isFinite(payload.transport_position) || Math.abs(payload.transport_position) > 100_000_000) return failure('stale_reading')
       const checkpoint = { ...payload, anchor: { ...payload.anchor }, source_id: 'local-display', server_time: this.now() } as ReadingCheckpoint
       next = { ...s, reading: { ...s.reading, revision: s.reading.revision + 1, checkpoint } }
+    } else if (event === 'settings:update') {
+      if (s.editing.active) return failure('editing_active')
+      if (payload.settings_revision !== s.settings_revision) return failure('settings_conflict')
+      const patch = payload.patch
+      if (!patch || typeof patch !== 'object' || Array.isArray(patch)
+        || !Object.keys(patch).length || Object.keys(patch).some(key => !['fontSize', 'lineHeight', 'textWidth', 'mirrored'].includes(key))) return failure('invalid_settings')
+      const settings = { ...s.display_settings!, ...patch }
+      if (!validSettings(settings)) return failure('invalid_settings')
+      next = { ...s, display_settings: settings, settings_revision: (s.settings_revision ?? 0) + 1 }
     } else if (event.startsWith('transport:')) {
       if (s.editing.active) return failure('editing_active')
       let transport: TransportState
       if (event === 'transport:play' || event === 'transport:pause') transport = this.at(this.position, { status: event === 'transport:play' ? 'playing' : 'paused' })
-      else if (event === 'transport:set_speed' && typeof payload.speed === 'number' && Number.isFinite(payload.speed) && payload.speed >= .5 && payload.speed <= 1.5) {
-        transport = this.at(this.position, { speed: payload.speed })
+      else if (event === 'transport:set_speed' && typeof payload.speed === 'number' && Number.isFinite(payload.speed) && payload.speed >= MIN_SPEED && payload.speed <= LEGACY_MAX_SPEED) {
+        transport = this.at(this.position, { speed: boundedSpeed(payload.speed) })
       } else if (event === 'transport:seek_delta' && typeof payload.delta === 'number' && Number.isFinite(payload.delta) && Math.abs(payload.delta) <= 10_000) {
         const cp = s.reading.checkpoint, current = this.position, intent = s.transport.semantic_anchor
         let target = current + payload.delta
@@ -101,20 +113,42 @@ export class LocalSessionController {
         if (index < 0) return failure('reading_unavailable')
         transport = this.seekAnchor({ blockId: doc.blocks[clamp(index + payload.direction, 0, doc.blocks.length - 1)].id, characterOffset: 0 })
       } else return failure('invalid_command')
-      next = { ...s, transport }
+      next = { ...s, transport, ...(event === 'transport:set_speed' ? { display_settings: { ...s.display_settings!, speed: transport.speed }, settings_revision: (s.settings_revision ?? 0) + 1 } : {}) }
     } else if (event === 'script:begin_edit') {
       const cp = s.reading.checkpoint
       if (s.editing.active) return failure('editing_active')
       if (s.transport.status !== 'paused') return failure('pause_required')
       if (!cp || cp.script_revision !== s.script.revision || cp.transport_revision !== s.transport.revision) return failure('reading_unavailable')
+      const blockId = payload.block_id ?? cp.anchor.blockId
+      if (!doc.blocks.some(block => block.id === blockId)) return failure('invalid_block')
       next = { ...s, editing: { revision: s.editing.revision + 1,
-        active: { owner_id: owner, block_id: cp.anchor.blockId, anchor: { ...cp.anchor } } } }
+        active: { owner_id: owner, block_id: blockId as string, anchor: { ...cp.anchor }, scope: payload.scope === 'document' ? 'document' : 'paragraph' } } }
+    } else if (event === 'script:select_document') {
+      if (s.editing.active?.owner_id !== owner) return failure('edit_not_owned')
+      next = { ...s, editing: { revision: s.editing.revision + 1, active: { ...s.editing.active, scope: 'document' } } }
+    } else if (event === 'script:select_block') {
+      if (s.editing.active?.owner_id !== owner) return failure('edit_not_owned')
+      if (!doc.blocks.some(block => block.id === payload.block_id)) return failure('invalid_block')
+      next = { ...s, editing: { revision: s.editing.revision + 1, active: { ...s.editing.active, block_id: payload.block_id as string, scope: 'paragraph' } } }
     } else if (event === 'script:end_edit') {
       if (s.editing.active?.owner_id !== owner) return failure('edit_not_owned')
       next = { ...s, editing: { revision: s.editing.revision + 1, active: null } }
+    } else if (event === 'script:patch_document') {
+      const edit = s.editing.active
+      if (!edit || edit.owner_id !== owner) return failure('edit_not_owned')
+      if (edit.scope !== 'document') return failure('invalid_scope')
+      if (payload.base_revision !== s.script.revision) return failure('edit_conflict')
+      if (!validContent(payload.text, true)) return failure('invalid_patch')
+      const { document, anchor } = replaceDocument(doc, payload.text, edit.anchor)
+      const revision = s.script.revision + 1, transport = this.at(this.position, { status: 'paused' })
+      transport.semantic_anchor = { anchor, script_revision: revision, revision: transport.revision, transport_position: transport.anchor_position }
+      next = { ...s, script: { document, content: izzyDocumentToLegacyText(document), revision }, transport,
+        reading: { ...s.reading, revision: s.reading.revision + 1, checkpoint: null },
+        editing: { revision: s.editing.revision + 1, active: { ...edit, anchor } } }
     } else if (event === 'script:patch_block') {
       const edit = s.editing.active
       if (!edit || edit.owner_id !== owner) return failure('edit_not_owned')
+      if (edit.scope === 'document') return failure('invalid_scope')
       if (payload.base_revision !== s.script.revision) return failure('edit_conflict')
       if (payload.block_id !== edit.block_id || !validContent(payload.text, true)) return failure('invalid_patch')
       const old = doc.blocks.find(b => b.id === edit.block_id)!
@@ -122,7 +156,7 @@ export class LocalSessionController {
       const document = { ...doc, blocks: doc.blocks.map(b => b.id === old.id ? { ...b, text } : b) }
       const content = izzyDocumentToLegacyText(document)
       if (bytes(content) > 2 * 1024 * 1024) return failure('invalid_patch')
-      const anchor = { ...edit.anchor, characterOffset: remapOffset(old.text, text, edit.anchor.characterOffset) }
+      const anchor = { ...edit.anchor, characterOffset: edit.anchor.blockId === old.id ? remapOffset(old.text, text, edit.anchor.characterOffset) : edit.anchor.characterOffset }
       const revision = s.script.revision + 1, transport = this.at(this.position, { status: 'paused' })
       transport.semantic_anchor = { anchor, script_revision: revision, revision: transport.revision, transport_position: transport.anchor_position }
       next = { ...s, script: { document, content, revision }, transport,

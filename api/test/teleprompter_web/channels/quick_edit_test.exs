@@ -76,6 +76,49 @@ defmodule TeleprompterWeb.QuickEditTest do
     assert_reply ref, :ok, %{editing: %{active: nil}, transport: %{status: "paused"}}
   end
 
+  test "whole-script editing enforces ownership and revisions while preserving the reading paragraph",
+       c do
+    ref = push(c.remote, "script:begin_edit", Map.put(envelope(1), "scope", "document"))
+    assert_reply ref, :ok, %{editing: %{active: %{scope: "document"}}}
+    {:ok, _, other} = join_role(c.socket, c.session, "remote")
+
+    payload =
+      Map.merge(envelope(2), %{
+        "base_revision" => 1,
+        "text" => "New intro\n\nOpening 🎥 words\n\nSecond paragraph\n\nNew ending"
+      })
+
+    ref = push(other, "script:patch_document", payload)
+    assert_reply ref, :error, %{reason: :edit_not_owned}
+    ref = push(c.remote, "script:patch_document", payload)
+
+    assert_reply ref, :ok, %{
+      script: %{revision: 2, document: document},
+      transport: %{status: "paused", semantic_anchor: %{anchor: anchor}}
+    }
+
+    assert Enum.at(document.blocks, 1).id == c.target["blockId"]
+    assert anchor == c.target
+
+    ref =
+      push(
+        c.remote,
+        "script:patch_document",
+        Map.put(payload, "sequence", 3) |> Map.put("command_id", "quick-edit-client:3")
+      )
+
+    assert_reply ref, :error, %{reason: :edit_conflict}
+
+    ref =
+      push(
+        c.remote,
+        "script:patch_document",
+        Map.merge(envelope(4), %{"base_revision" => 2, "text" => ""})
+      )
+
+    assert_reply ref, :ok, %{script: %{revision: 3, content: ""}}
+  end
+
   test "only the owning editor/remote connection can change its current block", c do
     ref = push(c.display, "script:begin_edit", envelope(2))
     assert_reply ref, :error, %{reason: :forbidden}

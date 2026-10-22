@@ -1,0 +1,14 @@
+{
+  "frames": 14,
+  "interactive": [
+    "groove",
+    "arcade",
+    "correspondent"
+  ],
+  "viewport": [
+    428,
+    746
+  ],
+  "fullScreenHeight": 926,
+  "scaleMaintainsViewport": true
+}

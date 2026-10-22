@@ -16,7 +16,7 @@ concurrency:
 jobs:
   test:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 40
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -107,7 +107,8 @@ jobs:
 
   accounts:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    # Full PostgreSQL/browser matrix plus restore after variable apt mirror latency.
+    timeout-minutes: 50
     services:
       postgres:
         image: postgres:16
@@ -140,6 +141,8 @@ jobs:
         working-directory: api
       - run: npx playwright install --with-deps chromium firefox webkit
       - run: npm run test:browsers
+        env:
+          FEEDBACK_ENABLED: 'true'
       - run: sudo apt-get update && sudo apt-get install -y postgresql-client-16
       - run: npm run test:restore
         env:

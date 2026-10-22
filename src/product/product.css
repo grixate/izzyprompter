@@ -202,3 +202,13 @@
 
 /* Public navigation names distinct destinations; the logo returns to the editor. */
 .public-links { margin-left:auto; }
+
+/* Rotating circular art must stay inside its compact showroom tile. */
+.pro-skin-strip .jog-wheel {overflow:clip;}
+
+/* Long finish names and their tier badge must fit narrow two-column cards
+   even when the platform substitutes a wider font. */
+.skin-card-meta {flex-wrap:wrap;row-gap:6px;}
+.skin-card-meta>div {min-width:0;max-width:100%;}
+.skin-card h2 {overflow-wrap:anywhere;}
+.skin-card-meta .skin-state {flex-shrink:0;}

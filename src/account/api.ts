@@ -2,7 +2,7 @@ import type { IzzyDocumentV1 } from '../domain/document'
 import type { PromptSettingsV1 } from '../domain/storage'
 
 export type Account = { id: string; email: string; pro: boolean }
-export type AccountStatus = { enabled: boolean; google_enabled: boolean; csrf_token: string; user: Account | null }
+export type AccountStatus = { enabled: boolean; google_enabled: boolean; feedback_enabled?: boolean; csrf_token: string; user: Account | null }
 export type ProjectFolder = { id: string; name: string; script_count: number }
 export type SavedScript = { folder_id: string | null; id: string; title: string; document: IzzyDocumentV1; revision: number; deleted_at: string | null; updated_at: string; superseded_by?: SavedScript }
 export type ScriptSummary = Omit<SavedScript, 'document' | 'superseded_by'> & { excerpt: string | null }
@@ -67,6 +67,10 @@ export const accountMessage = (error: unknown) => {
     rate_limited: 'Too many attempts. Please wait a minute before trying again.',
     invalid_folder: 'Use a project name between 1 and 200 characters.',
     invalid_email: 'Enter a valid email address.',
+    invalid_feedback: 'Choose a topic and write between 10 and 2,000 characters.',
+    feedback_limit: 'You have sent five messages today. Please try again tomorrow.',
+    feedback_request_reused: 'This message changed after an earlier submission. Start a new message.',
+    feedback_unavailable: 'Feedback is unavailable right now. Your message is kept in this tab.',
   }
   return error instanceof AccountError ? messages[error.reason] ?? 'The request could not be completed. Your text has not been discarded.'
     : 'Connection unavailable. Your changes will stay on this device.'

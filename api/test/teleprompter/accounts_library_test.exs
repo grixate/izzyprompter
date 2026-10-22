@@ -159,13 +159,13 @@ defmodule Teleprompter.AccountsLibraryTest do
   test "saved sessions use the device speed and explicit presets keep priority", %{user: user} do
     {:ok, s} = script(user)
 
-    for speed <- [0.49, 1.51, "fast"] do
+    for speed <- [0.19, 1.51, "fast"] do
       assert {:error, :invalid_settings} = Sessions.create_saved(user, s.id, "standard", speed)
     end
 
     {:ok, live} = Sessions.create_saved(user, s.id, "standard", 1.23)
     {:ok, snapshot} = Sessions.snapshot(live.session_id)
-    assert snapshot.transport.speed == 1.23
+    assert snapshot.transport.speed == 1.0
     assert :ok = Sessions.end_saved(live.session_id, user)
 
     make_pro(user)

@@ -1,0 +1,5406 @@
+{
+  "date": "2026-10-18",
+  "stats": {
+    "startTime": "2026-10-17T21:46:10.241Z",
+    "duration": 190167.886,
+    "expected": 99,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "tests": [
+    {
+      "title": "Original: real paired transport, editing and recovery",
+      "browser": "chromium",
+      "status": "passed"
+    },
+    {
+      "title": "Original: responsive controls, keyboard focus and reduced motion",
+      "browser": "chromium",
+      "status": "passed"
+    },
+    {
+      "title": "Orbit: real paired transport, editing and recovery",
+      "browser": "chromium",
+      "status": "passed"
+    },
+    {
+      "title": "Orbit: responsive controls, keyboard focus and reduced motion",
+      "browser": "chromium",
+      "status": "passed"
+    },
+    {
+      "title": "Field reel: real paired transport, editing and recovery",
+      "browser": "chromium",
+      "status": "passed"
+    },
+    {
+      "title": "Field reel: responsive controls, keyboard focus and reduced motion",
+      "browser": "chromium",
+      "status": "passed"
+    },
+    {
+      "title": "Thumbprint: real paired transport, editing and recovery",
+      "browser": "chromium",
+      "status": "passed"
+    },
+    {
+      "title": "Thumbprint: responsive controls, keyboard focus and reduced motion",
+      "browser": "chromium",
+      "status": "passed"
+    },
+    {
+      "title": "Signal: real paired transport, editing and recovery",
+      "browser": "chromium",
+      "status": "passed"
+    },
+    {
+      "title": "Signal: responsive controls, keyboard focus and reduced motion",
+      "browser": "chromium",
+      "status": "passed"
+    },
+    {
+      "title": "Groove: real paired transport, editing and recovery",
+      "browser": "chromium",
+      "status": "passed"
+    },
+    {
+      "title": "Groove: responsive controls, keyboard focus and reduced motion",
+      "browser": "chromium",
+      "status": "passed"
+    },
+    {
+      "title": "Glacier: real paired transport, editing and recovery",
+      "browser": "chromium",
+      "status": "passed"
+    },
+    {
+      "title": "Glacier: responsive controls, keyboard focus and reduced motion",
+      "browser": "chromium",
+      "status": "passed"
+    },
+    {
+      "title": "Bakelite: real paired transport, editing and recovery",
+      "browser": "chromium",
+      "status": "passed"
+    },
+    {
+      "title": "Bakelite: responsive controls, keyboard focus and reduced motion",
+      "browser": "chromium",
+      "status": "passed"
+    },
+    {
+      "title": "Switchboard: real paired transport, editing and recovery",
+      "browser": "chromium",
+      "status": "passed"
+    },
+    {
+      "title": "Switchboard: responsive controls, keyboard focus and reduced motion",
+      "browser": "chromium",
+      "status": "passed"
+    },
+    {
+      "title": "Vector: real paired transport, editing and recovery",
+      "browser": "chromium",
+      "status": "passed"
+    },
+    {
+      "title": "Vector: responsive controls, keyboard focus and reduced motion",
+      "browser": "chromium",
+      "status": "passed"
+    },
+    {
+      "title": "Cartridge: real paired transport, editing and recovery",
+      "browser": "chromium",
+      "status": "passed"
+    },
+    {
+      "title": "Cartridge: responsive controls, keyboard focus and reduced motion",
+      "browser": "chromium",
+      "status": "passed"
+    },
+    {
+      "title": "Aperture: real paired transport, editing and recovery",
+      "browser": "chromium",
+      "status": "passed"
+    },
+    {
+      "title": "Aperture: responsive controls, keyboard focus and reduced motion",
+      "browser": "chromium",
+      "status": "passed"
+    },
+    {
+      "title": "Correspondent: real paired transport, editing and recovery",
+      "browser": "chromium",
+      "status": "passed"
+    },
+    {
+      "title": "Correspondent: responsive controls, keyboard focus and reduced motion",
+      "browser": "chromium",
+      "status": "passed"
+    },
+    {
+      "title": "Foundry: real paired transport, editing and recovery",
+      "browser": "chromium",
+      "status": "passed"
+    },
+    {
+      "title": "Foundry: responsive controls, keyboard focus and reduced motion",
+      "browser": "chromium",
+      "status": "passed"
+    },
+    {
+      "title": "Inox: real paired transport, editing and recovery",
+      "browser": "chromium",
+      "status": "passed"
+    },
+    {
+      "title": "Inox: responsive controls, keyboard focus and reduced motion",
+      "browser": "chromium",
+      "status": "passed"
+    },
+    {
+      "title": "Airframe: real paired transport, editing and recovery",
+      "browser": "chromium",
+      "status": "passed"
+    },
+    {
+      "title": "Airframe: responsive controls, keyboard focus and reduced motion",
+      "browser": "chromium",
+      "status": "passed"
+    },
+    {
+      "title": "every finish can be selected during real playback and keeps a truthful readout",
+      "browser": "chromium",
+      "status": "passed"
+    },
+    {
+      "title": "Original: real paired transport, editing and recovery",
+      "browser": "firefox",
+      "status": "passed"
+    },
+    {
+      "title": "Original: responsive controls, keyboard focus and reduced motion",
+      "browser": "firefox",
+      "status": "passed"
+    },
+    {
+      "title": "Orbit: real paired transport, editing and recovery",
+      "browser": "firefox",
+      "status": "passed"
+    },
+    {
+      "title": "Orbit: responsive controls, keyboard focus and reduced motion",
+      "browser": "firefox",
+      "status": "passed"
+    },
+    {
+      "title": "Field reel: real paired transport, editing and recovery",
+      "browser": "firefox",
+      "status": "passed"
+    },
+    {
+      "title": "Field reel: responsive controls, keyboard focus and reduced motion",
+      "browser": "firefox",
+      "status": "passed"
+    },
+    {
+      "title": "Thumbprint: real paired transport, editing and recovery",
+      "browser": "firefox",
+      "status": "passed"
+    },
+    {
+      "title": "Thumbprint: responsive controls, keyboard focus and reduced motion",
+      "browser": "firefox",
+      "status": "passed"
+    },
+    {
+      "title": "Signal: real paired transport, editing and recovery",
+      "browser": "firefox",
+      "status": "passed"
+    },
+    {
+      "title": "Signal: responsive controls, keyboard focus and reduced motion",
+      "browser": "firefox",
+      "status": "passed"
+    },
+    {
+      "title": "Groove: real paired transport, editing and recovery",
+      "browser": "firefox",
+      "status": "passed"
+    },
+    {
+      "title": "Groove: responsive controls, keyboard focus and reduced motion",
+      "browser": "firefox",
+      "status": "passed"
+    },
+    {
+      "title": "Glacier: real paired transport, editing and recovery",
+      "browser": "firefox",
+      "status": "passed"
+    },
+    {
+      "title": "Glacier: responsive controls, keyboard focus and reduced motion",
+      "browser": "firefox",
+      "status": "passed"
+    },
+    {
+      "title": "Bakelite: real paired transport, editing and recovery",
+      "browser": "firefox",
+      "status": "passed"
+    },
+    {
+      "title": "Bakelite: responsive controls, keyboard focus and reduced motion",
+      "browser": "firefox",
+      "status": "passed"
+    },
+    {
+      "title": "Switchboard: real paired transport, editing and recovery",
+      "browser": "firefox",
+      "status": "passed"
+    },
+    {
+      "title": "Switchboard: responsive controls, keyboard focus and reduced motion",
+      "browser": "firefox",
+      "status": "passed"
+    },
+    {
+      "title": "Vector: real paired transport, editing and recovery",
+      "browser": "firefox",
+      "status": "passed"
+    },
+    {
+      "title": "Vector: responsive controls, keyboard focus and reduced motion",
+      "browser": "firefox",
+      "status": "passed"
+    },
+    {
+      "title": "Cartridge: real paired transport, editing and recovery",
+      "browser": "firefox",
+      "status": "passed"
+    },
+    {
+      "title": "Cartridge: responsive controls, keyboard focus and reduced motion",
+      "browser": "firefox",
+      "status": "passed"
+    },
+    {
+      "title": "Aperture: real paired transport, editing and recovery",
+      "browser": "firefox",
+      "status": "passed"
+    },
+    {
+      "title": "Aperture: responsive controls, keyboard focus and reduced motion",
+      "browser": "firefox",
+      "status": "passed"
+    },
+    {
+      "title": "Correspondent: real paired transport, editing and recovery",
+      "browser": "firefox",
+      "status": "passed"
+    },
+    {
+      "title": "Correspondent: responsive controls, keyboard focus and reduced motion",
+      "browser": "firefox",
+      "status": "passed"
+    },
+    {
+      "title": "Foundry: real paired transport, editing and recovery",
+      "browser": "firefox",
+      "status": "passed"
+    },
+    {
+      "title": "Foundry: responsive controls, keyboard focus and reduced motion",
+      "browser": "firefox",
+      "status": "passed"
+    },
+    {
+      "title": "Inox: real paired transport, editing and recovery",
+      "browser": "firefox",
+      "status": "passed"
+    },
+    {
+      "title": "Inox: responsive controls, keyboard focus and reduced motion",
+      "browser": "firefox",
+      "status": "passed"
+    },
+    {
+      "title": "Airframe: real paired transport, editing and recovery",
+      "browser": "firefox",
+      "status": "passed"
+    },
+    {
+      "title": "Airframe: responsive controls, keyboard focus and reduced motion",
+      "browser": "firefox",
+      "status": "passed"
+    },
+    {
+      "title": "every finish can be selected during real playback and keeps a truthful readout",
+      "browser": "firefox",
+      "status": "passed"
+    },
+    {
+      "title": "Original: real paired transport, editing and recovery",
+      "browser": "webkit",
+      "status": "passed"
+    },
+    {
+      "title": "Original: responsive controls, keyboard focus and reduced motion",
+      "browser": "webkit",
+      "status": "passed"
+    },
+    {
+      "title": "Orbit: real paired transport, editing and recovery",
+      "browser": "webkit",
+      "status": "passed"
+    },
+    {
+      "title": "Orbit: responsive controls, keyboard focus and reduced motion",
+      "browser": "webkit",
+      "status": "passed"
+    },
+    {
+      "title": "Field reel: real paired transport, editing and recovery",
+      "browser": "webkit",
+      "status": "passed"
+    },
+    {
+      "title": "Field reel: responsive controls, keyboard focus and reduced motion",
+      "browser": "webkit",
+      "status": "passed"
+    },
+    {
+      "title": "Thumbprint: real paired transport, editing and recovery",
+      "browser": "webkit",
+      "status": "passed"
+    },
+    {
+      "title": "Thumbprint: responsive controls, keyboard focus and reduced motion",
+      "browser": "webkit",
+      "status": "passed"
+    },
+    {
+      "title": "Signal: real paired transport, editing and recovery",
+      "browser": "webkit",
+      "status": "passed"
+    },
+    {
+      "title": "Signal: responsive controls, keyboard focus and reduced motion",
+      "browser": "webkit",
+      "status": "passed"
+    },
+    {
+      "title": "Groove: real paired transport, editing and recovery",
+      "browser": "webkit",
+      "status": "passed"
+    },
+    {
+      "title": "Groove: responsive controls, keyboard focus and reduced motion",
+      "browser": "webkit",
+      "status": "passed"
+    },
+    {
+      "title": "Glacier: real paired transport, editing and recovery",
+      "browser": "webkit",
+      "status": "passed"
+    },
+    {
+      "title": "Glacier: responsive controls, keyboard focus and reduced motion",
+      "browser": "webkit",
+      "status": "passed"
+    },
+    {
+      "title": "Bakelite: real paired transport, editing and recovery",
+      "browser": "webkit",
+      "status": "passed"
+    },
+    {
+      "title": "Bakelite: responsive controls, keyboard focus and reduced motion",
+      "browser": "webkit",
+      "status": "passed"
+    },
+    {
+      "title": "Switchboard: real paired transport, editing and recovery",
+      "browser": "webkit",
+      "status": "passed"
+    },
+    {
+      "title": "Switchboard: responsive controls, keyboard focus and reduced motion",
+      "browser": "webkit",
+      "status": "passed"
+    },
+    {
+      "title": "Vector: real paired transport, editing and recovery",
+      "browser": "webkit",
+      "status": "passed"
+    },
+    {
+      "title": "Vector: responsive controls, keyboard focus and reduced motion",
+      "browser": "webkit",
+      "status": "passed"
+    },
+    {
+      "title": "Cartridge: real paired transport, editing and recovery",
+      "browser": "webkit",
+      "status": "passed"
+    },
+    {
+      "title": "Cartridge: responsive controls, keyboard focus and reduced motion",
+      "browser": "webkit",
+      "status": "passed"
+    },
+    {
+      "title": "Aperture: real paired transport, editing and recovery",
+      "browser": "webkit",
+      "status": "passed"
+    },
+    {
+      "title": "Aperture: responsive controls, keyboard focus and reduced motion",
+      "browser": "webkit",
+      "status": "passed"
+    },
+    {
+      "title": "Correspondent: real paired transport, editing and recovery",
+      "browser": "webkit",
+      "status": "passed"
+    },
+    {
+      "title": "Correspondent: responsive controls, keyboard focus and reduced motion",
+      "browser": "webkit",
+      "status": "passed"
+    },
+    {
+      "title": "Foundry: real paired transport, editing and recovery",
+      "browser": "webkit",
+      "status": "passed"
+    },
+    {
+      "title": "Foundry: responsive controls, keyboard focus and reduced motion",
+      "browser": "webkit",
+      "status": "passed"
+    },
+    {
+      "title": "Inox: real paired transport, editing and recovery",
+      "browser": "webkit",
+      "status": "passed"
+    },
+    {
+      "title": "Inox: responsive controls, keyboard focus and reduced motion",
+      "browser": "webkit",
+      "status": "passed"
+    },
+    {
+      "title": "Airframe: real paired transport, editing and recovery",
+      "browser": "webkit",
+      "status": "passed"
+    },
+    {
+      "title": "Airframe: responsive controls, keyboard focus and reduced motion",
+      "browser": "webkit",
+      "status": "passed"
+    },
+    {
+      "title": "every finish can be selected during real playback and keeps a truthful readout",
+      "browser": "webkit",
+      "status": "passed"
+    }
+  ],
+  "contrast": [
+    {
+      "skin": "Original",
+      "browser": "chromium",
+      "measurements": [
+        {
+          "selector": ".remote-identity strong",
+          "color": "rgb(210, 214, 200)",
+          "minimum": 4.5,
+          "ratio": 9.103057650019355
+        },
+        {
+          "selector": ".network-state",
+          "color": "rgb(210, 214, 200)",
+          "minimum": 4.5,
+          "ratio": 8.958313496582926
+        },
+        {
+          "selector": ".remote-link-state small",
+          "color": "rgb(210, 214, 200)",
+          "minimum": 4.5,
+          "ratio": 9.052846175549615
+        },
+        {
+          "selector": ".display-kicker",
+          "color": "rgb(164, 175, 160)",
+          "minimum": 4.5,
+          "ratio": 8.561987309549005
+        },
+        {
+          "selector": ".timecode",
+          "color": "rgb(233, 238, 230)",
+          "minimum": 3,
+          "ratio": 16.6721643249279
+        },
+        {
+          "selector": ".state-label",
+          "color": "rgb(138, 143, 135)",
+          "minimum": 4.5,
+          "ratio": 5.944130968249265
+        },
+        {
+          "selector": ".speed-title",
+          "color": "rgb(210, 214, 200)",
+          "minimum": 4.5,
+          "ratio": 8.983734498574737
+        },
+        {
+          "selector": ".speed-module strong",
+          "color": "rgb(210, 214, 200)",
+          "minimum": 4.5,
+          "ratio": 9.173723903833594
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(215, 219, 205)",
+          "minimum": 4.5,
+          "ratio": 7.07785824134991
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(215, 219, 205)",
+          "minimum": 4.5,
+          "ratio": 7.07785824134991
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.84072843033295
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.84072843033295
+        },
+        {
+          "selector": ".phrase-count",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".phrase-count small",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".quick-edit-trigger",
+          "color": "rgb(210, 214, 200)",
+          "minimum": 4.5,
+          "ratio": 9.018098216194973
+        },
+        {
+          "selector": ".transport-button svg",
+          "color": "rgb(27, 28, 25)",
+          "minimum": 3,
+          "ratio": 9.224960839590441
+        }
+      ]
+    },
+    {
+      "skin": "Orbit",
+      "browser": "chromium",
+      "measurements": [
+        {
+          "selector": ".remote-identity strong",
+          "color": "rgb(68, 71, 63)",
+          "minimum": 4.5,
+          "ratio": 7.986468769796838
+        },
+        {
+          "selector": ".network-state",
+          "color": "rgb(68, 71, 63)",
+          "minimum": 4.5,
+          "ratio": 7.699998964662767
+        },
+        {
+          "selector": ".remote-link-state small",
+          "color": "rgb(68, 71, 63)",
+          "minimum": 4.5,
+          "ratio": 7.699998964662767
+        },
+        {
+          "selector": ".display-kicker",
+          "color": "rgb(164, 175, 160)",
+          "minimum": 4.5,
+          "ratio": 8.561987309549005
+        },
+        {
+          "selector": ".timecode",
+          "color": "rgb(233, 238, 230)",
+          "minimum": 3,
+          "ratio": 16.6721643249279
+        },
+        {
+          "selector": ".state-label",
+          "color": "rgb(138, 143, 135)",
+          "minimum": 4.5,
+          "ratio": 5.944130968249265
+        },
+        {
+          "selector": ".speed-title",
+          "color": "rgb(68, 71, 63)",
+          "minimum": 4.5,
+          "ratio": 7.563950030109749
+        },
+        {
+          "selector": ".speed-module strong",
+          "color": "rgb(68, 71, 63)",
+          "minimum": 4.5,
+          "ratio": 7.273174482975333
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(68, 71, 63)",
+          "minimum": 4.5,
+          "ratio": 7.893894283443242
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(68, 71, 63)",
+          "minimum": 4.5,
+          "ratio": 7.893894283443242
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.84072843033295
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.84072843033295
+        },
+        {
+          "selector": ".phrase-count",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".phrase-count small",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".quick-edit-trigger",
+          "color": "rgb(68, 71, 63)",
+          "minimum": 4.5,
+          "ratio": 7.214186640181894
+        },
+        {
+          "selector": ".transport-button svg",
+          "color": "rgb(233, 236, 223)",
+          "minimum": 3,
+          "ratio": 9.360376567818713
+        }
+      ]
+    },
+    {
+      "skin": "Field reel",
+      "browser": "chromium",
+      "measurements": [
+        {
+          "selector": ".remote-identity strong",
+          "color": "rgb(41, 44, 37)",
+          "minimum": 4.5,
+          "ratio": 10.282087443030557
+        },
+        {
+          "selector": ".network-state",
+          "color": "rgb(41, 44, 37)",
+          "minimum": 4.5,
+          "ratio": 9.32392478828547
+        },
+        {
+          "selector": ".remote-link-state small",
+          "color": "rgb(41, 44, 37)",
+          "minimum": 4.5,
+          "ratio": 9.32392478828547
+        },
+        {
+          "selector": ".display-kicker",
+          "color": "rgb(164, 175, 160)",
+          "minimum": 4.5,
+          "ratio": 8.561987309549005
+        },
+        {
+          "selector": ".timecode",
+          "color": "rgb(233, 238, 230)",
+          "minimum": 3,
+          "ratio": 16.6721643249279
+        },
+        {
+          "selector": ".state-label",
+          "color": "rgb(138, 143, 135)",
+          "minimum": 4.5,
+          "ratio": 5.944130968249265
+        },
+        {
+          "selector": ".speed-title",
+          "color": "rgb(41, 44, 37)",
+          "minimum": 4.5,
+          "ratio": 8.931537167382727
+        },
+        {
+          "selector": ".speed-module strong",
+          "color": "rgb(41, 44, 37)",
+          "minimum": 4.5,
+          "ratio": 8.226681059107728
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(41, 44, 37)",
+          "minimum": 4.5,
+          "ratio": 10.081099217773492
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(41, 44, 37)",
+          "minimum": 4.5,
+          "ratio": 10.081099217773492
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.84072843033295
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.84072843033295
+        },
+        {
+          "selector": ".phrase-count",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".phrase-count small",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".quick-edit-trigger",
+          "color": "rgb(41, 44, 37)",
+          "minimum": 4.5,
+          "ratio": 8.226681059107728
+        },
+        {
+          "selector": ".transport-button svg",
+          "color": "rgb(27, 28, 25)",
+          "minimum": 3,
+          "ratio": 11.416266422618445
+        }
+      ]
+    },
+    {
+      "skin": "Thumbprint",
+      "browser": "chromium",
+      "measurements": [
+        {
+          "selector": ".remote-identity strong",
+          "color": "rgb(208, 211, 201)",
+          "minimum": 4.5,
+          "ratio": 7.6175890422238375
+        },
+        {
+          "selector": ".network-state",
+          "color": "rgb(208, 211, 201)",
+          "minimum": 4.5,
+          "ratio": 8.122281157990146
+        },
+        {
+          "selector": ".remote-link-state small",
+          "color": "rgb(208, 211, 201)",
+          "minimum": 4.5,
+          "ratio": 8.211050418814136
+        },
+        {
+          "selector": ".display-kicker",
+          "color": "rgb(164, 175, 160)",
+          "minimum": 4.5,
+          "ratio": 8.561987309549005
+        },
+        {
+          "selector": ".timecode",
+          "color": "rgb(233, 238, 230)",
+          "minimum": 3,
+          "ratio": 16.6721643249279
+        },
+        {
+          "selector": ".state-label",
+          "color": "rgb(138, 143, 135)",
+          "minimum": 4.5,
+          "ratio": 5.944130968249265
+        },
+        {
+          "selector": ".speed-title",
+          "color": "rgb(208, 211, 201)",
+          "minimum": 4.5,
+          "ratio": 8.430545664390923
+        },
+        {
+          "selector": ".speed-module strong",
+          "color": "rgb(208, 211, 201)",
+          "minimum": 4.5,
+          "ratio": 9.090476026454164
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(215, 219, 205)",
+          "minimum": 4.5,
+          "ratio": 7.07785824134991
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(215, 219, 205)",
+          "minimum": 4.5,
+          "ratio": 7.07785824134991
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.84072843033295
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.84072843033295
+        },
+        {
+          "selector": ".phrase-count",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".phrase-count small",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".quick-edit-trigger",
+          "color": "rgb(208, 211, 201)",
+          "minimum": 4.5,
+          "ratio": 8.921720363299043
+        },
+        {
+          "selector": ".transport-button svg",
+          "color": "rgb(222, 223, 213)",
+          "minimum": 3,
+          "ratio": 7.2975773290922765
+        }
+      ]
+    },
+    {
+      "skin": "Signal",
+      "browser": "chromium",
+      "measurements": [
+        {
+          "selector": ".remote-identity strong",
+          "color": "rgb(48, 32, 21)",
+          "minimum": 4.5,
+          "ratio": 6.59439188243065
+        },
+        {
+          "selector": ".network-state",
+          "color": "rgb(48, 32, 21)",
+          "minimum": 4.5,
+          "ratio": 5.764327413626608
+        },
+        {
+          "selector": ".remote-link-state small",
+          "color": "rgb(48, 32, 21)",
+          "minimum": 4.5,
+          "ratio": 5.739901535118715
+        },
+        {
+          "selector": ".display-kicker",
+          "color": "rgb(164, 175, 160)",
+          "minimum": 4.5,
+          "ratio": 8.561987309549005
+        },
+        {
+          "selector": ".timecode",
+          "color": "rgb(233, 238, 230)",
+          "minimum": 3,
+          "ratio": 16.6721643249279
+        },
+        {
+          "selector": ".state-label",
+          "color": "rgb(138, 143, 135)",
+          "minimum": 4.5,
+          "ratio": 5.944130968249265
+        },
+        {
+          "selector": ".speed-title",
+          "color": "rgb(48, 32, 21)",
+          "minimum": 4.5,
+          "ratio": 5.631405884224776
+        },
+        {
+          "selector": ".speed-module strong",
+          "color": "rgb(48, 32, 21)",
+          "minimum": 4.5,
+          "ratio": 4.852501653854546
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(48, 32, 21)",
+          "minimum": 4.5,
+          "ratio": 7.235606145117791
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(48, 32, 21)",
+          "minimum": 4.5,
+          "ratio": 7.235606145117791
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.84072843033295
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.84072843033295
+        },
+        {
+          "selector": ".phrase-count",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".phrase-count small",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".quick-edit-trigger",
+          "color": "rgb(48, 32, 21)",
+          "minimum": 4.5,
+          "ratio": 4.887899923126248
+        },
+        {
+          "selector": ".transport-button svg",
+          "color": "rgb(52, 55, 44)",
+          "minimum": 3,
+          "ratio": 7.8401235086476335
+        }
+      ]
+    },
+    {
+      "skin": "Groove",
+      "browser": "chromium",
+      "measurements": [
+        {
+          "selector": ".remote-identity strong",
+          "color": "rgb(76, 67, 55)",
+          "minimum": 4.5,
+          "ratio": 7.074630379182971
+        },
+        {
+          "selector": ".network-state",
+          "color": "rgb(76, 67, 55)",
+          "minimum": 4.5,
+          "ratio": 6.700385928641356
+        },
+        {
+          "selector": ".remote-link-state small",
+          "color": "rgb(76, 67, 55)",
+          "minimum": 4.5,
+          "ratio": 6.700385928641356
+        },
+        {
+          "selector": ".display-kicker",
+          "color": "rgb(164, 175, 160)",
+          "minimum": 4.5,
+          "ratio": 8.561987309549005
+        },
+        {
+          "selector": ".timecode",
+          "color": "rgb(233, 238, 230)",
+          "minimum": 3,
+          "ratio": 16.6721643249279
+        },
+        {
+          "selector": ".state-label",
+          "color": "rgb(138, 143, 135)",
+          "minimum": 4.5,
+          "ratio": 5.944130968249265
+        },
+        {
+          "selector": ".speed-title",
+          "color": "rgb(76, 67, 55)",
+          "minimum": 4.5,
+          "ratio": 6.448130059570668
+        },
+        {
+          "selector": ".speed-module strong",
+          "color": "rgb(76, 67, 55)",
+          "minimum": 4.5,
+          "ratio": 5.955893126306529
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(76, 67, 55)",
+          "minimum": 4.5,
+          "ratio": 6.677678537332088
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(76, 67, 55)",
+          "minimum": 4.5,
+          "ratio": 6.677678537332088
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.84072843033295
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.84072843033295
+        },
+        {
+          "selector": ".phrase-count",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".phrase-count small",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".quick-edit-trigger",
+          "color": "rgb(76, 67, 55)",
+          "minimum": 4.5,
+          "ratio": 5.891711508335142
+        },
+        {
+          "selector": ".transport-button svg",
+          "color": "rgb(56, 45, 27)",
+          "minimum": 3,
+          "ratio": 5.343752899136695
+        }
+      ]
+    },
+    {
+      "skin": "Glacier",
+      "browser": "chromium",
+      "measurements": [
+        {
+          "selector": ".remote-identity strong",
+          "color": "rgb(53, 80, 90)",
+          "minimum": 4.5,
+          "ratio": 7.022604137756505
+        },
+        {
+          "selector": ".network-state",
+          "color": "rgb(53, 80, 90)",
+          "minimum": 4.5,
+          "ratio": 6.475156975663413
+        },
+        {
+          "selector": ".remote-link-state small",
+          "color": "rgb(53, 80, 90)",
+          "minimum": 4.5,
+          "ratio": 6.4632694530538926
+        },
+        {
+          "selector": ".display-kicker",
+          "color": "rgb(164, 175, 160)",
+          "minimum": 4.5,
+          "ratio": 8.561987309549005
+        },
+        {
+          "selector": ".timecode",
+          "color": "rgb(233, 238, 230)",
+          "minimum": 3,
+          "ratio": 16.6721643249279
+        },
+        {
+          "selector": ".state-label",
+          "color": "rgb(138, 143, 135)",
+          "minimum": 4.5,
+          "ratio": 5.944130968249265
+        },
+        {
+          "selector": ".speed-title",
+          "color": "rgb(53, 80, 90)",
+          "minimum": 4.5,
+          "ratio": 6.209975672151536
+        },
+        {
+          "selector": ".speed-module strong",
+          "color": "rgb(53, 80, 90)",
+          "minimum": 4.5,
+          "ratio": 5.5766081818205455
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(53, 80, 90)",
+          "minimum": 4.5,
+          "ratio": 6.2018233476752815
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(53, 80, 90)",
+          "minimum": 4.5,
+          "ratio": 6.2018233476752815
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.84072843033295
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.84072843033295
+        },
+        {
+          "selector": ".phrase-count",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".phrase-count small",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".quick-edit-trigger",
+          "color": "rgb(53, 80, 90)",
+          "minimum": 4.5,
+          "ratio": 5.580901493884536
+        },
+        {
+          "selector": ".transport-button svg",
+          "color": "rgb(75, 89, 96)",
+          "minimum": 3,
+          "ratio": 4.527462186203215
+        }
+      ]
+    },
+    {
+      "skin": "Bakelite",
+      "browser": "chromium",
+      "measurements": [
+        {
+          "selector": ".remote-identity strong",
+          "color": "rgb(233, 214, 185)",
+          "minimum": 4.5,
+          "ratio": 5.046378091943509
+        },
+        {
+          "selector": ".network-state",
+          "color": "rgb(233, 214, 185)",
+          "minimum": 4.5,
+          "ratio": 5.750741132789529
+        },
+        {
+          "selector": ".remote-link-state small",
+          "color": "rgb(233, 214, 185)",
+          "minimum": 4.5,
+          "ratio": 5.811758517405036
+        },
+        {
+          "selector": ".display-kicker",
+          "color": "rgb(164, 175, 160)",
+          "minimum": 4.5,
+          "ratio": 8.561987309549005
+        },
+        {
+          "selector": ".timecode",
+          "color": "rgb(233, 238, 230)",
+          "minimum": 3,
+          "ratio": 16.6721643249279
+        },
+        {
+          "selector": ".state-label",
+          "color": "rgb(138, 143, 135)",
+          "minimum": 4.5,
+          "ratio": 5.944130968249265
+        },
+        {
+          "selector": ".speed-title",
+          "color": "rgb(233, 214, 185)",
+          "minimum": 4.5,
+          "ratio": 5.901504445487259
+        },
+        {
+          "selector": ".speed-module strong",
+          "color": "rgb(233, 214, 185)",
+          "minimum": 4.5,
+          "ratio": 7.012947996617325
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(233, 214, 185)",
+          "minimum": 4.5,
+          "ratio": 4.738657390633405
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(233, 214, 185)",
+          "minimum": 4.5,
+          "ratio": 4.738657390633405
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.84072843033295
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.84072843033295
+        },
+        {
+          "selector": ".phrase-count",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".phrase-count small",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".quick-edit-trigger",
+          "color": "rgb(233, 214, 185)",
+          "minimum": 4.5,
+          "ratio": 6.494469010720917
+        },
+        {
+          "selector": ".transport-button svg",
+          "color": "rgb(83, 62, 42)",
+          "minimum": 3,
+          "ratio": 6.182797529863876
+        }
+      ]
+    },
+    {
+      "skin": "Switchboard",
+      "browser": "chromium",
+      "measurements": [
+        {
+          "selector": ".remote-identity strong",
+          "color": "rgb(233, 223, 187)",
+          "minimum": 4.5,
+          "ratio": 4.772848944895322
+        },
+        {
+          "selector": ".network-state",
+          "color": "rgb(233, 223, 187)",
+          "minimum": 4.5,
+          "ratio": 5.398640673470277
+        },
+        {
+          "selector": ".remote-link-state small",
+          "color": "rgb(233, 223, 187)",
+          "minimum": 4.5,
+          "ratio": 5.549782351062503
+        },
+        {
+          "selector": ".display-kicker",
+          "color": "rgb(164, 175, 160)",
+          "minimum": 4.5,
+          "ratio": 8.561987309549005
+        },
+        {
+          "selector": ".timecode",
+          "color": "rgb(233, 238, 230)",
+          "minimum": 3,
+          "ratio": 16.6721643249279
+        },
+        {
+          "selector": ".state-label",
+          "color": "rgb(138, 143, 135)",
+          "minimum": 4.5,
+          "ratio": 5.944130968249265
+        },
+        {
+          "selector": ".speed-title",
+          "color": "rgb(233, 223, 187)",
+          "minimum": 4.5,
+          "ratio": 6.392469346997519
+        },
+        {
+          "selector": ".speed-module strong",
+          "color": "rgb(233, 223, 187)",
+          "minimum": 4.5,
+          "ratio": 7.774279234996543
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(240, 223, 178)",
+          "minimum": 4.5,
+          "ratio": 5.81065777320177
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(240, 223, 178)",
+          "minimum": 4.5,
+          "ratio": 5.81065777320177
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.84072843033295
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.84072843033295
+        },
+        {
+          "selector": ".phrase-count",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".phrase-count small",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".quick-edit-trigger",
+          "color": "rgb(233, 223, 187)",
+          "minimum": 4.5,
+          "ratio": 7.618966858742761
+        },
+        {
+          "selector": ".transport-button svg",
+          "color": "rgb(240, 223, 178)",
+          "minimum": 3,
+          "ratio": 6.990819377840498
+        }
+      ]
+    },
+    {
+      "skin": "Vector",
+      "browser": "chromium",
+      "measurements": [
+        {
+          "selector": ".remote-identity strong",
+          "color": "rgb(177, 213, 161)",
+          "minimum": 4.5,
+          "ratio": 6.997511424544291
+        },
+        {
+          "selector": ".network-state",
+          "color": "rgb(177, 213, 161)",
+          "minimum": 4.5,
+          "ratio": 7.430693137316434
+        },
+        {
+          "selector": ".remote-link-state small",
+          "color": "rgb(177, 213, 161)",
+          "minimum": 4.5,
+          "ratio": 7.600430503213971
+        },
+        {
+          "selector": ".display-kicker",
+          "color": "rgb(164, 175, 160)",
+          "minimum": 4.5,
+          "ratio": 7.812695854576384
+        },
+        {
+          "selector": ".timecode",
+          "color": "rgb(196, 248, 167)",
+          "minimum": 3,
+          "ratio": 14.689631661388502
+        },
+        {
+          "selector": ".state-label",
+          "color": "rgb(138, 143, 135)",
+          "minimum": 4.5,
+          "ratio": 5.389913258252694
+        },
+        {
+          "selector": ".speed-title",
+          "color": "rgb(177, 213, 161)",
+          "minimum": 4.5,
+          "ratio": 7.7870001061496525
+        },
+        {
+          "selector": ".speed-module strong",
+          "color": "rgb(177, 213, 161)",
+          "minimum": 4.5,
+          "ratio": 8.692216814616716
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(177, 213, 161)",
+          "minimum": 4.5,
+          "ratio": 6.062969576065881
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(177, 213, 161)",
+          "minimum": 4.5,
+          "ratio": 6.062969576065881
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.84072843033295
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.84072843033295
+        },
+        {
+          "selector": ".phrase-count",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".phrase-count small",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".quick-edit-trigger",
+          "color": "rgb(177, 213, 161)",
+          "minimum": 4.5,
+          "ratio": 8.400488298256727
+        },
+        {
+          "selector": ".transport-button svg",
+          "color": "rgb(193, 245, 162)",
+          "minimum": 3,
+          "ratio": 8.413914412893712
+        }
+      ]
+    },
+    {
+      "skin": "Cartridge",
+      "browser": "chromium",
+      "measurements": [
+        {
+          "selector": ".remote-identity strong",
+          "color": "rgb(56, 54, 71)",
+          "minimum": 4.5,
+          "ratio": 8.390613719329282
+        },
+        {
+          "selector": ".network-state",
+          "color": "rgb(56, 54, 71)",
+          "minimum": 4.5,
+          "ratio": 7.691284514479776
+        },
+        {
+          "selector": ".remote-link-state small",
+          "color": "rgb(56, 54, 71)",
+          "minimum": 4.5,
+          "ratio": 7.691284514479776
+        },
+        {
+          "selector": ".display-kicker",
+          "color": "rgb(164, 175, 160)",
+          "minimum": 4.5,
+          "ratio": 8.561987309549005
+        },
+        {
+          "selector": ".timecode",
+          "color": "rgb(233, 238, 230)",
+          "minimum": 3,
+          "ratio": 16.6721643249279
+        },
+        {
+          "selector": ".state-label",
+          "color": "rgb(138, 143, 135)",
+          "minimum": 4.5,
+          "ratio": 5.944130968249265
+        },
+        {
+          "selector": ".speed-title",
+          "color": "rgb(56, 54, 71)",
+          "minimum": 4.5,
+          "ratio": 7.175902346213753
+        },
+        {
+          "selector": ".speed-module strong",
+          "color": "rgb(56, 54, 71)",
+          "minimum": 4.5,
+          "ratio": 6.401029297541995
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(56, 54, 71)",
+          "minimum": 4.5,
+          "ratio": 7.776829675216051
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(56, 54, 71)",
+          "minimum": 4.5,
+          "ratio": 7.776829675216051
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.84072843033295
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.84072843033295
+        },
+        {
+          "selector": ".phrase-count",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".phrase-count small",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".quick-edit-trigger",
+          "color": "rgb(56, 54, 71)",
+          "minimum": 4.5,
+          "ratio": 6.270048211880009
+        },
+        {
+          "selector": ".transport-button svg",
+          "color": "rgb(53, 55, 91)",
+          "minimum": 3,
+          "ratio": 5.730822206312308
+        }
+      ]
+    },
+    {
+      "skin": "Aperture",
+      "browser": "chromium",
+      "measurements": [
+        {
+          "selector": ".remote-identity strong",
+          "color": "rgb(216, 208, 183)",
+          "minimum": 4.5,
+          "ratio": 7.333598556609693
+        },
+        {
+          "selector": ".network-state",
+          "color": "rgb(216, 208, 183)",
+          "minimum": 4.5,
+          "ratio": 7.950781826444419
+        },
+        {
+          "selector": ".remote-link-state small",
+          "color": "rgb(216, 208, 183)",
+          "minimum": 4.5,
+          "ratio": 8.123657028928546
+        },
+        {
+          "selector": ".display-kicker",
+          "color": "rgb(164, 175, 160)",
+          "minimum": 4.5,
+          "ratio": 8.561987309549005
+        },
+        {
+          "selector": ".timecode",
+          "color": "rgb(233, 238, 230)",
+          "minimum": 3,
+          "ratio": 16.6721643249279
+        },
+        {
+          "selector": ".state-label",
+          "color": "rgb(138, 143, 135)",
+          "minimum": 4.5,
+          "ratio": 5.944130968249265
+        },
+        {
+          "selector": ".speed-title",
+          "color": "rgb(216, 208, 183)",
+          "minimum": 4.5,
+          "ratio": 8.421244218203745
+        },
+        {
+          "selector": ".speed-module strong",
+          "color": "rgb(216, 208, 183)",
+          "minimum": 4.5,
+          "ratio": 9.622625379131621
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(216, 208, 183)",
+          "minimum": 4.5,
+          "ratio": 6.179027857160146
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(216, 208, 183)",
+          "minimum": 4.5,
+          "ratio": 6.179027857160146
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.84072843033295
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.84072843033295
+        },
+        {
+          "selector": ".phrase-count",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".phrase-count small",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".quick-edit-trigger",
+          "color": "rgb(216, 208, 183)",
+          "minimum": 4.5,
+          "ratio": 9.209057760833643
+        },
+        {
+          "selector": ".transport-button svg",
+          "color": "rgb(37, 43, 50)",
+          "minimum": 3,
+          "ratio": 6.192829853615233
+        }
+      ]
+    },
+    {
+      "skin": "Correspondent",
+      "browser": "chromium",
+      "measurements": [
+        {
+          "selector": ".remote-identity strong",
+          "color": "rgb(228, 214, 180)",
+          "minimum": 4.5,
+          "ratio": 8.78211809027613
+        },
+        {
+          "selector": ".network-state",
+          "color": "rgb(228, 214, 180)",
+          "minimum": 4.5,
+          "ratio": 8.737446976823085
+        },
+        {
+          "selector": ".remote-link-state small",
+          "color": "rgb(228, 214, 180)",
+          "minimum": 4.5,
+          "ratio": 9.22094592036116
+        },
+        {
+          "selector": ".display-kicker",
+          "color": "rgb(164, 175, 160)",
+          "minimum": 4.5,
+          "ratio": 8.61603613074749
+        },
+        {
+          "selector": ".timecode",
+          "color": "rgb(235, 221, 188)",
+          "minimum": 3,
+          "ratio": 14.582211351540249
+        },
+        {
+          "selector": ".state-label",
+          "color": "rgb(138, 143, 135)",
+          "minimum": 4.5,
+          "ratio": 5.944130968249265
+        },
+        {
+          "selector": ".speed-title",
+          "color": "rgb(228, 214, 180)",
+          "minimum": 4.5,
+          "ratio": 8.958720362321886
+        },
+        {
+          "selector": ".speed-module strong",
+          "color": "rgb(228, 214, 180)",
+          "minimum": 4.5,
+          "ratio": 8.609379944818073
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(240, 222, 176)",
+          "minimum": 4.5,
+          "ratio": 8.574588870991995
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(240, 222, 176)",
+          "minimum": 4.5,
+          "ratio": 8.574588870991995
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.84072843033295
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.84072843033295
+        },
+        {
+          "selector": ".phrase-count",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".phrase-count small",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".quick-edit-trigger",
+          "color": "rgb(228, 214, 180)",
+          "minimum": 4.5,
+          "ratio": 8.790877133618443
+        },
+        {
+          "selector": ".transport-button svg",
+          "color": "rgb(41, 44, 32)",
+          "minimum": 3,
+          "ratio": 5.748211451301949
+        }
+      ]
+    },
+    {
+      "skin": "Foundry",
+      "browser": "chromium",
+      "measurements": [
+        {
+          "selector": ".remote-identity strong",
+          "color": "rgb(255, 240, 214)",
+          "minimum": 4.5,
+          "ratio": 5.033057505942663
+        },
+        {
+          "selector": ".network-state",
+          "color": "rgb(255, 240, 214)",
+          "minimum": 4.5,
+          "ratio": 5.712467519415254
+        },
+        {
+          "selector": ".remote-link-state small",
+          "color": "rgb(255, 240, 214)",
+          "minimum": 4.5,
+          "ratio": 5.656821695183776
+        },
+        {
+          "selector": ".display-kicker",
+          "color": "rgb(164, 175, 160)",
+          "minimum": 4.5,
+          "ratio": 8.61603613074749
+        },
+        {
+          "selector": ".timecode",
+          "color": "rgb(233, 238, 230)",
+          "minimum": 3,
+          "ratio": 16.6721643249279
+        },
+        {
+          "selector": ".state-label",
+          "color": "rgb(138, 143, 135)",
+          "minimum": 4.5,
+          "ratio": 5.944130968249265
+        },
+        {
+          "selector": ".speed-title",
+          "color": "rgb(255, 240, 214)",
+          "minimum": 4.5,
+          "ratio": 6.134131710303549
+        },
+        {
+          "selector": ".speed-module strong",
+          "color": "rgb(255, 240, 214)",
+          "minimum": 4.5,
+          "ratio": 6.857295978471049
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(255, 240, 214)",
+          "minimum": 4.5,
+          "ratio": 5.219624705458325
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(255, 240, 214)",
+          "minimum": 4.5,
+          "ratio": 5.219624705458325
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.84072843033295
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.84072843033295
+        },
+        {
+          "selector": ".phrase-count",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".phrase-count small",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".quick-edit-trigger",
+          "color": "rgb(255, 240, 214)",
+          "minimum": 4.5,
+          "ratio": 6.6598563390286785
+        },
+        {
+          "selector": ".transport-button svg",
+          "color": "rgb(245, 223, 179)",
+          "minimum": 3,
+          "ratio": 4.180053825415622
+        }
+      ]
+    },
+    {
+      "skin": "Inox",
+      "browser": "chromium",
+      "measurements": [
+        {
+          "selector": ".remote-identity strong",
+          "color": "rgb(41, 61, 64)",
+          "minimum": 4.5,
+          "ratio": 8.534302016768581
+        },
+        {
+          "selector": ".network-state",
+          "color": "rgb(41, 61, 64)",
+          "minimum": 4.5,
+          "ratio": 7.456403070696072
+        },
+        {
+          "selector": ".remote-link-state small",
+          "color": "rgb(41, 61, 64)",
+          "minimum": 4.5,
+          "ratio": 7.435742224700573
+        },
+        {
+          "selector": ".display-kicker",
+          "color": "rgb(164, 175, 160)",
+          "minimum": 4.5,
+          "ratio": 8.61603613074749
+        },
+        {
+          "selector": ".timecode",
+          "color": "rgb(233, 238, 230)",
+          "minimum": 3,
+          "ratio": 16.6721643249279
+        },
+        {
+          "selector": ".state-label",
+          "color": "rgb(138, 143, 135)",
+          "minimum": 4.5,
+          "ratio": 5.944130968249265
+        },
+        {
+          "selector": ".speed-title",
+          "color": "rgb(41, 61, 64)",
+          "minimum": 4.5,
+          "ratio": 6.349732221733512
+        },
+        {
+          "selector": ".speed-module strong",
+          "color": "rgb(41, 61, 64)",
+          "minimum": 4.5,
+          "ratio": 6.534886959657199
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(41, 61, 64)",
+          "minimum": 4.5,
+          "ratio": 7.449207970108837
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(41, 61, 64)",
+          "minimum": 4.5,
+          "ratio": 7.449207970108837
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.84072843033295
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.84072843033295
+        },
+        {
+          "selector": ".phrase-count",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".phrase-count small",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".quick-edit-trigger",
+          "color": "rgb(41, 61, 64)",
+          "minimum": 4.5,
+          "ratio": 6.417260768661396
+        },
+        {
+          "selector": ".transport-button svg",
+          "color": "rgb(229, 240, 232)",
+          "minimum": 3,
+          "ratio": 8.136461326619777
+        }
+      ]
+    },
+    {
+      "skin": "Airframe",
+      "browser": "chromium",
+      "measurements": [
+        {
+          "selector": ".remote-identity strong",
+          "color": "rgb(49, 78, 90)",
+          "minimum": 4.5,
+          "ratio": 6.994409769071463
+        },
+        {
+          "selector": ".network-state",
+          "color": "rgb(49, 78, 90)",
+          "minimum": 4.5,
+          "ratio": 6.315131922801743
+        },
+        {
+          "selector": ".remote-link-state small",
+          "color": "rgb(49, 78, 90)",
+          "minimum": 4.5,
+          "ratio": 6.266174324014933
+        },
+        {
+          "selector": ".display-kicker",
+          "color": "rgb(164, 175, 160)",
+          "minimum": 4.5,
+          "ratio": 8.61603613074749
+        },
+        {
+          "selector": ".timecode",
+          "color": "rgb(233, 238, 230)",
+          "minimum": 3,
+          "ratio": 16.6721643249279
+        },
+        {
+          "selector": ".state-label",
+          "color": "rgb(138, 143, 135)",
+          "minimum": 4.5,
+          "ratio": 5.944130968249265
+        },
+        {
+          "selector": ".speed-title",
+          "color": "rgb(49, 78, 90)",
+          "minimum": 4.5,
+          "ratio": 6.007404148508511
+        },
+        {
+          "selector": ".speed-module strong",
+          "color": "rgb(49, 78, 90)",
+          "minimum": 4.5,
+          "ratio": 5.233918473617785
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(49, 78, 90)",
+          "minimum": 4.5,
+          "ratio": 6.1793307918399405
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(49, 78, 90)",
+          "minimum": 4.5,
+          "ratio": 6.1793307918399405
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.84072843033295
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.84072843033295
+        },
+        {
+          "selector": ".phrase-count",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".phrase-count small",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".quick-edit-trigger",
+          "color": "rgb(49, 78, 90)",
+          "minimum": 4.5,
+          "ratio": 5.233918473617785
+        },
+        {
+          "selector": ".transport-button svg",
+          "color": "rgb(247, 238, 216)",
+          "minimum": 3,
+          "ratio": 3.7021079079408774
+        }
+      ]
+    },
+    {
+      "skin": "Original",
+      "browser": "firefox",
+      "measurements": [
+        {
+          "selector": ".remote-identity strong",
+          "color": "rgb(210, 214, 200)",
+          "minimum": 4.5,
+          "ratio": 9.00959026814263
+        },
+        {
+          "selector": ".network-state",
+          "color": "rgb(210, 214, 200)",
+          "minimum": 4.5,
+          "ratio": 9.070393395736893
+        },
+        {
+          "selector": ".remote-link-state small",
+          "color": "rgb(210, 214, 200)",
+          "minimum": 4.5,
+          "ratio": 9.087028595719708
+        },
+        {
+          "selector": ".display-kicker",
+          "color": "rgb(164, 175, 160)",
+          "minimum": 4.5,
+          "ratio": 8.505696562769193
+        },
+        {
+          "selector": ".timecode",
+          "color": "rgb(233, 238, 230)",
+          "minimum": 3,
+          "ratio": 16.6721643249279
+        },
+        {
+          "selector": ".state-label",
+          "color": "rgb(138, 143, 135)",
+          "minimum": 4.5,
+          "ratio": 5.944130968249265
+        },
+        {
+          "selector": ".speed-title",
+          "color": "rgb(210, 214, 200)",
+          "minimum": 4.5,
+          "ratio": 9.087028595719708
+        },
+        {
+          "selector": ".speed-module strong",
+          "color": "rgb(210, 214, 200)",
+          "minimum": 4.5,
+          "ratio": 9.208188500636936
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(215, 219, 205)",
+          "minimum": 4.5,
+          "ratio": 7.07785824134991
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(215, 219, 205)",
+          "minimum": 4.5,
+          "ratio": 7.07785824134991
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.850362664741425
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.850362664741425
+        },
+        {
+          "selector": ".phrase-count",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".phrase-count small",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".quick-edit-trigger",
+          "color": "rgb(210, 214, 200)",
+          "minimum": 4.5,
+          "ratio": 9.018098216194973
+        },
+        {
+          "selector": ".transport-button svg",
+          "color": "rgb(27, 28, 25)",
+          "minimum": 3,
+          "ratio": 9.224960839590441
+        }
+      ]
+    },
+    {
+      "skin": "Orbit",
+      "browser": "firefox",
+      "measurements": [
+        {
+          "selector": ".remote-identity strong",
+          "color": "rgb(68, 71, 63)",
+          "minimum": 4.5,
+          "ratio": 7.986468769796838
+        },
+        {
+          "selector": ".network-state",
+          "color": "rgb(68, 71, 63)",
+          "minimum": 4.5,
+          "ratio": 7.699998964662767
+        },
+        {
+          "selector": ".remote-link-state small",
+          "color": "rgb(68, 71, 63)",
+          "minimum": 4.5,
+          "ratio": 7.699998964662767
+        },
+        {
+          "selector": ".display-kicker",
+          "color": "rgb(164, 175, 160)",
+          "minimum": 4.5,
+          "ratio": 8.505696562769193
+        },
+        {
+          "selector": ".timecode",
+          "color": "rgb(233, 238, 230)",
+          "minimum": 3,
+          "ratio": 16.6721643249279
+        },
+        {
+          "selector": ".state-label",
+          "color": "rgb(138, 143, 135)",
+          "minimum": 4.5,
+          "ratio": 5.944130968249265
+        },
+        {
+          "selector": ".speed-title",
+          "color": "rgb(68, 71, 63)",
+          "minimum": 4.5,
+          "ratio": 7.624629679555417
+        },
+        {
+          "selector": ".speed-module strong",
+          "color": "rgb(68, 71, 63)",
+          "minimum": 4.5,
+          "ratio": 7.273174482975333
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(68, 71, 63)",
+          "minimum": 4.5,
+          "ratio": 7.893894283443242
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(68, 71, 63)",
+          "minimum": 4.5,
+          "ratio": 7.893894283443242
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.850362664741425
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.850362664741425
+        },
+        {
+          "selector": ".phrase-count",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".phrase-count small",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".quick-edit-trigger",
+          "color": "rgb(68, 71, 63)",
+          "minimum": 4.5,
+          "ratio": 7.273174482975333
+        },
+        {
+          "selector": ".transport-button svg",
+          "color": "rgb(233, 236, 223)",
+          "minimum": 3,
+          "ratio": 9.360376567818713
+        }
+      ]
+    },
+    {
+      "skin": "Field reel",
+      "browser": "firefox",
+      "measurements": [
+        {
+          "selector": ".remote-identity strong",
+          "color": "rgb(41, 44, 37)",
+          "minimum": 4.5,
+          "ratio": 10.289050563469521
+        },
+        {
+          "selector": ".network-state",
+          "color": "rgb(41, 44, 37)",
+          "minimum": 4.5,
+          "ratio": 9.32392478828547
+        },
+        {
+          "selector": ".remote-link-state small",
+          "color": "rgb(41, 44, 37)",
+          "minimum": 4.5,
+          "ratio": 9.297790810057274
+        },
+        {
+          "selector": ".display-kicker",
+          "color": "rgb(164, 175, 160)",
+          "minimum": 4.5,
+          "ratio": 8.505696562769193
+        },
+        {
+          "selector": ".timecode",
+          "color": "rgb(233, 238, 230)",
+          "minimum": 3,
+          "ratio": 16.6721643249279
+        },
+        {
+          "selector": ".state-label",
+          "color": "rgb(138, 143, 135)",
+          "minimum": 4.5,
+          "ratio": 5.944130968249265
+        },
+        {
+          "selector": ".speed-title",
+          "color": "rgb(41, 44, 37)",
+          "minimum": 4.5,
+          "ratio": 8.931537167382727
+        },
+        {
+          "selector": ".speed-module strong",
+          "color": "rgb(41, 44, 37)",
+          "minimum": 4.5,
+          "ratio": 8.20863434232498
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(41, 44, 37)",
+          "minimum": 4.5,
+          "ratio": 10.081099217773492
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(41, 44, 37)",
+          "minimum": 4.5,
+          "ratio": 10.081099217773492
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.850362664741425
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.850362664741425
+        },
+        {
+          "selector": ".phrase-count",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".phrase-count small",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".quick-edit-trigger",
+          "color": "rgb(41, 44, 37)",
+          "minimum": 4.5,
+          "ratio": 8.226681059107728
+        },
+        {
+          "selector": ".transport-button svg",
+          "color": "rgb(27, 28, 25)",
+          "minimum": 3,
+          "ratio": 11.416266422618445
+        }
+      ]
+    },
+    {
+      "skin": "Thumbprint",
+      "browser": "firefox",
+      "measurements": [
+        {
+          "selector": ".remote-identity strong",
+          "color": "rgb(208, 211, 201)",
+          "minimum": 4.5,
+          "ratio": 7.5784415027885705
+        },
+        {
+          "selector": ".network-state",
+          "color": "rgb(208, 211, 201)",
+          "minimum": 4.5,
+          "ratio": 8.203105401201816
+        },
+        {
+          "selector": ".remote-link-state small",
+          "color": "rgb(208, 211, 201)",
+          "minimum": 4.5,
+          "ratio": 8.243440174670273
+        },
+        {
+          "selector": ".display-kicker",
+          "color": "rgb(164, 175, 160)",
+          "minimum": 4.5,
+          "ratio": 8.505696562769193
+        },
+        {
+          "selector": ".timecode",
+          "color": "rgb(233, 238, 230)",
+          "minimum": 3,
+          "ratio": 16.6721643249279
+        },
+        {
+          "selector": ".state-label",
+          "color": "rgb(138, 143, 135)",
+          "minimum": 4.5,
+          "ratio": 5.944130968249265
+        },
+        {
+          "selector": ".speed-title",
+          "color": "rgb(208, 211, 201)",
+          "minimum": 4.5,
+          "ratio": 8.488697008041207
+        },
+        {
+          "selector": ".speed-module strong",
+          "color": "rgb(208, 211, 201)",
+          "minimum": 4.5,
+          "ratio": 9.36303195073172
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(215, 219, 205)",
+          "minimum": 4.5,
+          "ratio": 7.07785824134991
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(215, 219, 205)",
+          "minimum": 4.5,
+          "ratio": 7.07785824134991
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.850362664741425
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.850362664741425
+        },
+        {
+          "selector": ".phrase-count",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".phrase-count small",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".quick-edit-trigger",
+          "color": "rgb(208, 211, 201)",
+          "minimum": 4.5,
+          "ratio": 9.048296880248833
+        },
+        {
+          "selector": ".transport-button svg",
+          "color": "rgb(222, 223, 213)",
+          "minimum": 3,
+          "ratio": 7.412540943081743
+        }
+      ]
+    },
+    {
+      "skin": "Signal",
+      "browser": "firefox",
+      "measurements": [
+        {
+          "selector": ".remote-identity strong",
+          "color": "rgb(48, 32, 21)",
+          "minimum": 4.5,
+          "ratio": 6.643494083464429
+        },
+        {
+          "selector": ".network-state",
+          "color": "rgb(48, 32, 21)",
+          "minimum": 4.5,
+          "ratio": 5.7762758983498665
+        },
+        {
+          "selector": ".remote-link-state small",
+          "color": "rgb(48, 32, 21)",
+          "minimum": 4.5,
+          "ratio": 5.739901535118715
+        },
+        {
+          "selector": ".display-kicker",
+          "color": "rgb(164, 175, 160)",
+          "minimum": 4.5,
+          "ratio": 8.505696562769193
+        },
+        {
+          "selector": ".timecode",
+          "color": "rgb(233, 238, 230)",
+          "minimum": 3,
+          "ratio": 16.6721643249279
+        },
+        {
+          "selector": ".state-label",
+          "color": "rgb(138, 143, 135)",
+          "minimum": 4.5,
+          "ratio": 5.944130968249265
+        },
+        {
+          "selector": ".speed-title",
+          "color": "rgb(48, 32, 21)",
+          "minimum": 4.5,
+          "ratio": 5.6293505229718
+        },
+        {
+          "selector": ".speed-module strong",
+          "color": "rgb(48, 32, 21)",
+          "minimum": 4.5,
+          "ratio": 4.852501653854546
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(48, 32, 21)",
+          "minimum": 4.5,
+          "ratio": 7.235606145117791
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(48, 32, 21)",
+          "minimum": 4.5,
+          "ratio": 7.235606145117791
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.850362664741425
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.850362664741425
+        },
+        {
+          "selector": ".phrase-count",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".phrase-count small",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".quick-edit-trigger",
+          "color": "rgb(48, 32, 21)",
+          "minimum": 4.5,
+          "ratio": 4.852501653854546
+        },
+        {
+          "selector": ".transport-button svg",
+          "color": "rgb(52, 55, 44)",
+          "minimum": 3,
+          "ratio": 7.8401235086476335
+        }
+      ]
+    },
+    {
+      "skin": "Groove",
+      "browser": "firefox",
+      "measurements": [
+        {
+          "selector": ".remote-identity strong",
+          "color": "rgb(76, 67, 55)",
+          "minimum": 4.5,
+          "ratio": 7.093970735680387
+        },
+        {
+          "selector": ".network-state",
+          "color": "rgb(76, 67, 55)",
+          "minimum": 4.5,
+          "ratio": 6.700385928641356
+        },
+        {
+          "selector": ".remote-link-state small",
+          "color": "rgb(76, 67, 55)",
+          "minimum": 4.5,
+          "ratio": 6.700385928641356
+        },
+        {
+          "selector": ".display-kicker",
+          "color": "rgb(164, 175, 160)",
+          "minimum": 4.5,
+          "ratio": 8.505696562769193
+        },
+        {
+          "selector": ".timecode",
+          "color": "rgb(233, 238, 230)",
+          "minimum": 3,
+          "ratio": 16.6721643249279
+        },
+        {
+          "selector": ".state-label",
+          "color": "rgb(138, 143, 135)",
+          "minimum": 4.5,
+          "ratio": 5.944130968249265
+        },
+        {
+          "selector": ".speed-title",
+          "color": "rgb(76, 67, 55)",
+          "minimum": 4.5,
+          "ratio": 6.4337604423586505
+        },
+        {
+          "selector": ".speed-module strong",
+          "color": "rgb(76, 67, 55)",
+          "minimum": 4.5,
+          "ratio": 5.898917357983833
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(76, 67, 55)",
+          "minimum": 4.5,
+          "ratio": 6.677678537332088
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(76, 67, 55)",
+          "minimum": 4.5,
+          "ratio": 6.677678537332088
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.850362664741425
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.850362664741425
+        },
+        {
+          "selector": ".phrase-count",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".phrase-count small",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".quick-edit-trigger",
+          "color": "rgb(76, 67, 55)",
+          "minimum": 4.5,
+          "ratio": 5.909071245983572
+        },
+        {
+          "selector": ".transport-button svg",
+          "color": "rgb(56, 45, 27)",
+          "minimum": 3,
+          "ratio": 5.343752899136695
+        }
+      ]
+    },
+    {
+      "skin": "Glacier",
+      "browser": "firefox",
+      "measurements": [
+        {
+          "selector": ".remote-identity strong",
+          "color": "rgb(53, 80, 90)",
+          "minimum": 4.5,
+          "ratio": 7.022604137756505
+        },
+        {
+          "selector": ".network-state",
+          "color": "rgb(53, 80, 90)",
+          "minimum": 4.5,
+          "ratio": 6.4632694530538926
+        },
+        {
+          "selector": ".remote-link-state small",
+          "color": "rgb(53, 80, 90)",
+          "minimum": 4.5,
+          "ratio": 6.41409789205708
+        },
+        {
+          "selector": ".display-kicker",
+          "color": "rgb(164, 175, 160)",
+          "minimum": 4.5,
+          "ratio": 8.505696562769193
+        },
+        {
+          "selector": ".timecode",
+          "color": "rgb(233, 238, 230)",
+          "minimum": 3,
+          "ratio": 16.6721643249279
+        },
+        {
+          "selector": ".state-label",
+          "color": "rgb(138, 143, 135)",
+          "minimum": 4.5,
+          "ratio": 5.944130968249265
+        },
+        {
+          "selector": ".speed-title",
+          "color": "rgb(53, 80, 90)",
+          "minimum": 4.5,
+          "ratio": 6.214477192761818
+        },
+        {
+          "selector": ".speed-module strong",
+          "color": "rgb(53, 80, 90)",
+          "minimum": 4.5,
+          "ratio": 5.566332822806966
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(53, 80, 90)",
+          "minimum": 4.5,
+          "ratio": 6.2018233476752815
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(53, 80, 90)",
+          "minimum": 4.5,
+          "ratio": 6.2018233476752815
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.850362664741425
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.850362664741425
+        },
+        {
+          "selector": ".phrase-count",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".phrase-count small",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".quick-edit-trigger",
+          "color": "rgb(53, 80, 90)",
+          "minimum": 4.5,
+          "ratio": 5.5766081818205455
+        },
+        {
+          "selector": ".transport-button svg",
+          "color": "rgb(75, 89, 96)",
+          "minimum": 3,
+          "ratio": 4.494091148480342
+        }
+      ]
+    },
+    {
+      "skin": "Bakelite",
+      "browser": "firefox",
+      "measurements": [
+        {
+          "selector": ".remote-identity strong",
+          "color": "rgb(233, 214, 185)",
+          "minimum": 4.5,
+          "ratio": 5.014035663038772
+        },
+        {
+          "selector": ".network-state",
+          "color": "rgb(233, 214, 185)",
+          "minimum": 4.5,
+          "ratio": 5.778446020436641
+        },
+        {
+          "selector": ".remote-link-state small",
+          "color": "rgb(233, 214, 185)",
+          "minimum": 4.5,
+          "ratio": 5.840055887713392
+        },
+        {
+          "selector": ".display-kicker",
+          "color": "rgb(164, 175, 160)",
+          "minimum": 4.5,
+          "ratio": 8.505696562769193
+        },
+        {
+          "selector": ".timecode",
+          "color": "rgb(233, 238, 230)",
+          "minimum": 3,
+          "ratio": 16.6721643249279
+        },
+        {
+          "selector": ".state-label",
+          "color": "rgb(138, 143, 135)",
+          "minimum": 4.5,
+          "ratio": 5.944130968249265
+        },
+        {
+          "selector": ".speed-title",
+          "color": "rgb(233, 214, 185)",
+          "minimum": 4.5,
+          "ratio": 5.964589137479353
+        },
+        {
+          "selector": ".speed-module strong",
+          "color": "rgb(233, 214, 185)",
+          "minimum": 4.5,
+          "ratio": 7.0471558427220575
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(233, 214, 185)",
+          "minimum": 4.5,
+          "ratio": 4.738657390633405
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(233, 214, 185)",
+          "minimum": 4.5,
+          "ratio": 4.738657390633405
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.850362664741425
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.850362664741425
+        },
+        {
+          "selector": ".phrase-count",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".phrase-count small",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".quick-edit-trigger",
+          "color": "rgb(233, 214, 185)",
+          "minimum": 4.5,
+          "ratio": 6.6009108844747875
+        },
+        {
+          "selector": ".transport-button svg",
+          "color": "rgb(83, 62, 42)",
+          "minimum": 3,
+          "ratio": 6.182797529863876
+        }
+      ]
+    },
+    {
+      "skin": "Switchboard",
+      "browser": "firefox",
+      "measurements": [
+        {
+          "selector": ".remote-identity strong",
+          "color": "rgb(233, 223, 187)",
+          "minimum": 4.5,
+          "ratio": 4.696134599320082
+        },
+        {
+          "selector": ".network-state",
+          "color": "rgb(233, 223, 187)",
+          "minimum": 4.5,
+          "ratio": 5.470397258755057
+        },
+        {
+          "selector": ".remote-link-state small",
+          "color": "rgb(233, 223, 187)",
+          "minimum": 4.5,
+          "ratio": 5.549782351062503
+        },
+        {
+          "selector": ".display-kicker",
+          "color": "rgb(164, 175, 160)",
+          "minimum": 4.5,
+          "ratio": 8.505696562769193
+        },
+        {
+          "selector": ".timecode",
+          "color": "rgb(233, 238, 230)",
+          "minimum": 3,
+          "ratio": 16.6721643249279
+        },
+        {
+          "selector": ".state-label",
+          "color": "rgb(138, 143, 135)",
+          "minimum": 4.5,
+          "ratio": 5.944130968249265
+        },
+        {
+          "selector": ".speed-title",
+          "color": "rgb(233, 223, 187)",
+          "minimum": 4.5,
+          "ratio": 6.47948117569593
+        },
+        {
+          "selector": ".speed-module strong",
+          "color": "rgb(233, 223, 187)",
+          "minimum": 4.5,
+          "ratio": 7.78831987032069
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(240, 223, 178)",
+          "minimum": 4.5,
+          "ratio": 5.81065777320177
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(240, 223, 178)",
+          "minimum": 4.5,
+          "ratio": 5.81065777320177
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.850362664741425
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.850362664741425
+        },
+        {
+          "selector": ".phrase-count",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".phrase-count small",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".quick-edit-trigger",
+          "color": "rgb(233, 223, 187)",
+          "minimum": 4.5,
+          "ratio": 7.583656816316383
+        },
+        {
+          "selector": ".transport-button svg",
+          "color": "rgb(240, 223, 178)",
+          "minimum": 3,
+          "ratio": 6.884228055220468
+        }
+      ]
+    },
+    {
+      "skin": "Vector",
+      "browser": "firefox",
+      "measurements": [
+        {
+          "selector": ".remote-identity strong",
+          "color": "rgb(177, 213, 161)",
+          "minimum": 4.5,
+          "ratio": 6.918138066017952
+        },
+        {
+          "selector": ".network-state",
+          "color": "rgb(177, 213, 161)",
+          "minimum": 4.5,
+          "ratio": 7.528113334509831
+        },
+        {
+          "selector": ".remote-link-state small",
+          "color": "rgb(177, 213, 161)",
+          "minimum": 4.5,
+          "ratio": 7.627580537566373
+        },
+        {
+          "selector": ".display-kicker",
+          "color": "rgb(164, 175, 160)",
+          "minimum": 4.5,
+          "ratio": 7.812695854576384
+        },
+        {
+          "selector": ".timecode",
+          "color": "rgb(196, 248, 167)",
+          "minimum": 3,
+          "ratio": 14.689631661388502
+        },
+        {
+          "selector": ".state-label",
+          "color": "rgb(138, 143, 135)",
+          "minimum": 4.5,
+          "ratio": 5.389913258252694
+        },
+        {
+          "selector": ".speed-title",
+          "color": "rgb(177, 213, 161)",
+          "minimum": 4.5,
+          "ratio": 7.874572481636998
+        },
+        {
+          "selector": ".speed-module strong",
+          "color": "rgb(177, 213, 161)",
+          "minimum": 4.5,
+          "ratio": 8.783607686171468
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(177, 213, 161)",
+          "minimum": 4.5,
+          "ratio": 6.062969576065881
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(177, 213, 161)",
+          "minimum": 4.5,
+          "ratio": 6.062969576065881
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.850362664741425
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.850362664741425
+        },
+        {
+          "selector": ".phrase-count",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".phrase-count small",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".quick-edit-trigger",
+          "color": "rgb(177, 213, 161)",
+          "minimum": 4.5,
+          "ratio": 8.48264385355254
+        },
+        {
+          "selector": ".transport-button svg",
+          "color": "rgb(193, 245, 162)",
+          "minimum": 3,
+          "ratio": 8.413914412893712
+        }
+      ]
+    },
+    {
+      "skin": "Cartridge",
+      "browser": "firefox",
+      "measurements": [
+        {
+          "selector": ".remote-identity strong",
+          "color": "rgb(56, 54, 71)",
+          "minimum": 4.5,
+          "ratio": 8.39617603957984
+        },
+        {
+          "selector": ".network-state",
+          "color": "rgb(56, 54, 71)",
+          "minimum": 4.5,
+          "ratio": 7.691284514479776
+        },
+        {
+          "selector": ".remote-link-state small",
+          "color": "rgb(56, 54, 71)",
+          "minimum": 4.5,
+          "ratio": 7.691284514479776
+        },
+        {
+          "selector": ".display-kicker",
+          "color": "rgb(164, 175, 160)",
+          "minimum": 4.5,
+          "ratio": 8.505696562769193
+        },
+        {
+          "selector": ".timecode",
+          "color": "rgb(233, 238, 230)",
+          "minimum": 3,
+          "ratio": 16.6721643249279
+        },
+        {
+          "selector": ".state-label",
+          "color": "rgb(138, 143, 135)",
+          "minimum": 4.5,
+          "ratio": 5.944130968249265
+        },
+        {
+          "selector": ".speed-title",
+          "color": "rgb(56, 54, 71)",
+          "minimum": 4.5,
+          "ratio": 7.175902346213753
+        },
+        {
+          "selector": ".speed-module strong",
+          "color": "rgb(56, 54, 71)",
+          "minimum": 4.5,
+          "ratio": 6.401029297541995
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(56, 54, 71)",
+          "minimum": 4.5,
+          "ratio": 7.776829675216051
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(56, 54, 71)",
+          "minimum": 4.5,
+          "ratio": 7.776829675216051
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.850362664741425
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.850362664741425
+        },
+        {
+          "selector": ".phrase-count",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".phrase-count small",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".quick-edit-trigger",
+          "color": "rgb(56, 54, 71)",
+          "minimum": 4.5,
+          "ratio": 6.33293380234787
+        },
+        {
+          "selector": ".transport-button svg",
+          "color": "rgb(53, 55, 91)",
+          "minimum": 3,
+          "ratio": 5.730822206312308
+        }
+      ]
+    },
+    {
+      "skin": "Aperture",
+      "browser": "firefox",
+      "measurements": [
+        {
+          "selector": ".remote-identity strong",
+          "color": "rgb(216, 208, 183)",
+          "minimum": 4.5,
+          "ratio": 7.191509145971932
+        },
+        {
+          "selector": ".network-state",
+          "color": "rgb(216, 208, 183)",
+          "minimum": 4.5,
+          "ratio": 8.14647986029367
+        },
+        {
+          "selector": ".remote-link-state small",
+          "color": "rgb(216, 208, 183)",
+          "minimum": 4.5,
+          "ratio": 8.156698797765275
+        },
+        {
+          "selector": ".display-kicker",
+          "color": "rgb(164, 175, 160)",
+          "minimum": 4.5,
+          "ratio": 8.505696562769193
+        },
+        {
+          "selector": ".timecode",
+          "color": "rgb(233, 238, 230)",
+          "minimum": 3,
+          "ratio": 16.6721643249279
+        },
+        {
+          "selector": ".state-label",
+          "color": "rgb(138, 143, 135)",
+          "minimum": 4.5,
+          "ratio": 5.944130968249265
+        },
+        {
+          "selector": ".speed-title",
+          "color": "rgb(216, 208, 183)",
+          "minimum": 4.5,
+          "ratio": 8.520733864675854
+        },
+        {
+          "selector": ".speed-module strong",
+          "color": "rgb(216, 208, 183)",
+          "minimum": 4.5,
+          "ratio": 9.622625379131621
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(216, 208, 183)",
+          "minimum": 4.5,
+          "ratio": 6.179027857160146
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(216, 208, 183)",
+          "minimum": 4.5,
+          "ratio": 6.179027857160146
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.850362664741425
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.850362664741425
+        },
+        {
+          "selector": ".phrase-count",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".phrase-count small",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".quick-edit-trigger",
+          "color": "rgb(216, 208, 183)",
+          "minimum": 4.5,
+          "ratio": 9.335009240638074
+        },
+        {
+          "selector": ".transport-button svg",
+          "color": "rgb(37, 43, 50)",
+          "minimum": 3,
+          "ratio": 6.2100471656143466
+        }
+      ]
+    },
+    {
+      "skin": "Correspondent",
+      "browser": "firefox",
+      "measurements": [
+        {
+          "selector": ".remote-identity strong",
+          "color": "rgb(228, 214, 180)",
+          "minimum": 4.5,
+          "ratio": 8.753233253890128
+        },
+        {
+          "selector": ".network-state",
+          "color": "rgb(228, 214, 180)",
+          "minimum": 4.5,
+          "ratio": 8.561985538097877
+        },
+        {
+          "selector": ".remote-link-state small",
+          "color": "rgb(228, 214, 180)",
+          "minimum": 4.5,
+          "ratio": 9.251023049160493
+        },
+        {
+          "selector": ".display-kicker",
+          "color": "rgb(164, 175, 160)",
+          "minimum": 4.5,
+          "ratio": 8.61603613074749
+        },
+        {
+          "selector": ".timecode",
+          "color": "rgb(235, 221, 188)",
+          "minimum": 3,
+          "ratio": 14.582211351540249
+        },
+        {
+          "selector": ".state-label",
+          "color": "rgb(138, 143, 135)",
+          "minimum": 4.5,
+          "ratio": 5.944130968249265
+        },
+        {
+          "selector": ".speed-title",
+          "color": "rgb(228, 214, 180)",
+          "minimum": 4.5,
+          "ratio": 9.119271123263475
+        },
+        {
+          "selector": ".speed-module strong",
+          "color": "rgb(228, 214, 180)",
+          "minimum": 4.5,
+          "ratio": 8.700158860185185
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(240, 222, 176)",
+          "minimum": 4.5,
+          "ratio": 8.574588870991995
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(240, 222, 176)",
+          "minimum": 4.5,
+          "ratio": 8.574588870991995
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.850362664741425
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.850362664741425
+        },
+        {
+          "selector": ".phrase-count",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".phrase-count small",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".quick-edit-trigger",
+          "color": "rgb(228, 214, 180)",
+          "minimum": 4.5,
+          "ratio": 8.895563955232143
+        },
+        {
+          "selector": ".transport-button svg",
+          "color": "rgb(41, 44, 32)",
+          "minimum": 3,
+          "ratio": 5.748211451301949
+        }
+      ]
+    },
+    {
+      "skin": "Foundry",
+      "browser": "firefox",
+      "measurements": [
+        {
+          "selector": ".remote-identity strong",
+          "color": "rgb(255, 240, 214)",
+          "minimum": 4.5,
+          "ratio": 5.060770194281679
+        },
+        {
+          "selector": ".network-state",
+          "color": "rgb(255, 240, 214)",
+          "minimum": 4.5,
+          "ratio": 5.6178964895636305
+        },
+        {
+          "selector": ".remote-link-state small",
+          "color": "rgb(255, 240, 214)",
+          "minimum": 4.5,
+          "ratio": 5.676298971465522
+        },
+        {
+          "selector": ".display-kicker",
+          "color": "rgb(164, 175, 160)",
+          "minimum": 4.5,
+          "ratio": 8.61603613074749
+        },
+        {
+          "selector": ".timecode",
+          "color": "rgb(233, 238, 230)",
+          "minimum": 3,
+          "ratio": 16.6721643249279
+        },
+        {
+          "selector": ".state-label",
+          "color": "rgb(138, 143, 135)",
+          "minimum": 4.5,
+          "ratio": 5.944130968249265
+        },
+        {
+          "selector": ".speed-title",
+          "color": "rgb(255, 240, 214)",
+          "minimum": 4.5,
+          "ratio": 6.086738424367416
+        },
+        {
+          "selector": ".speed-module strong",
+          "color": "rgb(255, 240, 214)",
+          "minimum": 4.5,
+          "ratio": 6.938777936427199
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(255, 240, 214)",
+          "minimum": 4.5,
+          "ratio": 5.219624705458325
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(255, 240, 214)",
+          "minimum": 4.5,
+          "ratio": 5.219624705458325
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.850362664741425
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.850362664741425
+        },
+        {
+          "selector": ".phrase-count",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".phrase-count small",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".quick-edit-trigger",
+          "color": "rgb(255, 240, 214)",
+          "minimum": 4.5,
+          "ratio": 6.799442805330752
+        },
+        {
+          "selector": ".transport-button svg",
+          "color": "rgb(245, 223, 179)",
+          "minimum": 3,
+          "ratio": 4.1989001538085295
+        }
+      ]
+    },
+    {
+      "skin": "Inox",
+      "browser": "firefox",
+      "measurements": [
+        {
+          "selector": ".remote-identity strong",
+          "color": "rgb(41, 61, 64)",
+          "minimum": 4.5,
+          "ratio": 8.534302016768581
+        },
+        {
+          "selector": ".network-state",
+          "color": "rgb(41, 61, 64)",
+          "minimum": 4.5,
+          "ratio": 7.435742224700573
+        },
+        {
+          "selector": ".remote-link-state small",
+          "color": "rgb(41, 61, 64)",
+          "minimum": 4.5,
+          "ratio": 7.4152137490825885
+        },
+        {
+          "selector": ".display-kicker",
+          "color": "rgb(164, 175, 160)",
+          "minimum": 4.5,
+          "ratio": 8.61603613074749
+        },
+        {
+          "selector": ".timecode",
+          "color": "rgb(233, 238, 230)",
+          "minimum": 3,
+          "ratio": 16.6721643249279
+        },
+        {
+          "selector": ".state-label",
+          "color": "rgb(138, 143, 135)",
+          "minimum": 4.5,
+          "ratio": 5.944130968249265
+        },
+        {
+          "selector": ".speed-title",
+          "color": "rgb(41, 61, 64)",
+          "minimum": 4.5,
+          "ratio": 6.349732221733512
+        },
+        {
+          "selector": ".speed-module strong",
+          "color": "rgb(41, 61, 64)",
+          "minimum": 4.5,
+          "ratio": 6.504045908925223
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(41, 61, 64)",
+          "minimum": 4.5,
+          "ratio": 7.394906631954119
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(41, 61, 64)",
+          "minimum": 4.5,
+          "ratio": 7.394906631954119
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.850362664741425
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.850362664741425
+        },
+        {
+          "selector": ".phrase-count",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".phrase-count small",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".quick-edit-trigger",
+          "color": "rgb(41, 61, 64)",
+          "minimum": 4.5,
+          "ratio": 6.368275196545958
+        },
+        {
+          "selector": ".transport-button svg",
+          "color": "rgb(229, 240, 232)",
+          "minimum": 3,
+          "ratio": 8.039964099967888
+        }
+      ]
+    },
+    {
+      "skin": "Airframe",
+      "browser": "firefox",
+      "measurements": [
+        {
+          "selector": ".remote-identity strong",
+          "color": "rgb(49, 78, 90)",
+          "minimum": 4.5,
+          "ratio": 7.012254566304562
+        },
+        {
+          "selector": ".network-state",
+          "color": "rgb(49, 78, 90)",
+          "minimum": 4.5,
+          "ratio": 6.270663451056345
+        },
+        {
+          "selector": ".remote-link-state small",
+          "color": "rgb(49, 78, 90)",
+          "minimum": 4.5,
+          "ratio": 6.254277363112768
+        },
+        {
+          "selector": ".display-kicker",
+          "color": "rgb(164, 175, 160)",
+          "minimum": 4.5,
+          "ratio": 8.61603613074749
+        },
+        {
+          "selector": ".timecode",
+          "color": "rgb(233, 238, 230)",
+          "minimum": 3,
+          "ratio": 16.6721643249279
+        },
+        {
+          "selector": ".state-label",
+          "color": "rgb(138, 143, 135)",
+          "minimum": 4.5,
+          "ratio": 5.944130968249265
+        },
+        {
+          "selector": ".speed-title",
+          "color": "rgb(49, 78, 90)",
+          "minimum": 4.5,
+          "ratio": 6.007404148508511
+        },
+        {
+          "selector": ".speed-module strong",
+          "color": "rgb(49, 78, 90)",
+          "minimum": 4.5,
+          "ratio": 5.233918473617785
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(49, 78, 90)",
+          "minimum": 4.5,
+          "ratio": 6.1793307918399405
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(49, 78, 90)",
+          "minimum": 4.5,
+          "ratio": 6.1793307918399405
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.850362664741425
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.850362664741425
+        },
+        {
+          "selector": ".phrase-count",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".phrase-count small",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".quick-edit-trigger",
+          "color": "rgb(49, 78, 90)",
+          "minimum": 4.5,
+          "ratio": 5.233918473617785
+        },
+        {
+          "selector": ".transport-button svg",
+          "color": "rgb(247, 238, 216)",
+          "minimum": 3,
+          "ratio": 3.7021079079408774
+        }
+      ]
+    },
+    {
+      "skin": "Original",
+      "browser": "webkit",
+      "measurements": [
+        {
+          "selector": ".remote-identity strong",
+          "color": "rgb(210, 214, 200)",
+          "minimum": 4.5,
+          "ratio": 9.087028595719708
+        },
+        {
+          "selector": ".network-state",
+          "color": "rgb(210, 214, 200)",
+          "minimum": 4.5,
+          "ratio": 8.89799516881699
+        },
+        {
+          "selector": ".remote-link-state small",
+          "color": "rgb(210, 214, 200)",
+          "minimum": 4.5,
+          "ratio": 9.061020502837657
+        },
+        {
+          "selector": ".display-kicker",
+          "color": "rgb(164, 175, 160)",
+          "minimum": 4.5,
+          "ratio": 8.505696562769193
+        },
+        {
+          "selector": ".timecode",
+          "color": "rgb(233, 238, 230)",
+          "minimum": 3,
+          "ratio": 16.6721643249279
+        },
+        {
+          "selector": ".state-label",
+          "color": "rgb(138, 143, 135)",
+          "minimum": 4.5,
+          "ratio": 5.944130968249265
+        },
+        {
+          "selector": ".speed-title",
+          "color": "rgb(210, 214, 200)",
+          "minimum": 4.5,
+          "ratio": 8.958313496582926
+        },
+        {
+          "selector": ".speed-module strong",
+          "color": "rgb(210, 214, 200)",
+          "minimum": 4.5,
+          "ratio": 8.820296076376204
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(215, 219, 205)",
+          "minimum": 4.5,
+          "ratio": 7.07785824134991
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(215, 219, 205)",
+          "minimum": 4.5,
+          "ratio": 7.07785824134991
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.95581454342679
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.95581454342679
+        },
+        {
+          "selector": ".phrase-count",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".phrase-count small",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".quick-edit-trigger",
+          "color": "rgb(210, 214, 200)",
+          "minimum": 4.5,
+          "ratio": 8.915954142640352
+        },
+        {
+          "selector": ".transport-button svg",
+          "color": "rgb(27, 28, 25)",
+          "minimum": 3,
+          "ratio": 9.126450486923241
+        }
+      ]
+    },
+    {
+      "skin": "Orbit",
+      "browser": "webkit",
+      "measurements": [
+        {
+          "selector": ".remote-identity strong",
+          "color": "rgb(68, 71, 63)",
+          "minimum": 4.5,
+          "ratio": 7.986468769796838
+        },
+        {
+          "selector": ".network-state",
+          "color": "rgb(68, 71, 63)",
+          "minimum": 4.5,
+          "ratio": 7.699998964662767
+        },
+        {
+          "selector": ".remote-link-state small",
+          "color": "rgb(68, 71, 63)",
+          "minimum": 4.5,
+          "ratio": 7.695208130553294
+        },
+        {
+          "selector": ".display-kicker",
+          "color": "rgb(164, 175, 160)",
+          "minimum": 4.5,
+          "ratio": 8.505696562769193
+        },
+        {
+          "selector": ".timecode",
+          "color": "rgb(233, 238, 230)",
+          "minimum": 3,
+          "ratio": 16.6721643249279
+        },
+        {
+          "selector": ".state-label",
+          "color": "rgb(138, 143, 135)",
+          "minimum": 4.5,
+          "ratio": 5.944130968249265
+        },
+        {
+          "selector": ".speed-title",
+          "color": "rgb(68, 71, 63)",
+          "minimum": 4.5,
+          "ratio": 7.559187770519031
+        },
+        {
+          "selector": ".speed-module strong",
+          "color": "rgb(68, 71, 63)",
+          "minimum": 4.5,
+          "ratio": 7.263066260012242
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(68, 71, 63)",
+          "minimum": 4.5,
+          "ratio": 7.893894283443242
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(68, 71, 63)",
+          "minimum": 4.5,
+          "ratio": 7.893894283443242
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.95581454342679
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.95581454342679
+        },
+        {
+          "selector": ".phrase-count",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".phrase-count small",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".quick-edit-trigger",
+          "color": "rgb(68, 71, 63)",
+          "minimum": 4.5,
+          "ratio": 7.277766326859043
+        },
+        {
+          "selector": ".transport-button svg",
+          "color": "rgb(233, 236, 223)",
+          "minimum": 3,
+          "ratio": 9.360376567818713
+        }
+      ]
+    },
+    {
+      "skin": "Field reel",
+      "browser": "webkit",
+      "measurements": [
+        {
+          "selector": ".remote-identity strong",
+          "color": "rgb(41, 44, 37)",
+          "minimum": 4.5,
+          "ratio": 10.282087443030557
+        },
+        {
+          "selector": ".network-state",
+          "color": "rgb(41, 44, 37)",
+          "minimum": 4.5,
+          "ratio": 9.25095998471984
+        },
+        {
+          "selector": ".remote-link-state small",
+          "color": "rgb(41, 44, 37)",
+          "minimum": 4.5,
+          "ratio": 9.27182185109084
+        },
+        {
+          "selector": ".display-kicker",
+          "color": "rgb(164, 175, 160)",
+          "minimum": 4.5,
+          "ratio": 8.505696562769193
+        },
+        {
+          "selector": ".timecode",
+          "color": "rgb(233, 238, 230)",
+          "minimum": 3,
+          "ratio": 16.6721643249279
+        },
+        {
+          "selector": ".state-label",
+          "color": "rgb(138, 143, 135)",
+          "minimum": 4.5,
+          "ratio": 5.944130968249265
+        },
+        {
+          "selector": ".speed-title",
+          "color": "rgb(41, 44, 37)",
+          "minimum": 4.5,
+          "ratio": 8.931537167382727
+        },
+        {
+          "selector": ".speed-module strong",
+          "color": "rgb(41, 44, 37)",
+          "minimum": 4.5,
+          "ratio": 8.270565084930144
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(41, 44, 37)",
+          "minimum": 4.5,
+          "ratio": 10.081099217773492
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(41, 44, 37)",
+          "minimum": 4.5,
+          "ratio": 10.081099217773492
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.95581454342679
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.95581454342679
+        },
+        {
+          "selector": ".phrase-count",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".phrase-count small",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".quick-edit-trigger",
+          "color": "rgb(41, 44, 37)",
+          "minimum": 4.5,
+          "ratio": 8.288611801712891
+        },
+        {
+          "selector": ".transport-button svg",
+          "color": "rgb(27, 28, 25)",
+          "minimum": 3,
+          "ratio": 11.416266422618445
+        }
+      ]
+    },
+    {
+      "skin": "Thumbprint",
+      "browser": "webkit",
+      "measurements": [
+        {
+          "selector": ".remote-identity strong",
+          "color": "rgb(208, 211, 201)",
+          "minimum": 4.5,
+          "ratio": 7.648627280899954
+        },
+        {
+          "selector": ".network-state",
+          "color": "rgb(208, 211, 201)",
+          "minimum": 4.5,
+          "ratio": 8.065381291311262
+        },
+        {
+          "selector": ".remote-link-state small",
+          "color": "rgb(208, 211, 201)",
+          "minimum": 4.5,
+          "ratio": 8.114506916853447
+        },
+        {
+          "selector": ".display-kicker",
+          "color": "rgb(164, 175, 160)",
+          "minimum": 4.5,
+          "ratio": 8.505696562769193
+        },
+        {
+          "selector": ".timecode",
+          "color": "rgb(233, 238, 230)",
+          "minimum": 3,
+          "ratio": 16.6721643249279
+        },
+        {
+          "selector": ".state-label",
+          "color": "rgb(138, 143, 135)",
+          "minimum": 4.5,
+          "ratio": 5.944130968249265
+        },
+        {
+          "selector": ".speed-title",
+          "color": "rgb(208, 211, 201)",
+          "minimum": 4.5,
+          "ratio": 8.463742592925003
+        },
+        {
+          "selector": ".speed-module strong",
+          "color": "rgb(208, 211, 201)",
+          "minimum": 4.5,
+          "ratio": 8.979176268532042
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(215, 219, 205)",
+          "minimum": 4.5,
+          "ratio": 7.07785824134991
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(215, 219, 205)",
+          "minimum": 4.5,
+          "ratio": 7.07785824134991
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.95581454342679
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.95581454342679
+        },
+        {
+          "selector": ".phrase-count",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".phrase-count small",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".quick-edit-trigger",
+          "color": "rgb(208, 211, 201)",
+          "minimum": 4.5,
+          "ratio": 8.821515453743633
+        },
+        {
+          "selector": ".transport-button svg",
+          "color": "rgb(222, 223, 213)",
+          "minimum": 3,
+          "ratio": 7.412540943081743
+        }
+      ]
+    },
+    {
+      "skin": "Signal",
+      "browser": "webkit",
+      "measurements": [
+        {
+          "selector": ".remote-identity strong",
+          "color": "rgb(48, 32, 21)",
+          "minimum": 4.5,
+          "ratio": 6.638353548991238
+        },
+        {
+          "selector": ".network-state",
+          "color": "rgb(48, 32, 21)",
+          "minimum": 4.5,
+          "ratio": 5.73569402964513
+        },
+        {
+          "selector": ".remote-link-state small",
+          "color": "rgb(48, 32, 21)",
+          "minimum": 4.5,
+          "ratio": 5.73569402964513
+        },
+        {
+          "selector": ".display-kicker",
+          "color": "rgb(164, 175, 160)",
+          "minimum": 4.5,
+          "ratio": 8.505696562769193
+        },
+        {
+          "selector": ".timecode",
+          "color": "rgb(233, 238, 230)",
+          "minimum": 3,
+          "ratio": 16.6721643249279
+        },
+        {
+          "selector": ".state-label",
+          "color": "rgb(138, 143, 135)",
+          "minimum": 4.5,
+          "ratio": 5.944130968249265
+        },
+        {
+          "selector": ".speed-title",
+          "color": "rgb(48, 32, 21)",
+          "minimum": 4.5,
+          "ratio": 5.627327231542476
+        },
+        {
+          "selector": ".speed-module strong",
+          "color": "rgb(48, 32, 21)",
+          "minimum": 4.5,
+          "ratio": 4.886280002843237
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(48, 32, 21)",
+          "minimum": 4.5,
+          "ratio": 7.235606145117791
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(48, 32, 21)",
+          "minimum": 4.5,
+          "ratio": 7.235606145117791
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.95581454342679
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.95581454342679
+        },
+        {
+          "selector": ".phrase-count",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".phrase-count small",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".quick-edit-trigger",
+          "color": "rgb(48, 32, 21)",
+          "minimum": 4.5,
+          "ratio": 4.889549950857161
+        },
+        {
+          "selector": ".transport-button svg",
+          "color": "rgb(52, 55, 44)",
+          "minimum": 3,
+          "ratio": 7.766393590423403
+        }
+      ]
+    },
+    {
+      "skin": "Groove",
+      "browser": "webkit",
+      "measurements": [
+        {
+          "selector": ".remote-identity strong",
+          "color": "rgb(76, 67, 55)",
+          "minimum": 4.5,
+          "ratio": 7.08969386147253
+        },
+        {
+          "selector": ".network-state",
+          "color": "rgb(76, 67, 55)",
+          "minimum": 4.5,
+          "ratio": 6.700385928641356
+        },
+        {
+          "selector": ".remote-link-state small",
+          "color": "rgb(76, 67, 55)",
+          "minimum": 4.5,
+          "ratio": 6.681704014161336
+        },
+        {
+          "selector": ".display-kicker",
+          "color": "rgb(164, 175, 160)",
+          "minimum": 4.5,
+          "ratio": 8.505696562769193
+        },
+        {
+          "selector": ".timecode",
+          "color": "rgb(233, 238, 230)",
+          "minimum": 3,
+          "ratio": 16.6721643249279
+        },
+        {
+          "selector": ".state-label",
+          "color": "rgb(138, 143, 135)",
+          "minimum": 4.5,
+          "ratio": 5.944130968249265
+        },
+        {
+          "selector": ".speed-title",
+          "color": "rgb(76, 67, 55)",
+          "minimum": 4.5,
+          "ratio": 6.388293130983757
+        },
+        {
+          "selector": ".speed-module strong",
+          "color": "rgb(76, 67, 55)",
+          "minimum": 4.5,
+          "ratio": 5.942122900163516
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(76, 67, 55)",
+          "minimum": 4.5,
+          "ratio": 6.677678537332088
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(76, 67, 55)",
+          "minimum": 4.5,
+          "ratio": 6.677678537332088
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.95581454342679
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.95581454342679
+        },
+        {
+          "selector": ".phrase-count",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".phrase-count small",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".quick-edit-trigger",
+          "color": "rgb(76, 67, 55)",
+          "minimum": 4.5,
+          "ratio": 5.895301019840556
+        },
+        {
+          "selector": ".transport-button svg",
+          "color": "rgb(56, 45, 27)",
+          "minimum": 3,
+          "ratio": 5.320877213802237
+        }
+      ]
+    },
+    {
+      "skin": "Glacier",
+      "browser": "webkit",
+      "measurements": [
+        {
+          "selector": ".remote-identity strong",
+          "color": "rgb(53, 80, 90)",
+          "minimum": 4.5,
+          "ratio": 7.022604137756505
+        },
+        {
+          "selector": ".network-state",
+          "color": "rgb(53, 80, 90)",
+          "minimum": 4.5,
+          "ratio": 6.458689132229852
+        },
+        {
+          "selector": ".remote-link-state small",
+          "color": "rgb(53, 80, 90)",
+          "minimum": 4.5,
+          "ratio": 6.4022850916094685
+        },
+        {
+          "selector": ".display-kicker",
+          "color": "rgb(164, 175, 160)",
+          "minimum": 4.5,
+          "ratio": 8.505696562769193
+        },
+        {
+          "selector": ".timecode",
+          "color": "rgb(233, 238, 230)",
+          "minimum": 3,
+          "ratio": 16.6721643249279
+        },
+        {
+          "selector": ".state-label",
+          "color": "rgb(138, 143, 135)",
+          "minimum": 4.5,
+          "ratio": 5.944130968249265
+        },
+        {
+          "selector": ".speed-title",
+          "color": "rgb(53, 80, 90)",
+          "minimum": 4.5,
+          "ratio": 6.214477192761818
+        },
+        {
+          "selector": ".speed-module strong",
+          "color": "rgb(53, 80, 90)",
+          "minimum": 4.5,
+          "ratio": 5.5766081818205455
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(53, 80, 90)",
+          "minimum": 4.5,
+          "ratio": 6.2018233476752815
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(53, 80, 90)",
+          "minimum": 4.5,
+          "ratio": 6.2018233476752815
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.95581454342679
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.95581454342679
+        },
+        {
+          "selector": ".phrase-count",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".phrase-count small",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".quick-edit-trigger",
+          "color": "rgb(53, 80, 90)",
+          "minimum": 4.5,
+          "ratio": 5.622155490756874
+        },
+        {
+          "selector": ".transport-button svg",
+          "color": "rgb(75, 89, 96)",
+          "minimum": 3,
+          "ratio": 4.481974786970226
+        }
+      ]
+    },
+    {
+      "skin": "Bakelite",
+      "browser": "webkit",
+      "measurements": [
+        {
+          "selector": ".remote-identity strong",
+          "color": "rgb(233, 214, 185)",
+          "minimum": 4.5,
+          "ratio": 5.046378091943509
+        },
+        {
+          "selector": ".network-state",
+          "color": "rgb(233, 214, 185)",
+          "minimum": 4.5,
+          "ratio": 5.722982910093982
+        },
+        {
+          "selector": ".remote-link-state small",
+          "color": "rgb(233, 214, 185)",
+          "minimum": 4.5,
+          "ratio": 5.755612276141193
+        },
+        {
+          "selector": ".display-kicker",
+          "color": "rgb(164, 175, 160)",
+          "minimum": 4.5,
+          "ratio": 8.505696562769193
+        },
+        {
+          "selector": ".timecode",
+          "color": "rgb(233, 238, 230)",
+          "minimum": 3,
+          "ratio": 16.6721643249279
+        },
+        {
+          "selector": ".state-label",
+          "color": "rgb(138, 143, 135)",
+          "minimum": 4.5,
+          "ratio": 5.944130968249265
+        },
+        {
+          "selector": ".speed-title",
+          "color": "rgb(233, 214, 185)",
+          "minimum": 4.5,
+          "ratio": 5.840055887713392
+        },
+        {
+          "selector": ".speed-module strong",
+          "color": "rgb(233, 214, 185)",
+          "minimum": 4.5,
+          "ratio": 6.845740896722347
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(233, 214, 185)",
+          "minimum": 4.5,
+          "ratio": 4.738657390633405
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(233, 214, 185)",
+          "minimum": 4.5,
+          "ratio": 4.738657390633405
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.95581454342679
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.95581454342679
+        },
+        {
+          "selector": ".phrase-count",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".phrase-count small",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".quick-edit-trigger",
+          "color": "rgb(233, 214, 185)",
+          "minimum": 4.5,
+          "ratio": 6.557710098644801
+        },
+        {
+          "selector": ".transport-button svg",
+          "color": "rgb(83, 62, 42)",
+          "minimum": 3,
+          "ratio": 6.182797529863876
+        }
+      ]
+    },
+    {
+      "skin": "Switchboard",
+      "browser": "webkit",
+      "measurements": [
+        {
+          "selector": ".remote-identity strong",
+          "color": "rgb(233, 223, 187)",
+          "minimum": 4.5,
+          "ratio": 4.757413410385652
+        },
+        {
+          "selector": ".network-state",
+          "color": "rgb(233, 223, 187)",
+          "minimum": 4.5,
+          "ratio": 5.381422034880662
+        },
+        {
+          "selector": ".remote-link-state small",
+          "color": "rgb(233, 223, 187)",
+          "minimum": 4.5,
+          "ratio": 5.470397258755057
+        },
+        {
+          "selector": ".display-kicker",
+          "color": "rgb(164, 175, 160)",
+          "minimum": 4.5,
+          "ratio": 8.505696562769193
+        },
+        {
+          "selector": ".timecode",
+          "color": "rgb(233, 238, 230)",
+          "minimum": 3,
+          "ratio": 16.6721643249279
+        },
+        {
+          "selector": ".state-label",
+          "color": "rgb(138, 143, 135)",
+          "minimum": 4.5,
+          "ratio": 5.944130968249265
+        },
+        {
+          "selector": ".speed-title",
+          "color": "rgb(233, 223, 187)",
+          "minimum": 4.5,
+          "ratio": 6.366746771485955
+        },
+        {
+          "selector": ".speed-module strong",
+          "color": "rgb(233, 223, 187)",
+          "minimum": 4.5,
+          "ratio": 7.541644026397749
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(240, 223, 178)",
+          "minimum": 4.5,
+          "ratio": 5.81065777320177
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(240, 223, 178)",
+          "minimum": 4.5,
+          "ratio": 5.81065777320177
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.95581454342679
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.95581454342679
+        },
+        {
+          "selector": ".phrase-count",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".phrase-count small",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".quick-edit-trigger",
+          "color": "rgb(233, 223, 187)",
+          "minimum": 4.5,
+          "ratio": 7.531486215851951
+        },
+        {
+          "selector": ".transport-button svg",
+          "color": "rgb(240, 223, 178)",
+          "minimum": 3,
+          "ratio": 6.884228055220468
+        }
+      ]
+    },
+    {
+      "skin": "Vector",
+      "browser": "webkit",
+      "measurements": [
+        {
+          "selector": ".remote-identity strong",
+          "color": "rgb(177, 213, 161)",
+          "minimum": 4.5,
+          "ratio": 6.977029584026179
+        },
+        {
+          "selector": ".network-state",
+          "color": "rgb(177, 213, 161)",
+          "minimum": 4.5,
+          "ratio": 7.384396364850392
+        },
+        {
+          "selector": ".remote-link-state small",
+          "color": "rgb(177, 213, 161)",
+          "minimum": 4.5,
+          "ratio": 7.53512975118108
+        },
+        {
+          "selector": ".display-kicker",
+          "color": "rgb(164, 175, 160)",
+          "minimum": 4.5,
+          "ratio": 7.812695854576384
+        },
+        {
+          "selector": ".timecode",
+          "color": "rgb(196, 248, 167)",
+          "minimum": 3,
+          "ratio": 14.689631661388502
+        },
+        {
+          "selector": ".state-label",
+          "color": "rgb(138, 143, 135)",
+          "minimum": 4.5,
+          "ratio": 5.389913258252694
+        },
+        {
+          "selector": ".speed-title",
+          "color": "rgb(177, 213, 161)",
+          "minimum": 4.5,
+          "ratio": 7.740649196812423
+        },
+        {
+          "selector": ".speed-module strong",
+          "color": "rgb(177, 213, 161)",
+          "minimum": 4.5,
+          "ratio": 8.358971922425466
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(177, 213, 161)",
+          "minimum": 4.5,
+          "ratio": 6.062969576065881
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(177, 213, 161)",
+          "minimum": 4.5,
+          "ratio": 6.062969576065881
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.95581454342679
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.95581454342679
+        },
+        {
+          "selector": ".phrase-count",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".phrase-count small",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".quick-edit-trigger",
+          "color": "rgb(177, 213, 161)",
+          "minimum": 4.5,
+          "ratio": 8.30358661324223
+        },
+        {
+          "selector": ".transport-button svg",
+          "color": "rgb(193, 245, 162)",
+          "minimum": 3,
+          "ratio": 8.413914412893712
+        }
+      ]
+    },
+    {
+      "skin": "Cartridge",
+      "browser": "webkit",
+      "measurements": [
+        {
+          "selector": ".remote-identity strong",
+          "color": "rgb(56, 54, 71)",
+          "minimum": 4.5,
+          "ratio": 8.39617603957984
+        },
+        {
+          "selector": ".network-state",
+          "color": "rgb(56, 54, 71)",
+          "minimum": 4.5,
+          "ratio": 7.691284514479776
+        },
+        {
+          "selector": ".remote-link-state small",
+          "color": "rgb(56, 54, 71)",
+          "minimum": 4.5,
+          "ratio": 7.691284514479776
+        },
+        {
+          "selector": ".display-kicker",
+          "color": "rgb(164, 175, 160)",
+          "minimum": 4.5,
+          "ratio": 8.505696562769193
+        },
+        {
+          "selector": ".timecode",
+          "color": "rgb(233, 238, 230)",
+          "minimum": 3,
+          "ratio": 16.6721643249279
+        },
+        {
+          "selector": ".state-label",
+          "color": "rgb(138, 143, 135)",
+          "minimum": 4.5,
+          "ratio": 5.944130968249265
+        },
+        {
+          "selector": ".speed-title",
+          "color": "rgb(56, 54, 71)",
+          "minimum": 4.5,
+          "ratio": 7.175902346213753
+        },
+        {
+          "selector": ".speed-module strong",
+          "color": "rgb(56, 54, 71)",
+          "minimum": 4.5,
+          "ratio": 6.337711684449877
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(56, 54, 71)",
+          "minimum": 4.5,
+          "ratio": 7.776829675216051
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(56, 54, 71)",
+          "minimum": 4.5,
+          "ratio": 7.776829675216051
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.95581454342679
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.95581454342679
+        },
+        {
+          "selector": ".phrase-count",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".phrase-count small",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".quick-edit-trigger",
+          "color": "rgb(56, 54, 71)",
+          "minimum": 4.5,
+          "ratio": 6.270048211880009
+        },
+        {
+          "selector": ".transport-button svg",
+          "color": "rgb(53, 55, 91)",
+          "minimum": 3,
+          "ratio": 5.730822206312308
+        }
+      ]
+    },
+    {
+      "skin": "Aperture",
+      "browser": "webkit",
+      "measurements": [
+        {
+          "selector": ".remote-identity strong",
+          "color": "rgb(216, 208, 183)",
+          "minimum": 4.5,
+          "ratio": 7.302554438673502
+        },
+        {
+          "selector": ".network-state",
+          "color": "rgb(216, 208, 183)",
+          "minimum": 4.5,
+          "ratio": 7.991347232931107
+        },
+        {
+          "selector": ".remote-link-state small",
+          "color": "rgb(216, 208, 183)",
+          "minimum": 4.5,
+          "ratio": 8.049364136978163
+        },
+        {
+          "selector": ".display-kicker",
+          "color": "rgb(164, 175, 160)",
+          "minimum": 4.5,
+          "ratio": 8.505696562769193
+        },
+        {
+          "selector": ".timecode",
+          "color": "rgb(233, 238, 230)",
+          "minimum": 3,
+          "ratio": 16.6721643249279
+        },
+        {
+          "selector": ".state-label",
+          "color": "rgb(138, 143, 135)",
+          "minimum": 4.5,
+          "ratio": 5.944130968249265
+        },
+        {
+          "selector": ".speed-title",
+          "color": "rgb(216, 208, 183)",
+          "minimum": 4.5,
+          "ratio": 8.375385618713034
+        },
+        {
+          "selector": ".speed-module strong",
+          "color": "rgb(216, 208, 183)",
+          "minimum": 4.5,
+          "ratio": 9.27556589053859
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(216, 208, 183)",
+          "minimum": 4.5,
+          "ratio": 6.179027857160146
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(216, 208, 183)",
+          "minimum": 4.5,
+          "ratio": 6.179027857160146
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.95581454342679
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.95581454342679
+        },
+        {
+          "selector": ".phrase-count",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".phrase-count small",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".quick-edit-trigger",
+          "color": "rgb(216, 208, 183)",
+          "minimum": 4.5,
+          "ratio": 9.107462227840841
+        },
+        {
+          "selector": ".transport-button svg",
+          "color": "rgb(37, 43, 50)",
+          "minimum": 3,
+          "ratio": 6.2100471656143466
+        }
+      ]
+    },
+    {
+      "skin": "Correspondent",
+      "browser": "webkit",
+      "measurements": [
+        {
+          "selector": ".remote-identity strong",
+          "color": "rgb(228, 214, 180)",
+          "minimum": 4.5,
+          "ratio": 8.737446976823085
+        },
+        {
+          "selector": ".network-state",
+          "color": "rgb(228, 214, 180)",
+          "minimum": 4.5,
+          "ratio": 8.737446976823085
+        },
+        {
+          "selector": ".remote-link-state small",
+          "color": "rgb(228, 214, 180)",
+          "minimum": 4.5,
+          "ratio": 9.289004972657485
+        },
+        {
+          "selector": ".display-kicker",
+          "color": "rgb(164, 175, 160)",
+          "minimum": 4.5,
+          "ratio": 8.61603613074749
+        },
+        {
+          "selector": ".timecode",
+          "color": "rgb(235, 221, 188)",
+          "minimum": 3,
+          "ratio": 14.582211351540249
+        },
+        {
+          "selector": ".state-label",
+          "color": "rgb(138, 143, 135)",
+          "minimum": 4.5,
+          "ratio": 5.944130968249265
+        },
+        {
+          "selector": ".speed-title",
+          "color": "rgb(228, 214, 180)",
+          "minimum": 4.5,
+          "ratio": 8.609379944818073
+        },
+        {
+          "selector": ".speed-module strong",
+          "color": "rgb(228, 214, 180)",
+          "minimum": 4.5,
+          "ratio": 8.82894862697988
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(240, 222, 176)",
+          "minimum": 4.5,
+          "ratio": 8.574588870991995
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(240, 222, 176)",
+          "minimum": 4.5,
+          "ratio": 8.574588870991995
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.95581454342679
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.95581454342679
+        },
+        {
+          "selector": ".phrase-count",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".phrase-count small",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".quick-edit-trigger",
+          "color": "rgb(228, 214, 180)",
+          "minimum": 4.5,
+          "ratio": 8.820619230924121
+        },
+        {
+          "selector": ".transport-button svg",
+          "color": "rgb(41, 44, 32)",
+          "minimum": 3,
+          "ratio": 5.7653687643361575
+        }
+      ]
+    },
+    {
+      "skin": "Foundry",
+      "browser": "webkit",
+      "measurements": [
+        {
+          "selector": ".remote-identity strong",
+          "color": "rgb(255, 240, 214)",
+          "minimum": 4.5,
+          "ratio": 5.084635802136116
+        },
+        {
+          "selector": ".network-state",
+          "color": "rgb(255, 240, 214)",
+          "minimum": 4.5,
+          "ratio": 5.768160151080767
+        },
+        {
+          "selector": ".remote-link-state small",
+          "color": "rgb(255, 240, 214)",
+          "minimum": 4.5,
+          "ratio": 5.6635457296323475
+        },
+        {
+          "selector": ".display-kicker",
+          "color": "rgb(164, 175, 160)",
+          "minimum": 4.5,
+          "ratio": 8.61603613074749
+        },
+        {
+          "selector": ".timecode",
+          "color": "rgb(233, 238, 230)",
+          "minimum": 3,
+          "ratio": 16.6721643249279
+        },
+        {
+          "selector": ".state-label",
+          "color": "rgb(138, 143, 135)",
+          "minimum": 4.5,
+          "ratio": 5.944130968249265
+        },
+        {
+          "selector": ".speed-title",
+          "color": "rgb(255, 240, 214)",
+          "minimum": 4.5,
+          "ratio": 6.277846894445265
+        },
+        {
+          "selector": ".speed-module strong",
+          "color": "rgb(255, 240, 214)",
+          "minimum": 4.5,
+          "ratio": 6.949080839935281
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(255, 240, 214)",
+          "minimum": 4.5,
+          "ratio": 5.219624705458325
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(255, 240, 214)",
+          "minimum": 4.5,
+          "ratio": 5.219624705458325
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.95581454342679
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.95581454342679
+        },
+        {
+          "selector": ".phrase-count",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".phrase-count small",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".quick-edit-trigger",
+          "color": "rgb(255, 240, 214)",
+          "minimum": 4.5,
+          "ratio": 6.756256469891071
+        },
+        {
+          "selector": ".transport-button svg",
+          "color": "rgb(245, 223, 179)",
+          "minimum": 3,
+          "ratio": 4.1989001538085295
+        }
+      ]
+    },
+    {
+      "skin": "Inox",
+      "browser": "webkit",
+      "measurements": [
+        {
+          "selector": ".remote-identity strong",
+          "color": "rgb(41, 61, 64)",
+          "minimum": 4.5,
+          "ratio": 8.528476969462536
+        },
+        {
+          "selector": ".network-state",
+          "color": "rgb(41, 61, 64)",
+          "minimum": 4.5,
+          "ratio": 7.376733918165942
+        },
+        {
+          "selector": ".remote-link-state small",
+          "color": "rgb(41, 61, 64)",
+          "minimum": 4.5,
+          "ratio": 7.39481740037269
+        },
+        {
+          "selector": ".display-kicker",
+          "color": "rgb(164, 175, 160)",
+          "minimum": 4.5,
+          "ratio": 8.61603613074749
+        },
+        {
+          "selector": ".timecode",
+          "color": "rgb(233, 238, 230)",
+          "minimum": 3,
+          "ratio": 16.6721643249279
+        },
+        {
+          "selector": ".state-label",
+          "color": "rgb(138, 143, 135)",
+          "minimum": 4.5,
+          "ratio": 5.944130968249265
+        },
+        {
+          "selector": ".speed-title",
+          "color": "rgb(41, 61, 64)",
+          "minimum": 4.5,
+          "ratio": 6.296161526294179
+        },
+        {
+          "selector": ".speed-module strong",
+          "color": "rgb(41, 61, 64)",
+          "minimum": 4.5,
+          "ratio": 6.485245519036583
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(41, 61, 64)",
+          "minimum": 4.5,
+          "ratio": 7.394906631954119
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(41, 61, 64)",
+          "minimum": 4.5,
+          "ratio": 7.394906631954119
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.95581454342679
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.95581454342679
+        },
+        {
+          "selector": ".phrase-count",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".phrase-count small",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".quick-edit-trigger",
+          "color": "rgb(41, 61, 64)",
+          "minimum": 4.5,
+          "ratio": 6.4123156368007495
+        },
+        {
+          "selector": ".transport-button svg",
+          "color": "rgb(229, 240, 232)",
+          "minimum": 3,
+          "ratio": 8.039964099967888
+        }
+      ]
+    },
+    {
+      "skin": "Airframe",
+      "browser": "webkit",
+      "measurements": [
+        {
+          "selector": ".remote-identity strong",
+          "color": "rgb(49, 78, 90)",
+          "minimum": 4.5,
+          "ratio": 6.994409769071463
+        },
+        {
+          "selector": ".network-state",
+          "color": "rgb(49, 78, 90)",
+          "minimum": 4.5,
+          "ratio": 6.266174324014933
+        },
+        {
+          "selector": ".remote-link-state small",
+          "color": "rgb(49, 78, 90)",
+          "minimum": 4.5,
+          "ratio": 6.266174324014933
+        },
+        {
+          "selector": ".display-kicker",
+          "color": "rgb(164, 175, 160)",
+          "minimum": 4.5,
+          "ratio": 8.61603613074749
+        },
+        {
+          "selector": ".timecode",
+          "color": "rgb(233, 238, 230)",
+          "minimum": 3,
+          "ratio": 16.6721643249279
+        },
+        {
+          "selector": ".state-label",
+          "color": "rgb(138, 143, 135)",
+          "minimum": 4.5,
+          "ratio": 5.944130968249265
+        },
+        {
+          "selector": ".speed-title",
+          "color": "rgb(49, 78, 90)",
+          "minimum": 4.5,
+          "ratio": 5.952817174009427
+        },
+        {
+          "selector": ".speed-module strong",
+          "color": "rgb(49, 78, 90)",
+          "minimum": 4.5,
+          "ratio": 5.233918473617785
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(49, 78, 90)",
+          "minimum": 4.5,
+          "ratio": 6.1793307918399405
+        },
+        {
+          "selector": ".speed-module button",
+          "color": "rgb(49, 78, 90)",
+          "minimum": 4.5,
+          "ratio": 6.1793307918399405
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.95581454342679
+        },
+        {
+          "selector": ".phrase-nav button small",
+          "color": "rgb(227, 228, 223)",
+          "minimum": 4.5,
+          "ratio": 9.95581454342679
+        },
+        {
+          "selector": ".phrase-count",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".phrase-count small",
+          "color": "rgb(177, 179, 173)",
+          "minimum": 4.5,
+          "ratio": 7.644946885570143
+        },
+        {
+          "selector": ".quick-edit-trigger",
+          "color": "rgb(49, 78, 90)",
+          "minimum": 4.5,
+          "ratio": 5.233918473617785
+        },
+        {
+          "selector": ".transport-button svg",
+          "color": "rgb(247, 238, 216)",
+          "minimum": 3,
+          "ratio": 3.7021079079408774
+        }
+      ]
+    }
+  ]
+}

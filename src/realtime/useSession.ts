@@ -50,6 +50,7 @@ export function useSession(sessionId: string | null, role: SessionRole, editorTo
   const [clockOffset, setClockOffset] = useState(0)
   const [sessionEpoch, setSessionEpoch] = useState<string | null>(null)
   const [displaySettings, setDisplaySettings] = useState<{ value: PromptSettingsV1; revision: number } | null>(null)
+  const [preferencesState, setPreferencesState] = useState({ value: 'device', revision: 0 })
 
   useEffect(() => {
     const updateToken = () => setUrlToken(capabilityFromHash(window.location.hash))
@@ -132,6 +133,8 @@ export function useSession(sessionId: string | null, role: SessionRole, editorTo
     })
     channel.on('session:update', (snapshot: SessionSnapshot) => {
       if (!active || terminal || suspended) return
+      setPreferencesState(previous => (snapshot.preferences_status_revision ?? 0) > previous.revision
+        ? { value: snapshot.preferences_status ?? 'device', revision: snapshot.preferences_status_revision ?? 0 } : previous)
       if (snapshot.display_settings) setDisplaySettings(previous => !previous || (snapshot.settings_revision ?? 0) > previous.revision ? { value: snapshot.display_settings!, revision: snapshot.settings_revision ?? 0 } : previous)
       if (snapshot.script.revision > scriptRevisionRef.current) {
         scriptRevisionRef.current = snapshot.script.revision
@@ -157,6 +160,7 @@ export function useSession(sessionId: string | null, role: SessionRole, editorTo
         connectedRef.current = true
         retryUntilRef.current = 0
         setTransport(snapshot.transport)
+        setPreferencesState({ value: snapshot.preferences_status ?? 'device', revision: snapshot.preferences_status_revision ?? 0 })
         setDisplaySettings(snapshot.display_settings ? { value: snapshot.display_settings, revision: snapshot.settings_revision ?? 0 } : null)
         setScript(snapshot.script)
         scriptRevisionRef.current = snapshot.script.revision
@@ -281,5 +285,5 @@ export function useSession(sessionId: string | null, role: SessionRole, editorTo
 
   const reconnect = useCallback(() => recoverRef.current(), [])
 
-  return { connection, transport, script, presence, clockOffset, sessionEpoch, reading, displayId, connectionId, editing, send, request, reconnect, displaySettings }
+  return { connection, transport, script, presence, clockOffset, sessionEpoch, reading, displayId, connectionId, editing, send, request, reconnect, displaySettings, preferencesStatus: preferencesState.value }
 }

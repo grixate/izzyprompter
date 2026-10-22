@@ -10,6 +10,8 @@ defmodule TeleprompterWeb.AccountController do
 
     json(conn, %{
       enabled: Accounts.enabled?(),
+      feedback_enabled:
+        Accounts.enabled?() and Application.get_env(:teleprompter, :feedback_enabled, false),
       csrf_token: Plug.CSRFProtection.get_csrf_token(),
       google_enabled: is_binary(config[:client_id]) and is_binary(config[:client_secret]),
       user: if(user, do: %{id: user.id, email: user.email, pro: Commerce.pro?(user)}, else: nil)
@@ -76,6 +78,8 @@ defmodule TeleprompterWeb.AccountController do
         :editing_active -> 409
         :save_in_progress -> 409
         :payment_pending -> 409
+        :feedback_unavailable -> 503
+        :feedback_limit -> 429
         _ -> 422
       end
 

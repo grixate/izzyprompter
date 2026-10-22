@@ -1,0 +1,265 @@
+{
+  "runs": [
+    {
+      "run": "browsers",
+      "stats": {
+        "startTime": "2026-10-20T16:27:02.246Z",
+        "duration": 92630.607,
+        "expected": 5,
+        "skipped": 0,
+        "unexpected": 16,
+        "flaky": 0
+      }
+    },
+    {
+      "run": "repairs",
+      "stats": {
+        "startTime": "2026-10-20T16:30:27.899Z",
+        "duration": 95064.58899999999,
+        "expected": 20,
+        "skipped": 0,
+        "unexpected": 1,
+        "flaky": 0
+      }
+    },
+    {
+      "run": "final-browsers",
+      "stats": {
+        "startTime": "2026-10-20T16:33:15.268Z",
+        "duration": 96298.586,
+        "expected": 24,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      }
+    },
+    {
+      "run": "keyboard-250",
+      "stats": {
+        "startTime": "2026-10-20T16:36:21.943Z",
+        "duration": 12201.823,
+        "expected": 3,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      }
+    },
+    {
+      "run": "layout-final",
+      "stats": {
+        "startTime": "2026-10-20T16:38:18.794Z",
+        "duration": 40391.438,
+        "expected": 6,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      }
+    }
+  ],
+  "latestPerCase": [
+    {
+      "browser": "chromium",
+      "case": "typing is live on two displays, the editor, and another phone before Done",
+      "status": "passed",
+      "durationMs": 4103
+    },
+    {
+      "browser": "chromium",
+      "case": "recovered offline draft never overwrites a correction from another phone",
+      "status": "passed",
+      "durationMs": 2959
+    },
+    {
+      "browser": "chromium",
+      "case": "offline draft survives refresh and is sent only after explicit resume",
+      "status": "passed",
+      "durationMs": 1932
+    },
+    {
+      "browser": "chromium",
+      "case": "an unsent phone edit with unavailable storage offers a backup without claiming reload recovery",
+      "status": "passed",
+      "durationMs": 1522
+    },
+    {
+      "browser": "firefox",
+      "case": "typing is live on two displays, the editor, and another phone before Done",
+      "status": "passed",
+      "durationMs": 6120
+    },
+    {
+      "browser": "firefox",
+      "case": "recovered offline draft never overwrites a correction from another phone",
+      "status": "passed",
+      "durationMs": 4158
+    },
+    {
+      "browser": "firefox",
+      "case": "offline draft survives refresh and is sent only after explicit resume",
+      "status": "passed",
+      "durationMs": 2729
+    },
+    {
+      "browser": "firefox",
+      "case": "an unsent phone edit with unavailable storage offers a backup without claiming reload recovery",
+      "status": "passed",
+      "durationMs": 3359
+    },
+    {
+      "browser": "webkit",
+      "case": "typing is live on two displays, the editor, and another phone before Done",
+      "status": "passed",
+      "durationMs": 4473
+    },
+    {
+      "browser": "webkit",
+      "case": "recovered offline draft never overwrites a correction from another phone",
+      "status": "passed",
+      "durationMs": 2744
+    },
+    {
+      "browser": "webkit",
+      "case": "offline draft survives refresh and is sent only after explicit resume",
+      "status": "passed",
+      "durationMs": 2300
+    },
+    {
+      "browser": "webkit",
+      "case": "an unsent phone edit with unavailable storage offers a backup without claiming reload recovery",
+      "status": "passed",
+      "durationMs": 2669
+    },
+    {
+      "browser": "chromium",
+      "case": "every catalog remote is a stationary phone instrument, with all controls visible",
+      "status": "passed",
+      "durationMs": 16127
+    },
+    {
+      "browser": "chromium",
+      "case": "current paragraph opens above the stationary remote and stays usable with a keyboard-sized viewport",
+      "status": "passed",
+      "durationMs": 2927
+    },
+    {
+      "browser": "firefox",
+      "case": "every catalog remote is a stationary phone instrument, with all controls visible",
+      "status": "passed",
+      "durationMs": 18908
+    },
+    {
+      "browser": "firefox",
+      "case": "current paragraph opens above the stationary remote and stays usable with a keyboard-sized viewport",
+      "status": "passed",
+      "durationMs": 4127
+    },
+    {
+      "browser": "webkit",
+      "case": "every catalog remote is a stationary phone instrument, with all controls visible",
+      "status": "passed",
+      "durationMs": 15500
+    },
+    {
+      "browser": "webkit",
+      "case": "current paragraph opens above the stationary remote and stays usable with a keyboard-sized viewport",
+      "status": "passed",
+      "durationMs": 3012
+    },
+    {
+      "browser": "chromium",
+      "case": "fourteen self-contained instruments keep paired precision",
+      "status": "passed",
+      "durationMs": 16597
+    },
+    {
+      "browser": "firefox",
+      "case": "fourteen self-contained instruments keep paired precision",
+      "status": "passed",
+      "durationMs": 24120
+    },
+    {
+      "browser": "webkit",
+      "case": "fourteen self-contained instruments keep paired precision",
+      "status": "passed",
+      "durationMs": 21566
+    },
+    {
+      "browser": "chromium",
+      "case": "a speed acknowledgement survives delayed broadcasts and newer reading checkpoints",
+      "status": "passed",
+      "durationMs": 1056
+    },
+    {
+      "browser": "firefox",
+      "case": "a speed acknowledgement survives delayed broadcasts and newer reading checkpoints",
+      "status": "passed",
+      "durationMs": 1976
+    },
+    {
+      "browser": "webkit",
+      "case": "a speed acknowledgement survives delayed broadcasts and newer reading checkpoints",
+      "status": "passed",
+      "durationMs": 1613
+    }
+  ],
+  "passed": 24,
+  "failed": 0,
+  "directNativeGate": {
+    "stats": {
+      "startTime": "2026-10-20T16:33:17.292Z",
+      "duration": 6027.937,
+      "expected": 0,
+      "skipped": 3,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "status": "skipped by existing opt-in LAN gate; not claimed as passed"
+  },
+  "geometry": {
+    "catalogIds": 26,
+    "viewports": [
+      [
+        320,
+        480
+      ],
+      [
+        320,
+        568
+      ],
+      [
+        360,
+        640
+      ],
+      [
+        390,
+        660
+      ],
+      [
+        390,
+        844
+      ],
+      [
+        568,
+        320
+      ],
+      [
+        844,
+        390
+      ],
+      [
+        768,
+        1024
+      ]
+    ],
+    "browsers": 3,
+    "states": 624
+  },
+  "keyboardAvailableHeights": [
+    250,
+    400,
+    390,
+    480
+  ],
+  "unitTests": 90,
+  "build": "passed"
+}

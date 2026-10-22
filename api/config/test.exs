@@ -8,7 +8,9 @@ config :teleprompter, Teleprompter.Mailer, adapter: Swoosh.Adapters.Test
 # use isolated gates/supervisors or their own production release.
 config :teleprompter,
   account_auth_limits: [per_peer: 1000, total: 5000, max_peers: 1024, window_ms: 60_000],
-  max_sessions: 256,
+  # Three browser projects retain their synthetic sessions in this one VM.
+  # Keep the expanded 26-finish matrix below this test-only ceiling.
+  max_sessions: 1024,
   creation_limits: [per_peer: 1000, total: 5000, max_peers: 2048, window_ms: 60_000]
 
 config :teleprompter, http_allowed_origins: :any, lan_discovery: true

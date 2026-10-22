@@ -92,6 +92,28 @@ defmodule TeleprompterWeb.SessionChannel do
   defp handle_event("transport:play", payload, socket), do: transport(socket, payload, :play)
   defp handle_event("transport:pause", payload, socket), do: transport(socket, payload, :pause)
 
+  defp handle_event("settings:update", %{"patch" => patch} = payload, socket) do
+    Sessions.command(
+      socket.assigns.session_id,
+      socket.assigns.role,
+      socket.assigns.client_id,
+      payload,
+      {:settings, patch}
+    )
+    |> session_response(socket)
+  end
+
+  defp handle_event("settings:remember", payload, socket) do
+    Sessions.command(
+      socket.assigns.session_id,
+      socket.assigns.role,
+      socket.assigns.client_id,
+      payload,
+      :remember_settings
+    )
+    |> session_response(socket)
+  end
+
   defp handle_event("transport:set_speed", %{"speed" => speed} = payload, socket),
     do: transport(socket, payload, {:set_speed, speed})
 
@@ -136,7 +158,16 @@ defmodule TeleprompterWeb.SessionChannel do
   defp handle_event("script:patch_block", %{"text" => text} = payload, socket),
     do: edit(socket, payload, {:patch, text})
 
+  defp handle_event("script:patch_document", %{"text" => text} = payload, socket),
+    do: edit(socket, payload, {:replace, text})
+
+  defp handle_event("script:select_document", payload, socket),
+    do: edit(socket, payload, :document)
+
   defp handle_event("script:end_edit", payload, socket), do: edit(socket, payload, :end)
+
+  defp handle_event("script:select_block", %{"block_id" => _} = payload, socket),
+    do: edit(socket, payload, :select)
 
   defp handle_event(_event, _payload, socket),
     do: {:reply, {:error, %{reason: "unknown_event"}}, socket}
@@ -180,8 +211,20 @@ defmodule TeleprompterWeb.SessionChannel do
       payload,
       command
     )
-    |> respond(socket, "transport:update", :transport)
+    |> then(fn result ->
+      if match?({:set_speed, _}, command),
+        do: session_response(result, socket),
+        else: respond(result, socket, "transport:update", :transport)
+    end)
   end
+
+  defp session_response({:ok, snapshot}, socket) do
+    broadcast!(socket, "session:update", snapshot)
+    {:reply, {:ok, snapshot}, socket}
+  end
+
+  defp session_response({:error, reason}, socket),
+    do: {:reply, {:error, %{reason: reason}}, socket}
 
   defp edit(socket, payload, action) do
     case Sessions.edit(

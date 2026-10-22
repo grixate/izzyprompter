@@ -41,8 +41,16 @@ defmodule Teleprompter.Sessions.Session do
        id: id,
        saved: saved,
        appearance_owner: if(saved, do: saved.user, else: options[:appearance_owner]),
-       settings: options[:settings],
+       settings:
+         options[:settings] || Map.put(Teleprompter.PromptSettings.defaults(), "speed", speed),
        settings_revision: 0,
+       preferences: options[:preferences] || Teleprompter.ReadingPreferences.get(nil),
+       preferences_status_revision: 0,
+       preference_timer: nil,
+       preference_task: nil,
+       preference_refresh: false,
+       remote_counted: false,
+       playback_counted: false,
        pending_save: nil,
        epoch: Base.url_encode64(:crypto.strong_rand_bytes(16), padding: false),
        token_hashes: token_hashes,
@@ -98,6 +106,7 @@ defmodule Teleprompter.Sessions.Session do
         {:reply, {:error, :invalid_settings}, state, @idle_timeout}
 
       true ->
+        {:ok, settings} = Teleprompter.PromptSettings.validate(settings)
         now = now_ms()
 
         transport =
@@ -161,6 +170,11 @@ defmodule Teleprompter.Sessions.Session do
           %{state | clients: Map.put(state.clients, connection_id, role), display_order: order}
           |> elect_reader()
 
+        if role == "remote" and not state.remote_counted,
+          do: Teleprompter.Metrics.record("remote_connected")
+
+        next = %{next | remote_counted: next.remote_counted or role == "remote"}
+
         {:reply, {:ok, snapshot(next)}, next, @idle_timeout}
     end
   end
@@ -195,7 +209,9 @@ defmodule Teleprompter.Sessions.Session do
         else
           if state.saved &&
                (elem(message, 0) == :script or
-                  (elem(message, 0) == :edit and match?({:patch, _}, elem(message, 4)))) do
+                  (elem(message, 0) == :edit and
+                     (match?({:patch, _}, elem(message, 4)) or
+                        match?({:replace, _}, elem(message, 4))))) do
             if state.pending_save,
               do: {:reply, {:error, :save_in_progress}, next, @idle_timeout},
               else: persist_live(message, from, next)
@@ -246,6 +262,78 @@ defmodule Teleprompter.Sessions.Session do
   end
 
   @impl true
+  def handle_info(:save_preferences, %{preference_task: nil} = state) do
+    state = %{state | preference_timer: nil}
+
+    if state.appearance_owner && state.preferences.status == "pending" do
+      task =
+        Task.Supervisor.async_nolink(Teleprompter.PersistenceTasks, fn ->
+          revision =
+            if state.preference_refresh,
+              do: Teleprompter.ReadingPreferences.get(state.appearance_owner).revision,
+              else: state.preferences.revision
+
+          Teleprompter.ReadingPreferences.save(state.appearance_owner, state.settings, revision)
+        end)
+
+      {:noreply,
+       %{
+         state
+         | preference_refresh: false,
+           preference_task: %{task: task, revision: state.settings_revision}
+       }, @idle_timeout}
+    else
+      {:noreply, state, @idle_timeout}
+    end
+  end
+
+  def handle_info(:save_preferences, state),
+    do: {:noreply, %{state | preference_timer: nil}, @idle_timeout}
+
+  def handle_info({ref, result}, %{preference_task: %{task: %{ref: ref}} = pending} = state) do
+    Process.demonitor(ref, [:flush])
+
+    preferences =
+      case result do
+        {:ok, revision} ->
+          %{
+            state.preferences
+            | revision: revision,
+              status:
+                if(pending.revision == state.settings_revision, do: "saved", else: "pending")
+          }
+
+        {:error, :preferences_conflict} ->
+          %{state.preferences | status: "conflict"}
+
+        _ ->
+          %{state.preferences | status: "unavailable"}
+      end
+
+    next = %{
+      state
+      | preferences: preferences,
+        preference_task: nil,
+        preferences_status_revision: state.preferences_status_revision + 1
+    }
+
+    next = if preferences.status == "pending", do: schedule_preferences(next), else: next
+    TeleprompterWeb.Endpoint.broadcast("session:#{state.id}", "session:update", snapshot(next))
+    {:noreply, next, @idle_timeout}
+  end
+
+  def handle_info({:DOWN, ref, :process, _, _}, %{preference_task: %{task: %{ref: ref}}} = state) do
+    next = %{
+      state
+      | preference_task: nil,
+        preferences: %{state.preferences | status: "unavailable"},
+        preferences_status_revision: state.preferences_status_revision + 1
+    }
+
+    TeleprompterWeb.Endpoint.broadcast("session:#{state.id}", "session:update", snapshot(next))
+    {:noreply, next, @idle_timeout}
+  end
+
   def handle_info({ref, result}, %{pending_save: %{task: %{ref: ref}} = pending} = state) do
     Process.demonitor(ref, [:flush])
 
@@ -355,6 +443,9 @@ defmodule Teleprompter.Sessions.Session do
   defp traffic_input({:edit, _, _, payload, {:patch, text}}) when is_map(payload),
     do: {"script:patch_block", Map.put(payload, "text", text)}
 
+  defp traffic_input({:edit, _, _, payload, {:replace, text}}) when is_map(payload),
+    do: {"script:patch_document", Map.put(payload, "text", text)}
+
   defp traffic_input({:command, _, _, payload, _}), do: {"control", payload}
   defp traffic_input(message), do: {"control", elem(message, 3)}
 
@@ -391,6 +482,56 @@ defmodule Teleprompter.Sessions.Session do
     end
   end
 
+  defp command_reply({:command, role, client_id, envelope, :remember_settings}, state) do
+    with :ok <- validate_envelope(state, role, client_id, envelope),
+         true <- not is_nil(state.appearance_owner) and is_nil(state.preference_task) do
+      next =
+        remember(
+          %{
+            state
+            | preferences: %{state.preferences | status: "pending"},
+              preference_refresh: true
+          },
+          role,
+          client_id,
+          envelope
+        )
+        |> schedule_preferences()
+
+      {:reply, {:ok, snapshot(next)}, next, @idle_timeout}
+    else
+      false -> {:reply, {:error, :preferences_unavailable}, state, @idle_timeout}
+      error -> {:reply, error, state, @idle_timeout}
+    end
+  end
+
+  defp command_reply({:command, role, client_id, envelope, {:settings, patch}}, state) do
+    with :ok <- validate_envelope(state, role, client_id, envelope),
+         :ok <- transport_available(state),
+         true <- envelope["settings_revision"] === state.settings_revision,
+         true <-
+           is_map(patch) and map_size(patch) > 0 and
+             Enum.all?(
+               Map.keys(patch),
+               &(&1 in ["fontSize", "lineHeight", "textWidth", "mirrored"])
+             ),
+         {:ok, settings} <- Teleprompter.PromptSettings.validate(Map.merge(state.settings, patch)) do
+      next =
+        remember(
+          %{state | settings: settings, settings_revision: state.settings_revision + 1},
+          role,
+          client_id,
+          envelope
+        )
+        |> schedule_preferences()
+
+      {:reply, {:ok, snapshot(next)}, next, @idle_timeout}
+    else
+      false -> {:reply, {:error, :settings_conflict}, state, @idle_timeout}
+      error -> {:reply, error, state, @idle_timeout}
+    end
+  end
+
   defp command_reply({:command, role, client_id, envelope, command}, state) do
     with :ok <- validate_envelope(state, role, client_id, envelope),
          :ok <- transport_available(state),
@@ -403,6 +544,22 @@ defmodule Teleprompter.Sessions.Session do
           envelope
         )
 
+      next =
+        if match?({:set_speed, _}, command) do
+          %{
+            next
+            | settings: Map.put(next.settings, "speed", transport.speed),
+              settings_revision: next.settings_revision + 1
+          }
+          |> schedule_preferences()
+        else
+          next
+        end
+
+      if command == :play and not state.playback_counted,
+        do: Teleprompter.Metrics.record("playback_started")
+
+      next = %{next | playback_counted: next.playback_counted or command == :play}
       {:reply, {:ok, snapshot(next)}, next, @idle_timeout}
     else
       false -> {:reply, {:error, :invalid_command}, state, @idle_timeout}
@@ -466,7 +623,22 @@ defmodule Teleprompter.Sessions.Session do
   defp edit_role(role) when role in ["editor", "remote"], do: :ok
   defp edit_role(_), do: {:error, :forbidden}
 
-  defp edit_action(state, owner, _payload, :begin) do
+  defp schedule_preferences(state) do
+    if state.appearance_owner && state.preferences.status not in ["conflict", "unavailable"] do
+      if state.preference_timer, do: Process.cancel_timer(state.preference_timer)
+
+      %{
+        state
+        | preference_timer: Process.send_after(self(), :save_preferences, 600),
+          preferences: %{state.preferences | status: "pending"},
+          preferences_status_revision: state.preferences_status_revision + 1
+      }
+    else
+      state
+    end
+  end
+
+  defp edit_action(state, owner, payload, :begin) do
     cp = state.reading.checkpoint
 
     cond do
@@ -481,9 +653,76 @@ defmodule Teleprompter.Sessions.Session do
           cp.transport_revision != state.transport.revision ->
         {:error, :reading_unavailable}
 
+      Map.has_key?(payload, "block_id") and
+          not Map.has_key?(state.block_lengths, payload["block_id"]) ->
+        {:error, :invalid_block}
+
       true ->
-        active = %{owner_id: owner, block_id: cp.anchor["blockId"], anchor: cp.anchor}
+        active = %{
+          owner_id: owner,
+          block_id: payload["block_id"] || cp.anchor["blockId"],
+          anchor: cp.anchor,
+          scope: if(payload["scope"] == "document", do: "document", else: "paragraph")
+        }
+
         {:ok, %{state | editing: %{revision: state.editing.revision + 1, active: active}}}
+    end
+  end
+
+  defp edit_action(state, owner, %{"block_id" => block_id}, :select) do
+    cond do
+      is_nil(state.editing.active) or state.editing.active.owner_id != owner ->
+        {:error, :edit_not_owned}
+
+      not Map.has_key?(state.block_lengths, block_id) ->
+        {:error, :invalid_block}
+
+      true ->
+        {:ok,
+         %{
+           state
+           | editing: %{
+               revision: state.editing.revision + 1,
+               active: %{state.editing.active | block_id: block_id, scope: "paragraph"}
+             }
+         }}
+    end
+  end
+
+  defp edit_action(state, owner, _payload, :document) do
+    if state.editing.active && state.editing.active.owner_id == owner do
+      {:ok,
+       %{
+         state
+         | editing: %{
+             revision: state.editing.revision + 1,
+             active: %{state.editing.active | scope: "document"}
+           }
+       }}
+    else
+      {:error, :edit_not_owned}
+    end
+  end
+
+  defp edit_action(state, owner, payload, {:replace, text}) do
+    edit = state.editing.active
+
+    cond do
+      is_nil(edit) or edit.owner_id != owner ->
+        {:error, :edit_not_owned}
+
+      edit.scope != "document" ->
+        {:error, :invalid_scope}
+
+      payload["base_revision"] !== state.script_revision ->
+        {:error, :edit_conflict}
+
+      not Document.valid_content?(text, true) ->
+        {:error, :invalid_patch}
+
+      true ->
+        {document, target} = Document.replace(state.document, text, edit.anchor)
+        install_edit(state, document, target)
     end
   end
 
@@ -500,6 +739,9 @@ defmodule Teleprompter.Sessions.Session do
       payload["block_id"] != edit.block_id ->
         {:error, :invalid_block}
 
+      edit.scope != "paragraph" ->
+        {:error, :invalid_scope}
+
       not is_binary(text) or not String.valid?(text) or byte_size(text) > 2 * 1024 * 1024 ->
         {:error, :invalid_patch}
 
@@ -510,32 +752,7 @@ defmodule Teleprompter.Sessions.Session do
         if byte_size(content) > 2 * 1024 * 1024 do
           {:error, :invalid_patch}
         else
-          revision = state.script_revision + 1
-          now = now_ms()
-
-          transport =
-            anchor(state.transport, current_position(state.transport, now), now, %{
-              status: "paused"
-            })
-
-          intent = %{
-            anchor: target,
-            script_revision: revision,
-            revision: transport.revision,
-            transport_position: transport.anchor_position
-          }
-
-          {:ok,
-           %{
-             state
-             | document: document,
-               script: content,
-               script_revision: revision,
-               block_lengths: Document.lengths(document),
-               transport: Map.put(transport, :semantic_anchor, intent),
-               reading: %{state.reading | revision: state.reading.revision + 1, checkpoint: nil},
-               editing: %{revision: state.editing.revision + 1, active: %{edit | anchor: target}}
-           }}
+          install_edit(state, document, target)
         end
     end
   end
@@ -544,6 +761,37 @@ defmodule Teleprompter.Sessions.Session do
     if state.editing.active && state.editing.active.owner_id == owner,
       do: {:ok, %{state | editing: %{revision: state.editing.revision + 1, active: nil}}},
       else: {:error, :edit_not_owned}
+  end
+
+  defp install_edit(state, document, target) do
+    edit = state.editing.active
+    content = Document.text(document)
+    revision = state.script_revision + 1
+    now = now_ms()
+
+    transport =
+      anchor(state.transport, current_position(state.transport, now), now, %{
+        status: "paused"
+      })
+
+    intent = %{
+      anchor: target,
+      script_revision: revision,
+      revision: transport.revision,
+      transport_position: transport.anchor_position
+    }
+
+    {:ok,
+     %{
+       state
+       | document: document,
+         script: content,
+         script_revision: revision,
+         block_lengths: Document.lengths(document),
+         transport: Map.put(transport, :semantic_anchor, intent),
+         reading: %{state.reading | revision: state.reading.revision + 1, checkpoint: nil},
+         editing: %{revision: state.editing.revision + 1, active: %{edit | anchor: target}}
+     }}
   end
 
   defp elect_reader(state) do
@@ -740,7 +988,7 @@ defmodule Teleprompter.Sessions.Session do
   defp valid_command?(command) when command in [:play, :pause], do: true
 
   defp valid_command?({:set_speed, speed}) when is_number(speed),
-    do: speed >= 0.5 and speed <= 1.5
+    do: speed >= 0.2 and speed <= 1.5
 
   defp valid_command?({:seek_delta, delta}) when is_number(delta), do: abs(delta) <= 10_000
 
@@ -758,7 +1006,7 @@ defmodule Teleprompter.Sessions.Session do
   end
 
   defp apply_command(transport, {:set_speed, speed}, now) when is_number(speed) do
-    anchor(transport, current_position(transport, now), now, %{speed: clamp(speed, 0.5, 1.5)})
+    anchor(transport, current_position(transport, now), now, %{speed: clamp(speed, 0.2, 1.0)})
   end
 
   defp apply_command(transport, {:seek_delta, delta}, now) when is_number(delta) do
@@ -795,6 +1043,8 @@ defmodule Teleprompter.Sessions.Session do
       saved_revision: if(state.saved, do: state.saved.revision, else: nil),
       display_settings: state.settings,
       settings_revision: state.settings_revision,
+      preferences_status: state.preferences.status,
+      preferences_status_revision: state.preferences_status_revision,
       session_id: state.id,
       session_epoch: state.epoch,
       script: %{content: state.script, revision: state.script_revision, document: state.document},

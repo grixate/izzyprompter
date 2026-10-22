@@ -1,5 +1,9 @@
+import { createSyntheticSession } from './helpers/create-synthetic-session'
 import { test, expect } from '@playwright/test'
 import { skins } from '../../src/product/catalog'
+
+// Paired editor/remote flows include capability links; never retain traces or editor screenshots.
+test.use({ trace:'off', screenshot:'off' })
 
 const offer = { id: 'lifetime_pro', currency: 'USD', price_minor: 2900, reference_price_minor: 4900, discount_percent: 40, launch_offer: true, checkout_available: false }
 
@@ -9,8 +13,8 @@ test('public offer, showroom and locked preview work without an account or check
   await expect(page.locator('.pro-hero .product-offer')).toContainText('$49')
   await expect(page.locator('.pro-hero .product-offer')).toContainText('$29')
   await expect(page.locator('.pro-hero')).toContainText('Purchases opening soon')
-  await page.getByRole('link', { name: 'Explore all 16 finishes' }).click()
-  await expect(page.locator('.skin-card')).toHaveCount(16)
+  await page.getByRole('link', { name: `Explore all ${skins.length} finishes` }).click()
+  await expect(page.locator('.skin-card')).toHaveCount(skins.length)
   await page.getByRole('button', { name: 'Preview Orbit · Pro finish', exact: true }).click()
   await expect(page.getByRole('dialog')).toBeVisible()
   await expect(page.getByRole('dialog')).toContainText('Orbit')
@@ -67,12 +71,12 @@ test('visible wheels move and offscreen showroom rotors suspend', async ({ page 
 })
 
 test('every finish can be applied on an entitled remote without changing its controls', async ({ page, browser }) => {
-  // Sixteen one-tap library cycles plus revocation/reload. Linux WebKit's
+  // Catalog-driven one-tap library cycles plus revocation/reload. Linux WebKit's
   // rendering makes this longer than a single flow; retain normal assertion budgets.
-  test.setTimeout(90_000)
+  test.setTimeout(30_000 + skins.length * 6_000)
   await page.goto('/')
   await page.getByRole('textbox', { name: 'Teleprompter script' }).fill('First synthetic paragraph.\n\nSecond synthetic paragraph.')
-  await page.getByRole('button', { name: 'SET UP PROMPTER', exact: true }).click()
+  await createSyntheticSession(page)
   const href = await page.getByRole('link', { name: /OPEN REMOTE/ }).getAttribute('href')
   const context = await browser.newContext({ viewport: { width: 390, height: 844 } })
   const remote = await context.newPage()
@@ -89,10 +93,11 @@ test('every finish can be applied on an entitled remote without changing its con
     await expect(remote.locator('.network-state')).toHaveText('CONNECTED')
     for (const skin of skins) {
       await test.step(`Apply and inspect ${skin.name}`, async () => {
+      await remote.getByRole('button', { name: 'Reading settings', exact: true }).click()
       await remote.getByRole('button', { name: 'Change remote skin', exact: true }).click()
       await remote.getByRole('button', { name: `Use ${skin.name}`, exact: true }).click()
       await expect(remote.getByRole('dialog')).toHaveCount(0)
-      await expect(remote.getByRole('button', { name: 'Change remote skin', exact: true })).toBeFocused()
+      await expect(remote.getByRole('button', { name: 'Reading settings', exact: true })).toBeFocused()
       await expect(remote.getByRole('main', { name: 'Remote controller' })).toHaveClass(new RegExp(`skin--${skin.id}`))
       await expect(remote.getByRole('button', { name: 'Play', exact: true })).toBeEnabled()
       const key = remote.getByRole('button', { name: 'Play', exact: true })
@@ -105,24 +110,26 @@ test('every finish can be applied on an entitled remote without changing its con
     await jog.press('ArrowRight')
     await expect(jog).toHaveAttribute('aria-valuenow', '48')
     entitled = false
-    await remote.getByRole('button', { name: 'Change remote skin', exact: true }).click()
+    await remote.getByRole('button', { name: 'Reading settings', exact: true }).click()
+      await remote.getByRole('button', { name: 'Change remote skin', exact: true }).click()
     await remote.getByRole('button', { name: 'Use Orbit', exact: true }).click()
     await expect(remote.getByRole('dialog')).toContainText('Could not change the skin')
     await expect(remote.getByRole('main', { name: 'Remote controller' })).toHaveClass(/skin--original/)
-    expect(await remote.evaluate(() => localStorage.getItem('izzy:remote-finish:v1'))).toBe('airframe')
+    expect(await remote.evaluate(() => localStorage.getItem('izzy:remote-finish:v1'))).toBe(skins.at(-1)!.id)
     await remote.keyboard.press('Escape')
     await remote.reload()
     await expect(remote.getByRole('main', { name: 'Remote controller' })).toHaveClass(/skin--original/)
   } finally { await context.close() }
 })
 
-for (const width of [360, 390, 430, 768, 1280, 1440]) {
+for (const width of [320, 360, 390, 430, 768, 1280, 1440]) {
   test(`product surfaces fit ${width}px`, async ({ page }) => {
     await page.setViewportSize({ width, height: 900 })
     for (const path of ['/', '/pro', '/skins', '/local']) {
       await page.goto(path)
       // Public pages must also fit when the platform lacks the studio fonts.
-      await page.addStyleTag({ content: '.remote-instrument .instrument-speed strong, .offline-hero h1 { font-family: Arial, sans-serif !important; }' })
+      await page.addStyleTag({ content: '.remote-instrument .instrument-speed strong, .offline-hero h1 { font-family: Arial, sans-serif !important; } .skin-card-meta h2 { font-family: Verdana, sans-serif !important; }' })
+      await page.evaluate(() => document.fonts.ready)
       await expect.poll(() => page.evaluate(() => document.documentElement.scrollWidth)).toBe(width)
       const speedRails = await page.locator('.remote-instrument .instrument-speed').evaluateAll(els => els.map(el => ({
         rail: el.querySelector<HTMLElement>('.speed-track')?.clientWidth ?? 0,
@@ -167,6 +174,27 @@ for (const width of [360, 390, 430, 768, 1280, 1440]) {
     }
   })
 }
+
+test('animated PRO materials stay contained throughout a complete turn', async ({page}) => {
+  await page.setViewportSize({width:430,height:900})
+  await page.goto('/pro')
+  await page.locator('.material-parade').scrollIntoViewIfNeeded()
+  await expect.poll(()=>page.locator('.material-parade').evaluate(el=>el.getAnimations({subtree:true}).length)).toBeGreaterThan(0)
+  const result=await page.evaluate(async()=>{
+    const root=document.querySelector('main')!
+    const animations=document.querySelector('.pro-page')!.getAnimations({subtree:true})
+    animations.forEach(a=>a.pause())
+    let worst={overflow:0,phase:0,children:[] as unknown[]}
+    for(let step=0;step<36;step++) {
+      for(const animation of animations) animation.currentTime=Number(animation.effect!.getTiming().duration)*step/36
+      await new Promise<void>(resolve=>requestAnimationFrame(()=>resolve()))
+      const overflow=root.scrollWidth-root.clientWidth
+      if(overflow>worst.overflow) worst={overflow,phase:step*10,children:Array.from(root.querySelectorAll('.pro-collection, .pro-collection *')).filter(el=>el.getBoundingClientRect().right>430).map(el=>({class:el.className,text:el.childElementCount ? '' : el.textContent,width:el.clientWidth,scroll:el.scrollWidth,right:el.getBoundingClientRect().right,overflow:getComputedStyle(el).overflowX}))}
+    }
+    return worst
+  })
+  expect(result.overflow,JSON.stringify(result)).toBeLessThanOrEqual(1)
+})
 
 
 test('public navigation keeps distinct destinations and hides the library entry', async ({ page }) => {

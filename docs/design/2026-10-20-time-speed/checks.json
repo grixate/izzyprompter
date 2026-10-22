@@ -1,0 +1,14 @@
+{
+  "pairedBrowserTests": {
+    "startTime": "2026-10-20T05:42:44.737Z",
+    "duration": 58234.415,
+    "expected": 21,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "unitTests": 90,
+  "productionBuild": "passed",
+  "physicalDevices": "not run",
+  "githubJobs": "not run"
+}

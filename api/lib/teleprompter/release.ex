@@ -72,4 +72,30 @@ defmodule Teleprompter.Release do
       }
     end)
   end
+
+  @doc "Aggregate release checks only; never prints user data or environment secrets."
+  def launch_readiness do
+    commerce(fn ->
+      query =
+        Ecto.Adapters.SQL.query(
+          Teleprompter.Repo,
+          "SELECT reading_preferences, preferences_revision FROM users LIMIT 0",
+          [], timeout: 1000)
+
+      tables =
+        Ecto.Adapters.SQL.query(
+          Teleprompter.Repo,
+          "SELECT (SELECT count(*) FROM feedback) AS feedback_entries, (SELECT count(*) FROM product_metrics) AS metric_buckets",
+          [], timeout: 1000)
+
+      %{
+        schema_ready: match?({:ok, _}, query) and match?({:ok, _}, tables),
+        public_skins: Teleprompter.Product.skins(),
+        default_speed: Teleprompter.PromptSettings.defaults()["speed"],
+        feedback_enabled: Application.get_env(:teleprompter, :feedback_enabled, false),
+        product_metrics_enabled:
+          Application.get_env(:teleprompter, :product_metrics_enabled, false)
+      }
+    end)
+  end
 end

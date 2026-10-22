@@ -209,7 +209,7 @@ export function StartPage() {
     try {
       const response = await fetch('/api/sessions', {
         method: 'POST', headers: { 'Content-Type': 'application/json' }, signal: controller.signal,
-        body: JSON.stringify({ protocol_version: 2, content: normalizedContent, speed: loadWorkspaceStorage().settings.speed }),
+        body: JSON.stringify({ protocol_version: 2, content: normalizedContent, speed: loadWorkspaceStorage().settings.speed, settings: loadWorkspaceStorage().settings }),
       })
       // Reverse proxies can return HTML for 413/429. Status-based recovery
       // must still preserve the draft and honor the retry hint.

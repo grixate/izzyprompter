@@ -1,0 +1,87 @@
+{
+  "schemaVersion": 1,
+  "kind": "izzy-remote-design-baseline",
+  "baselineId": "2026-10-20-quiet-editor",
+  "files": [
+    {
+      "path": "PASS.md",
+      "bytes": 4212,
+      "sha256": "e30ddd75ab722cc034dc869f7ed83edcd4808b4c7f336bc26dd0459107924143"
+    },
+    {
+      "path": "build-review.mjs",
+      "bytes": 449,
+      "sha256": "15d587ebc197debe14c9e09f33c6197a972f955c4742eb5c513957aed06ebe0e"
+    },
+    {
+      "path": "checks.json",
+      "bytes": 6046,
+      "sha256": "5fcb7eda6d653cab27c5685b7ec7e027f93eb170dacd41fa85c4d6c6fe430e63"
+    },
+    {
+      "path": "live/assets/live-B4xW34Vy.css",
+      "bytes": 237937,
+      "sha256": "40dc9a7bc9fae3ad045f39ecfd77b3d0110dad99ff2f76757ae7136e883b215c"
+    },
+    {
+      "path": "live/assets/live-Cu8y0ahz.js",
+      "bytes": 274003,
+      "sha256": "e3d3530a30069d5003e08007c9ced0d33bea5ca5cc0aeab19ed00a1c9d7077c1"
+    },
+    {
+      "path": "live/index.html",
+      "bytes": 356,
+      "sha256": "73b8b93d0f8bbf43603127f421061994cfa7633b2833d8bf62db4a7bf03833f7"
+    },
+    {
+      "path": "live-entry.tsx",
+      "bytes": 371,
+      "sha256": "4201f2eddb821a619ea7512e31bb3ccab1229931e287ec4c780ac3971d06f3ee"
+    },
+    {
+      "path": "live.html",
+      "bytes": 263,
+      "sha256": "88dfa455433dfd28c1292c3dd4dd7f6f889e8373cb725178c4752b1c8f830ced"
+    },
+    {
+      "path": "preview-checks.json",
+      "bytes": 1354,
+      "sha256": "80eaa7476455c63d8e3f986884c21de0a5473c29348aa9757894ae10e22831a6"
+    },
+    {
+      "path": "references/editor-320x250.png",
+      "bytes": 16067,
+      "sha256": "d7ad4f0746a4b456be674c1d0a1aeab7d11a390838f5f5f50ba75a779e169c61"
+    },
+    {
+      "path": "references/editor-390x660.png",
+      "bytes": 33691,
+      "sha256": "37d5b0626bb0a8068753e35cc3e728358a3e963fe7c2e0e81b070906872dabf4"
+    },
+    {
+      "path": "references/editor-700x260.png",
+      "bytes": 32300,
+      "sha256": "ee9e1c523d1ee8f5671388c9c3e483e8ec4981361ad4b8c7d95146ab3aa8609f"
+    },
+    {
+      "path": "references/simulated-editor-visible-350x250.png",
+      "bytes": 18972,
+      "sha256": "5b2e7d39ca612df1af4aebc2aca0f730d782468da2a4662b00d952ad70dc7ad8"
+    },
+    {
+      "path": "references/simulated-editor-visible-390x320.png",
+      "bytes": 27778,
+      "sha256": "827bb5ffa8d691f895fa6ec0156b263dce17700cdcb627bff7b39c184fcd4aaa"
+    },
+    {
+      "path": "references/simulated-editor-visible-390x700.png",
+      "bytes": 76185,
+      "sha256": "8c0fce203967dc000ee9390a15d97a40e6a4385f717a339cbf23f4189c28f134"
+    },
+    {
+      "path": "verify-review.mjs",
+      "bytes": 3055,
+      "sha256": "bd40cda4bfe617b24bc39482d48fd16b040feff57549b129ebab43f9cc578a78"
+    }
+  ]
+}

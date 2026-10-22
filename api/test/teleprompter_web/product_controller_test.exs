@@ -18,7 +18,9 @@ defmodule TeleprompterWeb.ProductControllerTest do
     assert data["discount_percent"] == 40
     refute Map.has_key?(data, "purchases")
     refute Map.has_key?(data, "user")
-    assert length(data["skins"]) == 16
+    assert length(data["skins"]) == 14
+    assert "clear" in data["skins"] and "arcade" in data["skins"]
+    refute "spool" in data["skins"]
   end
 
   test "ending the promotion changes both prices and removes the discount", %{conn: conn} do

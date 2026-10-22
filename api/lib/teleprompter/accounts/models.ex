@@ -3,6 +3,8 @@ defmodule Teleprompter.Accounts.User do
   @primary_key {:id, :binary_id, autogenerate: true}
   schema "users" do
     field(:email, :string, redact: true)
+    field(:reading_preferences, :map)
+    field(:preferences_revision, :integer, default: 0)
     timestamps(type: :utc_datetime_usec)
   end
 end

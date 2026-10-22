@@ -1,0 +1,567 @@
+{
+  "touch-first": {
+    "stats": {
+      "startTime": "2026-10-20T17:36:04.911Z",
+      "duration": 11633.108,
+      "expected": 0,
+      "skipped": 0,
+      "unexpected": 1,
+      "flaky": 0
+    },
+    "cases": [
+      {
+        "title": "selected remotes separate speed from phrase actions and keep readable touch controls",
+        "project": "chromium",
+        "status": "unexpected",
+        "runs": [
+          {
+            "status": "failed",
+            "errorCount": 1
+          }
+        ]
+      }
+    ]
+  },
+  "touch-browsers": {
+    "stats": {
+      "startTime": "2026-10-20T17:36:46.058Z",
+      "duration": 108127.502,
+      "expected": 9,
+      "skipped": 0,
+      "unexpected": 6,
+      "flaky": 0
+    },
+    "cases": [
+      {
+        "title": "selected remotes separate speed from phrase actions and keep readable touch controls",
+        "project": "chromium",
+        "status": "unexpected",
+        "runs": [
+          {
+            "status": "failed",
+            "errorCount": 12
+          }
+        ]
+      },
+      {
+        "title": "selected remotes separate speed from phrase actions and keep readable touch controls",
+        "project": "firefox",
+        "status": "unexpected",
+        "runs": [
+          {
+            "status": "failed",
+            "errorCount": 12
+          }
+        ]
+      },
+      {
+        "title": "selected remotes separate speed from phrase actions and keep readable touch controls",
+        "project": "webkit",
+        "status": "unexpected",
+        "runs": [
+          {
+            "status": "failed",
+            "errorCount": 12
+          }
+        ]
+      },
+      {
+        "title": "every catalog remote is a stationary phone instrument, with all controls visible",
+        "project": "chromium",
+        "status": "unexpected",
+        "runs": [
+          {
+            "status": "failed",
+            "errorCount": 23
+          }
+        ]
+      },
+      {
+        "title": "current paragraph opens above the stationary remote and stays usable with a keyboard-sized viewport",
+        "project": "chromium",
+        "status": "expected",
+        "runs": [
+          {
+            "status": "passed",
+            "errorCount": 0
+          }
+        ]
+      },
+      {
+        "title": "a speed acknowledgement survives delayed broadcasts and newer reading checkpoints",
+        "project": "chromium",
+        "status": "expected",
+        "runs": [
+          {
+            "status": "passed",
+            "errorCount": 0
+          }
+        ]
+      },
+      {
+        "title": "every catalog remote is a stationary phone instrument, with all controls visible",
+        "project": "firefox",
+        "status": "unexpected",
+        "runs": [
+          {
+            "status": "failed",
+            "errorCount": 25
+          }
+        ]
+      },
+      {
+        "title": "current paragraph opens above the stationary remote and stays usable with a keyboard-sized viewport",
+        "project": "firefox",
+        "status": "expected",
+        "runs": [
+          {
+            "status": "passed",
+            "errorCount": 0
+          }
+        ]
+      },
+      {
+        "title": "a speed acknowledgement survives delayed broadcasts and newer reading checkpoints",
+        "project": "firefox",
+        "status": "expected",
+        "runs": [
+          {
+            "status": "passed",
+            "errorCount": 0
+          }
+        ]
+      },
+      {
+        "title": "every catalog remote is a stationary phone instrument, with all controls visible",
+        "project": "webkit",
+        "status": "unexpected",
+        "runs": [
+          {
+            "status": "failed",
+            "errorCount": 23
+          }
+        ]
+      },
+      {
+        "title": "current paragraph opens above the stationary remote and stays usable with a keyboard-sized viewport",
+        "project": "webkit",
+        "status": "expected",
+        "runs": [
+          {
+            "status": "passed",
+            "errorCount": 0
+          }
+        ]
+      },
+      {
+        "title": "a speed acknowledgement survives delayed broadcasts and newer reading checkpoints",
+        "project": "webkit",
+        "status": "expected",
+        "runs": [
+          {
+            "status": "passed",
+            "errorCount": 0
+          }
+        ]
+      },
+      {
+        "title": "fourteen self-contained instruments keep paired precision",
+        "project": "chromium",
+        "status": "expected",
+        "runs": [
+          {
+            "status": "passed",
+            "errorCount": 0
+          }
+        ]
+      },
+      {
+        "title": "fourteen self-contained instruments keep paired precision",
+        "project": "firefox",
+        "status": "expected",
+        "runs": [
+          {
+            "status": "passed",
+            "errorCount": 0
+          }
+        ]
+      },
+      {
+        "title": "fourteen self-contained instruments keep paired precision",
+        "project": "webkit",
+        "status": "expected",
+        "runs": [
+          {
+            "status": "passed",
+            "errorCount": 0
+          }
+        ]
+      }
+    ]
+  },
+  "touch-geometry-final-first": {
+    "stats": {
+      "startTime": "2026-10-20T17:40:15.745Z",
+      "duration": 20287.314000000002,
+      "expected": 0,
+      "skipped": 0,
+      "unexpected": 2,
+      "flaky": 0
+    },
+    "cases": [
+      {
+        "title": "selected remotes separate speed from phrase actions and keep readable touch controls",
+        "project": "chromium",
+        "status": "unexpected",
+        "runs": [
+          {
+            "status": "failed",
+            "errorCount": 12
+          }
+        ]
+      },
+      {
+        "title": "every catalog remote is a stationary phone instrument, with all controls visible",
+        "project": "chromium",
+        "status": "unexpected",
+        "runs": [
+          {
+            "status": "failed",
+            "errorCount": 1
+          }
+        ]
+      }
+    ]
+  },
+  "touch-geometry-final": {
+    "stats": {
+      "startTime": "2026-10-20T17:41:09.300Z",
+      "duration": 63736.53799999999,
+      "expected": 6,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "cases": [
+      {
+        "title": "selected remotes separate speed from phrase actions and keep readable touch controls",
+        "project": "chromium",
+        "status": "expected",
+        "runs": [
+          {
+            "status": "passed",
+            "errorCount": 0
+          }
+        ]
+      },
+      {
+        "title": "selected remotes separate speed from phrase actions and keep readable touch controls",
+        "project": "firefox",
+        "status": "expected",
+        "runs": [
+          {
+            "status": "passed",
+            "errorCount": 0
+          }
+        ]
+      },
+      {
+        "title": "selected remotes separate speed from phrase actions and keep readable touch controls",
+        "project": "webkit",
+        "status": "expected",
+        "runs": [
+          {
+            "status": "passed",
+            "errorCount": 0
+          }
+        ]
+      },
+      {
+        "title": "every catalog remote is a stationary phone instrument, with all controls visible",
+        "project": "chromium",
+        "status": "expected",
+        "runs": [
+          {
+            "status": "passed",
+            "errorCount": 0
+          }
+        ]
+      },
+      {
+        "title": "every catalog remote is a stationary phone instrument, with all controls visible",
+        "project": "firefox",
+        "status": "expected",
+        "runs": [
+          {
+            "status": "passed",
+            "errorCount": 0
+          }
+        ]
+      },
+      {
+        "title": "every catalog remote is a stationary phone instrument, with all controls visible",
+        "project": "webkit",
+        "status": "expected",
+        "runs": [
+          {
+            "status": "passed",
+            "errorCount": 0
+          }
+        ]
+      }
+    ]
+  },
+  "touch-spacing-final": {
+    "stats": {
+      "startTime": "2026-10-20T17:45:05.664Z",
+      "duration": 64246.928,
+      "expected": 6,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "cases": [
+      {
+        "title": "selected remotes separate speed from phrase actions and keep readable touch controls",
+        "project": "chromium",
+        "status": "expected",
+        "runs": [
+          {
+            "status": "passed",
+            "errorCount": 0
+          }
+        ]
+      },
+      {
+        "title": "selected remotes separate speed from phrase actions and keep readable touch controls",
+        "project": "firefox",
+        "status": "expected",
+        "runs": [
+          {
+            "status": "passed",
+            "errorCount": 0
+          }
+        ]
+      },
+      {
+        "title": "selected remotes separate speed from phrase actions and keep readable touch controls",
+        "project": "webkit",
+        "status": "expected",
+        "runs": [
+          {
+            "status": "passed",
+            "errorCount": 0
+          }
+        ]
+      },
+      {
+        "title": "every catalog remote is a stationary phone instrument, with all controls visible",
+        "project": "chromium",
+        "status": "expected",
+        "runs": [
+          {
+            "status": "passed",
+            "errorCount": 0
+          }
+        ]
+      },
+      {
+        "title": "every catalog remote is a stationary phone instrument, with all controls visible",
+        "project": "firefox",
+        "status": "expected",
+        "runs": [
+          {
+            "status": "passed",
+            "errorCount": 0
+          }
+        ]
+      },
+      {
+        "title": "every catalog remote is a stationary phone instrument, with all controls visible",
+        "project": "webkit",
+        "status": "expected",
+        "runs": [
+          {
+            "status": "passed",
+            "errorCount": 0
+          }
+        ]
+      }
+    ]
+  },
+  "touch-contrast-final": {
+    "stats": {
+      "startTime": "2026-10-20T17:42:46.505Z",
+      "duration": 46258.914,
+      "expected": 3,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "cases": [
+      {
+        "title": "fourteen self-contained instruments keep paired precision",
+        "project": "chromium",
+        "status": "expected",
+        "runs": [
+          {
+            "status": "passed",
+            "errorCount": 0
+          }
+        ]
+      },
+      {
+        "title": "fourteen self-contained instruments keep paired precision",
+        "project": "firefox",
+        "status": "expected",
+        "runs": [
+          {
+            "status": "passed",
+            "errorCount": 0
+          }
+        ]
+      },
+      {
+        "title": "fourteen self-contained instruments keep paired precision",
+        "project": "webkit",
+        "status": "expected",
+        "runs": [
+          {
+            "status": "passed",
+            "errorCount": 0
+          }
+        ]
+      }
+    ]
+  },
+  "touch-legends-final": {
+    "stats": {
+      "startTime": "2026-10-20T17:46:28.034Z",
+      "duration": 67863.49699999999,
+      "expected": 3,
+      "skipped": 0,
+      "unexpected": 3,
+      "flaky": 0
+    },
+    "cases": [
+      {
+        "title": "selected remotes separate speed from phrase actions and keep readable touch controls",
+        "project": "chromium",
+        "status": "unexpected",
+        "runs": [
+          {
+            "status": "failed",
+            "errorCount": 34
+          }
+        ]
+      },
+      {
+        "title": "selected remotes separate speed from phrase actions and keep readable touch controls",
+        "project": "firefox",
+        "status": "unexpected",
+        "runs": [
+          {
+            "status": "failed",
+            "errorCount": 34
+          }
+        ]
+      },
+      {
+        "title": "selected remotes separate speed from phrase actions and keep readable touch controls",
+        "project": "webkit",
+        "status": "unexpected",
+        "runs": [
+          {
+            "status": "failed",
+            "errorCount": 34
+          }
+        ]
+      },
+      {
+        "title": "fourteen self-contained instruments keep paired precision",
+        "project": "chromium",
+        "status": "expected",
+        "runs": [
+          {
+            "status": "passed",
+            "errorCount": 0
+          }
+        ]
+      },
+      {
+        "title": "fourteen self-contained instruments keep paired precision",
+        "project": "firefox",
+        "status": "expected",
+        "runs": [
+          {
+            "status": "passed",
+            "errorCount": 0
+          }
+        ]
+      },
+      {
+        "title": "fourteen self-contained instruments keep paired precision",
+        "project": "webkit",
+        "status": "expected",
+        "runs": [
+          {
+            "status": "passed",
+            "errorCount": 0
+          }
+        ]
+      }
+    ]
+  },
+  "touch-final": {
+    "stats": {
+      "startTime": "2026-10-20T17:47:59.601Z",
+      "duration": 30658.628999999997,
+      "expected": 3,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "cases": [
+      {
+        "title": "selected remotes separate speed from phrase actions and keep readable touch controls",
+        "project": "chromium",
+        "status": "expected",
+        "runs": [
+          {
+            "status": "passed",
+            "errorCount": 0
+          }
+        ]
+      },
+      {
+        "title": "selected remotes separate speed from phrase actions and keep readable touch controls",
+        "project": "firefox",
+        "status": "expected",
+        "runs": [
+          {
+            "status": "passed",
+            "errorCount": 0
+          }
+        ]
+      },
+      {
+        "title": "selected remotes separate speed from phrase actions and keep readable touch controls",
+        "project": "webkit",
+        "status": "expected",
+        "runs": [
+          {
+            "status": "passed",
+            "errorCount": 0
+          }
+        ]
+      }
+    ]
+  },
+  "unit": {
+    "passed": 92,
+    "failed": 0
+  },
+  "build": "passed",
+  "diff": "passed",
+  "physicalDevices": "not run"
+}

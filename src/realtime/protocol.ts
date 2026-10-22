@@ -23,7 +23,7 @@ export type ReadingCheckpoint = {
 }
 export type ReadingState = { revision: number; source_id: string | null; checkpoint: ReadingCheckpoint | null }
 export const EMPTY_READING: ReadingState = { revision: 0, source_id: null, checkpoint: null }
-export type EditingState = { revision: number; active: { owner_id: string; block_id: string; anchor: ReadingAnchor } | null }
+export type EditingState = { revision: number; active: { owner_id: string; block_id: string; anchor: ReadingAnchor; scope?: 'paragraph' | 'document' } | null }
 export const EMPTY_EDITING: EditingState = { revision: 0, active: null }
 export type CommandResult<T> = { ok: true; value: T } | { ok: false; reason: string }
 
@@ -34,6 +34,8 @@ export type PresenceState = {
 }
 
 export type SessionSnapshot = {
+  preferences_status?: string
+  preferences_status_revision?: number
   display_settings?: import('../domain/storage').PromptSettingsV1 | null
   settings_revision?: number
   saved_revision?: number | null
@@ -53,7 +55,7 @@ export type SessionSnapshot = {
 export const DEFAULT_TRANSPORT: TransportState = {
   status: 'paused',
   anchor_position: 0,
-  speed: 0.86,
+  speed: 0.56,
   anchor_server_time: Date.now(),
   revision: 0,
 }

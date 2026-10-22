@@ -51,3 +51,33 @@ Collection 03 verification: all four final studies play/pause, reach 0/2400 usin
 Aperture correction: replaced the uneven last-over-first blade overlap with six rotationally symmetric segments sharing boundary endpoints around a clear hexagonal opening. The artwork now fits the disc without 110% oversizing. The optical rim, central key, radar and other ten studies are unchanged. In-browser checks confirm pointer scrubbing (310 → 417), playback/pause, Home/End (0/2400), and a 320 px phone rendering without horizontal overflow. Updated preview: `artifacts/jog-wheel-aperture-fixed.png`; historical collection previews remain preserved. Build and 79 client tests pass.
 
 Correspondent refinement, 2026-10-13: keep its recessed finger well as the single wheel cue and remove the duplicate thin index line. The historical Material memory capsule is unchanged; [the refinement record](design/remote-skins/2026-10-13-correspondent-refinement/REFINEMENT.md) identifies the latest target. Other faces and shared controls are untouched.
+
+
+19 October — Clear and Arcade rebuilt around graphite Phone (1) glass and a TAITO paddle spinner. Synthetic review and paired browser evidence: [object pass](design/2026-10-19-skin-craft/v4-objects/PASS.md). No new IDs, release selection, grants or hosted app update.
+
+
+20 October — first time/speed batch implemented for Groove, Clear and Arcade. The selected collection remains14. [Implementation, gallery and actual validation](design/2026-10-20-time-speed/PASS.md).21 paired browser cases,90 unit tests and build passed; no hosted app publication or physical-device claim.
+
+
+20 October — the full selected14 now have instrument-specific time and self-contained speed controls. No duplicate +/-; editable exact speed, native keyboard precision, captured relative gestures, and ACK ordering are shared. [Current collection and evidence](design/2026-10-20-collection/PASS.md).87 paired browser cases have successful latest results across Chromium/Firefox/WebKit; static review and miniatures checked separately. No merge, hosted publication or physical-device claim.
+
+
+20 October — phone remote is now a fixed viewport instrument. Grid allocation keeps all controls visible without page scrolling; short portrait and landscape layouts preserve touch targets. Shared Quick Edit is a native drawer outside the casing, including the standalone fourteen-skin demo. [Current implementation and actual evidence](design/2026-10-20-fixed-remote/PASS.md). Historical previews remain preserved.
+
+
+20 October — Quick Edit is now a minimal prompter sheet: compact header/Done, quiet text surface and no normal footer. Full VisualViewport geometry and safe insets keep editing above the keyboard/browser chrome. Shared across all selected14; sync and draft recovery preserved. [Current preview and evidence](design/2026-10-20-quiet-editor/PASS.md). 18 browser cases passed in three engines; final six layout cases and static nine states passed. Physical keyboards/devices are not certified.
+
+
+20 October — final audit keeps the selected14. Useful speed range is0.20–1.00, step0.01; legacy fast settings normalize without losing scripts/layout. Observatory regains three elliptical orbits and a readable chronometer. Unit labels, short-scale collisions, Original line metrics and rotated-rotor overflow are fixed. [Current gallery, per-skin findings and evidence](design/2026-10-20-final-audit/PASS.md). Previous previews remain preserved.
+
+
+20 October — selected14 now separate speed from phrase/tool actions with an inactive touch gap, larger52–56px actions and11px legends. Name/value stay grouped. Compact side controls and landscape Play placement preserve a usable jog. [Current mobile touch review and evidence](design/2026-10-20-touch-layout/PASS.md). Existing mechanics, time displays, speed bounds and editor behavior are preserved.
+
+
+20 October — [live iPhone 13 Pro Max gallery](design/2026-10-20-live-gallery/review.html) now embeds all selected14 as interactive remotes, with browser/full-screen modes, independent reset and fixed428px internal viewports. [Actual verification](design/2026-10-20-live-gallery/PASS.md). Previous screenshot galleries and frozen demo assets remain preserved.
+
+
+21 October — owner-approved Orbit proportions now extend to all selected14. The wheel dominates the browser-height phone; instrument-specific readouts/speed controls are compact and separate Play keys have their own auxiliary bay. [Current live gallery and actual validation](design/2026-10-21-wheel-first/PASS.md). Earlier studies and frozen previews are preserved; no hosted publication.
+
+
+21 October — [final control refinements](design/2026-10-21-final-details/PASS.md): only changed counter digits roll; pointer focus boxes are removed; circular speed controls understand clockwise/counterclockwise gestures; Field Reel/Switchboard rollers visibly track the hand; Original regains its black monitor. The large-wheel14-skin layout is preserved. Live gallery and actual browser/touch-emulation evidence are saved; no hosted publication.

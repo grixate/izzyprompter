@@ -1,7 +1,7 @@
 defmodule Teleprompter.TrafficBudget do
   @moduledoc "Constant-size token buckets; no payloads or client identities are retained."
 
-  @heavy ~w(script:update script:patch_block)
+  @heavy ~w(script:update script:patch_block script:patch_document)
 
   def new(scope, now \\ System.monotonic_time(:millisecond)) do
     limits =

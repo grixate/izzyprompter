@@ -1,0 +1,36 @@
+{
+  "files": [
+    {
+      "file": "src/components/InstrumentMechanism.tsx",
+      "sha256": "dd58fbab379e876253ccbf903f86cdaa974761e127554663fec64e0ed50568ec"
+    },
+    {
+      "file": "src/assets/skin-clear-graphite.svg",
+      "sha256": "44ac58648afb702918c4da26c0151edcdef799f24950250d5cc40f8454a704a7"
+    },
+    {
+      "file": "src/product/skin-objects.css",
+      "sha256": "f37f6a8dcf8e61091f0ac6ae14a0a0d19381e64867862e696ec515fad83d2643"
+    },
+    {
+      "file": "docs/design/2026-10-19-skin-craft/v4-objects/references/clear-miniature.png",
+      "sha256": "d989bada3e57e788a8d82fb8e3f569d611fd5eea93b54bc1d6c7368d9a6ce86d"
+    },
+    {
+      "file": "docs/design/2026-10-19-skin-craft/v4-objects/references/clear-running.png",
+      "sha256": "6491b56d74268a82d2e5664bae9f57647fbc9ed74e5ea6305cce28e659fac00a"
+    },
+    {
+      "file": "docs/design/2026-10-19-skin-craft/v4-objects/references/clear.png",
+      "sha256": "96862aae0f0c83eec0295a02eaa630de5e2476e9efb820e60b5183843ec3f538"
+    },
+    {
+      "file": "docs/design/2026-10-19-skin-craft/v4-objects/references/clear-demo.png",
+      "sha256": "b00a07414f6b82b79c0974f3d78356f0e29564ea1c7b04fa010dc1ce4e9c8c37"
+    },
+    {
+      "file": "docs/design/2026-10-19-skin-craft/v4-objects/references/clear-refined-running.png",
+      "sha256": "6491b56d74268a82d2e5664bae9f57647fbc9ed74e5ea6305cce28e659fac00a"
+    }
+  ]
+}

@@ -1,0 +1,121 @@
+{
+  "sourceDirectorySha256": "1b33960f1e507a69773932b50d4e7d1079dfdd1e4c71ae74c4882918095c521c",
+  "files": [
+    {
+      "file": "PASS.md",
+      "sha256": "589ba33829c80f44b001bde2369b2f20f63b9e18b8e11fffdee9ed08248a9e8a"
+    },
+    {
+      "file": "before/cartridge.png",
+      "sha256": "eca4c322f48059ebab46c619e6f678191263b94d3168db975e8ad5c62da3ea7b"
+    },
+    {
+      "file": "before/correspondent.png",
+      "sha256": "05cabab64657587a09d957bdd4ab950ed2862796e241e6ed07e845c0ce2ec6ce"
+    },
+    {
+      "file": "before/field.png",
+      "sha256": "d4dae31464bbf6d68df29f08f2537fb9128a22229683bd91dfff8f9fcca90f80"
+    },
+    {
+      "file": "before/foundry.png",
+      "sha256": "34f9b1db5e25654d67bd2b0908672abc360bc89f2d504e59ee608e13073488ca"
+    },
+    {
+      "file": "before/graphite.png",
+      "sha256": "c5aa6324847ffe8893e9dd0c049e4de8547f7a366476d342ac52f3fcc649dff6"
+    },
+    {
+      "file": "before/groove.png",
+      "sha256": "7c43aec9461ef82f4bf3b9ae4723cf2c77746c25b98a8c7f07cea9434a593328"
+    },
+    {
+      "file": "before/ivory.png",
+      "sha256": "4dea5fb5ab50008517a7d6cc68f8457cb217c4f1c6552522116826676f77e717"
+    },
+    {
+      "file": "before/observatory.png",
+      "sha256": "d69c988b9cf83eb8d334681c8da121fee9f3cd26c9880e8f4e3ccd79d8c182e0"
+    },
+    {
+      "file": "before/original.png",
+      "sha256": "b6a22301f53b5b126151a30f3bee3cb65c65612f2fd572ae67f06afba41f4027"
+    },
+    {
+      "file": "before/signal.png",
+      "sha256": "4494cdcb3324ebd54c6ad9ff0227c036e759e800d017660e99bb87366e2a4225"
+    },
+    {
+      "file": "before/switchboard.png",
+      "sha256": "50bc17291e2f9448dac08f85c60e8530b94d84c16e84b1f458069fc6e118fd81"
+    },
+    {
+      "file": "before/vector.png",
+      "sha256": "c05d721d61055072323d276a7378fc1c6e57caaa3d009e3b210e5499e38cf008"
+    },
+    {
+      "file": "checks.json",
+      "sha256": "15b60676e82a14fe08510ea323ae7b9fb301c2d7d68627ab6c3ffe38f7dbfa73"
+    },
+    {
+      "file": "references/cartridge.png",
+      "sha256": "8438057aba6ecb6dcdb0e6677e1b72789f3da1cb38f3cf40268bf34c784f5ff7"
+    },
+    {
+      "file": "references/control-pass.jpg",
+      "sha256": "125eadaa844a8a46f5426eded2208169a5994abda89d492f77359ce23306c7e3"
+    },
+    {
+      "file": "references/correspondent.png",
+      "sha256": "740e41243b98b0d8fc5d911e8f0e9cca108c891312a1dee6374a026ef64815aa"
+    },
+    {
+      "file": "references/field.png",
+      "sha256": "dcf744a29a2b0805ca9ff4c02787f9b49dc0f39c967c5d75d9a839cdd3f761e5"
+    },
+    {
+      "file": "references/foundry.png",
+      "sha256": "739be9e8cdbebd548b2baea8f9be26581a143e9854553fab7677a209e275b7e3"
+    },
+    {
+      "file": "references/graphite.png",
+      "sha256": "5cf3a109a1815d7da7d3cae719d6cf0e55a5e78fdeae48d793ff74e7cee60338"
+    },
+    {
+      "file": "references/groove.png",
+      "sha256": "bfb981b921ee3ad459a641f48bcb25c4bb67bdb3f019101c1cb309c1a63592cb"
+    },
+    {
+      "file": "references/ivory.png",
+      "sha256": "d74c91ac2f0e4f2335009ef69e8aa53d07a8fb0e61cfe73822d4f794f1b0bc76"
+    },
+    {
+      "file": "references/observatory.png",
+      "sha256": "380a8aacf88762b26b2605ef6ec156b1acb1f029d9b39f31a77daff81bb69b31"
+    },
+    {
+      "file": "references/original.png",
+      "sha256": "1283d3a8026a6c8a4549ea871299ce980d657be13bbc451fbbc7a815ce58e21f"
+    },
+    {
+      "file": "references/signal.png",
+      "sha256": "27437ce6e3041a8782c2f08160e2cb675e28e76d6b921820a1faa03434ae1216"
+    },
+    {
+      "file": "references/switchboard.png",
+      "sha256": "0c48e7b0fad3645c51bc19298762d8bc6c79f518b81fc1e7ca73594d27820bfd"
+    },
+    {
+      "file": "references/vector.png",
+      "sha256": "00b8e65815f7d9ca313c6b9ea23d8d88ebc52c1bb2a8df877efd623a96727689"
+    },
+    {
+      "file": "review.html",
+      "sha256": "d392b623efa38f346c1e040cc7980dbd8268a93bd95140d776cf65bad0a966fc"
+    },
+    {
+      "file": "review.js",
+      "sha256": "bacc22ff2a5a917653b43581a93d96b8706ca27fc0cb63ff7d32cbe9dade39d9"
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+.instrument-mechanism { position:absolute; inset:0; width:100%; height:100%; overflow:visible; pointer-events:none; z-index:4; }
+.instrument-mechanism * { pointer-events:none; }
+/* Rotating a circular face must not grow scrollable overflow through its square
+   CSS box. Leave a small halo for material shadows; external mechanisms stay out. */
+.wheel-rotor-mask {position:absolute;inset:-12px;overflow:hidden;border-radius:50%;pointer-events:none;}
+.wheel-rotor-mask>.wheel-rotor {inset:12px;}
+.mechanism-drive { transform-box:view-box; }
+.instrument-gear-rim { position:absolute; inset:0; width:100%; height:100%; overflow:visible; }
+.mechanism--chassis { z-index:0; }
+.iris-leaves { transform-origin:150px 150px; transform:scale(1) rotate(0); transition:transform 320ms cubic-bezier(.25,.65,.3,1); }
+.jog-wheel[data-running=true] .iris-leaves { transform:scale(1.25) rotate(9deg); }
+.mechanism--foundry { filter:drop-shadow(1px 3px 2px #18291b99); }
+.mechanism--groove { filter:drop-shadow(0 1px 1px #151e1330); }
+.tonearm { transform-origin:282px 41px; transform:rotate(-10deg); transition:transform 340ms cubic-bezier(.22,.68,.24,1); }
+.tonearm-head { transition:transform 110ms ease,filter 110ms ease; transform:translateY(-2px); filter:drop-shadow(1px 3px 1px #17231255); }
+.tonearm-shadow { opacity:.4; transition:opacity 110ms ease; }
+.jog-wheel[data-running=true] .tonearm { transform:rotate(20deg); }
+.jog-wheel[data-running=true][data-dragging=false] .tonearm-head { transform:translateY(0); filter:drop-shadow(0 1px .3px #17231280); }
+.jog-wheel[data-running=true][data-dragging=false] .tonearm-shadow { opacity:.15; }
+.jog-wheel[data-dragging=true] .tonearm-head { transform:translateY(-3px); }
+@media(prefers-reduced-motion:reduce) {
+  .instrument-mechanism *, .instrument-mechanism { transition:none!important; }
+}

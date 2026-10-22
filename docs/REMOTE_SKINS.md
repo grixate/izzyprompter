@@ -1,5 +1,7 @@
 # Remote skins — product direction
 
+> **19 October — owner-directed curation:** the goal is recognisable objects and interests, with no finish-count quota. See [the current brief](design/2026-10-19-skin-craft/CURATED_DIRECTION.md). The [first control pass](design/2026-10-19-skin-craft/v3-controls/PASS.md) styles the lower controls and centres Field's engraved Play; Signal's key is round. Previous 25-candidate records below are historical, not an approved release selection.
+
 Creative development follows the [remote instrument design playbook](REMOTE_DESIGN_PLAYBOOK.md). It records the reference collection, reusable workflow and collaboration/quality gates; this file records product scope and entitlement decisions.
 
 Owner direction, 2026-10-12: preserve the wheel studies, explore more variants, and offer remote skins as a future Pro feature. Preferred default: **R–03 / Orbit**. Current implementation is the twelve-study development playground only, not a shipped theme selector or paid entitlement. Collection 03 closes this exploration for now at the owner's request; retain all three collections and their previews.
@@ -55,6 +57,32 @@ denied storage and closing during an in-flight request. Physical iPhone/iPad and
 Android acceptance remains pending under REMOTE_DEVICE_QA.md. This is a review
 candidate; production publication requires separate owner authorization.
 
+## 18 October live-remote readiness review
+
+All sixteen live finishes now have catalog-driven acceptance checks against a
+paired local display, alongside responsive, keyboard, reduced-motion and rendered
+contrast checks. The review repairs touch targets, legibility/focus, short-screen
+scrolling, missing material cues and a shared interrupted-drag capture bug.
+The reproducible playbook now maps both lab construction and live integration.
+See [the per-finish acceptance record and remaining device gates](REMOTE_SKIN_QA.md).
+This is still a review candidate; physical-device and screen-reader approval
+remain open, and no production publication is implied.
+
+## 19 October skin craft candidate
+
+The owner authorized execution of the revised skin research: full transparent
+bodies, more ambitious moving mechanisms and a coherent colour system. The review
+catalog now has Original plus 25 PRO candidates. Clear and Spool lead the six
+primary additions; four further distinct directions are implemented for review,
+not automatically approved for publication. Groove gains the state-linked
+arm; tape, iris, belt and geared mechanisms share the same accessible controls.
+Prices, permissions and the free default are retained.
+
+See [the collection and actual renders](design/2026-10-19-skin-craft/COLLECTION.md)
+and [implementation evidence](SKIN_CRAFT_IMPLEMENTATION.md). Owner selection,
+physical-device and audience acceptance remain open. This supersedes the earlier
+pause on exploration, not the separate requirement for production authorization.
+
 ## Historical launch scope
 
 - Online free V1 remains the delivery priority. Do not activate checkout, add a paid-launch dependency or change existing script limits for this experiment.
@@ -72,3 +100,38 @@ candidate; production publication requires separate owner authorization.
 - Preserve the owner's existing designs and the lab when a production skin is selected. Do not silently replace the collection with its winner.
 
 No payment activation, database migration, entitlement change, production default change or Git push is authorized by this note.
+
+
+19 October — Clear and Arcade rebuilt around graphite Phone (1) glass and a TAITO paddle spinner. Synthetic review and paired browser evidence: [object pass](design/2026-10-19-skin-craft/v4-objects/PASS.md). No new IDs, release selection, grants or hosted app update.
+
+
+20 October — owner accepted refined Clear and praised Arcade. Next priority is distinct time displays and speed controls for all 14 selected instruments. Groove/Clear/Arcade are examples, not a three-skin scope limit. Excluded and reserve studies stay outside this pass. [Saved plan](design/2026-10-19-skin-craft/TIME_AND_SPEED_PLAN.md); planning only, implementation has not started.
+
+
+20 October — first time/speed batch implemented for Groove, Clear and Arcade. The selected collection remains14. [Implementation, gallery and actual validation](design/2026-10-20-time-speed/PASS.md).21 paired browser cases,90 unit tests and build passed; no hosted app publication or physical-device claim.
+
+
+20 October — the full selected14 now have instrument-specific time and self-contained speed controls. No duplicate +/-; editable exact speed, native keyboard precision, captured relative gestures, and ACK ordering are shared. [Current collection and evidence](design/2026-10-20-collection/PASS.md).87 paired browser cases have successful latest results across Chromium/Firefox/WebKit; static review and miniatures checked separately. No merge, hosted publication or physical-device claim.
+
+
+20 October — phone remote is now a fixed viewport instrument. Grid allocation keeps all controls visible without page scrolling; short portrait and landscape layouts preserve touch targets. Shared Quick Edit is a native drawer outside the casing, including the standalone fourteen-skin demo. [Current implementation and actual evidence](design/2026-10-20-fixed-remote/PASS.md). Historical previews remain preserved.
+
+
+20 October — Quick Edit is now a minimal prompter sheet: compact header/Done, quiet text surface and no normal footer. Full VisualViewport geometry and safe insets keep editing above the keyboard/browser chrome. Shared across all selected14; sync and draft recovery preserved. [Current preview and evidence](design/2026-10-20-quiet-editor/PASS.md). 18 browser cases passed in three engines; final six layout cases and static nine states passed. Physical keyboards/devices are not certified.
+
+
+20 October — final audit keeps the selected14. Useful speed range is0.20–1.00, step0.01; legacy fast settings normalize without losing scripts/layout. Observatory regains three elliptical orbits and a readable chronometer. Unit labels, short-scale collisions, Original line metrics and rotated-rotor overflow are fixed. [Current gallery, per-skin findings and evidence](design/2026-10-20-final-audit/PASS.md). Previous previews remain preserved.
+
+
+20 October — selected14 now separate speed from phrase/tool actions with an inactive touch gap, larger52–56px actions and11px legends. Name/value stay grouped. Compact side controls and landscape Play placement preserve a usable jog. [Current mobile touch review and evidence](design/2026-10-20-touch-layout/PASS.md). Existing mechanics, time displays, speed bounds and editor behavior are preserved.
+
+
+20 October — [live iPhone 13 Pro Max gallery](design/2026-10-20-live-gallery/review.html) now embeds all selected14 as interactive remotes, with browser/full-screen modes, independent reset and fixed428px internal viewports. [Actual verification](design/2026-10-20-live-gallery/PASS.md). Previous screenshot galleries and frozen demo assets remain preserved.
+
+20 October — owner accepts the general live collection but rejects the reduced wheel scale. Next priority: restore the dominant, near-full-width wheel inspired by the original Teenage Engineering TP–7 reference; make time, speed and secondary actions subordinate while retaining generous touch areas. [Wheel-first implementation brief](design/2026-10-20-wheel-first/PLAN.md). Pending implementation; the current gallery is the before baseline.
+
+
+21 October — owner-approved Orbit proportions now extend to all selected14. The wheel dominates the browser-height phone; instrument-specific readouts/speed controls are compact and separate Play keys have their own auxiliary bay. [Current live gallery and actual validation](design/2026-10-21-wheel-first/PASS.md). Earlier studies and frozen previews are preserved; no hosted publication.
+
+
+21 October — [final control refinements](design/2026-10-21-final-details/PASS.md): only changed counter digits roll; pointer focus boxes are removed; circular speed controls understand clockwise/counterclockwise gestures; Field Reel/Switchboard rollers visibly track the hand; Original regains its black monitor. The large-wheel14-skin layout is preserved. Live gallery and actual browser/touch-emulation evidence are saved; no hosted publication.

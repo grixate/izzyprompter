@@ -108,7 +108,7 @@ test('only the primary display publishes position and its differently sized back
     await expect.poll(async () => (await bookmark(primary)).characterOffset).toBeGreaterThan(0)
     await expect.poll(async () => Math.abs(await remotePosition(remote) - await position(primary))).toBeLessThan(2)
     // Reflowing a secondary screen must not replace the primary's pixels.
-    await backup.setViewportSize({ width: 900, height: 700 })
+    await backup.setViewportSize({ width: 360, height: 700 })
     await expect.poll(async () => Math.abs(await position(backup) - await position(primary))).toBeGreaterThan(100)
     await backup.waitForTimeout(650)
     expect(Math.abs(await remotePosition(remote) - await position(primary))).toBeLessThan(2)

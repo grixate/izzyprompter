@@ -83,3 +83,17 @@ A read-only authenticated Lava product API check found the configured offer
 and its USD 29 price. It created no invoice and does not prove an actual
 checkout, delivered provider callback, receipt or refund. Production sales were
 already enabled before this work; staging checkout remains disabled.
+
+The complete local browser pass exposed further stale mechanical expectations
+(Clear now uses a fixed coil; Observatory has two linked moving groups), a
+short-keyboard text-area constraint, and CI-only font/geometry timing assumptions.
+The editor selector now occupies one row, leaving at least 72 px of editable
+text space. Mechanical checks follow the approved artwork without removing its
+motion. The backup-display test uses a clearly narrower reflow and retains
+primary-publication/semantic-handoff assertions. Public geometry waits for fonts
+and reports its route on failure; 320 px is now also covered with fallback fonts.
+The targeted recheck passed 70 cases across Chromium/Firefox/WebKit (two existing
+non-Chromium trusted-touch skips), plus all three 320 px fallback-font checks.
+One earlier WebKit admission-click timeout passed five isolated repetitions;
+no full-suite pass is inferred from those repetitions. Required CI must pass
+for the resulting commit before promotion.

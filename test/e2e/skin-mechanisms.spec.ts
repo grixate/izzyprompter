@@ -9,7 +9,7 @@ for (const name of ['Clear','Spool','Field reel','Cartridge','Foundry','Observat
     await focus(page,name)
     await page.getByRole('button',{name:'Play',exact:true}).click()
     const count=await wheel(page).locator('[data-wheel-ratio], [data-wheel-distance]').count()
-    expect(count).toBe(['Foundry','Observatory'].includes(name) ? 1 : 0)
+    expect(count).toBe(name === 'Observatory' ? 2 : name === 'Foundry' ? 1 : 0)
     await expect.poll(()=>wheel(page).evaluate(el=>el.getAnimations({subtree:true}).filter(a=>a.playState==='running' && a.effect?.getTiming().iterations===Infinity).length)).toBe(count+1)
     const times=await wheel(page).evaluate(el=>el.getAnimations({subtree:true}).filter(a=>a.effect?.getTiming().iterations===Infinity).map(a=>Number(a.startTime)))
     expect(Math.max(...times)-Math.min(...times)).toBeLessThan(1)
@@ -19,7 +19,7 @@ for (const name of ['Clear','Spool','Field reel','Cartridge','Foundry','Observat
       const m=new DOMMatrixReadOnly(getComputedStyle(el).transform)
       return {angle:Math.atan2(m.b,m.a),ratio:Number((el as SVGElement).dataset.wheelRatio)}
     }))
-    const chassis=wheel(page).locator('[data-mechanism=coaxial]')
+    const chassis=wheel(page).locator(name === 'Clear' ? '[data-mechanism=fixed-coil]' : '[data-mechanism=coaxial]')
     const fixedPose=['Clear','Spool'].includes(name)?await chassis.evaluate(el=>getComputedStyle(el).transform):null
     const before=await readParts(), beforeDriver=await angle(page,'.lab-device .wheel-rotor'), box=(await wheel(page).boundingBox())!
     const cx=box.x+box.width/2,cy=box.y+box.height/2,r=box.width*.43
@@ -42,7 +42,7 @@ test('reduced motion keeps state changes and freezes every linked part',async({p
   await focus(page,'Clear')
   await page.getByRole('button',{name:'Play',exact:true}).click()
   await expect(wheel(page)).toHaveAttribute('data-running','true')
-  expect(await wheel(page).evaluate(el=>el.getAnimations({subtree:true}).length)).toBe(0)
+  await expect.poll(()=>wheel(page).evaluate(el=>el.getAnimations({subtree:true}).length)).toBe(0)
   await page.getByRole('slider',{name:'Jog script position'}).press('ArrowRight')
   await page.getByRole('button',{name:'Pause',exact:true}).click()
   await expect(wheel(page)).toHaveAttribute('data-running','false')
@@ -55,7 +55,7 @@ test('showroom previews deliberately play and pause the same mechanism',async({p
   await hero.getByRole('button',{name:'Play preview',exact:true}).click()
   await expect(hero.locator('.jog-wheel')).toHaveAttribute('data-running','true')
   await hero.getByRole('button',{name:'Preview Clear',exact:true}).click()
-  await expect(hero.locator('[data-mechanism="coaxial"]')).toBeVisible()
+  await expect(hero.locator('[data-mechanism="fixed-coil"]')).toBeVisible()
   await hero.getByRole('button',{name:'Pause preview',exact:true}).click()
   await expect.poll(()=>hero.locator('.jog-wheel').evaluate(el=>el.getAnimations({subtree:true}).length)).toBe(0)
 })

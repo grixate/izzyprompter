@@ -122,7 +122,7 @@ test('every finish can be applied on an entitled remote without changing its con
   } finally { await context.close() }
 })
 
-for (const width of [360, 390, 430, 768, 1280, 1440]) {
+for (const width of [320, 360, 390, 430, 768, 1280, 1440]) {
   test(`product surfaces fit ${width}px`, async ({ page }) => {
     await page.setViewportSize({ width, height: 900 })
     for (const path of ['/', '/pro', '/skins', '/local']) {

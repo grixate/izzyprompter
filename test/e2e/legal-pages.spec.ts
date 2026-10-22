@@ -46,6 +46,7 @@ for (const width of [320, 390, 1280]) {
       await page.goto(path)
       const footer = page.getByRole('navigation', { name: 'Legal', exact: true })
       await footer.scrollIntoViewIfNeeded()
+      await page.evaluate(() => document.fonts.ready)
       for (const [href] of documents) await expect(footer.locator(`a[href="${href}"]`)).toBeVisible()
       const contrast = await footer.locator('a').first().evaluate(link => {
         const luminance = (color: string) => (color.match(/[\d.]+/g) ?? []).slice(0, 3)
@@ -56,7 +57,7 @@ for (const width of [320, 390, 1280]) {
         return (Math.max(foreground, background) + .05) / (Math.min(foreground, background) + .05)
       })
       expect(contrast).toBeGreaterThanOrEqual(4.5)
-      expect(await page.locator('main').evaluate(el => el.scrollWidth <= el.clientWidth)).toBe(true)
+      await expect.poll(() => page.locator('main').evaluate(el => el.scrollWidth - el.clientWidth), { message: `${path} at ${width}px must not scroll horizontally` }).toBeLessThanOrEqual(0)
     }
   })
 }

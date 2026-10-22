@@ -73,7 +73,6 @@ test('guest and local drafts survive immediate navigation through legal links', 
 
   const local = 'Synthetic local draft before reading the refund policy.'
   await page.goto('/local')
-  await page.getByRole('button', { name: 'Set up Offline', exact: true }).click()
   await page.getByRole('textbox', { name: 'Local script text' }).fill(local)
   await page.getByRole('navigation', { name: 'Legal', exact: true }).getByRole('link', { name: 'Refunds', exact: true }).click()
   await expect(page).toHaveURL('/refunds')

@@ -128,7 +128,7 @@ for (const width of [320, 360, 390, 430, 768, 1280, 1440]) {
     for (const path of ['/', '/pro', '/skins', '/local']) {
       await page.goto(path)
       // Public pages must also fit when the platform lacks the studio fonts.
-      await page.addStyleTag({ content: '.remote-instrument .instrument-speed strong, .offline-hero h1 { font-family: Arial, sans-serif !important; } .skin-card-meta h2 { font-family: Verdana, sans-serif !important; }' })
+      await page.addStyleTag({ content: '.remote-instrument .instrument-speed strong, .offline-workspace-heading h1 { font-family: Arial, sans-serif !important; } .skin-card-meta h2 { font-family: Verdana, sans-serif !important; }' })
       await page.evaluate(() => document.fonts.ready)
       await expect.poll(() => page.evaluate(() => document.documentElement.scrollWidth)).toBe(width)
       const speedRails = await page.locator('.remote-instrument .instrument-speed').evaluateAll(els => els.map(el => ({
@@ -165,9 +165,9 @@ for (const width of [320, 360, 390, 430, 768, 1280, 1440]) {
         expect(footer!.y - (remote!.y + remote!.height)).toBeGreaterThan(40)
       }
       if (path === '/local') {
-        await expect(page.getByRole('button', { name: 'Set up Offline', exact: true })).toBeVisible()
-        await expect(page.getByRole('textbox', { name: 'Local script text' })).toBeHidden()
-        await page.getByRole('button', { name: 'Set up Offline', exact: true }).click()
+        await expect(page.getByRole('heading', { name: 'Add your words' })).toBeVisible()
+        await expect(page.getByRole('heading', { name: 'Choose your controls' })).toBeVisible()
+        await expect(page.getByRole('button', { name: 'Upload text file' })).toBeVisible()
         await expect(page.getByRole('textbox', { name: 'Local script text' })).toBeVisible()
         expect(await page.locator('main').evaluate(el => el.scrollWidth - el.clientWidth)).toBeLessThanOrEqual(1)
       }

@@ -4,7 +4,7 @@ export default defineConfig({
   globalSetup: './test/e2e/global-setup.ts',
   testDir: './test/offline', fullyParallel: false, workers: 1, timeout: 45000,
   expect: { timeout: 10000 }, reporter: 'list',
-  use: { baseURL: 'http://127.0.0.1:4186', trace: 'off', screenshot: 'off' },
+  use: { baseURL: 'http://127.0.0.1:4186', actionTimeout: 10_000, trace: 'off', screenshot: 'off' },
   projects: [
     { name: 'chromium', use: { ...devices['Desktop Chrome'] } },
     { name: 'firefox', use: { ...devices['Desktop Firefox'] } },

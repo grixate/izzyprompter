@@ -128,7 +128,8 @@ for (const width of [320, 360, 390, 430, 768, 1280, 1440]) {
     for (const path of ['/', '/pro', '/skins', '/local']) {
       await page.goto(path)
       // Public pages must also fit when the platform lacks the studio fonts.
-      await page.addStyleTag({ content: '.remote-instrument .instrument-speed strong, .offline-hero h1 { font-family: Arial, sans-serif !important; }' })
+      await page.addStyleTag({ content: '.remote-instrument .instrument-speed strong, .offline-hero h1 { font-family: Arial, sans-serif !important; } .skin-card-meta h2 { font-family: Verdana, sans-serif !important; }' })
+      await page.evaluate(() => document.fonts.ready)
       await expect.poll(() => page.evaluate(() => document.documentElement.scrollWidth)).toBe(width)
       const speedRails = await page.locator('.remote-instrument .instrument-speed').evaluateAll(els => els.map(el => ({
         rail: el.querySelector<HTMLElement>('.speed-track')?.clientWidth ?? 0,

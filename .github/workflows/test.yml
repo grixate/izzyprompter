@@ -107,7 +107,8 @@ jobs:
 
   accounts:
     runs-on: ubuntu-latest
-    timeout-minutes: 40
+    # Full PostgreSQL/browser matrix plus restore after variable apt mirror latency.
+    timeout-minutes: 50
     services:
       postgres:
         image: postgres:16

@@ -41,75 +41,69 @@ Lava/USD at 2,900 minor units, sales already enabled on production and disabled
 on staging, schema ready and no pending/review queue entries at inspection.
 These are configuration/queue checks, not evidence of a real charge/refund.
 
-## Validation and remaining acceptance
+## Owner acceptance decisions
 
-This file is a working release record. Record actual checks and image promotion
-below as they complete. Browser emulation is not a physical iPhone/iPad check;
-no physical-device certification or unperformed payment/refund test is implied.
+The owner explicitly authorized publication after technical acceptance and will
+verify a real purchase/refund after launch. That decision supersedes the real
+transaction gate for this release; no charge, receipt or refund pass is claimed.
+Physical-device/user sessions were declined earlier. Browser emulation is not a
+physical iPhone/iPad certification.
 
-Completed before hosted migration: full encrypted database backup and verified
-copy to the owner's existing protected Mac backup directory. The production
-aggregate check found zero paid production attempts and zero active grants at
-inspection. No customer entitlements were altered.
+## Completed local acceptance
 
-The combined local browser checks cover font changes, paragraph/full-script
-editing, semantic position, draft recovery, saved-text/profile restoration and
-feedback retry in Chromium/Firefox/WebKit. A prior CI run against the pre-merge
-branch exposed obsolete default-speed and control-shape expectations; the
-recovery checks now follow 0.56, native craft sliders and the compact layout.
+- 95 Node unit checks and 176 PostgreSQL-backed backend checks passed.
+- Reading controls, paragraph/full-script editing, semantic position, recovery,
+  account preferences and feedback passed in Chromium, Firefox and WebKit.
+- The full operator acceptance flow passed against the running local app with
+  an actual synthetic account/grant: fourteen remotes, paired playback, exact
+  speed, dominant wheel, full-script save, semantic anchor and new-take settings.
+  No provider transaction or email was sent. The fixture was removed afterward.
+- Targeted geometry/mechanism checks passed 70 cases across the three engines
+  (two existing non-Chromium trusted-touch skips); fallback-font 320 px checks
+  passed in all three; six keyboard/visual-viewport cases passed with a 16 px
+  script selector. The selector uses one row and leaves at least 72 px for text.
+- Offline acceptance passed six cases; three existing native direct-peer cases
+  were skipped. Backup/restore covered the additional columns and tables.
+- A fresh full encrypted production database backup and the protected Mac copy
+  completed before hosted migration. Backups and runtime secrets stay outside Git.
+- Read-only Lava API acceptance found the configured offer and its USD 29 price.
+  Production sales were already enabled; staging checkout remains disabled.
 
-Hosted acceptance uses `ops/releases/seed-launch-fixture.exs`, the private
-temporary JSON it creates, and `scripts/verify-launch-hosted.mjs`. Staging alone
-may seed a synthetic grant in staging to exercise all fourteen skins. Production uses a free synthetic account, creates no invoices or grants,
-and sends no email. The cleanup script refuses accounts outside its reserved
-fixture namespace and refuses any real-provider attempts. Synthetic staging
-grants use the production entitlement environment with the reserved
-`release-fixture` provider; they are never provider transactions and are removed
-after acceptance. Credentials and capability links must never enter terminal
-output or screenshots.
+Full Linux CI remains required. It exposed two additional issues:
+long finish names/tier badges exceeded narrow catalog cards with wider fallback
+fonts; those captions now wrap. The backup-display fixture had coincident line
+counts despite different widths; repeated short words plus an explicit measured
+height precondition now exercise distinct layouts without weakening publication
+or semantic-handoff assertions. Public geometry is checked after fonts settle.
+All 72 targeted public-page and display-sync cases passed locally with these
+corrections across the three engines, including the wider caption font. The
+completed Linux run confirmed the only remaining failures were these same
+catalog/fixture cases. The account job has 50 minutes to include its full
+PostgreSQL/browser matrix and restore after variable dependency-mirror latency;
+no checks or assertions were removed.
 
-Enable feedback before the public acceptance pass. Keep production metrics off
-during synthetic checks, remove fixtures/end takes, then enable the already
-staging-tested metrics worker between takes. This keeps synthetic verification
-out of the production product report.
+## Hosted acceptance and promotion
 
-Additional pre-deployment findings: restored a keyboard-only focus cue on the
-large wheel (the compact portrait layout hides its caption); preserved the
-approved separate Play bays in portrait and landscape; contained rotating Pro
-showroom art to eliminate horizontal overflow. Recovery checks now compare
-0.73 against 0.73 and calculate nominal time at the actual 0.71 test speed.
-The opaque green speed-container focus box remains removed; keyboard speed
-focus is shown on the physical handle.
+The required `test`, `accounts`, `container` jobs must pass. Use the retained CI
+image/source/checksum artifact; do not rebuild a different production image.
 
-A read-only authenticated Lava product API check found the configured offer
-and its USD 29 price. It created no invoice and does not prove an actual
-checkout, delivered provider callback, receipt or refund. Production sales were
-already enabled before this work; staging checkout remains disabled.
+Use `ops/releases/seed-launch-fixture.exs`, its protected temporary JSON, and
+`scripts/verify-launch-hosted.mjs`. Staging may seed a synthetic grant using the
+production entitlement environment and reserved `release-fixture` provider. It
+is never a provider transaction. The seed rejects synthetic Pro outside the
+staging origin or an explicitly opted-in disposable loopback origin. Cleanup
+refuses other account namespaces and real-provider attempts.
 
-The complete local browser pass exposed further stale mechanical expectations
-(Clear now uses a fixed coil; Observatory has two linked moving groups), a
-short-keyboard text-area constraint, and CI-only font/geometry timing assumptions.
-The editor selector now occupies one row, leaving at least 72 px of editable
-text space. Mechanical checks follow the approved artwork without removing its
-motion. The backup-display test uses a clearly narrower reflow and retains
-primary-publication/semantic-handoff assertions. Public geometry waits for fonts
-and reports its route on failure; 320 px is now also covered with fallback fonts.
-The targeted recheck passed 70 cases across Chromium/Firefox/WebKit (two existing
-non-Chromium trusted-touch skips), plus all three 320 px fallback-font checks.
-One earlier WebKit admission-click timeout passed five isolated repetitions;
-no full-suite pass is inferred from those repetitions. Required CI must pass
-for the resulting commit before promotion.
+Production acceptance uses a free fixture, creates no invoices or grants, and
+sends no email. Keep its metrics off during synthetic checks, remove fixtures
+and end takes, then enable the staging-tested worker between takes. This keeps
+synthetic verification out of the production aggregate report.
 
-The operator acceptance flow also passed against the local running application:
-actual account sign-in without mail, private feedback, all fourteen entitled
-remotes with real paired playback, exact speed, large wheel, full-script save,
-semantic anchor and account preference restoration in a new take. Its synthetic
-account/grant/feedback and temporary login file were removed afterward. The
-operator seed now explicitly restricts synthetic Pro grants to the staging
-origin or a separately opted-in disposable loopback origin; production acceptance
-must use a free fixture. This does not simulate or certify a provider charge.
-
-The paragraph selector uses 16 px text to avoid small-field focus zoom in mobile
-Safari. The six keyboard/visual-viewport checks passed again with this value
-across all three engines. A fresh full encrypted backup was taken while CI ran;
-its protected Mac copy is checked separately before hosted migration.
+The restart guard uses Caddy's private live reverse-proxy request count. A real
+staging editor/remote probe showed two active WebSockets and zero after close;
+idle host TCP pools alone are insufficient evidence. Check the target has zero
+active requests before migration/restart. Keep the previous immutable image and
+protected Compose/runtime copies. Record actual hosted results, source/image
+checksums, owner decisions and rollback coordinates in the protected release
+record on the host and Mac. Credentials/capability links must never appear in
+terminal output, screenshots or Git.

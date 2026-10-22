@@ -27,9 +27,9 @@ const distance = (page: Page, anchor: Anchor) => page.evaluate((target) => {
   return Math.abs((rect.top + rect.bottom) / 2 - document.querySelector('.focus-band')!.getBoundingClientRect().top)
 }, anchor)
 
-async function pair(editor: Page, display: Page, remote: Page) {
+async function pair(editor: Page, display: Page, remote: Page, opening = paragraphs[0]) {
   await editor.goto('/')
-  await editor.getByRole('textbox', { name: 'Teleprompter script' }).fill(paragraphs.join('\n\n'))
+  await editor.getByRole('textbox', { name: 'Teleprompter script' }).fill([opening, ...paragraphs.slice(1)].join('\n\n'))
   await editor.getByRole('button', { name: 'SET UP PROMPTER' }).click()
   await expect(editor.locator('.network-state')).toHaveText('CONNECTED')
   const displayHref = (await editor.getByRole('link', { name: /OPEN DISPLAY/ }).getAttribute('href'))!
@@ -88,9 +88,13 @@ test('only the primary display publishes position and its differently sized back
   const backup = await backupContext.newPage()
   const remote = await remoteContext.newPage()
   try {
-    const displayHref = await pair(editor, primary, remote)
+    // A short opening can wrap to the same number of lines in two different
+    // widths on Linux fonts. Short repeated words guarantee distinct geometry.
+    const opening = 'One two three four five six seven eight nine ten. '.repeat(6).trim()
+    const displayHref = await pair(editor, primary, remote, opening)
     await backup.goto(displayHref)
     await expect(backup.locator('.network-state')).toHaveText('CONNECTED')
+    for (const screen of [primary, backup]) await screen.addStyleTag({ content: '.script-track p {font-family:Arial,sans-serif!important}' })
     await openPromptSettings(backup)
     await backup.getByRole('slider', { name: 'Text size', exact: true }).fill('90')
     await backup.getByRole('slider', { name: 'Text width', exact: true }).fill('45')
@@ -99,6 +103,7 @@ test('only the primary display publishes position and its differently sized back
       await expect(screen.locator('.standalone-display')).toHaveCSS('--prompt-size', '90px')
       await expect(screen.locator('.standalone-display')).toHaveCSS('--prompt-width', '45%')
     }
+    await expect.poll(async () => Math.abs(await primary.locator('.script-track p').first().evaluate(el => el.getBoundingClientRect().height) - await backup.locator('.script-track p').first().evaluate(el => el.getBoundingClientRect().height))).toBeGreaterThan(100)
     await remote.getByRole('button', { name: 'Next phrase' }).click()
     const id = await primary.locator('p[data-block-id]').nth(1).getAttribute('data-block-id')
     const beginning = { blockId: id!, characterOffset: 0 }

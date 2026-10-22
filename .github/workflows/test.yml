@@ -40,13 +40,16 @@ jobs:
         run: |
           sudo python3 - <<'PYTHON'
           from pathlib import Path
-          sources = Path('/etc/apt/sources.list.d')
-          for path in [Path('/etc/apt/sources.list'), *sources.glob('*.sources'), *sources.glob('*.list')]:
-              if path.is_file():
+          changed = 0
+          # Ubuntu sources can delegate to /etc/apt/apt-mirrors.txt.
+          for path in Path('/etc/apt').rglob('*'):
+              if path.is_file() and path.suffix in ('.list', '.sources', '.txt'):
                   original = path.read_text()
-                  updated = original.replace('azure.archive.ubuntu.com', 'archive.ubuntu.com')
+                  updated = original.replace('http://azure.archive.ubuntu.com', 'https://archive.ubuntu.com').replace('https://azure.archive.ubuntu.com', 'https://archive.ubuntu.com')
                   if updated != original:
                       path.write_text(updated)
+                      changed += 1
+          print(f'Ubuntu archive mirror sources updated: {changed}')
           PYTHON
       - run: npx playwright install --with-deps chromium firefox webkit
       - run: npm test
@@ -78,13 +81,16 @@ jobs:
         run: |
           sudo python3 - <<'PYTHON'
           from pathlib import Path
-          sources = Path('/etc/apt/sources.list.d')
-          for path in [Path('/etc/apt/sources.list'), *sources.glob('*.sources'), *sources.glob('*.list')]:
-              if path.is_file():
+          changed = 0
+          # Ubuntu sources can delegate to /etc/apt/apt-mirrors.txt.
+          for path in Path('/etc/apt').rglob('*'):
+              if path.is_file() and path.suffix in ('.list', '.sources', '.txt'):
                   original = path.read_text()
-                  updated = original.replace('azure.archive.ubuntu.com', 'archive.ubuntu.com')
+                  updated = original.replace('http://azure.archive.ubuntu.com', 'https://archive.ubuntu.com').replace('https://azure.archive.ubuntu.com', 'https://archive.ubuntu.com')
                   if updated != original:
                       path.write_text(updated)
+                      changed += 1
+          print(f'Ubuntu archive mirror sources updated: {changed}')
           PYTHON
       - run: npx playwright install --with-deps chromium
       - run: docker build --tag izzy:ci .
@@ -167,13 +173,16 @@ jobs:
         run: |
           sudo python3 - <<'PYTHON'
           from pathlib import Path
-          sources = Path('/etc/apt/sources.list.d')
-          for path in [Path('/etc/apt/sources.list'), *sources.glob('*.sources'), *sources.glob('*.list')]:
-              if path.is_file():
+          changed = 0
+          # Ubuntu sources can delegate to /etc/apt/apt-mirrors.txt.
+          for path in Path('/etc/apt').rglob('*'):
+              if path.is_file() and path.suffix in ('.list', '.sources', '.txt'):
                   original = path.read_text()
-                  updated = original.replace('azure.archive.ubuntu.com', 'archive.ubuntu.com')
+                  updated = original.replace('http://azure.archive.ubuntu.com', 'https://archive.ubuntu.com').replace('https://azure.archive.ubuntu.com', 'https://archive.ubuntu.com')
                   if updated != original:
                       path.write_text(updated)
+                      changed += 1
+          print(f'Ubuntu archive mirror sources updated: {changed}')
           PYTHON
       - run: npx playwright install --with-deps chromium firefox webkit
       - run: npm run test:browsers

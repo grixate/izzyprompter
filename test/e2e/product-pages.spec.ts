@@ -50,7 +50,7 @@ test('wheel focus stays outside the wheel; reduced motion stops previews and key
   await page.emulateMedia({ reducedMotion: 'reduce' })
   await page.goto('/')
   await page.getByRole('textbox', { name: 'Teleprompter script' }).fill('Your own words for a keyboard preview.\n\n'.repeat(20))
-  const jog = page.getByRole('slider', { name: 'Jog script position' })
+  const jog = page.locator('.preview-remote').getByRole('slider', { name: 'Jog script position' })
   await jog.focus(); await jog.press('ArrowRight')
   await expect(jog).toHaveAttribute('aria-valuenow', '48')
   expect(await jog.evaluate(el => getComputedStyle(el).outlineStyle)).toBe('none')
@@ -179,6 +179,7 @@ test('animated PRO materials stay contained throughout a complete turn', async (
   await page.setViewportSize({width:430,height:900})
   await page.goto('/pro')
   await page.locator('.material-parade').scrollIntoViewIfNeeded()
+  await page.locator('.material-parade .remote-instrument').first().getByRole('button', {name:'Play',exact:true}).click()
   await expect.poll(()=>page.locator('.material-parade').evaluate(el=>el.getAnimations({subtree:true}).length)).toBeGreaterThan(0)
   const result=await page.evaluate(async()=>{
     const root=document.querySelector('main')!

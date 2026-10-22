@@ -21,7 +21,7 @@ function SkinSample({ skin, children }: { skin: SkinId; children: ReactNode }) {
     observer.observe(stage); observer.observe(instrument)
     return () => observer.disconnect()
   }, [skin])
-  return <span ref={host} className="remote-skin-sample"><RemoteInstrument skin={skin} motion={false} />{children}</span>
+  return <span ref={host} className="remote-skin-sample"><RemoteInstrument interactive={false} skin={skin} motion={false} />{children}</span>
 }
 
 export function RemoteSkinLibrary({ selected, pro, onApply, onClose }: {

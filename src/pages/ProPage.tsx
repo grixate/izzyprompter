@@ -14,8 +14,8 @@ export function ProPage() {
   useEffect(() => { document.title = 'Izzy Pro — Yours for good'; track('pro_page_viewed') }, [])
   return <main className="product-page pro-page"><PublicNav light />
     <section className="pro-hero page-width">
-      <div className="pro-hero-copy"><h1>Make it<br /><em>yours.</em></h1><p>Unlimited scripts. Project folders. Reading profiles. {proSkinCount} finishes.</p><div className="pro-hero-offer"><Offer /><ProAction source="pro_hero" /><p className="lifetime-note">Lifetime access while IZZY operates. No subscription. <a href="/terms">Read the terms</a>.</p></div></div>
-      <div className="pro-hero-object"><div className="hero-orbit" aria-hidden="true" /><RemoteInstrument skin={finish} playing={demoPlaying} motion={demoPlaying} />
+      <div className="pro-hero-copy"><h1>Make it<br /><em>yours.</em></h1><p>Unlimited scripts. Project folders. Reading profiles. {proSkinCount} Pro finishes.</p><div className="pro-hero-offer"><Offer /><ProAction source="pro_hero" /><p className="lifetime-note">Lifetime access while IZZY operates. No subscription. <a href="/terms">Read the terms</a>.</p></div></div>
+      <div className="pro-hero-object"><div className="hero-orbit" aria-hidden="true" /><RemoteInstrument skin={finish} playing={demoPlaying} onPlayingChange={setDemoPlaying} motion={demoPlaying} />
         <div className="hero-finish-picker"><span>{skinById(finish).name}</span><div role="group" aria-label="Preview a remote finish">{heroFinishes.map(id => <button key={id} className={`finish-dot finish-dot--${id}`} aria-label={`Preview ${skinById(id).name}`} aria-pressed={finish === id} onClick={() => { setFinish(id); track('skin_previewed', { skin: id, source: 'pro_hero' }) }} />)}</div></div>
         <button className="mechanism-demo" aria-pressed={demoPlaying} onClick={() => setDemoPlaying(value => !value)}>{demoPlaying ? 'Pause preview' : 'Play preview'}</button>
       </div>
@@ -25,8 +25,8 @@ export function ProPage() {
       <div className="material-parade">{(['groove', 'clear', 'arcade'] as SkinId[]).map((id, index) => <figure key={id}><RemoteInstrument skin={id} phase={index * .8} /><figcaption>{skinById(id).name}</figcaption></figure>)}</div>
     </section>
     <section className="pro-collection page-width">
-      <div className="section-heading"><h2>{proSkinCount} finishes.<br /><em>One familiar gesture.</em></h2></div>
-      <div className="pro-skin-strip">{(['field', 'signal', 'cartridge', 'observatory'] as SkinId[]).map((id, index) => <a href={`/skins?skin=${id}`} key={id} aria-label={`Explore ${skinById(id).name}`}><RemoteInstrument skin={id} phase={index * .7} /><span>{skinById(id).name}<ArrowUpRight size={16} /></span></a>)}</div>
+      <div className="section-heading"><h2>{skins.length} finishes.<br /><em>One familiar gesture.</em></h2><p>Original is free. Pro adds {proSkinCount} more.</p></div>
+      <div className="pro-skin-strip">{(['field', 'signal', 'cartridge', 'observatory'] as SkinId[]).map((id, index) => <article key={id}><RemoteInstrument skin={id} phase={index * .7} /><a href={`/skins?skin=${id}`} aria-label={`Explore ${skinById(id).name}`}><span>{skinById(id).name}<ArrowUpRight size={16} /></span></a></article>)}</div>
       <a className="action-text" href="/skins">Explore all {skins.length} finishes <ArrowUpRight size={18} /></a>
     </section>
     <section className="pro-workflow"><div className="page-width workflow-grid">

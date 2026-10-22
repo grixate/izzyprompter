@@ -259,7 +259,9 @@ for (const skin of skins) {
 }
 
 test('every finish can be selected during real playback and keeps a truthful readout', async ({ page: editor, browser, browserName }) => {
-  test.setTimeout(30_000 + skins.length * 6_000)
+  // Linux WebKit needs ~8s for the three picker transitions per finish while
+  // both reading and instrument animations run. Budget the full collection.
+  test.setTimeout(30_000 + skins.length * 10_000)
   const displays = await browser.newContext({ viewport: { width: 1280, height: 800 } })
   const phones = await browser.newContext(phoneOptions(browserName))
   const display = await displays.newPage(), remote = await phones.newPage()

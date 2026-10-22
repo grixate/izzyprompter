@@ -108,3 +108,8 @@ account/grant/feedback and temporary login file were removed afterward. The
 operator seed now explicitly restricts synthetic Pro grants to the staging
 origin or a separately opted-in disposable loopback origin; production acceptance
 must use a free fixture. This does not simulate or certify a provider charge.
+
+The paragraph selector uses 16 px text to avoid small-field focus zoom in mobile
+Safari. The six keyboard/visual-viewport checks passed again with this value
+across all three engines. A fresh full encrypted backup was taken while CI ran;
+its protected Mac copy is checked separately before hosted migration.

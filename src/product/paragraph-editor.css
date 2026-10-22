@@ -40,4 +40,4 @@
 
 /* Keep script selection in one row so the keyboard leaves room for words. */
 .remote-drawer.quick-edit-dialog.paragraph-editor .edit-paragraph-select {grid-template-columns:auto minmax(0,1fr);align-items:center;gap:10px;margin:0;font-size:10px;}
-.remote-drawer.quick-edit-dialog.paragraph-editor .edit-paragraph-select select {min-width:0;font:14px/1.2 'Avenir Next',Avenir,sans-serif;}
+.remote-drawer.quick-edit-dialog.paragraph-editor .edit-paragraph-select select {min-width:0;font:16px/1.2 'Avenir Next',Avenir,sans-serif;}

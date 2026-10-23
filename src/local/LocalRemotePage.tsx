@@ -2,7 +2,8 @@ import { useEffect, useState, useSyncExternalStore } from 'react'
 import { RemoteSurface } from '../pages/RemotePage'
 import { DirectPeer } from './peer'
 import { PairingDialog, PairingPanel } from './PairingPanel'
-import { OfflinePreparation } from './LocalPage'
+import { OfflinePreparation } from './OfflinePreparation'
+import { PublicNav } from '../components/PublicNav'
 import './local.css'
 
 function RemotePreview({ peer }: { peer: DirectPeer }) {
@@ -11,9 +12,8 @@ function RemotePreview({ peer }: { peer: DirectPeer }) {
   useEffect(() => { if (state.connection === 'connected') setPairing(false) }, [state.connection])
   return <div className="local-remote-page">
     {state.snapshot && <RemoteSurface sessionId="DIRECT" session={peer.view()} onPairing={()=>setPairing(true)} />}
-    {!state.snapshot && <main className="local-workspace"><a href="/local">Local scripts</a><OfflinePreparation /></main>}
-    {!state.snapshot&&<nav className="local-remote-tools"><button onClick={() => setPairing(true)}>Direct pairing</button><span role="status">{state.message}</span></nav>}
-    {pairing && <PairingDialog onClose={() => setPairing(false)}>
+    {!state.snapshot && <main className="local-workspace offline-studio product-page"><PublicNav mode="offline" /><div className="local-remote-setup"><OfflinePreparation /><PairingPanel peer={peer} host={false} /><p><a href="/local">Read on this device instead</a></p></div></main>}
+    {state.snapshot && pairing && <PairingDialog onClose={() => setPairing(false)}>
       <PairingPanel peer={peer} host={false} onClose={() => setPairing(false)} />
     </PairingDialog>}
   </div>

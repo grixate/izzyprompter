@@ -14,8 +14,12 @@ The subsequent owner correction requires separate, legible screen/phone slots,
 uncut product shadows, no orange index mark on Original/Orbit, and no wheel focus
 ring. Keyboard position uses the fixed caption outside the wheel. Functional
 preview/live wheels stop on pause; continuous ambient motion belongs only to
-decorative showroom objects. Offline starts as a landing page and reveals its
-workspace after one deliberate setup action, while returning drafts resume it.
+decorative showroom objects.
+
+The owner's 23 October Offline correction supersedes the earlier landing-page
+entry: switching to Offline immediately opens the workspace and starts app
+preparation. Text import/editor and the choice of controls remain visible.
+See [the Offline workspace flow](OFFLINE_WORKSPACE_FLOW.md).
 
 ## The intended impression
 

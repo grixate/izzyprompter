@@ -22,7 +22,14 @@ export async function checkOfflineApp(): Promise<boolean> {
   } catch { return false }
 }
 
-export async function prepareOfflineApp(): Promise<void> {
+let preparation: Promise<void> | null = null
+export function prepareOfflineApp(): Promise<void> {
+  // React StrictMode and multiple preparation surfaces share one installation.
+  if (!preparation) preparation = installOfflineApp().finally(() => { preparation = null })
+  return preparation
+}
+
+async function installOfflineApp(): Promise<void> {
   if (import.meta.env.DEV) throw new Error('Offline preparation requires the production build. Local prompting works in this open tab.')
   if (!window.isSecureContext || !('serviceWorker' in navigator)) throw new Error('Open IZZY over HTTPS to prepare it offline. Loopback is supported for development testing.')
   const registration = await navigator.serviceWorker.register('/local-sw.js', { scope: '/', updateViaCache: 'none' })
@@ -34,6 +41,6 @@ export async function prepareOfflineApp(): Promise<void> {
   await verifyWorker(ready.active)
   // A waiting update is left untouched until all clients have closed.
   void registration.update().catch(() => {})
-  // Firefox may wait for a permission decision. Readiness must not wait with it.
-  try { void navigator.storage?.persist?.().catch(() => {}) } catch { /* optional */ }
+  // Do not prompt for optional persistent-storage permission on route entry.
+  // Browser data can still be cleared; the workspace offers a text backup.
 }

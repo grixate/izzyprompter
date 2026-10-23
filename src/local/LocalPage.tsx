@@ -1,4 +1,4 @@
-import { ArrowUpRight, Check, Monitor, WifiOff } from 'lucide-react'
+import { ArrowRight, Check, Download, FileText, Monitor, Plus, Smartphone, Upload } from 'lucide-react'
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { createIzzyDocumentFromLegacyText, izzyDocumentToLegacyText } from '../domain/document'
 import { createDebouncedStorageWriter, DEFAULT_PROMPT_SETTINGS, loadWorkspaceStorage } from '../domain/storage'
@@ -7,7 +7,7 @@ import { latestReading } from '../realtime/reading'
 import { DisplaySurface } from '../pages/DisplayPage'
 import { LocalSessionController, localId } from './controller'
 import { validContent, validDocument } from './document'
-import { checkOfflineApp, prepareOfflineApp } from './offline'
+import { OfflinePreparation } from './OfflinePreparation'
 import { DirectPeer } from './peer'
 import { PairingDialog, PairingPanel } from './PairingPanel'
 import { preparedScripts, removePreparedScript, savePreparedScript, type PreparedScript } from './store'
@@ -17,33 +17,15 @@ import './local.css'
 import { PublicNav, PublicFooter } from '../components/PublicNav'
 import { track } from '../product/events'
 
-function OfflinePreparation() {
-  const [message, setMessage] = useState('Save the app once while online. Your scripts are saved separately.')
-  const [busy, setBusy] = useState(false)
-  const [ready, setReady] = useState(false)
-  useEffect(() => {
-    let active = true
-    void checkOfflineApp().then(ok => { if (active && ok) { setReady(true); setMessage('App available offline in this browser.') } })
-    return () => { active = false }
-  }, [])
-  useEffect(() => { track('offline_mode_opened', { surface: 'local_workspace' }) }, [])
-  return <section className="local-preparation" aria-label="Offline app preparation">
-    <div className="offline-preparation-heading"><div><h2>{ready ? 'This browser is prepared.' : 'Prepare this browser.'}</h2></div><span className={`offline-readiness ${ready ? 'is-ready' : ''}`} role="status">{ready ? 'App prepared' : 'Preparation required'}</span></div>
-    <button disabled={busy} onClick={() => {
-      setBusy(true)
-      void prepareOfflineApp().then(() => { setReady(true); setMessage('App available offline in this browser. Saved scripts are listed below.'); track('offline_pairing_ready', { surface: 'standalone' }) })
-        .catch(error => setMessage(error.message)).finally(() => setBusy(false))
-    }}>{busy ? 'Preparing app…' : 'Prepare app offline'}</button>
-    <p role="status">{message}</p>
-  </section>
-}
-export { OfflinePreparation }
-
-function LocalTake({ initial, onExit }: { initial: PreparedScript; onExit: (item: PreparedScript) => void }) {
+function LocalTake({ initial, connectPhone, onExit }: { initial: PreparedScript; connectPhone: boolean; onExit: (item: PreparedScript) => void }) {
   const [controller] = useState(() => new LocalSessionController(initial.document, initial.settings, initial.anchor))
   const session = useLocalSession(controller)
   const [peer, setPeer] = useState<DirectPeer | null>(null)
-  const [pairing, setPairing] = useState(false), [message, setMessage] = useState('')
+  const [pairing, setPairing] = useState(connectPhone), [message, setMessage] = useState('')
+  const closePairing = () => {
+    if (peer?.getSnapshot().connection !== 'connected') peer?.close('Connection cancelled. Read on this device.')
+    setPairing(false)
+  }
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null)
   const alive = useRef(true)
   const takeRef = useRef<HTMLDivElement>(null), toolsRef = useRef<HTMLElement>(null)
@@ -86,13 +68,13 @@ function LocalTake({ initial, onExit }: { initial: PreparedScript; onExit: (item
     <DisplaySurface sessionId="LOCAL" session={session} onSettingsChange={controller.settings} />
     <nav className="local-take-tools" ref={toolsRef} aria-label="Local take actions">
       <button onClick={() => { controller.suspend(); void flush().then(() => onExit(record())) }}>Back to local scripts</button>
-      <button onClick={() => { controller.suspend(); setPairing(true) }}>Pair remote preview</button>
+      <button onClick={() => { controller.suspend(); setPairing(true) }}>Connect phone</button>
       <button onClick={() => downloadScript(controller.getSnapshot().script.content)}>Export text</button>
       <button onClick={() => void flush()}>Save locally</button>
       <span role="status">{message}</span>
     </nav>
-    {pairing && peer && <PairingDialog onClose={() => setPairing(false)}>
-      <PairingPanel peer={peer} host onClose={() => setPairing(false)} />
+    {pairing && peer && <PairingDialog onClose={closePairing}>
+      <PairingPanel peer={peer} host onClose={closePairing} />
     </PairingDialog>}
   </div>
 }
@@ -103,9 +85,10 @@ export function LocalPage() {
   const [take, setTake] = useState<PreparedScript | null>(null), [message, setMessage] = useState('')
   const [busy, setBusy] = useState(false), [loaded, setLoaded] = useState(false)
   const [removeArmed, setRemoveArmed] = useState(false)
-  const [workspaceOpen, setWorkspaceOpen] = useState(false)
-  const setupRef = useRef<HTMLElement>(null)
-  useEffect(() => { if (workspaceOpen && !take) { setupRef.current?.scrollIntoView({ block: 'start' }); setupRef.current?.focus({ preventScroll: true }) } }, [workspaceOpen, take])
+  const [control, setControl] = useState<'device' | 'phone'>('device')
+  const uploadRef = useRef<HTMLInputElement>(null)
+  const titleRef = useRef<HTMLInputElement>(null)
+  useEffect(() => { track('offline_mode_opened', { surface: 'local_workspace' }) }, [])
   const [draftWriter] = useState(() => createDebouncedStorageWriter<LocalEditorDraft>({ delay: 250, write: saveLocalEditorDraft,
     onResult: ok => { if (!ok) setMessage('Draft recovery unavailable. Keep this tab open and save or export your text.') } }))
   const latestDraft = useRef<{ ready: boolean; value: LocalEditorDraft } | null>(null)
@@ -120,7 +103,6 @@ export function LocalPage() {
     const draft = loadLocalEditorDraft()
     void preparedScripts().then(records => {
       setItems(records)
-      if (records.length || draft?.content.trim()) setWorkspaceOpen(true)
       if (draft) {
         const saved = records.find(item => item.document.id === draft.documentId)
         setSelected(saved ?? null)
@@ -128,7 +110,7 @@ export function LocalPage() {
         setContent(saved && saved.savedAt > draft.updatedAt ? izzyDocumentToLegacyText(saved.document) : draft.content)
       }
     }).catch(() => {
-      if (draft) { setContent(draft.content); setTitle(draft.title); if (draft.content.trim()) setWorkspaceOpen(true) }
+      if (draft) { setContent(draft.content); setTitle(draft.title) }
       setMessage('Local storage unavailable. Export your text before closing.')
     }).finally(() => setLoaded(true))
   }, [])
@@ -164,58 +146,63 @@ export function LocalPage() {
     draftWriter.flush()
     if (start) setTake(item)
   }
-  if (take) return <LocalTake initial={take} onExit={item => { setTake(null); select(item); void refresh() }} />
+  if (take) return <LocalTake initial={take} connectPhone={control === 'phone'} onExit={item => { setTake(null); select(item); void refresh() }} />
   return <main className="local-workspace offline-studio product-page">
     <PublicNav mode="offline" beforeNavigate={flushDraft} />
-    <section className="offline-hero">
-      <div className="local-intro"><h1>Your words.<br /><em>Anywhere.</em></h1>
-        <p>A free teleprompter for the moments without internet. Prepare here, then read on this device.</p>
-        <button className="offline-primary" onClick={() => { setWorkspaceOpen(true); if (workspaceOpen) { setupRef.current?.scrollIntoView({ block: 'start' }); setupRef.current?.focus({ preventScroll: true }) } }} aria-expanded={workspaceOpen} aria-controls="offline-setup">{workspaceOpen ? 'Open your workspace' : 'Set up Offline'}<ArrowUpRight size={18} /></button>
-      </div>
-      <div className="offline-scene" aria-label="Offline reading screen illustration">
-        <div className="offline-screen"><div className="offline-screen-top"><span>IZZY</span><span><WifiOff size={13} /> OFFLINE</span></div><p>The connection<br />can wait.<br /><em>Your story<br />can’t.</em></p><div className="offline-screen-bottom"><Monitor size={15} /><span>ON THIS DEVICE</span><Check size={15} /></div></div>
-      </div>
-    </section>
-    <section className="offline-path" aria-label="How Offline works">
-      <article><h2>Prepare once.</h2><p>Save the app in this browser while online.</p></article>
-      <article><h2>Bring your words.</h2><p>Keep your script on this device.</p></article>
-      <article><h2>Go anywhere.</h2><p>Read and control your take without internet.</p></article>
-    </section>
-    <section id="offline-setup" className="offline-setup" ref={setupRef} tabIndex={-1} hidden={!workspaceOpen} aria-label="Offline workspace">
+    <header className="offline-workspace-heading">
+      <span className="eyebrow">OFFLINE WORKSPACE</span>
+      <h1>Your words. <em>Anywhere.</em></h1>
+      <p>Add your script, choose your controls, and read. No account needed.</p>
+    </header>
     <OfflinePreparation />
-    <div className={`local-workspace-grid ${items.length ? '' : 'is-empty'}`}>
-      <aside aria-label="Saved local scripts" hidden={!items.length}><h2>Saved on this device</h2>{!loaded ? <p>Loading…</p> : items.length === 0 ? <p>No prepared scripts yet.</p> : items.map(item => <button key={item.document.id} onClick={() => select(item)} aria-pressed={selected?.document.id === item.document.id}>{item.document.title}</button>)}
-        <button onClick={() => { setSelected(null); setTitle('Local script'); setContent(''); setRemoveArmed(false) }}>New local script</button>
-      </aside>
-      <section className="local-editor" aria-label="Local script editor">
-        <h2>Your script</h2>
-        <label>Script title<input aria-label="Local script title" disabled={!loaded || busy} value={title} maxLength={200} onChange={event => setTitle(event.target.value)} /></label>
-        <label>Script text<textarea aria-label="Local script text" disabled={!loaded || busy} value={content} onChange={event => { setContent(event.target.value); setMessage('Unsaved text. Save locally or export before closing.') }} spellCheck /></label>
-        <div className="local-actions"><button className="offline-primary" disabled={busy || !content.trim()} onClick={() => void prepare(true)}>Start local prompting<ArrowUpRight size={16} /></button>
-          <button disabled={busy || !content.trim()} onClick={() => void prepare(false)}>Save script offline</button></div>
-        <details className="offline-script-options"><summary>Upload, export and more</summary><div className="local-actions">
-          <button disabled={!content} onClick={() => downloadScript(content)}>Export text</button></div>
-        <div className="local-actions"><button onClick={() => {
-          const stored = loadWorkspaceStorage(); const text = stored.draft?.content ?? (stored.document ? izzyDocumentToLegacyText(stored.document) : '')
-          if (!text) { setMessage('No editor draft found in this browser.'); return }
-          setSelected(null); setContent(text); setTitle(stored.draft?.title ?? 'Editor draft'); setMessage('Draft copied here. Save it locally before leaving.')
-        }}>Use current editor draft</button>
-        <label className="local-file">Upload TXT / MD<input type="file" accept=".txt,.md,text/plain,text/markdown" onChange={event => {
-          const file = event.target.files?.[0]; event.target.value = ''
-          if (!file) return
-          if (file.size > 2 * 1024 * 1024 || !/\.(txt|md)$/i.test(file.name)) { setMessage('Choose a TXT or MD file up to 2 MB.'); return }
-          void file.text().then(text => { if (!validContent(text)) throw new Error(); setSelected(null); setContent(text); setTitle(file.name.slice(0, 200)); setMessage('Uploaded text. Save locally to prepare it.') }).catch(() => setMessage('Could not upload this script. Existing text is kept.'))
-        }} /></label>
-        {selected && <button onClick={() => {
-          if (!removeArmed) { setRemoveArmed(true); return }
-          void removePreparedScript(selected.document.id).then(() => { setSelected(null); setRemoveArmed(false); setMessage('Local copy removed. Editor text is kept.'); void refresh() }).catch(() => setMessage('Could not remove this copy. Retry.'))
-        }}>{removeArmed ? 'Confirm remove local copy' : 'Remove local copy'}</button>}</div>
-        </details><p className="local-status" role="status">{message}</p>
+    <div className="offline-flow">
+      <section className="local-editor offline-step" aria-labelledby="offline-script-heading">
+        <header className="offline-step-heading"><span className="offline-step-number" aria-hidden="true">01</span><div><h2 id="offline-script-heading">Add your words</h2><p>Paste your text or bring a script you already have.</p></div></header>
+        <div className="offline-import-actions">
+          <button disabled={!loaded || busy} onClick={() => uploadRef.current?.click()}><Upload size={17} />Upload text file<span>TXT / MD</span></button>
+          <input ref={uploadRef} className="offline-file-input" type="file" aria-label="Upload script file" accept=".txt,.md,text/plain,text/markdown" onChange={event => {
+            const file = event.target.files?.[0]; event.target.value = ''
+            if (!file) return
+            if (file.size > 2 * 1024 * 1024 || !/\.(txt|md)$/i.test(file.name)) { setMessage('Choose a TXT or MD file up to 2 MB.'); return }
+            void file.text().then(text => { if (!validContent(text)) throw new Error(); setSelected(null); setContent(text); setTitle(file.name.slice(0, 200)); setRemoveArmed(false); setMessage('Text imported. Choose your controls and start reading.') }).catch(() => setMessage('Could not upload this script. Existing text is kept.'))
+          }} />
+          <button disabled={!loaded || busy} onClick={() => {
+            const stored = loadWorkspaceStorage(); const text = stored.draft?.content ?? (stored.document ? izzyDocumentToLegacyText(stored.document) : '')
+            if (!text) { setMessage('No editor draft found in this browser. Paste or upload your text.'); return }
+            setSelected(null); setContent(text); setTitle(stored.draft?.title ?? 'Editor draft'); setRemoveArmed(false); setMessage('Editor draft copied here. Your online text is unchanged.')
+          }}><FileText size={17} />Use online draft</button>
+        </div>
+        <label>Script title<input ref={titleRef} aria-label="Local script title" disabled={!loaded || busy} value={title} maxLength={200} onChange={event => setTitle(event.target.value)} /></label>
+        <label className="offline-text-label"><span>Script text<span className="offline-word-count">{content.trim() ? `${content.trim().split(/\s+/).length.toLocaleString()} words` : 'Or paste here'}</span></span><textarea aria-label="Local script text" disabled={!loaded || busy} placeholder="Paste the words you want to read…" value={content} onChange={event => { setContent(event.target.value); setMessage('') }} spellCheck /></label>
+        <div className="offline-script-actions">
+          <button disabled={busy || !loaded || !content.trim()} onClick={() => void prepare(false)}><Check size={16} />Save script offline</button>
+          <button disabled={!content} onClick={() => downloadScript(content)}><Download size={16} />Export text</button>
+        </div>
+        <p className="local-status" role="status">{message || (!loaded ? 'Opening your scripts…' : 'Your draft stays in this browser as you type.')}</p>
+      </section>
+      <section className="offline-control-step offline-step" aria-labelledby="offline-controls-heading">
+        <header className="offline-step-heading"><span className="offline-step-number" aria-hidden="true">02</span><div><h2 id="offline-controls-heading">Choose your controls</h2><p>This device is always your reading screen.</p></div></header>
+        <fieldset className="offline-control-choices" disabled={busy}><legend className="sr-only">Control your take</legend>
+          <label className={control === 'device' ? 'is-selected' : ''}><input type="radio" name="offline-control" value="device" checked={control === 'device'} onChange={() => setControl('device')} /><Monitor size={24} aria-hidden="true" /><span><strong>Use this device</strong><span>Play, pause and adjust your reading right here.</span></span><Check className="offline-choice-check" size={18} aria-hidden="true" /></label>
+          <label className={control === 'phone' ? 'is-selected' : ''}><input type="radio" name="offline-control" value="phone" checked={control === 'phone'} onChange={() => setControl('phone')} /><Smartphone size={24} aria-hidden="true" /><span><strong>Connect a phone <small>Experimental</small></strong><span>Read here. Control your take from your phone.</span></span><Check className="offline-choice-check" size={18} aria-hidden="true" /></label>
+        </fieldset>
+        <div className="offline-start">
+          <p>{control === 'phone' ? 'Keep both devices on the same Wi-Fi. Next, exchange a connection file with your phone. Prepare IZZY on both devices before leaving internet.' : 'Your script saves on this device when you start. Use the on-screen controls or your keyboard.'}</p>
+          <button className="offline-primary" disabled={!loaded || busy || !content.trim()} onClick={() => void prepare(true)}>{busy ? 'Saving script…' : control === 'phone' ? 'Connect phone & start' : 'Start reading'}<ArrowRight size={18} /></button>
+          {!content.trim() && <span className="offline-start-hint">Add your text in step 1 to begin.</span>}
+        </div>
+        <p className="offline-phone-entry">Using this phone as the remote?<a href="/local/remote" onClick={flushDraft}>Open phone controls <ArrowRight size={14} /></a></p>
       </section>
     </div>
-    <p className="offline-backup-note">Saved in this browser. Keep a text backup before clearing browser data.</p>
+    <section className="offline-library" aria-labelledby="offline-library-heading">
+      <header><div><h2 id="offline-library-heading">Saved on this device</h2><p>Pick a script to keep going, or start fresh.</p></div><button disabled={!loaded || busy} onClick={() => { setSelected(null); setTitle('Local script'); setContent(''); setRemoveArmed(false); setMessage('New script. Paste or upload your text.'); titleRef.current?.focus() }}><Plus size={17} />New script</button></header>
+      {items.length ? <div className="offline-saved-scripts">{items.map(item => <button key={item.document.id} disabled={busy} onClick={() => select(item)} aria-pressed={selected?.document.id === item.document.id}><FileText size={20} /><span>{item.document.title}</span><ArrowRight size={17} /></button>)}</div> : <p className="offline-library-empty">{loaded ? 'Your saved scripts will appear here.' : 'Opening your saved scripts…'}</p>}
+      {selected && <button className="offline-remove" disabled={busy} onClick={() => {
+        if (!removeArmed) { setRemoveArmed(true); return }
+        void removePreparedScript(selected.document.id).then(() => { setSelected(null); setRemoveArmed(false); setMessage('Local copy removed. Editor text is kept.'); void refresh() }).catch(() => setMessage('Could not remove this copy. Retry.'))
+      }}>{removeArmed ? 'Confirm remove local copy' : 'Remove selected local copy'}</button>}
     </section>
-    <details className="offline-remote-info"><summary>Using a phone remote?</summary><p>Standalone reading works on this device. Direct phone pairing is experimental and requires a reachable local network. Prepare the app on both devices first.</p><a href="/local/remote">Open direct remote preview <ArrowUpRight size={15} /></a></details>
+    <p className="offline-backup-note">Stored in this browser, on this device. Export a text backup before clearing browser data.</p>
     <PublicFooter beforeNavigate={flushDraft} offlineHint />
   </main>
 }

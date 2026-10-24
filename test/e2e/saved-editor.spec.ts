@@ -60,6 +60,7 @@ test.describe('saved script editor', () => {
     await page.getByRole('button', { name: 'New script', exact: true }).click()
     await expect(speed).toHaveValue('0.64')
     await page.goto('/')
-    await expect(speed).toHaveValue('0.64')
+    await expect(speed).toHaveValue('0.56')
+    expect(await page.evaluate(() => JSON.parse(localStorage.getItem('izzy.prompt-settings')!).data.speed)).toBe(0.64)
   })
 })

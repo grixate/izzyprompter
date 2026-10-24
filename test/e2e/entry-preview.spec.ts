@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test'
 import { sampleScript } from '../../src/script'
+import { DEFAULT_PROMPT_SETTINGS, STORAGE_KEYS } from '../../src/domain/storage'
 
 const previewText = Array.from({ length: 20 }, (_, i) => `Paragraph ${i + 1}. Words for a synthetic preview and playback check.`).join('\n\n')
 
@@ -15,7 +16,8 @@ test('the example connects the empty editor and working preview without replacin
   await expect(page.getByRole('button', { name: 'SET UP PROMPTER' })).toBeDisabled()
   await expect(editor).toHaveAttribute('placeholder', sampleScript)
   await expect(page.locator('.live-preview .script-track p').first()).toHaveText(sampleScript.split('\n\n')[0])
-  await page.locator('.preview-remote').getByRole('button', { name: 'Play', exact: true }).click()
+  await expect(page.locator('.preview-remote').getByRole('button', { name: 'Pause', exact: true })).toBeVisible()
+  await expect(page.locator('.preview-remote').getByRole('slider', { name: 'Playback speed' })).toHaveValue('0.56')
   await expect.poll(async () => Number(await jog.getAttribute('aria-valuenow'))).toBeGreaterThan(0)
   await page.locator('.preview-remote').getByRole('button', { name: 'Pause', exact: true }).click()
   await expect(editor).toHaveValue('')
@@ -42,7 +44,30 @@ test('the example connects the empty editor and working preview without replacin
   await expect(editor).toHaveValue(previewText)
   expect(creations).toEqual([])
   await page.reload()
-  await expect(page.locator('.preview-remote').getByRole('slider', { name: 'Playback speed' })).toHaveValue('0.61')
+  await expect(page.locator('.preview-remote').getByRole('slider', { name: 'Playback speed' })).toHaveValue('0.56')
+})
+
+test('the homepage demo starts at 0.56 despite saved reading speed and keeps looping until paused', async ({ page }) => {
+  await page.addInitScript(({ key, settings }) => {
+    localStorage.setItem(key, JSON.stringify({ storageVersion: 1, updatedAt: Date.now(), data: settings }))
+  }, { key: STORAGE_KEYS.settings, settings: { ...DEFAULT_PROMPT_SETTINGS, speed: 1 } })
+  await page.goto('/')
+  const remote = page.locator('.preview-remote')
+  const jog = remote.getByRole('slider', { name: 'Jog script position' })
+  await expect(remote.getByRole('slider', { name: 'Playback speed' })).toHaveValue('0.56')
+  await expect(remote.getByRole('button', { name: 'Pause', exact: true })).toBeVisible()
+  await expect.poll(async () => Number(await jog.getAttribute('aria-valuenow'))).toBeGreaterThan(0)
+  for (let cycle = 0; cycle < 2; cycle++) {
+    await jog.press('End')
+    const maximum = Number(await jog.getAttribute('aria-valuemax'))
+    await expect.poll(async () => Number(await jog.getAttribute('aria-valuenow'))).toBeLessThan(maximum / 2)
+    await expect(remote.getByRole('button', { name: 'Pause', exact: true })).toBeVisible()
+  }
+  await remote.getByRole('button', { name: 'Pause', exact: true }).click()
+  const position = await jog.getAttribute('aria-valuenow')
+  await page.waitForTimeout(350)
+  await expect(jog).toHaveAttribute('aria-valuenow', position!)
+  await expect.poll(() => page.evaluate(key => JSON.parse(localStorage.getItem(key)!).data.speed, STORAGE_KEYS.settings)).toBe(1)
 })
 
 test('editing pauses the preview, shows your words, and preserves the draft', async ({ page }) => {
@@ -151,5 +176,7 @@ test('pause stops the wheel and words together; play resumes both', async ({ pag
   await expect.poll(() => track.evaluate(el => getComputedStyle(el).transform)).not.toBe(words)
   await page.getByRole('textbox', { name: 'Teleprompter script' }).fill('A short line.')
   await page.locator('.preview-remote').getByRole('button', { name: 'Play', exact: true }).click()
+  await expect(page.locator('.preview-remote').getByRole('button', { name: 'Pause', exact: true })).toBeVisible()
+  await page.locator('.preview-remote').getByRole('button', { name: 'Pause', exact: true }).click()
   await expect.poll(() => rotor.evaluate(el => el.getAnimations().length)).toBe(0)
 })

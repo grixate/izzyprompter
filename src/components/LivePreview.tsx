@@ -16,8 +16,11 @@ export function LivePreview({ content, pauseVersion, example = false }: { conten
   const maximumRef = useRef(0)
   const [position, setPosition] = useState(0)
   const [maximum, setMaximum] = useState(0)
-  const [speed, setSpeed] = usePlaybackSpeed()
-  const [playing, setPlaying] = useState(false)
+  const [savedSpeed, setSavedSpeed] = usePlaybackSpeed()
+  // The homepage demo has its own starting pace, independent of reading preferences.
+  const [exampleSpeed, setExampleSpeed] = useState(0.56)
+  const [speed, setSpeed] = example ? [exampleSpeed, setExampleSpeed] : [savedSpeed, setSavedSpeed]
+  const [playing, setPlaying] = useState(() => example && !content.trim() && !window.matchMedia('(prefers-reduced-motion: reduce)').matches)
   const [visible, setVisible] = useState(true)
   const [foreground, setForeground] = useState(document.visibilityState === 'visible')
   const ownScript = Boolean(content.trim())
@@ -69,16 +72,16 @@ export function LivePreview({ content, pauseVersion, example = false }: { conten
     let last = performance.now()
     let published = last
     const advance = (now: number) => {
-      const next = previewFrame(positionRef.current, maximumRef.current, speed, Math.min((now - last) / 1000, 0.1))
+      const next = previewFrame(positionRef.current, maximumRef.current, speed, Math.min((now - last) / 1000, 0.1), example)
       last = now
       paint(next, now - published >= 160)
       if (now - published >= 160) published = now
-      if (maximumRef.current > 0 && next >= maximumRef.current) { setPlaying(false); paint(next); return }
+      if (!example && maximumRef.current > 0 && next >= maximumRef.current) { setPlaying(false); paint(next); return }
       frame = requestAnimationFrame(advance)
     }
     frame = requestAnimationFrame(advance)
     return () => cancelAnimationFrame(frame)
-  }, [running, speed])
+  }, [running, speed, example])
 
   return <aside className="preview-stage" ref={section} aria-label="Interactive teleprompter preview">
     <div className="preview-heading"><h2>ONE SCRIPT. TWO SCREENS.</h2></div>

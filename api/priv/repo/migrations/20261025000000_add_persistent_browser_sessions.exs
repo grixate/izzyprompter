@@ -16,11 +16,12 @@ defmodule Teleprompter.Repo.Migrations.AddPersistentBrowserSessions do
     # Keep currently valid credentials, never revive an expired login/session.
     # A distant compatibility date lets the previous image accept these tokens
     # during rollback; persistent=true is the new authority for no automatic expiry.
+    # Ecto's utc_datetime_usec columns are UTC timestamps without a timezone.
     execute("""
     UPDATE account_tokens
     SET persistent = true, session_id = gen_random_uuid(),
-        expires_at = CURRENT_TIMESTAMP + INTERVAL '100 years'
-    WHERE kind = 'session' AND expires_at > CURRENT_TIMESTAMP
+        expires_at = (CURRENT_TIMESTAMP AT TIME ZONE 'UTC') + INTERVAL '100 years'
+    WHERE kind = 'session' AND expires_at > (CURRENT_TIMESTAMP AT TIME ZONE 'UTC')
     """)
   end
 

@@ -66,6 +66,8 @@ Retain the previous image. Prefer a code rollback that keeps the added columns;
 never remove columns while the new image is serving requests. A local fixture
 check verified old valid versus expired sessions and login links, the migration,
 previous-image expiry-query compatibility after rollback, and reapplication.
+The committed restore-suite regression runs near-expiry fixtures in UTC,
+America/Los_Angeles and Europe/Moscow to prevent timezone-dependent revival.
 The new privacy wording and updated date travel with the reviewed candidate.
 
 ## Verification

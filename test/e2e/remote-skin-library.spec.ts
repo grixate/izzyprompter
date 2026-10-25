@@ -3,7 +3,7 @@ import { skins } from '../../src/product/catalog'
 import { test, expect, type Page } from '@playwright/test'
 
 async function openSkins(page: Page) {
-  await page.getByRole('button', { name: 'Reading settings', exact: true }).click()
+  await page.getByRole('button', { name: 'Remote settings', exact: true }).click()
   await page.getByRole('button', { name: 'Change remote skin' }).click()
 }
 // Pairing capabilities must not enter retained traces or editor screenshots.
@@ -32,7 +32,7 @@ for (const viewport of [{ width: 360, height: 640 }, { width: 390, height: 844 }
     await openRemote(page)
     await page.getByRole('button', { name: 'Play', exact: true }).click()
     await expect(page.getByRole('button', { name: 'Pause', exact: true })).toBeVisible()
-    const trigger = page.getByRole('button', { name: 'Reading settings', exact: true })
+    const trigger = page.getByRole('button', { name: 'Remote settings', exact: true })
     const bounds = await trigger.boundingBox()
     expect(bounds!.width).toBeGreaterThanOrEqual(44)
     expect(bounds!.height).toBeGreaterThanOrEqual(44)
@@ -73,7 +73,7 @@ for (const viewport of [{ width: 360, height: 640 }, { width: 390, height: 844 }
 test('locked skins stay in the session and storage failure leaves the library recoverable', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 })
   await openRemote(page, false)
-  const trigger = page.getByRole('button', { name: 'Reading settings', exact: true })
+  const trigger = page.getByRole('button', { name: 'Remote settings', exact: true })
   await openSkins(page)
   await page.getByRole('button', { name: 'Use Orbit · Pro skin', exact: true }).click()
   await expect(page.getByRole('status')).toContainText('Orbit requires Pro.')
@@ -110,7 +110,7 @@ test('keyboard focus stays inside the library; closing during a selection is saf
   await expect(page.getByRole('dialog')).toContainText('Applying Orbit…')
   await expect(page.getByRole('button', { name: 'Use Signal', exact: true })).toBeDisabled()
   await page.keyboard.press('Escape')
-  await expect(page.getByRole('button', { name: 'Reading settings', exact: true })).toBeFocused()
+  await expect(page.getByRole('button', { name: 'Remote settings', exact: true })).toBeFocused()
   release()
   await expect(page.getByRole('main', { name: 'Remote controller' })).toHaveClass(/skin--ivory/)
   await expect(page.getByRole('dialog')).toHaveCount(0)

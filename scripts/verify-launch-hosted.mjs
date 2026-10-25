@@ -39,10 +39,12 @@ try {
   assert.equal(status.feedback_enabled, true)
   checks.push('account login and feature availability')
   phase = 'feedback submission'
-  const feedback = editor.getByRole('region', { name: 'Leave your feedback.' })
+  await editor.getByRole('button', { name: 'Leave feedback', exact: true }).click()
+  const feedback = editor.getByRole('dialog', { name: 'Leave feedback', exact: true })
   await feedback.getByRole('textbox', { name: 'Your message' }).fill('Synthetic launch acceptance feedback. Remove this fixture after verification.')
   await feedback.getByRole('button', { name: 'Send feedback', exact: true }).click()
   await expect(feedback.getByRole('status')).toContainText('review queue')
+  await feedback.getByRole('button', { name: 'Done', exact: true }).click()
   checks.push('authenticated feedback delivered')
   phase = 'saved script and pairing'
   await editor.getByRole('button', { name: 'New script', exact: true }).click()
@@ -72,7 +74,7 @@ try {
   for (const skin of fixture.pro ? selected : ['original']) {
     phase = 'paired instrument ' + skin
     if (fixture.pro) {
-      await remote.getByRole('button', { name: 'Reading settings', exact: true }).click()
+      await remote.getByRole('button', { name: 'Remote settings', exact: true }).click()
       await remote.getByRole('button', { name: 'Change remote skin', exact: true }).click()
       await remote.getByRole('button', { name: 'Use ' + names[skin], exact: true }).click()
     }
@@ -93,11 +95,11 @@ try {
   }
   checks.push('real playback, exact speed and dominant wheel for ' + (fixture.pro ? 14 : 1) + ' instruments')
   phase = 'font and full script replacement'
-  await remote.getByRole('button', { name: 'Reading settings', exact: true }).click()
+  await remote.getByRole('button', { name: 'Remote settings', exact: true }).click()
   await remote.getByRole('slider', { name: 'TEXT SIZE', exact: true }).fill('88')
   await expect(remote.getByRole('status', { name: 'Reading settings status' })).toHaveText('Saved to your account')
   await expect(display.locator('.standalone-display')).toHaveCSS('--prompt-size', '88px')
-  await remote.getByRole('button', { name: 'Close reading settings' }).click()
+  await remote.getByRole('button', { name: 'Close settings' }).click()
   await remote.getByRole('slider', { name: 'Jog script position' }).press('Home')
   await remote.getByRole('button', { name: 'Next phrase' }).click()
   await expect(remote.locator('.phrase-count')).toContainText('02 / 03')

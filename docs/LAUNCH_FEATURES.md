@@ -2,17 +2,25 @@
 
 This release integrates the approved fourteen remote skins and their large-wheel
 composition with shared reading controls, feedback and minimal metrics.
-The row keeps two controls: Quick Edit and Reading settings. Skin selection is
-inside Reading settings so the narrow wheel-first layout gains no third button.
+The row keeps two controls: Quick Edit and a gear for Remote settings. Skin
+selection is at the top of Remote settings so the narrow wheel-first layout
+gains no third button.
 The earlier study IDs and frozen galleries remain preserved outside the public collection.
 Follow RELEASE_WORKFLOW.md; neither a commit nor a merge deploys production.
 
 ## Reading and preferences
 
-- The remote's Reading settings button opens text-size controls (20–160, step 2).
+- The remote's gear opens Settings, with a large current-skin preview and
+  Browse skins entry first, followed by text-size controls (20–160, step 2).
+  Labels use readable type and Done stays in a fixed, full-width footer.
   The display's existing typography controls use the same revisioned authority.
   Rapid changes are serialized/coalesced; offline commands are not replayed.
 - Quick Edit can select another paragraph or the entire script without moving the reading anchor.
+  Its editor shell opens immediately with an animated line finder while the
+  paused display checkpoint and edit ownership are confirmed. Confirmed paused
+  lines skip a redundant pause; other opens react to checkpoint pushes. Opening
+  can be cancelled, and failures offer an explicit retry. Reduced-motion
+  preferences stop the decorative animation.
   Playback remains paused; existing draft recovery, edit ownership and saved
   script revision checks apply. Full replacements retain the identity of unchanged
   paragraphs, remap the reading word when possible, and fall back to a nearby
@@ -43,6 +51,10 @@ default. It requires accounts/PostgreSQL. Review the additional Privacy wording
 before enabling it in a public release.
 
 Fields: problem/idea/other, optional rating 1–5, message 10–2,000 characters.
+The library shows a compact Leave feedback button. It opens a modal panel;
+the optional rating is collapsed initially. Closing preserves an unsent draft
+for this page visit, including the request ID used for safe retries. The panel
+follows the visible viewport on phones and keeps its action row accessible.
 No scripts, URLs, diagnostics or device fingerprints are attached automatically.
 Account identity comes from the signed-in session, with existing CSRF and
 account-change checks. Request IDs make an unchanged retry idempotent. The

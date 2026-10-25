@@ -1,0 +1,17 @@
+.edit-opening { display:flex; flex:1; flex-direction:column; align-items:center; justify-content:center; padding:24px 8px; text-align:center; font-family:'Avenir Next',Avenir,sans-serif; }
+.edit-line-finder { position:relative; flex:none; width:min(260px,100%); height:148px; margin:0 0 26px; overflow:hidden; border:1px solid #778a5f55; border-radius:12px; background:#191e16; box-shadow:inset 0 1px 12px #0003; }
+.edit-paper-lines { position:absolute; inset:22px 26px; display:flex; flex-direction:column; justify-content:space-between; }
+.edit-paper-lines i { display:block; height:5px; border-radius:4px; background:#a9b99855; }
+.edit-line-scan { position:absolute; inset:20px 0 auto; height:28px; border-block:1px solid #efaf8770; background:#e59a641a; animation:edit-find-line 1.8s cubic-bezier(.45,0,.2,1) infinite alternate; }
+.edit-line-scan span { position:absolute; top:9px; left:8px; width:0; height:0; border-block:4px solid transparent; border-left:5px solid #f0ae7f; }
+.edit-line-scan i { position:absolute; right:9px; top:10px; width:5px; height:5px; border:1px solid #e7ac7e; border-radius:50%; }
+.edit-opening h2 { margin:0 0 10px; color:#f0f2e9; font-size:23px; font-weight:500; line-height:1.2; letter-spacing:-.03em; }
+.edit-opening p { max-width:270px; margin:0; color:#bdc8b0; font-size:15px; line-height:1.6; }
+.remote-drawer.quick-edit-dialog .edit-opening-retry { display:flex; align-items:center; justify-content:center; gap:16px; width:min(260px,100%); min-height:48px; margin-top:24px; border:1px solid #a8b78d; border-radius:8px; background:#dce6cc; color:#293123; font:500 16px/1.3 'Avenir Next',Avenir,sans-serif; letter-spacing:0; }
+.edit-opening[data-failed=true] .edit-line-scan { animation:none; transform:translateY(40px); opacity:.5; }
+.quick-edit-trigger[aria-busy=true]>svg { animation:edit-pencil-ready .9s ease-in-out infinite alternate; }
+@keyframes edit-find-line { from { transform:translateY(0); } to { transform:translateY(80px); } }
+@keyframes edit-pencil-ready { from { transform:translateY(1px) rotate(-8deg); } to { transform:translateY(-2px) rotate(8deg); } }
+@media(max-height:500px) { .edit-opening { padding:16px 8px; }.edit-line-finder { height:100px; margin-bottom:18px; }.edit-paper-lines { inset-block:14px; }.edit-line-scan { top:8px; animation-name:edit-find-line-short; } }
+@keyframes edit-find-line-short { from { transform:translateY(0); } to { transform:translateY(64px); } }
+@media(prefers-reduced-motion:reduce) { .edit-line-scan,.quick-edit-trigger[aria-busy=true]>svg { animation:none; }.edit-line-scan { transform:translateY(40px); } }

@@ -29,7 +29,8 @@ test.describe('account workspace with PostgreSQL', () => {
     await page.getByRole('button', { name: 'Sign in to IZZY', exact: true }).click()
     await expect(page.getByRole('heading', { name: 'Your scripts', exact: true })).toBeVisible()
     if (process.env.FEEDBACK_ENABLED === 'true') {
-      const form = page.getByRole('region', { name: 'Leave your feedback.' })
+      await page.getByRole('button', { name: 'Leave feedback', exact: true }).click()
+      const form = page.getByRole('dialog', { name: 'Leave feedback', exact: true })
       await form.getByRole('textbox', { name: 'Your message' }).fill('Synthetic feedback: the next take could be even easier.')
       await page.route('**/api/account/feedback', route => route.abort())
       await form.getByRole('button', { name: 'Send feedback', exact: true }).click()
@@ -40,6 +41,7 @@ test.describe('account workspace with PostgreSQL', () => {
       await expect(form.getByRole('status')).toContainText('review queue')
       await page.setViewportSize({ width: 428, height: 926 })
       await page.screenshot({ path: testInfo.outputPath('feedback-phone.png'), fullPage: true })
+      await form.getByRole('button', { name: 'Done', exact: true }).click()
     }
     await page.getByRole('button', { name: 'New script', exact: true }).click()
     await page.getByRole('textbox', { name: 'Saved script text', exact: true }).fill('Synthetic opening. '.repeat(20) + '\n\nSynthetic closing.')
@@ -54,11 +56,11 @@ test.describe('account workspace with PostgreSQL', () => {
       const links = await openTake()
       const display = await page.context().newPage(), remote = await remoteContext.newPage()
       await display.goto(links.display); await remote.goto(links.remote)
-      await remote.getByRole('button', { name: 'Reading settings', exact: true }).click()
+      await remote.getByRole('button', { name: 'Remote settings', exact: true }).click()
       await remote.getByRole('slider', { name: 'TEXT SIZE', exact: true }).fill('88')
       await expect(remote.getByRole('status', { name: 'Reading settings status' })).toHaveText('Saved to your account')
       await expect(display.locator('.standalone-display')).toHaveCSS('--prompt-size', '88px')
-      await remote.getByRole('button', { name: 'Close reading settings' }).click()
+      await remote.getByRole('button', { name: 'Close settings' }).click()
       await remote.getByRole('button', { name: 'Quick edit current paragraph' }).click()
       await remote.getByRole('combobox', { name: 'Text to edit' }).selectOption('document')
       const entireScript = 'A new synthetic introduction.\n\nReplaced from the remote.\n\nA new closing paragraph.'

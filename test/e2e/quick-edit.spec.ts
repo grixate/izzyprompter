@@ -34,7 +34,7 @@ test('typing is live on two displays, the editor, and another phone before Done'
     for (let step = 0; step < 12; step += 1) await display.locator('body').press('ArrowDown')
     await remote.getByRole('button', { name: 'Play', exact: true }).click()
     await remote.getByRole('button', { name: 'Quick edit current paragraph' }).click()
-    await expect(remote.getByRole('dialog')).toBeVisible()
+    await expect(remote.getByRole('textbox', { name: 'CURRENT PARAGRAPH' })).toBeEditable()
     await expect(remote.getByRole('textbox', { name: 'CURRENT PARAGRAPH' })).toHaveValue(paragraphs[1])
     await expect(display.locator('.display-footer')).toContainText('STANDBY')
     await observer.getByRole('button', { name: 'Quick edit current paragraph' }).click()
@@ -88,7 +88,7 @@ test('recovered offline draft never overwrites a correction from another phone',
     const links = await pair(editor, display, remote)
     await other.goto(links.remoteLink)
     await remote.getByRole('button', { name: 'Quick edit current paragraph' }).click()
-    await expect(remote.getByRole('dialog')).toBeVisible()
+    await expect(remote.getByRole('textbox', { name: 'CURRENT PARAGRAPH' })).toBeEditable()
     await phoneContext.setOffline(true)
     await expect(remote.locator('.network-state')).not.toHaveText('CONNECTED')
     const draft = 'Unsent old draft. ' + paragraphs[1]
@@ -120,7 +120,7 @@ test('offline draft survives refresh and is sent only after explicit resume', as
   try {
     await pair(editor, display, remote)
     await remote.getByRole('button', { name: 'Quick edit current paragraph' }).click()
-    await expect(remote.getByRole('dialog')).toBeVisible()
+    await expect(remote.getByRole('textbox', { name: 'CURRENT PARAGRAPH' })).toBeEditable()
     await phoneContext.setOffline(true)
     await expect(remote.locator('.network-state')).not.toHaveText('CONNECTED')
     const draft = 'Unsent correction. ' + paragraphs[1]

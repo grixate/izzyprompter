@@ -32,6 +32,7 @@ try {
   const output = 'artifacts/skin-craft/staging'
   await mkdir(output, { recursive: true })
   for (const skin of skins) {
+    await remote.getByRole('button', { name: 'Remote settings', exact: true }).click()
     await remote.getByRole('button', { name: 'Change remote skin', exact: true }).click()
     await remote.getByRole('dialog').getByRole('button', { name: `Use ${skin.name}`, exact: true }).click()
     await expect(remote.locator('main')).toHaveClass(new RegExp(`skin--${skin.id}`))

@@ -72,7 +72,7 @@ try {
   for (const skin of fixture.pro ? selected : ['original']) {
     phase = 'paired instrument ' + skin
     if (fixture.pro) {
-      await remote.getByRole('button', { name: 'Reading settings', exact: true }).click()
+      await remote.getByRole('button', { name: 'Remote settings', exact: true }).click()
       await remote.getByRole('button', { name: 'Change remote skin', exact: true }).click()
       await remote.getByRole('button', { name: 'Use ' + names[skin], exact: true }).click()
     }
@@ -93,11 +93,11 @@ try {
   }
   checks.push('real playback, exact speed and dominant wheel for ' + (fixture.pro ? 14 : 1) + ' instruments')
   phase = 'font and full script replacement'
-  await remote.getByRole('button', { name: 'Reading settings', exact: true }).click()
+  await remote.getByRole('button', { name: 'Remote settings', exact: true }).click()
   await remote.getByRole('slider', { name: 'TEXT SIZE', exact: true }).fill('88')
   await expect(remote.getByRole('status', { name: 'Reading settings status' })).toHaveText('Saved to your account')
   await expect(display.locator('.standalone-display')).toHaveCSS('--prompt-size', '88px')
-  await remote.getByRole('button', { name: 'Close reading settings' }).click()
+  await remote.getByRole('button', { name: 'Close settings' }).click()
   await remote.getByRole('slider', { name: 'Jog script position' }).press('Home')
   await remote.getByRole('button', { name: 'Next phrase' }).click()
   await expect(remote.locator('.phrase-count')).toContainText('02 / 03')

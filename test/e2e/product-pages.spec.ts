@@ -93,11 +93,11 @@ test('every finish can be applied on an entitled remote without changing its con
     await expect(remote.locator('.network-state')).toHaveText('CONNECTED')
     for (const skin of skins) {
       await test.step(`Apply and inspect ${skin.name}`, async () => {
-      await remote.getByRole('button', { name: 'Reading settings', exact: true }).click()
+      await remote.getByRole('button', { name: 'Remote settings', exact: true }).click()
       await remote.getByRole('button', { name: 'Change remote skin', exact: true }).click()
       await remote.getByRole('button', { name: `Use ${skin.name}`, exact: true }).click()
       await expect(remote.getByRole('dialog')).toHaveCount(0)
-      await expect(remote.getByRole('button', { name: 'Reading settings', exact: true })).toBeFocused()
+      await expect(remote.getByRole('button', { name: 'Remote settings', exact: true })).toBeFocused()
       await expect(remote.getByRole('main', { name: 'Remote controller' })).toHaveClass(new RegExp(`skin--${skin.id}`))
       await expect(remote.getByRole('button', { name: 'Play', exact: true })).toBeEnabled()
       const key = remote.getByRole('button', { name: 'Play', exact: true })
@@ -110,7 +110,7 @@ test('every finish can be applied on an entitled remote without changing its con
     await jog.press('ArrowRight')
     await expect(jog).toHaveAttribute('aria-valuenow', '48')
     entitled = false
-    await remote.getByRole('button', { name: 'Reading settings', exact: true }).click()
+    await remote.getByRole('button', { name: 'Remote settings', exact: true }).click()
       await remote.getByRole('button', { name: 'Change remote skin', exact: true }).click()
     await remote.getByRole('button', { name: 'Use Orbit', exact: true }).click()
     await expect(remote.getByRole('dialog')).toContainText('Could not change the skin')

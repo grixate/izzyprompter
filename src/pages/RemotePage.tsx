@@ -213,7 +213,7 @@ export function RemoteSurface({ sessionId, session, onPairing }: { sessionId: st
       <QuickEdit sessionId={sessionId} epoch={sessionEpoch} connectionId={connectionId} connection={connection}
         document={izzyDocument} revision={script.revision} editing={editing} request={request}
         canEdit={hasDisplayPosition} beforeOpen={flushSeek} />
-      <ReadingControls session={session} beforeOpen={flushSeek} onPairing={onPairing} skinName={skinById(appearance.skin).name}
+      <ReadingControls session={session} beforeOpen={flushSeek} onPairing={onPairing} skin={appearance.skin}
         onChooseSkin={appearance.local ? undefined : () => { flushSeek(); setFinishOpen(true) }} />
       </div>
       <footer className="remote-footer"><span>TURN TO SEEK</span><span>PRESS {localPlaying ? 'PAUSE' : 'PLAY'} TO {localPlaying ? 'HOLD' : 'RUN'}</span></footer>

@@ -33,7 +33,7 @@ test.describe('persistent account sign-ins', () => {
   test.skip(!process.env.IZZY_E2E_DATABASE_URL, 'Requires an isolated migrated PostgreSQL database')
   test.setTimeout(90_000)
 
-  test('aged sign-in survives browser restart without email, and explicit logout invalidates a retained cookie', async ({ browser }) => {
+  test('aged sign-in survives browser restart without email, and explicit logout invalidates a retained cookie', async ({ browser, browserName }) => {
     const original = await browser.newContext()
     let emails = 0
     original.on('request', request => { if (request.url().endsWith('/api/account/login-link')) emails++ })
@@ -43,7 +43,10 @@ test.describe('persistent account sign-ins', () => {
     const cookie = (await original.cookies()).find(item => item.name === '_teleprompter_key')
     expect(cookie?.httpOnly).toBe(true)
     expect(cookie?.sameSite).toBe('Lax')
-    expect(cookie?.expires ?? 0).toBeGreaterThan(Date.now() / 1000 + 399 * 86400)
+    // Linux WebKit clamps server cookies to one year; the server's 400-day
+    // Max-Age is covered by the HTTP tests. Both must outlive the old 30 days.
+    const minimumDays = browserName === 'webkit' ? 360 : 399
+    expect(cookie?.expires ?? 0).toBeGreaterThan(Date.now() / 1000 + minimumDays * 86400)
     const state = await original.storageState() // memory only; never write credentials to disk
     ageSession(fixture.id)
     await original.close()

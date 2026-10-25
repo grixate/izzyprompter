@@ -13,6 +13,11 @@ Follow RELEASE_WORKFLOW.md; neither a commit nor a merge deploys production.
   The display's existing typography controls use the same revisioned authority.
   Rapid changes are serialized/coalesced; offline commands are not replayed.
 - Quick Edit can select another paragraph or the entire script without moving the reading anchor.
+  Its editor shell opens immediately with an animated line finder while the
+  paused display checkpoint and edit ownership are confirmed. Confirmed paused
+  lines skip a redundant pause; other opens react to checkpoint pushes. Opening
+  can be cancelled, and failures offer an explicit retry. Reduced-motion
+  preferences stop the decorative animation.
   Playback remains paused; existing draft recovery, edit ownership and saved
   script revision checks apply. Full replacements retain the identity of unchanged
   paragraphs, remap the reading word when possible, and fall back to a nearby

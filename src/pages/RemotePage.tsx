@@ -211,7 +211,7 @@ export function RemoteSurface({ sessionId, session, onPairing }: { sessionId: st
         onPrevious={() => jumpPhrase(-1)} onNext={() => jumpPhrase(1)} />
       <div className="remote-tools">
       <QuickEdit sessionId={sessionId} epoch={sessionEpoch} connectionId={connectionId} connection={connection}
-        document={izzyDocument} revision={script.revision} editing={editing} request={request}
+        document={izzyDocument} revision={script.revision} reading={reading} transport={transport} editing={editing} request={request}
         canEdit={hasDisplayPosition} beforeOpen={flushSeek} />
       <ReadingControls session={session} beforeOpen={flushSeek} onPairing={onPairing} skinName={skinById(appearance.skin).name}
         onChooseSkin={appearance.local ? undefined : () => { flushSeek(); setFinishOpen(true) }} />

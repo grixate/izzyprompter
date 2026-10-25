@@ -43,6 +43,10 @@ default. It requires accounts/PostgreSQL. Review the additional Privacy wording
 before enabling it in a public release.
 
 Fields: problem/idea/other, optional rating 1–5, message 10–2,000 characters.
+The library shows a compact Leave feedback button. It opens a modal panel;
+the optional rating is collapsed initially. Closing preserves an unsent draft
+for this page visit, including the request ID used for safe retries. The panel
+follows the visible viewport on phones and keeps its action row accessible.
 No scripts, URLs, diagnostics or device fingerprints are attached automatically.
 Account identity comes from the signed-in session, with existing CSRF and
 account-change checks. Request IDs make an unchanged retry idempotent. The

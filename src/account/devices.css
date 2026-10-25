@@ -1,0 +1,42 @@
+.account-page .devices-trigger { display: inline-flex; align-items: center; justify-content: center; gap: 7px; min-height: 44px; }
+.devices-dialog { position: fixed; inset: 0; box-sizing: border-box; width: min(600px, calc(100% - 32px)); max-width: none; max-height: calc(100dvh - 32px); margin: auto; padding: 0; overflow: hidden; border: 1px solid #858a7d; border-radius: 6px; background: #e9ebe3; color: #20251c; box-shadow: 0 24px 100px #11170f55; font: 16px/1.5 'Avenir Next', Avenir, sans-serif; }
+.devices-dialog[open] { display: flex; flex-direction: column; }
+.devices-dialog::backdrop { background: #171c1499; }
+.devices-dialog button { min-height: 44px; border: 1px solid #a2a899; border-radius: 3px; padding: 10px 14px; background: transparent; color: inherit; font: inherit; cursor: pointer; }
+.devices-dialog button:hover:not(:disabled) { background: #dce0d3; }
+.devices-dialog button:disabled { opacity: .55; cursor: wait; }
+.devices-dialog :focus-visible { outline: 2px solid #9d3817; outline-offset: 3px; }
+.devices-dialog h2:focus { outline: none; }
+.devices-header { display: flex; flex-shrink: 0; align-items: center; justify-content: space-between; gap: 16px; padding: 24px; border-bottom: 1px solid #c4c9bc; }
+.devices-kicker { font-size: 11px; font-weight: 600; letter-spacing: .13em; color: #555f49; }
+.devices-header h2 { margin: 5px 0 0; font-size: clamp(23px, 4vw, 28px); font-weight: 600; line-height: 1.2; letter-spacing: -.035em; }
+.devices-dialog .devices-close { width: 44px; padding: 9px; flex-shrink: 0; display: grid; place-items: center; border-color: transparent; }
+.devices-body { min-height: 0; overflow-y: auto; overscroll-behavior: contain; padding: 20px 24px 4px; }
+.devices-body > p:first-child { margin: 0 0 24px; color: #505b46; font-size: 15px; }
+.devices-list { margin: 0; padding: 0; list-style: none; }
+.devices-list li { display: grid; grid-template-columns: 40px minmax(0, 1fr) auto; align-items: start; gap: 12px; padding: 20px 0; border-top: 1px solid #c4c9bc; }
+.devices-icon { display: grid; place-items: center; width: 38px; height: 40px; color: #68715b; }
+.devices-icon.is-current { background: #d7ddca; border-radius: 4px; color: #384627; }
+.devices-details { display: flex; flex-direction: column; align-items: start; gap: 3px; overflow-wrap: anywhere; }
+.devices-details strong { font-size: 16px; font-weight: 600; }
+.devices-details > span { color: #57614e; font-size: 13px; }
+.devices-details .devices-current { display: inline-flex; align-items: center; gap: 4px; color: #3d502e; font-weight: 600; margin: 2px 0 6px; }
+.devices-dialog .devices-revoke { color: #913214; border-color: #b67e65; font-size: 14px; }
+.devices-loading { display: flex; gap: 10px; align-items: center; padding: 24px 0; color: #57614e; }
+.devices-loading svg, .devices-retry-spinner { animation: devices-spin 1.2s linear infinite; }
+.devices-others { padding: 20px 0; border-top: 1px solid #c4c9bc; }
+.devices-others p { font-size: 14px; margin: 0 0 12px; }
+.devices-confirm { display: flex; gap: 12px; flex-wrap: wrap; }
+.devices-error { color: #913214; font-size: 14px; padding: 12px 0; }
+.devices-error button { display: inline-flex; align-items: center; gap: 8px; }
+.devices-error p { margin-top: 0; }
+.devices-result { color: #3d502e; font-size: 14px; }
+.devices-result:empty { display: none; }
+.devices-note { font-size: 13px; color: #57614e; margin: 12px 0 20px; }
+.devices-footer { display: flex; justify-content: flex-end; flex-shrink: 0; padding: 16px 24px; border-top: 1px solid #c4c9bc; }
+.devices-dialog .devices-done { min-width: 128px; background: #a23c1c; border-color: #a23c1c; color: #fff; font-weight: 600; }
+.devices-dialog .devices-done:hover { background: #853014; }
+@keyframes devices-spin { to { transform: rotate(360deg); } }
+@media (max-width: 480px) { .devices-dialog { width: calc(100% - 24px); max-height: calc(100dvh - 24px); top: auto; bottom: 12px; } .devices-header { padding: 20px 16px; } .devices-body { padding: 18px 16px 0; } .devices-list li { grid-template-columns: 30px minmax(0, 1fr) auto; gap: 8px; } .devices-icon { width: 28px; } .devices-dialog .devices-revoke { padding: 10px; } .devices-footer { padding: 12px 16px max(12px, env(safe-area-inset-bottom)); } .devices-done { flex: 1; } }
+@media (prefers-reduced-motion: reduce) { .devices-loading svg, .devices-retry-spinner { animation: none; } }
+@media (max-width: 540px) { .account-page .start-header { flex-wrap: wrap; gap: 8px; } .account-page .start-header nav { margin-left: auto; gap: 12px; } .account-page .start-header nav button { min-height: 44px; } }

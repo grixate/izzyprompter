@@ -9,7 +9,7 @@ defmodule TeleprompterWeb.Endpoint do
     key: "_teleprompter_key",
     signing_salt: "/tHXUYst",
     http_only: true,
-    max_age: 30 * 24 * 60 * 60,
+    max_age: 400 * 24 * 60 * 60,
     same_site: "Lax"
   ]
 
@@ -38,7 +38,8 @@ defmodule TeleprompterWeb.Endpoint do
     at: "/",
     from: {:teleprompter, "priv/static/app"},
     gzip: false,
-    only: ~w(local-sw.js manifest.webmanifest offline-icon.svg favicon.svg favicon-16.png favicon-32.png apple-touch-icon.png icon-192.png icon-512.png),
+    only:
+      ~w(local-sw.js manifest.webmanifest offline-icon.svg favicon.svg favicon-16.png favicon-32.png apple-touch-icon.png icon-192.png icon-512.png),
     cache_control_for_etags: "no-cache"
 
   plug Plug.Static,

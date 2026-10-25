@@ -31,6 +31,13 @@ export function AccountProvider({ children }: { children: ReactNode }) {
   const userId = status?.user?.id
   useEffect(() => {
     if (!userId) return
+    const visible = () => { if (document.visibilityState === 'visible' && navigator.onLine) void refresh() }
+    const heartbeat = window.setInterval(visible, 15 * 60 * 1000)
+    document.addEventListener('visibilitychange', visible)
+    return () => { window.clearInterval(heartbeat); document.removeEventListener('visibilitychange', visible) }
+  }, [userId, refresh])
+  useEffect(() => {
+    if (!userId) return
     let active = true
     let socket: Socket | null = null
     let retry: number | undefined
@@ -46,15 +53,17 @@ export function AccountProvider({ children }: { children: ReactNode }) {
         socket.onClose(() => {
           if (active) {
             socket?.disconnect()
+            void refresh()
             retry = window.setTimeout(() => { void connect() }, 10_000)
           }
         })
         const channel = socket.channel(`account:${userId}`, {})
-        channel.on('updated', () => { window.dispatchEvent(new Event('izzy:account-update')); void refresh() })
+        const reconcile = () => { if (active) { window.dispatchEvent(new Event('izzy:account-update')); void refresh() } }
+        channel.on('updated', reconcile)
         channel.onClose(() => { if (active) void refresh() })
         socket.connect()
         channel.join().receive('error', () => { void refresh() })
-      } catch { if (active) retry = window.setTimeout(() => { void connect() }, 30_000) }
+      } catch { if (active) { void refresh(); retry = window.setTimeout(() => { void connect() }, 30_000) } }
       finally { connecting = false }
     }
     void connect()

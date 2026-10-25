@@ -27,7 +27,7 @@ defmodule Teleprompter.Maintenance do
 
       tokens =
         from(t in Teleprompter.Accounts.Token,
-          where: t.expires_at < ^now,
+          where: not t.persistent and t.expires_at < ^now,
           select: t.hash,
           limit: 500
         )

@@ -31,6 +31,9 @@ defmodule TeleprompterWeb.Router do
     post "/login", AccountController, :login
     post "/logout", AccountController, :logout
     post "/channel-ticket", AccountController, :ticket
+    get "/sessions", BrowserSessionController, :index
+    delete "/sessions/others", BrowserSessionController, :delete_others
+    delete "/sessions/:id", BrowserSessionController, :delete
     post "/feedback", FeedbackController, :create
     get "/scripts", LibraryController, :index
     post "/scripts", LibraryController, :create

@@ -56,7 +56,13 @@ defmodule Teleprompter.Application do
           Supervisor.child_spec(
             {Teleprompter.CreationGate,
              name: Teleprompter.AccountTicketGate,
-             limits: [per_peer: 60, total: 600, max_peers: 1024, window_ms: 60_000]},
+             limits:
+               Application.get_env(:teleprompter, :account_ticket_limits,
+                 per_peer: 60,
+                 total: 600,
+                 max_peers: 1024,
+                 window_ms: 60_000
+               )},
             id: Teleprompter.AccountTicketGate
           ),
           Supervisor.child_spec(

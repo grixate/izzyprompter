@@ -38,7 +38,8 @@ defmodule TeleprompterWeb.GoogleController do
              params
            ),
          {:ok, user} <- Accounts.google_identity(identity, conn.assigns.current_user) do
-      raw = Accounts.issue_token(user.id, "session", 30 * 24 * 60 * 60)
+      raw = Accounts.issue_session(user.id, List.first(get_req_header(conn, "user-agent")))
+      Accounts.notify(user.id, %{type: "sessions_changed"})
       target = Teleprompter.Product.return_to(Map.get(pending, :return_to)) || "/account"
       conn |> TeleprompterWeb.AccountController.signed_in(raw) |> redirect(to: target)
     else

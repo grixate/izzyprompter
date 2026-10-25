@@ -28,6 +28,10 @@ defmodule Teleprompter.Accounts.Token do
     field(:user_id, :binary_id)
     field(:kind, :string)
     field(:expires_at, :utc_datetime_usec)
+    field(:persistent, :boolean, default: false)
+    field(:session_id, Ecto.UUID)
+    field(:device_label, :string)
+    field(:last_seen_at, :utc_datetime_usec)
     timestamps(type: :utc_datetime_usec, updated_at: false)
   end
 end

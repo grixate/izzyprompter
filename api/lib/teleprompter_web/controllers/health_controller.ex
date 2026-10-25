@@ -27,7 +27,10 @@ defmodule TeleprompterWeb.HealthController do
       # A reachable but unmigrated database is not a ready account service.
       match?(
         {:ok, _},
-        Ecto.Adapters.SQL.query(Teleprompter.Repo, "SELECT 1 FROM users LIMIT 0", [],
+        Ecto.Adapters.SQL.query(
+          Teleprompter.Repo,
+          "SELECT u.reading_preferences, u.preferences_revision, t.persistent, t.session_id, t.device_label, t.last_seen_at FROM users u LEFT JOIN account_tokens t ON t.user_id = u.id LIMIT 0",
+          [],
           timeout: 1_000,
           pool_timeout: 1_000
         )

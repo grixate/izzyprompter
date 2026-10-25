@@ -1,0 +1,103 @@
+import { test, expect, type Page } from '@playwright/test'
+import { createSyntheticSession } from './helpers/create-synthetic-session'
+import { tabKey } from './helpers/keyboard'
+
+async function openRemote(page: Page) {
+  await page.goto('/')
+  await page.getByRole('textbox', { name: 'Teleprompter script' }).fill('Synthetic remote settings review.\n\nA second paragraph.')
+  await createSyntheticSession(page)
+  const href = await page.getByRole('link', { name: /OPEN REMOTE/ }).getAttribute('href')
+  await page.route('**/api/sessions/*/appearance', route => route.fulfill({ json: { pro: true } }))
+  await page.goto(href!)
+  await expect(page.locator('.network-state')).toHaveText('CONNECTED')
+}
+
+for (const viewport of [{ width: 320, height: 568 }, { width: 390, height: 844 }, { width: 844, height: 390 }, { width: 1280, height: 900 }]) {
+  test(`settings keeps skins and Done discoverable at ${viewport.width} × ${viewport.height}`, async ({ page, browserName }, info) => {
+    await page.setViewportSize(viewport)
+    await openRemote(page)
+    const trigger = page.getByRole('button', { name: 'Remote settings', exact: true })
+    await expect(trigger).toHaveAttribute('aria-expanded', 'false')
+    if (browserName === 'chromium' && viewport.width === 390) await page.locator('.remote-tools').screenshot({ path: info.outputPath('settings-gear.png') })
+    await trigger.click()
+    const dialog = page.getByRole('dialog', { name: 'Settings', exact: true })
+    await expect(dialog.getByRole('heading', { name: 'Settings', exact: true })).toBeFocused()
+    const skins = dialog.getByRole('button', { name: 'Change remote skin' })
+    await expect(skins).toBeInViewport()
+    await expect(skins).toContainText('Browse skins')
+    const skinBounds = await skins.boundingBox()
+    const textBounds = await dialog.getByRole('heading', { name: 'Display text' }).boundingBox()
+    expect(skinBounds!.y).toBeLessThanOrEqual(textBounds!.y)
+    const done = dialog.getByRole('button', { name: 'Done', exact: true })
+    const fits = async (top: number, bottom: number) => {
+      await expect(async () => {
+        const box = await dialog.boundingBox(), action = await done.boundingBox()
+        expect(box!.x).toBeGreaterThanOrEqual(0)
+        expect(box!.x + box!.width).toBeLessThanOrEqual(viewport.width)
+        expect(box!.y).toBeGreaterThanOrEqual(top)
+        expect(box!.y + box!.height).toBeLessThanOrEqual(bottom + 1)
+        expect(action!.y).toBeGreaterThanOrEqual(top)
+        expect(action!.y + action!.height).toBeLessThanOrEqual(bottom)
+        expect(action!.height).toBeGreaterThanOrEqual(52)
+        expect(action!.width).toBeGreaterThan(box!.width - 50)
+      }).toPass({ timeout: 4000 })
+    }
+    await fits(0, viewport.height)
+    await expect(dialog.getByRole('status', { name: 'Reading settings status' })).toBeInViewport({ ratio: 1 })
+    await expect(done).toHaveCSS('font-size', '17px')
+    await expect(dialog.locator('.reading-text-description')).toHaveCSS('font-size', '14px')
+    if (browserName === 'chromium') await dialog.screenshot({ path: info.outputPath(`settings-${viewport.width}.png`) })
+    if (viewport.width === 844) {
+      await dialog.evaluate(element => (element as HTMLElement).style.setProperty('--settings-inset', '59px'))
+      await expect(async () => {
+        const box = await dialog.boundingBox()
+        expect(box!.x).toBeGreaterThanOrEqual(59)
+        expect(box!.x + box!.width).toBeLessThanOrEqual(viewport.width - 59)
+      }).toPass({ timeout: 4000 })
+    }
+    await page.evaluate(() => {
+      Object.defineProperty(window.visualViewport!, 'height', { configurable: true, value: 280 })
+      Object.defineProperty(window.visualViewport!, 'offsetTop', { configurable: true, value: 40 })
+      window.visualViewport!.dispatchEvent(new Event('resize'))
+      window.visualViewport!.dispatchEvent(new Event('scroll'))
+    })
+    await fits(40, 320)
+    await expect(dialog.locator('.reading-settings-body')).toHaveCSS('overflow-y', 'auto')
+    await done.click()
+    await expect(dialog).toBeHidden()
+    await expect(trigger).toBeFocused()
+  })
+}
+
+test('settings keyboard dismissal, font bounds and skin changes stay usable', async ({ page, browserName }, info) => {
+  await page.setViewportSize({ width: 390, height: 844 })
+  await openRemote(page)
+  const trigger = page.getByRole('button', { name: 'Remote settings', exact: true })
+  await trigger.click()
+  const dialog = page.getByRole('dialog', { name: 'Settings', exact: true })
+  const done = dialog.getByRole('button', { name: 'Done', exact: true })
+  const close = dialog.getByRole('button', { name: 'Close settings' })
+  await done.focus(); await done.press(tabKey(browserName))
+  await expect(close).toBeFocused()
+  await close.press(`Shift+${tabKey(browserName)}`)
+  await expect(done).toBeFocused()
+  const size = dialog.getByRole('slider', { name: 'TEXT SIZE', exact: true })
+  await size.fill('20')
+  await expect(dialog.getByRole('button', { name: 'Decrease text size' })).toBeDisabled()
+  await size.fill('160')
+  await expect(dialog.getByRole('button', { name: 'Increase text size' })).toBeDisabled()
+  await size.fill('64')
+  await page.keyboard.press('Escape')
+  await expect(trigger).toBeFocused()
+  await trigger.click()
+  await dialog.getByRole('button', { name: 'Change remote skin' }).click()
+  const library = page.getByRole('dialog', { name: 'Skins', exact: true })
+  await library.getByRole('button', { name: 'Use Cartridge', exact: true }).click()
+  await expect(library).toHaveCount(0)
+  await expect(trigger).toBeFocused()
+  await trigger.click()
+  await expect(dialog.getByRole('button', { name: 'Change remote skin' })).toContainText('Cartridge')
+  if (browserName === 'chromium') await dialog.screenshot({ path: info.outputPath('settings-cartridge.png') })
+  await close.click()
+  await expect(trigger).toBeFocused()
+})

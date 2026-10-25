@@ -2,14 +2,17 @@
 
 This release integrates the approved fourteen remote skins and their large-wheel
 composition with shared reading controls, feedback and minimal metrics.
-The row keeps two controls: Quick Edit and Reading settings. Skin selection is
-inside Reading settings so the narrow wheel-first layout gains no third button.
+The row keeps two controls: Quick Edit and a gear for Remote settings. Skin
+selection is at the top of Remote settings so the narrow wheel-first layout
+gains no third button.
 The earlier study IDs and frozen galleries remain preserved outside the public collection.
 Follow RELEASE_WORKFLOW.md; neither a commit nor a merge deploys production.
 
 ## Reading and preferences
 
-- The remote's Reading settings button opens text-size controls (20–160, step 2).
+- The remote's gear opens Settings, with a large current-skin preview and
+  Browse skins entry first, followed by text-size controls (20–160, step 2).
+  Labels use readable type and Done stays in a fixed, full-width footer.
   The display's existing typography controls use the same revisioned authority.
   Rapid changes are serialized/coalesced; offline commands are not replayed.
 - Quick Edit can select another paragraph or the entire script without moving the reading anchor.

@@ -11,8 +11,6 @@
 .remote-skin-close { display:grid; place-items:center; flex-shrink:0; width:44px; height:44px; border:1px solid #c3c9b7; border-radius:50%; background:transparent; color:inherit; cursor:pointer; }
 .remote-skin-grid { min-height:0; overflow-y:auto; overscroll-behavior:contain; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px 12px; padding:20px 24px 24px; scrollbar-width:thin; scrollbar-color:#99a38b transparent; }
 .remote-skin-card { min-width:0; padding:0 0 4px; border:0; background:transparent; color:inherit; text-align:left; cursor:pointer; border-radius:8px; font:inherit; }
-.remote-skin-sample { position:relative; display:block; height:170px; overflow:hidden; border:1px solid #cfd3c4; border-radius:8px; background:#e0e3d6; transition:background .15s,border-color .15s; }
-.remote-skin-sample .remote-instrument { position:absolute; top:10px; left:50%; width:320px; max-width:none; transform:translateX(-50%) scale(var(--sample-scale,.16)); transform-origin:top center; pointer-events:none; }
 .remote-skin-marker { position:absolute; right:7px; bottom:7px; display:grid; place-items:center; width:23px; height:23px; border-radius:50%; font:9px/1 monospace; color:#616e55; }
 .remote-skin-card[aria-pressed=true] .remote-skin-sample { border-color:#5b6a46; background:#d4dcc7; box-shadow:inset 0 0 0 1px #5b6a46; }
 .remote-skin-card[aria-pressed=true] .remote-skin-marker { background:#4d5f3c; color:#f3f2e8; }
@@ -39,4 +37,3 @@
   .remote-skin-heading { padding:8px 20px; }
   .remote-skin-grid { grid-template-columns:repeat(4,minmax(0,1fr)); padding:12px 20px; gap:14px 10px; }.remote-skin-footer { min-height:50px; padding:10px 20px; }
 }
-@media(prefers-reduced-motion:reduce) { .remote-skin-sample { transition:none; } }

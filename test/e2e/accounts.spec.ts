@@ -56,11 +56,11 @@ test.describe('account workspace with PostgreSQL', () => {
       const links = await openTake()
       const display = await page.context().newPage(), remote = await remoteContext.newPage()
       await display.goto(links.display); await remote.goto(links.remote)
-      await remote.getByRole('button', { name: 'Reading settings', exact: true }).click()
+      await remote.getByRole('button', { name: 'Remote settings', exact: true }).click()
       await remote.getByRole('slider', { name: 'TEXT SIZE', exact: true }).fill('88')
       await expect(remote.getByRole('status', { name: 'Reading settings status' })).toHaveText('Saved to your account')
       await expect(display.locator('.standalone-display')).toHaveCSS('--prompt-size', '88px')
-      await remote.getByRole('button', { name: 'Close reading settings' }).click()
+      await remote.getByRole('button', { name: 'Close settings' }).click()
       await remote.getByRole('button', { name: 'Quick edit current paragraph' }).click()
       await remote.getByRole('combobox', { name: 'Text to edit' }).selectOption('document')
       const entireScript = 'A new synthetic introduction.\n\nReplaced from the remote.\n\nA new closing paragraph.'

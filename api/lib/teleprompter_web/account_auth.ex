@@ -29,14 +29,8 @@ defmodule TeleprompterWeb.AccountAuth do
         conn |> assign(:current_user, user) |> assign(:current_browser_session, token)
 
       nil ->
-        conn =
-          if Teleprompter.Accounts.enabled?() and get_session(conn, :account_token),
-            do:
-              conn
-              |> delete_session(:account_token)
-              |> delete_session(:account_cookie_refreshed_at),
-            else: conn
-
+        # An old in-flight request must not overwrite a newer sign-in cookie.
+        # Invalid credentials grant no access; explicit logout drops the cookie.
         conn |> assign(:current_user, nil) |> assign(:current_browser_session, nil)
     end
   end

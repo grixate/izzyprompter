@@ -237,6 +237,28 @@ defmodule TeleprompterWeb.BrowserSessionControllerTest do
     assert json_response(conn |> recycle() |> get("/api/account"), 200)["user"]["id"] == user.id
   end
 
+  test "a stale revoked-cookie response never replaces a fresh sign-in cookie", %{user: user} do
+    old = Accounts.issue_session(user.id)
+    before_login = browser(old)
+    link = Accounts.issue_token(user.id, "login", 900)
+    csrf = json_response(before_login, 200)["csrf_token"]
+
+    signed_in =
+      before_login
+      |> recycle()
+      |> put_private(:plug_skip_csrf_protection, false)
+      |> put_req_header("x-csrf-token", csrf)
+      |> post("/api/account/login", %{token: link})
+
+    assert json_response(signed_in, 200)["signed_in"]
+    stale = before_login |> recycle() |> get("/api/account")
+    assert json_response(stale, 200)["user"] == nil
+    refute Map.has_key?(stale.resp_cookies, "_teleprompter_key")
+
+    assert json_response(signed_in |> recycle() |> get("/api/account"), 200)["user"]["id"] ==
+             user.id
+  end
+
   test "coarse labels never retain raw user-agent data" do
     assert BrowserSessions.device_label("Private unusual agent /path/to/private/<script>") ==
              "Browser"

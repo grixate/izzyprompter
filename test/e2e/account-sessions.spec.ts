@@ -149,6 +149,23 @@ test.describe('persistent account sign-ins', () => {
     } finally { release(); await remote.close() }
   })
 
+  test('a stale revoked-cookie response cannot overwrite a newer sign-in', async ({ page, context }) => {
+    const fixture = accountFixture()
+    await signIn(page, fixture)
+    await page.goto('about:blank')
+    const oldCookie = (await context.cookies()).find(cookie => cookie.name === '_teleprompter_key')!
+    const status = await (await context.request.get('/api/account')).json()
+    const next = accountFixture(fixture.id)
+    const login = await context.request.post('/api/account/login', { headers: { 'x-csrf-token': status.csrf_token }, data: { token: next.token } })
+    expect(login.status()).toBe(200)
+    const stale = await context.request.get('/api/account', { headers: { Cookie: `_teleprompter_key=${oldCookie.value}` } })
+    expect((await stale.json()).user).toBeNull()
+    const cookieUntouched = stale.headers()['set-cookie'] === undefined
+    expect(cookieUntouched).toBe(true)
+    const current = await (await context.request.get('/api/account')).json()
+    expect(current.user?.id).toBe(fixture.id)
+  })
+
   test('loading and network failure keep browser management recoverable', async ({ page }) => {
     await signIn(page, accountFixture())
     await page.route('**/api/account/sessions', async route => { await new Promise(resolve => setTimeout(resolve, 400)); await route.abort() })

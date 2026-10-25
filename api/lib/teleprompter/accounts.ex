@@ -75,7 +75,9 @@ defmodule Teleprompter.Accounts do
   def request_login(_, _), do: {:error, :invalid_email}
 
   # GET never consumes a login link: email scanners cannot sign a customer in.
-  def consume_login(raw) when is_binary(raw) and byte_size(raw) == 43 do
+  def consume_login(raw, user_agent \\ nil)
+
+  def consume_login(raw, user_agent) when is_binary(raw) and byte_size(raw) == 43 do
     Repo.transaction(fn ->
       token =
         Repo.one(
@@ -106,11 +108,11 @@ defmodule Teleprompter.Accounts do
         on_conflict: :nothing
       )
 
-      {user, issue_token(user.id, "session", 30 * 24 * 60 * 60)}
+      {user, issue_session(user.id, user_agent)}
     end)
   end
 
-  def consume_login(_), do: {:error, :invalid_token}
+  def consume_login(_, _), do: {:error, :invalid_token}
 
   def issue_token(user_id, kind, seconds) do
     raw = random_token()
@@ -125,35 +127,11 @@ defmodule Teleprompter.Accounts do
     raw
   end
 
-  def user_for_session(raw) when is_binary(raw) and byte_size(raw) == 43 do
-    if enabled?(),
-      do:
-        Repo.one(
-          from(u in User,
-            join: t in Token,
-            on: t.user_id == u.id,
-            where:
-              t.hash == ^hash(raw) and t.kind == "session" and t.expires_at > ^DateTime.utc_now()
-          )
-        ),
-      else: nil
-  end
+  def issue_session(user_id, user_agent \\ nil),
+    do: Teleprompter.Accounts.BrowserSessions.issue(user_id, user_agent)
 
-  def user_for_session(_), do: nil
-
-  def revoke(raw) when is_binary(raw) do
-    Repo.delete_all(from(t in Token, where: t.hash == ^hash(raw) and t.kind == "session"))
-
-    Phoenix.PubSub.broadcast(
-      Teleprompter.PubSub,
-      "account_session:" <> Base.encode16(hash(raw)),
-      :revoked
-    )
-
-    :ok
-  end
-
-  def revoke(_), do: :ok
+  def user_for_session(raw), do: Teleprompter.Accounts.BrowserSessions.user(raw)
+  def revoke(raw), do: Teleprompter.Accounts.BrowserSessions.revoke_raw(raw)
 
   # Do not automatically merge by email. Existing email owners must sign in
   # first, then explicitly link Google from their authenticated account.

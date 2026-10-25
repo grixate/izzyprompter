@@ -4,8 +4,35 @@ defmodule TeleprompterWeb.AccountAuth do
 
   def call(conn, _opts) do
     conn = conn |> fetch_session() |> put_resp_header("cache-control", "no-store")
-    user = Teleprompter.Accounts.user_for_session(get_session(conn, :account_token))
-    assign(conn, :current_user, user)
+    agent = List.first(get_req_header(conn, "user-agent"))
+
+    case Teleprompter.Accounts.BrowserSessions.authenticate(
+           get_session(conn, :account_token),
+           agent
+         ) do
+      {user, token} ->
+        refreshed = get_session(conn, :account_cookie_refreshed_at)
+        now = System.system_time(:second)
+
+        renew =
+          not is_integer(refreshed) or refreshed > now or
+            now - refreshed >= Teleprompter.Accounts.BrowserSessions.cookie_renew_after()
+
+        conn =
+          if renew,
+            do:
+              conn
+              |> put_session(:account_cookie_refreshed_at, now)
+              |> configure_session(renew: true),
+            else: conn
+
+        conn |> assign(:current_user, user) |> assign(:current_browser_session, token)
+
+      nil ->
+        # An old in-flight request must not overwrite a newer sign-in cookie.
+        # Invalid credentials grant no access; explicit logout drops the cookie.
+        conn |> assign(:current_user, nil) |> assign(:current_browser_session, nil)
+    end
   end
 
   def require_user(conn, _) do

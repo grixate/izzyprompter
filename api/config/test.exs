@@ -7,6 +7,8 @@ config :teleprompter, Teleprompter.Mailer, adapter: Swoosh.Adapters.Test
 # Tests create independent synthetic sessions in one VM; small limit scenarios
 # use isolated gates/supervisors or their own production release.
 config :teleprompter,
+  # Multiple synthetic browser projects share one loopback peer in a short burst.
+  account_ticket_limits: [per_peer: 1000, total: 5000, max_peers: 1024, window_ms: 60_000],
   account_auth_limits: [per_peer: 1000, total: 5000, max_peers: 1024, window_ms: 60_000],
   # Three browser projects retain their synthetic sessions in this one VM.
   # Keep the expanded 26-finish matrix below this test-only ceiling.

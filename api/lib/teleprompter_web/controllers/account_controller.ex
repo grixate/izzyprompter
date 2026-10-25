@@ -33,8 +33,9 @@ defmodule TeleprompterWeb.AccountController do
 
   def login(conn, %{"token" => token}) do
     if Accounts.enabled?() do
-      case Accounts.consume_login(token) do
-        {:ok, {_user, raw}} ->
+      case Accounts.consume_login(token, List.first(get_req_header(conn, "user-agent"))) do
+        {:ok, {user, raw}} ->
+          Accounts.notify(user.id, %{type: "sessions_changed"})
           conn = signed_in(conn, raw)
           json(conn, %{signed_in: true, csrf_token: Plug.CSRFProtection.get_csrf_token()})
 
@@ -60,8 +61,17 @@ defmodule TeleprompterWeb.AccountController do
   end
 
   def signed_in(conn, raw) do
+    # An explicit new sign-in replaces this browser's old credential, avoiding
+    # unreachable entries in the device list. Other browsers keep their sign-ins.
+    previous = get_session(conn, :account_token)
+    if previous != raw, do: Accounts.revoke(previous)
     Plug.CSRFProtection.delete_csrf_token()
-    conn |> clear_session() |> configure_session(renew: true) |> put_session(:account_token, raw)
+
+    conn
+    |> clear_session()
+    |> configure_session(renew: true)
+    |> put_session(:account_token, raw)
+    |> put_session(:account_cookie_refreshed_at, System.system_time(:second))
   end
 
   def error(conn, reason) do

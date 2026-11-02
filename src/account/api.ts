@@ -1,6 +1,6 @@
 import type { IzzyDocumentV1 } from '../domain/document'
 import type { PromptSettingsV1 } from '../domain/storage'
-import { analyticsHeaders } from '../product/acquisition'
+import { analyticsHeaders, rememberCampaignForLogin } from '../product/acquisition'
 
 export type Account = { id: string; email: string; pro: boolean }
 export type AccountStatus = { enabled: boolean; google_enabled: boolean; feedback_enabled?: boolean; analytics_admin?: boolean; csrf_token: string; user: Account | null }
@@ -33,6 +33,7 @@ export async function accountApi<T>(route = '', method = 'GET', body?: unknown, 
   }
 }
 async function request<T>(route: string, method: string, body?: unknown, expectedAccountId?: string): Promise<T> {
+  if (route === '/login-link' && method === 'POST') rememberCampaignForLogin()
   const controller = new AbortController()
   const timer = window.setTimeout(() => controller.abort(), 12_000)
   try {

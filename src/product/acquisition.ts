@@ -3,6 +3,7 @@ type Labels = { source: string; medium: string; campaign: string; content: strin
 type Visit = { token: string; until: number; labels: Labels }
 const key = 'izzy:campaign-visit:v1'
 const excludedKey = 'izzy:analytics:exclude'
+const loginKey = 'izzy:campaign-login:v1'
 let current: Visit | null = null
 let ready: Promise<void> | undefined
 
@@ -13,12 +14,36 @@ export function analyticsExcluded() {
   } catch { return true }
 }
 
-function readVisit(): Visit | null {
+function parseVisit(value: string | null): Visit | null {
   try {
-    const visit = JSON.parse(sessionStorage.getItem(key) ?? 'null') as Visit | null
+    const visit = JSON.parse(value ?? 'null') as Visit | null
     return visit && typeof visit.token === 'string' && visit.token.length <= 512 && visit.until > Date.now() &&
       visit.labels && Object.values(visit.labels).every(v => typeof v === 'string' && /^[a-z0-9_-]{0,48}$/.test(v)) ? visit : null
   } catch { return null }
+}
+
+function readVisit(): Visit | null {
+  try {
+    const visit = parseVisit(sessionStorage.getItem(key))
+    if (visit) return visit
+    if (window.location.pathname === '/account/login') {
+      const handoff = parseVisit(localStorage.getItem(loginKey))
+      localStorage.removeItem(loginKey)
+      if (handoff) { sessionStorage.setItem(key, JSON.stringify(handoff)); return handoff }
+    }
+    return null
+  } catch { return null }
+}
+
+// Email links commonly open another tab. This carries measurement only, never login authority.
+export function rememberCampaignForLogin() {
+  try {
+    if (analyticsExcluded()) return
+    const visit = current ?? readVisit()
+    if (visit && visit.until > Date.now()) localStorage.setItem(loginKey, JSON.stringify({
+      ...visit, until: Math.min(visit.until, Date.now() + 900_000),
+    }))
+  } catch { /* Optional handoff must never prevent delivery of a sign-in link. */ }
 }
 
 const label = (value: string | null) => {
@@ -31,7 +56,8 @@ export function initializeAnalytics() {
   try {
     const query = new URLSearchParams(window.location.search)
     if (query.get('analytics') === 'off') localStorage.setItem(excludedKey, '1')
-    if (analyticsExcluded()) { sessionStorage.removeItem(key); return }
+    if (analyticsExcluded()) { sessionStorage.removeItem(key); localStorage.removeItem(loginKey); return }
+    if (!parseVisit(localStorage.getItem(loginKey))) localStorage.removeItem(loginKey)
     const entry = ({ '/': 'home', '/pro': 'pro', '/skins': 'skins', '/account': 'account' } as Record<string, string>)[window.location.pathname]
     if (!entry || window.location.protocol !== 'https:' && window.location.protocol !== 'http:') return
     const saved = readVisit()

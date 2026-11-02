@@ -71,6 +71,35 @@ test('automation and explicit browser exclusions never call the collector', asyn
   expect(calls).toBe(0)
 })
 
+test('email sign-in opened in a new tab keeps the originating post attribution', async ({ page, context }) => {
+  await context.addInitScript(() => Object.defineProperty(navigator, 'webdriver', { get: () => false }))
+  await context.route('**/api/analytics/visit', route => route.fulfill({ json: { token: 'synthetic-handoff-visit', expires_in: 1800 } }))
+  let signedIn = false
+  await context.route('**/api/account', route => route.fulfill({ json: { enabled: true, google_enabled: false,
+    csrf_token: 'synthetic', user: signedIn ? { id: 'synthetic-email-user', email: 'synthetic@example.invalid', pro: false } : null } }))
+  await context.route('**/api/account/login-link', route => route.fulfill({ json: { sent: true } }))
+  let loginAttribution = ''
+  await context.route('**/api/account/login', route => {
+    loginAttribution = route.request().headers()['x-izzy-visit'] ?? ''
+    signedIn = true
+    return route.fulfill({ json: { signed_in: true, csrf_token: 'synthetic' } })
+  })
+  await context.route('**/api/account/channel-ticket', route => route.fulfill({ status: 503 }))
+  await page.goto('/?utm_source=telegram&utm_medium=social&utm_campaign=launch&utm_content=email_demo')
+  await expect.poll(() => page.evaluate(() => !!sessionStorage.getItem('izzy:campaign-visit:v1'))).toBe(true)
+  await page.goto('/account')
+  await page.getByRole('textbox', { name: 'Email address' }).fill('synthetic@example.invalid')
+  await page.getByRole('button', { name: 'Email me a sign-in link' }).click()
+  await expect(page.getByRole('status')).toContainText('Check your email')
+  const login = await context.newPage()
+  await login.goto('/account/login#token=synthetic-login-link')
+  await login.getByRole('button', { name: 'Sign in to IZZY', exact: true }).click()
+  await expect.poll(() => loginAttribution).toBe('synthetic-handoff-visit')
+  await login.waitForURL(/\/account$/)
+  await expect.poll(() => login.evaluate(() => JSON.parse(sessionStorage.getItem('izzy:campaign-visit:v1') ?? 'null')?.labels.content)).toBe('email_demo')
+  expect(await login.evaluate(() => localStorage.getItem('izzy:campaign-login:v1'))).toBeNull()
+})
+
 test('a collector outage never prevents creating a guest take', async ({ page }) => {
   await page.addInitScript(() => Object.defineProperty(navigator, 'webdriver', { get: () => false }))
   await page.route('**/api/analytics/**', route => route.abort())

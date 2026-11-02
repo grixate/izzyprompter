@@ -29,7 +29,7 @@ export function AnalyticsPage() {
     setReport(null)
     if (!allowed) return
     // Opening the owner report also excludes this browser from future measurement.
-    try { localStorage.setItem('izzy:analytics:exclude', '1'); sessionStorage.removeItem('izzy:campaign-visit:v1') } catch { /* Optional. */ }
+    try { localStorage.setItem('izzy:analytics:exclude', '1'); sessionStorage.removeItem('izzy:campaign-visit:v1'); localStorage.removeItem('izzy:campaign-login:v1') } catch { /* Optional. */ }
     let active = true
     setBusy(true); setNotice('')
     void accountApi<Report>(`/analytics?days=${days}`).then(data => { if (active) setReport(data) })
@@ -84,7 +84,7 @@ export function AnalyticsPage() {
           </section>
         </>}
         <CampaignLinkBuilder />
-        <footer className="analytics-footnote"><p>Daily visitor estimates use a rotating network/browser hash held only in server memory. Shared networks, browser changes and restarts affect accuracy. Visitor days are not unique people across the whole period.</p><p>Counts are best effort, update about once a minute, and may lose unflushed activity on a crash. Attribution lasts up to 30 minutes in the same browser tab. Existing takes can contribute actions until midnight UTC. Bots, opted-out browsers, Do Not Track and Global Privacy Control requests are excluded. This browser is excluded when you open the owner report.</p></footer>
+        <footer className="analytics-footnote"><p>Daily visitor estimates use a rotating network/browser hash held only in server memory. Shared networks, browser changes and restarts affect accuracy. Visitor days are not unique people across the whole period.</p><p>Counts are best effort, update about once a minute, and may lose unflushed activity on a crash. Attribution lasts up to 30 minutes; email sign-in can carry it to a new tab in the same browser. Existing takes can contribute actions until midnight UTC. Bots, opted-out browsers, Do Not Track and Global Privacy Control requests are excluded. This browser is excluded when you open the owner report.</p></footer>
       </>}
     </div>
   </main>

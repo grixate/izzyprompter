@@ -42,7 +42,9 @@ Earlier unmeasured visits cannot be reconstructed.
   from creation and held in tab-scoped session storage. Internal navigation
   preserves the original campaign and entry. A different tagged campaign/post
   starts a new visit. New tabs, cleared storage, restarts, expiry and UTC midnight
-  can start another visit. This is a fixed window, not a rolling inactivity timer.
+  can start another visit. An email sign-in initiated in the same browser carries
+  the current visit into its login tab through a local-storage handoff, valid
+  up to 15 minutes within the original 30-minute window and removed when read. This is a fixed window, not a rolling inactivity timer.
 - **Visitor days:** the sum of daily visitor estimates, **not period-unique
   people**. An in-memory, daily salted HMAC of the trusted client address plus
   bounded user-agent estimates unique daily browsers. Raw addresses and agents
@@ -58,8 +60,9 @@ Earlier unmeasured visits cannot be reconstructed.
   in any order, and are not a strictly sequential funnel. A take attributed
   during the 30-minute window may contribute actions until UTC midnight.
 - **Signed in:** successful email sign-in in the tracked tab, including returning
-  customers; **not new registrations**. A link opened in a different tab/browser
-  may lack attribution. Google callbacks are not included in this goal.
+  customers; **not new registrations**. The email-tab handoff preserves the
+  originating post in the same browser; another browser or unavailable local
+  storage may lack attribution. Google callbacks are not included in this goal.
 - **Checkout opened:** a successful checkout response, once per visit. Resuming
   an older checkout does not rewrite that checkout's original campaign.
 - **Payments:** campaign labels and visit date are attached when a new checkout
@@ -79,8 +82,8 @@ live action recording is an asynchronous cast.
 
 Only UTC day, bounded campaign/source/entry labels, allowlisted event and count
 are stored in `campaign_metrics`. It contains no visitor/account/session IDs,
-scripts, full URLs, referrer URLs, pairing or sign-in credentials. Token and
-campaign context stay in memory; campaign labels also accompany checkout records
+scripts, full URLs, referrer URLs, pairing or sign-in credentials. Visit state stays in server memory; the browser token uses session storage and
+a short-lived local-storage email handoff; campaign labels also accompany checkout records
 under existing commerce retention. The tab token does not authorize user data,
 pairing or account actions.
 

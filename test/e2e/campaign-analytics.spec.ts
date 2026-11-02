@@ -2,7 +2,10 @@ import { test, expect } from '@playwright/test'
 import { randomUUID } from 'node:crypto'
 import { createServer, request as proxyRequest } from 'node:http'
 
-test('collection honors staging HTTP Basic authentication without introducing a new cookie', async ({ browser }) => {
+test('collection honors staging HTTP Basic authentication without introducing a new cookie', async ({ playwright, browserName }) => {
+  // HTTP authentication changes WebKit's network-session state. Keep this real
+  // challenge/proxy probe out of the browser reused by the rest of the suite.
+  const browser = await playwright[browserName].launch()
   const username = randomUUID(), password = randomUUID()
   const authorization = `Basic ${Buffer.from(`${username}:${password}`).toString('base64')}`
   let measured = false
@@ -19,7 +22,7 @@ test('collection honors staging HTTP Basic authentication without introducing a 
       headers: { ...req.headers, host: '127.0.0.1:4173' } }, response => {
       res.writeHead(response.statusCode ?? 502, response.headers); response.pipe(res)
     })
-    upstream.on('error', () => { res.writeHead(502); res.end() })
+    upstream.on('error', () => { if (!res.headersSent && !res.destroyed) res.writeHead(502); res.end() })
     req.pipe(upstream)
   })
   await new Promise<void>(resolve => server.listen(0, '127.0.0.1', resolve))
@@ -36,6 +39,7 @@ test('collection honors staging HTTP Basic authentication without introducing a 
     await context.close()
     server.closeAllConnections()
     await new Promise<void>(resolve => server.close(() => resolve()))
+    await browser.close()
   }
 })
 

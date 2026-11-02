@@ -244,13 +244,14 @@ defmodule Teleprompter.CampaignAnalytics do
     result =
       Repo.transaction(
         fn ->
-          for row <- rows do
-            Repo.insert_all("campaign_metrics", [row],
-              conflict_target: @columns,
-              on_conflict: [inc: [count: row.count]],
-              timeout: 1_000
-            )
-          end
+          Repo.insert_all("campaign_metrics", rows,
+            conflict_target: @columns,
+            on_conflict:
+              from(m in "campaign_metrics",
+                update: [set: [count: fragment("? + EXCLUDED.count", m.count)]]
+              ),
+            timeout: 2_000
+          )
 
           Repo.delete_all(
             from(m in "campaign_metrics", where: m.day < ^Date.add(state.day, -365))
@@ -271,17 +272,43 @@ defmodule Teleprompter.CampaignAnalytics do
       Repo.all(
         from(m in "campaign_metrics",
           where: m.day >= ^cutoff,
+          group_by: [m.day, m.event],
           order_by: [asc: m.day],
-          select: map(m, [:day, :source, :medium, :campaign, :content, :entry, :event, :count])
+          select: %{day: m.day, event: m.event, count: sum(m.count)}
         )
       )
 
+    # Bound report memory even if many different posts accumulate over the year.
     campaigns =
-      rows
-      |> Enum.reject(&(&1.event == "site_visitors"))
-      |> Enum.group_by(&Map.take(&1, [:source, :medium, :campaign, :content, :entry]))
-      |> Enum.map(fn {dimensions, events} -> Map.merge(dimensions, %{counts: totals(events)}) end)
-      |> Enum.sort_by(&(-Map.get(&1.counts, "visits", 0)))
+      Repo.all(
+        from(m in "campaign_metrics",
+          where: m.day >= ^cutoff and m.event != "site_visitors",
+          group_by: [m.source, m.medium, m.campaign, m.content, m.entry],
+          order_by: [desc: filter(sum(m.count), m.event == "visits")],
+          limit: 250,
+          select: %{
+            source: m.source,
+            medium: m.medium,
+            campaign: m.campaign,
+            content: m.content,
+            entry: m.entry,
+            counts: %{
+              "visitors" => filter(sum(m.count), m.event == "visitors"),
+              "visits" => filter(sum(m.count), m.event == "visits"),
+              "page_views" => filter(sum(m.count), m.event == "page_views"),
+              "start_clicked" => filter(sum(m.count), m.event == "start_clicked"),
+              "session_created" => filter(sum(m.count), m.event == "session_created"),
+              "remote_connected" => filter(sum(m.count), m.event == "remote_connected"),
+              "playback_started" => filter(sum(m.count), m.event == "playback_started"),
+              "signed_in" => filter(sum(m.count), m.event == "signed_in"),
+              "checkout_started" => filter(sum(m.count), m.event == "checkout_started")
+            }
+          }
+        )
+      )
+      |> Enum.map(fn row ->
+        %{row | counts: Map.new(row.counts, fn {event, count} -> {event, count || 0} end)}
+      end)
 
     payments =
       Repo.all(

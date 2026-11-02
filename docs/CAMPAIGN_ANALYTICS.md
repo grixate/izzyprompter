@@ -12,7 +12,8 @@ requests cannot read the report API. Report responses are `no-store`; the public
 HTML shell contains no report data. Opening the authenticated owner report
 excludes that browser from future collection.
 
-The report compares UTC windows of today, 7, 30 or 90 days and includes a post-link
+The report compares UTC windows of today, 7, 30 or 90 days, shows the top 250
+campaign/source/entry combinations by visits, and includes a post-link
 builder. Use a different `utm_content` for every post, keeping `utm_campaign`
 the same for the overall campaign. For example:
 

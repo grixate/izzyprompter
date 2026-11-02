@@ -17,12 +17,17 @@ Teleprompter.Release.commerce(fn ->
     File.rm!(path)
     IO.puts("Synthetic campaign account removed.")
   else
-    if File.exists?(path) or Repo.get_by(Accounts.User, email: email), do: raise("Clean up the prior synthetic campaign fixture first")
+    if File.exists?(path) or Repo.get_by(Accounts.User, email: email),
+      do: raise("Clean up the prior synthetic campaign fixture first")
+
     true = email in Application.get_env(:teleprompter, :analytics_admin_emails, [])
     user = Repo.insert!(%Accounts.User{email: email})
     data = %{id: user.id, email: email, token: Accounts.issue_token(user.id, "login", 900)}
     File.write!(path, Jason.encode!(data))
     File.chmod!(path, 0o600)
-    IO.puts("Synthetic campaign account created; credential retained in protected temporary storage.")
+
+    IO.puts(
+      "Synthetic campaign account created; credential retained in protected temporary storage."
+    )
   end
 end)

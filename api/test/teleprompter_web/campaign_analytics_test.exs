@@ -68,6 +68,16 @@ defmodule TeleprompterWeb.CampaignAnalyticsTest do
     assert totals["start_clicked"] == 1
     assert :ok = CampaignAnalytics.flush()
     assert CampaignAnalytics.report().totals == totals
+
+    assert {:ok, ^token} =
+             CampaignAnalytics.visit(
+               Map.put(@labels, "token", token),
+               {192, 0, 2, 1},
+               "Synthetic browser"
+             )
+
+    assert report().totals["page_views"] == 3
+    assert CampaignAnalytics.report().totals["visits"] == 1
   end
 
   test "daily site estimates deduplicate a visitor across separate campaigns" do
@@ -177,6 +187,15 @@ defmodule TeleprompterWeb.CampaignAnalyticsTest do
     assert totals["start_clicked"] == 1
     refute totals["playback_started"]
     refute totals["purchase_paid"]
+  end
+
+  test "the collector enforces its body budget before accepting an oversized payload" do
+    assert_error_sent 413, fn ->
+      build_conn()
+      |> put_req_header("content-type", "application/json")
+      |> put_req_header("origin", Accounts.origin())
+      |> post("/api/analytics/visit", Jason.encode!(%{source: String.duplicate("x", 3000)}))
+    end
   end
 
   test "real take creation, authenticated remote joins and playback retain the original campaign" do

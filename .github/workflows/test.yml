@@ -16,7 +16,7 @@ concurrency:
 jobs:
   test:
     runs-on: ubuntu-latest
-    timeout-minutes: 40
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -137,8 +137,8 @@ jobs:
 
   accounts:
     runs-on: ubuntu-latest
-    # Full PostgreSQL/browser matrix plus restore after variable apt mirror latency.
-    timeout-minutes: 50
+    # Full PostgreSQL/browser matrix and restore, including slow Linux WebKit rendering.
+    timeout-minutes: 70
     services:
       postgres:
         image: postgres:16

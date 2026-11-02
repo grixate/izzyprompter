@@ -11,7 +11,8 @@ const collection=ids.map(id=>skins.find(skin=>skin.id===id)!)
 test.use({trace:'off',screenshot:'off'})
 
 test('curated control banks keep real phrase navigation, live editing and touch geometry',async({page:editor,browser,browserName},info)=>{
-  test.setTimeout(30_000 + collection.length * 15_000)
+  // Linux WebKit completed only 10–11 of 14 skins inside the old four-minute budget.
+  test.setTimeout(30_000 + collection.length * (browserName === 'webkit' ? 30_000 : 15_000))
   const phones=await browser.newContext(phoneOptions(browserName))
   const displays=await browser.newContext()
   await phones.addInitScript(key=>localStorage.setItem(key,'groove'),skinStorageKey)

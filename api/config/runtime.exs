@@ -1,6 +1,12 @@
 import Config
 
 config :teleprompter,
+  campaign_analytics_enabled: System.get_env("CAMPAIGN_ANALYTICS_ENABLED") == "true",
+  analytics_admin_emails:
+    System.get_env("ANALYTICS_ADMIN_EMAILS", "")
+    |> String.downcase()
+    |> String.split(",", trim: true)
+    |> Enum.map(&String.trim/1),
   product_metrics_enabled: System.get_env("PRODUCT_METRICS_ENABLED") == "true",
   feedback_enabled: System.get_env("FEEDBACK_ENABLED") == "true"
 

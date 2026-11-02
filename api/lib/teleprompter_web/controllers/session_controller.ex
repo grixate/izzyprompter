@@ -17,6 +17,11 @@ defmodule TeleprompterWeb.SessionController do
            Sessions.create_owned(content, speed, user, params["settings"])
          ) do
       {:ok, session} ->
+        Teleprompter.Sessions.attribute(
+          session.session_id,
+          List.first(get_req_header(conn, "x-izzy-visit"))
+        )
+
         conn |> put_status(:created) |> json(session)
 
       {:error, :invalid_session} ->

@@ -10,6 +10,7 @@ defmodule TeleprompterWeb.AccountController do
 
     json(conn, %{
       enabled: Accounts.enabled?(),
+      analytics_admin: Teleprompter.CampaignAnalytics.admin?(user),
       feedback_enabled:
         Accounts.enabled?() and Application.get_env(:teleprompter, :feedback_enabled, false),
       csrf_token: Plug.CSRFProtection.get_csrf_token(),
@@ -35,6 +36,11 @@ defmodule TeleprompterWeb.AccountController do
     if Accounts.enabled?() do
       case Accounts.consume_login(token) do
         {:ok, {_user, raw}} ->
+          Teleprompter.CampaignAnalytics.record_token(
+            List.first(get_req_header(conn, "x-izzy-visit")),
+            "signed_in"
+          )
+
           conn = signed_in(conn, raw)
           json(conn, %{signed_in: true, csrf_token: Plug.CSRFProtection.get_csrf_token()})
 

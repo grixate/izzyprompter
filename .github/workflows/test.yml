@@ -15,8 +15,8 @@ concurrency:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
-    timeout-minutes: 40
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -68,7 +68,7 @@ jobs:
 
   container:
     needs: test
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
@@ -136,9 +136,10 @@ jobs:
           if-no-files-found: error
 
   accounts:
-    runs-on: ubuntu-latest
-    # Full PostgreSQL/browser matrix plus restore after variable apt mirror latency.
-    timeout-minutes: 50
+    # Keep PostgreSQL 16 tooling stable across ubuntu-latest OS migrations.
+    runs-on: ubuntu-24.04
+    # Full PostgreSQL/browser matrix and restore, including slow Linux WebKit rendering.
+    timeout-minutes: 70
     services:
       postgres:
         image: postgres:16
@@ -184,15 +185,15 @@ jobs:
                       changed += 1
           print(f'Ubuntu archive mirror sources updated: {changed}')
           PYTHON
-      - run: npx playwright install --with-deps chromium firefox webkit
-      - run: npm run test:browsers
-        env:
-          FEEDBACK_ENABLED: 'true'
       - run: sudo apt-get update && sudo apt-get install -y postgresql-client-16
       - run: npm run test:restore
         env:
           IZZY_RESTORE_PG_URL: postgresql://izzy:disposable-ci-password@127.0.0.1:5432/postgres
           IZZY_PG_BIN: /usr/lib/postgresql/16/bin
+      - run: npx playwright install --with-deps chromium firefox webkit
+      - run: npm run test:browsers
+        env:
+          FEEDBACK_ENABLED: 'true'
       - uses: actions/upload-artifact@v4
         if: failure()
         with:

@@ -32,6 +32,7 @@ defmodule TeleprompterWeb.Router do
     post "/logout", AccountController, :logout
     post "/channel-ticket", AccountController, :ticket
     post "/feedback", FeedbackController, :create
+    get "/analytics", AnalyticsController, :report
     get "/scripts", LibraryController, :index
     post "/scripts", LibraryController, :create
     get "/scripts/:id", LibraryController, :show
@@ -81,6 +82,8 @@ defmodule TeleprompterWeb.Router do
     get "/product", ProductController, :show
     post "/sessions/:id/appearance", ProductController, :appearance
     post "/sessions", SessionController, :create
+    post "/analytics/visit", AnalyticsController, :visit
+    post "/analytics/event", AnalyticsController, :event
   end
 
   # Deliberately not a catch-all: missing API routes and asset requests must
@@ -99,6 +102,7 @@ defmodule TeleprompterWeb.Router do
     get "/display/:session_id", AppController, :show
     get "/remote/:session_id", AppController, :show
     get "/account", AppController, :show
+    get "/analytics", AppController, :show
     get "/account/login", AppController, :show
     get "/account/scripts/:id", AppController, :show
   end

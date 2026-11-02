@@ -62,7 +62,7 @@ export function AccountPage() {
   return <main className="start-page workbench-page account-page">
     <header className="start-header">
       <a href="/" aria-label="IZZY home"><BrandLogo /></a>
-      <nav aria-label="Account navigation">{status?.user ? <><a href="/account" aria-current={scriptId ? undefined : 'page'}>My scripts</a><button onClick={() => void logout()}>Log out</button></> : <a href="/">Back to prompter</a>}</nav>
+      <nav aria-label="Account navigation">{status?.user ? <><a href="/account" aria-current={scriptId ? undefined : 'page'}>My scripts</a>{status.analytics_admin && <a href="/analytics">Campaigns</a>}<button onClick={() => void logout()}>Log out</button></> : <a href="/">Back to prompter</a>}</nav>
     </header>
     {notice && <p className="account-notice" role="status">{notice}</p>}
     {loading ? <p className="account-loading">Opening your workspace…</p> : !status?.user || token ? <section className="account-login">

@@ -22,6 +22,7 @@ defmodule Teleprompter.Commerce.Attempt do
     field(:environment, :string)
     field(:review_reason, :string)
     field(:offer_id, :string)
+    field(:acquisition, :map, redact: true)
     field(:check_attempts, :integer, default: 0)
     field(:next_check_at, :utc_datetime_usec)
     field(:check_lease_until, :utc_datetime_usec)

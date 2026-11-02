@@ -32,6 +32,18 @@ defmodule TeleprompterWeb.CreationGuard do
     end
   end
 
+  def call(%{method: "POST", path_info: ["api", "analytics", action]} = conn, _)
+      when action in ["visit", "event"] do
+    case Teleprompter.CreationGate.admit(
+           Teleprompter.ClientPeer.address(conn),
+           Teleprompter.AnalyticsGate
+         ) do
+      :ok -> conn
+      {:error, :rate_limited, seconds} -> refuse(conn, 429, "rate_limited", seconds)
+      _ -> refuse(conn, 503, "analytics_unavailable", 1)
+    end
+  end
+
   def call(conn, _), do: conn
 
   defp refuse(conn, status, reason, retry) do

@@ -45,7 +45,7 @@ defmodule Teleprompter.MixProject do
       {:postgrex, "~> 0.22.0"},
       {:swoosh, "~> 1.29.0"},
       {:gen_smtp, "~> 1.3"},
-      {:assent, "~> 0.3.1"},
+      {:assent, "~> 0.3.2"},
       {:req, "~> 0.6.3"}
     ]
   end

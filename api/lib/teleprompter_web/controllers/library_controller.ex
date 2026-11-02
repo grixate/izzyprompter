@@ -65,17 +65,28 @@ defmodule TeleprompterWeb.LibraryController do
   def delete_preset(conn, %{"id" => id}),
     do: respond(conn, Library.delete_preset(conn.assigns.current_user, id))
 
-  def start_session(conn, %{"id" => id} = params),
-    do:
-      respond(
-        conn,
-        Teleprompter.Sessions.create_saved(
-          conn.assigns.current_user,
-          id,
-          params["preset_id"],
-          params["speed"]
-        )
+  def start_session(conn, %{"id" => id} = params) do
+    result =
+      Teleprompter.Sessions.create_saved(
+        conn.assigns.current_user,
+        id,
+        params["preset_id"],
+        params["speed"]
       )
+
+    case result do
+      {:ok, session} ->
+        Teleprompter.Sessions.attribute(
+          session.session_id,
+          List.first(get_req_header(conn, "x-izzy-visit"))
+        )
+
+      _ ->
+        :ok
+    end
+
+    respond(conn, result)
+  end
 
   def end_session(conn, %{"id" => id}) do
     case Teleprompter.SavedSessions.lookup(id) do

@@ -1,8 +1,9 @@
 import type { IzzyDocumentV1 } from '../domain/document'
 import type { PromptSettingsV1 } from '../domain/storage'
+import { analyticsHeaders, rememberCampaignForLogin } from '../product/acquisition'
 
 export type Account = { id: string; email: string; pro: boolean }
-export type AccountStatus = { enabled: boolean; google_enabled: boolean; feedback_enabled?: boolean; csrf_token: string; user: Account | null }
+export type AccountStatus = { enabled: boolean; google_enabled: boolean; feedback_enabled?: boolean; analytics_admin?: boolean; csrf_token: string; user: Account | null }
 export type ProjectFolder = { id: string; name: string; script_count: number }
 export type SavedScript = { folder_id: string | null; id: string; title: string; document: IzzyDocumentV1; revision: number; deleted_at: string | null; updated_at: string; superseded_by?: SavedScript }
 export type ScriptSummary = Omit<SavedScript, 'document' | 'superseded_by'> & { excerpt: string | null }
@@ -32,11 +33,12 @@ export async function accountApi<T>(route = '', method = 'GET', body?: unknown, 
   }
 }
 async function request<T>(route: string, method: string, body?: unknown, expectedAccountId?: string): Promise<T> {
+  if (route === '/login-link' && method === 'POST') rememberCampaignForLogin()
   const controller = new AbortController()
   const timer = window.setTimeout(() => controller.abort(), 12_000)
   try {
     const response = await fetch(`/api/account${route}`, { method, credentials: 'same-origin', signal: controller.signal,
-      headers: { Accept: 'application/json', ...(body === undefined ? {} : { 'Content-Type': 'application/json' }),
+      headers: { Accept: 'application/json', ...analyticsHeaders(), ...(body === undefined ? {} : { 'Content-Type': 'application/json' }),
         ...(method === 'GET' ? {} : { 'x-csrf-token': csrfToken,
           ...(expectedAccountId ? { 'x-izzy-account-id': expectedAccountId } : {}) }) },
       body: body === undefined ? undefined : JSON.stringify(body) })

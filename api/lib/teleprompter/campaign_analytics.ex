@@ -274,7 +274,7 @@ defmodule Teleprompter.CampaignAnalytics do
           where: m.day >= ^cutoff,
           group_by: [m.day, m.event],
           order_by: [asc: m.day],
-          select: %{day: m.day, event: m.event, count: sum(m.count)}
+          select: %{day: m.day, event: m.event, count: type(sum(m.count), :integer)}
         )
       )
 
@@ -284,7 +284,7 @@ defmodule Teleprompter.CampaignAnalytics do
         from(m in "campaign_metrics",
           where: m.day >= ^cutoff and m.event != "site_visitors",
           group_by: [m.source, m.medium, m.campaign, m.content, m.entry],
-          order_by: [desc: filter(sum(m.count), m.event == "visits")],
+          order_by: [desc: type(filter(sum(m.count), m.event == "visits"), :integer)],
           limit: 250,
           select: %{
             source: m.source,
@@ -293,15 +293,19 @@ defmodule Teleprompter.CampaignAnalytics do
             content: m.content,
             entry: m.entry,
             counts: %{
-              "visitors" => filter(sum(m.count), m.event == "visitors"),
-              "visits" => filter(sum(m.count), m.event == "visits"),
-              "page_views" => filter(sum(m.count), m.event == "page_views"),
-              "start_clicked" => filter(sum(m.count), m.event == "start_clicked"),
-              "session_created" => filter(sum(m.count), m.event == "session_created"),
-              "remote_connected" => filter(sum(m.count), m.event == "remote_connected"),
-              "playback_started" => filter(sum(m.count), m.event == "playback_started"),
-              "signed_in" => filter(sum(m.count), m.event == "signed_in"),
-              "checkout_started" => filter(sum(m.count), m.event == "checkout_started")
+              "visitors" => type(filter(sum(m.count), m.event == "visitors"), :integer),
+              "visits" => type(filter(sum(m.count), m.event == "visits"), :integer),
+              "page_views" => type(filter(sum(m.count), m.event == "page_views"), :integer),
+              "start_clicked" => type(filter(sum(m.count), m.event == "start_clicked"), :integer),
+              "session_created" =>
+                type(filter(sum(m.count), m.event == "session_created"), :integer),
+              "remote_connected" =>
+                type(filter(sum(m.count), m.event == "remote_connected"), :integer),
+              "playback_started" =>
+                type(filter(sum(m.count), m.event == "playback_started"), :integer),
+              "signed_in" => type(filter(sum(m.count), m.event == "signed_in"), :integer),
+              "checkout_started" =>
+                type(filter(sum(m.count), m.event == "checkout_started"), :integer)
             }
           }
         )

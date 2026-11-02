@@ -37,10 +37,19 @@ defmodule TeleprompterWeb.CommerceController do
            conn.assigns.current_user,
            provider,
            currency,
-           params["confirm_switch"] == true
+           params["confirm_switch"] == true,
+           List.first(get_req_header(conn, "x-izzy-visit"))
          ) do
-      {:ok, result} -> json(conn, result)
-      {:error, reason} -> TeleprompterWeb.AccountController.error(conn, reason)
+      {:ok, result} ->
+        Teleprompter.CampaignAnalytics.record_token(
+          List.first(get_req_header(conn, "x-izzy-visit")),
+          "checkout_started"
+        )
+
+        json(conn, result)
+
+      {:error, reason} ->
+        TeleprompterWeb.AccountController.error(conn, reason)
     end
   end
 

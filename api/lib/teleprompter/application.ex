@@ -12,10 +12,14 @@ defmodule Teleprompter.Application do
 
     product_workers =
       if Application.get_env(:teleprompter, :accounts_enabled) do
-        if(Application.get_env(:teleprompter, :feedback_enabled, false),
-          do: [Teleprompter.FeedbackMaintenance],
+        if(Application.get_env(:teleprompter, :campaign_analytics_enabled, false),
+          do: [Teleprompter.CampaignAnalytics],
           else: []
         ) ++
+          if(Application.get_env(:teleprompter, :feedback_enabled, false),
+            do: [Teleprompter.FeedbackMaintenance],
+            else: []
+          ) ++
           if(Application.get_env(:teleprompter, :product_metrics_enabled, false),
             do: [Teleprompter.Metrics],
             else: []
@@ -64,6 +68,12 @@ defmodule Teleprompter.Application do
              name: Teleprompter.CheckoutGate,
              limits: [per_peer: 6, total: 100, max_peers: 1024, window_ms: 60_000]},
             id: Teleprompter.CheckoutGate
+          ),
+          Supervisor.child_spec(
+            {Teleprompter.CreationGate,
+             name: Teleprompter.AnalyticsGate,
+             limits: [per_peer: 120, total: 1200, max_peers: 2048, window_ms: 60_000]},
+            id: Teleprompter.AnalyticsGate
           ),
           # Start to serve requests, typically the last entry
           TeleprompterWeb.Endpoint

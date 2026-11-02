@@ -50,6 +50,7 @@ defmodule Teleprompter.Sessions.Session do
        preference_task: nil,
        preference_refresh: false,
        remote_counted: false,
+       acquisition: nil,
        playback_counted: false,
        pending_save: nil,
        epoch: Base.url_encode64(:crypto.strong_rand_bytes(16), padding: false),
@@ -78,6 +79,13 @@ defmodule Teleprompter.Sessions.Session do
   def handle_call(:snapshot, _from, state) do
     {:reply, {:ok, snapshot(state)}, state, @idle_timeout}
   end
+
+  def handle_call({:acquisition, context}, _from, %{acquisition: nil} = state) do
+    Teleprompter.CampaignAnalytics.record(context, "session_created")
+    {:reply, :ok, %{state | acquisition: context}, @idle_timeout}
+  end
+
+  def handle_call({:acquisition, _}, _from, state), do: {:reply, :ok, state, @idle_timeout}
 
   def handle_call({:appearance_owner, token}, _from, state) do
     valid =
@@ -172,6 +180,9 @@ defmodule Teleprompter.Sessions.Session do
 
         if role == "remote" and not state.remote_counted,
           do: Teleprompter.Metrics.record("remote_connected")
+
+        if role == "remote" and not state.remote_counted,
+          do: Teleprompter.CampaignAnalytics.record(state.acquisition, "remote_connected")
 
         next = %{next | remote_counted: next.remote_counted or role == "remote"}
 
@@ -558,6 +569,9 @@ defmodule Teleprompter.Sessions.Session do
 
       if command == :play and not state.playback_counted,
         do: Teleprompter.Metrics.record("playback_started")
+
+      if command == :play and not state.playback_counted,
+        do: Teleprompter.CampaignAnalytics.record(state.acquisition, "playback_started")
 
       next = %{next | playback_counted: next.playback_counted or command == :play}
       {:reply, {:ok, snapshot(next)}, next, @idle_timeout}

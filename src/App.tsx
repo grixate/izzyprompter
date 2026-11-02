@@ -9,6 +9,7 @@ import { legalDocument } from './legal/siteDetails'
 const LegalPage = lazy(() => import('./pages/LegalPage').then(module => ({ default: module.LegalPage })))
 const ProPage = lazy(() => import('./pages/ProPage').then(module => ({ default: module.ProPage })))
 const SkinsPage = lazy(() => import('./pages/SkinsPage').then(module => ({ default: module.SkinsPage })))
+const AnalyticsPage = lazy(() => import('./pages/AnalyticsPage').then(module => ({ default: module.AnalyticsPage })))
 
 // An isolated design workbench, excluded from the hosted production build.
 const JogLabPage = import.meta.env.DEV ? lazy(() => import('./pages/JogLabPage')) : null
@@ -19,6 +20,8 @@ function App() {
   const parts = window.location.pathname.split('/').filter(Boolean)
   const [surface, rawSessionId] = parts
   const sessionId = rawSessionId?.toUpperCase() ?? null
+
+  if (surface === 'analytics') return <AccountProvider><Suspense fallback={<main>Opening private report…</main>}><AnalyticsPage /></Suspense></AccountProvider>
 
   if (legalDocument(window.location.pathname)) return <Suspense fallback={<main>Opening document…</main>}><LegalPage /></Suspense>
 

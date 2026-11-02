@@ -31,6 +31,7 @@ import { useAccount } from '../account/AccountProvider'
 import { PublicNav, PublicFooter, ModeSwitch } from '../components/PublicNav'
 import { HomeStory } from '../components/HomeStory'
 import { track } from '../product/events'
+import { analyticsHeaders } from '../product/acquisition'
 
 export function StartPage() {
   const { status: accountStatus } = useAccount()
@@ -207,7 +208,7 @@ export function StartPage() {
     const timeout = window.setTimeout(() => controller.abort(), 10_000)
     try {
       const response = await fetch('/api/sessions', {
-        method: 'POST', headers: { 'Content-Type': 'application/json' }, signal: controller.signal,
+        method: 'POST', headers: { 'Content-Type': 'application/json', ...analyticsHeaders() }, signal: controller.signal,
         body: JSON.stringify({ protocol_version: 2, content: normalizedContent, speed: loadWorkspaceStorage().settings.speed, settings: loadWorkspaceStorage().settings }),
       })
       // Reverse proxies can return HTML for 413/429. Status-based recovery

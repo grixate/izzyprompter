@@ -155,6 +155,13 @@ defmodule Teleprompter.Sessions do
 
   def snapshot(id), do: call(id, :snapshot)
 
+  def attribute(id, token) do
+    case Teleprompter.CampaignAnalytics.context(token) do
+      context when is_map(context) -> call(id, {:acquisition, context})
+      _ -> :ok
+    end
+  end
+
   def activity do
     Registry.select(Teleprompter.Sessions.Registry, [{{:"$1", :_, :_}, [], [:"$1"]}])
     |> Enum.reduce(%{sessions: 0, playing: 0, connected_devices: 0, editing: 0}, fn id, counts ->

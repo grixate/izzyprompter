@@ -3,6 +3,9 @@ defmodule TeleprompterWeb.LimitedBody do
   def read_body(conn, options) do
     limit =
       case conn.path_info do
+        ["api", "analytics" | _] ->
+          2048
+
         ["api", "payments" | _] ->
           64 * 1024
 

@@ -49,7 +49,10 @@ defmodule Teleprompter.Commerce do
       )
       |> Enum.map(&serialize/1)
 
-  def checkout(user, provider, currency, confirm_switch \\ false) do
+  def checkout(user, provider, currency, confirm_switch \\ false, campaign_token \\ nil) do
+    acquisition = Teleprompter.CampaignAnalytics.context(campaign_token)
+    acquisition = if acquisition, do: Map.delete(acquisition, "id")
+
     if (Provider.enabled?(provider, currency) and Provider.module(provider)) &&
          Map.has_key?(prices(), currency) do
       result =
@@ -96,7 +99,8 @@ defmodule Teleprompter.Commerce do
                   currency: currency,
                   amount_minor: prices()[currency],
                   environment: Provider.environment(provider),
-                  offer_id: Provider.config(provider)[:offer_id]
+                  offer_id: Provider.config(provider)[:offer_id],
+                  acquisition: acquisition
                 })
 
               if attempts != [],

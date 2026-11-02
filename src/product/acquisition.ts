@@ -53,7 +53,7 @@ export function initializeAnalytics() {
     if (saved && tagged && ['source', 'medium', 'campaign', 'content'].every(k => labels[k as keyof Labels] === saved.labels[k as keyof Labels])) labels.entry = saved.labels.entry
     const controller = new AbortController()
     const timer = window.setTimeout(() => controller.abort(), 2000)
-    ready = fetch('/api/analytics/visit', { method: 'POST', credentials: 'omit', signal: controller.signal,
+    ready = fetch('/api/analytics/visit', { method: 'POST', credentials: 'same-origin', signal: controller.signal,
       headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ...labels, token: saved?.token }) })
       .then(async response => {
         if (!response.ok || response.status === 204) return
@@ -75,7 +75,7 @@ export function measureStart() {
   if (analyticsExcluded()) return
   void (ready ?? Promise.resolve()).then(() => {
     const token = analyticsHeaders()['x-izzy-visit']
-    if (token) void fetch('/api/analytics/event', { method: 'POST', credentials: 'omit', keepalive: true,
+    if (token) void fetch('/api/analytics/event', { method: 'POST', credentials: 'same-origin', keepalive: true,
       headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ token, event: 'start_clicked' }) }).catch(() => {})
   })
 }

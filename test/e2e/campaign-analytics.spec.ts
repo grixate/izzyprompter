@@ -1,4 +1,43 @@
 import { test, expect } from '@playwright/test'
+import { randomUUID } from 'node:crypto'
+import { createServer, request as proxyRequest } from 'node:http'
+
+test('collection honors staging HTTP Basic authentication without introducing a new cookie', async ({ browser }) => {
+  const username = randomUUID(), password = randomUUID()
+  const authorization = `Basic ${Buffer.from(`${username}:${password}`).toString('base64')}`
+  let measured = false
+  const server = createServer((req, res) => {
+    if (req.headers.authorization !== authorization) {
+      res.writeHead(401, { 'WWW-Authenticate': 'Basic realm="Synthetic staging"' }); res.end(); return
+    }
+    if (req.url === '/api/analytics/visit') {
+      measured = true
+      res.writeHead(200, { 'Content-Type': 'application/json' })
+      res.end(JSON.stringify({ token: 'synthetic-basic-visit', expires_in: 1800 })); return
+    }
+    const upstream = proxyRequest(`http://127.0.0.1:4173${req.url}`, { method: req.method,
+      headers: { ...req.headers, host: '127.0.0.1:4173' } }, response => {
+      res.writeHead(response.statusCode ?? 502, response.headers); response.pipe(res)
+    })
+    upstream.on('error', () => { res.writeHead(502); res.end() })
+    req.pipe(upstream)
+  })
+  await new Promise<void>(resolve => server.listen(0, '127.0.0.1', resolve))
+  const address = server.address() as { port: number }
+  const context = await browser.newContext({ httpCredentials: { username, password } })
+  try {
+    await context.addInitScript(() => Object.defineProperty(navigator, 'webdriver', { get: () => false }))
+    const page = await context.newPage()
+    await page.goto(`http://127.0.0.1:${address.port}/`)
+    await expect.poll(() => page.evaluate(() => !!sessionStorage.getItem('izzy:campaign-visit:v1'))).toBe(true)
+    expect(measured).toBe(true)
+    expect((await context.cookies()).filter(cookie => /analytics|campaign/i.test(cookie.name))).toEqual([])
+  } finally {
+    await context.close()
+    server.closeAllConnections()
+    await new Promise<void>(resolve => server.close(() => resolve()))
+  }
+})
 
 test('tagged visits retain attribution across internal navigation and send no raw URL or script', async ({ page }) => {
   await page.addInitScript(() => Object.defineProperty(navigator, 'webdriver', { get: () => false }))

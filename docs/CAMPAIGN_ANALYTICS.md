@@ -12,7 +12,7 @@ requests cannot read the report API. Report responses are `no-store`; the public
 HTML shell contains no report data. Opening the authenticated owner report
 excludes that browser from future collection.
 
-The report compares UTC windows of 7, 30 or 90 days and includes a post-link
+The report compares UTC windows of today, 7, 30 or 90 days and includes a post-link
 builder. Use a different `utm_content` for every post, keeping `utm_campaign`
 the same for the overall campaign. For example:
 
@@ -146,3 +146,5 @@ Teleprompter.CampaignAnalytics.report(30)
 
 This is read-only and excludes personal data. Do not replace the existing public
 metrics with synthetic campaign totals or claim historical unique visitors.
+
+Hosted automation: `ops/releases/analytics-fixture.exs` seeds a staging-only synthetic owner (email `campaign-analytics-review@example.invalid`, configured on staging only). Its credential remains in `/app/tmp/izzy-analytics-fixture.json`; copy privately to a mode-0600 Mac file and pass that path as `IZZY_ANALYTICS_FIXTURE` to `node scripts/verify-analytics-hosted.mjs`. The script opts its synthetic browser into measurement, uses a unique tagged campaign, verifies actual paired playback and a successful email-token consume, waits for the normal flush and checks the protected report. It sends no email and never requests an invoice. Run the fixture with `IZZY_ANALYTICS_FIXTURE_CLEANUP=1` afterward; it refuses any account with commerce history. Never print the credential or a pairing URL.

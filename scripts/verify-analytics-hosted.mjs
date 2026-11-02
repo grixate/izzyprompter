@@ -14,7 +14,10 @@ const campaign = `acceptance-${Date.now().toString(36)}`
 const browser = await chromium.launch()
 const contexts = []
 try {
-  const context = await browser.newContext({ httpCredentials: { username: credentials.username, password: credentials.password } })
+  const context = await browser.newContext({
+    httpCredentials: { username: credentials.username, password: credentials.password },
+    userAgent: 'IZZY staging acceptance',
+  })
   contexts.push(context)
   // Explicit synthetic opt-in; normal automated smoke checks stay excluded.
   await context.addInitScript(() => Object.defineProperty(navigator, 'webdriver', { get: () => false }))
@@ -78,6 +81,10 @@ try {
   assert.match(await editor.getByRole('textbox', { name: 'Post link', exact: true }).inputValue(), /^https:\/\/izzyprompter.com\/\?utm_source=/)
   assert.equal(await editor.evaluate(() => localStorage.getItem('izzy:analytics:exclude')), '1')
   console.log('Staging campaign acceptance passed: tagged visit, reload deduplication, real paired playback, sign-in, private report, and post-link builder. Synthetic data only; no provider transaction or physical-device certification.')
+} catch {
+  // Playwright navigation errors can include capability fragments. Never log them.
+  console.error('Staging campaign acceptance failed. Check readiness, fixture setup and aggregate counters; credential-bearing diagnostics were suppressed.')
+  process.exitCode = 1
 } finally {
   for (const context of contexts) await context.close().catch(() => {})
   await browser.close()

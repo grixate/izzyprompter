@@ -22,6 +22,7 @@
 #root .skin-face.skin--original .readout--original .timecode {
  font:600 32px/1.05 'SFMono-Regular',Consolas,monospace;letter-spacing:-.07em;
 }
+#root .remote-instrument.skin--original .readout--original .timecode {font-size:min(32px,10cqi);}
 .skin-face .readout--original .printed-time {display:flex;gap:3px;align-items:baseline;}
 .skin-face .readout--original .printed-time::before {content:attr(data-whole);}
 .skin-face .readout--original .printed-time::after {content:'.' attr(data-fraction);font:400 13px/1 monospace;letter-spacing:0;color:#a4afa0;}

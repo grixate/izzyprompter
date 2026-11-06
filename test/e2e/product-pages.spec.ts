@@ -14,16 +14,19 @@ test('public offer, showroom and locked preview work without an account or check
   await expect(page.locator('.pro-hero .product-offer')).toContainText('$29')
   await expect(page.locator('.pro-hero')).toContainText('Purchases opening soon')
   await page.getByRole('link', { name: `Explore all ${skins.length} finishes` }).click()
-  await expect(page.locator('.skin-card')).toHaveCount(skins.length)
-  await page.getByRole('button', { name: 'Preview Orbit · Pro finish', exact: true }).click()
-  await expect(page.getByRole('dialog')).toBeVisible()
-  await expect(page.getByRole('dialog')).toContainText('Orbit')
-  await expect(page.getByRole('dialog')).toContainText('Purchases opening soon')
-  await page.keyboard.press('Escape')
-  await expect(page.getByRole('button', { name: 'Preview Orbit · Pro finish', exact: true })).toBeFocused()
-  await page.getByRole('button', { name: 'Preview Original · Free finish', exact: true }).click()
+  const library = page.getByRole('region', { name: 'Remote skin library' })
+  const picker = library.getByRole('combobox', { name: 'Choose a finish' })
+  await expect(picker.locator('option')).toHaveCount(skins.length)
+  await picker.selectOption({ label: 'Orbit · Pro' })
+  await expect(library.getByRole('heading', { name: 'Orbit', exact: true })).toBeVisible()
+  await expect(library).toContainText('Purchases opening soon')
+  await expect(page).toHaveURL(/\/skins\?skin=ivory$/)
+  await page.reload()
+  await expect(library.getByRole('group', { name: 'Orbit remote preview' })).toBeVisible()
+  await picker.selectOption({ label: 'Original · Free' })
   await page.getByRole('button', { name: 'Apply this finish', exact: true }).click()
-  await expect(page.getByRole('dialog')).toContainText('Original selected')
+  await expect(library).toContainText('Original selected')
+  await expect(page.getByRole('dialog')).toHaveCount(0)
 })
 
 test('offer changes are reflected everywhere; a failed response removes stale pricing', async ({ page }) => {
@@ -58,16 +61,19 @@ test('wheel focus stays outside the wheel; reduced motion stops previews and key
   expect(await page.locator('.preview-remote .wheel-rotor').evaluate(el => getComputedStyle(el, '::after').content)).toBe('none')
   expect(await page.locator('.preview-remote .wheel-rotor').evaluate(el => el.getAnimations().length)).toBe(0)
   await page.goto('/skins')
-  expect(await page.locator('.skin-card .wheel-rotor').evaluateAll(els => els.reduce((n, el) => n + el.getAnimations().length, 0))).toBe(0)
+  const preview = page.getByRole('group', { name: 'Original remote preview' })
+  await preview.getByRole('button', { name: 'Play', exact: true }).click()
+  expect(await preview.locator('.wheel-rotor').evaluate(el => el.getAnimations().length)).toBe(0)
 })
 
-test('visible wheels move and offscreen showroom rotors suspend', async ({ page }) => {
+test('the showroom wheel moves on play and switching finishes stops playback', async ({ page }) => {
   await page.goto('/skins')
-  const first = page.locator('.skin-card .wheel-rotor').first()
-  await expect.poll(() => first.evaluate(el => el.getAnimations().length)).toBe(1)
-  expect(await page.locator('.skin-card .wheel-rotor').last().evaluate(el => el.getAnimations().length)).toBe(0)
-  const before = await first.evaluate(el => getComputedStyle(el).transform)
-  await expect.poll(() => first.evaluate(el => getComputedStyle(el).transform)).not.toBe(before)
+  const preview = page.getByRole('group', { name: 'Original remote preview' })
+  await preview.getByRole('button', { name: 'Play', exact: true }).click()
+  await expect.poll(() => preview.locator('.wheel-rotor').evaluate(el => el.getAnimations().length)).toBe(1)
+  await page.getByRole('button', { name: 'Next finish' }).click()
+  await expect(preview).toHaveCount(0)
+  await expect(page.getByRole('group', { name: 'Orbit remote preview' }).getByRole('button', { name: 'Play', exact: true })).toBeVisible()
 })
 
 test('every finish can be applied on an entitled remote without changing its controls', async ({ page, browser }) => {
@@ -128,7 +134,7 @@ for (const width of [320, 360, 390, 430, 768, 1280, 1440]) {
     for (const path of ['/', '/pro', '/skins', '/local']) {
       await page.goto(path)
       // Public pages must also fit when the platform lacks the studio fonts.
-      await page.addStyleTag({ content: '.remote-instrument .instrument-speed strong, .offline-workspace-heading h1 { font-family: Arial, sans-serif !important; } .skin-card-meta h2 { font-family: Verdana, sans-serif !important; }' })
+      await page.addStyleTag({ content: '.remote-instrument .instrument-speed strong, .offline-workspace-heading h1 { font-family: Arial, sans-serif !important; } .skin-showroom-details h2 { font-family: Verdana, sans-serif !important; }' })
       await page.evaluate(() => document.fonts.ready)
       await expect.poll(() => page.evaluate(() => document.documentElement.scrollWidth)).toBe(width)
       const speedRails = await page.locator('.remote-instrument .instrument-speed:visible').evaluateAll(els => els.map(el => ({
@@ -263,7 +269,7 @@ test('public navigation keeps distinct destinations and hides the library entry'
   await expect(menu.getByRole('link')).toHaveCount(2)
   await menu.getByRole('link', { name: /^Izzy Pro/ }).click()
   await expect(page).toHaveURL(/\/pro$/)
-  // Hiding discovery must not remove the preserved showroom or deep links.
+  // Finish deep links open the chosen playable remote inline.
   await page.goto('/skins?skin=ivory')
-  await expect(page.getByRole('dialog')).toBeVisible()
+  await expect(page.getByRole('group', { name: 'Orbit remote preview' })).toBeVisible()
 })

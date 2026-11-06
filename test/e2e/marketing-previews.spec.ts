@@ -38,24 +38,43 @@ test('every PRO instrument operates in place without creating takes or changing 
   await expect(page.getByRole('link',{name:`Explore all ${skins.length} finishes`})).toBeVisible()
   await expect(page.locator('.pro-collection .section-heading')).toContainText(`Original is free. Pro adds ${proSkinCount} more.`)
   const storage = await page.evaluate(()=>JSON.stringify({...localStorage}))
-  const previews = page.locator('.remote-instrument[data-interactive=true]')
-  await expect(previews).toHaveCount(9)
-  for(let i=0;i<9;i++) await operate(previews.nth(i))
+  await operate(page.locator('.pro-hero-object .remote-instrument'))
+  for (const [selector, count] of [['.pro-material-section', 3], ['.pro-collection', 4]] as const) {
+    const section = page.locator(selector)
+    const preview = section.getByRole('group', { name: /remote preview$/ })
+    for (let index = 0; index < count; index++) {
+      await expect(preview).toHaveCount(1)
+      await operate(preview)
+      await section.getByRole('button', { name: 'Next finish' }).click()
+    }
+  }
+  await operate(page.locator('.pro-finale .remote-instrument'))
   if(testInfo.project.name==='chromium') await page.locator('.pro-skin-strip').screenshot({path:testInfo.outputPath('pro-working-previews-phone.png')})
   expect(writes).toEqual([])
   expect(await page.evaluate(()=>JSON.stringify({...localStorage}))).toBe(storage)
 })
 
-test('all fourteen catalog previews expose working controls, including locked Pro finishes', async ({page})=>{
+test('every catalog finish has working inline controls on a phone, including locked Pro finishes', async ({page})=>{
   test.setTimeout(180_000)
+  await page.setViewportSize({ width: 320, height: 820 })
   await page.goto('/skins?skin=original')
-  const dialog=page.getByRole('dialog')
+  const library = page.getByRole('region', { name: 'Remote skin library' })
+  const preview = library.getByRole('group', { name: /remote preview$/ })
+  const digits = library.locator('.readout--original .timecode')
+  expect(await digits.evaluate(el => el.scrollWidth - el.clientWidth)).toBeLessThanOrEqual(1)
   for(const skin of skins) {
-    await expect(dialog.getByRole('heading',{level:2})).toHaveText(skin.name)
-    await test.step(skin.name,()=>operate(dialog.locator('.remote-instrument')))
-    await dialog.getByRole('button',{name:'Next skin',exact:true}).click()
+    await expect(library.getByRole('heading',{level:2})).toHaveText(skin.name)
+    await expect(preview).toHaveCount(1)
+    await expect(preview).toHaveAccessibleName(`${skin.name} remote preview`)
+    const bounds = (await preview.boundingBox())!
+    expect(bounds.width).toBeGreaterThanOrEqual(260)
+    expect(bounds.x).toBeGreaterThanOrEqual(0)
+    expect(bounds.x + bounds.width).toBeLessThanOrEqual(320)
+    await test.step(skin.name,()=>operate(preview))
+    await library.getByRole('button',{name:'Next finish',exact:true}).click()
   }
-  await expect(dialog.getByRole('heading',{level:2})).toHaveText('Original')
+  await expect(library.getByRole('heading',{level:2})).toHaveText('Original')
+  await expect(page.getByRole('dialog')).toHaveCount(0)
 })
 
 test('both home-page finish previews have reachable controls on a phone', async ({page})=>{

@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
-import { ArrowUpRight, Check, ChevronLeft, ChevronRight } from 'lucide-react'
+import { ArrowUpRight, Check } from 'lucide-react'
 import { PublicNav, PublicFooter } from '../components/PublicNav'
 import { RemoteInstrument } from '../components/RemoteInstrument'
+import { FinishNavigation } from '../product/FinishNavigation'
 import { Offer } from '../product/ProductProvider'
 import { ProAction } from '../product/ProAction'
 import { skins, skinById, proSkinCount, type SkinId } from '../product/catalog'
@@ -18,14 +19,12 @@ function FinishShowcase({ finishes, explore = false }: { finishes: SkinId[]; exp
   const Tile = explore ? 'article' : 'figure'
 
   return <div className="pro-finish-showcase">
-    <div className="pro-finish-controls" role="group" aria-label={explore ? 'Browse collection finishes' : 'Browse featured finishes'}>
+    <FinishNavigation label={explore ? 'Browse collection finishes' : 'Browse featured finishes'} onStep={step}>
       <div className="pro-finish-status" role="status">
         <span>{index + 1} / {finishes.length}</span>
         <strong>{name}</strong>
       </div>
-      <button type="button" aria-label="Previous finish" onClick={() => step(-1)}><ChevronLeft size={20} aria-hidden="true" /></button>
-      <button type="button" aria-label="Next finish" onClick={() => step(1)}><ChevronRight size={20} aria-hidden="true" /></button>
-    </div>
+    </FinishNavigation>
     <div className={explore ? 'pro-skin-strip' : 'material-parade'}>
       {finishes.map((id, position) => {
         const finish = skinById(id)

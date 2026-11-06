@@ -80,7 +80,7 @@ test('guest and local drafts survive immediate navigation through legal links', 
   await expect(page.getByRole('textbox', { name: 'Local script text' })).toHaveValue(local)
 })
 
-test('purchase disclosures open legal documents without closing the finish dialog', async ({ page, context }) => {
+test('purchase disclosures open legal documents while preserving the selected finish', async ({ page, context }) => {
   await page.route('**/api/product', route => route.fulfill({ json: {
     id: 'lifetime_pro', currency: 'USD', price_minor: 2900, reference_price_minor: 4900,
     discount_percent: 40, launch_offer: true, checkout_available: true,
@@ -89,16 +89,14 @@ test('purchase disclosures open legal documents without closing the finish dialo
   await expect(page.locator('.lifetime-note')).toContainText('No subscription')
   await expect(page.locator('.pro-hero .purchase-terms')).toContainText('Refund Policy')
   await page.goto('/skins?skin=ivory')
-  const dialog = page.getByRole('dialog')
-  await expect(dialog).toBeVisible()
+  const library = page.getByRole('region', { name: 'Remote skin library' })
+  await expect(library.getByRole('heading', { name: 'Orbit', exact: true })).toBeVisible()
   const opened = context.waitForEvent('page')
-  await dialog.locator('.purchase-terms').getByRole('link', { name: 'Terms', exact: true }).click()
+  await library.locator('.purchase-terms').getByRole('link', { name: 'Terms', exact: true }).click()
   const policy = await opened
   await expect(policy.getByRole('heading', { name: 'Terms of Service', exact: true })).toBeVisible()
   await policy.close()
-  await expect(dialog).toBeVisible()
-  await page.keyboard.press('Escape')
-  await expect(dialog).toHaveCount(0)
+  await expect(library.getByRole('group', { name: 'Orbit remote preview' })).toBeVisible()
 })
 
 test('offline workspace explains that legal documents need an online connection', async ({ page, context }) => {

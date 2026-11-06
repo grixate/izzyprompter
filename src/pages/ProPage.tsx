@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { ArrowUpRight, Check } from 'lucide-react'
+import { ArrowUpRight, Check, ChevronLeft, ChevronRight } from 'lucide-react'
 import { PublicNav, PublicFooter } from '../components/PublicNav'
 import { RemoteInstrument } from '../components/RemoteInstrument'
 import { Offer } from '../product/ProductProvider'
@@ -8,6 +8,38 @@ import { skins, skinById, proSkinCount, type SkinId } from '../product/catalog'
 import { track } from '../product/events'
 
 const heroFinishes: SkinId[] = ['groove', 'clear', 'arcade', 'observatory', 'vector']
+const featuredFinishes: SkinId[] = ['groove', 'clear', 'arcade']
+const collectionFinishes: SkinId[] = ['field', 'signal', 'cartridge', 'observatory']
+
+function FinishShowcase({ finishes, explore = false }: { finishes: SkinId[]; explore?: boolean }) {
+  const [index, setIndex] = useState(0)
+  const name = skinById(finishes[index]).name
+  const step = (direction: number) => setIndex(current => (current + direction + finishes.length) % finishes.length)
+  const Tile = explore ? 'article' : 'figure'
+
+  return <div className="pro-finish-showcase">
+    <div className="pro-finish-controls" role="group" aria-label={explore ? 'Browse collection finishes' : 'Browse featured finishes'}>
+      <div className="pro-finish-status" role="status">
+        <span>{index + 1} / {finishes.length}</span>
+        <strong>{name}</strong>
+      </div>
+      <button type="button" aria-label="Previous finish" onClick={() => step(-1)}><ChevronLeft size={20} aria-hidden="true" /></button>
+      <button type="button" aria-label="Next finish" onClick={() => step(1)}><ChevronRight size={20} aria-hidden="true" /></button>
+    </div>
+    <div className={explore ? 'pro-skin-strip' : 'material-parade'}>
+      {finishes.map((id, position) => {
+        const finish = skinById(id)
+        return <Tile key={id} className={index === position ? 'is-current' : undefined}>
+          <RemoteInstrument skin={id} />
+          {explore
+            ? <a href={`/skins?skin=${id}`} aria-label={`Explore ${finish.name}`}><span><span className="pro-finish-explore">Explore </span>{finish.name}</span><ArrowUpRight size={16} aria-hidden="true" /></a>
+            : <figcaption>{finish.name}</figcaption>}
+        </Tile>
+      })}
+    </div>
+  </div>
+}
+
 export function ProPage() {
   const [finish, setFinish] = useState<SkinId>('groove')
   const [demoPlaying, setDemoPlaying] = useState(false)
@@ -22,11 +54,11 @@ export function ProPage() {
     </section>
     <section className="pro-material-section" id="pro-finishes">
       <div className="page-width material-heading"><h2>Find your<br /><em>finish.</em></h2></div>
-      <div className="material-parade">{(['groove', 'clear', 'arcade'] as SkinId[]).map((id, index) => <figure key={id}><RemoteInstrument skin={id} phase={index * .8} /><figcaption>{skinById(id).name}</figcaption></figure>)}</div>
+      <FinishShowcase finishes={featuredFinishes} />
     </section>
     <section className="pro-collection page-width">
       <div className="section-heading"><h2>{skins.length} finishes.<br /><em>One familiar gesture.</em></h2><p>Original is free. Pro adds {proSkinCount} more.</p></div>
-      <div className="pro-skin-strip">{(['field', 'signal', 'cartridge', 'observatory'] as SkinId[]).map((id, index) => <article key={id}><RemoteInstrument skin={id} phase={index * .7} /><a href={`/skins?skin=${id}`} aria-label={`Explore ${skinById(id).name}`}><span>{skinById(id).name}<ArrowUpRight size={16} /></span></a></article>)}</div>
+      <FinishShowcase finishes={collectionFinishes} explore />
       <a className="action-text" href="/skins">Explore all {skins.length} finishes <ArrowUpRight size={18} /></a>
     </section>
     <section className="pro-workflow"><div className="page-width workflow-grid">

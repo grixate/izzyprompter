@@ -131,7 +131,7 @@ for (const width of [320, 360, 390, 430, 768, 1280, 1440]) {
       await page.addStyleTag({ content: '.remote-instrument .instrument-speed strong, .offline-workspace-heading h1 { font-family: Arial, sans-serif !important; } .skin-card-meta h2 { font-family: Verdana, sans-serif !important; }' })
       await page.evaluate(() => document.fonts.ready)
       await expect.poll(() => page.evaluate(() => document.documentElement.scrollWidth)).toBe(width)
-      const speedRails = await page.locator('.remote-instrument .instrument-speed').evaluateAll(els => els.map(el => ({
+      const speedRails = await page.locator('.remote-instrument .instrument-speed:visible').evaluateAll(els => els.map(el => ({
         rail: el.querySelector<HTMLElement>('.speed-track')?.clientWidth ?? 0,
         overflow: el.scrollWidth - el.clientWidth,
         stepShape: Math.max(...Array.from(el.querySelectorAll<HTMLElement>('.speed-step')).map(step => Math.abs(step.clientWidth - step.clientHeight))),
@@ -174,6 +174,56 @@ for (const width of [320, 360, 390, 430, 768, 1280, 1440]) {
     }
   })
 }
+
+test('Pro phone showcases browse full-size working remotes inline', async ({ page }) => {
+  await page.setViewportSize({ width: 320, height: 820 })
+  await page.goto('/pro')
+  const showcases = [
+    { section: '.pro-material-section', finishes: ['Groove', 'Clear', 'Arcade'] },
+    { section: '.pro-collection', finishes: ['Field reel', 'Signal', 'Cartridge', 'Observatory'] },
+  ]
+  for (const { section, finishes } of showcases) {
+    const showcase = page.locator(section)
+    const next = showcase.getByRole('button', { name: 'Next finish' })
+    const previous = showcase.getByRole('button', { name: 'Previous finish' })
+    for (const [index, finish] of finishes.entries()) {
+      const status = showcase.getByRole('status')
+      await expect(status).toContainText(finish)
+      await expect(status).toContainText(`${index + 1} / ${finishes.length}`)
+      const remote = showcase.getByRole('group', { name: /remote preview$/ })
+      await expect(remote).toHaveCount(1)
+      await expect(remote).toHaveAccessibleName(`${finish} remote preview`)
+      const bounds = (await remote.boundingBox())!
+      expect(bounds.width).toBeGreaterThanOrEqual(260)
+      expect(bounds.x).toBeGreaterThanOrEqual(0)
+      expect(bounds.x + bounds.width).toBeLessThanOrEqual(320)
+      const jog = remote.getByRole('slider', { name: 'Jog script position' })
+      await jog.press('ArrowRight')
+      await expect(jog).toHaveAttribute('aria-valuenow', '48')
+      const speed = remote.getByRole('textbox', { name: 'Exact playback speed' })
+      await speed.fill('0.75')
+      await speed.press('Enter')
+      await expect(remote.getByRole('slider', { name: 'Playback speed' })).toHaveAttribute('aria-valuetext', '0.75 times normal speed')
+      await remote.getByRole('button', { name: 'Play', exact: true }).click()
+      await expect.poll(async () => Number(await jog.getAttribute('aria-valuenow'))).toBeGreaterThan(48)
+      await remote.getByRole('button', { name: 'Pause', exact: true }).click()
+      await next.click()
+    }
+    await expect(showcase.getByRole('status')).toContainText(finishes[0])
+    await previous.focus()
+    await previous.press('Enter')
+    await expect(showcase.getByRole('status')).toContainText(finishes.at(-1)!)
+    await expect(previous).toBeFocused()
+    await expect(page.getByRole('dialog')).toHaveCount(0)
+  }
+  await expect(page.locator('.pro-collection').getByRole('link', { name: 'Explore Observatory' })).toHaveAttribute('href', '/skins?skin=observatory')
+  await page.setViewportSize({ width: 1280, height: 900 })
+  for (const { section, finishes } of showcases) {
+    const showcase = page.locator(section)
+    await expect(showcase.getByRole('group', { name: /remote preview$/ })).toHaveCount(finishes.length)
+    await expect(showcase.getByRole('button', { name: 'Next finish' })).toHaveCount(0)
+  }
+})
 
 test('animated PRO materials stay contained throughout a complete turn', async ({page}) => {
   await page.setViewportSize({width:430,height:900})
